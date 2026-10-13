@@ -314,6 +314,59 @@ dialog::backdrop{background:rgba(10,15,30,.5)}
 .err{color:var(--danger);font-size:13px;min-height:18px}
 .ok-msg{color:var(--ok);font-size:13px}
 .foot{font-size:12.5px;color:var(--faint)}
+
+/* Finanzas */
+.gform{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gform .full{grid-column:1/-1}
+.gform input,.gform select{border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--surface-2);width:100%}
+.check{display:flex;gap:8px;align-items:center;font-size:13px}
+.check input{width:auto}
+.glist{display:grid;gap:6px;margin-top:12px;max-height:330px;overflow:auto}
+.gi{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface-2);font-size:13px}
+.gi b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gi .muted{display:block}
+.neg{color:var(--danger)}
+.pos{color:var(--ok)}
+
+/* Lanzamientos */
+.board{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:12px;overflow-x:auto;padding-bottom:4px}
+.col{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.col-h{display:flex;align-items:center;gap:8px;padding:2px 4px 4px}
+.col-h i{width:9px;height:9px;border-radius:3px;background:var(--k)}
+.col-h h3{font-size:13.5px;font-weight:700;flex:1}
+.lc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);display:grid;gap:6px}
+.lc b{font-size:14px;line-height:1.3}
+.lc p{font-size:12.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lc .row{display:flex;gap:6px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.sugg{display:flex;flex-wrap:wrap;gap:8px}
+.sg{display:inline-flex;align-items:center;gap:8px;border:1px dashed color-mix(in srgb,var(--orange) 55%,var(--line));background:color-mix(in srgb,var(--orange) 7%,var(--surface));border-radius:999px;padding:5px 6px 5px 12px;font-size:13px}
+.sg b{font-weight:700}
+
+/* Portadas */
+.thumb{width:34px;height:48px;border-radius:5px;object-fit:cover;flex:none;border:1px solid var(--line);background:var(--surface-2)}
+.mat-cell{display:flex;gap:10px;align-items:center}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.gc{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;transition:box-shadow .18s,transform .18s}
+.gc:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.cover{aspect-ratio:210/297;width:100%;max-width:100%;object-fit:cover;display:block;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.cover.ph{display:grid;place-items:center;align-content:center;gap:6px;color:var(--muted);font-size:12px;text-align:center;padding:10px;background:linear-gradient(160deg,color-mix(in srgb,var(--blue) 10%,var(--surface)),color-mix(in srgb,var(--orange) 10%,var(--surface)))}
+.cover.ph b{font-family:var(--f-brand);font-size:34px;color:var(--blue);line-height:1}
+.gc .gb{padding:10px 12px;display:grid;gap:6px;flex:1}
+.gc .gb b{font-size:13.5px;line-height:1.3}
+.gc .gb .row{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;margin-top:auto}
+.cover-edit{display:flex;gap:12px;align-items:center}
+.cover-edit img{width:72px;height:102px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+
+/* Instagram */
+.heat{display:grid;grid-template-columns:44px repeat(17,minmax(30px,1fr));gap:3px;min-width:640px;font-size:11px}
+.heat .hh{color:var(--faint);text-align:center;font-variant-numeric:tabular-nums}
+.heat .hd{color:var(--muted);font-weight:700;align-self:center}
+.heat .hc{height:28px;border-radius:5px;background:color-mix(in srgb,var(--c-redes) calc(var(--v) * 1%),var(--surface-2));position:relative}
+.heat .hc.top{outline:2px solid var(--orange);outline-offset:-2px}
+.chart .rbar{fill:color-mix(in srgb,var(--c-redes) 55%,var(--surface))}
+.chart .fline{fill:none;stroke:var(--blue);stroke-width:2}
+.chart .fdot{fill:var(--blue)}
+.delta{font-size:12px;font-weight:700}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}.fav:hover{transform:none}}
 </style>
 
@@ -338,9 +391,11 @@ dialog::backdrop{background:rgba(10,15,30,.5)}
   <div class="tabs-in" role="tablist">
     <button class="tab" role="tab" data-view="inicio" aria-selected="true">Inicio</button>
     <button class="tab" role="tab" data-view="ventas" aria-selected="false">Ventas</button>
+    <button class="tab" role="tab" data-view="instagram" aria-selected="false">Instagram</button>
     <button class="tab" role="tab" data-view="clientes" aria-selected="false">Clientes <span class="n" id="nClientes">—</span></button>
     <button class="tab" role="tab" data-view="materiales" aria-selected="false">Materiales <span class="n" id="nMats">—</span></button>
     <button class="tab" role="tab" data-view="calendario" aria-selected="false">Calendario</button>
+    <button class="tab" role="tab" data-view="lanzamientos" aria-selected="false">Lanzamientos <span class="n" id="nLanz">—</span></button>
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false">Mensajes</button>
     <button class="tab" role="tab" data-view="datos" aria-selected="false">Datos</button>
   </div>
@@ -436,6 +491,62 @@ dialog::backdrop{background:rgba(10,15,30,.5)}
     <div class="sec-h"><h2>Oportunidades de venta cruzada</h2><span class="meta">Clientes que compraron un material y todavía no el que suele acompañarlo</span></div>
     <div class="cross" id="cross"></div>
   </section>
+  <section class="card" aria-labelledby="finTitle">
+    <div class="sec-h"><h2 id="finTitle">Ganancia real</h2><span class="meta">Facturado menos comisión de Mercado Pago y gastos</span></div>
+    <div class="kpis" id="finStats"></div>
+    <div class="grid2" style="margin-top:16px;align-items:start">
+      <div style="display:grid;gap:12px;min-width:0">
+        <div class="tbl-wrap"><table><thead><tr><th>Mes</th><th class="num">Facturado</th><th class="num">Comisión MP</th><th class="num">Gastos</th><th class="num">Ganancia</th><th class="num">Margen</th></tr></thead><tbody id="finRows"></tbody></table></div>
+        <div class="toolbar">
+          <label for="mpPct" style="font-size:13px;font-weight:600">Comisión de Mercado Pago</label>
+          <input id="mpPct" class="sel" style="width:96px" inputmode="decimal" placeholder="Ej.: 6,29" aria-describedby="mpHelp"> <span class="muted">%</span>
+          <button class="btn small" id="mpSave" type="button" disabled>Guardar</button>
+          <span class="muted" id="mpHelp" style="flex-basis:100%">Usá la tasa que te cobra Mercado Pago (incluido IVA). Se aplica solo a las ventas cobradas por ahí; las transferencias no pagan comisión.</span>
+        </div>
+      </div>
+      <div style="min-width:0">
+        <h3 style="font-size:14.5px;margin-bottom:10px">Registrar un gasto</h3>
+        <form class="gform" id="gForm" novalidate>
+          <div class="field"><label for="gDate">Fecha</label><input id="gDate" type="date"></div>
+          <div class="field"><label for="gAmount">Monto ($)</label><input id="gAmount" inputmode="decimal" placeholder="Ej.: 15000"></div>
+          <div class="field full"><label for="gConcept">Concepto</label><input id="gConcept" maxlength="80" placeholder="Ej.: Publicidad en Instagram 25 de Mayo"></div>
+          <div class="field"><label for="gCat">Categoría</label><select id="gCat"><option>Publicidad</option><option>Herramientas y suscripciones</option><option>Diseño e impresión</option><option>Dominio y web</option><option>Impuestos</option><option>Otros</option></select></div>
+          <label class="check" style="align-self:end;padding-bottom:9px"><input type="checkbox" id="gRec"> Se repite todos los meses</label>
+          <p class="err full" id="gErr"></p>
+          <button class="btn primary full" type="submit">Agregar gasto</button>
+        </form>
+        <div class="glist" id="gList"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ INSTAGRAM ============ -->
+<main class="wrap view" id="view-instagram" hidden>
+  <div class="view-h"><div><h1>Instagram</h1><p class="lead" id="igMeta">Datos de @cofredidactico desde Metricool.</p></div>
+    <div class="actions"><button class="btn small" type="button" id="igRefresh">Actualizar datos</button><a class="btn small" href="https://app.metricool.com/evolution/instagram?blogId=6724782&amp;userId=5173832" target="_blank" rel="noopener">Abrir Metricool</a></div></div>
+  <p class="banner" id="igBanner" hidden></p>
+  <div class="kpis" id="igStats"></div>
+  <section class="card chart">
+    <div class="sec-h" style="margin-bottom:6px"><h2>Alcance diario y seguidores</h2><span class="meta">Barras: personas alcanzadas por día · línea: seguidores · últimos 90 días</span></div>
+    <div id="igChart"><p class="muted">Cargando…</p></div>
+  </section>
+  <section class="card">
+    <div class="sec-h"><h2>Mejores horarios para publicar</h2><span class="meta">Próximos 7 días, según la actividad de tus seguidores</span></div>
+    <div class="cal-wrap"><div id="btHeat"><p class="muted">Cargando…</p></div></div>
+    <p class="muted" id="btTop" style="margin-top:10px"></p>
+  </section>
+</main>
+
+<!-- ============ LANZAMIENTOS ============ -->
+<main class="wrap view" id="view-lanzamientos" hidden>
+  <div class="view-h"><div><h1>Lanzamientos</h1><p class="lead">Ideas de materiales nuevos, desde la idea hasta que está publicado en la tienda. Movelos de columna a medida que avanzan.</p></div>
+    <button class="btn primary" type="button" id="newLanz">+ Nueva idea</button></div>
+  <section>
+    <div class="sec-h"><h2>Efemérides sin material</h2><span class="meta">Próximos 12 meses · tocá para sumar la idea</span></div>
+    <div class="sugg" id="lSugg"></div>
+  </section>
+  <div class="board" id="board"></div>
 </main>
 
 <!-- ============ CLIENTES ============ -->
@@ -473,10 +584,12 @@ dialog::backdrop{background:rgba(10,15,30,.5)}
       <option value="set">Con contraseña</option>
       <option value="renew">A renovar</option>
     </select>
-    <div class="seg" role="group" aria-label="Vista de materiales"><button type="button" data-mview="mat" aria-pressed="true">Por material</button><button type="button" data-mview="grp" aria-pressed="false">Por tema</button></div>
+    <div class="seg" role="group" aria-label="Vista de materiales"><button type="button" data-mview="gal" aria-pressed="false">Galería</button><button type="button" data-mview="mat" aria-pressed="true">Tabla</button><button type="button" data-mview="grp" aria-pressed="false">Por tema</button></div>
   </div>
-  <div class="meta" style="display:flex;gap:10px;align-items:center"><span id="mProg"></span><span class="progress"><i id="mBar" style="width:0"></i></span></div>
-  <div class="tbl-wrap">
+  <div class="meta" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span id="mProg"></span><span class="progress"><i id="mBar" style="width:0"></i></span><span id="mCovers"></span></div>
+  <div class="gal" id="mGal" hidden></div>
+  <input type="file" id="galCoverIn" accept="image/*" hidden>
+  <div class="tbl-wrap" id="mTable">
     <table>
       <thead id="mHead"></thead>
       <tbody id="mRows"></tbody>
@@ -601,6 +714,9 @@ dialog::backdrop{background:rgba(10,15,30,.5)}
   <form class="dlg" id="mform" novalidate>
     <h3 id="mdTitle">Ficha del material</h3>
     <p class="muted" id="mdSub"></p>
+    <div class="field"><span style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.03em">Portada</span>
+      <div class="cover-edit"><img id="mdCoverImg" alt="Portada del material" hidden>
+        <div class="actions"><label class="btn small" for="mdCover" id="mdCoverLbl">Subir portada</label><input type="file" id="mdCover" accept="image/*" hidden><button class="btn small ghost" type="button" id="mdCoverDel" hidden>Quitar</button><span class="muted" id="mdCoverMsg"></span></div></div></div>
     <div class="row2">
       <div class="field"><label for="mdPass">Contraseña del PDF</label><input id="mdPass" maxlength="80" style="font-family:ui-monospace,Menlo,monospace" autocomplete="off" spellcheck="false"></div>
       <div class="field"><label for="mdPrice">Precio actual ($)</label><input id="mdPrice" inputmode="numeric" maxlength="12" placeholder="Ej.: 6500"></div>
@@ -638,6 +754,29 @@ dialog::backdrop{background:rgba(10,15,30,.5)}
     <p class="err" id="pErr"></p>
     <div class="dlg-actions">
       <button type="button" class="btn danger" id="pDel" hidden>Eliminar</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn ghost" data-close>Cancelar</button>
+      <button type="submit" class="btn primary">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="ldlg" aria-labelledby="ldTitle">
+  <form class="dlg" id="lform" novalidate>
+    <h3 id="ldTitle">Nueva idea</h3>
+    <div class="field"><label for="lTitle">Nombre del material</label><input id="lTitle" maxlength="100" placeholder="Ej.: Cuadernillo Día de la Tradición"></div>
+    <div class="row2">
+      <div class="field"><label for="lEfe">Efeméride</label><select id="lEfe"></select></div>
+      <div class="field"><label for="lState">Estado</label><select id="lState"><option>Idea</option><option>En diseño</option><option>Listo</option><option>Publicado</option></select></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="lDue">Publicar antes del</label><input id="lDue" type="date"></div>
+      <div class="field"><label for="lLevel">Nivel o ciclo</label><input id="lLevel" maxlength="60" placeholder="Ej.: Primer ciclo"></div>
+    </div>
+    <div class="field"><label for="lNote">Notas</label><textarea id="lNote" rows="4" maxlength="2000" placeholder="Contenido, actividades, plataforma interactiva, precio pensado…"></textarea></div>
+    <p class="err" id="lErr"></p>
+    <div class="dlg-actions">
+      <button type="button" class="btn danger" id="lDel" hidden>Eliminar</button>
       <span class="spacer"></span>
       <button type="button" class="btn ghost" data-close>Cancelar</button>
       <button type="submit" class="btn primary">Guardar</button>
@@ -831,13 +970,13 @@ function LocalDB(){
       onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(inColl(c).map(k=>[k,data[k]])); if(s!==last){ last=s; next(mk()); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); } }; }
   return {doc, collection:coll, _all:()=>JSON.parse(JSON.stringify(data)), _replace:d=>{ data=d; save(); notify(); }, _isEmpty:()=>!Object.keys(data).length};
 }
-const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas"];
+const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos"];
 let db=null;
 
 // =====================================================================
 // Estado
 // =====================================================================
-let links=[], kpis=null, clients=[], salesMeta=null, matDocs={}, envios=[], posts=[], tplDocs={};
+let links=[], kpis=null, clients=[], salesMeta=null, matDocs={}, envios=[], posts=[], tplDocs={}, gastos=[], lanz=[], finCfg={};
 let D = null; // datos derivados
 let currentView="inicio", editing=false, editingId=null, confirmDel=false, cLimit=40, rankMode="mat", mView="mat";
 let calMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
@@ -930,7 +1069,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","clientes","materiales","calendario","mensajes","datos"];
+  const all=["inicio","ventas","instagram","clientes","materiales","calendario","lanzamientos","mensajes","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -946,6 +1085,8 @@ function renderView(v){
   if(v==="materiales") renderMats();
   if(v==="calendario"){ renderEfes(); renderCal(); }
   if(v==="mensajes") renderTpls();
+  if(v==="lanzamientos") renderLanz();
+  if(v==="instagram"){ renderIG(); loadIG(false); }
   if(v==="datos") renderDatos();
 }
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>showView(t.dataset.view)));
@@ -984,7 +1125,8 @@ function renderHoy(){
   const t=startOfDay(new Date()), wk=new Date(+t+7*DAY);
   const next=posts.filter(p=>p.fecha&&new Date(p.fecha+"T00:00")>=t&&p.estado!=="Publicada").sort((a,b)=>a.fecha.localeCompare(b.fecha));
   const thisWeek=next.filter(p=>new Date(p.fecha+"T00:00")<wk);
-  card("--c-redes","Publicaciones",`<span class="big">${thisWeek.length} esta semana</span>${next.length?`<ul>${next.slice(0,3).map(p=>`<li><b>${esc(new Date(p.fecha+"T00:00").toLocaleDateString("es-AR",{day:"numeric",month:"short"}))}</b><span>${esc(p.tipo)} · ${esc(p.tema||"Sin tema")}</span></li>`).join("")}</ul>`:`<span class="txt">No hay publicaciones planificadas.</span>`}`,"Planificar","calendario");
+  const bs=bestSlots()[0];
+  card("--c-redes","Publicaciones",`<span class="big">${thisWeek.length} esta semana</span>${bs?`<span class="txt">Mejor horario: <b>${DOW[bs.dow]} ${bs.h} h</b></span>`:""}${next.length?`<ul>${next.slice(0,3).map(p=>`<li><b>${esc(new Date(p.fecha+"T00:00").toLocaleDateString("es-AR",{day:"numeric",month:"short"}))}</b><span>${esc(p.tipo)} · ${esc(p.tema||"Sin tema")}</span></li>`).join("")}</ul>`:`<span class="txt">No hay publicaciones planificadas.</span>`}`,"Planificar","calendario");
   // Pendientes
   const noPass=D?D.matList.filter(m=>m.sold>0&&!m.pass).length:0;
   const pend=D?D.clients.reduce((s,c)=>s+c.o.filter(o=>o.pg==="Pendiente").length,0):0;
@@ -993,6 +1135,8 @@ function renderHoy(){
   const li=[]; if(noPass) li.push(`<li><b>${noPass}</b><span>materiales vendidos sin contraseña</span></li>`);
   if(pend) li.push(`<li><b>${pend}</b><span>pedido${pend>1?"s":""} con pago pendiente</span></li>`);
   if(renew) li.push(`<li><b>${renew}</b><span>material${renew>1?"es":""} a renovar</span></li>`);
+  const lsoon=lanz.filter(l=>l.estado!=="Publicado"&&l.due&&(new Date(l.due+"T00:00")-t)/DAY<=21);
+  if(lsoon.length) li.push(`<li><b>${lsoon.length}</b><span>lanzamiento${lsoon.length>1?"s":""} con fecha en menos de 3 semanas</span></li>`);
   if(firstNote) li.push(`<li><b>Nota</b><span>${esc(firstNote)}</span></li>`);
   card("--c-trabajo","Pendientes",li.length?`<ul>${li.join("")}</ul>`:`<span class="txt">Nada pendiente. ¡Todo al día!</span>`,noPass?"Cargar contraseñas":"","materiales");
   $("#hoyMeta").textContent=D&&D.dataEnd?`Ventas cargadas hasta el ${fmtD(D.dataEnd)}`:"";
@@ -1111,7 +1255,7 @@ function renderVentas(){
   const stats=[["Facturado",money(fact),"--c-ventas",`${nf(okO.length)} pedidos aprobados`],["Ticket promedio",money(okO.length?fact/okO.length:0),"--c-sitio","Por pedido"],["Materiales vendidos",nf(units),"--c-trabajo",`${has?D.matList.filter(m=>m.sold).length:0} títulos distintos`],["Clientes con compras",nf(has?D.clients.filter(c=>c._ok).length:0),"--c-metricas",`${has?D.clients.filter(c=>c._ok>1).length:0} compraron más de una vez`]];
   const root=$("#vStats"); root.textContent="";
   stats.forEach(([l,v,k,n])=>{ const el=document.createElement("div"); el.className="kpi"; el.style.setProperty("--k",`var(${k})`); el.innerHTML=`<div class="kpi-l"><i></i><span>${esc(l)}</span></div><div class="kpi-v">${esc(v)}</div><div class="kpi-n">${esc(n)}</div>`; root.appendChild(el); });
-  renderMonthChart(); renderRank(); renderProv(); renderFreq(); renderCross();
+  renderMonthChart(); renderRank(); renderProv(); renderFreq(); renderCross(); renderFin();
 }
 function renderMonthChart(){
   const box=$("#monthChart"); const L=D?D.monthList:[];
@@ -1294,6 +1438,9 @@ function renderMats(){
   const q=fold($("#mq").value.trim()), fil=$("#mFilter").value;
   const list=all.filter(x=>(!q||fold(x.name+" "+x.group).includes(q))&&(fil==="all"||(fil==="missing"&&!x.pass)||(fil==="set"&&x.pass)||(fil==="renew"&&x.doc.estado==="A renovar")));
   const tb=$("#mRows"); tb.textContent="";
+  $("#mGal").hidden=mView!=="gal"; $("#mTable").hidden=mView==="gal";
+  $("#mCovers").textContent=all.length?`· ${all.filter(m=>m.doc.cover).length} con portada`:"";
+  if(mView==="gal"){ renderGal(list,q); return; }
   if(mView==="grp"){
     $("#mHead").innerHTML=`<tr><th>Tema</th><th class="num">Materiales</th><th class="num">Unidades</th><th class="num">Ingresos</th><th>Contraseñas</th><th>Efeméride</th></tr>`;
     const g={}; list.forEach(m=>{ const x=g[m.group]=g[m.group]||{name:m.group,mats:[],units:0,rev:0,pass:0}; x.mats.push(m); x.units+=m.sold; x.rev+=m.rev; if(m.pass) x.pass++; });
@@ -1310,7 +1457,7 @@ function renderMats(){
     const d=x.doc||{}; const meta=[x.group!==x.name?x.group:"",d.nivel,d.precio?money(+d.precio):""].filter(Boolean).join(" · ");
     const st=d.estado&&d.estado!=="Activo"?` <span class="pill ${d.estado==="A renovar"?"wait":"none"}">${esc(d.estado)}</span>`:"";
     const tr=document.createElement("tr");
-    tr.innerHTML=`<td><div class="mat-name">${hl(x.name,q)}${st}${meta||x.manual?`<small>${esc(meta)}${x.manual?(meta?" · ":"")+"Agregado a mano":""}</small>`:""}</div></td>
+    tr.innerHTML=`<td><div class="mat-cell">${d.cover?`<img class="thumb" src="${esc(d.cover)}" alt="">`:""}<div class="mat-name">${hl(x.name,q)}${st}${meta||x.manual?`<small>${esc(meta)}${x.manual?(meta?" · ":"")+"Agregado a mano":""}</small>`:""}</div></div></td>
       <td class="num">${nf(x.sold)}</td><td class="num">${money(x.rev)}</td><td class="nowrap">${fmtD(x.last)}</td>
       <td><div class="mat-pass"><input type="text" maxlength="80" spellcheck="false" autocomplete="off" placeholder="Sin contraseña"><button class="btn small" type="button" disabled>Guardar</button></div></td>
       <td><div class="actions"><button class="btn small" type="button" data-a="ficha">Ficha</button>${x.sold?`<button class="linkish" type="button" data-a="buyers">Compradores</button>`:""}${d.link?`<a class="linkish" href="${esc(d.link)}" target="_blank" rel="noopener">Archivo</a>`:""}</div></td>`;
@@ -1342,6 +1489,7 @@ function openMat(x){
   $("#mdPass").value=d.pass||""; $("#mdPrice").value=d.precio||""; $("#mdGroup").value=d.grupo||""; $("#mdGroup").placeholder=autoGroup(x.name);
   $("#mdLevel").value=d.nivel||""; const ef=efeFor(x.name,null); $("#mdEfe").value=d.efe||""; $("#mdEfe").placeholder=ef?ef[0].split("-").reverse().join("/"):"Ej.: 17/08";
   $("#mdState").value=d.estado||"Activo"; $("#mdLink").value=d.link||""; $("#mdNote").value=d.nota||"";
+  coverDraft=undefined; showCoverPreview(d.cover||""); $("#mdCoverMsg").textContent="";
   $("#mdDel").hidden=!x.manual; $("#mdDel").textContent="Quitar material"; $("#mdErr").textContent=""; $("#mdlg").showModal();
 }
 $("#mform").addEventListener("submit",async e=>{ e.preventDefault(); const x=matEditing; if(!x) return;
@@ -1349,6 +1497,7 @@ $("#mform").addEventListener("submit",async e=>{ e.preventDefault(); const x=mat
   const link=$("#mdLink").value.trim(); const nl=link?normUrl(link):""; if(link&&!nl){ $("#mdErr").textContent="Revisá el enlace del archivo."; return; }
   const price=$("#mdPrice").value.replace(/[^\d]/g,"");
   const body={...(matDocs[x.k]||{}),name:x.name,pass:$("#mdPass").value.trim(),precio:price,grupo:$("#mdGroup").value.trim(),nivel:$("#mdLevel").value.trim(),efe,estado:$("#mdState").value,link:nl,nota:$("#mdNote").value.trim(),updated:new Date().toISOString()};
+  if(coverDraft!==undefined) body.cover=coverDraft;
   $("#mdSave").disabled=true;
   try{ await db.collection("materiales").doc(x.k).set(body); $("#mdlg").close(); }catch{ $("#mdErr").textContent="No se pudo guardar la ficha. Probá de nuevo."; }
   finally{ $("#mdSave").disabled=false; } });
@@ -1504,6 +1653,232 @@ $("#jsonIn").addEventListener("change",async e=>{ const f=e.target.files[0]; e.t
         msg.textContent="Respaldo restaurado."; }catch(err){ msg.textContent="No se pudo restaurar el respaldo."; } });
   }catch(err){ msg.textContent=err.message||"No se pudo leer el archivo."; } });
 
+// ---------- PORTADAS ----------
+let coverDraft=undefined, galTarget=null;
+async function compressImage(file,max=380){
+  if(!file||!/^image\//.test(file.type)) throw new Error("Elegí un archivo de imagen (JPG o PNG).");
+  const url=URL.createObjectURL(file);
+  try{ const img=await new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=()=>rej(new Error("No se pudo leer la imagen.")); i.src=url; });
+    const s=Math.min(1,max/Math.max(img.width,img.height)); const c=document.createElement("canvas"); c.width=Math.max(1,Math.round(img.width*s)); c.height=Math.max(1,Math.round(img.height*s));
+    const ctx=c.getContext("2d"); ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(img,0,0,c.width,c.height);
+    return c.toDataURL("image/jpeg",.82); }
+  finally{ URL.revokeObjectURL(url); }
+}
+function showCoverPreview(src){ const im=$("#mdCoverImg"); im.hidden=!src; if(src) im.src=src; else im.removeAttribute("src"); $("#mdCoverDel").hidden=!src; $("#mdCoverLbl").textContent=src?"Cambiar portada":"Subir portada"; }
+$("#mdCover").addEventListener("change",async e=>{ const f=e.target.files[0]; e.target.value=""; if(!f) return;
+  $("#mdCoverMsg").textContent="Procesando…";
+  try{ coverDraft=await compressImage(f); showCoverPreview(coverDraft); $("#mdCoverMsg").textContent="Se guarda al tocar “Guardar ficha”."; }
+  catch(err){ $("#mdCoverMsg").textContent=err.message; } });
+$("#mdCoverDel").addEventListener("click",()=>{ coverDraft=""; showCoverPreview(""); $("#mdCoverMsg").textContent="Se quita al guardar."; });
+function renderGal(list,q){
+  const g=$("#mGal"); g.textContent="";
+  if(!list.length){ g.innerHTML=`<div class="empty-box">${D&&D.matList.length?"Ningún material coincide con la búsqueda.":"Todavía no hay materiales."}</div>`; return; }
+  list.sort((a,b)=>b.sold-a.sold||a.name.localeCompare(b.name)).forEach(x=>{ const d=x.doc||{};
+    const el=document.createElement("article"); el.className="gc";
+    el.innerHTML=`${d.cover?`<img class="cover" alt="">`:`<div class="cover ph"><b>${esc((fold(x.group).charAt(0)||"?").toUpperCase())}</b><span>Sin portada</span></div>`}
+      <div class="gb"><b>${hl(x.name,q)}</b><span class="muted">${nf(x.sold)} vendidos · ${money(x.rev)}</span>
+      <div class="row">${x.pass?`<span class="pill ok">Con contraseña</span>`:`<span class="pill wait">Sin contraseña</span>`}${d.estado&&d.estado!=="Activo"?`<span class="pill none">${esc(d.estado)}</span>`:""}</div>
+      <div class="row"><button class="btn small" type="button" data-a="ficha">Ficha</button><button class="linkish" type="button" data-a="cover">${d.cover?"Cambiar portada":"Subir portada"}</button></div></div>`;
+    if(d.cover) el.querySelector("img").src=d.cover;
+    el.querySelector('[data-a="ficha"]').addEventListener("click",()=>openMat(x));
+    el.querySelector('[data-a="cover"]').addEventListener("click",()=>{ galTarget=x; $("#galCoverIn").click(); });
+    g.appendChild(el); });
+}
+$("#galCoverIn").addEventListener("change",async e=>{ const f=e.target.files[0]; e.target.value=""; const x=galTarget; if(!f||!x||!needDb()) return;
+  try{ const cover=await compressImage(f); await db.collection("materiales").doc(x.k).set({...(matDocs[x.k]||{}),name:x.name,cover,updated:new Date().toISOString()}); }
+  catch(err){ setStatus(err.message||"No se pudo guardar la portada.",true); } });
+
+// ---------- FINANZAS ----------
+const monthKey=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
+const monthLabel=k=>{ const [y,m]=k.split("-"); return new Date(+y,+m-1,1).toLocaleDateString("es-AR",{month:"long",year:"numeric"}); };
+function finRows(){
+  const pct=parseFloat(String(finCfg.mpPct||"0").replace(",","."))||0;
+  const m={};
+  const add=k=>m[k]=m[k]||{k,fact:0,mp:0,gastos:0};
+  if(D) D.clients.forEach(c=>c.o.forEach(o=>{ if(o.pg!=="Finalizado"||!o._d) return; const r=add(monthKey(o._d)); r.fact+=o.tot||0; if(/mercado/i.test(o.m||"")) r.mp+=o.tot||0; }));
+  const nowK=monthKey(new Date());
+  // meses a mostrar: con ventas o con gastos, hasta el actual
+  gastos.forEach(g=>{ if(g.fecha) add(g.fecha.slice(0,7)); });
+  if(Object.keys(m).length) add(nowK);
+  const keys=Object.keys(m).sort();
+  if(keys.length){ // completar meses vacíos intermedios
+    let [y,mo]=keys[0].split("-").map(Number); const last=keys[keys.length-1];
+    while(`${y}-${String(mo).padStart(2,"0")}`<last){ add(`${y}-${String(mo).padStart(2,"0")}`); mo++; if(mo>12){ mo=1; y++; } }
+  }
+  Object.values(m).forEach(r=>{ r.comm=r.mp*pct/100;
+    r.gastos=gastos.reduce((s,g)=>{ if(!g.fecha) return s; const k0=g.fecha.slice(0,7); const amt=+g.monto||0;
+      if(g.rec) return (r.k>=k0&&(!g.hasta||r.k<=g.hasta))?s+amt:s; return k0===r.k?s+amt:s; },0);
+    r.net=r.fact-r.comm-r.gastos; });
+  return {rows:Object.values(m).sort((a,b)=>b.k.localeCompare(a.k)), pct};
+}
+function renderFin(){
+  const {rows,pct}=finRows();
+  const y=String(new Date().getFullYear()); const yr=rows.filter(r=>r.k.startsWith(y));
+  const tot=k=>yr.reduce((s,r)=>s+r[k],0);
+  const fact=tot("fact"), net=tot("net");
+  const st=[["Facturado "+y,money(fact),"--c-ventas","Pagos aprobados"],["Comisión Mercado Pago",money(tot("comm")),"--c-sitio",pct?`${String(pct).replace(".",",")}% sobre ventas por Mercado Pago`:"Cargá tu tasa abajo"],["Gastos "+y,money(tot("gastos")),"--c-redes",`${gastos.length} gasto${gastos.length===1?"":"s"} registrado${gastos.length===1?"":"s"}`],["Ganancia neta "+y,money(net),"--c-trabajo",fact?`Margen ${Math.round(net/fact*100)}%`:""]];
+  const root=$("#finStats"); root.textContent="";
+  st.forEach(([l,v,k,n])=>{ const el=document.createElement("div"); el.className="kpi"; el.style.setProperty("--k",`var(${k})`); el.innerHTML=`<div class="kpi-l"><i></i><span>${esc(l)}</span></div><div class="kpi-v">${esc(v)}</div><div class="kpi-n">${esc(n)}</div>`; root.appendChild(el); });
+  $("#finRows").innerHTML=rows.length?rows.map(r=>`<tr><td style="text-transform:capitalize;white-space:nowrap">${esc(monthLabel(r.k))}</td><td class="num">${money(r.fact)}</td><td class="num">${r.comm?"−"+money(r.comm):"—"}</td><td class="num">${r.gastos?"−"+money(r.gastos):"—"}</td><td class="num ${r.net<0?"neg":""}" style="font-weight:700">${money(r.net)}</td><td class="num">${r.fact?Math.round(r.net/r.fact*100)+"%":"—"}</td></tr>`).join(""):`<tr><td colspan="6" class="muted">Sin ventas ni gastos todavía.</td></tr>`;
+  if(document.activeElement!==$("#mpPct")) $("#mpPct").value=finCfg.mpPct||"";
+  $("#mpSave").disabled=true;
+  const gl=$("#gList"); const sorted=[...gastos].sort((a,b)=>String(b.fecha).localeCompare(String(a.fecha)));
+  gl.innerHTML=sorted.length?"":`<p class="muted">Todavía no registraste gastos. Sumá publicidad, suscripciones (Metricool, ManyChat, dominio) y otros costos.</p>`;
+  sorted.slice(0,40).forEach(g=>{ const el=document.createElement("div"); el.className="gi";
+    const when=g.rec?`Todos los meses desde ${monthLabel(g.fecha.slice(0,7))}${g.hasta?` hasta ${monthLabel(g.hasta)}`:""}`:new Date(g.fecha+"T00:00").toLocaleDateString("es-AR",{day:"numeric",month:"short",year:"numeric"});
+    el.innerHTML=`<div style="min-width:0"><b></b><span class="muted"></span></div><span style="font-weight:700;font-variant-numeric:tabular-nums">${money(+g.monto)}</span><div class="actions"></div>`;
+    el.querySelector("b").textContent=g.concepto; el.querySelector(".muted").textContent=`${g.cat} · ${when}`;
+    const acts=el.querySelector(".actions");
+    if(g.rec&&!g.hasta){ const b=document.createElement("button"); b.className="linkish"; b.type="button"; b.textContent="Dar de baja"; b.title="Deja de contarse desde el mes que viene";
+      b.addEventListener("click",async()=>{ try{ await db.collection("gastos").doc(g.id).update({hasta:monthKey(new Date())}); }catch{ setStatus("No se pudo dar de baja el gasto.",true); } }); acts.appendChild(b); }
+    const d=document.createElement("button"); d.className="iconbtn"; d.type="button"; d.setAttribute("aria-label","Eliminar gasto "+g.concepto); d.title="Eliminar";
+    d.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>`;
+    let sure=false; d.addEventListener("click",async()=>{ if(!sure){ sure=true; d.style.color="var(--danger)"; d.title="Tocá de nuevo para eliminar"; setTimeout(()=>{ sure=false; d.style.color=""; },2500); return; } try{ await db.collection("gastos").doc(g.id).delete(); }catch{ setStatus("No se pudo eliminar el gasto.",true); } });
+    acts.appendChild(d); gl.appendChild(el); });
+}
+$("#gDate").value=iso(new Date());
+$("#mpPct").addEventListener("input",()=>{ $("#mpSave").disabled=$("#mpPct").value.trim()===(finCfg.mpPct||""); });
+$("#mpSave").addEventListener("click",async()=>{ if(!needDb()) return; const v=$("#mpPct").value.trim().replace(".",",");
+  if(v&&!(parseFloat(v.replace(",","."))>=0&&parseFloat(v.replace(",","."))<50)){ setStatus("La comisión tiene que ser un porcentaje, por ejemplo 6,29.",true); return; }
+  try{ await db.doc("panel/finanzas").set({...finCfg,mpPct:v}); }catch{ setStatus("No se pudo guardar la comisión.",true); } });
+$("#gForm").addEventListener("submit",async e=>{ e.preventDefault(); if(!needDb()) return;
+  const fecha=$("#gDate").value, monto=parseFloat($("#gAmount").value.replace(/\./g,"").replace(",",".")), concepto=$("#gConcept").value.trim();
+  if(!fecha){ $("#gErr").textContent="Elegí la fecha del gasto."; return; }
+  if(!(monto>0)){ $("#gErr").textContent="Escribí el monto, por ejemplo 15000."; return; }
+  if(!concepto){ $("#gErr").textContent="Escribí a qué corresponde el gasto."; return; }
+  try{ await db.collection("gastos").add({fecha,monto,concepto,cat:$("#gCat").value,rec:$("#gRec").checked,creado:new Date().toISOString()});
+    $("#gAmount").value=""; $("#gConcept").value=""; $("#gRec").checked=false; $("#gErr").textContent=""; }
+  catch{ $("#gErr").textContent="No se pudo guardar el gasto. Probá de nuevo."; } });
+
+// ---------- LANZAMIENTOS ----------
+const LSTATES=[["Idea","--faint"],["En diseño","--c-sitio"],["Listo","--c-metricas"],["Publicado","--c-ventas"]];
+let lEditing=null, lDelSure=false;
+{ const s=$("#lEfe"); const o=document.createElement("option"); o.value=""; o.textContent="Ninguna"; s.appendChild(o);
+  EFEMERIDES.forEach(e=>{ const x=document.createElement("option"); x.value=e[0]; x.textContent=`${e[0].split("-").reverse().join("/")} · ${e[1]}`; s.appendChild(x); }); }
+function nextDate(mmdd){ const [m,d]=mmdd.split("-").map(Number); const t=startOfDay(new Date()); let x=new Date(t.getFullYear(),m-1,d); if(x<t) x=new Date(t.getFullYear()+1,m-1,d); return x; }
+function efesWithoutMaterial(){
+  const withMat=new Set((D?D.matList:[]).map(m=>{ const f=efeFor(m.name,m.doc); return f&&f[0]; }).filter(Boolean));
+  const planned=new Set(lanz.filter(l=>l.efe).map(l=>l.efe));
+  return EFEMERIDES.filter(e=>!withMat.has(e[0])).map(e=>({e,d:nextDate(e[0]),planned:planned.has(e[0])})).sort((a,b)=>a.d-b.d);
+}
+function renderLanz(){
+  const sg=$("#lSugg"); const L=efesWithoutMaterial();
+  sg.innerHTML=L.length?"":`<p class="muted">Tenés material para todas las efemérides del calendario.</p>`;
+  L.forEach(x=>{ const el=document.createElement("span"); el.className="sg";
+    el.innerHTML=`<span><b>${esc(x.e[1])}</b> <span class="muted">· ${esc(fmtDM(x.d))}</span></span>${x.planned?`<span class="pill info">En el tablero</span>`:`<button class="btn small" type="button">+ Idea</button>`}`;
+    const b=el.querySelector("button"); if(b) b.addEventListener("click",()=>openLanz(null,x.e));
+    sg.appendChild(el); });
+  const board=$("#board"); board.textContent="";
+  const t=startOfDay(new Date());
+  LSTATES.forEach(([st,k],si)=>{ const col=document.createElement("section"); col.className="col";
+    const items=lanz.filter(l=>(l.estado||"Idea")===st).sort((a,b)=>String(a.due||"9").localeCompare(String(b.due||"9")));
+    col.innerHTML=`<div class="col-h" style="--k:var(${k})"><i></i><h3>${esc(st)}</h3><span class="count">${items.length}</span></div>`;
+    if(!items.length){ const p=document.createElement("p"); p.className="muted"; p.style.padding="4px"; p.textContent=si===0?"Sumá ideas con “+ Nueva idea” o desde las efemérides sin material.":"Nada en esta etapa."; col.appendChild(p); }
+    items.forEach(l=>{ const c=document.createElement("article"); c.className="lc";
+      const due=l.due?new Date(l.due+"T00:00"):null; const days=due?Math.round((due-t)/DAY):null;
+      const duePill=due&&st!=="Publicado"?`<span class="pill ${days<0?"no":days<=21?"wait":"none"}">${days<0?`Venció hace ${-days} d`:`Faltan ${days} d`}</span>`:"";
+      const ef=l.efe?EFEMERIDES.find(e=>e[0]===l.efe):null;
+      c.innerHTML=`<b></b>${ef?`<span class="muted">${esc(ef[1])} · ${esc(l.efe.split("-").reverse().join("/"))}</span>`:""}${l.nivel?`<span class="muted">${esc(l.nivel)}</span>`:""}${l.nota?`<p></p>`:""}
+        <div class="row">${duePill||"<span></span>"}<div class="actions">
+          <button class="iconbtn" type="button" data-m="-1" ${si===0?"disabled":""} aria-label="Mover a la etapa anterior">‹</button>
+          <button class="iconbtn" type="button" data-m="1" ${si===LSTATES.length-1?"disabled":""} aria-label="Mover a la etapa siguiente">›</button>
+          <button class="btn small" type="button" data-e>Editar</button></div></div>`;
+      c.querySelector("b").textContent=l.titulo||"Sin nombre"; if(l.nota) c.querySelector("p").textContent=l.nota;
+      c.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",async()=>{ const ni=si+ +b.dataset.m; if(ni<0||ni>=LSTATES.length) return;
+        try{ await db.collection("lanzamientos").doc(l.id).update({estado:LSTATES[ni][0]}); }catch{ setStatus("No se pudo mover la idea.",true); } }));
+      c.querySelector("[data-e]").addEventListener("click",()=>openLanz(l));
+      col.appendChild(c); });
+    board.appendChild(col); });
+  $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—";
+}
+function openLanz(l,efe){
+  if(!needDb()) return; lEditing=l; lDelSure=false;
+  $("#ldTitle").textContent=l?"Editar idea":"Nueva idea";
+  $("#lTitle").value=l?(l.titulo||""):(efe?`Cuadernillo ${efe[1]}`:""); $("#lEfe").value=l?(l.efe||""):(efe?efe[0]:"");
+  $("#lState").value=l?(l.estado||"Idea"):"Idea"; $("#lLevel").value=l?(l.nivel||""):""; $("#lNote").value=l?(l.nota||""):"";
+  $("#lDue").value=l?(l.due||""):(efe?iso(new Date(nextDate(efe[0])-45*DAY)):"");
+  $("#lDel").hidden=!l; $("#lDel").textContent="Eliminar"; $("#lErr").textContent=""; $("#ldlg").showModal(); $("#lTitle").focus();
+}
+$("#lEfe").addEventListener("change",()=>{ const v=$("#lEfe").value; if(v&&!$("#lDue").value) $("#lDue").value=iso(new Date(nextDate(v)-45*DAY)); });
+$("#newLanz").addEventListener("click",()=>openLanz(null));
+$("#lform").addEventListener("submit",async e=>{ e.preventDefault(); const titulo=$("#lTitle").value.trim(); if(!titulo){ $("#lErr").textContent="Poné un nombre para la idea."; return; }
+  const body={titulo,efe:$("#lEfe").value,estado:$("#lState").value,due:$("#lDue").value,nivel:$("#lLevel").value.trim(),nota:$("#lNote").value.trim(),updated:new Date().toISOString()};
+  try{ if(lEditing){ const {id,...rest}=lEditing; await db.collection("lanzamientos").doc(id).set({...rest,...body}); } else await db.collection("lanzamientos").add(body); $("#ldlg").close(); }
+  catch{ $("#lErr").textContent="No se pudo guardar. Probá de nuevo."; } });
+$("#lDel").addEventListener("click",async()=>{ if(!lDelSure){ lDelSure=true; $("#lDel").textContent="Tocá de nuevo para eliminar"; return; }
+  try{ await db.collection("lanzamientos").doc(lEditing.id).delete(); $("#ldlg").close(); }catch{ $("#lErr").textContent="No se pudo eliminar."; } });
+
+// ---------- INSTAGRAM (Metricool) ----------
+const MC="Metricool Social Media Management", MC_BRAND="6724782";
+const IG_METRICS=["IGEV01","IGEV43","IGEV44","IGEV06","IGEV05","IGEV42"]; // seguidores, ganados, perdidos, alcance, vistas, cuentas que interactuaron
+let mcp=null, igDaily=null, igBest=null, igMsg="", igLoading=false, igLoadedAt=null;
+const tzIso=(d,end)=>`${iso(d)}T${end?"23:59:59":"00:00:00"}-03:00`;
+function payloadOf(r){ let p=r&&r.payload; if(p==null&&r&&Array.isArray(r.content)){ const t=r.content.find(c=>c.type==="text"); if(t) p=t.text; } if(typeof p==="string"){ try{ p=JSON.parse(p); }catch{ } } return p; }
+const MC_ERR={needs_reauth:"La conexión con Metricool venció. Volvé a conectarla en claude.ai, Configuración → Conectores.",server_not_connected:"Metricool no está conectado a tu cuenta de Claude. Conectalo en claude.ai, Configuración → Conectores.",not_in_manifest:"No le diste permiso a este panel para usar Metricool. Podés habilitarlo desde el menú de permisos del panel.",approval_required:"Tocá “Actualizar datos” y aprobá el acceso a Metricool.",blocked_by_policy:"Tu organización bloquea el uso de Metricool desde páginas.",server_unavailable:"Metricool no respondió. Probá de nuevo en unos minutos."};
+async function loadIG(force){
+  if(igLoading) return;
+  if(!MODE.cloud){ igMsg="Los datos de Metricool se ven en la versión del panel dentro de Claude. En esta versión podés abrir Metricool con el botón de arriba."; renderIG(); return; }
+  if(igDaily&&!force) return;
+  igLoading=true; igMsg=""; renderIG();
+  try{
+    if(!mcp) mcp=await claude.use("mcp");
+    if(!mcp){ igMsg="La conexión con Metricool no está disponible en esta vista."; return; }
+    if(force){ try{ await mcp.invalidate(MC); }catch{} }
+    const t=startOfDay(new Date());
+    const [a,b]=await Promise.all([
+      mcp.callTool(MC,"getAnalyticsDataByMetrics",{brandId:MC_BRAND,from:tzIso(new Date(+t-89*DAY)),to:tzIso(t,true),metrics:IG_METRICS}),
+      mcp.callTool(MC,"getBestTimeToPostByNetwork",{brandId:MC_BRAND,fromDate:tzIso(t),toDate:tzIso(new Date(+t+6*DAY),true),timezone:"America/Buenos_Aires",socialNetwork:"instagram"})
+    ]);
+    const pa=payloadOf(a), pb=payloadOf(b);
+    igDaily=(pa&&Array.isArray(pa.rows)?pa.rows:[]).map(r=>({d:String(r[IG_METRICS.length]||""),f:r[0]!=null?+r[0]:null,g:+r[1]||0,l:+r[2]||0,reach:+r[3]||0,views:+r[4]||0,eng:+r[5]||0})).filter(x=>/^\d{8}$/.test(x.d)).sort((x,y)=>x.d.localeCompare(y.d));
+    igBest=pb&&Array.isArray(pb.data)?pb.data:[];
+    igLoadedAt=new Date();
+  }catch(err){ const code=err&&err.code; igMsg=MC_ERR[code]||("No se pudieron traer los datos de Metricool"+(err&&err.message?`: ${err.message}`:".")); if(["needs_reauth","server_not_connected","not_in_manifest","blocked_by_policy"].includes(code)){ igDaily=null; igBest=null; } }
+  finally{ igLoading=false; renderIG(); if(currentView==="inicio") renderHoy(); }
+}
+$("#igRefresh").addEventListener("click",()=>loadIG(true));
+function igSum(rows,k){ return rows.reduce((s,r)=>s+(r[k]||0),0); }
+function bestSlots(){ if(!igBest||!igBest.length) return []; const out=[]; igBest.forEach(d=>(d.bestTimesByHour||[]).forEach(h=>out.push({dow:d.dayOfWeek,h:h.hourOfDay,v:h.value}))); return out.sort((a,b)=>b.v-a.v); }
+const DOW=["","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+function renderIG(){
+  const ban=$("#igBanner"); ban.hidden=!igMsg&&!igLoading; ban.textContent=igLoading?"Trayendo datos de Metricool…":igMsg;
+  $("#igMeta").textContent=igLoadedAt?`Datos de @cofredidactico desde Metricool · actualizado a las ${igLoadedAt.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}.`:"Datos de @cofredidactico desde Metricool.";
+  const root=$("#igStats"); root.textContent="";
+  if(!igDaily||!igDaily.length){ $("#igChart").innerHTML=`<p class="muted">${igLoading?"Cargando…":"Sin datos todavía."}</p>`; $("#btHeat").innerHTML=""; $("#btTop").textContent=""; return; }
+  const n=igDaily.length, last30=igDaily.slice(-30), prev30=igDaily.slice(-60,-30);
+  const fol=[...igDaily].reverse().find(r=>r.f!=null)?.f; const fol30=last30.find(r=>r.f!=null)?.f;
+  const delta=(a,b)=>{ if(!b) return ""; const p=Math.round((a-b)/b*100); return `<span class="delta ${p<0?"neg":"pos"}">${p>0?"+":""}${p}% vs 30 días previos</span>`; };
+  const r30=igSum(last30,"reach"), rp=igSum(prev30,"reach"), e30=igSum(last30,"eng"), ep=igSum(prev30,"eng");
+  const st=[["Seguidores",fol!=null?nf(fol):"—","--c-redes",fol!=null&&fol30!=null?`${fol-fol30>=0?"+":""}${nf(fol-fol30)} en 30 días`:""],
+    ["Nuevos / perdidos (30 días)",`+${nf(igSum(last30,"g"))} / −${nf(igSum(last30,"l"))}`,"--c-ventas","Seguidores ganados y perdidos"],
+    ["Alcance (30 días)",nf(r30),"--c-metricas",prev30.length?delta(r30,rp):""],
+    ["Cuentas que interactuaron",nf(e30),"--c-trabajo",prev30.length?delta(e30,ep):""]];
+  st.forEach(([l,v,k,h])=>{ const el=document.createElement("div"); el.className="kpi"; el.style.setProperty("--k",`var(${k})`); el.innerHTML=`<div class="kpi-l"><i></i><span>${esc(l)}</span></div><div class="kpi-v">${esc(v)}</div><div class="kpi-n">${h}</div>`; root.appendChild(el); });
+  // gráfico
+  const W=760,H=250,pl=50,pr=56,pt=16,pb=30,iw=W-pl-pr,ih=H-pt-pb;
+  const maxR=Math.max(1,...igDaily.map(r=>r.reach)); const stepR=niceStep(maxR/4); const topR=Math.ceil(maxR/stepR)*stepR;
+  const fs=igDaily.filter(r=>r.f!=null).map(r=>r.f); const fmin=Math.min(...fs), fmax=Math.max(...fs); const fpad=Math.max(5,(fmax-fmin)*.15);
+  const x=i=>pl+iw*(i+.5)/n, yR=v=>pt+ih*(1-v/topR), yF=v=>pt+ih*(1-(v-(fmin-fpad))/((fmax+fpad)-(fmin-fpad)));
+  const bw=Math.max(1.5,iw/n*.7);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Alcance diario y seguidores">`;
+  for(let v=0;v<=topR+1e-6;v+=stepR) s+=`<line class="grid" x1="${pl}" x2="${W-pr}" y1="${yR(v)}" y2="${yR(v)}"/><text class="axis" x="${pl-8}" y="${yR(v)+4}" text-anchor="end">${nf(v)}</text>`;
+  igDaily.forEach((r,i)=>{ const dd=`${r.d.slice(6)}/${r.d.slice(4,6)}`; s+=`<rect class="rbar" x="${x(i)-bw/2}" y="${yR(r.reach)}" width="${bw}" height="${Math.max(.5,ih*r.reach/topR)}"><title>${dd}: alcance ${nf(r.reach)}${r.f!=null?` · ${nf(r.f)} seguidores`:""}${r.g||r.l?` · +${r.g}/−${r.l}`:""}</title></rect>`; });
+  const pts=igDaily.map((r,i)=>r.f!=null?`${x(i).toFixed(1)},${yF(r.f).toFixed(1)}`:null).filter(Boolean);
+  if(pts.length>1){ s+=`<polyline class="fline" points="${pts.join(" ")}"/>`; const lp=pts[pts.length-1].split(","); s+=`<circle class="fdot" cx="${lp[0]}" cy="${lp[1]}" r="3.5"/><text class="val" x="${+lp[0]+6}" y="${+lp[1]+4}">${nf(fs[fs.length-1])}</text>`; }
+  [0,Math.floor(n/3),Math.floor(2*n/3),n-1].forEach(i=>{ const r=igDaily[i]; s+=`<text class="axis" x="${x(i)}" y="${H-8}" text-anchor="middle">${r.d.slice(6)}/${r.d.slice(4,6)}</text>`; });
+  $("#igChart").innerHTML=s+"</svg>";
+  // mapa de calor
+  const slots=bestSlots(); if(!slots.length){ $("#btHeat").innerHTML=`<p class="muted">Sin datos de horarios.</p>`; return; }
+  const maxV=slots[0].v; const top3=slots.slice(0,3); const isTop=(d,h)=>top3.some(t=>t.dow===d&&t.h===h);
+  const val=(d,h)=>{ const day=igBest.find(x=>x.dayOfWeek===d); const hh=day&&(day.bestTimesByHour||[]).find(x=>x.hourOfDay===h); return hh?hh.value:0; };
+  let hm=`<div class="heat"><span></span>`; for(let h=7;h<=23;h++) hm+=`<span class="hh">${h}</span>`;
+  for(let d=1;d<=7;d++){ hm+=`<span class="hd">${DOW[d].slice(0,3)}</span>`; for(let h=7;h<=23;h++){ const v=val(d,h); hm+=`<span class="hc${isTop(d,h)?" top":""}" style="--v:${Math.round(v/maxV*85)}" title="${DOW[d]} ${h} h"></span>`; } }
+  $("#btHeat").innerHTML=hm+"</div>";
+  const avgDays=ds=>{ const v=slots.filter(x=>ds.includes(x.dow)); return v.length?v.reduce((a,b)=>a+b.v,0)/v.length:0; };
+  const wk=avgDays([1,2,3,4,5]), we=avgDays([6,7]);
+  $("#btTop").innerHTML="Los mejores momentos esta semana: "+top3.map(t=>`<b>${DOW[t.dow]} a las ${t.h} h</b>`).join(", ")+"."+(wk&&we<wk*.7?" Los fines de semana tus seguidores están bastante menos activos.":"");
+}
+
 // ---------- Atajo de teclado ----------
 document.addEventListener("keydown",e=>{
   if(e.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)&&!document.querySelector("dialog[open]")){
@@ -1546,6 +1921,9 @@ setStatus("Cargando…");
     if($("#mRows").contains(document.activeElement)){ matRenderPending=true; derive(); refreshOpenFichas(); } else scheduleRerender(); },()=>{});
   db.collection("envios").onSnapshot(snap=>{ envios=snap.docs.map(d=>({id:d.id,...d.data()})); scheduleRerender(); },()=>{});
   db.collection("posts").onSnapshot(snap=>{ posts=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="calendario") renderCal(); if(currentView==="inicio") renderHoy(); },()=>{});
+  db.collection("gastos").onSnapshot(snap=>{ gastos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderFin(); },()=>{});
+  db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
+  db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("plantillas").onSnapshot(snap=>{ tplDocs={}; snap.docs.forEach(d=>{ tplDocs[d.id]=d.data(); }); if(currentView==="mensajes") renderTpls(); },()=>{});
 })();
 </script>
