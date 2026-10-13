@@ -693,6 +693,14 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
   <div class="card"><h3>Datos que se completan solos</h3><p class="sub" style="margin-bottom:8px">Escribilos entre llaves dentro del mensaje.</p>
     <div class="vars"><code>{nombre}</code><code>{material}</code><code>{contraseña}</code><code>{email}</code><code>{pedido}</code><code>{fecha}</code><code>{estado}</code><code>{tienda}</code></div></div>
   <div class="tpls" id="tpls"></div>
+
+  <section aria-labelledby="adTitle" style="display:grid;gap:14px;margin-top:10px">
+    <div class="view-h"><div><h2 id="adTitle" style="font-family:var(--f-brand);font-size:22px;font-weight:600">Automatizaciones de Instagram</h2>
+      <p class="lead">Copia de respaldo de tus mensajes automáticos de InstantDM: palabras clave, respuesta al comentario y mensaje directo. Editalos acá como base y después copialos a InstantDM.</p></div>
+      <div class="actions"><a class="btn" href="https://app.instantdm.com/ig" target="_blank" rel="noopener">Abrir InstantDM</a><button class="btn primary" type="button" id="newAd">+ Nueva automatización</button></div></div>
+    <div class="filters"><div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="adq" type="search" placeholder="Buscar por material, palabra clave o texto…" aria-label="Buscar automatización" autocomplete="off"></div></div>
+    <div class="tpls" id="ads"></div>
+  </section>
 </main>
 
 <!-- ============ DATOS ============ -->
@@ -968,6 +976,8 @@ const DEFAULT_TEMPLATES = [
   {id:"t-factura", title:"Pedido de factura", body:"¡Hola {nombre}! La plataforma de pago genera el comprobante automáticamente al momento de la compra.\nSi necesitás una factura con datos específicos, pasame razón social y CUIT y te la preparo."},
   {id:"t-frecuente", title:"Agradecimiento a cliente frecuente", body:"¡Hola {nombre}! Quería agradecerte por elegir Cofre Didáctico para tus clases 💙\nComo ya llevás varios materiales, te dejo un cupón exclusivo para tu próxima compra: [CUPÓN]\nTienda: {tienda}"}
 ];
+// Automatizaciones de InstantDM (copia inicial para la versión de navegador)
+const DEFAULT_AUTODM = [["sapo", {"titulo": "Los Sueños del Sapo", "palabras": ["Sueños", "Info", "Sueño"], "respuestas": ["¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊🐸💚 ¡Muchas gracias por tu interés en el cuadernillo \"Los Sueños del Sapo\"! 📚✨\n\n✨ Valor PROMOCIONAL por transferencia directa: $6000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente:\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $6500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/los-suenos-del-sapo\n\n❤️ ¡Muchas gracias por confiar en Cofre Didáctico! Espero que este material acompañe a tus estudiantes en el maravilloso mundo de la lectura, la imaginación y el aprendizaje. 📚🐸✨", "activa": true, "orden": 0, "url": "https://app.instantdm.com/manage-post/18006243242959398?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}], ["plataforma-san-martin", {"titulo": "Plataforma Interactiva - José de San Martín", "palabras": ["Plataforma", "Quiero", "Info"], "respuestas": ["¡Hola! Muchas gracias por tu interés en la plataforma, te envié toda la información por Mensaje Directo"], "dm": "¡Hola! 😊🇦🇷 ¡Muchas gracias por tu interés en la Plataforma Interactiva \"José de San Martín\"! ❤️\n\n✨ Valor PROMOCIONAL por transferencia directa: $4000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, envíame el comprobante por este medio y recibirás automáticamente el acceso a la plataforma.\n\n🛒 También podés adquirirla con otros medios de pago desde mi tienda online por *$4300*:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/plataforma-interactiva-jose-de-san-martin\n\n🎁 Si ya adquiriste el Cuadernillo de José de San Martín de Cofre Didáctico, no necesitás comprar esta plataforma. Ya fue incorporada sin costo adicional a la carpeta compartida.", "activa": true, "orden": 1, "url": "https://app.instantdm.com/manage-post/18137665066587900?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}], ["san-martin", {"titulo": "17 de Agosto - José de San Martín (cuadernillo)", "palabras": ["San Martin", "Info", "Quiero"], "respuestas": ["¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por Mensaje Directo.", "Muchas gracias por tu interés, te envié por Mensaje Directo toda la Información ✨"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el cuadernillo del General José de San Martín! ❤️📚\n\n✨ Valor SOLO POR HOY por transferencia directa: $5200\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente el acceso al material.\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $5500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/17-de-agosto-jose-de-san-martin-con-plataforma-interactiva\n\nUn recurso ideal para trabajar la efeméride de una manera dinámica, significativa y divertida en el aula.\n\n❤️ ¡Muchas gracias por confiar y acompañarnos siempre! 📚✨", "activa": true, "orden": 2, "url": "https://app.instantdm.com/manage-post/18100777291943847?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}], ["9-de-julio", {"titulo": "9 de Julio - Día de la Independencia", "palabras": ["Independencia", "Info", "Quiero"], "respuestas": ["¡Hola! ¿Cómo estás? Gracias por comentar, ya te pase la info por MD", "¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por MD 💚", "¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el material del 9 de Julio: Día de la Independencia! 🇦🇷\n\n🎉 Promoción válida hasta las 00:00 hs de hoy:\n💰 Transferencia: $6.800\n\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Enviame el comprobante por este medio y recibirás el material en formato PDF, listo para descargar e imprimir.\n\n🛒 También podés adquirirlo desde la tienda online por $7.000:\nhttps://cofredidactico.empretienda.com.ar/novedades/9-de-julio-dia-de-la-independencia\n\n¡Muchas gracias por acompañar a Cofre Didáctico! ❤️📚", "activa": true, "orden": 3, "url": "https://app.instantdm.com/manage-post/18027037202837036?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}]];
 const POST_COLORS = {"Post":"--c-sitio","Historia":"--c-redes","Reel":"--c-metricas"};
 
 // =====================================================================
@@ -1048,13 +1058,13 @@ async function LocalDB(){
       onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(inColl(c).map(k=>[k,data[k]])); if(s!==last){ last=s; next(mk()); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); } }; }
   return {doc, collection:coll, _all:()=>JSON.parse(JSON.stringify(data)), _replace:async d=>{ data=d; await save(); notify(); }, _isEmpty:()=>!Object.keys(data).length};
 }
-const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos"];
+const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos","autodm"];
 let db=null;
 
 // =====================================================================
 // Estado
 // =====================================================================
-let links=[], kpis=null, clients=[], salesMeta=null, matDocs={}, envios=[], posts=[], tplDocs={}, gastos=[], lanz=[], finCfg={};
+let links=[], kpis=null, clients=[], salesMeta=null, matDocs={}, envios=[], posts=[], tplDocs={}, gastos=[], lanz=[], finCfg={}, autodm=[];
 let D = null; // datos derivados
 let currentView="inicio", editing=false, editingId=null, confirmDel=false, cLimit=40, rankMode="mat", mView="mat";
 let calMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
@@ -1163,7 +1173,7 @@ function renderView(v){
   if(v==="clientes") renderClients();
   if(v==="materiales") renderMats();
   if(v==="calendario"){ renderEfes(); renderCal(); }
-  if(v==="mensajes") renderTpls();
+  if(v==="mensajes"){ renderTpls(); renderAds(); }
   if(v==="lanzamientos") renderLanz();
   if(v==="instagram"){ renderIG(); loadIG(false); }
   if(v==="datos") renderDatos();
@@ -2034,6 +2044,41 @@ function renderIG(){
   $("#btTop").innerHTML="Los mejores momentos esta semana: "+top3.map(t=>`<b>${DOW[t.dow]} a las ${t.h} h</b>`).join(", ")+"."+(wk&&we<wk*.7?" Los fines de semana tus seguidores están bastante menos activos.":"");
 }
 
+// ---------- AUTOMATIZACIONES DE INSTAGRAM (InstantDM) ----------
+function renderAds(){
+  const root=$("#ads"); if(!root) return; root.textContent="";
+  const q=fold($("#adq").value.trim());
+  const list=autodm.filter(a=>!q||fold([a.titulo,(a.palabras||[]).join(" "),(a.respuestas||[]).join(" "),a.dm].join(" ")).includes(q)).sort((a,b)=>(a.orden??999)-(b.orden??999)||String(a.titulo).localeCompare(String(b.titulo)));
+  if(!list.length){ root.innerHTML=`<div class="empty-box">${autodm.length?"Ninguna automatización coincide con la búsqueda.":"Todavía no hay automatizaciones guardadas. Usá “+ Nueva automatización” para agregar una."}</div>`; return; }
+  list.forEach(a=>{
+    const el=document.createElement("article"); el.className="card tpl";
+    el.innerHTML=`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><input data-f="titulo" aria-label="Nombre de la automatización" maxlength="80" style="flex:1;min-width:0"><span class="pill ${a.activa===false?"none":"ok"}">${a.activa===false?"Inactiva":"Activa en InstantDM"}</span></div>
+      <div class="field"><label>Palabras clave (separadas por coma)</label><input data-f="palabras" maxlength="200"></div>
+      <div class="field"><label>Respuesta al comentario (una por línea; InstantDM rota entre ellas)</label><textarea data-f="respuestas" style="min-height:70px"></textarea></div>
+      <div class="field"><label>Mensaje directo</label><textarea data-f="dm" style="min-height:190px"></textarea><span class="muted" data-a="cnt"></span></div>
+      <div class="actions"><button class="btn small primary" type="button" data-a="save" disabled>Guardar cambios</button><button class="btn small" type="button" data-a="copy">Copiar mensaje directo</button><button class="btn small" type="button" data-a="copyr">Copiar respuestas</button>${a.url?`<a class="linkish" href="${esc(a.url)}" target="_blank" rel="noopener">Abrir en InstantDM</a>`:""}<span class="muted" data-a="msg"></span><span style="flex:1"></span><button class="btn small ghost danger" type="button" data-a="del">Eliminar</button></div>
+      ${a.actualizado?`<span class="muted">Guardado el ${esc(new Date(a.actualizado).toLocaleDateString("es-AR",{day:"numeric",month:"long",year:"numeric"}))}${a.fuente?` · ${esc(a.fuente)}`:""}</span>`:""}`;
+    const f=k=>el.querySelector(`[data-f="${k}"]`);
+    f("titulo").value=a.titulo||""; f("palabras").value=(a.palabras||[]).join(", "); f("respuestas").value=(a.respuestas||[]).join("\n"); f("dm").value=a.dm||"";
+    const sv=el.querySelector('[data-a="save"]'), msg=el.querySelector('[data-a="msg"]'), cnt=el.querySelector('[data-a="cnt"]');
+    const upd=()=>{ cnt.textContent=`${f("dm").value.length} / 1000 caracteres`+(f("dm").value.length>1000?" · supera el límite de Instagram":""); };
+    const snapshot=()=>JSON.stringify([f("titulo").value,f("palabras").value,f("respuestas").value,f("dm").value]); const orig=snapshot();
+    el.querySelectorAll("[data-f]").forEach(i=>i.addEventListener("input",()=>{ sv.disabled=snapshot()===orig; msg.textContent=""; upd(); })); upd();
+    sv.addEventListener("click",async()=>{ if(!needDb()) return; sv.disabled=true;
+      const {id,...rest}=a;
+      try{ await db.collection("autodm").doc(id).set({...rest,titulo:f("titulo").value.trim()||"Automatización",palabras:f("palabras").value.split(",").map(s=>s.trim()).filter(Boolean),respuestas:f("respuestas").value.split("\n").map(s=>s.trim()).filter(Boolean),dm:f("dm").value,actualizado:new Date().toISOString(),fuente:"Editado en el panel"}); msg.textContent="Guardado. Acordate de copiarlo también en InstantDM."; }
+      catch{ msg.textContent="No se pudo guardar."; sv.disabled=false; } });
+    el.querySelector('[data-a="copy"]').addEventListener("click",ev=>copyText(ev.currentTarget,f("dm").value));
+    el.querySelector('[data-a="copyr"]').addEventListener("click",ev=>copyText(ev.currentTarget,f("respuestas").value));
+    let sure=false; const dl=el.querySelector('[data-a="del"]'); dl.addEventListener("click",async()=>{ if(!sure){ sure=true; dl.textContent="Tocá de nuevo para eliminar"; return; } try{ await db.collection("autodm").doc(a.id).delete(); }catch{ msg.textContent="No se pudo eliminar."; } });
+    root.appendChild(el);
+  });
+}
+$("#adq").addEventListener("input",renderAds);
+$("#newAd").addEventListener("click",async()=>{ if(!needDb()) return;
+  try{ await db.collection("autodm").add({titulo:"Nueva automatización",palabras:["Info","Quiero"],respuestas:["¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"],dm:"¡Hola! 😊 ¡Muchas gracias por tu interés en el material!\n\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n🛒 Tienda online: "+STORE_URL,activa:false,orden:Date.now(),actualizado:new Date().toISOString(),fuente:"Creada en el panel"}); }
+  catch{ setStatus("No se pudo crear la automatización.",true); } });
+
 // ---------- Atajo de teclado ----------
 document.addEventListener("keydown",e=>{
   if(e.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)&&!document.querySelector("dialog[open]")){
@@ -2060,6 +2105,7 @@ setStatus("Cargando…");
   if(window.claude&&typeof claude.use==="function"){ try{ db=await claude.use("db"); }catch{ db=null; } if(db) MODE.cloud=true; }
   if(!db){ db=await LocalDB(); MODE.local=true;
     if(db._isEmpty()){ for(const [id,name,url,cat,note,order,fav] of DEFAULT_LINKS) await db.doc("links/"+id).set({name,url,cat,note,order,fav,icon:""}); }
+    try{ const all=db._all(); if(!Object.keys(all).some(k=>k.startsWith("autodm/"))&&!all["panel/autodm-seed"]){ for(const [id,d] of DEFAULT_AUTODM) await db.doc("autodm/"+id).set(d); await db.doc("panel/autodm-seed").set({at:new Date().toISOString()}); } }catch{}
     const b=$("#modeBanner"); b.hidden=false; b.innerHTML=`<b>Modo navegador:</b> tus datos se guardan solo en este navegador. Importá las ventas y hacé respaldos desde la pestaña <button class="linkish" type="button" id="goDatos">Datos</button>.`;
     $("#goDatos").addEventListener("click",()=>showView("datos"));
   }
@@ -2080,6 +2126,7 @@ setStatus("Cargando…");
   db.collection("gastos").onSnapshot(snap=>{ gastos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderFin(); },()=>{});
   db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
   db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
+  db.collection("autodm").onSnapshot(snap=>{ autodm=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="mensajes"&&!$("#ads").contains(document.activeElement)) renderAds(); },()=>{});
   db.collection("plantillas").onSnapshot(snap=>{ tplDocs={}; snap.docs.forEach(d=>{ tplDocs[d.id]=d.data(); }); if(currentView==="mensajes") renderTpls(); },()=>{});
 })();
 </script>
