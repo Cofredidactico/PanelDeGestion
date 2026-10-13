@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Panel Cofre Didáctico</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
@@ -845,6 +844,13 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
   </form>
 </dialog>
 
+<dialog id="covdlg" aria-labelledby="covCap" style="width:min(560px,calc(100vw - 32px))">
+  <div class="dlg" style="justify-items:center">
+    <img id="covBig" alt="" style="max-width:100%;max-height:calc(100vh - 170px);border-radius:10px;display:block">
+    <div style="display:flex;gap:10px;align-items:center;width:100%"><b id="covCap" style="flex:1;min-width:0"></b><button type="button" class="btn" data-close>Cerrar</button></div>
+  </div>
+</dialog>
+
 <dialog id="sdlg" aria-labelledby="sdTitle">
   <div class="dlg">
     <h3 id="sdTitle">Enviar mensaje</h3>
@@ -1009,27 +1015,38 @@ document.querySelectorAll("dialog [data-close]").forEach(b=>b.addEventListener("
 // Guardado: cuenta de Claude (db) o este navegador (modo GitHub)
 // =====================================================================
 const MODE = {cloud:false, local:false};
-function LocalDB(){
-  const KEY="cofre-panel-v1"; let data={};
-  try{ data=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch{ data={}; }
+// Almacén del navegador: IndexedDB (cientos de MB) con respaldo en localStorage
+const IDB={
+  open(){ return new Promise((res,rej)=>{ if(!window.indexedDB) return rej(new Error("sin IndexedDB")); const r=indexedDB.open("cofre-panel",1); r.onupgradeneeded=()=>r.result.createObjectStore("kv"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }); },
+  get(db,k){ return new Promise((res,rej)=>{ const q=db.transaction("kv").objectStore("kv").get(k); q.onsuccess=()=>res(q.result); q.onerror=()=>rej(q.error); }); },
+  put(db,k,v){ return new Promise((res,rej)=>{ const tx=db.transaction("kv","readwrite"); tx.objectStore("kv").put(v,k); tx.oncomplete=()=>res(); tx.onerror=()=>rej(tx.error); tx.onabort=()=>rej(tx.error); }); }
+};
+async function LocalDB(){
+  const KEY="cofre-panel-v1"; let data={}, idb=null;
+  try{ idb=await IDB.open(); const v=await IDB.get(idb,KEY); if(v&&typeof v==="object") data=v; }catch{ idb=null; }
+  if(!Object.keys(data).length){
+    try{ data=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch{ data={}; }
+    if(idb&&Object.keys(data).length){ try{ await IDB.put(idb,KEY,data); }catch{} }
+  }
   const subs=new Set();
-  const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(data)); }catch(e){ const err=new Error("Sin espacio en el navegador"); err.code="quota_exceeded"; throw err; } };
+  const quota=()=>{ const err=new Error("Sin espacio en el navegador"); err.code="quota_exceeded"; return err; };
+  const save=async()=>{ if(idb){ try{ await IDB.put(idb,KEY,data); return; }catch(e){ throw quota(); } } try{ localStorage.setItem(KEY,JSON.stringify(data)); }catch(e){ throw quota(); } };
   const notify=()=>subs.forEach(fn=>{ try{ fn(); }catch(e){ console.error(e); } });
   const rid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
   const snap=p=>{ const v=data[p]; return {id:p.split("/").pop(),exists:v!==undefined,data:()=>v===undefined?undefined:JSON.parse(JSON.stringify(v)),metadata:{fromCache:false,hasPendingWrites:false}}; };
   const inColl=c=>Object.keys(data).filter(k=>k.startsWith(c+"/")&&!k.slice(c.length+1).includes("/")).sort();
   function doc(p){ return {id:p.split("/").pop(), path:p,
     async get(){ return snap(p); },
-    async set(v){ data[p]=JSON.parse(JSON.stringify(v)); save(); notify(); },
-    async update(v){ if(data[p]===undefined){ const e=new Error("No existe"); e.code="invalid_argument"; throw e; } data[p]={...data[p],...JSON.parse(JSON.stringify(v))}; save(); notify(); },
-    async delete(){ delete data[p]; save(); notify(); },
+    async set(v){ data[p]=JSON.parse(JSON.stringify(v)); await save(); notify(); },
+    async update(v){ if(data[p]===undefined){ const e=new Error("No existe"); e.code="invalid_argument"; throw e; } data[p]={...data[p],...JSON.parse(JSON.stringify(v))}; await save(); notify(); },
+    async delete(){ delete data[p]; await save(); notify(); },
     onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(data[p]??null); if(s!==last){ last=s; next(snap(p)); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); },
     collection(c){ return coll(p+"/"+c); } }; }
   function coll(c){ const mk=()=>{ const docs=inColl(c).map(snap); return {docs,size:docs.length,empty:!docs.length,docChanges:()=>[],metadata:{fromCache:false,hasPendingWrites:false}}; };
     return {path:c, doc:id=>doc(c+"/"+(id||rid())), async add(v){ const r=doc(c+"/"+rid()); await r.set(v); return r; },
       async get(){ return mk(); },
       onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(inColl(c).map(k=>[k,data[k]])); if(s!==last){ last=s; next(mk()); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); } }; }
-  return {doc, collection:coll, _all:()=>JSON.parse(JSON.stringify(data)), _replace:d=>{ data=d; save(); notify(); }, _isEmpty:()=>!Object.keys(data).length};
+  return {doc, collection:coll, _all:()=>JSON.parse(JSON.stringify(data)), _replace:async d=>{ data=d; await save(); notify(); }, _isEmpty:()=>!Object.keys(data).length};
 }
 const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos"];
 let db=null;
@@ -1773,21 +1790,31 @@ $("#expJson").addEventListener("click",async()=>{ const msg=$("#bkMsg"); if(!nee
   catch(err){ msg.textContent=err.message||"No se pudo generar el respaldo."; } });
 $("#jsonIn").addEventListener("change",async e=>{ const f=e.target.files[0]; e.target.value=""; if(!f||!needDb()) return; const msg=$("#bkMsg");
   try{ const j=JSON.parse(await f.text()); if(!j||j.app!=="panel-cofre-didactico"||!j.docs) throw new Error("Ese archivo no es un respaldo de este panel.");
-    msg.innerHTML=`Respaldo del ${esc(new Date(j.exported).toLocaleString("es-AR"))} con ${Object.keys(j.docs).length} registros. <button class="btn small primary" type="button" id="doRestore">Restaurar ahora</button>`;
+    const covers=Object.entries(j.docs).filter(([p,v])=>p.startsWith("materiales/")&&v&&v.cover);
+    msg.innerHTML=`Respaldo del ${esc(new Date(j.exported).toLocaleString("es-AR"))} con ${Object.keys(j.docs).length} registros${covers.length?` y ${covers.length} portadas`:""}. <span class="actions" style="margin-top:6px">${covers.length?`<button class="btn small primary" type="button" id="doCovers">Importar solo las portadas</button>`:""}<button class="btn small" type="button" id="doRestore">Restaurar todo (reemplaza lo actual)</button></span>`;
+    const dc=$("#doCovers"); if(dc) dc.addEventListener("click",async()=>{ msg.textContent="Importando portadas…"; let n=0;
+      try{ for(const [p,v] of covers){ const snap=await db.doc(p).get(); const cur=snap.exists?snap.data():{name:v.name||p.split("/")[1]}; await db.doc(p).set({...cur,cover:v.cover,updated:new Date().toISOString()}); n++; }
+        msg.textContent=`Listo: ${n} portadas importadas. El resto de los datos no se tocó.`; }catch(err){ msg.textContent=`Se importaron ${n} portadas; la siguiente no se pudo guardar${err&&err.code==="quota_exceeded"?" por falta de espacio":""}.`; } });
     $("#doRestore").addEventListener("click",async()=>{ msg.textContent="Restaurando…";
-      try{ if(db._replace) db._replace(j.docs); else { for(const [p,v] of Object.entries(j.docs)){ if(p.split("/").length===2&&COLLECTIONS.includes(p.split("/")[0])) await db.doc(p).set(v); } }
+      try{ if(db._replace) await db._replace(j.docs); else { for(const [p,v] of Object.entries(j.docs)){ if(p.split("/").length===2&&COLLECTIONS.includes(p.split("/")[0])) await db.doc(p).set(v); } }
         msg.textContent="Respaldo restaurado."; }catch(err){ msg.textContent="No se pudo restaurar el respaldo."; } });
   }catch(err){ msg.textContent=err.message||"No se pudo leer el archivo."; } });
 
 // ---------- PORTADAS ----------
 let coverDraft=undefined, galTarget=null;
-async function compressImage(file,max=380){
+// Portada en alta calidad: hasta 1100 px de lado, ajustando calidad para no pasar ~180 KB (límite por ficha en la cuenta de Claude)
+async function compressImage(file,max=1100){
   if(!file||!/^image\//.test(file.type)) throw new Error("Elegí un archivo de imagen (JPG o PNG).");
   const url=URL.createObjectURL(file);
   try{ const img=await new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=()=>rej(new Error("No se pudo leer la imagen.")); i.src=url; });
-    const s=Math.min(1,max/Math.max(img.width,img.height)); const c=document.createElement("canvas"); c.width=Math.max(1,Math.round(img.width*s)); c.height=Math.max(1,Math.round(img.height*s));
-    const ctx=c.getContext("2d"); ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(img,0,0,c.width,c.height);
-    return c.toDataURL("image/jpeg",.82); }
+    const LIMIT=240000; let side=max, out="";
+    for(let pass=0;pass<5;pass++){
+      const s=Math.min(1,side/Math.max(img.width,img.height)); const c=document.createElement("canvas"); c.width=Math.max(1,Math.round(img.width*s)); c.height=Math.max(1,Math.round(img.height*s));
+      const ctx=c.getContext("2d"); ctx.imageSmoothingQuality="high"; ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(img,0,0,c.width,c.height);
+      for(const q of [.92,.88,.84,.8]){ out=c.toDataURL("image/jpeg",q); if(out.length<=LIMIT) return out; }
+      side=Math.round(side*.8);
+    }
+    return out; }
   finally{ URL.revokeObjectURL(url); }
 }
 function showCoverPreview(src){ const im=$("#mdCoverImg"); im.hidden=!src; if(src) im.src=src; else im.removeAttribute("src"); $("#mdCoverDel").hidden=!src; $("#mdCoverLbl").textContent=src?"Cambiar portada":"Subir portada"; }
@@ -1805,7 +1832,7 @@ function renderGal(list,q){
       <div class="gb"><b>${hl(x.name,q)}</b><span class="muted">${nf(x.sold)} vendidos · ${money(x.rev)}</span>
       <div class="row">${x.pass?`<span class="pill ok">Con contraseña</span>`:`<span class="pill wait">Sin contraseña</span>`}${d.estado&&d.estado!=="Activo"?`<span class="pill none">${esc(d.estado)}</span>`:""}</div>
       <div class="row"><button class="btn small" type="button" data-a="ficha">Ficha</button><button class="linkish" type="button" data-a="cover">${d.cover?"Cambiar portada":"Subir portada"}</button></div></div>`;
-    if(d.cover) el.querySelector("img").src=d.cover;
+    if(d.cover){ const im=el.querySelector("img"); im.src=d.cover; im.style.cursor="zoom-in"; im.title="Ver en grande"; im.addEventListener("click",()=>{ $("#covBig").src=d.cover; $("#covCap").textContent=x.name; $("#covdlg").showModal(); }); }
     el.querySelector('[data-a="ficha"]').addEventListener("click",()=>openMat(x));
     el.querySelector('[data-a="cover"]').addEventListener("click",()=>{ galTarget=x; $("#galCoverIn").click(); });
     g.appendChild(el); });
@@ -2031,7 +2058,7 @@ setStatus("Cargando…");
 
 (async()=>{
   if(window.claude&&typeof claude.use==="function"){ try{ db=await claude.use("db"); }catch{ db=null; } if(db) MODE.cloud=true; }
-  if(!db){ db=LocalDB(); MODE.local=true;
+  if(!db){ db=await LocalDB(); MODE.local=true;
     if(db._isEmpty()){ for(const [id,name,url,cat,note,order,fav] of DEFAULT_LINKS) await db.doc("links/"+id).set({name,url,cat,note,order,fav,icon:""}); }
     const b=$("#modeBanner"); b.hidden=false; b.innerHTML=`<b>Modo navegador:</b> tus datos se guardan solo en este navegador. Importá las ventas y hacé respaldos desde la pestaña <button class="linkish" type="button" id="goDatos">Datos</button>.`;
     $("#goDatos").addEventListener("click",()=>showView("datos"));
@@ -2056,5 +2083,3 @@ setStatus("Cargando…");
   db.collection("plantillas").onSnapshot(snap=>{ tplDocs={}; snap.docs.forEach(d=>{ tplDocs[d.id]=d.data(); }); if(currentView==="mensajes") renderTpls(); },()=>{});
 })();
 </script>
-
-</body></html>
