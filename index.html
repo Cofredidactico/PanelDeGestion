@@ -409,6 +409,67 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .tcard .lbl{display:flex;align-items:center;gap:7px}
 .tcard .lbl::before{content:"";width:8px;height:8px;border-radius:3px;background:var(--k);box-shadow:0 0 10px var(--k)}
 
+/* Motor creador */
+.motor{display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:980px){.motor{grid-template-columns:minmax(0,1fr)}}
+.motor-form{display:grid;gap:12px;position:sticky;top:16px}
+@media (max-width:980px){.motor-form{position:static}}
+.motor-form select,.motor-form input[type=text],.motor-form input:not([type]),.motor-form textarea{border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--surface-2);width:100%}
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.lv{position:relative}
+.lv input{position:absolute;opacity:0;pointer-events:none}
+.lv span{display:block;text-align:center;padding:9px 6px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font-weight:600;font-size:13px;cursor:pointer}
+.lv input:checked+span{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 16%,var(--surface));color:var(--ink);box-shadow:0 0 0 1px var(--blue) inset}
+.lv input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.perfil{border-top:1px solid var(--line);padding-top:10px}
+.perfil summary{cursor:pointer;font-weight:700;font-size:13.5px}
+.perfil textarea{font-size:12.5px;line-height:1.5;margin-top:4px}
+.hist{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:6px}
+.hi{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:7px 9px;border-radius:9px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;cursor:pointer;text-align:left;width:100%}
+.hi:hover{border-color:var(--blue)}
+.hi b{display:block;font-size:13px}
+.motor-out{display:grid;gap:14px;min-width:0}
+.doc-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.doc{background:var(--solid);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,34px);box-shadow:var(--shadow);display:grid;gap:14px;min-width:0;line-height:1.6}
+.doc .dh{text-align:center;display:grid;gap:4px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+.doc .dh small{letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--orange);font-size:11.5px}
+.doc .dh h2{font-family:var(--f-brand);font-size:clamp(22px,3vw,30px);font-weight:600;line-height:1.15;text-wrap:balance}
+.doc .dh span{color:var(--muted)}
+.doc h3{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:800;margin-top:6px}
+.doc p{max-width:75ch}
+.doc ul{margin:0;padding-left:20px;display:grid;gap:3px}
+.doc .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px 18px;font-size:13.5px}
+.doc .meta-grid b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.areas-c{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.areas-c div{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.areas-c b{font-size:13px}
+.clase{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.clase .chd{display:flex;gap:12px;align-items:center;padding:12px 14px;background:linear-gradient(90deg,color-mix(in srgb,var(--blue) 16%,var(--surface-2)),var(--surface-2))}
+.clase .num{font-family:var(--f-brand);font-size:26px;font-weight:600;color:var(--blue);line-height:1;min-width:34px;text-align:center}
+.clase .chd b{display:block;font-size:15px}
+.clase .chd span{font-size:12.5px;color:var(--muted)}
+.clase .cbody{padding:12px 14px;display:grid;gap:10px}
+.clase .mom{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px}
+.clase .mom>b{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);padding-top:2px}
+@media (max-width:560px){.clase .mom{grid-template-columns:minmax(0,1fr);gap:2px}}
+.pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.pg{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.pg .ph{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px dashed var(--line)}
+.pg .pn{width:30px;height:38px;border-radius:5px;display:grid;place-items:center;font-weight:800;font-size:12.5px;background:var(--solid);border:1px solid var(--line);flex:none}
+.pg .ph b{display:block;font-size:13.5px;line-height:1.25}
+.pg .ph span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:700}
+.pg .pb{padding:10px 12px;display:grid;gap:8px;font-size:13px}
+.pg .cons{font-weight:600}
+.pg .cont{white-space:pre-wrap;background:var(--solid);border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:12.5px;max-height:240px;overflow:auto}
+.pg .ilu{font-size:12px;color:var(--muted);border-left:3px solid var(--orange);padding-left:8px}
+.pg .sol{font-size:12px}
+.pg .sol summary{cursor:pointer;color:var(--blue);font-weight:600}
+.firma{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.adjust .toolbar{margin-top:8px}
+.gen-progress{height:4px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.gen-progress i{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--blue),var(--orange));animation:slide 1.4s ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+
 /* Revisión de coherencia */
 .issues{display:grid;gap:8px}
 .issue{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px 12px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line)}
@@ -509,6 +570,7 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
     <button class="tab" role="tab" data-view="clientes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg><span>Clientes</span><span class="n" id="nClientes">—</span></button>
     <button class="tab" role="tab" data-view="materiales" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Materiales</span><span class="n" id="nMats">—</span></button>
     <button class="tab" role="tab" data-view="calendario" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Calendario</span></button>
+    <button class="tab" role="tab" data-view="motor" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg><span>Motor creador</span></button>
     <button class="tab" role="tab" data-view="lanzamientos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.5-2 4.5-2 6 1.5 0 4.5-.5 6-2"/><path d="M9 15l-3-3c1-4 4.5-8 12-9-1 7.5-5 11-9 12z"/><circle cx="14.5" cy="9.5" r="1.5"/></svg><span>Lanzamientos</span><span class="n" id="nLanz">—</span></button>
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Mensajes</span></button>
     <button class="tab" role="tab" data-view="datos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg><span>Datos</span></button>
@@ -668,6 +730,58 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
     <div class="cal-wrap"><div id="btHeat"><p class="muted">Cargando…</p></div></div>
     <p class="muted" id="btTop" style="margin-top:10px"></p>
   </section>
+</main>
+
+<!-- ============ MOTOR ============ -->
+<main class="wrap view" id="view-motor" hidden>
+  <div class="view-h"><div><h1>Motor creador de materiales</h1><p class="lead">Elegí una efeméride y un nivel: el motor planifica la secuencia didáctica y el contenido de cada página del cuadernillo, siguiendo cómo armás tus materiales. Vos después lo diseñás en Corel.</p></div>
+    <span class="pill info" id="motorMode"></span></div>
+  <div class="motor">
+    <section class="card motor-form" aria-labelledby="mfTitle">
+      <h3 id="mfTitle">Nuevo material</h3>
+      <div class="field"><label for="moEfe">Efeméride o tema</label><select id="moEfe"></select></div>
+      <div class="field" id="moOtraWrap" hidden><label for="moOtra">¿Cuál?</label><input id="moOtra" maxlength="120" placeholder="Ej.: Día de la Tradición (10 de noviembre)"></div>
+      <div class="field"><label>Nivel</label>
+        <div class="levels" role="radiogroup" aria-label="Nivel">
+          <label class="lv"><input type="radio" name="moNivel" value="Nivel Inicial"><span>Inicial</span></label>
+          <label class="lv"><input type="radio" name="moNivel" value="Primaria – Primer Ciclo" checked><span>Primer ciclo</span></label>
+          <label class="lv"><input type="radio" name="moNivel" value="Primaria – Segundo Ciclo"><span>Segundo ciclo</span></label>
+          <label class="lv"><input type="radio" name="moNivel" value="Secundaria"><span>Secundaria</span></label>
+        </div></div>
+      <div class="row2">
+        <div class="field"><label for="moClases">Clases</label><select id="moClases"><option>4</option><option selected>5</option><option>6</option><option>8</option></select></div>
+        <div class="field"><label for="moPags">Páginas del cuadernillo</label><select id="moPags"><option>12</option><option selected>18</option><option>24</option></select></div>
+      </div>
+      <div class="field"><label>Incluir</label>
+        <label class="check"><input type="checkbox" id="moAcc" checked> Adaptaciones accesibles</label>
+        <label class="check"><input type="checkbox" id="moPlat"> Ideas para plataforma interactiva</label>
+        <label class="check"><input type="checkbox" id="moVenta" checked> Texto de venta para la web</label>
+      </div>
+      <div class="field"><label for="moIdeas">Ideas o pedidos (opcional)</label><textarea id="moIdeas" rows="3" maxlength="600" placeholder="Ej.: que tenga un recortable del rancho criollo y una actividad con el poncho"></textarea></div>
+      <button class="btn primary" type="button" id="moGo">Planificar el material</button>
+      <p class="muted" id="moMsg" role="status"></p>
+      <details class="perfil"><summary>Cómo diseño mis materiales (lo que aprendió el motor)</summary>
+        <p class="muted" style="margin:6px 0">Podés corregirlo o sumarle detalles: el motor lo usa en cada planificación.</p>
+        <textarea id="moPerfil" rows="14"></textarea>
+        <div class="actions"><button class="btn small" type="button" id="moPerfilSave" disabled>Guardar cambios</button><button class="btn small ghost" type="button" id="moPerfilReset">Volver al original</button><span class="muted" id="moPerfilMsg"></span></div>
+      </details>
+      <div class="hist"><h3 style="font-size:13.5px">Materiales planificados</h3><div id="moHist"></div></div>
+    </section>
+    <section class="motor-out" id="moOut" aria-live="polite">
+      <div class="empty-box" id="moEmpty">Elegí la efeméride y el nivel, y tocá <b>Planificar el material</b>. En un par de minutos vas a tener la secuencia didáctica completa y el contenido página por página.</div>
+      <div id="moDoc" hidden>
+        <div class="doc-bar">
+          <div class="seg" role="group" aria-label="Sección"><button type="button" data-mtab="sec" aria-pressed="true">Secuencia didáctica</button><button type="button" data-mtab="pag" aria-pressed="false">Páginas del cuadernillo</button><button type="button" data-mtab="extra" aria-pressed="false">Venta y extras</button></div>
+          <div class="actions"><button class="btn small" type="button" id="moDocx">Descargar Word</button><button class="btn small" type="button" id="moCopy">Copiar todo</button><button class="btn small" type="button" id="moLanz">Llevar a Lanzamientos</button></div>
+        </div>
+        <article class="doc" id="moSec"></article>
+        <article class="doc" id="moPag" hidden></article>
+        <article class="doc" id="moExtra" hidden></article>
+        <div class="card adjust"><h3>Pedile cambios</h3><p class="sub">Ej.: "cambiá la clase 3 por una de canciones folclóricas", "más actividades de matemática", "simplificá las consignas".</p>
+          <div class="toolbar"><input class="sel" id="moAdj" style="flex:1 1 260px;min-width:0" maxlength="400" placeholder="¿Qué querés cambiar?"><button class="btn primary" type="button" id="moAdjGo">Aplicar cambios</button></div></div>
+      </div>
+    </section>
+  </div>
 </main>
 
 <!-- ============ LANZAMIENTOS ============ -->
@@ -1091,6 +1205,9 @@ const DEFAULT_TEMPLATES = [
 ];
 // Automatizaciones de InstantDM (copia inicial para la versión de navegador)
 const DEFAULT_AUTODM = [["sapo", {"titulo": "Los Sueños del Sapo", "palabras": ["Sueños", "Info", "Sueño"], "respuestas": ["¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊🐸💚 ¡Muchas gracias por tu interés en el cuadernillo \"Los Sueños del Sapo\"! 📚✨\n\n✨ Valor PROMOCIONAL por transferencia directa: $6000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente:\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $6500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/los-suenos-del-sapo\n\n❤️ ¡Muchas gracias por confiar en Cofre Didáctico! Espero que este material acompañe a tus estudiantes en el maravilloso mundo de la lectura, la imaginación y el aprendizaje. 📚🐸✨", "activa": true, "orden": 0, "url": "https://app.instantdm.com/manage-post/18006243242959398?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "los-suenos-del-sapo"}], ["plataforma-san-martin", {"titulo": "Plataforma Interactiva - José de San Martín", "palabras": ["Plataforma", "Quiero", "Info"], "respuestas": ["¡Hola! Muchas gracias por tu interés en la plataforma, te envié toda la información por Mensaje Directo"], "dm": "¡Hola! 😊🇦🇷 ¡Muchas gracias por tu interés en la Plataforma Interactiva \"José de San Martín\"! ❤️\n\n✨ Valor PROMOCIONAL por transferencia directa: $4000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, envíame el comprobante por este medio y recibirás automáticamente el acceso a la plataforma.\n\n🛒 También podés adquirirla con otros medios de pago desde mi tienda online por *$4300*:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/plataforma-interactiva-jose-de-san-martin\n\n🎁 Si ya adquiriste el Cuadernillo de José de San Martín de Cofre Didáctico, no necesitás comprar esta plataforma. Ya fue incorporada sin costo adicional a la carpeta compartida.", "activa": true, "orden": 1, "url": "https://app.instantdm.com/manage-post/18137665066587900?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "plataforma-interactiva-jose-de-san-martin"}], ["san-martin", {"titulo": "17 de Agosto - José de San Martín (cuadernillo)", "palabras": ["San Martin", "Info", "Quiero"], "respuestas": ["¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por Mensaje Directo.", "Muchas gracias por tu interés, te envié por Mensaje Directo toda la Información ✨"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el cuadernillo del General José de San Martín! ❤️📚\n\n✨ Valor SOLO POR HOY por transferencia directa: $5200\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente el acceso al material.\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $5500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/17-de-agosto-jose-de-san-martin-con-plataforma-interactiva\n\nUn recurso ideal para trabajar la efeméride de una manera dinámica, significativa y divertida en el aula.\n\n❤️ ¡Muchas gracias por confiar y acompañarnos siempre! 📚✨", "activa": true, "orden": 2, "url": "https://app.instantdm.com/manage-post/18100777291943847?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "17-de-agosto-jose-de-san-martin-con-plataforma-interactiva"}], ["9-de-julio", {"titulo": "9 de Julio - Día de la Independencia", "palabras": ["Independencia", "Info", "Quiero"], "respuestas": ["¡Hola! ¿Cómo estás? Gracias por comentar, ya te pase la info por MD", "¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por MD 💚", "¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el material del 9 de Julio: Día de la Independencia! 🇦🇷\n\n🎉 Promoción válida hasta las 00:00 hs de hoy:\n💰 Transferencia: $6.800\n\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Enviame el comprobante por este medio y recibirás el material en formato PDF, listo para descargar e imprimir.\n\n🛒 También podés adquirirlo desde la tienda online por $7.000:\nhttps://cofredidactico.empretienda.com.ar/novedades/9-de-julio-dia-de-la-independencia\n\n¡Muchas gracias por acompañar a Cofre Didáctico! ❤️📚", "activa": true, "orden": 3, "url": "https://app.instantdm.com/manage-post/18027037202837036?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "9-de-julio-dia-de-la-independencia"}]];
+// Perfil de estilo aprendido de las secuencias del autor
+const MOTOR_PERFIL = "ESTILO DE COFRE DIDÁCTICO (aprendido de sus secuencias reales: Malvinas, Güemes 1.º y 2.º ciclo, 25 de Mayo, Escarapela, Día del Animal, Día de la Tierra)\n\n1) DOCUMENTO DE PLANIFICACIÓN (secuencia didáctica que va dentro del cuadernillo)\n- Encabezado: \"SECUENCIA DIDÁCTICA\", la efeméride en mayúsculas con su fecha y el nivel/ciclo.\n- Datos generales: área principal, áreas integradas, destinatarios, duración estimada (cantidad de clases).\n- Fundamentación de 3 a 4 párrafos: (1) el valor de las efemérides para acercar a los niños y niñas a la historia y construir identidad; (2) qué se recuerda en la fecha y por qué es importante; (3) cómo se aborda en ese ciclo: recursos visuales, propuestas lúdicas, lectura, escritura, observación y producción artística, \"acordes a la edad\"; el cuadernillo funciona como soporte organizador que sostiene la continuidad pedagógica; (4) los valores que se promueven (respeto, pertenencia, solidaridad, compromiso, memoria, paz, cuidado).\n- Propósitos (5 a 8) que empiezan con: Acercar, Promover, Favorecer, Desarrollar, Estimular, Incentivar, Valorar, Fomentar.\n- Objetivos (4 a 6) en infinitivo: Reconocer, Comprender, Identificar, Participar, Expresar.\n- Contenidos por área: Ciencias Sociales o Ciencias Naturales; Prácticas del Lenguaje; Educación Artística; Formación Ética y Ciudadana; Matemática cuando corresponda.\n- Clases (normalmente 5; entre 4 y 8). Cada clase tiene:\n  · Título temático en mayúsculas y lúdico: \"CONOCEMOS A…\", \"DESCUBRIMOS…\", \"ALFABETIZACIÓN EN CONTEXTO\", \"LA VIDA DE…\", \"APRENDEMOS JUGANDO\", \"ESCRIBIMOS COMO…\", \"CREAMOS Y RECORDAMOS\", \"INTEGRACIÓN Y CIERRE\".\n  · Intención didáctica en una oración.\n  · Duración: 40/50 minutos en primer ciclo; en segundo ciclo se detalla Inicio (10-15 min), Desarrollo (40-50 min), Cierre (10-20 min).\n  · Inicio: conversación guiada con preguntas disparadoras textuales entre signos (¿Saben qué se recuerda el…? ¿Escucharon hablar de…?), presentación de imagen u objeto real, registro de ideas previas en el pizarrón (sin corregir aún) o recuperación de la clase anterior.\n  · Desarrollo: lectura compartida o mediada de la infografía/texto del cuadernillo y las actividades del cuadernillo listadas con ✔.\n  · Estrategias / intervenciones docentes: lectura en voz alta de consignas, señalar pistas fonológicas, relectura en pequeños grupos, acompañamiento diferenciado, uso del error como aprendizaje, trabajo individual con intercambio en parejas.\n  · Cierre: puesta en común, corrección colectiva, reflexión con una pregunta (¿Por qué es importante recordar…?), construcción colectiva de una oración que se copia con andamiaje, registro en el cuaderno, exposición de trabajos.\n- Progresión típica de las clases: 1) primer acercamiento con infografía y comprensión; 2) alfabetización/escritura en contexto; 3) secuencia temporal o contenido específico (recortar, ordenar y pegar; antes-durante-después); 4) aprender jugando; 5) producción artística/expresiva e integración, con una frase colectiva para la cartelera o un mensaje final.\n- Evaluación: criterios (participación oral, comprensión, resolución de actividades, producción escrita, actitudes de respeto) e instrumentos (observación directa, registro anecdótico, producciones escritas y gráficas, actividades del cuadernillo).\n- Cierre sugerido: jornada o acto breve donde usen sus producciones.\n- Al final: DOCENTE: ____  GRADO: ____  CICLO LECTIVO: ____\n\n2) CUADERNILLO (entre 20 y 34 páginas, A4, para imprimir)\nOrden habitual: portada → secuencia didáctica → infografía ilustrada de fácil comprensión → comprensión lectora → actividades de escritura → secuencia temporal recortable → juegos → producción artística → tarjeta/acróstico de cierre.\nActividades que usa siempre:\n- Infografía ilustrada (datos clave en bloques breves con íconos).\n- Comprensión lectora: preguntas guiadas, opción múltiple, \"¿Qué es…?\", \"¿De qué color…?\".\n- Verdadero o Falso (en segundo ciclo, con justificación).\n- Completar oraciones con banco de palabras.\n- Ordenar palabras para formar oraciones.\n- Ordenar letras (anagramas, por ejemplo \"NOBELGRA\").\n- Unir imagen con palabra; completar sílabas (primer ciclo).\n- Secuencia cronológica recortable (\"Mi secuencia de…\"): recortar, ordenar y pegar.\n- Sopa de letras temática.\n- Crucigrama con pistas.\n- Mensaje secreto / código secreto (con vocales o símbolos).\n- Laberinto con un personaje (\"¡Ayudá a Belgrano a llegar a…!\").\n- \"Detectives de…\": buscar y encontrar, diferencias, pistas.\n- Armado recortable (personaje u objeto: escarapela, Casa de Tucumán, gaucho).\n- Dibujo y pintura.\n- Tarjeta acróstico con la palabra clave para llevar a casa o pegar en el cuaderno.\n- Segundo ciclo, además: cuadro histórico para completar, carta de un personaje (\"Carta de un gaucho\"), línea de tiempo, acertijos, \"Publicación de Instagram histórica\" (perfil imaginario con comentarios de personajes), tarjeta para la carpeta.\nExtras que suele ofrecer: carpeta con todas las actividades en formato imagen; plataforma interactiva; Pasapalabra.\nConsignas: cortas, claras, con voseo rioplatense (\"Completá\", \"Uní\", \"Pintá\", \"Recortá y pegá\", \"Ayudá a…\", \"Descubrí\"). Títulos de actividad en mayúsculas y lúdicos. Tono cálido.\n\n3) ADAPTACIÓN POR NIVEL\n- Inicial (salas de 3, 4 y 5): todo oral y lúdico; pictogramas e imágenes grandes; pocas palabras en IMPRENTA MAYÚSCULA; pintar, trazar, recortar, pegar, encastres, memotest, canciones y rondas; motricidad fina; sin textos para leer de forma autónoma.\n- Primaria, Primer Ciclo (1.º a 3.º): IMPRENTA MAYÚSCULA, frases breves, palabras clave del tema, alfabetización inicial (vocales, sílabas, conciencia fonológica, anagramas), mucha imagen, juegos de palabras.\n- Primaria, Segundo Ciclo (4.º a 6.º/7.º): textos informativos más extensos, búsqueda de información, justificación, cuadros, líneas de tiempo, producción escrita (cartas, diarios, publicaciones), acertijos, análisis de causas y consecuencias.\n- Secundaria: análisis crítico, fuentes primarias (documentos, cartas, fotos de época), debate y argumentación, investigación en grupos, producción digital (infografía, podcast, posteo), vínculo con el presente y la ciudadanía.\n\n4) ACCESIBILIDAD (rasgo de la marca)\nSiempre incluir adaptaciones para estudiantes con distintas necesidades: pictogramas, letra imprenta mayúscula, menos estímulos por página, consignas cortas en pasos, apoyos visuales, opción de respuesta con imagen.\n\n5) CUIDADOS\nDatos históricos correctos; si un dato puede discutirse, marcarlo con [verificar]. En fechas sensibles (Malvinas, Memoria) abordaje respetuoso, centrado en la memoria, la paz y los derechos.\n";
+const MOTOR_EJEMPLO = "FUNDAMENTACIÓN\nLas efemérides constituyen valiosas oportunidades para acercar a los niños y niñas al conocimiento de nuestra historia, promoviendo la construcción de la identidad nacional y el reconocimiento de las personas que contribuyeron a la formación de nuestro país.\nEn el Primer Ciclo, el abordaje de esta efeméride favorece la comprensión de hechos históricos a través de recursos visuales, actividades lúdicas, propuestas de lectura, escritura, observación y producción artística, permitiendo que los estudiantes construyan conocimientos significativos acordes a su edad.\n\nPROPÓSITOS\n• Acercar a los estudiantes al conocimiento de la vida y obra de Martín Miguel de Güemes.\n• Favorecer la comprensión lectora a través de textos e infografías.\n• Estimular la observación, el análisis y la resolución de desafíos lúdicos.\n\nCLASE 1 – CONOCEMOS A MARTÍN MIGUEL DE GÜEMES\nINICIO: Conversación grupal para recuperar saberes previos. Preguntas orientadoras: ¿Escucharon hablar de Martín Miguel de Güemes? ¿Quién creen que fue? ¿Por qué lo recordamos cada 17 de junio?\nDESARROLLO: Observación y lectura compartida de la infografía incluida en el cuadernillo. Intercambio oral. Realización de la actividad de comprensión de la infografía.\nCIERRE: Puesta en común de las respuestas. Construcción colectiva de una breve conclusión sobre quién fue Güemes.\n\nCLASE 2 – DESCUBRIMOS A LOS GAUCHOS INFERNALES\nDESARROLLO: Completar oraciones. Ordenar palabras. Unir imágenes con palabras. Ordenar letras.\n\nCLASE 5 – CREAMOS Y RECORDAMOS\nDESARROLLO: Armado del recortable \"Gaucho Infernal\". Confección de la tarjeta acróstico.\nCIERRE: Reflexión final: ¿Por qué seguimos recordando a Martín Miguel de Güemes? Registro de una frase colectiva para la cartelera: \"RECORDAMOS A MARTÍN MIGUEL DE GÜEMES POR SU VALENTÍA Y SU AMOR POR LA PATRIA.\" ";
 const POST_COLORS = {"Post":"--c-sitio","Historia":"--c-redes","Reel":"--c-metricas"};
 
 // =====================================================================
@@ -1171,7 +1288,7 @@ async function LocalDB(){
       onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(inColl(c).map(k=>[k,data[k]])); if(s!==last){ last=s; next(mk()); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); } }; }
   return {doc, collection:coll, _all:()=>JSON.parse(JSON.stringify(data)), _replace:async d=>{ data=d; await save(); notify(); }, _isEmpty:()=>!Object.keys(data).length};
 }
-const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos","autodm"];
+const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos","autodm","motor"];
 let db=null;
 
 // =====================================================================
@@ -1270,7 +1387,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","instagram","clientes","materiales","calendario","lanzamientos","mensajes","datos"];
+  const all=["inicio","ventas","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -1287,6 +1404,7 @@ function renderView(v){
   if(v==="materiales") renderMats();
   if(v==="calendario"){ renderYear(); renderEfes(); renderCal(); }
   if(v==="materiales") renderAudit();
+  if(v==="motor") renderMotor();
   if(v==="inicio") renderMQ();
   if(v==="mensajes"){ renderTpls(); renderGen(); renderAds(); }
   if(v==="lanzamientos") renderLanz();
@@ -2414,11 +2532,247 @@ $("#mqIn").addEventListener("input",renderMQ);
 $("#fab").addEventListener("click",()=>{ showView("inicio"); setTimeout(()=>{ $("#mqIn").focus(); $("#mQuick").scrollIntoView({block:"start"}); },60); });
 (function(){ // deslizar entre secciones
   const area=document.querySelector(".main-area"); if(!area) return; let x0=null,y0=0,t0=0,ok=true;
-  const ORDER=["inicio","ventas","instagram","clientes","materiales","calendario","lanzamientos","mensajes","datos"];
+  const ORDER=["inicio","ventas","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","datos"];
   area.addEventListener("touchstart",e=>{ if(e.touches.length!==1){ x0=null; return; } const t=e.target; ok=!t.closest("input,textarea,select,.tbl-wrap,.cal-wrap,.board,.chart,dialog"); x0=e.touches[0].clientX; y0=e.touches[0].clientY; t0=Date.now(); },{passive:true});
   area.addEventListener("touchend",e=>{ if(x0===null||!ok) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
     if(Math.abs(dx)<80||Math.abs(dy)>45||Date.now()-t0>600) return; const i=ORDER.indexOf(currentView); const n=ORDER[i+(dx<0?1:-1)]; if(n){ showView(n); const tb=document.querySelector(`.tab[data-view="${n}"]`); if(tb) tb.scrollIntoView({inline:"center",block:"nearest"}); } },{passive:true});
 })();
+
+// ---------- MOTOR CREADOR DE MATERIALES ----------
+let motorPerfilDoc=null, motorHist=[], motorCur=null, motorBusy=false, motorTab="sec";
+const motorPerfil=()=>(motorPerfilDoc&&motorPerfilDoc.texto)||MOTOR_PERFIL;
+function renderMotor(){
+  $("#motorMode").textContent=MODE.cloud?"Con Claude":"Versión de navegador";
+  const s=$("#moEfe");
+  if(!s.options.length){
+    const up=upcomingEfes(366).map(u=>u.e[0]); const seen=new Set(); const ordered=[];
+    up.forEach(k=>{ if(!seen.has(k)){ seen.add(k); ordered.push(EFEMERIDES.find(e=>e[0]===k)); } });
+    EFEMERIDES.forEach(e=>{ if(!seen.has(e[0])) ordered.push(e); });
+    s.innerHTML=ordered.map(e=>`<option value="${e[0]}">${esc(e[0].split("-").reverse().join("/"))} · ${esc(e[1])}${efeInfo(e).rel.length?"":" (sin material)"}</option>`).join("")+`<option value="otra">Otra fecha o tema…</option>`;
+    const firstGap=ordered.find(e=>!efeInfo(e).rel.length); if(firstGap) s.value=firstGap[0];
+  }
+  const ta=$("#moPerfil"); if(document.activeElement!==ta){ ta.value=motorPerfil(); $("#moPerfilSave").disabled=true; }
+  renderMotorHist();
+  if(motorCur) renderMotorDoc();
+}
+$("#moEfe").addEventListener("change",()=>{ $("#moOtraWrap").hidden=$("#moEfe").value!=="otra"; });
+$("#moPerfil").addEventListener("input",()=>{ $("#moPerfilSave").disabled=$("#moPerfil").value===motorPerfil(); $("#moPerfilMsg").textContent=""; });
+$("#moPerfilSave").addEventListener("click",async()=>{ if(!needDb()) return; try{ await db.doc("panel/motorPerfil").set({texto:$("#moPerfil").value,updated:new Date().toISOString()}); $("#moPerfilMsg").textContent="Guardado."; $("#moPerfilSave").disabled=true; }catch{ $("#moPerfilMsg").textContent="No se pudo guardar."; } });
+$("#moPerfilReset").addEventListener("click",async()=>{ $("#moPerfil").value=MOTOR_PERFIL; if(db){ try{ await db.doc("panel/motorPerfil").delete(); }catch{} } $("#moPerfilMsg").textContent="Se restauró el original."; $("#moPerfilSave").disabled=true; });
+function renderMotorHist(){
+  const box=$("#moHist"); const L=[...motorHist].sort((a,b)=>String(b.creado).localeCompare(String(a.creado)));
+  if(!L.length){ box.innerHTML=`<p class="muted">Todavía no planificaste materiales.</p>`; return; }
+  box.textContent="";
+  L.slice(0,15).forEach(h=>{ const b=document.createElement("button"); b.type="button"; b.className="hi";
+    b.innerHTML=`<span><b></b><span class="muted"></span></span><span class="muted">›</span>`; b.querySelector("b").textContent=h.titulo||"Material"; b.querySelector("span .muted").textContent=`${h.nivel||""} · ${new Date(h.creado).toLocaleDateString("es-AR",{day:"numeric",month:"short"})}`;
+    b.addEventListener("click",()=>{ motorCur=h; motorTab="sec"; renderMotorDoc(); $("#moOut").scrollIntoView({block:"start",behavior:"smooth"}); });
+    box.appendChild(b); });
+}
+function motorRequest(){
+  const ev=$("#moEfe").value; let efe, fecha="";
+  if(ev==="otra"){ efe=$("#moOtra").value.trim(); } else { const e=EFEMERIDES.find(x=>x[0]===ev); efe=e[1]; fecha=ev.split("-").reverse().join("/"); }
+  return {efe,fecha,nivel:(document.querySelector('input[name="moNivel"]:checked')||{}).value||"Primaria – Primer Ciclo",clases:+$("#moClases").value,pags:+$("#moPags").value,acc:$("#moAcc").checked,plat:$("#moPlat").checked,venta:$("#moVenta").checked,ideas:$("#moIdeas").value.trim(),efeKey:ev};
+}
+function existingFor(r){ if(!D||r.efeKey==="otra") return ""; const e=EFEMERIDES.find(x=>x[0]===r.efeKey); const rel=e?efeInfo(e).rel:[]; return rel.length?`Ya tiene publicados para esta fecha: ${rel.map(m=>`"${m.name}" (${m.doc.nivel||"sin nivel"})`).join(", ")}. Proponé algo complementario, sin repetir el mismo enfoque.`:""; }
+function promptPlan(r){
+  return `Sos el asistente pedagógico de Cofre Didáctico (Alejandro Rojo, docente argentino que crea cuadernillos didácticos en PDF para imprimir). Tenés que planificar un material NUEVO siguiendo exactamente su estilo.
+
+${motorPerfil()}
+
+EJEMPLO REAL DE SU ESCRITURA (fragmento de la secuencia de Güemes, Primer Ciclo):
+"""${MOTOR_EJEMPLO}"""
+
+PEDIDO:
+- Efeméride o tema: ${r.efe}${r.fecha?` (${r.fecha})`:""}
+- Nivel: ${r.nivel}
+- Cantidad de clases: ${r.clases}
+- Adaptaciones accesibles: ${r.acc?"sí, incluir una lista concreta":"no hace falta"}
+- Pedidos del autor: ${r.ideas||"ninguno"}
+${existingFor(r)}
+
+Escribí en español rioplatense, con el tono y la estructura de sus secuencias. Las actividades del cuadernillo que nombres en las clases tienen que ser de su repertorio y adecuadas al nivel. Datos históricos correctos; si algo es dudoso, agregá [verificar].
+
+Respondé SOLO con JSON válido con esta forma:
+{"titulo":"nombre comercial del material","efemeride":"","fecha":"","nivel":"","datos":{"areaPrincipal":"","areasIntegradas":[""],"destinatarios":"","duracion":""},"fundamentacion":["párrafo 1","párrafo 2","párrafo 3"],"propositos":[""],"objetivos":[""],"contenidos":[{"area":"","items":[""]}],"clases":[{"numero":1,"titulo":"EN MAYÚSCULAS","intencion":"","duracion":"","inicio":[""],"preguntas":["¿…?"],"desarrollo":[""],"actividades":["actividad del cuadernillo"],"estrategias":[""],"cierre":[""]}],"evaluacion":{"criterios":[""],"instrumentos":[""]},"adaptaciones":[""],"cierreSugerido":""}`;
+}
+function promptPages(r,plan){
+  const resumen=(plan.clases||[]).map(c=>`Clase ${c.numero} "${c.titulo}": ${(c.actividades||[]).join("; ")}`).join("\n");
+  return `Sos el asistente pedagógico de Cofre Didáctico. Ya está planificada la secuencia "${plan.titulo}" (${plan.nivel}) sobre ${plan.efemeride}. Ahora escribí el CONTENIDO de cada página del cuadernillo, listo para que el autor lo diagrame en CorelDRAW con sus ilustraciones.
+
+${motorPerfil()}
+
+Actividades previstas en las clases:
+${resumen}
+
+Reglas:
+- Exactamente ${r.pags} páginas, en el orden habitual del autor: portada, secuencia didáctica (1 página que la menciona), infografía, comprensión, escritura, secuencia temporal recortable si corresponde, juegos, producción artística y tarjeta/acróstico de cierre.
+- Cada página tiene un título lúdico en MAYÚSCULAS y una consigna con voseo ("Completá", "Uní", "Recortá y pegá").
+- "contenido" trae TODO lo necesario para diagramar, sin inventar ilustraciones: el texto de la infografía en bloques breves; las preguntas con sus opciones; las oraciones para completar con el banco de palabras; los anagramas; la lista de palabras de la sopa de letras; las pistas del crucigrama; las afirmaciones de verdadero/falso; el mensaje secreto con su código; las escenas de la secuencia en orden; las letras del acróstico.
+- "ilustracion": qué dibujo o imagen necesita la página y cómo ubicarla.
+- "solucion": las respuestas correctas cuando la actividad las tiene (vacío si no).
+- Adecuá la cantidad de texto al nivel (${r.nivel}).${r.acc?"\n- En 2 o 3 páginas clave agregá al final del contenido una línea \"Versión accesible:\" con la adaptación.":""}
+- Respetá los pedidos del autor: ${r.ideas||"ninguno"}.
+
+Respondé SOLO con JSON válido:
+{"paginas":[{"n":1,"seccion":"Portada|Secuencia|Infografía|Comprensión|Escritura|Secuencia temporal|Juego|Producción|Cierre","titulo":"","consigna":"","contenido":"","ilustracion":"","solucion":""}]${r.plat?`,"plataforma":["idea de juego interactivo para la plataforma"]`:""}${r.venta?`,"venta":{"nombre":"","descripcionCorta":"","incluye":["✅ …"],"textoWeb":"texto para la web con el estilo de la marca y emojis"}`:""}}`;
+}
+function motorProgress(on,txt){ const m=$("#moMsg"); if(on){ m.innerHTML=`<span class="gen-progress"><i></i></span><span style="display:block;margin-top:6px">${esc(txt)}</span>`; } else m.textContent=txt||""; }
+async function getSample(){ if(!MODE.cloud) return null; if(!sampleFn){ try{ sampleFn=await claude.use("sample"); }catch{ sampleFn=null; } } return sampleFn; }
+function sampleErr(e){ const c=e&&e.code; return c==="not_granted"?"No diste permiso para que el panel use Claude. Podés habilitarlo desde el menú de permisos del panel.":c==="rate_limited"?"Claude está ocupado. Probá de nuevo en un rato.":c==="invalid_json"?"La respuesta salió incompleta. Probá de nuevo o pedí menos páginas.":"No se pudo completar. Probá de nuevo."; }
+$("#moGo").addEventListener("click",async()=>{
+  if(motorBusy) return; const r=motorRequest();
+  if(!r.efe){ motorProgress(false,"Escribí la efeméride o el tema."); return; }
+  const sf=await getSample();
+  if(!sf){ showFallback(r); return; }
+  motorBusy=true; $("#moGo").disabled=true;
+  try{
+    motorProgress(true,"Planificando la secuencia didáctica… (1 de 2)");
+    const plan=await sf.json(promptPlan(r),{cache:false,modelTier:"complex"});
+    if(!plan||!plan.clases) throw {code:"invalid_json"};
+    motorCur={titulo:plan.titulo||r.efe,efe:r.efe,nivel:r.nivel,req:r,plan,extra:null,creado:new Date().toISOString()};
+    motorTab="sec"; renderMotorDoc();
+    motorProgress(true,"Escribiendo el contenido de cada página… (2 de 2)");
+    const extra=await sf.json(promptPages(r,plan),{cache:false,modelTier:"complex"});
+    if(!extra||!extra.paginas) throw {code:"invalid_json",partial:true};
+    motorCur.extra=extra; renderMotorDoc();
+    await saveMotor();
+    motorProgress(false,"Listo. Quedó guardado en “Materiales planificados”.");
+  }catch(e){ motorProgress(false,(motorCur&&motorCur.plan&&!motorCur.extra?"La secuencia quedó lista, pero falló el contenido de las páginas. ":"")+sampleErr(e)); if(motorCur&&motorCur.plan) await saveMotor(); }
+  finally{ motorBusy=false; $("#moGo").disabled=false; }
+});
+async function saveMotor(){
+  if(!db||!motorCur) return;
+  const {id,...data}=motorCur; const ref=id?db.collection("motor").doc(id):db.collection("motor").doc();
+  try{ if(JSON.stringify(data).length>240000) throw new Error("grande"); await ref.set(data); motorCur.id=ref.id; }catch{ motorProgress(false,"El material se generó, pero no se pudo guardar en el historial."); }
+}
+$("#moAdjGo").addEventListener("click",async()=>{
+  if(motorBusy||!motorCur||!motorCur.plan) return; const ins=$("#moAdj").value.trim(); if(!ins) return;
+  const sf=await getSample(); if(!sf){ motorProgress(false,"Los cambios con Claude funcionan en la versión del panel dentro de Claude."); return; }
+  motorBusy=true; $("#moAdjGo").disabled=true;
+  try{
+    motorProgress(true,"Aplicando los cambios…");
+    const p=`Sos el asistente pedagógico de Cofre Didáctico. Este es el plan actual de un material, en JSON:
+${JSON.stringify(motorCur.plan)}
+
+${motorCur.extra?`Y estas son las páginas actuales del cuadernillo:\n${JSON.stringify(motorCur.extra.paginas)}\n`:""}
+Cambio pedido por el autor: "${ins}"
+
+Aplicá el cambio respetando su estilo:
+${motorPerfil().slice(0,2500)}
+
+Respondé SOLO con JSON: {"plan": <el plan completo actualizado, misma forma>, "paginas": <las páginas completas actualizadas, misma forma, o null si el cambio no las afecta>}`;
+    const res=await sf.json(p,{cache:false,modelTier:"complex"});
+    if(!res||!res.plan||!res.plan.clases) throw {code:"invalid_json"};
+    motorCur.plan=res.plan; motorCur.titulo=res.plan.titulo||motorCur.titulo;
+    if(res.paginas&&Array.isArray(res.paginas)&&motorCur.extra) motorCur.extra.paginas=res.paginas;
+    motorCur.ajustes=[...(motorCur.ajustes||[]),{t:ins,at:new Date().toISOString()}];
+    renderMotorDoc(); await saveMotor(); $("#moAdj").value=""; motorProgress(false,"Cambios aplicados y guardados.");
+  }catch(e){ motorProgress(false,sampleErr(e)); }
+  finally{ motorBusy=false; $("#moAdjGo").disabled=false; }
+});
+function showFallback(r){
+  const full=promptPlan(r)+"\n\nDESPUÉS del JSON del plan, escribí también el contenido de las "+r.pags+" páginas del cuadernillo (título, consigna, contenido completo, ilustración sugerida y solución de cada página).";
+  motorCur=null; $("#moDoc").hidden=true; $("#moEmpty").hidden=false;
+  $("#moEmpty").innerHTML=`<b>El motor escribe con Claude.</b> En esta versión del panel no tengo conexión con Claude, así que te preparé el pedido completo: copialo y pegalo en un chat de Claude.<textarea readonly style="width:100%;min-height:220px;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--solid);font-size:12px" id="moFbTxt"></textarea><div class="actions" style="margin-top:8px"><button class="btn primary small" type="button" id="moFbCopy">Copiar pedido</button><a class="btn small" href="https://claude.ai/new" target="_blank" rel="noopener">Abrir Claude</a></div>`;
+  $("#moFbTxt").value=full; $("#moFbCopy").addEventListener("click",e=>copyText(e.currentTarget,full));
+  motorProgress(false,"");
+}
+document.querySelectorAll("[data-mtab]").forEach(b=>b.addEventListener("click",()=>{ motorTab=b.dataset.mtab; renderMotorDoc(); }));
+const ulist=a=>`<ul>${(a||[]).filter(Boolean).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+function renderMotorDoc(){
+  const c=motorCur; if(!c||!c.plan) return; const p=c.plan;
+  $("#moEmpty").hidden=true; $("#moDoc").hidden=false;
+  document.querySelectorAll("[data-mtab]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mtab===motorTab)));
+  $("#moSec").hidden=motorTab!=="sec"; $("#moPag").hidden=motorTab!=="pag"; $("#moExtra").hidden=motorTab!=="extra";
+  const d=p.datos||{};
+  $("#moSec").innerHTML=`<header class="dh"><small>Secuencia didáctica</small><h2>${esc(p.efemeride||c.efe)}</h2><span>${esc([p.fecha,p.nivel||c.nivel].filter(Boolean).join(" · "))}</span></header>
+    <div class="meta-grid"><div><b>Área principal</b>${esc(d.areaPrincipal||"—")}</div><div><b>Áreas integradas</b>${esc((d.areasIntegradas||[]).join(", ")||"—")}</div><div><b>Destinatarios</b>${esc(d.destinatarios||p.nivel||"—")}</div><div><b>Duración</b>${esc(d.duracion||((p.clases||[]).length+" clases"))}</div></div>
+    <h3>Fundamentación</h3>${(p.fundamentacion||[]).map(x=>`<p>${esc(x)}</p>`).join("")}
+    <h3>Propósitos</h3>${ulist(p.propositos)}
+    ${p.objetivos&&p.objetivos.length?`<h3>Objetivos</h3>${ulist(p.objetivos)}`:""}
+    <h3>Contenidos</h3><div class="areas-c">${(p.contenidos||[]).map(a=>`<div><b>${esc(a.area)}</b>${ulist(a.items)}</div>`).join("")}</div>
+    <h3>Secuencia de clases</h3>
+    ${(p.clases||[]).map(k=>`<div class="clase"><div class="chd"><span class="num">${esc(k.numero)}</span><div><b>${esc(k.titulo)}</b><span>${esc([k.intencion,k.duracion].filter(Boolean).join(" · "))}</span></div></div>
+      <div class="cbody">
+        <div class="mom"><b>Inicio</b><div>${ulist(k.inicio)}${k.preguntas&&k.preguntas.length?`<p class="muted" style="margin-top:4px">Preguntas disparadoras:</p>${ulist(k.preguntas)}`:""}</div></div>
+        <div class="mom"><b>Desarrollo</b><div>${ulist(k.desarrollo)}${k.actividades&&k.actividades.length?`<p class="muted" style="margin-top:4px">Actividades del cuadernillo:</p><ul>${k.actividades.map(a=>`<li>✔ ${esc(a)}</li>`).join("")}</ul>`:""}</div></div>
+        ${k.estrategias&&k.estrategias.length?`<div class="mom"><b>Estrategias</b>${ulist(k.estrategias)}</div>`:""}
+        <div class="mom"><b>Cierre</b>${ulist(k.cierre)}</div>
+      </div></div>`).join("")}
+    <h3>Evaluación</h3><div class="areas-c"><div><b>Criterios</b>${ulist((p.evaluacion||{}).criterios)}</div><div><b>Instrumentos</b>${ulist((p.evaluacion||{}).instrumentos)}</div></div>
+    ${p.adaptaciones&&p.adaptaciones.length?`<h3>Adaptaciones accesibles</h3>${ulist(p.adaptaciones)}`:""}
+    ${p.cierreSugerido?`<h3>Cierre sugerido</h3><p>${esc(p.cierreSugerido)}</p>`:""}
+    <div class="firma"><span>DOCENTE: __________</span><span>GRADO: __________</span><span>CICLO LECTIVO: __________</span></div>`;
+  const ex=c.extra;
+  $("#moPag").innerHTML=!ex?`<p class="muted">${motorBusy?"Escribiendo las páginas…":"Todavía no hay páginas para este material."}</p>`:`<header class="dh"><small>Cuadernillo · ${(ex.paginas||[]).length} páginas</small><h2>${esc(p.titulo||c.titulo)}</h2><span>Contenido listo para diagramar en CorelDRAW</span></header>
+    <div class="pages">${(ex.paginas||[]).map(g=>`<div class="pg"><div class="ph"><span class="pn">${esc(g.n)}</span><div><span>${esc(g.seccion||"")}</span><b>${esc(g.titulo||"")}</b></div></div>
+      <div class="pb">${g.consigna?`<p class="cons">${esc(g.consigna)}</p>`:""}${g.contenido?`<div class="cont">${esc(g.contenido)}</div>`:""}${g.ilustracion?`<p class="ilu">🎨 ${esc(g.ilustracion)}</p>`:""}${g.solucion?`<details class="sol"><summary>Solución</summary><p>${esc(g.solucion)}</p></details>`:""}</div></div>`).join("")}</div>`;
+  const v=ex&&ex.venta;
+  $("#moExtra").innerHTML=`<header class="dh"><small>Venta y extras</small><h2>${esc((v&&v.nombre)||p.titulo||c.titulo)}</h2></header>
+    ${v?`<h3>Descripción corta</h3><p>${esc(v.descripcionCorta||"")}</p><h3>¿Qué incluye?</h3>${ulist(v.incluye)}<h3>Texto para la web</h3><div class="cont" style="white-space:pre-wrap;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px">${esc(v.textoWeb||"")}</div><div class="actions"><button class="btn small" type="button" id="moCopyWeb">Copiar texto de la web</button></div>`:`<p class="muted">No pediste texto de venta para este material.</p>`}
+    ${ex&&ex.plataforma&&ex.plataforma.length?`<h3>Ideas para la plataforma interactiva</h3>${ulist(ex.plataforma)}`:""}
+    ${c.ajustes&&c.ajustes.length?`<h3>Cambios pedidos</h3>${ulist(c.ajustes.map(a=>a.t))}`:""}`;
+  const cw=$("#moCopyWeb"); if(cw) cw.addEventListener("click",e=>copyText(e.currentTarget,v.textoWeb||""));
+}
+function motorText(){
+  const c=motorCur, p=c.plan, L=[]; const add=s=>L.push(s); const list=(t,a)=>{ if(a&&a.length){ add("\n"+t.toUpperCase()); a.forEach(x=>add("• "+x)); } };
+  add("SECUENCIA DIDÁCTICA"); add((p.efemeride||c.efe).toUpperCase()); add([p.fecha,p.nivel].filter(Boolean).join(" · "));
+  const d=p.datos||{}; add(`\nÁrea principal: ${d.areaPrincipal||""}\nÁreas integradas: ${(d.areasIntegradas||[]).join(", ")}\nDestinatarios: ${d.destinatarios||""}\nDuración: ${d.duracion||""}`);
+  add("\nFUNDAMENTACIÓN"); (p.fundamentacion||[]).forEach(x=>add(x+"\n"));
+  list("Propósitos",p.propositos); list("Objetivos",p.objetivos);
+  add("\nCONTENIDOS"); (p.contenidos||[]).forEach(a=>{ add(a.area); (a.items||[]).forEach(x=>add("• "+x)); });
+  (p.clases||[]).forEach(k=>{ add(`\nCLASE ${k.numero}: ${k.titulo}`); if(k.intencion) add("Intención didáctica: "+k.intencion); if(k.duracion) add("Duración: "+k.duracion);
+    list("Inicio",k.inicio); list("Preguntas disparadoras",k.preguntas); list("Desarrollo",k.desarrollo); if(k.actividades&&k.actividades.length){ add("Actividades del cuadernillo:"); k.actividades.forEach(a=>add("✔ "+a)); } list("Estrategias",k.estrategias); list("Cierre",k.cierre); });
+  list("Evaluación – Criterios",(p.evaluacion||{}).criterios); list("Evaluación – Instrumentos",(p.evaluacion||{}).instrumentos); list("Adaptaciones accesibles",p.adaptaciones);
+  if(p.cierreSugerido) add("\nCIERRE SUGERIDO\n"+p.cierreSugerido);
+  add("\nDOCENTE: ____________   GRADO: ____________   CICLO LECTIVO: ____________");
+  if(c.extra&&c.extra.paginas){ add("\n\n==========\nPÁGINAS DEL CUADERNILLO\n=========="); c.extra.paginas.forEach(g=>{ add(`\nPÁGINA ${g.n} · ${g.seccion||""} · ${g.titulo||""}`); if(g.consigna) add("Consigna: "+g.consigna); if(g.contenido) add(g.contenido); if(g.ilustracion) add("Ilustración: "+g.ilustracion); if(g.solucion) add("Solución: "+g.solucion); }); }
+  const v=c.extra&&c.extra.venta; if(v){ add("\n\n==========\nTEXTO DE VENTA\n=========="); add(v.textoWeb||""); }
+  return L.join("\n");
+}
+$("#moCopy").addEventListener("click",e=>{ if(motorCur) copyText(e.currentTarget,motorText()); });
+$("#moLanz").addEventListener("click",async e=>{ if(!motorCur||!needDb()) return; const c=motorCur, btn=e.currentTarget;
+  const efeKey=c.req&&c.req.efeKey!=="otra"?c.req.efeKey:"";
+  try{ await db.collection("lanzamientos").add({titulo:c.titulo,efe:efeKey,estado:"En diseño",due:efeKey?iso(new Date(nextDate(efeKey)-30*DAY)):"",nivel:c.nivel,nota:`Planificado con el motor: ${(c.plan.clases||[]).length} clases, ${c.extra&&c.extra.paginas?c.extra.paginas.length:0} páginas.`,updated:new Date().toISOString()}); btn.textContent="En Lanzamientos ✓"; }
+  catch{ btn.textContent="No se pudo"; } });
+let jszipP=null;
+function loadJSZip(){ if(window.JSZip) return Promise.resolve(window.JSZip); jszipP=jszipP||new Promise((res,rej)=>{ const s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"; s.onload=()=>res(window.JSZip); s.onerror=()=>{ jszipP=null; rej(new Error("No se pudo preparar el archivo de Word. Revisá la conexión.")); }; document.head.appendChild(s); }); return jszipP; }
+function docxXml(){
+  const c=motorCur,p=c.plan; const X=s=>String(s??"").replace(/[&<>"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+  const run=(t,o={})=>`<w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/>${o.b?"<w:b/>":""}${o.i?"<w:i/>":""}${o.color?`<w:color w:val="${o.color}"/>`:""}<w:sz w:val="${o.sz||22}"/></w:rPr>${String(t??"").split("\n").map((l,i)=>(i?"<w:br/>":"")+`<w:t xml:space="preserve">${X(l)}</w:t>`).join("")}</w:r>`;
+  const par=(t,o={})=>`<w:p><w:pPr><w:spacing w:before="${o.before||0}" w:after="${o.after??100}"/>${o.center?'<w:jc w:val="center"/>':""}${o.ind?'<w:ind w:left="360" w:hanging="220"/>':""}</w:pPr>${run(t,o)}</w:p>`;
+  const H=(t,lv)=>par(t,lv===1?{b:true,sz:34,color:"0B8BD6",center:true,after:80}:lv===2?{b:true,sz:26,color:"EF7F22",before:200,after:80}:{b:true,sz:22,color:"1A2744",before:120,after:60});
+  const B=(a,pre="• ")=>(a||[]).filter(Boolean).map(x=>par(pre+x,{ind:true,after:40})).join("");
+  const brk='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+  let b=par("SECUENCIA DIDÁCTICA",{b:true,sz:20,color:"EF7F22",center:true,after:40})+H((p.efemeride||c.efe).toUpperCase(),1)+par([p.fecha,p.nivel].filter(Boolean).join(" · "),{center:true,color:"5F6B82",after:200});
+  const d=p.datos||{}; b+=H("DATOS GENERALES",2)+par(`Área principal: ${d.areaPrincipal||""}`)+par(`Áreas integradas: ${(d.areasIntegradas||[]).join(", ")}`)+par(`Destinatarios: ${d.destinatarios||""}`)+par(`Duración estimada: ${d.duracion||""}`);
+  b+=H("FUNDAMENTACIÓN",2)+(p.fundamentacion||[]).map(x=>par(x,{after:140})).join("");
+  b+=H("PROPÓSITOS",2)+B(p.propositos); if(p.objetivos&&p.objetivos.length) b+=H("OBJETIVOS",2)+B(p.objetivos);
+  b+=H("CONTENIDOS",2)+(p.contenidos||[]).map(a=>H(a.area,3)+B(a.items)).join("");
+  b+=H("SECUENCIA DE CLASES",2);
+  (p.clases||[]).forEach(k=>{ b+=par(`CLASE ${k.numero}: ${k.titulo}`,{b:true,sz:24,color:"0B8BD6",before:220,after:60}); if(k.intencion) b+=par("Intención didáctica: "+k.intencion,{i:true}); if(k.duracion) b+=par("Duración: "+k.duracion,{i:true});
+    b+=H("Inicio",3)+B(k.inicio); if(k.preguntas&&k.preguntas.length) b+=par("Preguntas disparadoras:",{i:true,after:40})+B(k.preguntas,"– ");
+    b+=H("Desarrollo",3)+B(k.desarrollo); if(k.actividades&&k.actividades.length) b+=par("Actividades del cuadernillo:",{i:true,after:40})+B(k.actividades,"✔ ");
+    if(k.estrategias&&k.estrategias.length) b+=H("Estrategias",3)+B(k.estrategias); b+=H("Cierre",3)+B(k.cierre); });
+  const ev=p.evaluacion||{}; b+=H("EVALUACIÓN",2)+H("Criterios",3)+B(ev.criterios)+H("Instrumentos",3)+B(ev.instrumentos);
+  if(p.adaptaciones&&p.adaptaciones.length) b+=H("ADAPTACIONES ACCESIBLES",2)+B(p.adaptaciones);
+  if(p.cierreSugerido) b+=H("CIERRE SUGERIDO",2)+par(p.cierreSugerido);
+  b+=par("DOCENTE: ______________________   GRADO: ______________   CICLO LECTIVO: ______________",{before:300});
+  if(c.extra&&c.extra.paginas){ b+=brk+par("CUADERNILLO",{b:true,sz:20,color:"EF7F22",center:true,after:40})+H("CONTENIDO PÁGINA POR PÁGINA",1);
+    c.extra.paginas.forEach(g=>{ b+=par(`PÁGINA ${g.n} · ${(g.seccion||"").toUpperCase()}`,{b:true,sz:18,color:"8A95AA",before:240,after:20})+par(g.titulo||"",{b:true,sz:26,color:"0B8BD6",after:60});
+      if(g.consigna) b+=par(g.consigna,{b:true}); if(g.contenido) b+=par(g.contenido,{after:80}); if(g.ilustracion) b+=par("Ilustración: "+g.ilustracion,{i:true,color:"E0731A"}); if(g.solucion) b+=par("Solución: "+g.solucion,{sz:20,color:"5F6B82"}); }); }
+  const v=c.extra&&c.extra.venta; if(v){ b+=brk+H("TEXTO DE VENTA",1)+par(v.nombre||"",{b:true})+par(v.descripcionCorta||"")+B(v.incluye,"")+par(v.textoWeb||"",{before:120}); }
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${b}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="708" w:footer="708" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+}
+$("#moDocx").addEventListener("click",async e=>{ if(!motorCur) return; const btn=e.currentTarget; const o=btn.textContent; btn.textContent="Preparando…";
+  try{ const JSZip=await loadJSZip(); const z=new JSZip();
+    z.file("[Content_Types].xml",`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`);
+    z.file("_rels/.rels",`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`);
+    z.file("word/document.xml",docxXml());
+    const blob=await z.generateAsync({type:"blob",mimeType:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+    const name=`Secuencia - ${(motorCur.plan.efemeride||motorCur.efe).replace(/[\\/:*?"<>|]/g,"")} - ${(motorCur.nivel||"").replace(/[\\/:*?"<>|–]/g,"").replace(/\s+/g," ").trim()}.docx`;
+    const ok=await saveFile(name,blob); btn.textContent=ok?"Descargado ✓":o; setTimeout(()=>btn.textContent=o,2000);
+  }catch(err){ btn.textContent=o; motorProgress(false,err.message||"No se pudo crear el archivo de Word."); } });
 
 // ---------- Atajo de teclado ----------
 document.addEventListener("keydown",e=>{
@@ -2467,6 +2821,8 @@ setStatus("Cargando…");
   db.collection("gastos").onSnapshot(snap=>{ gastos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderFin(); },()=>{});
   db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
   db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
+  db.collection("motor").onSnapshot(snap=>{ motorHist=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="motor") renderMotorHist(); },()=>{});
+  db.doc("panel/motorPerfil").onSnapshot(s=>{ motorPerfilDoc=s.exists?s.data():null; if(currentView==="motor"&&document.activeElement!==$("#moPerfil")){ $("#moPerfil").value=motorPerfil(); $("#moPerfilSave").disabled=true; } },()=>{});
   db.collection("autodm").onSnapshot(snap=>{ autodm=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="mensajes"&&!$("#ads").contains(document.activeElement)) renderAds(); if(currentView==="materiales") renderAudit(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("plantillas").onSnapshot(snap=>{ tplDocs={}; snap.docs.forEach(d=>{ tplDocs[d.id]=d.data(); }); if(currentView==="mensajes") renderTpls(); },()=>{});
 })();
