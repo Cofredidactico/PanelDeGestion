@@ -516,6 +516,22 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .pr-res{display:grid;gap:2px;padding:8px 10px;border-radius:9px;background:var(--surface)}
 .pr-res.up b{color:var(--ok)}.pr-res.down b{color:var(--danger)}
 .pmq{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.renew,.copies{display:grid;gap:8px;max-height:520px;overflow:auto}
+.rn,.cp{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-2);display:grid;gap:6px;font-size:13px}
+.rn-h{display:flex;gap:8px;justify-content:space-between;align-items:flex-start}
+.rn ul{margin:0;padding-left:18px;color:var(--muted)}
+.cp{grid-template-columns:minmax(0,1fr) auto;align-items:center}.cp a{display:block;color:var(--blue);word-break:break-all}.cp span{display:block;font-size:12px}
+.cp.nuevo{border-left:3px solid var(--danger)}.cp.reportado{opacity:.75}
+@media (max-width:640px){.cp{grid-template-columns:1fr}}
+.mstats{display:grid;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-2)}
+.ms-k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.ms-k span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.ms-k b{font-size:16px}
+@media (max-width:560px){.ms-k{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mbars{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;height:78px;align-items:end}
+.mbars>div{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.mbars i{display:block;width:100%;min-height:2px;background:color-mix(in srgb,var(--blue) 70%,transparent);border-radius:4px 4px 0 0}
+.mbars span{font-size:9.5px;color:var(--faint);margin-top:2px}.mbars b{position:absolute;top:0;font-size:9.5px;color:var(--muted)}
+.ms-t{margin:0;font-size:12.5px}
+.vdx{font-size:12.5px;max-width:340px}.vdx.warn{color:var(--star)}.vdx.ok{color:var(--ok)}.ms-t.warn{color:var(--star)}
 .learn{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .learn li{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;border:1px solid var(--line);border-radius:9px;padding:6px 8px;background:var(--surface-2)}
 .learn li span{flex:1;min-width:0}
@@ -943,6 +959,23 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
     <div class="sec-h" style="margin-bottom:8px"><h2 id="auditTitle">Revisión de coherencia</h2><span class="meta" id="auditMeta"></span></div>
     <div id="auditList"></div>
   </section>
+  <section class="card" aria-labelledby="visTitle">
+    <div class="sec-h" style="margin-bottom:8px"><h2 id="visTitle">Interés en tu web contra ventas</h2>
+      <div class="actions"><span class="meta" id="visMeta"></span><div class="seg" role="group" aria-label="Período"><button type="button" data-visd="30" aria-pressed="false">30 días</button><button type="button" data-visd="90" aria-pressed="true">90 días</button><button type="button" data-visd="365" aria-pressed="false">1 año</button></div></div></div>
+    <div id="visList"></div>
+  </section>
+  <div class="grid2" style="align-items:start">
+    <section class="card" aria-labelledby="renewTitle">
+      <div class="sec-h" style="margin-bottom:8px"><h2 id="renewTitle">Para renovar</h2><span class="meta" id="renewMeta"></span></div>
+      <p class="muted" style="margin:-2px 0 10px;font-size:12.5px">Los que conviene actualizar, con el motivo. Primero los que tienen su fecha cerca.</p>
+      <div class="renew" id="renewList"></div>
+    </section>
+    <section class="card" aria-labelledby="copyTitle">
+      <div class="sec-h" style="margin-bottom:8px"><h2 id="copyTitle">Posibles copias en internet</h2><span class="meta" id="copyMeta"></span></div>
+      <p class="muted" style="margin:-2px 0 10px;font-size:12.5px">Lo que encuentra la búsqueda semanal. Revisá cada enlace: si es tu material compartido sin permiso, pedí la baja desde “Denunciar” en esa página (Drive, Facebook, Scribd, etc.).</p>
+      <div class="copies" id="copyList"></div>
+    </section>
+  </div>
   <div class="filters">
     <div class="search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -1124,10 +1157,11 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
   </form>
 </dialog>
 
-<dialog id="mdlg" aria-labelledby="mdTitle">
+<dialog id="mdlg" aria-labelledby="mdTitle" style="width:min(640px,calc(100vw - 32px))">
   <form class="dlg" id="mform" novalidate>
     <h3 id="mdTitle">Ficha del material</h3>
     <p class="muted" id="mdSub"></p>
+    <div id="mdStats"></div>
     <div class="field"><span style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.03em">Portada</span>
       <div class="cover-edit"><img id="mdCoverImg" alt="Portada del material" hidden>
         <div class="actions"><label class="btn small" for="mdCover" id="mdCoverLbl">Subir portada</label><input type="file" id="mdCover" accept="image/*" hidden><button class="btn small ghost" type="button" id="mdCoverDel" hidden>Quitar</button><span class="muted" id="mdCoverMsg"></span></div></div></div>
@@ -1556,7 +1590,7 @@ function renderView(v){
   if(v==="clientes") renderClients();
   if(v==="materiales") renderMats();
   if(v==="calendario"){ renderYear(); renderEfes(); renderCal(); }
-  if(v==="materiales") renderAudit();
+  if(v==="materiales"){ renderAudit(); renderRenew(); renderCopias(); renderVis(); }
   if(v==="motor") renderMotor();
   if(v==="inicio") renderMQ();
   if(v==="mensajes"){ renderTpls(); renderGen(); renderAds(); }
@@ -1657,6 +1691,9 @@ function renderHoy(){
     const st = !inf.rel.length ? `<span class="pill wait">Sin material para esta fecha</span>` : (startOfDay(new Date())>=promo?`<span class="pill info">Momento de promocionar</span>`:`<span class="pill none">Promocionar desde el ${fmtDM(promo)}</span>`);
     card("--orange","Próxima efeméride",`<span class="big">${esc(u.e[1])}</span><span class="txt">${fmtDM(u.d)} · ${u.diff===0?"es hoy":`faltan ${u.diff} días`}</span>${st}`,"Ver calendario","calendario");
   }
+  // Materiales para publicitar
+  const pn=promoNow();
+  if(pn.length) card("--c-proyectos",pn.some(x=>x.tm.status==="ahora")?"Publicitá ahora":"Próximos a publicitar",`<ul>${pn.slice(0,4).map(x=>`<li><b>${x.tm.status==="ahora"?"Ya":"Desde "+esc(fmtDM(x.tm.start).replace(/ de /," "))}</b><span>${esc(x.m.name)}${x.tm.tipo==="efe"?` · ${esc(x.tm.efe)} ${esc(fmtDM(x.tm.next).replace(/ de /," "))}`:` · pico en ${MESES[x.tm.peakMonth]}`}</span></li>`).join("")}</ul>`,"Ver materiales","materiales");
   // Publicaciones
   const t=startOfDay(new Date()), wk=new Date(+t+7*DAY);
   const next=posts.filter(p=>p.fecha&&new Date(p.fecha+"T00:00")>=t&&p.estado!=="Publicada").sort((a,b)=>a.fecha.localeCompare(b.fecha));
@@ -2032,7 +2069,7 @@ function openMat(x){
   $("#mdLevel").value=d.nivel||""; const ef=efeFor(x.name,null); $("#mdEfe").value=d.efe||""; $("#mdEfe").placeholder=ef?ef[0].split("-").reverse().join("/"):"Ej.: 17/08";
   $("#mdState").value=d.estado||"Activo"; $("#mdLink").value=d.link||""; $("#mdNote").value=d.nota||""; $("#mdArea").value=d.area||"";
   coverDraft=undefined; showCoverPreview(d.cover||""); $("#mdCoverMsg").textContent="";
-  $("#mdDel").hidden=!x.manual; $("#mdDel").textContent="Quitar material"; $("#mdErr").textContent=""; $("#mdlg").showModal();
+  $("#mdDel").hidden=!x.manual; $("#mdDel").textContent="Quitar material"; $("#mdErr").textContent=""; try{ $("#mdStats").innerHTML=matStatsHtml(x); }catch{ $("#mdStats").innerHTML=""; } $("#mdlg").showModal();
 }
 $("#mform").addEventListener("submit",async e=>{ e.preventDefault(); const x=matEditing; if(!x) return;
   const efe=$("#mdEfe").value.trim(); if(efe&&!/^\d{1,2}\/\d{1,2}$/.test(efe)){ $("#mdErr").textContent="Escribí la fecha como día/mes, por ejemplo 17/08."; return; }
@@ -3079,6 +3116,97 @@ $("#pmForm").addEventListener("submit",async e=>{ e.preventDefault(); if(!needDb
 $("#promoList").addEventListener("click",async e=>{ const b=e.target.closest("[data-pdel]"); if(!b) return; if(!b.dataset.sure){ b.dataset.sure="1"; b.style.color="var(--danger)"; b.title="Tocá de nuevo para eliminar"; setTimeout(()=>{ delete b.dataset.sure; b.style.color=""; },2500); return; }
   try{ await db.collection("promos").doc(b.dataset.pdel).delete(); }catch{ setStatus("No se pudo eliminar.",true); } });
 
+// ---------- MATERIALES 2: ficha completa, cuándo publicitar, para renovar, posibles copias ----------
+const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+function nextOcc(mm,dd){ const t=startOfDay(new Date()); let d=new Date(t.getFullYear(),mm-1,dd); if(d<t) d=new Date(t.getFullYear()+1,mm-1,dd); return d; }
+function matTiming(m){ if(!D) return null; const t=startOfDay(new Date()); const its=D.items.filter(i=>i.ok&&i.d&&i.k===m.k);
+  const e=efeFor(m.name,m.doc);
+  if(e){ const [mm,dd]=e[0].split("-").map(Number); const days=[]; its.forEach(i=>{ const E=new Date(i.d.getFullYear(),mm-1,dd); const b=(E-startOfDay(i.d))/DAY; if(b>=0&&b<=100) for(let q=0;q<i.q;q++) days.push(b); });
+    const gen=efeInfo(e); const own=days.length>=4; const lead=own?Math.max(10,Math.round(pct(days,.8))+7):gen.lead; const next=nextOcc(mm,dd); const start=new Date(next-lead*DAY);
+    const status=t>=start?"ahora":(start-t)/DAY<=14?"pronto":"despues";
+    return {tipo:"efe",efe:e[1],next,start,lead,own,n:days.length,med:days.length?Math.round(median(days)):null,status}; }
+  const units=its.reduce((s,i)=>s+i.q,0); if(units<6) return {tipo:null,units};
+  const byM=Array(12).fill(0); its.forEach(i=>byM[i.d.getMonth()]+=i.q); const pk=byM.indexOf(Math.max(...byM));
+  const peak=nextOcc(pk+1,1); const start=new Date(peak-21*DAY); const end=new Date(peak.getFullYear(),pk+1,0);
+  const status=t>=start&&t<=end?"ahora":(start-t)/DAY<=14?"pronto":"despues";
+  return {tipo:"temporada",peakMonth:pk,next:peak,start,lead:21,status,share:Math.round(byM[pk]/units*100)}; }
+function timingText(tm){ if(!tm||!tm.tipo) return "Todavía no hay ventas suficientes para saber cuándo conviene publicitarlo.";
+  if(tm.tipo==="efe") return `${tm.efe} es el ${fmtDM(tm.next)}. ${tm.own?`El 80% de sus compras llegan en los ${tm.lead-7} días previos (la mitad, ${tm.med} días antes)`:`Con pocas ventas propias, uso el promedio de esa fecha`}: publicitalo desde el ${fmtDM(tm.start)}.`;
+  return `Se vende sobre todo en ${MESES[tm.peakMonth]} (${tm.share}% de sus ventas): publicitalo desde el ${fmtDM(tm.start)}.`; }
+function promoNow(){ if(!D) return []; const all=D.matList.filter(m=>(m.doc.estado||"Activo")!=="Discontinuado"&&(m.sold||m.doc.precio)).map(m=>({m,tm:matTiming(m)})).filter(x=>x.tm&&x.tm.tipo).sort((a,b)=>a.tm.start-b.tm.start||b.m.sold-a.m.sold);
+  const near=all.filter(x=>x.tm.status!=="despues"||(x.tm.start-startOfDay(new Date()))/DAY<=45); return near.length?near:all.slice(0,3); }
+
+// --- Para renovar ---
+function renewReasons(m){ if(!D) return []; const R=[]; const d=m.doc||{}; const t=startOfDay(new Date());
+  const ren=d.renovado?new Date(d.renovado+"T00:00"):null; const fresh=ren&&(t-ren)/DAY<180;
+  if(d.estado==="A renovar") R.push({w:3,txt:"Lo marcaste “A renovar”."});
+  if(/corregir|error|revisar|actualizar|cambiar/i.test(d.nota||"")) R.push({w:2,txt:`Tiene cambios anotados: “${String(d.nota).slice(0,90)}”.`});
+  const e=efeFor(m.name,d); if(e){ const f=fichas["f"+e[0]]; if(f&&f.nota&&!fresh) R.push({w:3,txt:`La ficha de datos de ${e[1]} marca un dato a corregir en tu material.`}); }
+  if(/20(1\d|2[0-5])/.test(m.name)) R.push({w:2,txt:"Tiene un año viejo en el nombre."});
+  if(!fresh&&e&&D.dataStart){ const [mm,dd]=e[0].split("-").map(Number); const y=D.dataEnd.getFullYear(); let E=new Date(y,mm-1,dd); if(E>D.dataEnd) E=new Date(y-1,mm-1,dd);
+    if(E>=new Date(+D.dataStart+30*DAY)){ const u=D.items.filter(i=>i.ok&&i.k===m.k&&i.d&&i.d<=new Date(+E+10*DAY)&&i.d>=new Date(E-100*DAY)).reduce((s,i)=>s+i.q,0); if(u===0&&(m.doc.estado||"Activo")!=="Discontinuado") R.push({w:2,txt:`No vendió nada para su última fecha (${fmtDM(E)}).`}); } }
+  if(!d.cover) R.push({w:0,txt:"No tiene portada cargada."});
+  return R; }
+function renewList(){ if(!D) return []; return D.matList.filter(m=>(m.doc.estado||"Activo")!=="Discontinuado").map(m=>{ const R=renewReasons(m).filter(r=>r.w>0); const tm=matTiming(m); const soon=tm&&tm.tipo&&(tm.next-startOfDay(new Date()))/DAY<=75; return {m,R,tm,soon,score:R.reduce((s,r)=>s+r.w,0)+(soon?2:0)}; }).filter(x=>x.R.length).sort((a,b)=>b.score-a.score||b.m.sold-a.m.sold); }
+function renderRenew(){ const box=$("#renewList"); if(!box) return; const L=renewList(); $("#renewMeta").textContent=L.length?`${L.length} material${L.length>1?"es":""}`:"";
+  box.innerHTML=L.length?L.slice(0,12).map(x=>`<div class="rn"><div class="rn-h"><b>${esc(x.m.name)}</b>${x.soon?`<span class="pill info">Antes del ${esc(fmtDM(x.tm.next))}</span>`:""}</div><ul>${x.R.map(r=>`<li>${esc(r.txt)}</li>`).join("")}</ul><div class="actions"><button class="btn small" type="button" data-rnopen="${esc(x.m.k)}">Abrir ficha</button>${x.m.doc.estado!=="A renovar"?`<button class="btn small ghost" type="button" data-rnmark="${esc(x.m.k)}">Marcar “A renovar”</button>`:""}<button class="btn small ghost" type="button" data-rndone="${esc(x.m.k)}">Ya lo renové</button></div></div>`).join(""):`<p class="audit-ok">✓ Ningún material necesita renovarse por ahora.</p>`; }
+$("#renewList").addEventListener("click",async e=>{ const o=e.target.closest("[data-rnopen]"), mk=e.target.closest("[data-rnmark]"), dn=e.target.closest("[data-rndone]"); const k=(o||mk||dn)&&(o||mk||dn).dataset[o?"rnopen":mk?"rnmark":"rndone"]; if(!k||!D) return; const m=D.matList.find(x=>x.k===k); if(!m) return;
+  if(o){ openMat(m); return; } if(!needDb()) return; const base={...(matDocs[k]||{}),name:m.name,updated:new Date().toISOString()};
+  try{ if(mk) await db.collection("materiales").doc(k).set({...base,estado:"A renovar"}); else await db.collection("materiales").doc(k).set({...base,estado:"Activo",renovado:iso(new Date())}); }catch{ setStatus("No se pudo guardar.",true); } });
+
+// --- Posibles copias ---
+let copias=[];
+function renderCopias(){ const box=$("#copyList"); if(!box) return; const act=copias.filter(c=>c.estado!=="ignorado").sort((a,b)=>(a.estado==="nuevo"?0:1)-(b.estado==="nuevo"?0:1)||String(b.detectado).localeCompare(String(a.detectado)));
+  const nuevos=copias.filter(c=>c.estado==="nuevo").length; $("#copyMeta").textContent=copias.length?`${nuevos} sin revisar · ${copias.length} en total`:"";
+  box.innerHTML=act.length?act.slice(0,30).map(c=>`<div class="cp ${esc(c.estado||"nuevo")}"><div style="min-width:0"><b>${esc(c.material||"Cofre Didáctico")}</b><a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.titulo||c.url)}</a><span class="muted">${esc(c.fuente||"")} · detectado el ${esc(fmtD(new Date(c.detectado)))}${c.estado==="reportado"?" · pediste la baja":""}${c.nota?` · ${esc(c.nota)}`:""}</span></div><div class="actions">${c.estado!=="reportado"?`<button class="btn small" type="button" data-cpst="reportado" data-cpid="${esc(c.id)}">Es copia: pedí la baja</button>`:""}<button class="btn small ghost" type="button" data-cpst="ignorado" data-cpid="${esc(c.id)}">No es copia</button></div></div>`).join("")
+    :`<p class="muted">Todavía no hay resultados. El resumen de los lunes busca en internet si aparecen tus materiales compartidos sin permiso y los anota acá para que los revises.</p>`; }
+$("#copyList").addEventListener("click",async e=>{ const b=e.target.closest("[data-cpid]"); if(!b||!needDb()) return; const c=copias.find(x=>x.id===b.dataset.cpid); if(!c) return; const {id,...rest}=c;
+  try{ await db.collection("copias").doc(id).set({...rest,estado:b.dataset.cpst,revisado:new Date().toISOString()}); }catch{ setStatus("No se pudo guardar.",true); } });
+
+// --- Ficha completa (arriba del formulario del material) ---
+function matStatsHtml(m){ if(!D) return ""; const its=D.items.filter(i=>i.k===m.k&&i.ok&&i.d);
+  const buyers=new Set(its.map(i=>i.c.e||i.c.n)).size; const price=numAR(m.doc.precio)||Math.round(m.price||0);
+  let net=null; try{ if(price) net=precioReal(price,finCfg||{},priceStats()).net; }catch{}
+  // ventas por mes (últimos 12 meses con datos)
+  const end=D.dataEnd||new Date(); const months=[]; for(let i=11;i>=0;i--){ const d=new Date(end.getFullYear(),end.getMonth()-i,1); months.push({k:monthKey(d),lab:MESES[d.getMonth()].slice(0,3),u:0}); }
+  its.forEach(i=>{ const r=months.find(x=>x.k===monthKey(i.d)); if(r) r.u+=i.q; }); const mx=Math.max(1,...months.map(x=>x.u));
+  const bars=`<div class="mbars">${months.map(x=>`<div title="${esc(x.lab)}: ${x.u}"><i style="height:${Math.round(x.u/mx*100)}%"></i><span>${esc(x.lab)}</span>${x.u?`<b>${x.u}</b>`:""}</div>`).join("")}</div>`;
+  // se compra junto con
+  const co={}; its.forEach(i=>(i.o.i||[]).forEach(([q,n])=>{ const k=slug(n); if(k!==m.k) co[n]=(co[n]||0)+1; })); const coL=Object.entries(co).sort((a,b)=>b[1]-a[1]).slice(0,3);
+  const pr=(promos||[]).filter(p=>!(p.mats&&p.mats.length)||p.mats.includes(m.k)).slice(0,3);
+  const tm=matTiming(m), R=renewReasons(m).filter(r=>r.w>0), cps=copias.filter(c=>c.estado!=="ignorado"&&c.matKey===m.k).length;
+  return `<div class="mstats">
+    <div class="ms-k"><div><span>Vendidos</span><b>${nf(m.sold)}</b></div><div><span>Ingresos</span><b>${money(m.rev)}</b></div><div><span>Compradores</span><b>${nf(buyers)}</b></div><div><span>Te queda por venta</span><b>${net!=null?money(net):"—"}</b></div></div>
+    ${its.length?bars:""}
+    <p class="ms-t">📅 ${esc(timingText(tm))}</p>
+    ${visLine(m)?`<p class="ms-t">${esc(visLine(m))}</p>`:""}
+    ${coL.length?`<p class="ms-t">🛍️ Se compra junto con: ${coL.map(([n,c])=>`${esc(n)} (${c})`).join(", ")}</p>`:""}
+    ${pr.length?`<p class="ms-t">🏷️ Promos: ${pr.map(p=>esc(p.nombre)).join(", ")}</p>`:""}
+    ${R.length?`<p class="ms-t warn">🛠️ Para renovar: ${R.map(r=>esc(r.txt)).join(" ")}</p>`:""}
+    ${cps?`<p class="ms-t warn">⚠️ ${cps} posible${cps>1?"s":""} copia${cps>1?"s":""} en internet (ver “Posibles copias”).</p>`:""}
+  </div>`; }
+
+// ---------- Interés en la web (Umami) contra ventas ----------
+let visitas=null, visDias=90;
+function visRows(dias){ if(!visitas||!D) return []; const ref=D.dataEnd||new Date(), from=new Date(ref-dias*DAY);
+  return (visitas.items||[]).filter(it=>it.k).map(it=>{ const ks=new Set(it.ks&&it.ks.length?it.ks:[it.k]); const m=D.matList.find(x=>x.k===it.k); const v=it["v"+dias]||0, b=it["b"+dias]||0;
+    const sold=D.items.filter(i=>i.ok&&ks.has(i.k)&&i.d&&i.d>=from).reduce((s,i)=>s+i.q,0);
+    let dx="", lvl="";
+    if(v>=30&&b/v<.08&&sold<v*.5){ dx="Mucha gente lo mira y pocos tocan “Comprar”: revisá precio, fotos y descripción."; lvl="warn"; }
+    else if(b>=10&&sold<b*.4){ dx="Muchos tocan “Comprar” pero no terminan la compra en Empretienda: revisá que el precio coincida y que el pago sea simple."; lvl="warn"; }
+    else if(v>=20&&b/v>=.15) { dx="Convierte muy bien: buen candidato para publicidad."; lvl="ok"; }
+    return {it,m,name:(m&&m.name)||it.n||it.k,v,b,c:it["c"+dias]||0,sold,rate:v?b/v:0,dx,lvl}; }).filter(r=>r.v||r.b||r.sold).sort((a,b)=>b.v-a.v); }
+function renderVis(){ const box=$("#visList"); if(!box) return;
+  if(!visitas){ box.innerHTML=`<p class="muted">Todavía no hay datos de la web.</p>`; return; }
+  document.querySelectorAll("[data-visd]").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.visd===visDias)));
+  $("#visMeta").textContent=`Umami · actualizado el ${fmtD(new Date(visitas.gen))}`;
+  const L=visRows(visDias); const tv=L.reduce((s,r)=>s+r.v,0), tb=L.reduce((s,r)=>s+r.b,0);
+  box.innerHTML=L.length?`<p class="muted" style="margin:0 0 8px;font-size:12.5px">${nf(tv)} vistas de materiales y ${nf(tb)} clics en “Comprar” en tu web (${Math.round(tb/(tv||1)*100)}%). Las ventas también llegan desde Instagram y los mensajes directos, así que pueden ser más que los clics.</p>
+    <div class="tbl-wrap" style="max-height:480px;overflow:auto"><table><thead><tr><th>Material</th><th class="num">Vistas en la web</th><th class="num">Clics en Comprar</th><th class="num">% que toca Comprar</th><th class="num">Ventas</th><th>Lectura</th></tr></thead><tbody>${L.map(r=>`<tr><td><div style="font-weight:600">${esc(r.name)}</div></td><td class="num">${nf(r.v)}</td><td class="num">${nf(r.b)}</td><td class="num">${r.v?Math.round(r.rate*100)+"%":"—"}</td><td class="num">${nf(r.sold)}</td><td class="vdx ${r.lvl}">${esc(r.dx||"")}</td></tr>`).join("")}</tbody></table></div>`
+    :`<p class="muted">Sin visitas en este período.</p>`; }
+document.querySelectorAll("[data-visd]").forEach(b=>b.addEventListener("click",()=>{ visDias=+b.dataset.visd; renderVis(); }));
+function visLine(m){ if(!visitas) return ""; const it=(visitas.items||[]).find(x=>(x.ks||[x.k]).includes(m.k)); if(!it) return ""; return `👀 En tu web (último año): ${nf(it.v365||0)} vistas y ${nf(it.b365||0)} clics en “Comprar”${it.v365?` (${Math.round((it.b365||0)/it.v365*100)}%)`:""}.`; }
+
 // ---------- MOTOR 2: biblioteca de ejemplos, fichas, control de calidad, lectura, boceto, ilustraciones, versiones ----------
 const normTxt=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
 function pickEjemplos(r){
@@ -3584,6 +3712,8 @@ setStatus("Cargando…");
   db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
   db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("motor").onSnapshot(snap=>{ motorHist=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="motor") renderMotorHist(); },()=>{});
+  db.doc("panel/visitas").onSnapshot(s=>{ visitas=s.exists?s.data():null; if(currentView==="materiales") renderVis(); },()=>{});
+  db.collection("copias").onSnapshot(snap=>{ copias=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="materiales") renderCopias(); },()=>{});
   db.collection("promos").onSnapshot(snap=>{ promos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderPromos(); },()=>{});
   db.collection("fichas").onSnapshot(snap=>{ fichas={}; snap.docs.forEach(d=>{ fichas[d.id]=d.data(); }); if(currentView==="motor"){ renderFichaLine(); if(motorCur) renderQA(); } },()=>{});
   db.doc("panel/motorAprendizaje").onSnapshot(s=>{ motorLearn=s.exists?s.data():null; renderLearn(); },()=>{});
