@@ -474,6 +474,31 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .gbtn{justify-self:start}
 .gprev{background:#fff;border-radius:12px;padding:12px;max-height:58vh;overflow:auto;border:1px solid var(--line)}
 .gprev svg{width:100%;height:auto;display:block}
+.bprev{max-height:62vh}.bprev svg{max-width:520px;margin:0 auto;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.ficha-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px;font-size:12.5px}
+.ficha-line .pill.muted{color:var(--muted)}
+.note{font-size:12.5px;border-left:3px solid var(--orange);padding:6px 10px;background:color-mix(in srgb,var(--orange) 10%,transparent);border-radius:6px}
+.qa{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);margin:10px 0;padding:0}
+.qa summary{display:flex;gap:10px;align-items:center;padding:11px 14px;cursor:pointer;flex-wrap:wrap}
+.qa .qdot{width:11px;height:11px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 25%,transparent)}
+.qa.mid .qdot{background:var(--star);box-shadow:0 0 0 4px color-mix(in srgb,var(--star) 25%,transparent)}
+.qa.bad .qdot{background:var(--danger);box-shadow:0 0 0 4px color-mix(in srgb,var(--danger) 25%,transparent)}
+.qa details>*:not(summary){margin:0 14px 12px}
+.qlist{list-style:none;padding:0;display:grid;gap:5px;font-size:13px;max-height:280px;overflow:auto}
+.qlist li{padding:6px 9px;border-radius:8px;background:var(--surface)}
+.pg mark{background:color-mix(in srgb,var(--star) 40%,transparent);color:inherit;border-radius:3px;padding:0 2px}
+.lect{font-size:11.5px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.lect .b{padding:1px 8px;border-radius:999px;font-weight:700}
+.lect .b.ok{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok)}
+.lect .b.no{background:color-mix(in srgb,var(--danger) 18%,transparent);color:var(--danger)}
+.ilus{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.ilu-c{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-2);display:grid;gap:6px;font-size:13px;align-content:start}
+.ilu-c p{margin:0}.ilu-c .btn{justify-self:start}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:1px 7px;border-radius:999px;background:color-mix(in srgb,var(--blue) 18%,transparent);color:var(--blue);margin-right:4px}
+.vchips{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.chipb{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 11px;cursor:pointer;font-size:12.5px}
+.chipb.on{background:color-mix(in srgb,var(--blue) 20%,transparent);border-color:var(--blue);color:var(--ink)}
+.modelos{font-size:12px;color:var(--muted);margin-top:4px}
 .learn{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .learn li{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;border:1px solid var(--line);border-radius:9px;padding:6px 8px;background:var(--surface-2)}
 .learn li span{flex:1;min-width:0}
@@ -756,7 +781,7 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
   <div class="motor">
     <section class="card motor-form" aria-labelledby="mfTitle">
       <h3 id="mfTitle">Nuevo material</h3>
-      <div class="field"><label for="moEfe">Efeméride o tema</label><select id="moEfe"></select></div>
+      <div class="field"><label for="moEfe">Efeméride o tema</label><select id="moEfe"></select><div class="ficha-line" id="moFicha"></div></div>
       <div class="field" id="moOtraWrap" hidden><label for="moOtra">¿Cuál?</label><input id="moOtra" maxlength="120" placeholder="Ej.: Día de la Tradición (10 de noviembre)"></div>
       <div class="field"><label>Nivel</label>
         <div class="levels" role="radiogroup" aria-label="Nivel">
@@ -807,11 +832,14 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
       <div class="empty-box" id="moEmpty">Elegí la efeméride y el nivel, y tocá <b>Planificar el material</b>. En un par de minutos vas a tener la secuencia didáctica completa y el contenido página por página.</div>
       <div id="moDoc" hidden>
         <div class="doc-bar">
-          <div class="seg" role="group" aria-label="Sección"><button type="button" data-mtab="sec" aria-pressed="true">Secuencia didáctica</button><button type="button" data-mtab="pag" aria-pressed="false">Páginas del cuadernillo</button><button type="button" data-mtab="extra" aria-pressed="false">Venta y extras</button></div>
-          <div class="actions"><button class="btn small" type="button" id="moDocx">Descargar Word</button><button class="btn small" type="button" id="moCopy">Copiar todo</button><button class="btn small" type="button" id="moLanz">Llevar a Lanzamientos</button></div>
+          <div class="seg" role="group" aria-label="Sección"><button type="button" data-mtab="sec" aria-pressed="true">Secuencia didáctica</button><button type="button" data-mtab="pag" aria-pressed="false">Páginas del cuadernillo</button><button type="button" data-mtab="ilu" aria-pressed="false">Ilustraciones</button><button type="button" data-mtab="extra" aria-pressed="false">Venta y extras</button></div>
+          <div class="actions"><button class="btn small primary" type="button" id="moBoc">📐 Boceto para Corel</button><button class="btn small" type="button" id="moVers">Otras versiones</button><button class="btn small" type="button" id="moDocx">Descargar Word</button><button class="btn small" type="button" id="moCopy">Copiar todo</button><button class="btn small" type="button" id="moLanz">Llevar a Lanzamientos</button></div>
         </div>
+        <div id="moVchips"></div>
+        <section class="qa" id="moQA" hidden></section>
         <article class="doc" id="moSec"></article>
         <article class="doc" id="moPag" hidden></article>
+        <article class="doc" id="moIlu" hidden></article>
         <article class="doc" id="moExtra" hidden></article>
         <div class="card adjust"><h3>Pedile cambios</h3><p class="sub">Ej.: "cambiá la clase 3 por una de canciones folclóricas", "más actividades de matemática", "simplificá las consignas".</p>
           <div class="toolbar"><input class="sel" id="moAdj" style="flex:1 1 260px;min-width:0" maxlength="400" placeholder="¿Qué querés cambiar?"><button class="btn primary" type="button" id="moAdjGo">Aplicar cambios</button></div></div>
@@ -1122,6 +1150,29 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
   </div>
 </dialog>
 
+<dialog id="fdlg" aria-labelledby="fTitle" style="width:min(640px,calc(100vw - 32px))"><div class="dlg">
+  <h3 id="fTitle">Ficha de datos</h3>
+  <p class="muted" style="margin-top:-6px">Un dato por línea: fechas, lugares, protagonistas y qué pasó. Cuando la marcás como verificada, el motor usa solo estos datos y el control de calidad avisa si aparece una fecha que no está acá.</p>
+  <p class="note" id="fNota" hidden></p>
+  <textarea id="fTxt" rows="12" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface-2);font-size:13px" placeholder="Nació el 8 de febrero de 1785 en Salta."></textarea>
+  <label class="check"><input type="checkbox" id="fOk"> Revisé estos datos y son correctos</label>
+  <p class="muted" id="fMsg" role="status"></p>
+  <div class="dlg-actions"><button class="btn small ghost" type="button" id="fAI">Proponer datos con Claude</button><span class="spacer"></span><button class="btn small primary" type="button" id="fSave">Guardar</button><button class="btn small ghost" type="button" id="fClose">Cerrar</button></div>
+</div></dialog>
+<dialog id="bdlg" aria-labelledby="bTitle" style="width:min(820px,calc(100vw - 32px))"><div class="dlg">
+  <h3 id="bTitle">Boceto para Corel</h3>
+  <p class="muted" style="margin-top:-6px">Cada página armada con tu plantilla: título, consigna con la flor, recuadros punteados, espacios para íconos e ilustraciones y respuestas invertidas. Todo editable en CorelDRAW (Archivo → Importar).</p>
+  <div class="toolbar" style="gap:8px;flex-wrap:wrap"><button class="btn small ghost" type="button" id="bPrevBtn" aria-label="Página anterior">‹</button><select class="sel" id="bSel" style="flex:1 1 220px;min-width:0"></select><button class="btn small ghost" type="button" id="bNextBtn" aria-label="Página siguiente">›</button></div>
+  <div class="toolbar" style="gap:10px;flex-wrap:wrap;font-size:12.5px"><label>Tipografía de títulos <input class="sel" id="bFont" style="width:150px"></label><label>Color <input type="color" id="bColor"></label><label class="check"><input type="checkbox" id="bLogo"> Logo</label></div>
+  <div class="gprev bprev" id="bPrev"></div><p class="muted" id="bMsg" role="status"></p>
+  <div class="dlg-actions"><span class="spacer"></span><button class="btn small" type="button" id="bOne">Descargar esta página</button><button class="btn small primary" type="button" id="bAll">Descargar todas (ZIP)</button><button class="btn small ghost" type="button" id="bClose">Cerrar</button></div>
+</div></dialog>
+<dialog id="vdlg" aria-labelledby="vTitle"><div class="dlg">
+  <h3 id="vTitle">Otras versiones de este material</h3>
+  <p class="muted" style="margin-top:-6px">El motor arma la misma secuencia para otros niveles, con el mismo hilo y actividades adaptadas. Cada versión tarda un par de minutos.</p>
+  <div id="vList" style="display:grid;gap:6px"></div><p class="muted" id="vMsg"></p>
+  <div class="dlg-actions"><span class="spacer"></span><button class="btn small primary" type="button" id="vGo">Crear versiones</button><button class="btn small ghost" type="button" id="vClose">Cerrar</button></div>
+</div></dialog>
 <dialog id="gdlg" aria-labelledby="gdTitle" style="width:min(780px,calc(100vw - 32px))"><div class="dlg">
   <h3 id="gdTitle">Juego</h3><p class="muted" id="gdSub" style="margin-top:-6px"></p>
   <div class="seg" role="group" aria-label="Vista"><button type="button" data-gv="act" aria-pressed="true">Actividad</button><button type="button" data-gv="sol" aria-pressed="false">Solución</button></div>
@@ -1251,6 +1302,8 @@ const DEFAULT_AUTODM = [["sapo", {"titulo": "Los Sueños del Sapo", "palabras": 
 // Perfil de estilo aprendido de las secuencias del autor
 const MOTOR_PERFIL = "ESTILO DE COFRE DIDÁCTICO (aprendido de sus secuencias reales: Malvinas, Güemes 1.º y 2.º ciclo, 25 de Mayo, Escarapela, Día del Animal, Día de la Tierra)\n\n1) DOCUMENTO DE PLANIFICACIÓN (secuencia didáctica que va dentro del cuadernillo)\n- Encabezado: \"SECUENCIA DIDÁCTICA\", la efeméride en mayúsculas con su fecha y el nivel/ciclo.\n- Datos generales: área principal, áreas integradas, destinatarios, duración estimada (cantidad de clases).\n- Fundamentación de 3 a 4 párrafos: (1) el valor de las efemérides para acercar a los niños y niñas a la historia y construir identidad; (2) qué se recuerda en la fecha y por qué es importante; (3) cómo se aborda en ese ciclo: recursos visuales, propuestas lúdicas, lectura, escritura, observación y producción artística, \"acordes a la edad\"; el cuadernillo funciona como soporte organizador que sostiene la continuidad pedagógica; (4) los valores que se promueven (respeto, pertenencia, solidaridad, compromiso, memoria, paz, cuidado).\n- Propósitos (5 a 8) que empiezan con: Acercar, Promover, Favorecer, Desarrollar, Estimular, Incentivar, Valorar, Fomentar.\n- Objetivos (4 a 6) en infinitivo: Reconocer, Comprender, Identificar, Participar, Expresar.\n- Contenidos por área: Ciencias Sociales o Ciencias Naturales; Prácticas del Lenguaje; Educación Artística; Formación Ética y Ciudadana; Matemática cuando corresponda.\n- Clases (normalmente 5; entre 4 y 8). Cada clase tiene:\n  · Título temático en mayúsculas y lúdico: \"CONOCEMOS A…\", \"DESCUBRIMOS…\", \"ALFABETIZACIÓN EN CONTEXTO\", \"LA VIDA DE…\", \"APRENDEMOS JUGANDO\", \"ESCRIBIMOS COMO…\", \"CREAMOS Y RECORDAMOS\", \"INTEGRACIÓN Y CIERRE\".\n  · Intención didáctica en una oración.\n  · Duración: 40/50 minutos en primer ciclo; en segundo ciclo se detalla Inicio (10-15 min), Desarrollo (40-50 min), Cierre (10-20 min).\n  · Inicio: conversación guiada con preguntas disparadoras textuales entre signos (¿Saben qué se recuerda el…? ¿Escucharon hablar de…?), presentación de imagen u objeto real, registro de ideas previas en el pizarrón (sin corregir aún) o recuperación de la clase anterior.\n  · Desarrollo: lectura compartida o mediada de la infografía/texto del cuadernillo y las actividades del cuadernillo listadas con ✔.\n  · Estrategias / intervenciones docentes: lectura en voz alta de consignas, señalar pistas fonológicas, relectura en pequeños grupos, acompañamiento diferenciado, uso del error como aprendizaje, trabajo individual con intercambio en parejas.\n  · Cierre: puesta en común, corrección colectiva, reflexión con una pregunta (¿Por qué es importante recordar…?), construcción colectiva de una oración que se copia con andamiaje, registro en el cuaderno, exposición de trabajos.\n- Progresión típica de las clases: 1) primer acercamiento con infografía y comprensión; 2) alfabetización/escritura en contexto; 3) secuencia temporal o contenido específico (recortar, ordenar y pegar; antes-durante-después); 4) aprender jugando; 5) producción artística/expresiva e integración, con una frase colectiva para la cartelera o un mensaje final.\n- Evaluación: criterios (participación oral, comprensión, resolución de actividades, producción escrita, actitudes de respeto) e instrumentos (observación directa, registro anecdótico, producciones escritas y gráficas, actividades del cuadernillo).\n- Cierre sugerido: jornada o acto breve donde usen sus producciones.\n- Al final: DOCENTE: ____  GRADO: ____  CICLO LECTIVO: ____\n\n2) CUADERNILLO (entre 20 y 34 páginas, A4, para imprimir)\nOrden habitual: portada → secuencia didáctica → infografía ilustrada de fácil comprensión → comprensión lectora → actividades de escritura → secuencia temporal recortable → juegos → producción artística → tarjeta/acróstico de cierre.\nActividades que usa siempre:\n- Infografía ilustrada (datos clave en bloques breves con íconos).\n- Comprensión lectora: preguntas guiadas, opción múltiple, \"¿Qué es…?\", \"¿De qué color…?\".\n- Verdadero o Falso (en segundo ciclo, con justificación).\n- Completar oraciones con banco de palabras.\n- Ordenar palabras para formar oraciones.\n- Ordenar letras (anagramas, por ejemplo \"NOBELGRA\").\n- Unir imagen con palabra; completar sílabas (primer ciclo).\n- Secuencia cronológica recortable (\"Mi secuencia de…\"): recortar, ordenar y pegar.\n- Sopa de letras temática.\n- Crucigrama con pistas.\n- Mensaje secreto / código secreto (con vocales o símbolos).\n- Laberinto con un personaje (\"¡Ayudá a Belgrano a llegar a…!\").\n- \"Detectives de…\": buscar y encontrar, diferencias, pistas.\n- Armado recortable (personaje u objeto: escarapela, Casa de Tucumán, gaucho).\n- Dibujo y pintura.\n- Tarjeta acróstico con la palabra clave para llevar a casa o pegar en el cuaderno.\n- Segundo ciclo, además: cuadro histórico para completar, carta de un personaje (\"Carta de un gaucho\"), línea de tiempo, acertijos, \"Publicación de Instagram histórica\" (perfil imaginario con comentarios de personajes), tarjeta para la carpeta.\nExtras que suele ofrecer: carpeta con todas las actividades en formato imagen; plataforma interactiva; Pasapalabra.\nConsignas: cortas, claras, con voseo rioplatense (\"Completá\", \"Uní\", \"Pintá\", \"Recortá y pegá\", \"Ayudá a…\", \"Descubrí\"). Títulos de actividad en mayúsculas y lúdicos. Tono cálido.\n\n3) ADAPTACIÓN POR NIVEL\n- Inicial (salas de 3, 4 y 5): todo oral y lúdico; pictogramas e imágenes grandes; pocas palabras en IMPRENTA MAYÚSCULA; pintar, trazar, recortar, pegar, encastres, memotest, canciones y rondas; motricidad fina; sin textos para leer de forma autónoma.\n- Primaria, Primer Ciclo (1.º a 3.º): IMPRENTA MAYÚSCULA, frases breves, palabras clave del tema, alfabetización inicial (vocales, sílabas, conciencia fonológica, anagramas), mucha imagen, juegos de palabras.\n- Primaria, Segundo Ciclo (4.º a 6.º/7.º): textos informativos más extensos, búsqueda de información, justificación, cuadros, líneas de tiempo, producción escrita (cartas, diarios, publicaciones), acertijos, análisis de causas y consecuencias.\n- Secundaria: análisis crítico, fuentes primarias (documentos, cartas, fotos de época), debate y argumentación, investigación en grupos, producción digital (infografía, podcast, posteo), vínculo con el presente y la ciudadanía.\n\n4) ACCESIBILIDAD (rasgo de la marca)\nSiempre incluir adaptaciones para estudiantes con distintas necesidades: pictogramas, letra imprenta mayúscula, menos estímulos por página, consignas cortas en pasos, apoyos visuales, opción de respuesta con imagen.\n\n5) CUIDADOS\nDatos históricos correctos; si un dato puede discutirse, marcarlo con [verificar]. En fechas sensibles (Malvinas, Memoria) abordaje respetuoso, centrado en la memoria, la paz y los derechos.\n";
 const MOTOR_DISENO = "DISEÑO DE PÁGINAS (aprendido mirando sus cuadernillos reales: Güemes 1.º y 2.º ciclo, 9 de Julio y Escarapela)\n\nPLANTILLA DE PÁGINA DE ACTIVIDAD (A4 vertical, fondo blanco, borde negro fino)\n- Arriba a la izquierda: logo chico de Cofre Didáctico. Arriba a la derecha: un ícono del material que se repite en todas las páginas (retrato del prócer, Casa de Tucumán, escarapela).\n- Título centrado, en 1 o 2 líneas, MAYÚSCULAS, tipografía display redondeada y gruesa, azul francia (\"SOPA DE LETRAS\", \"DETECTIVES DE LA GUERRA GAUCHA\", \"MI SECUENCIA DE GÜEMES\").\n- Consigna: viñeta en forma de flor roja o naranja + VERBO EN NEGRITA MAYÚSCULA + el resto en mayúscula normal (\"ORDENÁ las letras y DESCUBRÍ las palabras.\"; \"OBSERVÁ la infografía y RESPONDÉ.\").\n- Actividad dentro de un recuadro redondeado con borde punteado (negro, naranja o turquesa). Cada ítem con viñeta verde y un ícono chico a la derecha que funciona como pista visual (mapa de la provincia, poncho, caballo, calendario).\n- \"COFRE DIDÁCTICO\" escrito en vertical sobre el borde derecho y pie centrado con logo + COFRE DIDÁCTICO.\n- Respuestas para autocorrección: cajita redondeada \"RESPUESTAS:\" al pie, con el texto girado 180°.\n- Muchas páginas combinan DOS actividades cortas, arriba y abajo: ordenar letras + unir imagen con palabra; laberinto + verdadero o falso; completar oraciones + ordenar la oración; pintar el dibujo + dibujar con modelo.\n- Casi todo recurso a color tiene también su versión en blanco y negro para pintar o ahorrar tinta.\n\nORDEN REAL DE SUS CUADERNILLOS (24 a 30 páginas)\nPortada → 2 o 3 infografías (completa a color, simplificada con íconos) → comprensión de la infografía (1 o 2 páginas) → dibujar y pintar → actividades de escritura → ordenar letras + unir → mi secuencia de… (recortable) → sopa de letras → detectives → laberinto + verdadero o falso → crucigrama → recortar y armar → acróstico (color y para pintar) → portada de cierre, tarjetas 3×3 (color y B/N), rompecabezas.\n\nCÓMO ARMA CADA ACTIVIDAD\n- Portada: fecha + nombre en tipografía display grande (rojo o azul), ilustración del protagonista, logo en la esquina.\n- Infografía: banner con la fecha en cinta azul, escarapela y bandera de decoración; bloques de colores redondeados: ¿QUIÉN FUE? / ¿QUÉ HIZO? / ¿POR QUÉ ES IMPORTANTE? / DATOS CURIOSOS o ¿SABÍAS QUE…? / LÍNEA DE TIEMPO / ¿DÓNDE NACIÓ? o ¿DÓNDE SUCEDIÓ? / PARA RECORDAR, y una frase de cierre en la banda inferior. Cada dato con su ícono. A veces suma una infografía de otro personaje (Macacha Güemes).\n- Comprensión de la infografía: oraciones abiertas con renglón e ícono pista; opción múltiple con 3 imágenes y un círculo para marcar; lista de afirmaciones en \"píldoras\" para pintar la correcta.\n- Verdadero o falso: 4 afirmaciones en píldoras de colores (verde, amarillo, verde, durazno) con pulgar verde y pulgar rojo para encerrar.\n- Ordenar las letras: 4 anagramas → renglón + ícono. Unir: 4 imágenes a la izquierda y 4 palabras a la derecha.\n- Completar oraciones: 4 oraciones con ____ e ícono; respuestas invertidas. Ordená la oración: palabras separadas por guiones + renglón.\n- Mi secuencia de…: 4 recuadros punteados numerados con su título arriba; línea de corte; \"FICHAS PARA RECORTAR\" con 4 ilustraciones.\n- Sopa de letras: banco de 5 a 6 palabras con ícono en 3 columnas arriba; grilla de 9×10 cuadrados con letras grandes en negrita; palabras solo en horizontal y vertical.\n- Crucigrama: la palabra clave (el nombre del protagonista, por ejemplo G-Ü-E-M-E-S) ya escrita en vertical; cada fila horizontal numerada la cruza en una letra; 6 pistas numeradas debajo; respuestas invertidas.\n- Laberinto: el personaje en la entrada con una flecha y la meta ilustrada (sus gauchos, la escarapela); a veces 2 laberintos por página, uno fácil y uno difícil.\n- Detectives de…: 2 escenas ilustradas grandes con marco de color y una franja \"¿QUÉ TENÉS QUE ENCONTRAR?\" con 5 a 8 objetos rotulados.\n- Dibujar y pintar: dibujo lineal para pintar en recuadro punteado + recuadro \"DIBUJÁ…\" con MODELO al costado.\n- Recortar y armar: piezas grandes (ropa del gaucho, partes de la escarapela) y el MODELO armado.\n- Acróstico: 4 tiras por hoja con línea de corte, el protagonista a los costados, inicial en negrita; versión a color y para pintar.\n- Recursos de cierre: portada a color y para colorear; tarjetas 3×3 (9 por hoja) a color y B/N; rompecabezas sobre la portada (grilla de 3×4) y de 10 tiras numeradas.\n- Segundo ciclo, además: cuadro histórico (3 filas de personajes con imagen × ¿QUIÉN FUE? / ¿QUÉ HIZO?); carta de un personaje sobre pergamino con guía \"No te olvides de contar\" (color y B/N); acertijos \"¿QUIÉN SOY?\" en recuadros punteados; línea de tiempo con 5 imágenes, círculo amarillo para numerar y campo AÑO; publicación de Instagram de la época (usuario, ubicación, me gusta, pie de foto, hashtags y comentarios de personajes).\n";
+const MOTOR_BIBLIO = [{"id": "guemes1", "titulo": "17 de Junio – Martín Miguel de Güemes", "nivel": "Primaria – Primer Ciclo", "tipo": "procer", "tags": ["guemes", "procer", "heroe", "gaucho", "gauchos", "independencia", "salta", "norte", "guerra", "batalla", "belgrano", "san martin", "sarmiento", "bandera", "libertad", "patria", "junio", "agosto"], "estructura": "5 clases: 1) CONOCEMOS A GÜEMES (infografía + comprensión) 2) ALFABETIZACIÓN EN CONTEXTO (completar oraciones, ordenar letras, unir) 3) LA VIDA DE GÜEMES (secuencia recortable) 4) APRENDEMOS JUGANDO (sopa, detectives, laberinto, V/F, crucigrama) 5) CREAMOS Y RECORDAMOS (recortable del gaucho, acróstico).", "paginas": "Portada · 3 infografías (completa, con íconos, simplificada) · infografía de Macacha Güemes · Comprensión de la infografía · Dibujar y pintar (con MODELO) · Actividades de escritura (completar + ordená la oración) · Ordenar las letras + Uní · Mi secuencia de Güemes (4 recuadros + fichas para recortar) · Sopa de letras · Detectives de la Guerra Gaucha (2 escenas) · Laberinto + Verdadero o falso · Crucigrama con clave GÜEMES · Recortar y armar el gaucho infernal · Acróstico color y para pintar · Portada de cierre, tarjetas 3×3 y rompecabezas (color y B/N).", "extracto": null}, {"id": "guemes2", "titulo": "17 de Junio – Güemes", "nivel": "Primaria – Segundo Ciclo", "tipo": "procer", "tags": ["guemes", "procer", "heroe", "gaucho", "gauchos", "independencia", "salta", "norte", "guerra", "batalla", "belgrano", "san martin", "sarmiento", "libertad", "patria", "carta", "segundo"], "estructura": "5 clases: 1) CONOCEMOS A MARTÍN MIGUEL DE GÜEMES (infografía + comprensión, afiche síntesis) 2) LOS GAUCHOS INFERNALES Y LA GUERRA GAUCHA (V/F con justificación, cuadro histórico) 3) ESCRIBIMOS COMO UN GAUCHO (carta en primera persona: lugar, fecha, saludo, desarrollo, despedida) 4) JUGAMOS Y APRENDEMOS (acertijos, crucigrama, sopa, acróstico) 5) GÜEMES EN LAS REDES Y EN LA HISTORIA (línea de tiempo, publicación de Instagram de 1815, frase sobre su legado).", "paginas": "Cuadro histórico (Güemes, Macacha, Gauchos Infernales × ¿Quién fue? / ¿Qué hizo?) · Carta de un gaucho en pergamino (color y B/N) · Los acertijos de Güemes (¿QUIÉN SOY?) · Línea de tiempo (5 imágenes, círculo para numerar y AÑO) · Publicación de Güemes en Instagram · Crucigrama · Sopa de letras · Acrósticos · Portada y tarjetas.", "extracto": "CLASE 3 \"ESCRIBIMOS COMO UN GAUCHO\"\nInicio (10 minutos)\nLectura de fragmentos de cartas históricas o presentación de ejemplos de cartas. Análisis de sus partes: lugar y fecha, saludo, desarrollo, despedida.\nDesarrollo (50 minutos)\nLos estudiantes imaginan que forman parte de los Gauchos Infernales. Escriben la actividad \"Carta de un gaucho\", contando: dónde están, qué tareas realizan, qué dificultades enfrentan, qué sienten al defender la patria. La docente orienta el proceso de escritura. Revisión individual y corrección.\nCierre (10 minutos)\nLectura voluntaria de algunas producciones. Intercambio de opiniones sobre las emociones que pudieron sentir los gauchos durante la Guerra Gaucha.\n\nCLASE 5 \"GÜEMES EN LAS REDES Y EN LA HISTORIA\"\nInicio (10 minutos)\nConversación sobre las redes sociales: ¿Qué publicaciones suelen hacer las personas? ¿Cómo sería una publicación de Güemes?\nDesarrollo (50 minutos)\nResolución de: línea de tiempo; publicación de Instagram histórica. Los estudiantes completan el perfil imaginario de Güemes como si viviera en 1815. Incorporan comentarios de personajes históricos.\nCierre (20 minutos)\nPuesta en común de las producciones. Reflexión final: ¿Qué aprendimos sobre Güemes? ¿Por qué sigue siendo importante recordarlo? Entrega de la tarjeta para el cuaderno o carpeta."}, {"id": "mayo25", "titulo": "25 de Mayo – Revolución de Mayo", "nivel": "Primaria – Primer Ciclo", "tipo": "hecho", "tags": ["mayo", "revolucion", "cabildo", "junta", "colonial", "1810", "criollos", "independencia", "julio", "tucuman", "congreso", "patria", "historia", "gobierno", "vendedores"], "estructura": "8 clases: 1) ¿QUÉ PASÓ EN MAYO DE 1810? (imágenes, línea temporal) 2) LOS CRIOLLOS Y SUS IDEAS (opinar y participar) 3) EL CABILDO Y EL PUEBLO (V/F) 4) LA VIDA EN LA ÉPOCA COLONIAL (vendedores ambulantes, asociación) 5) APRENDEMOS JUGANDO (sopa, crucigrama, laberinto, rompecabezas) 6) LA PRIMERA JUNTA (integrantes, escritura) 7) PRODUCCIONES ESCRITAS (completar oraciones, ordenar letras) 8) CIERRE DEL PROYECTO (mural patrio).", "paginas": "", "extracto": "CLASE 1 – ¿QUÉ PASÓ EN MAYO DE 1810?\nContenidos: La Revolución de Mayo – Observación de imágenes – Secuencia temporal\nInicio: Presentación de imágenes y conversación guiada sobre la época colonial.\nDesarrollo: Lectura de los acontecimientos del 18 al 25 de Mayo utilizando el cuadernillo. Resolución de preguntas y armado de línea temporal.\nCierre: Puesta en común sobre lo aprendido y coloreado de imágenes alusivas.\n\nCLASE 3 – EL CABILDO Y EL PUEBLO\nContenidos: Cabildo Abierto – Participación del pueblo – Comprensión lectora\nInicio: Observación de imágenes del Cabildo.\nDesarrollo: Lectura sobre el Cabildo Abierto y actividades de verdadero/falso.\nCierre: Reflexión colectiva sobre la importancia del diálogo."}, {"id": "julio9", "titulo": "9 de Julio – Día de la Independencia", "nivel": "Primaria – Primer Ciclo", "tipo": "hecho", "tags": ["julio", "independencia", "tucuman", "congreso", "casita", "1816", "laprida", "acta", "diputados", "espana", "patria", "libertad", "mayo", "revolucion"], "estructura": "(Cuadernillo observado, sin documento de secuencia.)", "paginas": "Infografías (¿Dónde sucedió? ¿Qué decidieron los diputados? ¿Cómo llegamos a la independencia? Personajes importantes, ¿Sabías que…?, ¿Qué significa hoy?) · Comprensión: preguntas con renglón + pintá la opción correcta · Opción múltiple con 3 imágenes + Verdadero o falso · Ordenar las letras (CSAITA, EPASÑA, TUÁCNUM, INDENEPEDNIAC) + Uní · Mi secuencia de la independencia · Sopa de letras · Detectives de la independencia · Acróstico INDEPENDENCIA · Portada de cierre, para colorear y rompecabezas.", "extracto": ""}, {"id": "escarapela", "titulo": "18 de Mayo – Día de la Escarapela", "nivel": "Primaria – Primer Ciclo", "tipo": "simbolo", "tags": ["escarapela", "simbolo", "simbolos", "bandera", "belgrano", "celeste", "blanco", "himno", "escudo", "patria", "identidad", "mayo", "febrero", "junio"], "estructura": "5 clases: 1) INTRODUCCIÓN AL SÍMBOLO (infografía, ¿qué es?, ¿de qué color?, V/F) 2) ALFABETIZACIÓN EN CONTEXTO (completar, ordenar palabras, anagrama NOBELGRA, unir) 3) LECTURA LÚDICA Y CONSOLIDACIÓN (sopa, crucigrama) 4) PRODUCCIÓN ARTÍSTICA (dibujar, pintar, recortar y armar; se la colocan en el guardapolvo) 5) INTEGRACIÓN Y JUEGO (acróstico, mensaje secreto con vocales, código, laberinto de Belgrano, rompecabezas).", "paginas": "2 infografías numeradas (¿Qué es? ¿Cómo es? Un poco de historia ¿Cuándo la usamos? ¿Qué representa? ¿Sabías que…? Para reflexionar, Tu turno) · Comprensión: completar oraciones + ordená la oración · Dibujar y pintar a Belgrano + dibujá la escarapela con MODELO · Sopa de letras · 2 laberintos (Ayudá a Belgrano a llegar a la escarapela) · Recortar y armar la escarapela nacional · Acróstico ESCARAPELA · Tarjetas 3×3 color y B/N.", "extracto": "CLASE 1: INTRODUCCIÓN AL SÍMBOLO\nINTENCIÓN DIDÁCTICA: Indagar saberes previos e introducir la escarapela como símbolo patrio mediante la comprensión de una infografía.\nINICIO: La docente presenta una escarapela real o imagen ampliada. Intervenciones: “¿Alguien sabe cómo se llama?” “¿Dónde la vieron?” “¿Cuándo la usamos?” Se registran las ideas en el pizarrón (sin corregir aún).\nDESARROLLO: Se trabaja con la infografía del cuadernillo. Acciones docentes: lectura en voz alta señalando la información clave; relectura con participación de los estudiantes. Actividades del cuadernillo: ¿Qué es la escarapela? ¿De qué color es? Verdadero/Falso. Selección de opciones. Acompañamiento diferenciado: lectura guiada para quienes lo necesiten; relectura en pequeños grupos.\nCIERRE: Construcción colectiva: “La escarapela es un símbolo patrio argentino…” Los estudiantes copian una oración (con andamiaje en el pizarrón).\n\nCLASE 2: ALFABETIZACIÓN EN CONTEXTO\nINTENCIÓN DIDÁCTICA: Fortalecer la lectura y escritura de palabras significativas vinculadas al contenido.\nINICIO: Recuperación oral: ¿Qué aprendimos sobre la escarapela? Presentación de palabras: escarapela – celeste – blanco – Belgrano.\nDESARROLLO: Completar oraciones. Ordenar palabras. Ordenar letras (anagramas como “NOBELGRA”). Unir imagen con palabra. Intervenciones docentes: señalar pistas fonológicas, promover lectura en voz alta, favorecer autocorrección. Trabajo individual con instancias de intercambio en parejas.\nCIERRE: Juego oral “Adiviná la palabra” (Ej: “Empieza con B y es una persona importante…”)."}, {"id": "malvinas", "titulo": "2 de Abril – Malvinas", "nivel": "Primaria – Primer Ciclo", "tipo": "memoria", "tags": ["malvinas", "islas", "soldados", "veteranos", "caidos", "guerra", "paz", "memoria", "abril", "marzo", "verdad", "justicia", "derechos", "soberania"], "estructura": "5 clases de 40/50 min: 1) PRIMER ACERCAMIENTO A LA EFEMÉRIDE (texto, palabras clave soldados/islas/guerra/mar/paz, completar texto) 2) COMPRENSIÓN LECTORA (preguntas, V/F, completar, ubicación de Malvinas) 3) APRENDER JUGANDO (sopa, crucigrama, código secreto, ordenar letras) 4) EXPRESIÓN Y EMPATÍA (dibujo de las islas, ¿qué llevaría un soldado en su mochila?, mensaje de paz) 5) INTEGRACIÓN Y CIERRE (secuencia de imágenes, laberinto, buscar y encontrar, frases para reconstruir, “Las Malvinas son argentinas”).", "paginas": "", "extracto": "CLASE 4: EXPRESIÓN Y EMPATÍA\nDuración: 40/50 minutos\nObjetivos: Expresar ideas, emociones y pensamientos. Desarrollar empatía hacia los soldados. Reflexionar sobre valores.\nInicio: Conversación: ¿Cómo creen que se sentían los soldados?\nDesarrollo: Actividades: ✔ Dibujo de las Islas Malvinas ✔ “¿Qué llevaría un soldado en su mochila?” ✔ Escritura o dibujo de un mensaje de paz. Posibilidad de trabajar con música suave de fondo.\nEstrategias: Expresión libre. Producción artística. Trabajo emocional.\nCierre: Socialización voluntaria. Lectura de mensajes de paz."}, {"id": "animal", "titulo": "29 de Abril – Día del Animal", "nivel": "Primaria – Primer Ciclo (Unidad Pedagógica)", "tipo": "ambiente", "tags": ["animal", "animales", "habitat", "naturaleza", "cuidado", "mascotas", "seres vivos", "abril", "ambiente", "tierra", "agua", "arbol", "planeta"], "estructura": "6 clases: 1) Conocemos el Día del Animal (infografía, comprensión, dibujo del animal favorito) 2) Los animales y sus características (ordenar letras, unir, completar sílabas) 3) ¿Dónde viven los animales? (unir con su hábitat, clasificar) 4) Cuidamos a los animales (V/F, escritura de acciones de cuidado) 5) Jugamos y aprendemos (sopa, crucigrama, conteo, diferencias) 6) Producción final (afiche “Cómo cuidar a los animales”). Integra Matemática: conteo y registro de cantidades.", "paginas": "", "extracto": ""}, {"id": "tierra", "titulo": "22 de Abril – Día Mundial de la Tierra", "nivel": "Primaria – Primer Ciclo", "tipo": "ambiente", "tags": ["tierra", "planeta", "ambiente", "reciclar", "residuos", "agua", "energia", "naturaleza", "arbol", "cuidado", "abril", "junio", "animal"], "estructura": "4 clases: 1) ¿POR QUÉ DEBEMOS CUIDAR LA TIERRA? (pintar acciones que cuidan el planeta, afiche de compromisos) 2) APRENDEMOS A RECICLAR (clasificación de residuos recortando y pegando en el cesto) 3) PALABRAS QUE CUIDAN EL PLANETA (vocales, consonantes, sopa) 4) NOS COMPROMETEMOS CON EL PLANETA (V/F, caritas de la Tierra feliz o triste, compromiso personal para llevar a casa).", "paginas": "", "extracto": "CLASE 2: APRENDEMOS A RECICLAR\nInicio: La docente mostrará distintos residuos (papel, plástico, restos orgánicos) y preguntará dónde debería colocarse cada uno.\nDesarrollo: Se realizará la actividad de clasificación de residuos del cuadernillo, recortando y pegando en el cesto correspondiente. Se conversará sobre la importancia de separar residuos y qué materiales pueden reciclarse.\nCierre: Como síntesis, se organizará un juego oral en el que cada niño nombrará un residuo y dirá en qué recipiente debe colocarse."}, {"id": "salud", "titulo": "7 de Abril – Día Mundial de la Salud", "nivel": "Primaria – Primer Ciclo", "tipo": "salud", "tags": ["salud", "habitos", "alimentacion", "higiene", "cuerpo", "descanso", "actividad fisica", "plato", "bienestar", "abril", "agua", "deporte"], "estructura": "4 clases de 40-60 min con objetivos por clase: 1) ¿QUÉ ES LA SALUD? (conversatorio, dibujá algo que te hace sentir sano, definición colectiva) 2) HÁBITOS SALUDABLES (V/F “Dormir poco es bueno”, clasificar hábitos recortando, completar “Para estar sanos debemos…”) 3) ALIMENTACIÓN SALUDABLE (armado del plato saludable, colorear alimentos) 4) INTEGRACIÓN Y JUEGO (sopa, crucigrama, unir; “Mi compromiso saludable”). Incluye Pasapalabra.", "paginas": "", "extracto": ""}, {"id": "libro", "titulo": "23 de Abril – Día Mundial del Libro", "nivel": "Primaria – Primer Ciclo (Unidad Pedagógica)", "tipo": "lectura", "tags": ["libro", "lectura", "cuento", "autor", "biblioteca", "leer", "escribir", "abril", "alfabetizacion", "literatura", "poesia", "idioma", "maestro", "septiembre"], "estructura": "3 clases con andamiajes por nivel de conceptualización de la escritura (presilábico, silábico, alfabético): 1) Diseño de tapa + completar palabras 2) Unir imagen-palabra, ordenar letras, V/F 3) Sopa de letras, secuencia de lectura, mini libro. Indicadores de logro y modelado docente.", "paginas": "", "extracto": "ANDAMIAJES GENERALES\n- Modelado docente (leer en voz alta, mostrar cómo pensar una palabra). - Uso de referentes visuales (abecedario, palabras conocidas). - Intervenciones con preguntas orientadoras. - Escritura colectiva. - Trabajo en parejas pedagógicas. - Segmentación oral de palabras.\nApoyo diferenciado según nivel:\nNivel presilábico: uso de imágenes y palabras modelo; escritura libre sin corrección normativa; señalamiento de letras iniciales.\nNivel silábico: identificación de sílabas; completar palabras con apoyo; lectura compartida.\nNivel alfabético: escritura autónoma; lectura de consignas; producción de frases."}, {"id": "sapo", "titulo": "Los sueños del sapo (Javier Villafañe)", "nivel": "Primaria – 1.º y 2.º grado", "tipo": "cuento", "tags": ["cuento", "literatura", "sapo", "lectura", "suenos", "imaginacion", "personaje", "autor", "villafane", "libro", "emociones", "silabas", "alfabetizacion", "narrativa"], "estructura": "8 clases de 80 min (inicio 15, desarrollo 50, cierre 15), con título narrativo y una “Sugerencia para el docente” al final de cada clase: 1) Conocemos al sapo y descubrimos sus sueños 2) Comprendemos la historia 3) Reconstruimos la historia y ordenamos los sueños 4) Jugamos con las palabras del cuento 5) Observamos, buscamos y resolvemos desafíos (laberinto, busca y encontrá, diferencias, sopa) 6) Descubrimos los sonidos y jugamos con las sílabas (SA-SE-SI-SO-SU) 7) Creamos nuevos sueños para el sapo (galería de los sueños) 8) Compartimos lo aprendido. Incluye justificación del cuento, marco teórico, capacidades e indicadores de avance.", "paginas": "", "extracto": "CLASE 1 – Conocemos al sapo y descubrimos sus sueños\nInicio (15 minutos): El docente dará la bienvenida a los estudiantes y les propondrá comenzar la jornada con una conversación sobre los sueños. Realizará preguntas abiertas como: ¿Alguna vez tuvieron un sueño muy divertido?, ¿Recuerdan qué soñaron anoche?, ¿Creen que los animales también sueñan? Mientras los estudiantes participan, registrará en el pizarrón algunas palabras que surjan (soñar, dormir, imaginar, noche, luna). A continuación, mostrará la portada del cuadernillo sin leer todavía el cuento y preguntará: ¿Quién creen que es el personaje principal? ¿Dónde estará? ¿De qué piensan que tratará esta historia? Escuchará todas las respuestas, alentando a que fundamenten sus ideas, sin confirmar todavía cuál es la correcta.\nDesarrollo (50 minutos): Lectura expresiva del cuento, mostrando las ilustraciones y usando distintos tonos de voz. Conversación literaria para reconstruir la historia. Luego las primeras actividades de comprensión del cuadernillo, con intervenciones individuales y corrección colectiva en la que explican cómo llegaron a cada respuesta.\nCierre (15 minutos): Cada estudiante completa oralmente: \"Si esta noche pudiera soñar cualquier cosa, soñaría que...\"\nSugerencia para el docente: Si el grupo finaliza antes de lo previsto, invitá a los estudiantes a dibujar un nuevo sueño para el sapo y compartirlo con sus compañeros."}, {"id": "caperucita", "titulo": "Caperucita Roja – Libro de las Vocales del Bosque", "nivel": "Primaria – 1.º grado", "tipo": "cuento", "tags": ["cuento", "caperucita", "vocales", "alfabetizacion", "literatura", "tradicional", "lobo", "bosque", "letras", "nombre propio", "inicial", "libro", "proyecto"], "estructura": "Proyecto de 6 clases con producto final (“Libro de las Vocales del Bosque”): 1) Lectura del cuento (prelectura con la tapa, pacto de silencio, preguntas literales y abiertas con respuestas esperables) 2) a 6) una vocal por clase (A, E, I, O, U) partiendo de nombres de personajes y de los alumnos, juegos fonológicos (aplauso o salto si escuchan la vocal), hoja que se guarda para armar el libro; cierre con armado y tapa decorada. Fundamentado en Kaufman, Lerner, Castedo (alfabetización en la Unidad Pedagógica).", "paginas": "", "extracto": ""}];
+const MOTOR_ESTILO_ILUS = "ESTILO DE SUS ILUSTRACIONES (observado en sus cuadernillos):\n- Próceres y personajes históricos: retrato digital semirrealista, pintado, con rasgos y vestimenta de época, colores intensos, luz suave, recortado sobre fondo blanco.\n- Niños y personajes acompañantes: estilo cartoon infantil tierno, cabeza grande, ojos expresivos, guardapolvo blanco o ropa simple, colores vivos.\n- Escenas (detectives, secuencias, línea de tiempo, Instagram): ilustración digital detallada tipo libro infantil, con el paisaje real del lugar (cerros del norte, Cabildo, Casa de Tucumán), muchos elementos para observar.\n- Íconos pista: objetos sueltos simples, estilo sticker con contorno suave, fondo blanco.\n- Versiones para pintar: líneas negras limpias de grosor parejo, sin grises ni sombras, fondo blanco.\n- Decoración recurrente: escarapela, bandera argentina, cintas celestes, cielo con nubes, sol.\n- Las imágenes van sin texto: los textos los agrega el autor en CorelDRAW.";
 const MOTOR_EJEMPLO = "FUNDAMENTACIÓN\nLas efemérides constituyen valiosas oportunidades para acercar a los niños y niñas al conocimiento de nuestra historia, promoviendo la construcción de la identidad nacional y el reconocimiento de las personas que contribuyeron a la formación de nuestro país.\nEn el Primer Ciclo, el abordaje de esta efeméride favorece la comprensión de hechos históricos a través de recursos visuales, actividades lúdicas, propuestas de lectura, escritura, observación y producción artística, permitiendo que los estudiantes construyan conocimientos significativos acordes a su edad.\n\nPROPÓSITOS\n• Acercar a los estudiantes al conocimiento de la vida y obra de Martín Miguel de Güemes.\n• Favorecer la comprensión lectora a través de textos e infografías.\n• Estimular la observación, el análisis y la resolución de desafíos lúdicos.\n\nCLASE 1 – CONOCEMOS A MARTÍN MIGUEL DE GÜEMES\nINICIO: Conversación grupal para recuperar saberes previos. Preguntas orientadoras: ¿Escucharon hablar de Martín Miguel de Güemes? ¿Quién creen que fue? ¿Por qué lo recordamos cada 17 de junio?\nDESARROLLO: Observación y lectura compartida de la infografía incluida en el cuadernillo. Intercambio oral. Realización de la actividad de comprensión de la infografía.\nCIERRE: Puesta en común de las respuestas. Construcción colectiva de una breve conclusión sobre quién fue Güemes.\n\nCLASE 2 – DESCUBRIMOS A LOS GAUCHOS INFERNALES\nDESARROLLO: Completar oraciones. Ordenar palabras. Unir imágenes con palabras. Ordenar letras.\n\nCLASE 5 – CREAMOS Y RECORDAMOS\nDESARROLLO: Armado del recortable \"Gaucho Infernal\". Confección de la tarjeta acróstico.\nCIERRE: Reflexión final: ¿Por qué seguimos recordando a Martín Miguel de Güemes? Registro de una frase colectiva para la cartelera: \"RECORDAMOS A MARTÍN MIGUEL DE GÜEMES POR SU VALENTÍA Y SU AMOR POR LA PATRIA.\" ";
 const POST_COLORS = {"Post":"--c-sitio","Historia":"--c-redes","Reel":"--c-metricas"};
 
@@ -2618,6 +2671,7 @@ async function onVote(e){ const b=e.target.closest("[data-vote]"); if(b){ const 
     await saveMotor(); await saveLesson(c,key); return; }
   const sv=e.target.closest("[data-fbsave]"); if(sv){ const row=sv.closest("[data-fbc]"), key=row.dataset.fbc, c=motorCur, f=c&&c.feedback&&c.feedback[key]; if(!f) return;
     f.t=row.querySelector("input").value.trim(); f.label=fbLabel(key); await saveMotor(); await saveLesson(c,key); sv.textContent="Guardado ✓"; setTimeout(()=>sv.textContent="Guardar",1600); return; }
+  const sp=e.target.closest("[data-simp]"); if(sp&&motorCur){ simplifyPage(+sp.dataset.simp,sp); return; }
   const gb=e.target.closest("[data-game]"); if(gb&&motorCur&&motorCur.extra){ const g=(motorCur.extra.paginas||[])[+gb.dataset.game]; if(g&&g.juego) openGame(g.juego,motorCur.nivel,g.titulo); } }
 $("#moSec").addEventListener("click",onVote); $("#moPag").addEventListener("click",onVote);
 $("#moSec").addEventListener("keydown",e=>{ if(e.key==="Enter"&&e.target.closest("[data-fbc] input")){ e.preventDefault(); e.target.closest("[data-fbc]").querySelector("[data-fbsave]").click(); } });
@@ -2634,7 +2688,7 @@ function renderMotor(){
     const firstGap=ordered.find(e=>!efeInfo(e).rel.length); if(firstGap) s.value=firstGap[0];
   }
   const ta=$("#moPerfil"); if(document.activeElement!==ta){ ta.value=motorPerfil(); $("#moPerfilSave").disabled=true; }
-  renderMotorHist(); renderLearn();
+  renderMotorHist(); renderLearn(); renderFichaLine();
   if(motorCur) renderMotorDoc();
 }
 $("#moEfe").addEventListener("change",()=>{ $("#moOtraWrap").hidden=$("#moEfe").value!=="otra"; });
@@ -2661,9 +2715,8 @@ function promptPlan(r){
 
 ${motorPerfil()}
 
-EJEMPLO REAL DE SU ESCRITURA (fragmento de la secuencia de Güemes, Primer Ciclo):
-"""${MOTOR_EJEMPLO}"""
-
+${ejemploTexto(r)}
+${fichaTexto(r)}${r.ctx||""}
 PEDIDO:
 - Efeméride o tema: ${r.efe}${r.fecha?` (${r.fecha})`:""}
 - Nivel: ${r.nivel}${r.grado?` · ${r.grado}`:""}
@@ -2687,7 +2740,8 @@ function promptPages(r,plan){
 ${motorPerfil()}
 
 ${MOTOR_DISENO}
-${motorLessons()}
+${motorLessons()}${fichaTexto(r)}${r.ctx||""}
+Modelo más parecido de sus cuadernillos: ${(()=>{ const b=pickEjemplos(r)[0]; return `"${b.titulo}" — ${b.paginas||b.estructura}`; })()}
 Actividades previstas en las clases:
 ${resumen}
 
@@ -2708,34 +2762,42 @@ Respondé SOLO con JSON válido:
 function motorProgress(on,txt){ const m=$("#moMsg"); if(on){ m.innerHTML=`<span class="gen-progress"><i></i></span><span style="display:block;margin-top:6px">${esc(txt)}</span>`; } else m.textContent=txt||""; }
 async function getSample(){ if(!MODE.cloud) return null; if(!sampleFn){ try{ sampleFn=await claude.use("sample"); }catch{ sampleFn=null; } } return sampleFn; }
 function sampleErr(e){ const c=e&&e.code; return c==="not_granted"?"No diste permiso para que el panel use Claude. Podés habilitarlo desde el menú de permisos del panel.":c==="rate_limited"?"Claude está ocupado. Probá de nuevo en un rato.":c==="invalid_json"?"La respuesta salió incompleta. Probá de nuevo o pedí menos páginas.":"No se pudo completar. Probá de nuevo."; }
+async function runMotor(r,o={}){
+  const sf=await getSample(); if(!sf) return false;
+  motorBusy=true; $("#moGo").disabled=true; const L=o.label?o.label+" · ":""; let cur=null;
+  try{
+    const req={...r,ctx:o.ctx||""};
+    motorProgress(true,L+"Planificando la secuencia didáctica… (1 de 2)");
+    const plan=await sf.json(promptPlan(req),{cache:false,modelTier:"complex"});
+    if(!plan||!plan.clases) throw {code:"invalid_json"};
+    const {ctx,...reqSave}=req;
+    cur={titulo:plan.titulo||r.efe,efe:r.efe,nivel:r.nivel,req:reqSave,plan,extra:null,creado:new Date().toISOString(),modelos:pickEjemplos(r).map(b=>b.titulo)}; if(o.grupo) cur.grupo=o.grupo;
+    motorCur=cur; motorTab="sec"; renderMotorDoc();
+    motorProgress(true,L+"Escribiendo el contenido de cada página… (2 de 2)");
+    const extra=await sf.json(promptPages(req,plan),{cache:false,modelTier:"complex"});
+    if(!extra||!extra.paginas) throw {code:"invalid_json",partial:true};
+    cur.extra=extra; if(motorCur===cur) renderMotorDoc();
+    await saveMotor(cur);
+    if(!o.label) motorProgress(false,"Listo. Quedó guardado en “Materiales planificados”. Mirá el control de calidad arriba del documento.");
+    return true;
+  }catch(e){ motorProgress(false,L+(cur&&cur.plan&&!cur.extra?"La secuencia quedó lista, pero falló el contenido de las páginas. ":"")+sampleErr(e)); if(cur&&cur.plan) await saveMotor(cur); return false; }
+  finally{ motorBusy=false; $("#moGo").disabled=false; }
+}
 $("#moGo").addEventListener("click",async()=>{
   if(motorBusy) return; const r=motorRequest();
   if(!r.efe){ motorProgress(false,"Escribí la efeméride o el tema."); return; }
   const sf=await getSample();
   if(!sf){ showFallback(r); return; }
-  motorBusy=true; $("#moGo").disabled=true;
-  try{
-    motorProgress(true,"Planificando la secuencia didáctica… (1 de 2)");
-    const plan=await sf.json(promptPlan(r),{cache:false,modelTier:"complex"});
-    if(!plan||!plan.clases) throw {code:"invalid_json"};
-    motorCur={titulo:plan.titulo||r.efe,efe:r.efe,nivel:r.nivel,req:r,plan,extra:null,creado:new Date().toISOString()};
-    motorTab="sec"; renderMotorDoc();
-    motorProgress(true,"Escribiendo el contenido de cada página… (2 de 2)");
-    const extra=await sf.json(promptPages(r,plan),{cache:false,modelTier:"complex"});
-    if(!extra||!extra.paginas) throw {code:"invalid_json",partial:true};
-    motorCur.extra=extra; renderMotorDoc();
-    await saveMotor();
-    motorProgress(false,"Listo. Quedó guardado en “Materiales planificados”.");
-  }catch(e){ motorProgress(false,(motorCur&&motorCur.plan&&!motorCur.extra?"La secuencia quedó lista, pero falló el contenido de las páginas. ":"")+sampleErr(e)); if(motorCur&&motorCur.plan) await saveMotor(); }
-  finally{ motorBusy=false; $("#moGo").disabled=false; }
+  await runMotor(r);
 });
-async function saveMotor(){
-  if(!db||!motorCur) return;
-  const {id,...data}=motorCur; const ref=id?db.collection("motor").doc(id):db.collection("motor").doc();
-  try{ if(JSON.stringify(data).length>240000) throw new Error("grande"); await ref.set(data); motorCur.id=ref.id; }catch{ motorProgress(false,"El material se generó, pero no se pudo guardar en el historial."); }
+async function saveMotor(cur){
+  cur=cur||motorCur; if(!db||!cur) return;
+  const {id,...data}=cur; const ref=id?db.collection("motor").doc(id):db.collection("motor").doc();
+  try{ if(JSON.stringify(data).length>240000) throw new Error("grande"); await ref.set(data); cur.id=ref.id; }catch{ motorProgress(false,"El material se generó, pero no se pudo guardar en el historial."); }
 }
-$("#moAdjGo").addEventListener("click",async()=>{
-  if(motorBusy||!motorCur||!motorCur.plan) return; const ins=$("#moAdj").value.trim(); if(!ins) return;
+$("#moAdjGo").addEventListener("click",()=>{ const ins=$("#moAdj").value.trim(); if(ins) applyAdjust(ins); });
+async function applyAdjust(ins){
+  if(motorBusy||!motorCur||!motorCur.plan) return;
   const sf=await getSample(); if(!sf){ motorProgress(false,"Los cambios con Claude funcionan en la versión del panel dentro de Claude."); return; }
   motorBusy=true; $("#moAdjGo").disabled=true;
   try{
@@ -2745,6 +2807,7 @@ ${JSON.stringify(motorCur.plan)}
 
 ${motorCur.extra?`Y estas son las páginas actuales del cuadernillo:\n${JSON.stringify(motorCur.extra.paginas)}\n`:""}
 Cambio pedido por el autor: "${ins}"
+${fichaTexto(motorCur.req||{})}
 
 Aplicá el cambio respetando su estilo:
 ${motorPerfil().slice(0,2500)}
@@ -2756,10 +2819,10 @@ Respondé SOLO con JSON: {"plan": <el plan completo actualizado, misma forma>, "
     motorCur.plan=res.plan; motorCur.titulo=res.plan.titulo||motorCur.titulo;
     if(res.paginas&&Array.isArray(res.paginas)&&motorCur.extra) motorCur.extra.paginas=res.paginas;
     motorCur.ajustes=[...(motorCur.ajustes||[]),{t:ins,at:new Date().toISOString()}];
-    renderMotorDoc(); await saveMotor(); $("#moAdj").value=""; motorProgress(false,"Cambios aplicados y guardados.");
+    delete motorCur.revision; renderMotorDoc(); await saveMotor(); $("#moAdj").value=""; motorProgress(false,"Cambios aplicados y guardados.");
   }catch(e){ motorProgress(false,sampleErr(e)); }
   finally{ motorBusy=false; $("#moAdjGo").disabled=false; }
-});
+}
 function showFallback(r){
   const full=promptPlan(r)+"\n\nDESPUÉS del JSON del plan, escribí también el contenido de las "+r.pags+" páginas del cuadernillo (título, consigna, contenido completo, ilustración sugerida y solución de cada página).";
   motorCur=null; $("#moDoc").hidden=true; $("#moEmpty").hidden=false;
@@ -2773,9 +2836,10 @@ function renderMotorDoc(){
   const c=motorCur; if(!c||!c.plan) return; const p=c.plan;
   $("#moEmpty").hidden=true; $("#moDoc").hidden=false;
   document.querySelectorAll("[data-mtab]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mtab===motorTab)));
-  $("#moSec").hidden=motorTab!=="sec"; $("#moPag").hidden=motorTab!=="pag"; $("#moExtra").hidden=motorTab!=="extra";
+  $("#moSec").hidden=motorTab!=="sec"; $("#moPag").hidden=motorTab!=="pag"; $("#moExtra").hidden=motorTab!=="extra"; $("#moIlu").hidden=motorTab!=="ilu";
+  $("#moBoc").disabled=!c.extra; $("#moVchips").innerHTML=versionChips(c); renderQA(); if(motorTab==="ilu") renderIlus();
   const d=p.datos||{}, al=p.alineacion;
-  $("#moSec").innerHTML=`<header class="dh"><small>Secuencia didáctica</small><h2>${esc(p.efemeride||c.efe)}</h2><span>${esc([p.fecha,p.nivel||c.nivel,c.req&&c.req.grado,c.req&&c.req.jur].filter(Boolean).join(" · "))}</span></header>
+  $("#moSec").innerHTML=`<header class="dh"><small>Secuencia didáctica</small><h2>${esc(p.efemeride||c.efe)}</h2><span>${esc([p.fecha,p.nivel||c.nivel,c.req&&c.req.grado,c.req&&c.req.jur].filter(Boolean).join(" · "))}</span>${c.modelos&&c.modelos.length?`<div class="modelos">Tomó como modelo: ${esc(c.modelos.join(" y "))}</div>`:""}</header>
     <div class="meta-grid"><div><b>Área principal</b>${esc(d.areaPrincipal||"—")}</div><div><b>Áreas integradas</b>${esc((d.areasIntegradas||[]).join(", ")||"—")}</div><div><b>Destinatarios</b>${esc(d.destinatarios||p.nivel||"—")}</div><div><b>Duración</b>${esc(d.duracion||((p.clases||[]).length+" clases"))}</div></div>
     <h3>Fundamentación</h3>${(p.fundamentacion||[]).map(x=>`<p>${esc(x)}</p>`).join("")}
     <h3>Propósitos</h3>${ulist(p.propositos)}
@@ -2798,7 +2862,7 @@ function renderMotorDoc(){
   const ex=c.extra;
   $("#moPag").innerHTML=!ex?`<p class="muted">${motorBusy?"Escribiendo las páginas…":"Todavía no hay páginas para este material."}</p>`:`<header class="dh"><small>Cuadernillo · ${(ex.paginas||[]).length} páginas</small><h2>${esc(p.titulo||c.titulo)}</h2><span>Contenido listo para diagramar en CorelDRAW</span></header>
     <div class="pages">${(ex.paginas||[]).map((g,gi)=>`<div class="pg"><div class="ph"><span class="pn">${esc(g.n)}</span><div style="flex:1;min-width:0"><span>${esc(g.seccion||"")}</span><b>${esc(g.titulo||"")}</b></div>${fbHtml("p"+g.n)}</div>${fbRow("p"+g.n)}
-      <div class="pb">${g.consigna?`<p class="cons">${esc(g.consigna)}</p>`:""}${g.contenido?`<div class="cont">${esc(g.contenido)}</div>`:""}${g.ilustracion?`<p class="ilu">🎨 ${esc(g.ilustracion)}</p>`:""}${g.diagramacion?`<p class="dia">📐 ${esc(g.diagramacion)}</p>`:""}${g.juego&&GAME_TIPOS[g.juego.tipo]?`<button type="button" class="btn small primary gbtn" data-game="${gi}">🧩 Armar ${esc(GAME_TIPOS[g.juego.tipo].toLowerCase())} para Corel</button>`:""}${g.solucion?`<details class="sol"><summary>Solución</summary><p>${esc(g.solucion)}</p></details>`:""}</div></div>`).join("")}</div>`;
+      <div class="pb">${g.consigna?`<p class="cons">${esc(g.consigna)}</p>`:""}${g.contenido?`<div class="cont">${markLong(g.contenido,c.nivel)}</div>`:""}${(()=>{ const L=/Portada|Secuencia/i.test(g.seccion||"")?null:legib([g.consigna,g.contenido].join("\n"),c.nivel); return L?`<div class="lect">Lectura: <span class="b ${L.ok?"ok":"no"}">${L.ok?"adecuada":"difícil"} para ${esc(L.lim.n)}</span><span class="muted">índice ${L.fh}</span>${L.ok?"":`<button type="button" class="linkish" data-simp="${gi}">Simplificar</button>`}</div>`:""; })()}${g.ilustracion?`<p class="ilu">🎨 ${esc(g.ilustracion)}</p>`:""}${g.diagramacion?`<p class="dia">📐 ${esc(g.diagramacion)}</p>`:""}${g.juego&&GAME_TIPOS[g.juego.tipo]?`<button type="button" class="btn small primary gbtn" data-game="${gi}">🧩 Armar ${esc(GAME_TIPOS[g.juego.tipo].toLowerCase())} para Corel</button>`:""}${g.solucion?`<details class="sol"><summary>Solución</summary><p>${esc(g.solucion)}</p></details>`:""}</div></div>`).join("")}</div>`;
   const v=ex&&ex.venta;
   $("#moExtra").innerHTML=`<header class="dh"><small>Venta y extras</small><h2>${esc((v&&v.nombre)||p.titulo||c.titulo)}</h2></header>
     ${v?`<h3>Descripción corta</h3><p>${esc(v.descripcionCorta||"")}</p><h3>¿Qué incluye?</h3>${ulist(v.incluye)}<h3>Texto para la web</h3><div class="cont" style="white-space:pre-wrap;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px">${esc(v.textoWeb||"")}</div><div class="actions"><button class="btn small" type="button" id="moCopyWeb">Copiar texto de la web</button></div>`:`<p class="muted">No pediste texto de venta para este material.</p>`}
@@ -2820,6 +2884,7 @@ function motorText(){
   if(p.cierreSugerido) add("\nCIERRE SUGERIDO\n"+p.cierreSugerido);
   add("\nDOCENTE: ____________   GRADO: ____________   CICLO LECTIVO: ____________");
   if(c.extra&&c.extra.paginas){ add("\n\n==========\nPÁGINAS DEL CUADERNILLO\n=========="); c.extra.paginas.forEach(g=>{ add(`\nPÁGINA ${g.n} · ${g.seccion||""} · ${g.titulo||""}`); if(g.consigna) add("Consigna: "+g.consigna); if(g.contenido) add(g.contenido); if(g.ilustracion) add("Ilustración: "+g.ilustracion); if(g.diagramacion) add("Diagramación: "+g.diagramacion); if(g.solucion) add("Solución: "+g.solucion); }); }
+  if(c.ilus) { add("\n\n==========\nINDICACIONES DE ILUSTRACIÓN\n=========="); add(ilusText(c.ilus)); }
   const v=c.extra&&c.extra.venta; if(v){ add("\n\n==========\nTEXTO DE VENTA\n=========="); add(v.textoWeb||""); }
   return L.join("\n");
 }
@@ -2855,6 +2920,7 @@ function docxXml(){
   if(c.extra&&c.extra.paginas){ b+=brk+par("CUADERNILLO",{b:true,sz:20,color:"EF7F22",center:true,after:40})+H("CONTENIDO PÁGINA POR PÁGINA",1);
     c.extra.paginas.forEach(g=>{ b+=par(`PÁGINA ${g.n} · ${(g.seccion||"").toUpperCase()}`,{b:true,sz:18,color:"8A95AA",before:240,after:20})+par(g.titulo||"",{b:true,sz:26,color:"0B8BD6",after:60});
       if(g.consigna) b+=par(g.consigna,{b:true}); if(g.contenido) b+=par(g.contenido,{after:80}); if(g.ilustracion) b+=par("Ilustración: "+g.ilustracion,{i:true,color:"E0731A"}); if(g.diagramacion) b+=par("Diagramación: "+g.diagramacion,{i:true,color:"2F8A80"}); if(g.solucion) b+=par("Solución: "+g.solucion,{sz:20,color:"5F6B82"}); }); }
+  if(c.ilus){ b+=brk+H("INDICACIONES DE ILUSTRACIÓN",1)+par("Estilo: "+(c.ilus.estilo||""),{i:true})+(c.ilus.personajes||[]).map(x=>par(x.nombre+": "+x.descripcion)).join("")+(c.ilus.paginas||[]).map(x=>par(`PÁGINA ${x.n} · ${x.titulo||""}`,{b:true,before:160})+par("A color: "+(x.color||""))+(x.lineas?par("Para pintar: "+x.lineas):"")).join(""); }
   const v=c.extra&&c.extra.venta; if(v){ b+=brk+H("TEXTO DE VENTA",1)+par(v.nombre||"",{b:true})+par(v.descripcionCorta||"")+B(v.incluye,"")+par(v.textoWeb||"",{before:120}); }
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${b}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="708" w:footer="708" w:gutter="0"/></w:sectPr></w:body></w:document>`;
 }
@@ -2867,6 +2933,252 @@ $("#moDocx").addEventListener("click",async e=>{ if(!motorCur) return; const btn
     const name=`Secuencia - ${(motorCur.plan.efemeride||motorCur.efe).replace(/[\\/:*?"<>|]/g,"")} - ${(motorCur.nivel||"").replace(/[\\/:*?"<>|–]/g,"").replace(/\s+/g," ").trim()}.docx`;
     const ok=await saveFile(name,blob); btn.textContent=ok?"Descargado ✓":o; setTimeout(()=>btn.textContent=o,2000);
   }catch(err){ btn.textContent=o; motorProgress(false,err.message||"No se pudo crear el archivo de Word."); } });
+
+// ---------- MOTOR 2: biblioteca de ejemplos, fichas, control de calidad, lectura, boceto, ilustraciones, versiones ----------
+const normTxt=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+function pickEjemplos(r){
+  const q=" "+normTxt([r.efe,r.ideas,r.fecha].join(" "))+" ", nk=nivelKey(r.nivel);
+  const sc=MOTOR_BIBLIO.map(b=>{ let s=0; b.tags.forEach(t=>{ if(q.includes(" "+t)||q.includes(t+" ")) s+=3; });
+    if(nivelKey(b.nivel)===nk) s+=2;
+    if(/cuento|literatura|lectura|libro|poesia|autor/.test(q)&&(b.tipo==="cuento"||b.tipo==="lectura")) s+=3;
+    if(/natural|ambiente|planeta|agua|animal|arbol|clima/.test(q)&&b.tipo==="ambiente") s+=3;
+    if(/salud|alimenta|higiene|cuerpo|deporte/.test(q)&&b.tipo==="salud") s+=3;
+    if(/memoria|malvinas|veterano|derechos/.test(q)&&b.tipo==="memoria") s+=3;
+    if(/simbolo|bandera|escudo|himno|escarapela/.test(q)&&b.tipo==="simbolo") s+=3;
+    if(/natalicio|fallecimiento|paso a la inmortalidad|general|procer|heroe/.test(q)&&b.tipo==="procer") s+=3;
+    if(nk==="sc"&&b.id==="guemes2") s+=1; if(nk!=="sc"&&b.id==="guemes1") s+=1;
+    return {b,s}; }).sort((a,b)=>b.s-a.s);
+  return sc.slice(0,2).map(x=>x.b);
+}
+const bExtracto=b=>b.id==="guemes1"?MOTOR_EJEMPLO:(b.extracto||"");
+function ejemploTexto(r){
+  const L=pickEjemplos(r); let out="EJEMPLOS REALES DEL AUTOR MÁS PARECIDOS A ESTE PEDIDO (seguí su estructura, su tono y el tipo de actividades; no copies el contenido):\n";
+  L.forEach((b,i)=>{ out+=`\n${i+1}) "${b.titulo}" (${b.nivel})\nEstructura: ${b.estructura}\n${b.paginas?"Páginas de su cuadernillo: "+b.paginas+"\n":""}${i===0&&bExtracto(b)?`Fragmento textual de su secuencia:\n"""${bExtracto(b).slice(0,2600)}"""\n`:""}`; });
+  if(!bExtracto(L[0])) out+=`\nMuestra de cómo escribe (Güemes, Primer Ciclo):\n"""${MOTOR_EJEMPLO.slice(0,1800)}"""\n`;
+  return out;
+}
+
+// --- Fichas de datos verificados ---
+let fichas={};
+const fichaId=r=>r.efeKey&&r.efeKey!=="otra"?"f"+r.efeKey:"o-"+normTxt(r.efe).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
+const fichaFor=r=>r&&r.efe?fichas[fichaId(r)]:null;
+function fichaTexto(r){ const f=fichaFor(r); if(!f||!String(f.texto||"").trim()) return "";
+  const lines=String(f.texto).split("\n").map(s=>s.trim()).filter(Boolean).map(s=>"- "+s.replace(/^[-•]\s*/,"")).join("\n");
+  return f.verificada?`\nDATOS HISTÓRICOS VERIFICADOS POR EL AUTOR (usalos tal cual; no agregues fechas, cifras ni nombres que no estén acá; si necesitás otro dato, escribilo seguido de [verificar]):\n${lines}\n`
+    :`\nDATOS DE REFERENCIA (el autor todavía no los verificó: usalos con cuidado y marcá con [verificar] lo que sea dudoso):\n${lines}\n`; }
+function renderFichaLine(){ const box=$("#moFicha"); if(!box) return; const r=motorRequest(); if(!r.efe){ box.innerHTML=""; return; } const f=fichaFor(r);
+  box.innerHTML=`<span class="pill ${f?(f.verificada?"ok":"wait"):"muted"}">${f?(f.verificada?"✓ Ficha de datos verificada":"Ficha de datos sin verificar"):"Sin ficha de datos"}</span><button type="button" class="linkish" id="moFichaBtn">${f?"Ver o editar la ficha":"Crear la ficha"}</button>`;
+  $("#moFichaBtn").addEventListener("click",openFicha); }
+let fichaR=null;
+function openFicha(){ fichaR=motorRequest(); const f=fichaFor(fichaR)||{};
+  $("#fTitle").textContent="Ficha de datos · "+fichaR.efe; $("#fTxt").value=f.texto||""; $("#fOk").checked=!!f.verificada; $("#fNota").textContent=f.nota||""; $("#fNota").hidden=!f.nota; $("#fMsg").textContent=""; $("#fdlg").showModal(); }
+$("#fClose").addEventListener("click",()=>$("#fdlg").close());
+$("#fSave").addEventListener("click",async()=>{ if(!fichaR||!needDb()) return; const prev=fichaFor(fichaR)||{};
+  const d={efe:fichaR.efe,texto:$("#fTxt").value.trim(),verificada:$("#fOk").checked,updated:new Date().toISOString()}; if(prev.nota&&!d.verificada) d.nota=prev.nota;
+  try{ await db.collection("fichas").doc(fichaId(fichaR)).set(d); fichas[fichaId(fichaR)]=d; $("#fMsg").textContent="Guardada."; renderFichaLine(); if(motorCur) renderQA(); }catch{ $("#fMsg").textContent="No se pudo guardar."; } });
+$("#fAI").addEventListener("click",async e=>{ const sf=await getSample(); if(!sf){ $("#fMsg").textContent="Proponer datos funciona en la versión del panel dentro de Claude."; return; } const b=e.currentTarget; b.disabled=true; $("#fMsg").textContent="Buscando los datos clave…";
+  try{ const res=await sf.json(`Sos un docente e historiador argentino riguroso. Armá la ficha de datos clave para trabajar "${fichaR.efe}"${fichaR.fecha?` (${fichaR.fecha})`:""} en la escuela primaria argentina: fechas, lugares, protagonistas, qué pasó, por qué se recuerda, datos curiosos confirmados y, si corresponde, la norma que establece la fecha. Entre 8 y 14 datos, cada uno en una oración corta y precisa. Indicá tu seguridad en cada uno. No incluyas nada de lo que no estés seguro sin marcarlo con seguridad "baja".\nRespondé SOLO JSON: {"datos":[{"dato":"","seguridad":"alta|media|baja"}]}`,{cache:false,modelTier:"complex"});
+    const L=(res&&res.datos)||[]; if(!L.length) throw {code:"invalid_json"};
+    const cur=$("#fTxt").value.trim(); $("#fTxt").value=(cur?cur+"\n":"")+L.map(x=>x.dato+(x.seguridad==="alta"?"":" [verificar]")).join("\n"); $("#fOk").checked=false;
+    $("#fMsg").textContent="Revisá cada dato (sobre todo los que dicen [verificar]) antes de marcar la ficha como verificada."; }
+  catch(err){ $("#fMsg").textContent=sampleErr(err); } finally{ b.disabled=false; } });
+
+// --- Lectura por nivel ---
+const LECT={ini:{w:8,fh:75,n:"inicial"},pc:{w:12,fh:70,n:"primer ciclo"},sc:{w:20,fh:60,n:"segundo ciclo"},sec:{w:28,fh:50,n:"secundaria"}};
+const syl=w=>Math.max(1,(normTxt(w).match(/[aeiouy]+/g)||[]).length);
+function sentences(t){ return String(t||"").split(/(?<=[.!?…])\s+|\n+/).map(s=>s.trim()).filter(s=>s&&/[a-záéíóúñü]{2}/i.test(s)&&!/[–·→|]|_{2,}|^\W*[A-ZÁÉÍÓÚÑÜ]{2,}\s*[:=]/.test(s)&&s.split(/\s+/).length>=4); }
+function legib(t,nivel){ const k=nivelKey(nivel), S=sentences(String(t||"").replace(/_{2,}/g," ")); const words=S.flatMap(s=>s.split(/\s+/).filter(w=>/[a-záéíóúñü]/i.test(w)));
+  if(words.length<20) return null; const P=words.reduce((a,w)=>a+syl(w),0)*100/words.length, F=S.length*100/words.length; const fh=Math.round(206.84-0.6*P-1.02*F);
+  const largas=S.filter(s=>s.split(/\s+/).length>LECT[k].w); return {fh,largas,ok:largas.length?(largas.length<=1&&fh>=LECT[k].fh):fh>=LECT[k].fh-10,lim:LECT[k]}; }
+function markLong(t,nivel){ const k=nivelKey(nivel), lim=LECT[k].w; return String(t||"").split("\n").map(line=>line.split(/(?<=[.!?…])\s+/).map(s=>s.split(/\s+/).filter(Boolean).length>lim&&/[a-záéíóúñü]{3}/i.test(s)&&!/[–·→|]|_{2,}/.test(s)?`<mark title="Oración larga para ${LECT[k].n}">${esc(s)}</mark>`:esc(s)).join(" ")).join("\n"); }
+
+// --- Control de calidad ---
+const VOS_TU=/^(completa|une|pinta|recorta|escribe|busca|encuentra|observa|lee|ordena|dibuja|marca|rodea|encierra|descubre|responde|ayuda|colorea|arma|pega|elige|relaciona|subraya|copia|piensa|mira|escucha|cuenta|resuelve|investiga|imagina|crea|juega|une|traza|sigue|lee|identifica|explica|justifica)$/i;
+const STOP=new Set("para con los las del una uno unos unas que por como sobre entre cada este esta estos estas sus clase actividad actividades cuadernillo pagina paginas".split(" "));
+const toks=s=>normTxt(s).split(/[^a-zñ]+/).filter(w=>w.length>3&&!STOP.has(w));
+const GAME_RX=/SOPA DE LETRAS|CRUCIGRAMA|LABERINTO|C[ÓO]DIGO SECRETO|MENSAJE SECRETO|ORDEN(AR|Á) LAS LETRAS|LETRAS DESORDENADAS|ANAGRAMA/i;
+function qualityCheck(c){
+  const p=c.plan||{}, pg=(c.extra&&c.extra.paginas)||[], r=c.req||{}, k=nivelKey(c.nivel), I=[]; const add=(lvl,txt,where)=>I.push({lvl,txt,where});
+  (p.clases||[]).forEach(cl=>{ const miss=["inicio","desarrollo","cierre"].filter(m=>!(cl[m]&&cl[m].length)); if(miss.length) add("err",`La clase ${cl.numero} no tiene ${miss.join(", ")}.`,"c"+cl.numero);
+    if((k==="pc"||k==="ini")&&!(cl.preguntas&&cl.preguntas.length)) add("warn",`La clase ${cl.numero} no tiene preguntas disparadoras.`,"c"+cl.numero); });
+  if(pg.length){
+    if(r.pags&&pg.length!==r.pags) add("warn",`Pediste ${r.pags} páginas y hay ${pg.length}.`);
+    const pgT=pg.map(g=>new Set(toks([g.titulo,g.seccion,g.consigna].join(" "))));
+    (p.clases||[]).forEach(cl=>(cl.actividades||[]).forEach(a=>{ const t=toks(a); if(t.length&&!pgT.some(S=>t.some(w=>S.has(w)))) add("warn",`La actividad “${a}” (clase ${cl.numero}) no tiene una página en el cuadernillo.`,"c"+cl.numero); }));
+    const lim={ini:12,pc:16,sc:26,sec:36}[k], minus=[], dif=[];
+    pg.forEach(g=>{ const where="p"+g.n, cons=String(g.consigna||"");
+      const tu=cons.split(/[.;:!]\s*|\s+y\s+|,\s*/i).map(x=>x.trim().split(/\s+/)[0]||"").find(w=>VOS_TU.test(w)&&normTxt(w)===w.toLowerCase()); if(tu) add("err",`Página ${g.n}: la consigna dice “${tu}”; en tus materiales va con voseo (Completá, Escribí, Uní…).`,where);
+      if(cons.split(/\s+/).filter(Boolean).length>lim) add("warn",`Página ${g.n}: la consigna es larga para ${LECT[k].n} (${cons.split(/\s+/).length} palabras; ideal hasta ${lim}).`,where);
+      if((k==="pc"||k==="ini")&&!/Portada|Secuencia/i.test(g.seccion||"")){ const txt=cons+" "+(g.contenido||"").replace(/Versi[oó]n accesible:.*$/ims,""); const lo=(txt.match(/[a-záéíóúñü]/g)||[]).length, up=(txt.match(/[A-ZÁÉÍÓÚÑÜ]/g)||[]).length; if(lo+up>15&&lo/(lo+up)>.35) minus.push(g.n); }
+      if(GAME_RX.test(g.titulo||"")&&!g.juego) add("warn",`Página ${g.n} (${g.titulo}): falta la grilla generable (pedile al motor que agregue el campo de juego).`,where);
+      if(g.juego&&GAME_TIPOS[g.juego.tipo]){ try{ buildGame(g.juego,c.nivel,1); }catch(e){ add("err",`Página ${g.n}: el juego no se puede armar (${e.message}).`,where); } }
+      if(/Comprensi|Juego|Escritura/i.test(g.seccion||"")&&!/dibuj|pint|recort|arm[aá]/i.test(cons+" "+(g.titulo||""))&&!String(g.solucion||"").trim()) add("warn",`Página ${g.n}: no tiene las respuestas (van invertidas al pie).`,where);
+      if(!/Portada|Secuencia/i.test(g.seccion||"")){ const L=legib([g.consigna,g.contenido].join("\n"),c.nivel); if(L&&!L.ok) dif.push(g.n); } });
+    if(minus.length) add("warn",`En ${LECT[k].n} tus páginas van en IMPRENTA MAYÚSCULA y ${minus.length===1?"la página":"las páginas"} ${minus.join(", ")} tienen minúsculas (el boceto las pasa solo a mayúscula).`);
+    if(dif.length) add("warn",`Lectura difícil para ${LECT[k].n} en ${dif.length===1?"la página":"las páginas"} ${dif.join(", ")}: tienen oraciones largas o palabras complicadas (están resaltadas; usá “Simplificar”).`);
+  }
+  const all=JSON.stringify({p,pg}); const nv=(all.match(/\[verificar\]/gi)||[]).length; if(nv) add("warn",`Hay ${nv} dato${nv>1?"s":""} marcado${nv>1?"s":""} con [verificar].`);
+  const f=fichaFor(r);
+  if(!f) add("warn","No hay ficha de datos para esta efeméride: cargala para que el motor use solo datos verificados.");
+  else { const ft=normTxt(f.texto); const yrs=[...new Set(all.match(/\b1[5-9]\d\d\b|\b20[0-2]\d\b/g)||[])].filter(y=>!ft.includes(y));
+    const dates=[...new Set((all.match(/\b\d{1,2} de (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\b/gi)||[]).map(normTxt))].filter(d=>!ft.includes(d));
+    if(yrs.length||dates.length) add(f.verificada?"err":"warn",`Fechas que no están en la ficha${f.verificada?" verificada":""}: ${[...yrs,...dates].slice(0,10).join(", ")}.`);
+    if(!f.verificada) add("warn","La ficha de datos todavía no está marcada como verificada."); }
+  const prev=motorHist.filter(h=>h.id!==c.id&&h.efe===c.efe&&h.nivel===c.nivel&&h.extra&&h.extra.paginas);
+  if(prev.length&&pg.length){ const T=new Set(prev.flatMap(h=>h.extra.paginas.map(g=>normTxt(g.titulo)))); const rep=pg.filter(g=>T.has(normTxt(g.titulo))).map(g=>g.titulo); if(rep.length>3) add("warn",`Repite ${rep.length} páginas de otro material de esta fecha y nivel: ${rep.slice(0,4).join(", ")}…`); }
+  (c.revision&&c.revision.items||[]).forEach(x=>add(x.nivel==="error"?"err":"warn",`${x.donde?x.donde+": ":""}${x.problema}${x.sugerencia?` → ${x.sugerencia}`:""}`,"claude"));
+  return I;
+}
+function renderQA(){ const c=motorCur, box=$("#moQA"); if(!c||!c.plan){ box.hidden=true; return; } box.hidden=false;
+  const I=qualityCheck(c), e=I.filter(x=>x.lvl==="err").length, w=I.filter(x=>x.lvl==="warn").length; const st=e?"bad":w>4?"mid":"good";
+  box.className="qa "+st;
+  box.innerHTML=`<details${box.dataset.open?" open":""}><summary><span class="qdot"></span><b>Control de calidad</b><span class="muted">${e?`${e} a corregir · `:""}${w?`${w} para revisar`:"todo en orden"}${c.revision?" · revisado por Claude":""}</span></summary>
+    ${I.length?`<ul class="qlist">${I.map(x=>`<li class="${x.lvl}">${x.lvl==="err"?"🔴":"🟡"} ${esc(x.txt)}</li>`).join("")}</ul>`:`<p class="muted">Pasó todos los controles: voseo, mayúsculas, largo de consignas, cobertura de actividades, juegos, respuestas, lectura y datos.</p>`}
+    <div class="actions"><button class="btn small" type="button" id="moQAdeep">Revisión profunda con Claude</button>${I.length?`<button class="btn small primary" type="button" id="moQAfix">Arreglar lo marcado</button>`:""}<span class="muted" id="moQAmsg"></span></div></details>`;
+  box.querySelector("details").addEventListener("toggle",ev=>{ box.dataset.open=ev.target.open?"1":""; });
+  $("#moQAdeep").addEventListener("click",deepReview); const fx=$("#moQAfix"); if(fx) fx.addEventListener("click",()=>applyAdjust("Corregí estos problemas detectados por el control de calidad, sin cambiar lo que está bien:\n"+I.map(x=>"- "+x.txt).join("\n")));
+}
+async function deepReview(){ const c=motorCur; const sf=await getSample(); if(!sf){ $("#moQAmsg").textContent="Funciona en la versión del panel dentro de Claude."; return; } if(motorBusy) return;
+  motorBusy=true; $("#moQAmsg").textContent="Claude está revisando el material…";
+  try{ const res=await sf.json(`Sos un revisor pedagógico exigente de Cofre Didáctico. Revisá este material (${c.nivel}) y encontrá SOLO problemas concretos: errores históricos o conceptuales, datos dudosos, consignas confusas o ambiguas, actividades que no corresponden al nivel, respuestas incorrectas en las soluciones, incoherencias entre la secuencia y las páginas, faltas de ortografía, falta de voseo, y desajustes con su estilo.
+${fichaTexto(c.req||{})}
+SU ESTILO:
+${motorPerfil().slice(0,3000)}
+
+PLAN: ${JSON.stringify(c.plan)}
+PÁGINAS: ${JSON.stringify((c.extra&&c.extra.paginas)||[])}
+
+Respondé SOLO JSON: {"items":[{"nivel":"error|aviso","donde":"Clase 2 / Página 7","problema":"","sugerencia":""}]} (máximo 15, lo más importante primero; lista vacía si está todo bien).`,{cache:false,modelTier:"complex"});
+    c.revision={at:new Date().toISOString(),items:(res&&res.items)||[]}; await saveMotor(); $("#moQA").dataset.open="1"; renderQA();
+    $("#moQAmsg").textContent=c.revision.items.length?"":"Claude no encontró problemas."; }
+  catch(e){ $("#moQAmsg").textContent=sampleErr(e); } finally{ motorBusy=false; } }
+
+// Simplificar una página difícil
+async function simplifyPage(i,btn){ const c=motorCur, g=c.extra.paginas[i]; const sf=await getSample(); if(!sf){ motorProgress(false,"Funciona en la versión del panel dentro de Claude."); return; } if(motorBusy) return;
+  motorBusy=true; btn.disabled=true; btn.textContent="Simplificando…";
+  try{ const res=await sf.json(`Reescribí esta página de un cuadernillo de Cofre Didáctico para que sea fácil de leer en ${c.nivel}: oraciones de hasta ${LECT[nivelKey(c.nivel)].w} palabras, palabras conocidas, consigna corta con voseo, ${/Inicial|Primer/i.test(c.nivel)?"todo en IMPRENTA MAYÚSCULA, ":""}misma actividad, mismos datos y misma estructura (renglones, opciones, banco de palabras). Ajustá la solución si cambia algo.
+Página: ${JSON.stringify(g)}
+Respondé SOLO JSON con la página completa, misma forma.`,{cache:false,modelTier:"complex"});
+    if(!res||!res.titulo) throw {code:"invalid_json"}; c.extra.paginas[i]={...g,...res,n:g.n}; await saveMotor(); renderMotorDoc(); }
+  catch(e){ motorProgress(false,sampleErr(e)); btn.disabled=false; btn.textContent="Simplificar"; } finally{ motorBusy=false; } }
+
+// --- Boceto de páginas para Corel ---
+let bocCfg={font:"Arial Black",color:"#1d2fd8",logo:true}; try{ Object.assign(bocCfg,JSON.parse(localStorage.getItem("cofre-boceto")||"{}")); }catch{}
+let mctx=null; function tw(s,size,bold,font){ mctx=mctx||document.createElement("canvas").getContext("2d"); mctx.font=`${bold?"bold ":""}${size*10}px ${font||"Arial"}`; return mctx.measureText(String(s)).width/10; }
+function wrapW(s,size,maxW,bold,font){ const out=[]; String(s||"").split("\n").forEach(par=>{ let line=""; par.split(/\s+/).filter(Boolean).forEach(w=>{ const t=line?line+" "+w:w; if(tw(t,size,bold,font)>maxW&&line){ out.push(line); line=w; } else line=t; }); out.push(line); }); return out; }
+function flower(x,y){ let s=""; for(let i=0;i<5;i++){ const a=i*2*Math.PI/5; s+=`<circle cx="${r2(x+1.5*Math.cos(a))}" cy="${r2(y+1.5*Math.sin(a))}" r="1.15" fill="${i%2?"#ff7a1a":"#e8432e"}"/>`; } return s+`<circle cx="${r2(x)}" cy="${r2(y)}" r="0.9" fill="#ffd23f"/>`; }
+function consignaSVG(t,x,y,maxW){ const size=3.9, U=String(t||"").toUpperCase(); const lines=wrapW(U,size,maxW,true); let s=flower(x,y-1.2), yy=y;
+  lines.forEach(l=>{ s+=`<text x="${r2(x+4.5)}" y="${r2(yy)}" font-family="Arial" font-size="${size}" fill="#000">${l.split(" ").map(w=>/[ÁÉÍ][!.,]?$/.test(w)&&w.length>3?`<tspan font-weight="bold">${SX(w)}</tspan>`:SX(w)).join(" ")}</text>`; yy+=size*1.35; });
+  return {s,h:yy-y}; }
+function svgInner(svg){ const m=svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"[^>]*>([\s\S]*)<\/svg>/); return m?{w:+m[1],h:+m[2],body:m[3]}:null; }
+function bocetoSVG(g,c){
+  const cfg=bocCfg, W=210, H=297, logo=cfg.logo?(document.querySelector(".nav-brand img")||{}).src:"", sec=String(g.seccion||""), k=nivelKey(c.nivel); let s="";
+  s+=`<g id="plantilla"><rect x="3" y="3" width="204" height="291" fill="#fff" stroke="#000" stroke-width="0.5"/>`;
+  if(logo) s+=`<image href="${logo}" x="8" y="7" width="20" height="16" preserveAspectRatio="xMidYMid meet"/>`;
+  s+=`<circle cx="193" cy="15" r="8" fill="none" stroke="#999" stroke-width="0.35" stroke-dasharray="1.2 1"/>${gT(193,16,"ÍCONO",2.2,{fill:"#999"})}`;
+  s+=`<text x="204.5" y="150" font-family="Arial" font-weight="bold" font-size="3.4" text-anchor="middle" transform="rotate(-90 204.5 150)">COFRE DIDÁCTICO</text>`;
+  if(logo) s+=`<image href="${logo}" x="80" y="281" width="10" height="9" preserveAspectRatio="xMidYMid meet"/>`;
+  s+=gT(logo?92:105,288,"COFRE DIDÁCTICO",4,{b:true,a:logo?"start":"middle"})+`</g>\n`;
+  if(/Portada/i.test(sec)){ const p=c.plan||{}; let nom=String(p.efemeride||g.titulo||""), fe=String(p.fecha||""); const mm=nom.match(/^\s*(\d{1,2}\s+de\s+[a-záéíóú]+)\s*[–\-:·]\s*/i); if(mm){ fe=fe&&!/\d{1,2}\/\d/.test(fe)?fe:mm[1]; nom=nom.slice(mm[0].length); } if(/^\d{1,2}\/\d{1,2}/.test(fe)) fe="";
+    const tl=wrapW(nom.toUpperCase(),16,180,true,cfg.font).slice(0,3);
+    s+=`<g id="titulo">${gT(105,45,fe.toUpperCase(),9,{b:true,fill:"#e8432e"})}${tl.map((l,i)=>`<text x="105" y="${r2(66+i*17)}" font-family="${SX(cfg.font)}, Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e8432e">${SX(l)}</text>`).join("")}</g>`;
+    s+=`<g id="ilustracion"><rect x="35" y="${r2(80+tl.length*17)}" width="140" height="${r2(270-(80+tl.length*17))}" rx="4" fill="none" stroke="#999" stroke-width="0.4" stroke-dasharray="2 1.4"/>${wrapW("ILUSTRACIÓN: "+(g.ilustracion||"protagonista"),3.2,120).slice(0,4).map((l,i)=>gT(105,r2(190+i*4.6),l,3.2,{fill:"#888"})).join("")}</g>`;
+    return svgDoc(W,H,s); }
+  const tl=wrapW(String(g.titulo||"").toUpperCase(),10,150,true,cfg.font).slice(0,2);
+  s+=`<g id="titulo">${tl.map((l,i)=>`<text x="105" y="${r2(20+i*11)}" font-family="${SX(cfg.font)}, Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="${SX(cfg.color)}">${SX(l)}</text>`).join("")}</g>\n`;
+  let y=20+(tl.length-1)*11+9;
+  if(g.consigna){ const cs=consignaSVG(g.consigna,12,y,178); s+=`<g id="consigna">${cs.s}</g>\n`; y+=cs.h+3; }
+  const hasSol=String(g.solucion||"").trim()&&!/Secuencia|Infograf/i.test(sec), bottom=hasSol?258:276, x0=12, bw=186;
+  let act=""; let used=false;
+  if(g.juego&&GAME_TIPOS[g.juego.tipo]){ try{ const o=buildGame(g.juego,c.nivel,7), inn=svgInner(o.act); const avail=bottom-y-6; const sc=Math.min(1,avail/inn.h, (bw-8)/inn.w);
+      act+=`<rect x="${x0}" y="${r2(y)}" width="${bw}" height="${r2(Math.min(avail,inn.h*sc)+6)}" rx="5" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="2 1.2"/>`;
+      act+=`<g transform="translate(${r2(105-inn.w*sc/2)} ${r2(y+3)}) scale(${r2(sc)})">${inn.body}</g>`; used=true; y+=Math.min(avail,inn.h*sc)+9; }catch{} }
+  if(!used){ const lines=String(g.contenido||"").split("\n").map(l=>l.trim()).filter(l=>l&&!/^Versi[oó]n accesible/i.test(l)).map(l=>k==="pc"||k==="ini"?l.toUpperCase():l);
+    if(/Infograf/i.test(sec)){ const pal=["#e3f1ff","#fff1db","#e6f7ec","#fde7f0","#efe9ff","#fff8d6"]; const cols=2, cw=(bw-6)/cols; let yy=y, col=0, rowH=0, idx=0;
+      lines.forEach(l=>{ const tx=l.replace(/^[•\-]\s*/,""); const wl=wrapW(tx,3.4,cw-8); const h=wl.length*4.6+6; if(yy+h>bottom){ return; }
+        const bx=x0+col*(cw+6); act+=`<rect x="${r2(bx)}" y="${r2(yy)}" width="${r2(cw)}" height="${r2(h)}" rx="3" fill="${pal[idx++%pal.length]}"/>`+wl.map((w,i)=>gT(bx+4,yy+6.5+i*4.6,w,3.4,{a:"start",b:i===0&&/[:?]$/.test(wl[0])})).join("");
+        rowH=Math.max(rowH,h); col++; if(col===cols){ col=0; yy+=rowH+3; rowH=0; } });
+      y=yy+rowH+3; }
+    else { let size=k==="pc"||k==="ini"?5:4.3, wl=[]; const reserve=g.ilustracion?30:0; const iconW=(k==="pc"||k==="ini")?14:0;
+      for(;size>2.6;size-=0.2){ wl=lines.map(l=>wrapW(l.replace(/^[•\-]\s*/,""),size,bw-14-iconW)); const tot=wl.reduce((a,x)=>a+x.length*size*1.4+size*1.1,0); if(y+tot+10<bottom-reserve||size<=2.8) break; }
+      const boxTop=y; let yy=y+6+size;
+      wl.forEach((wls,i)=>{ const start=yy; act+=`<circle cx="${x0+5}" cy="${r2(yy-size*0.35)}" r="1.1" fill="#7ac143"/>`; wls.forEach(w=>{ act+=gT(x0+8,yy,w,size,{a:"start"}); yy+=size*1.4; });
+        if(iconW&&!/^(BANCO|PALABRAS|C[ÓO]DIGO|RESPUESTA)/i.test(lines[i])) act+=`<rect x="${r2(x0+bw-iconW-2)}" y="${r2(start-size-1)}" width="${iconW-3}" height="${r2(Math.max(size*1.4*wls.length,9))}" rx="1.5" fill="none" stroke="#bbb" stroke-width="0.3" stroke-dasharray="1 1"/>`;
+        yy+=size*1.1; });
+      act=`<rect x="${x0}" y="${r2(boxTop)}" width="${bw}" height="${r2(yy-boxTop)}" rx="5" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="2 1.2"/>`+act; y=yy+5; } }
+  s+=`<g id="actividad">${act}</g>\n`;
+  if(g.ilustracion&&bottom-y>28){ const h=bottom-y-2; s+=`<g id="ilustracion"><rect x="${x0}" y="${r2(y)}" width="${bw}" height="${r2(h)}" rx="4" fill="none" stroke="#e0731a" stroke-width="0.35" stroke-dasharray="2 1.4"/>${wrapW("ILUSTRACIÓN: "+g.ilustracion,3,bw-20).slice(0,4).map((l,i)=>gT(105,r2(y+h/2-4+i*4.2),l,3,{fill:"#c26a1d"})).join("")}</g>\n`; }
+  if(hasSol){ const st=wrapW("RESPUESTAS: "+String(g.solucion).replace(/\n+/g," · "),2.6,170).slice(0,3); const hh=st.length*3.4+4, yb=262;
+    s+=`<g id="respuestas"><rect x="20" y="${yb}" width="170" height="${r2(hh)}" rx="3" fill="none" stroke="#000" stroke-width="0.35"/><g transform="rotate(180 105 ${r2(yb+hh/2)})">${st.map((l,i)=>gT(23,r2(yb+4.2+i*3.4),l,2.6,{a:"start",b:i===0}).replace(/^/,"")).join("")}</g></g>\n`; }
+  return svgDoc(W,H,s);
+}
+let bocI=0;
+function openBoceto(){ if(!motorCur||!motorCur.extra) return; $("#bFont").value=bocCfg.font; $("#bColor").value=bocCfg.color; $("#bLogo").checked=bocCfg.logo;
+  const pg=motorCur.extra.paginas; $("#bSel").innerHTML=pg.map((g,i)=>`<option value="${i}">${esc(g.n)} · ${esc(g.titulo||g.seccion||"")}</option>`).join(""); bocI=Math.min(bocI,pg.length-1); renderBoceto(); $("#bdlg").showModal(); }
+function renderBoceto(){ const pg=motorCur.extra.paginas; $("#bSel").value=String(bocI); try{ $("#bPrev").innerHTML=bocetoSVG(pg[bocI],motorCur); $("#bMsg").textContent=""; }catch(e){ $("#bPrev").innerHTML=""; $("#bMsg").textContent="No se pudo dibujar esta página."; } }
+function bocSaveCfg(){ bocCfg={font:$("#bFont").value.trim()||"Arial Black",color:$("#bColor").value,logo:$("#bLogo").checked}; try{ localStorage.setItem("cofre-boceto",JSON.stringify(bocCfg)); }catch{} renderBoceto(); }
+["#bFont","#bColor","#bLogo"].forEach(id=>$(id).addEventListener("change",bocSaveCfg));
+$("#bSel").addEventListener("change",()=>{ bocI=+$("#bSel").value; renderBoceto(); });
+$("#bPrevBtn").addEventListener("click",()=>{ if(bocI>0){ bocI--; renderBoceto(); } });
+$("#bNextBtn").addEventListener("click",()=>{ if(bocI<motorCur.extra.paginas.length-1){ bocI++; renderBoceto(); } });
+$("#bClose").addEventListener("click",()=>$("#bdlg").close());
+const bocName=g=>`${String(g.n).padStart(2,"0")} - ${String(g.titulo||g.seccion||"Pagina").replace(/[\\/:*?"<>|¡!¿?]/g,"").replace(/\s+/g," ").trim().slice(0,60)}.svg`;
+$("#bOne").addEventListener("click",async e=>{ const g=motorCur.extra.paginas[bocI], b=e.currentTarget, o=b.textContent; try{ const ok=await saveFile(bocName(g),new Blob([bocetoSVG(g,motorCur)],{type:"image/svg+xml"}),"image/svg+xml"); b.textContent=ok?"Descargado ✓":o; setTimeout(()=>b.textContent=o,1800); }catch(err){ $("#bMsg").textContent=err.message; } });
+$("#bAll").addEventListener("click",async e=>{ const b=e.currentTarget, o=b.textContent; b.textContent="Armando…";
+  try{ const JSZip=await loadJSZip(), z=new JSZip(), c=motorCur; c.extra.paginas.forEach(g=>z.file(bocName(g),bocetoSVG(g,c)));
+    c.extra.paginas.forEach(g=>{ if(g.juego&&GAME_TIPOS[g.juego.tipo]){ try{ const o2=buildGame(g.juego,c.nivel,7); z.file(`Juegos/${String(g.n).padStart(2,"0")} - ${GAME_TIPOS[g.juego.tipo]} - SOLUCIÓN.svg`,o2.sol); }catch{} } });
+    const blob=await z.generateAsync({type:"blob"}); const ok=await saveFile(`Boceto - ${(c.plan.efemeride||c.efe).replace(/[\\/:*?"<>|]/g,"")} - ${(c.nivel||"").replace(/[–\\/:*?"<>|]/g,"").replace(/\s+/g," ").trim()}.zip`,blob,"application/zip"); b.textContent=ok?"Descargado ✓":o; setTimeout(()=>b.textContent=o,2000); }
+  catch(err){ b.textContent=o; $("#bMsg").textContent=err.message||"No se pudo armar el ZIP."; } });
+
+// --- Indicaciones de ilustración ---
+function promptIlus(c){ const pg=((c.extra&&c.extra.paginas)||[]).filter(g=>String(g.ilustracion||"").trim()||/Portada|Infograf|Producci|Cierre/i.test(g.seccion||""));
+  return `Sos director de arte de Cofre Didáctico. Escribí indicaciones (prompts) para generar con inteligencia artificial las ilustraciones del cuadernillo "${c.plan.titulo||c.efe}" (${c.nivel}).
+${MOTOR_ESTILO_ILUS}
+${fichaTexto(c.req||{})}
+Reglas:
+- Primero definí cada personaje que se repite con una descripción fija y detallada (edad, rasgos, peinado, vestimenta de época correcta, colores). Copiala TEXTUAL dentro de cada prompt donde aparezca, para que salga igual en todas las imágenes.
+- Cada prompt es autosuficiente, en español, con: qué se ve, composición, estilo, colores, "fondo blanco", "sin texto ni letras", y el formato (vertical A4, horizontal o cuadrado).
+- Para cada página, "color" es la versión a color y "lineas" la versión para pintar: "dibujo de líneas negras limpias y parejas para colorear, sin sombras ni grises, fondo blanco".
+- Si la página necesita varios íconos pista u objetos sueltos, describilos en una sola imagen tipo planilla de stickers sobre fondo blanco, separados.
+- Vestimenta y objetos históricamente correctos; si algo es dudoso, agregá [verificar].
+Páginas: ${JSON.stringify(pg.map(g=>({n:g.n,seccion:g.seccion,titulo:g.titulo,ilustracion:g.ilustracion,contenido:String(g.contenido||"").slice(0,400)})))}
+Respondé SOLO JSON: {"estilo":"una línea con el estilo común","personajes":[{"nombre":"","descripcion":""}],"paginas":[{"n":1,"titulo":"","color":"","lineas":""}]}`; }
+async function genIlus(btn){ const c=motorCur; const sf=await getSample(); if(!sf){ $("#moIluMsg").textContent="Funciona en la versión del panel dentro de Claude."; return; } if(motorBusy) return;
+  motorBusy=true; btn.disabled=true; $("#moIluMsg").innerHTML=`<span class="gen-progress"><i></i></span> Escribiendo las indicaciones…`;
+  try{ const res=await sf.json(promptIlus(c),{cache:false,modelTier:"complex"}); if(!res||!res.paginas) throw {code:"invalid_json"}; c.ilus=res; await saveMotor(); renderMotorDoc(); }
+  catch(e){ $("#moIluMsg").textContent=sampleErr(e); btn.disabled=false; } finally{ motorBusy=false; } }
+function ilusText(il){ return [`ESTILO: ${il.estilo||""}`,...(il.personajes||[]).map(p=>`PERSONAJE ${p.nombre}: ${p.descripcion}`),...(il.paginas||[]).map(p=>`\nPÁGINA ${p.n} · ${p.titulo||""}\nA color: ${p.color||""}\nPara pintar: ${p.lineas||""}`)].join("\n"); }
+function renderIlus(){ const c=motorCur, il=c.ilus, box=$("#moIlu");
+  if(!c.extra){ box.innerHTML=`<p class="muted">Primero tienen que estar las páginas del cuadernillo.</p>`; return; }
+  if(!il){ box.innerHTML=`<header class="dh"><small>Ilustraciones</small><h2>Indicaciones para tus imágenes</h2><span>Un texto listo para pegar en tu generador de imágenes, por página, en tu estilo y con los personajes siempre iguales</span></header><div class="actions"><button class="btn primary" type="button" id="moIluGo">Generar indicaciones</button><span class="muted" id="moIluMsg"></span></div>`; $("#moIluGo").addEventListener("click",e=>genIlus(e.currentTarget)); return; }
+  box.innerHTML=`<header class="dh"><small>Ilustraciones</small><h2>Indicaciones para tus imágenes</h2><span>${esc(il.estilo||"")}</span></header>
+    <div class="actions"><button class="btn small" type="button" id="moIluAll">Copiar todas</button><button class="btn small ghost" type="button" id="moIluRe">Volver a generar</button><span class="muted" id="moIluMsg"></span></div>
+    ${(il.personajes||[]).length?`<h3>Personajes (siempre con esta descripción)</h3><div class="ilus">${il.personajes.map((p,i)=>`<div class="ilu-c"><b>${esc(p.nombre)}</b><p>${esc(p.descripcion)}</p><button class="btn small ghost" type="button" data-icp="p${i}">Copiar</button></div>`).join("")}</div>`:""}
+    <h3>Por página</h3><div class="ilus">${(il.paginas||[]).map((p,i)=>`<div class="ilu-c"><b>Página ${esc(p.n)} · ${esc(p.titulo||"")}</b><p><span class="tag">A color</span> ${esc(p.color||"")}</p><button class="btn small ghost" type="button" data-icp="c${i}">Copiar a color</button>${p.lineas?`<p><span class="tag">Para pintar</span> ${esc(p.lineas)}</p><button class="btn small ghost" type="button" data-icp="l${i}">Copiar para pintar</button>`:""}</div>`).join("")}</div>`;
+  $("#moIluAll").addEventListener("click",e=>copyText(e.currentTarget,ilusText(il)));
+  $("#moIluRe").addEventListener("click",e=>genIlus(e.currentTarget));
+  box.querySelectorAll("[data-icp]").forEach(b=>b.addEventListener("click",()=>{ const t=b.dataset.icp, i=+t.slice(1); copyText(b,t[0]==="p"?il.personajes[i].descripcion:t[0]==="c"?il.paginas[i].color:il.paginas[i].lineas); })); }
+
+// --- Otras versiones por nivel ---
+const NIVELES=["Nivel Inicial","Primaria – Primer Ciclo","Primaria – Segundo Ciclo","Secundaria"];
+function openVers(){ const c=motorCur; if(!c||!c.plan) return; const have=new Set(motorHist.filter(h=>(h.grupo||h.id)===(c.grupo||c.id)).map(h=>h.nivel)); have.add(c.nivel);
+  $("#vList").innerHTML=NIVELES.filter(n=>n!==c.nivel).map(n=>`<label class="check"><input type="checkbox" value="${esc(n)}"${have.has(n)?" disabled":n!=="Secundaria"?" checked":""}> ${esc(n)}${have.has(n)?' <span class="muted">(ya está)</span>':""}</label>`).join("");
+  $("#vMsg").textContent=""; $("#vdlg").showModal(); }
+$("#vClose").addEventListener("click",()=>$("#vdlg").close());
+$("#vGo").addEventListener("click",async()=>{ const base=motorCur, L=[...document.querySelectorAll("#vList input:checked")].map(i=>i.value); if(!L.length) return; $("#vdlg").close();
+  const sf=await getSample(); if(!sf){ motorProgress(false,"Las versiones se crean en la versión del panel dentro de Claude."); return; }
+  if(!base.id) await saveMotor(); base.grupo=base.grupo||base.id; await saveMotor(); const hechos=[];
+  for(let i=0;i<L.length;i++){ const nv=L[i]; const r={...(base.req||{}),nivel:nv,grado:(GRADOS[nv]||["Todo el ciclo"]).slice(-1)[0],clases:(base.plan.clases||[]).length||5};
+    const ctx=`\nVERSIÓN COORDINADA: ya existe la versión de este material para ${base.nivel}. Hacé la versión para ${nv} con el MISMO hilo (mismos hechos, personajes y valores, títulos de clases paralelos), pero con actividades, consignas, cantidad de texto y producciones adecuadas a ${nv}. No copies las consignas: adaptalas.\nResumen de la versión existente:\n${(base.plan.clases||[]).map(k=>`Clase ${k.numero} "${k.titulo}": ${(k.actividades||[]).join("; ")}`).join("\n")}\nPáginas: ${((base.extra&&base.extra.paginas)||[]).map(g=>g.titulo).join(" · ")}\n`;
+    const ok=await runMotor(r,{ctx,grupo:base.grupo,label:`Versión ${i+1} de ${L.length} · ${nv}`}); if(ok) hechos.push(nv); }
+  motorProgress(false,hechos.length?`Listo: se crearon las versiones de ${hechos.join(", ")}. Están en “Materiales planificados” y arriba podés pasar de una a otra.`:"No se pudieron crear las versiones."); });
+function versionChips(c){ const g=c.grupo; if(!g) return ""; const L=motorHist.filter(h=>(h.grupo||h.id)===g||h.id===g); if(L.length<2) return "";
+  return `<div class="vchips">Versiones: ${NIVELES.map(n=>L.find(h=>h.nivel===n)).filter(Boolean).map(h=>`<button type="button" class="chipb${h.id===c.id?" on":""}" data-vid="${esc(h.id)}">${esc(h.nivel.replace("Primaria – ",""))}</button>`).join("")}</div>`; }
+
+$("#moBoc").addEventListener("click",openBoceto);
+$("#moVers").addEventListener("click",openVers);
+$("#moVchips").addEventListener("click",e=>{ const b=e.target.closest("[data-vid]"); if(!b) return; const h=motorHist.find(x=>x.id===b.dataset.vid); if(h){ motorCur=h; renderMotorDoc(); } });
+$("#moEfe").addEventListener("change",renderFichaLine); $("#moOtra").addEventListener("input",renderFichaLine);
 
 // ---------- JUEGOS LISTOS PARA COREL (SVG editable + solución) ----------
 const GAME_TIPOS={sopa:"Sopa de letras",crucigrama:"Crucigrama",laberinto:"Laberinto",codigo:"Código secreto",anagramas:"Letras desordenadas"};
@@ -3127,6 +3439,7 @@ setStatus("Cargando…");
   db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
   db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("motor").onSnapshot(snap=>{ motorHist=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="motor") renderMotorHist(); },()=>{});
+  db.collection("fichas").onSnapshot(snap=>{ fichas={}; snap.docs.forEach(d=>{ fichas[d.id]=d.data(); }); if(currentView==="motor"){ renderFichaLine(); if(motorCur) renderQA(); } },()=>{});
   db.doc("panel/motorAprendizaje").onSnapshot(s=>{ motorLearn=s.exists?s.data():null; renderLearn(); },()=>{});
   db.doc("panel/motorPerfil").onSnapshot(s=>{ motorPerfilDoc=s.exists?s.data():null; if(currentView==="motor"&&document.activeElement!==$("#moPerfil")){ $("#moPerfil").value=motorPerfil(); $("#moPerfilSave").disabled=true; } },()=>{});
   db.collection("autodm").onSnapshot(snap=>{ autodm=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="mensajes"&&!$("#ads").contains(document.activeElement)) renderAds(); if(currentView==="materiales") renderAudit(); if(currentView==="inicio") renderHoy(); },()=>{});
