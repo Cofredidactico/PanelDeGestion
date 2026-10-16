@@ -499,6 +499,23 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .chipb{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 11px;cursor:pointer;font-size:12.5px}
 .chipb.on{background:color-mix(in srgb,var(--blue) 20%,transparent);border-color:var(--blue);color:var(--ink)}
 .modelos{font-size:12px;color:var(--muted);margin-top:4px}
+.segs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.seg-card{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface-2);display:grid;gap:7px;align-content:start;border-top:3px solid var(--k)}
+.seg-card .sc-h{display:flex;justify-content:space-between;align-items:baseline}
+.seg-card .sc-n{font-family:var(--f-brand);font-size:26px;font-weight:600;color:var(--k)}
+.seg-card .sc-bar{height:6px;border-radius:999px;background:var(--line);overflow:hidden}.seg-card .sc-bar i{display:block;height:100%;background:var(--k)}
+.seg-card p{margin:0;font-size:12.5px}.seg-card .sc-a{font-size:13px}
+.prcfg{display:flex;gap:10px 16px;flex-wrap:wrap;font-size:13px;font-weight:600}
+.prcfg label,.prsug{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.prcfg .u,.prsug .u{display:inline-flex;gap:4px;align-items:center;font-weight:400;color:var(--muted)}
+.prcfg input,.prsug input{width:90px}
+.prsug{margin:14px 0 8px;font-size:13.5px;font-weight:600}.prsug p{flex-basis:100%;font-weight:400;margin:0}
+.promos{display:grid;gap:10px;max-height:620px;overflow:auto}
+.promo{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-2);display:grid;gap:5px;font-size:13px}
+.promo p{margin:0}.pm-h{display:flex;justify-content:space-between;gap:8px}.pm-h b{display:block}
+.pr-res{display:grid;gap:2px;padding:8px 10px;border-radius:9px;background:var(--surface)}
+.pr-res.up b{color:var(--ok)}.pr-res.down b{color:var(--danger)}
+.pmq{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
 .learn{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .learn li{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;border:1px solid var(--line);border-radius:9px;padding:6px 8px;background:var(--surface-2)}
 .learn li span{flex:1;min-width:0}
@@ -723,6 +740,12 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
     </div>
     <div class="tbl-wrap"><table><thead><tr><th>Cliente</th><th>Provincia</th><th class="num">Materiales</th><th class="num">Pedidos</th><th class="num">Gastó</th><th>Última compra</th><th></th></tr></thead><tbody id="freqRows"></tbody></table></div>
   </section>
+  <section class="card" aria-labelledby="segTitle">
+    <div class="sec-h"><h2 id="segTitle">Grupos de clientes</h2><span class="meta" id="segMeta"></span></div>
+    <div class="segs" id="segs"></div>
+    <div id="segList"></div>
+    <p class="muted" style="margin-top:8px">Los mensajes son sugerencias: copialos, ponele el nombre a cada uno y envialos vos. {proxima} ya se completa con la próxima fecha que tiene material.</p>
+  </section>
   <section>
     <div class="sec-h"><h2>Oportunidades de venta cruzada</h2><span class="meta">Clientes que compraron un material y todavía no el que suele acompañarlo</span></div>
     <div class="cross" id="cross"></div>
@@ -753,6 +776,39 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
         </form>
         <div class="glist" id="gList"></div>
       </div>
+    </div>
+  </section>
+  <section class="card" aria-labelledby="prTitle">
+    <div class="sec-h"><h2 id="prTitle">Precio real por material</h2><span class="meta">Cuánto te queda de cada venta después de comisiones, impuestos y gastos fijos</span></div>
+    <div class="prcfg">
+      <label>Comisión Empretienda <span class="u"><input id="pr_empPct" data-prcfg="empPct" class="sel" inputmode="decimal" placeholder="0"> %</span></label>
+      <label>Impuestos sobre ventas <span class="u"><input id="pr_impPct" data-prcfg="impPct" class="sel" inputmode="decimal" placeholder="Ej.: 3"> %</span></label>
+      <label>Monotributo por mes <span class="u">$ <input id="pr_monoMes" data-prcfg="monoMes" class="sel" inputmode="decimal" placeholder="Ej.: 30000"></span></label>
+      <label>Dólar <span class="u">$ <input id="pr_usd" data-prcfg="usd" class="sel" inputmode="decimal" placeholder="Ej.: 1400"></span></label>
+      <label>Peso mexicano <span class="u">$ <input id="pr_mxn" data-prcfg="mxn" class="sel" inputmode="decimal" placeholder="Ej.: 75"></span></label>
+    </div>
+    <p class="muted" id="prInfo" style="margin:8px 0 12px"></p>
+    <div class="tbl-wrap" style="max-height:460px;overflow:auto"><table><thead><tr><th>Material</th><th class="num">Precio</th><th class="num">Mercado Pago</th><th class="num">Empretienda</th><th class="num">Impuestos</th><th class="num">Gastos fijos</th><th class="num">Te queda</th><th class="num" id="prHeadFx" hidden>Exterior</th></tr></thead><tbody id="prRows"></tbody></table></div>
+    <div class="prsug"><label for="pr_metaNet">¿Cuánto querés que te quede por venta?</label><span class="u">$ <input id="pr_metaNet" data-prcfg="metaNet" class="sel" inputmode="decimal" placeholder="Ej.: 4000"></span><p id="prSug"></p></div>
+    <p class="muted" style="font-size:12px">El dólar y el peso mexicano los cargás vos con la cotización del día; el monotributo se reparte entre los materiales que vendés por mes. Los valores son estimados: confirmá los porcentajes con tu contador.</p>
+  </section>
+  <section class="card" aria-labelledby="pmTitle">
+    <div class="sec-h"><h2 id="pmTitle">Promociones</h2><span class="meta">Cada promo comparada con las 4 semanas anteriores</span></div>
+    <div class="grid2" style="align-items:start">
+      <div class="promos" id="promoList" style="min-width:0"></div>
+      <form class="gform" id="pmForm" novalidate style="min-width:0">
+        <div class="field full"><label for="pmName">Nombre</label><input id="pmName" maxlength="80" placeholder="Ej.: Vuelta a clases 2027">
+          <div class="pmq"><button type="button" class="chipb" data-pmq="Vuelta a clases">Vuelta a clases</button><button type="button" class="chipb" data-pmq="Hot Sale">Hot Sale</button><button type="button" class="chipb" data-pmq="Día del Maestro">Día del Maestro</button><button type="button" class="chipb" data-pmq="Cyber Monday">Cyber Monday</button><button type="button" class="chipb" data-pmq="Black Friday">Black Friday</button></div></div>
+        <div class="field"><label for="pmTipo">Tipo</label><select id="pmTipo"><option>Cupón</option><option>Descuento general</option><option>Pack o combo</option><option>2x1</option><option>Envío de regalo</option><option>Otro</option></select></div>
+        <div class="field"><label for="pmCode">Código (opcional)</label><input id="pmCode" maxlength="40" placeholder="VUELTA20"></div>
+        <div class="field"><label for="pmDesc">Descuento %</label><input id="pmDesc" inputmode="decimal" maxlength="5" placeholder="20"></div>
+        <div class="field"><label for="pmFrom">Desde</label><input id="pmFrom" type="date"></div>
+        <div class="field"><label for="pmTo">Hasta</label><input id="pmTo" type="date"></div>
+        <div class="field full"><label for="pmMats">Materiales en promo (opcional, Ctrl para elegir varios)</label><select id="pmMats" multiple size="5"></select></div>
+        <div class="field full"><label for="pmNota">Nota</label><input id="pmNota" maxlength="140" placeholder="Ej.: publicada en historias y por mail"></div>
+        <p class="err full" id="pmErr"></p>
+        <button class="btn primary full" type="submit">Guardar promoción</button>
+      </form>
     </div>
   </section>
 </main>
@@ -1739,7 +1795,7 @@ function renderVentas(){
   const stats=[["Facturado",money(fact),"--c-ventas",`${nf(okO.length)} pedidos aprobados`],["Ticket promedio",money(okO.length?fact/okO.length:0),"--c-sitio","Por pedido"],["Materiales vendidos",nf(units),"--c-trabajo",`${has?D.matList.filter(m=>m.sold).length:0} títulos distintos`],["Clientes con compras",nf(has?D.clients.filter(c=>c._ok).length:0),"--c-metricas",`${has?D.clients.filter(c=>c._ok>1).length:0} compraron más de una vez`]];
   const root=$("#vStats"); root.textContent="";
   stats.forEach(([l,v,k,n])=>{ const el=document.createElement("div"); el.className="kpi"; el.style.setProperty("--k",`var(${k})`); el.innerHTML=`<div class="kpi-l"><i></i><span>${esc(l)}</span></div><div class="kpi-v">${esc(v)}</div><div class="kpi-n">${esc(n)}</div>`; root.appendChild(el); });
-  renderMonthChart(); renderRank(); renderProv(); renderFreq(); renderCross(); renderFin();
+  renderMonthChart(); renderRank(); renderProv(); renderFreq(); renderSegs(); renderCross(); renderFin(); fillPromoMats(); renderPromos();
   countUp($("#vStats"));
 }
 function renderMonthChart(){
@@ -2218,6 +2274,7 @@ function renderFin(){
   countUp(root);
   $("#finRows").innerHTML=rows.length?rows.map(r=>`<tr><td style="text-transform:capitalize;white-space:nowrap">${esc(monthLabel(r.k))}</td><td class="num">${money(r.fact)}</td><td class="num">${r.comm?"−"+money(r.comm):"—"}</td><td class="num">${r.gastos?"−"+money(r.gastos):"—"}</td><td class="num ${r.net<0?"neg":""}" style="font-weight:700">${money(r.net)}</td><td class="num">${r.fact?Math.round(r.net/r.fact*100)+"%":"—"}</td></tr>`).join(""):`<tr><td colspan="6" class="muted">Sin ventas ni gastos todavía.</td></tr>`;
   if(document.activeElement!==$("#mpPct")) $("#mpPct").value=finCfg.mpPct||"";
+  renderPrecio();
   $("#mpSave").disabled=true;
   const gl=$("#gList"); const sorted=[...gastos].sort((a,b)=>String(b.fecha).localeCompare(String(a.fecha)));
   gl.innerHTML=sorted.length?"":`<p class="muted">Todavía no registraste gastos. Sumá publicidad, suscripciones (Metricool, ManyChat, dominio) y otros costos.</p>`;
@@ -2934,6 +2991,94 @@ $("#moDocx").addEventListener("click",async e=>{ if(!motorCur) return; const btn
     const ok=await saveFile(name,blob); btn.textContent=ok?"Descargado ✓":o; setTimeout(()=>btn.textContent=o,2000);
   }catch(err){ btn.textContent=o; motorProgress(false,err.message||"No se pudo crear el archivo de Word."); } });
 
+// ---------- VENTAS 2: grupos de clientes, precio real, promociones ----------
+const SEGS=[
+  {k:"fieles",n:"Muy fieles",c:"--c-ventas",d:"3 o más compras y compraron en los últimos 6 meses",acc:"Cuidalos: agradeceles y dales acceso anticipado o un cupón exclusivo para el próximo lanzamiento.",
+   msg:"¡Hola, {nombre}! 💙 Gracias por confiar siempre en Cofre Didáctico. Por ser parte de la familia, te comparto antes que nadie el material de {proxima}. Si querés, te lo reservo con un descuento especial. ¡Un abrazo grande!"},
+  {k:"frecuentes",n:"Frecuentes",c:"--c-sitio",d:"2 compras en los últimos 6 meses",acc:"Están a un paso de ser fieles: recomendales el material de la próxima fecha o un pack.",
+   msg:"¡Hola, {nombre}! ¿Cómo te fue con los materiales? Para {proxima} ya tengo listo el cuadernillo, con secuencia didáctica y actividades para imprimir. Si querés te paso el link. 😊"},
+  {k:"nuevos",n:"Nuevos",c:"--c-metricas",d:"Primera compra hace menos de 45 días",acc:"Dales la bienvenida, asegurate de que pudieron abrir el PDF y contales qué sigue.",
+   msg:"¡Hola, {nombre}! Bienvenida a Cofre Didáctico 💙 ¿Pudiste abrir bien tu material? Cualquier duda con la contraseña del PDF, escribime. Para {proxima} también tengo propuestas, por si te sirven."},
+  {k:"enfriando",n:"Se están enfriando",c:"--c-trabajo",d:"Una sola compra, hace entre 45 días y 6 meses",acc:"Es el mejor momento para la segunda venta: ofreceles la próxima efeméride.",
+   msg:"¡Hola, {nombre}! Te escribo porque se viene {proxima} y armé un cuadernillo nuevo para trabajarlo en el aula. ¿Querés que te pase la info?"},
+  {k:"dormidos",n:"Dormidos",c:"--c-redes",d:"Última compra hace entre 6 meses y 1 año",acc:"Reactivalos con novedades y un descuento de regreso.",
+   msg:"¡Hola, {nombre}! Hace un tiempo que no nos vemos 😊 Sumé muchos materiales nuevos para este ciclo lectivo. Para {proxima} tengo uno que te puede encantar, y si volvés esta semana te hago un descuento."},
+  {k:"perdidos",n:"Perdidos",c:"--c-proyectos",d:"Sin compras hace más de un año",acc:"Un último intento al empezar el ciclo lectivo, con el catálogo completo.",
+   msg:"¡Hola, {nombre}! Arranca un nuevo ciclo y renové todo el catálogo de Cofre Didáctico, con secuencias y actividades listas para imprimir. Te dejo el link por si te sirve: {link}"}];
+function segOf(c,ref){ if(!c._ok) return null; const last=c.o.find(o=>o.pg==="Finalizado"); const days=last&&last._d?(ref-last._d)/DAY:999;
+  if(days>365) return "perdidos"; if(days>182) return "dormidos";
+  if(c._ok>=3) return "fieles"; if(c._ok===2) return "frecuentes"; return days<=45?"nuevos":"enfriando"; }
+let segOpen="";
+function nextEfeName(){ const u=upcomingEfes(120).find(x=>efeInfo(x.e).rel.length)||upcomingEfes(120)[0]; return u?`${u.e[1]} (${u.d.toLocaleDateString("es-AR",{day:"numeric",month:"long"})})`:"la próxima fecha"; }
+function renderSegs(){ const box=$("#segs"); if(!D||!D.clients.length){ box.innerHTML=`<p class="muted">Cargá las ventas para ver los grupos.</p>`; return; }
+  const ref=D.dataEnd||new Date(), G={}; SEGS.forEach(s=>G[s.k]=[]);
+  D.clients.forEach(c=>{ const k=segOf(c,ref); if(k) G[k].push(c); });
+  const tot=Object.values(G).reduce((a,l)=>a+l.length,0)||1;
+  $("#segMeta").textContent=`${nf(tot)} clientes con compras · calculado al ${fmtD(ref)}`;
+  box.innerHTML=SEGS.map(s=>{ const L=G[s.k], sp=L.reduce((a,c)=>a+c._spent,0);
+    return `<div class="seg-card" style="--k:var(${s.c})"><div class="sc-h"><b>${esc(s.n)}</b><span class="sc-n">${nf(L.length)}</span></div>
+      <div class="sc-bar"><i style="width:${(L.length/tot*100).toFixed(1)}%"></i></div>
+      <p class="muted">${esc(s.d)} · ${(L.length/tot*100).toFixed(0)}% · ${money(sp)}</p><p class="sc-a">${esc(s.acc)}</p>
+      <div class="actions"><button class="btn small" type="button" data-segv="${s.k}"${L.length?"":" disabled"}>${segOpen===s.k?"Ocultar":"Ver lista"}</button><button class="btn small ghost" type="button" data-segm="${s.k}"${L.length?"":" disabled"}>Copiar emails</button><button class="btn small ghost" type="button" data-segt="${s.k}">Copiar mensaje</button></div></div>`; }).join("");
+  const s=SEGS.find(x=>x.k===segOpen), L=s?G[s.k].sort((a,b)=>b._spent-a._spent):[];
+  $("#segList").innerHTML=s&&L.length?`<div class="sec-h" style="margin-top:6px"><h3 style="font-size:14.5px">${esc(s.n)} · ${nf(L.length)}</h3></div><div class="tbl-wrap" style="max-height:420px;overflow:auto"><table><thead><tr><th>Cliente</th><th>Provincia</th><th class="num">Compras</th><th class="num">Gastó</th><th>Última compra</th><th>Último material</th><th></th></tr></thead><tbody>${L.map(c=>{ const lo=c.o.find(o=>o.pg==="Finalizado"); return `<tr><td><div style="font-weight:600">${esc(c.n)}</div><div class="muted">${esc(c.e)}</div></td><td>${esc(c.p||"—")}</td><td class="num">${c._ok}</td><td class="num">${money(c._spent)}</td><td class="nowrap">${fmtD(lo&&lo._d)}</td><td>${esc(lo&&lo.i&&lo.i[0]?lo.i[0][1]:"")}</td><td><button class="linkish" type="button" data-goclient="${esc(c.e||c.n)}">Ver ficha</button></td></tr>`; }).join("")}</tbody></table></div>`:"";
+  box._G=G; }
+$("#segs").addEventListener("click",e=>{ const G=$("#segs")._G||{}; const v=e.target.closest("[data-segv]"), m=e.target.closest("[data-segm]"), t=e.target.closest("[data-segt]");
+  if(v){ segOpen=segOpen===v.dataset.segv?"":v.dataset.segv; renderSegs(); if(segOpen) $("#segList").scrollIntoView({block:"nearest",behavior:"smooth"}); }
+  if(m) copyText(m,(G[m.dataset.segm]||[]).map(c=>c.e).filter(Boolean).join(", "));
+  if(t){ const s=SEGS.find(x=>x.k===t.dataset.segt); copyText(t,s.msg.replace("{proxima}",nextEfeName()).replace("{link}",STORE_URL||"https://cofredidactico.com.ar")); } });
+
+// --- Precio real por material ---
+const numAR=v=>{ const n=parseFloat(String(v??"").replace(/\$|\s/g,"").replace(/\.(?=\d{3}(\D|$))/g,"").replace(",",".")); return isFinite(n)?n:0; };
+function priceStats(){ const ok=D?D.clients.flatMap(c=>c.o.filter(o=>o.pg==="Finalizado")):[]; const mpShare=ok.length?ok.filter(o=>/mercado/i.test(o.m||"")).length/ok.length:1;
+  const ref=D&&D.dataEnd||new Date(), from=new Date(ref-90*DAY); const u90=D?D.items.filter(i=>i.ok&&i.d&&i.d>=from).reduce((a,i)=>a+i.q,0):0;
+  const {rows}=finRows(); const g3=rows.filter(r=>r.k<=monthKey(ref)).slice(0,3); const gastoMes=g3.length?g3.reduce((a,r)=>a+r.gastos,0)/g3.length:0;
+  return {mpShare,unitsMes:u90/3,gastoMes}; }
+function precioReal(price,cfg,st){ const mp=price*st.mpShare*(numAR(cfg.mpPct)/100), emp=price*(numAR(cfg.empPct)/100), imp=price*(numAR(cfg.impPct)/100);
+  const fijo=st.unitsMes>0?(st.gastoMes+numAR(cfg.monoMes))/st.unitsMes:0; const net=price-mp-emp-imp-fijo; return {mp,emp,imp,fijo,net}; }
+function renderPrecio(){ const cfg=finCfg||{}, st=priceStats();
+  ["empPct","impPct","monoMes","usd","mxn","metaNet"].forEach(k=>{ const el=$("#pr_"+k); if(el&&document.activeElement!==el) el.value=cfg[k]||""; });
+  $("#prInfo").textContent=`${Math.round(st.mpShare*100)}% de tus ventas se cobran por Mercado Pago (comisión ${cfg.mpPct||"sin cargar"}%, se carga en “Ganancia real”). Gastos fijos: ${money(st.gastoMes+numAR(cfg.monoMes))} por mes repartidos en ${nf(Math.round(st.unitsMes))} materiales vendidos por mes.`;
+  const L=D?D.matList.filter(m=>(m.doc.estado||"Activo")!=="Inactivo"&&(numAR(m.doc.precio)||m.price)).map(m=>({m,price:numAR(m.doc.precio)||Math.round(m.price)})):[];
+  L.sort((a,b)=>b.m.sold-a.m.sold);
+  const usd=numAR(cfg.usd), mxn=numAR(cfg.mxn);
+  $("#prRows").innerHTML=L.length?L.map(({m,price})=>{ const r=precioReal(price,cfg,st); const pc=r.net/price*100;
+    return `<tr><td><div style="font-weight:600">${esc(m.name)}</div><div class="muted">${nf(m.sold)} vendidos</div></td><td class="num">${money(price)}</td><td class="num">${r.mp?"−"+money(r.mp):"—"}</td><td class="num">${r.emp?"−"+money(r.emp):"—"}</td><td class="num">${r.imp?"−"+money(r.imp):"—"}</td><td class="num">${r.fijo?"−"+money(r.fijo):"—"}</td><td class="num ${r.net<0?"neg":""}" style="font-weight:700">${money(r.net)}<div class="muted">${Math.round(pc)}%</div></td>${usd||mxn?`<td class="num nowrap">${usd?"US$ "+(price/usd).toFixed(2):""}${usd&&mxn?"<br>":""}${mxn?"MX$ "+Math.round(price/mxn*1).toLocaleString("es-AR"):""}</td>`:""}</tr>`; }).join(""):`<tr><td colspan="8" class="muted">Cargá el precio de tus materiales en la pestaña Materiales.</td></tr>`;
+  $("#prHeadFx").hidden=!(usd||mxn);
+  // precio sugerido
+  const meta=numAR(cfg.metaNet); const box=$("#prSug");
+  if(meta>0){ const k=1-st.mpShare*numAR(cfg.mpPct)/100-numAR(cfg.empPct)/100-numAR(cfg.impPct)/100; const fijo=st.unitsMes>0?(st.gastoMes+numAR(cfg.monoMes))/st.unitsMes:0; const p=k>0?(meta+fijo)/k:0; const nice=Math.ceil(p/100)*100;
+    box.innerHTML=k>0?`Para quedarte con <b>${money(meta)}</b> por venta, el precio tiene que ser al menos <b>${money(p)}</b>. Redondeado: <b>${money(nice)}</b>${usd?` · US$ ${(nice/usd).toFixed(2)}`:""}${mxn?` · MX$ ${Math.round(nice/mxn).toLocaleString("es-AR")}`:""}.`:"Revisá los porcentajes: suman más del 100%."; }
+  else box.textContent="Escribí cuánto querés que te quede por venta y te digo a qué precio vender.";
+}
+document.querySelectorAll("[data-prcfg]").forEach(el=>el.addEventListener("change",async()=>{ if(!needDb()) return; const k=el.dataset.prcfg; const v=el.value.trim();
+  finCfg={...finCfg,[k]:v}; renderPrecio(); try{ await db.doc("panel/finanzas").set(finCfg); }catch{ setStatus("No se pudo guardar.",true); } }));
+
+// --- Promociones con resultados ---
+let promos=[];
+function promoResult(p){ if(!D||!p.desde||!p.hasta) return null; const a=new Date(p.desde+"T00:00"), b=new Date(p.hasta+"T23:59:59"); const days=Math.max(1,Math.round((b-a)/DAY));
+  const base0=new Date(a-28*DAY); const mats=new Set(p.mats||[]);
+  const sel=i=>i.ok&&i.d&&(!mats.size||mats.has(i.k));
+  const win=(f,t)=>{ const its=D.items.filter(i=>sel(i)&&i.d>=f&&i.d<=t); const orders=new Set(its.map(i=>i.o.id)); return {rev:its.reduce((s,i)=>s+i.rev,0),units:its.reduce((s,i)=>s+i.q,0),orders:orders.size}; };
+  const P=win(a,b), B=win(base0,new Date(a-1)); const pd=x=>x/days, bd=x=>x/28;
+  const after=D.dataEnd&&D.dataEnd<b?"parcial":""; const pc=(x,y)=>y>0?Math.round((x/y-1)*100):null;
+  return {P,B,days,revUp:pc(pd(P.rev),bd(B.rev)),ordUp:pc(pd(P.orders),bd(B.orders)),extra:pd(P.rev)*days-bd(B.rev)*days,after,noData:D.dataEnd&&D.dataEnd<a}; }
+function renderPromos(){ const box=$("#promoList"); const L=[...promos].sort((a,b)=>String(b.desde).localeCompare(String(a.desde)));
+  if(!L.length){ box.innerHTML=`<p class="muted">Todavía no registraste promociones. Anotá cada cupón o descuento con sus fechas y el panel compara lo que vendiste durante la promo contra las 4 semanas anteriores.</p>`; return; }
+  box.innerHTML=L.map(p=>{ const r=promoResult(p); let res="";
+    if(!r||r.noData) res=`<p class="muted">Todavía no hay ventas cargadas de esas fechas.</p>`;
+    else { const up=r.revUp; res=`<div class="pr-res ${up==null?"":up>=0?"up":"down"}"><b>${up==null?"Sin ventas antes para comparar":(up>=0?"+":"")+up+"% de facturación por día"}</b><span>${nf(r.P.orders)} pedidos · ${money(r.P.rev)} en ${r.days} día${r.days>1?"s":""}${r.ordUp!=null?` · pedidos por día ${(r.ordUp>=0?"+":"")+r.ordUp}%`:""}</span><span class="muted">${r.extra>0?`Unos ${money(r.extra)} más que lo habitual`:r.extra<0?`Unos ${money(-r.extra)} menos que lo habitual`:""}${r.after?" · resultado parcial (faltan ventas por cargar)":""}</span></div>`; }
+    const names=(p.mats||[]).map(k=>(D&&D.matList.find(m=>m.k===k)||{name:k}).name);
+    return `<div class="promo"><div class="pm-h"><div><b>${esc(p.nombre)}</b><span class="muted">${esc([p.tipo,p.codigo?`código ${p.codigo}`:"",p.desc?p.desc+"% off":""].filter(Boolean).join(" · "))}</span></div><button class="iconbtn" type="button" data-pdel="${esc(p.id)}" aria-label="Eliminar promoción" title="Eliminar">✕</button></div>
+      <p class="muted">${fmtD(new Date(p.desde+"T00:00"))} al ${fmtD(new Date(p.hasta+"T00:00"))} · ${names.length?esc(names.join(", ")):"todos los materiales"}</p>${res}${p.nota?`<p class="muted">${esc(p.nota)}</p>`:""}</div>`; }).join(""); }
+function fillPromoMats(){ const s=$("#pmMats"); if(!s||!D) return; const cur=new Set([...s.selectedOptions].map(o=>o.value)); s.innerHTML=D.matList.filter(m=>m.sold||m.doc.precio).sort((a,b)=>a.name.localeCompare(b.name)).map(m=>`<option value="${esc(m.k)}"${cur.has(m.k)?" selected":""}>${esc(m.name)}</option>`).join(""); }
+document.querySelectorAll("[data-pmq]").forEach(b=>b.addEventListener("click",()=>{ $("#pmName").value=b.dataset.pmq; $("#pmName").focus(); }));
+$("#pmForm").addEventListener("submit",async e=>{ e.preventDefault(); if(!needDb()) return; const d={nombre:$("#pmName").value.trim(),tipo:$("#pmTipo").value,codigo:$("#pmCode").value.trim(),desc:$("#pmDesc").value.trim(),desde:$("#pmFrom").value,hasta:$("#pmTo").value,mats:[...$("#pmMats").selectedOptions].map(o=>o.value),nota:$("#pmNota").value.trim(),creado:new Date().toISOString()};
+  if(!d.nombre||!d.desde||!d.hasta){ $("#pmErr").textContent="Completá el nombre y las fechas."; return; } if(d.hasta<d.desde){ $("#pmErr").textContent="La fecha de fin es anterior al inicio."; return; }
+  $("#pmErr").textContent=""; try{ await db.collection("promos").add(d); $("#pmForm").reset(); }catch{ $("#pmErr").textContent="No se pudo guardar."; } });
+$("#promoList").addEventListener("click",async e=>{ const b=e.target.closest("[data-pdel]"); if(!b) return; if(!b.dataset.sure){ b.dataset.sure="1"; b.style.color="var(--danger)"; b.title="Tocá de nuevo para eliminar"; setTimeout(()=>{ delete b.dataset.sure; b.style.color=""; },2500); return; }
+  try{ await db.collection("promos").doc(b.dataset.pdel).delete(); }catch{ setStatus("No se pudo eliminar.",true); } });
+
 // ---------- MOTOR 2: biblioteca de ejemplos, fichas, control de calidad, lectura, boceto, ilustraciones, versiones ----------
 const normTxt=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
 function pickEjemplos(r){
@@ -3439,6 +3584,7 @@ setStatus("Cargando…");
   db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
   db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("motor").onSnapshot(snap=>{ motorHist=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="motor") renderMotorHist(); },()=>{});
+  db.collection("promos").onSnapshot(snap=>{ promos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderPromos(); },()=>{});
   db.collection("fichas").onSnapshot(snap=>{ fichas={}; snap.docs.forEach(d=>{ fichas[d.id]=d.data(); }); if(currentView==="motor"){ renderFichaLine(); if(motorCur) renderQA(); } },()=>{});
   db.doc("panel/motorAprendizaje").onSnapshot(s=>{ motorLearn=s.exists?s.data():null; renderLearn(); },()=>{});
   db.doc("panel/motorPerfil").onSnapshot(s=>{ motorPerfilDoc=s.exists?s.data():null; if(currentView==="motor"&&document.activeElement!==$("#moPerfil")){ $("#moPerfil").value=motorPerfil(); $("#moPerfilSave").disabled=true; } },()=>{});
