@@ -409,6 +409,76 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .tcard .lbl{display:flex;align-items:center;gap:7px}
 .tcard .lbl::before{content:"";width:8px;height:8px;border-radius:3px;background:var(--k);box-shadow:0 0 10px var(--k)}
 
+/* Revisión de coherencia */
+.issues{display:grid;gap:8px}
+.issue{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px 12px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line)}
+.issue .sev{width:9px;height:9px;border-radius:50%;margin-top:6px;background:var(--sv)}
+.issue b{display:block;font-size:13.5px}
+.issue span{font-size:12.5px;color:var(--muted)}
+.issue .actions{justify-content:flex-end}
+.audit-ok{display:flex;gap:10px;align-items:center;color:var(--ok);font-weight:600;font-size:13.5px}
+
+/* Mapa del catálogo */
+.cmap{display:grid;grid-template-columns:170px repeat(3,minmax(180px,1fr));gap:6px;min-width:720px}
+.cmap .ch{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px 8px}
+.cmap .rh{font-weight:700;font-size:13.5px;padding:10px 8px;display:flex;align-items:center;gap:8px}
+.cmap .rh i{width:9px;height:9px;border-radius:3px;background:var(--c);flex:none}
+.cell{border-radius:10px;padding:8px;min-height:74px;border:1px solid var(--line);background:color-mix(in srgb,var(--c-ventas) calc(var(--h) * 1%),var(--surface-2));display:flex;flex-wrap:wrap;gap:4px;align-content:flex-start}
+.cell.gap{background:repeating-linear-gradient(135deg,transparent 0 8px,color-mix(in srgb,var(--orange) 10%,transparent) 8px 16px),var(--surface-2);border-style:dashed;border-color:color-mix(in srgb,var(--orange) 45%,var(--line));align-items:center;justify-content:center;color:var(--orange);font-size:12.5px;font-weight:600}
+.cell .mt{font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--solid);border:1px solid var(--line);cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell .mt:hover{border-color:var(--blue)}
+.cell .cnt{width:100%;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* Línea de tiempo del año */
+.yline{display:grid;grid-template-columns:repeat(11,minmax(118px,1fr));gap:6px;min-width:1300px;position:relative}
+.ym{border:1px solid var(--line);border-radius:12px;background:var(--surface-2);padding:8px;display:flex;flex-direction:column;gap:6px;min-width:0;position:relative}
+.ym.now{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange) inset}
+.ym .mh{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;text-transform:capitalize;font-size:13px}
+.ym .mh span{font-size:11px;color:var(--muted);font-weight:600;text-transform:none}
+.ym .sb{height:58px;display:flex;align-items:flex-end;border-bottom:1px solid var(--line)}
+.ym .sb i{display:block;width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--c-ventas),color-mix(in srgb,var(--c-ventas) 40%,transparent));transform-origin:bottom;animation:grow .8s cubic-bezier(.2,.8,.2,1) both}
+.ym .ev2{display:flex;gap:6px;align-items:flex-start;font-size:11.5px;line-height:1.3;cursor:pointer;border:0;background:none;padding:2px 0;text-align:left;color:var(--ink)}
+.ym .ev2 i{width:8px;height:8px;border-radius:50%;flex:none;margin-top:4px;background:var(--pc)}
+.ym .ev2:hover{color:var(--blue)}
+.ym .ev2 small{display:block;color:var(--faint);font-size:10.5px}
+.ym .today-mark{position:absolute;top:-1px;bottom:-1px;width:2px;background:var(--orange);border-radius:2px;pointer-events:none}
+
+/* Generador */
+.gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.gen-form .full{grid-column:1/-1}
+.gen-form input,.gen-form select{border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--surface-2);width:100%}
+@media (max-width:860px){.gen-form{grid-template-columns:1fr 1fr}.gen-form .field:first-child,.gen-form .field:nth-child(4){grid-column:1/-1}}
+.gen-out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:980px){.gen-out{grid-template-columns:minmax(0,1fr)}}
+.gen-out textarea{min-height:240px}
+.gen-out input{border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--surface-2);font-weight:700}
+
+/* Modo celular */
+.mquick{display:none}
+.fab{display:none}
+@media (max-width:700px){
+  .mquick{display:grid;gap:10px;padding:16px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--blue) 20%,var(--solid)),color-mix(in srgb,var(--orange) 14%,var(--solid)));box-shadow:var(--shadow)}
+  .mquick h2{font-family:var(--f-brand);font-size:20px;font-weight:600}
+  .mquick .search input{font-size:16px;padding:13px 14px 13px 40px;border-radius:12px}
+  .mq-res{display:grid;gap:8px}
+  .mq-c{background:var(--solid);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:6px}
+  .mq-c b{font-size:14.5px}
+  .mq-c .muted{display:block}
+  .mq-b{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding-top:6px}
+  .mq-b span{font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .mq-b .btn{padding:9px 14px;font-size:13.5px}
+  .fab{display:grid;place-items:center;position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;z-index:25;background:linear-gradient(135deg,var(--blue),var(--teal));color:var(--on-navy);box-shadow:0 10px 28px color-mix(in srgb,var(--blue) 45%,transparent)}
+  .fab svg{width:24px;height:24px}
+  .hero{min-height:0;padding:16px 18px;border-radius:18px}
+  .hero h1{font-size:22px}
+  .hero-wrap{padding-block:12px 0}
+  .wrap{gap:18px;padding-block:16px 40px}
+  .kpi-v{font-size:24px}
+  .btn{min-height:40px}
+  dialog{width:100vw;max-width:100vw;margin:auto 0 0 0;border-radius:20px 20px 0 0;max-height:88vh;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .tab{min-height:52px}
+}
+
 /* Animaciones de entrada */
 @keyframes grow{from{transform:scaleY(0)}}
 @keyframes growx{from{transform:scaleX(0)}}
@@ -461,6 +531,11 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 <!-- ============ INICIO ============ -->
 <main class="wrap view" id="view-inicio">
   <p class="banner" id="modeBanner" hidden></p>
+  <section class="mquick" id="mQuick" aria-labelledby="mqTitle">
+    <h2 id="mqTitle">Enviar una contraseña</h2>
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="mqIn" type="search" placeholder="Nombre, email o DNI de la docente" aria-label="Buscar docente" autocomplete="off"></div>
+    <div id="mqRes" class="mq-res"></div>
+  </section>
   <section aria-labelledby="hoyTitle">
     <div class="sec-h"><h2 id="hoyTitle">Hoy</h2><span class="meta" id="hoyMeta"></span></div>
     <div class="today-grid" id="hoy"></div>
@@ -630,6 +705,10 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 <!-- ============ MATERIALES ============ -->
 <main class="wrap view" id="view-materiales" hidden>
   <div class="view-h"><div><h1>Materiales y contraseñas</h1><p class="lead">Cargá la contraseña del PDF de cada material y completá su ficha. La contraseña aparece en la ficha de cada cliente que lo compró con pago aprobado.</p></div></div>
+  <section class="card" id="audit" aria-labelledby="auditTitle">
+    <div class="sec-h" style="margin-bottom:8px"><h2 id="auditTitle">Revisión de coherencia</h2><span class="meta" id="auditMeta"></span></div>
+    <div id="auditList"></div>
+  </section>
   <div class="filters">
     <div class="search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -641,8 +720,13 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
       <option value="set">Con contraseña</option>
       <option value="renew">A renovar</option>
     </select>
-    <div class="seg" role="group" aria-label="Vista de materiales"><button type="button" data-mview="gal" aria-pressed="false">Galería</button><button type="button" data-mview="mat" aria-pressed="true">Tabla</button><button type="button" data-mview="grp" aria-pressed="false">Por tema</button></div>
+    <div class="seg" role="group" aria-label="Vista de materiales"><button type="button" data-mview="gal" aria-pressed="false">Galería</button><button type="button" data-mview="mat" aria-pressed="true">Tabla</button><button type="button" data-mview="grp" aria-pressed="false">Por tema</button><button type="button" data-mview="map" aria-pressed="false">Mapa</button></div>
   </div>
+  <section class="card" id="mMap" hidden aria-labelledby="mapTitle">
+    <div class="sec-h" style="margin-bottom:6px"><h2 id="mapTitle">Mapa del catálogo por ciclo y área</h2><span class="meta">Celdas vacías = huecos para crear · color = unidades vendidas</span></div>
+    <div class="cal-wrap"><div class="cmap" id="cmap"></div></div>
+    <p class="muted" id="mapNote" style="margin-top:10px"></p>
+  </section>
   <div class="meta" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span id="mProg"></span><span class="progress"><i id="mBar" style="width:0"></i></span><span id="mCovers"></span></div>
   <div class="gal" id="mGal" hidden></div>
   <input type="file" id="galCoverIn" accept="image/*" hidden>
@@ -668,6 +752,12 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 <main class="wrap view" id="view-calendario" hidden>
   <div class="view-h"><div><h1>Calendario</h1><p class="lead">Efemérides escolares con tus ventas de cada fecha, y la planificación de publicaciones en Instagram.</p></div>
     <button class="btn primary" type="button" id="newPost">+ Nueva publicación</button></div>
+  <section class="card" aria-labelledby="ylTitle">
+    <div class="sec-h" style="margin-bottom:8px"><h2 id="ylTitle">Año escolar de un vistazo</h2>
+      <div class="legend"><span><i style="--pc:var(--ok)"></i>Material con contraseña</span><span><i style="--pc:var(--star)"></i>Material sin contraseña</span><span><i style="--pc:var(--blue)"></i>En lanzamientos</span><span><i style="--pc:var(--danger)"></i>Sin material</span></div></div>
+    <div class="cal-wrap"><div class="yline" id="yline"></div></div>
+    <p class="muted" style="margin-top:8px">Barras: materiales vendidos en cada mes. Tocá una fecha para ver su detalle.</p>
+  </section>
   <section>
     <div class="sec-h"><h2>Próximas efemérides</h2><span class="meta">Próximos 120 días · con el momento recomendado para promocionar</span></div>
     <div class="efe-list" id="efeList"></div>
@@ -693,6 +783,26 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
   <div class="card"><h3>Datos que se completan solos</h3><p class="sub" style="margin-bottom:8px">Escribilos entre llaves dentro del mensaje.</p>
     <div class="vars"><code>{nombre}</code><code>{material}</code><code>{contraseña}</code><code>{email}</code><code>{pedido}</code><code>{fecha}</code><code>{estado}</code><code>{tienda}</code></div></div>
   <div class="tpls" id="tpls"></div>
+
+  <section class="card" aria-labelledby="genTitle" style="display:grid;gap:12px">
+    <div class="sec-h" style="margin:0"><h2 id="genTitle">Generador de mensajes de venta</h2><span class="meta" id="genMode"></span></div>
+    <div class="gen-form">
+      <div class="field"><label for="genMat">Material</label><select id="genMat"></select></div>
+      <div class="field"><label for="genPrice">Precio en la tienda ($)</label><input id="genPrice" inputmode="numeric" maxlength="10"></div>
+      <div class="field"><label for="genPromo">Precio por transferencia ($)</label><input id="genPromo" inputmode="numeric" maxlength="10" placeholder="Opcional"></div>
+      <div class="field"><label for="genLink">Enlace de la tienda</label><input id="genLink" inputmode="url"></div>
+      <div class="field full"><label for="genExtra">Algo para destacar (opcional)</label><input id="genExtra" maxlength="200" placeholder="Ej.: incluye plataforma interactiva de regalo, ideal para el acto"></div>
+    </div>
+    <div class="actions"><button class="btn primary" type="button" id="genGo">Generar los 3 mensajes</button><span class="muted" id="genMsg"></span></div>
+    <div class="gen-out" id="genOut" hidden>
+      <div class="card tpl"><h3>Mensaje directo (InstantDM)</h3><textarea id="genDm" aria-label="Mensaje directo generado"></textarea>
+        <div class="actions"><button class="btn small" type="button" data-copyfrom="genDm">Copiar</button><button class="btn small" type="button" id="genSaveAd">Guardar como automatización</button></div></div>
+      <div class="card tpl"><h3>Posteo de Instagram</h3><textarea id="genPost" aria-label="Posteo generado"></textarea>
+        <div class="actions"><button class="btn small" type="button" data-copyfrom="genPost">Copiar</button><button class="btn small" type="button" id="genSavePost">Agendar en el calendario</button></div></div>
+      <div class="card tpl"><h3>Mail del newsletter</h3><input id="genSubj" aria-label="Asunto del mail"><textarea id="genMail" aria-label="Mail generado"></textarea>
+        <div class="actions"><button class="btn small" type="button" data-copyfrom="genMail">Copiar</button><button class="btn small" type="button" id="genSaveTpl">Guardar como mensaje prearmado</button></div></div>
+    </div>
+  </section>
 
   <section aria-labelledby="adTitle" style="display:grid;gap:14px;margin-top:10px">
     <div class="view-h"><div><h2 id="adTitle" style="font-family:var(--f-brand);font-size:22px;font-weight:600">Automatizaciones de Instagram</h2>
@@ -743,6 +853,8 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
   </div>
 </div>
+
+<button class="fab" type="button" id="fab" aria-label="Enviar una contraseña"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></button>
 
 <!-- ============ DIÁLOGOS ============ -->
 <dialog id="dlg" aria-labelledby="dlgTitle">
@@ -798,6 +910,7 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
       <div class="field"><label for="mdState">Estado</label><select id="mdState"><option value="Activo">Activo</option><option value="A renovar">A renovar</option><option value="Discontinuado">Discontinuado</option></select></div>
     </div>
     <div class="field"><label for="mdLink">Enlace al archivo (Drive, etc.)</label><input id="mdLink" inputmode="url" placeholder="https://drive.google.com/…"></div>
+    <div class="field"><label for="mdArea">Área (para el mapa del catálogo)</label><select id="mdArea"></select></div>
     <div class="field"><label for="mdNote">Notas</label><textarea id="mdNote" rows="3" maxlength="500" placeholder="Cambios pendientes, versión, ideas…"></textarea></div>
     <p class="err" id="mdErr"></p>
     <div class="dlg-actions">
@@ -977,7 +1090,7 @@ const DEFAULT_TEMPLATES = [
   {id:"t-frecuente", title:"Agradecimiento a cliente frecuente", body:"¡Hola {nombre}! Quería agradecerte por elegir Cofre Didáctico para tus clases 💙\nComo ya llevás varios materiales, te dejo un cupón exclusivo para tu próxima compra: [CUPÓN]\nTienda: {tienda}"}
 ];
 // Automatizaciones de InstantDM (copia inicial para la versión de navegador)
-const DEFAULT_AUTODM = [["sapo", {"titulo": "Los Sueños del Sapo", "palabras": ["Sueños", "Info", "Sueño"], "respuestas": ["¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊🐸💚 ¡Muchas gracias por tu interés en el cuadernillo \"Los Sueños del Sapo\"! 📚✨\n\n✨ Valor PROMOCIONAL por transferencia directa: $6000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente:\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $6500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/los-suenos-del-sapo\n\n❤️ ¡Muchas gracias por confiar en Cofre Didáctico! Espero que este material acompañe a tus estudiantes en el maravilloso mundo de la lectura, la imaginación y el aprendizaje. 📚🐸✨", "activa": true, "orden": 0, "url": "https://app.instantdm.com/manage-post/18006243242959398?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}], ["plataforma-san-martin", {"titulo": "Plataforma Interactiva - José de San Martín", "palabras": ["Plataforma", "Quiero", "Info"], "respuestas": ["¡Hola! Muchas gracias por tu interés en la plataforma, te envié toda la información por Mensaje Directo"], "dm": "¡Hola! 😊🇦🇷 ¡Muchas gracias por tu interés en la Plataforma Interactiva \"José de San Martín\"! ❤️\n\n✨ Valor PROMOCIONAL por transferencia directa: $4000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, envíame el comprobante por este medio y recibirás automáticamente el acceso a la plataforma.\n\n🛒 También podés adquirirla con otros medios de pago desde mi tienda online por *$4300*:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/plataforma-interactiva-jose-de-san-martin\n\n🎁 Si ya adquiriste el Cuadernillo de José de San Martín de Cofre Didáctico, no necesitás comprar esta plataforma. Ya fue incorporada sin costo adicional a la carpeta compartida.", "activa": true, "orden": 1, "url": "https://app.instantdm.com/manage-post/18137665066587900?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}], ["san-martin", {"titulo": "17 de Agosto - José de San Martín (cuadernillo)", "palabras": ["San Martin", "Info", "Quiero"], "respuestas": ["¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por Mensaje Directo.", "Muchas gracias por tu interés, te envié por Mensaje Directo toda la Información ✨"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el cuadernillo del General José de San Martín! ❤️📚\n\n✨ Valor SOLO POR HOY por transferencia directa: $5200\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente el acceso al material.\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $5500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/17-de-agosto-jose-de-san-martin-con-plataforma-interactiva\n\nUn recurso ideal para trabajar la efeméride de una manera dinámica, significativa y divertida en el aula.\n\n❤️ ¡Muchas gracias por confiar y acompañarnos siempre! 📚✨", "activa": true, "orden": 2, "url": "https://app.instantdm.com/manage-post/18100777291943847?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}], ["9-de-julio", {"titulo": "9 de Julio - Día de la Independencia", "palabras": ["Independencia", "Info", "Quiero"], "respuestas": ["¡Hola! ¿Cómo estás? Gracias por comentar, ya te pase la info por MD", "¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por MD 💚", "¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el material del 9 de Julio: Día de la Independencia! 🇦🇷\n\n🎉 Promoción válida hasta las 00:00 hs de hoy:\n💰 Transferencia: $6.800\n\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Enviame el comprobante por este medio y recibirás el material en formato PDF, listo para descargar e imprimir.\n\n🛒 También podés adquirirlo desde la tienda online por $7.000:\nhttps://cofredidactico.empretienda.com.ar/novedades/9-de-julio-dia-de-la-independencia\n\n¡Muchas gracias por acompañar a Cofre Didáctico! ❤️📚", "activa": true, "orden": 3, "url": "https://app.instantdm.com/manage-post/18027037202837036?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026"}]];
+const DEFAULT_AUTODM = [["sapo", {"titulo": "Los Sueños del Sapo", "palabras": ["Sueños", "Info", "Sueño"], "respuestas": ["¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊🐸💚 ¡Muchas gracias por tu interés en el cuadernillo \"Los Sueños del Sapo\"! 📚✨\n\n✨ Valor PROMOCIONAL por transferencia directa: $6000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente:\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $6500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/los-suenos-del-sapo\n\n❤️ ¡Muchas gracias por confiar en Cofre Didáctico! Espero que este material acompañe a tus estudiantes en el maravilloso mundo de la lectura, la imaginación y el aprendizaje. 📚🐸✨", "activa": true, "orden": 0, "url": "https://app.instantdm.com/manage-post/18006243242959398?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "los-suenos-del-sapo"}], ["plataforma-san-martin", {"titulo": "Plataforma Interactiva - José de San Martín", "palabras": ["Plataforma", "Quiero", "Info"], "respuestas": ["¡Hola! Muchas gracias por tu interés en la plataforma, te envié toda la información por Mensaje Directo"], "dm": "¡Hola! 😊🇦🇷 ¡Muchas gracias por tu interés en la Plataforma Interactiva \"José de San Martín\"! ❤️\n\n✨ Valor PROMOCIONAL por transferencia directa: $4000\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, envíame el comprobante por este medio y recibirás automáticamente el acceso a la plataforma.\n\n🛒 También podés adquirirla con otros medios de pago desde mi tienda online por *$4300*:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/plataforma-interactiva-jose-de-san-martin\n\n🎁 Si ya adquiriste el Cuadernillo de José de San Martín de Cofre Didáctico, no necesitás comprar esta plataforma. Ya fue incorporada sin costo adicional a la carpeta compartida.", "activa": true, "orden": 1, "url": "https://app.instantdm.com/manage-post/18137665066587900?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "plataforma-interactiva-jose-de-san-martin"}], ["san-martin", {"titulo": "17 de Agosto - José de San Martín (cuadernillo)", "palabras": ["San Martin", "Info", "Quiero"], "respuestas": ["¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por Mensaje Directo.", "Muchas gracias por tu interés, te envié por Mensaje Directo toda la Información ✨"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el cuadernillo del General José de San Martín! ❤️📚\n\n✨ Valor SOLO POR HOY por transferencia directa: $5200\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Una vez realizado el pago, enviame el comprobante por este medio y recibirás automáticamente el acceso al material.\n\n🛒 También podés adquirirlo con otros medios de pago desde mi tienda online por $5500:\n\nhttps://cofredidactico.empretienda.com.ar/novedades/17-de-agosto-jose-de-san-martin-con-plataforma-interactiva\n\nUn recurso ideal para trabajar la efeméride de una manera dinámica, significativa y divertida en el aula.\n\n❤️ ¡Muchas gracias por confiar y acompañarnos siempre! 📚✨", "activa": true, "orden": 2, "url": "https://app.instantdm.com/manage-post/18100777291943847?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "17-de-agosto-jose-de-san-martin-con-plataforma-interactiva"}], ["9-de-julio", {"titulo": "9 de Julio - Día de la Independencia", "palabras": ["Independencia", "Info", "Quiero"], "respuestas": ["¡Hola! ¿Cómo estás? Gracias por comentar, ya te pase la info por MD", "¿Cómo estás? Gracias por tu interés en el material, ya te envié toda la información por MD 💚", "¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"], "dm": "¡Hola! 😊 ¡Muchas gracias por tu interés en el material del 9 de Julio: Día de la Independencia! 🇦🇷\n\n🎉 Promoción válida hasta las 00:00 hs de hoy:\n💰 Transferencia: $6.800\n\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n📩 Enviame el comprobante por este medio y recibirás el material en formato PDF, listo para descargar e imprimir.\n\n🛒 También podés adquirirlo desde la tienda online por $7.000:\nhttps://cofredidactico.empretienda.com.ar/novedades/9-de-julio-dia-de-la-independencia\n\n¡Muchas gracias por acompañar a Cofre Didáctico! ❤️📚", "activa": true, "orden": 3, "url": "https://app.instantdm.com/manage-post/18027037202837036?post_type=posts&flow_editor=false&platform_type=insta", "actualizado": "2026-10-13T14:45:00Z", "fuente": "Copiado de InstantDM el 13/10/2026", "material": "9-de-julio-dia-de-la-independencia"}]];
 const POST_COLORS = {"Post":"--c-sitio","Historia":"--c-redes","Reel":"--c-metricas"};
 
 // =====================================================================
@@ -1172,8 +1285,10 @@ function renderView(v){
   if(v==="ventas") renderVentas();
   if(v==="clientes") renderClients();
   if(v==="materiales") renderMats();
-  if(v==="calendario"){ renderEfes(); renderCal(); }
-  if(v==="mensajes"){ renderTpls(); renderAds(); }
+  if(v==="calendario"){ renderYear(); renderEfes(); renderCal(); }
+  if(v==="materiales") renderAudit();
+  if(v==="inicio") renderMQ();
+  if(v==="mensajes"){ renderTpls(); renderGen(); renderAds(); }
   if(v==="lanzamientos") renderLanz();
   if(v==="instagram"){ renderIG(); loadIG(false); }
   if(v==="datos") renderDatos();
@@ -1285,6 +1400,8 @@ function renderHoy(){
   const li=[]; if(noPass) li.push(`<li><b>${noPass}</b><span>materiales vendidos sin contraseña</span></li>`);
   if(pend) li.push(`<li><b>${pend}</b><span>pedido${pend>1?"s":""} con pago pendiente</span></li>`);
   if(renew) li.push(`<li><b>${renew}</b><span>material${renew>1?"es":""} a renovar</span></li>`);
+  const hiIss=typeof auditIssues==="function"?auditIssues().filter(i=>i.sev==="high").length:0;
+  if(hiIss) li.push(`<li><b>${hiIss}</b><span>problema${hiIss>1?"s":""} de precios o mensajes (Materiales)</span></li>`);
   const lsoon=lanz.filter(l=>l.estado!=="Publicado"&&l.due&&(new Date(l.due+"T00:00")-t)/DAY<=21);
   if(lsoon.length) li.push(`<li><b>${lsoon.length}</b><span>lanzamiento${lsoon.length>1?"s":""} con fecha en menos de 3 semanas</span></li>`);
   if(firstNote) li.push(`<li><b>Nota</b><span>${esc(firstNote)}</span></li>`);
@@ -1591,7 +1708,8 @@ function renderMats(){
   const q=fold($("#mq").value.trim()), fil=$("#mFilter").value;
   const list=all.filter(x=>(!q||fold(x.name+" "+x.group).includes(q))&&(fil==="all"||(fil==="missing"&&!x.pass)||(fil==="set"&&x.pass)||(fil==="renew"&&x.doc.estado==="A renovar")));
   const tb=$("#mRows"); tb.textContent="";
-  $("#mGal").hidden=mView!=="gal"; $("#mTable").hidden=mView==="gal";
+  $("#mGal").hidden=mView!=="gal"; $("#mTable").hidden=mView==="gal"||mView==="map"; $("#mMap").hidden=mView!=="map";
+  if(mView==="map"){ renderMap(); return; }
   $("#mCovers").textContent=all.length?`· ${all.filter(m=>m.doc.cover).length} con portada`:"";
   if(mView==="gal"){ renderGal(list,q); return; }
   if(mView==="grp"){
@@ -1641,7 +1759,7 @@ function openMat(x){
   $("#mdSub").textContent=x.sold?`${nf(x.sold)} vendidos · ${money(x.rev)} · última venta ${fmtD(x.last)}${x.price?` · precio habitual ${money(x.price)}`:""}`:"Sin ventas registradas todavía.";
   $("#mdPass").value=d.pass||""; $("#mdPrice").value=d.precio||""; $("#mdGroup").value=d.grupo||""; $("#mdGroup").placeholder=autoGroup(x.name);
   $("#mdLevel").value=d.nivel||""; const ef=efeFor(x.name,null); $("#mdEfe").value=d.efe||""; $("#mdEfe").placeholder=ef?ef[0].split("-").reverse().join("/"):"Ej.: 17/08";
-  $("#mdState").value=d.estado||"Activo"; $("#mdLink").value=d.link||""; $("#mdNote").value=d.nota||"";
+  $("#mdState").value=d.estado||"Activo"; $("#mdLink").value=d.link||""; $("#mdNote").value=d.nota||""; $("#mdArea").value=d.area||"";
   coverDraft=undefined; showCoverPreview(d.cover||""); $("#mdCoverMsg").textContent="";
   $("#mdDel").hidden=!x.manual; $("#mdDel").textContent="Quitar material"; $("#mdErr").textContent=""; $("#mdlg").showModal();
 }
@@ -1649,7 +1767,7 @@ $("#mform").addEventListener("submit",async e=>{ e.preventDefault(); const x=mat
   const efe=$("#mdEfe").value.trim(); if(efe&&!/^\d{1,2}\/\d{1,2}$/.test(efe)){ $("#mdErr").textContent="Escribí la fecha como día/mes, por ejemplo 17/08."; return; }
   const link=$("#mdLink").value.trim(); const nl=link?normUrl(link):""; if(link&&!nl){ $("#mdErr").textContent="Revisá el enlace del archivo."; return; }
   const price=$("#mdPrice").value.replace(/[^\d]/g,"");
-  const body={...(matDocs[x.k]||{}),name:x.name,pass:$("#mdPass").value.trim(),precio:price,grupo:$("#mdGroup").value.trim(),nivel:$("#mdLevel").value.trim(),efe,estado:$("#mdState").value,link:nl,nota:$("#mdNote").value.trim(),updated:new Date().toISOString()};
+  const body={...(matDocs[x.k]||{}),name:x.name,pass:$("#mdPass").value.trim(),precio:price,grupo:$("#mdGroup").value.trim(),nivel:$("#mdLevel").value.trim(),efe,estado:$("#mdState").value,link:nl,nota:$("#mdNote").value.trim(),area:$("#mdArea").value,updated:new Date().toISOString()};
   if(coverDraft!==undefined) body.cover=coverDraft;
   $("#mdSave").disabled=true;
   try{ await db.collection("materiales").doc(x.k).set(body); $("#mdlg").close(); }catch{ $("#mdErr").textContent="No se pudo guardar la ficha. Probá de nuevo."; }
@@ -2079,6 +2197,229 @@ $("#newAd").addEventListener("click",async()=>{ if(!needDb()) return;
   try{ await db.collection("autodm").add({titulo:"Nueva automatización",palabras:["Info","Quiero"],respuestas:["¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"],dm:"¡Hola! 😊 ¡Muchas gracias por tu interés en el material!\n\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n\n🛒 Tienda online: "+STORE_URL,activa:false,orden:Date.now(),actualizado:new Date().toISOString(),fuente:"Creada en el panel"}); }
   catch{ setStatus("No se pudo crear la automatización.",true); } });
 
+// ---------- Utilidades de precios y vínculos ----------
+const toNum=s=>{ const n=parseInt(String(s||"").replace(/[^\d]/g,""),10); return isNaN(n)?null:n; };
+function dmPrices(dm){
+  const t=String(dm||""); const out={tienda:null,transfer:null};
+  const ti=t.search(/tienda/i);
+  if(ti>=0){ const m=/\$\s*\*?\s*([\d.]+)/.exec(t.slice(ti,ti+260)); if(m) out.tienda=toNum(m[1]); }
+  const head=ti>=0?t.slice(0,ti):t; const all=[...head.matchAll(/\$\s*\*?\s*([\d.]+)/g)]; if(all.length) out.transfer=toNum(all[0][1]);
+  return out;
+}
+function dmLink(dm){ const m=/https?:\/\/[^\s)]*empretienda[^\s)]*/i.exec(String(dm||"")); return m?m[0]:""; }
+function matForAd(a){
+  if(a.material&&D&&D.mats[a.material]) return D.mats[a.material];
+  if(!D) return null;
+  const stop=new Set(["de","del","la","el","los","las","y","con","dia","cuadernillo","material","-","1","2"]);
+  const tok=s=>fold(s).replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(w=>w&&!stop.has(w));
+  const at=new Set(tok(a.titulo)); const plat=/plataforma/i.test(a.titulo);
+  let best=null,score=0;
+  D.matList.forEach(m=>{ const mt=tok(m.name); if(!mt.length) return; let s=mt.filter(w=>at.has(w)).length/Math.max(mt.length,at.size); if(plat!==/^plataforma/i.test(m.name)) s*=.6; if(s>score){ score=s; best=m; } });
+  return score>=.34?best:null;
+}
+function lastSalePrice(k){
+  if(!D) return null; let best=null;
+  D.items.forEach(i=>{ if(i.k!==k||!i.ok||!i.d||!i.o.i||i.o.i.length!==1||!(i.o.tot>0)) return; if(!best||i.d>best.d) best={price:Math.round(i.o.tot/i.q),d:i.d}; });
+  return best;
+}
+
+// ---------- (3) REVISIÓN DE COHERENCIA ----------
+function auditIssues(){
+  const out=[]; if(!D) return out;
+  const add=(sev,title,detail,label,fn)=>out.push({sev,title,detail,label,fn});
+  const goAd=a=>()=>{ showView("mensajes"); $("#adq").value=a.titulo; renderAds(); setTimeout(()=>{ const el=$("#ads .card"); if(el) el.scrollIntoView({block:"center"}); },80); };
+  autodm.forEach(a=>{
+    const m=matForAd(a); const p=dmPrices(a.dm); const web=m&&toNum(m.doc.precio);
+    if(a.activa!==false&&web&&p.tienda&&web!==p.tienda) add("high",`Precio distinto en “${a.titulo}”`,`El mensaje de InstantDM dice ${money(p.tienda)} en la tienda y tu web dice ${money(web)}.`,"Ver mensaje",goAd(a));
+    if(a.activa!==false&&/(solo por hoy|hasta las 00|v[aá]lid[ao] hasta|[uú]ltimas horas|por tiempo limitado)/i.test(a.dm||"")) add("mid",`Promo con fecha fija en “${a.titulo}”`,`El mensaje promete una urgencia (“${(/(solo por hoy|hasta las 00[^\n]*|v[aá]lid[ao] hasta[^\n]*|[uú]ltimas horas|por tiempo limitado)/i.exec(a.dm)||[""])[0].trim()}”) que se repite a cualquiera que comente, cualquier día.`,"Ver mensaje",goAd(a));
+    if(/recib\w*[^\n]*:\s*\n\s*\n/i.test(a.dm||"")) add("high",`Frase incompleta en “${a.titulo}”`,"Una línea termina en “:” y no dice qué recibe la compradora.","Ver mensaje",goAd(a));
+    if((a.dm||"").length>1000) add("high",`Mensaje demasiado largo en “${a.titulo}”`,`Tiene ${a.dm.length} caracteres; Instagram corta los mensajes de más de 1000.`,"Ver mensaje",goAd(a));
+  });
+  const cutoff=D.dataEnd?new Date(D.dataEnd-120*DAY):null;
+  D.matList.forEach(m=>{
+    const web=toNum(m.doc.precio), ls=lastSalePrice(m.k);
+    if(web&&ls&&cutoff&&ls.d>=cutoff&&Math.abs(ls.price-web)>1&&Math.abs(ls.price-Math.round(web*.9))>1) add("mid",`Precio de Empretienda distinto en “${m.name}”`,`Última venta en la tienda (${fmtD(ls.d)}): ${money(ls.price)}. Tu web: ${money(web)}. Puede ser un precio viejo o un descuento; confirmá cuál está vigente en Empretienda.`,"Abrir ficha",()=>openMat(m));
+    if(/papalabra|interactico|pasapalabras\b/i.test(m.name)) add("low",`Error de tipeo en “${m.name}”`,"Corregí el nombre en Empretienda: así se agrupa bien con el resto y se encuentra en las búsquedas.","Abrir ficha",()=>openMat(m));
+    else if(/\bMartin\b|\bGuemes\b|\bRevolucion\b|\bDia\b|\bPais\b/.test(m.name)) add("low",`Falta una tilde en “${m.name}”`,"En tu web el nombre lleva tilde; en Empretienda no. Unificarlo evita que aparezcan como productos distintos.","Abrir ficha",()=>openMat(m));
+  });
+  const noPass=D.matList.filter(m=>m.sold&&!m.pass&&!/no protegid|sin contrase/i.test(m.doc.nota||""));
+  if(noPass.length) add("low",`${noPass.length} materiales vendidos sin contraseña cargada`,noPass.slice(0,4).map(m=>m.name).join(", ")+(noPass.length>4?"…":""),"Ver lista",()=>{ $("#mFilter").value="missing"; setMView("mat"); });
+  const noCover=D.matList.filter(m=>!m.doc.cover);
+  if(noCover.length) add("low",`${noCover.length} materiales sin portada`,noCover.slice(0,4).map(m=>m.name).join(", ")+(noCover.length>4?"…":""),"Ver galería",()=>setMView("gal"));
+  const rank={high:0,mid:1,low:2}; return out.sort((a,b)=>rank[a.sev]-rank[b.sev]);
+}
+function renderAudit(){
+  const L=auditIssues(); const box=$("#auditList");
+  const hi=L.filter(i=>i.sev==="high").length, mid=L.filter(i=>i.sev==="mid").length;
+  $("#auditMeta").textContent=L.length?`${hi} importantes · ${mid} a revisar · ${L.length-hi-mid} menores`:"";
+  if(!L.length){ box.innerHTML=`<p class="audit-ok">✓ Todo coincide: precios, mensajes y nombres están en orden.</p>`; return; }
+  box.innerHTML=`<div class="issues"></div>`; const ul=box.firstChild;
+  const SV={high:"var(--danger)",mid:"var(--star)",low:"var(--faint)"};
+  L.forEach(i=>{ const el=document.createElement("div"); el.className="issue"; el.style.setProperty("--sv",SV[i.sev]);
+    el.innerHTML=`<i class="sev" aria-hidden="true"></i><div><b></b><span></span></div><div class="actions"><button class="btn small" type="button"></button></div>`;
+    el.querySelector("b").textContent=i.title; el.querySelector("span").textContent=i.detail; const b=el.querySelector("button"); b.textContent=i.label; b.addEventListener("click",i.fn); ul.appendChild(el); });
+}
+
+// ---------- (10) MAPA DEL CATÁLOGO ----------
+const CAT_AREAS=[["patrias","Efemérides patrias","--c-sitio"],["fechas","Otras fechas","--c-proyectos"],["literatura","Literatura y cuentos","--c-redes"],["lengua","Prácticas del lenguaje","--c-trabajo"],["mate","Matemática","--c-metricas"],["interactivo","Plataformas interactivas","--c-ventas"]];
+const CICLOS=[["pri","Primer ciclo"],["seg","Segundo ciclo"],["toda","Toda la primaria"]];
+const PATRIAS=new Set(["05-18","05-25","06-17","06-20","07-09","08-17","04-02","03-24","11-20","02-27","11-10"]);
+function areaOfMat(m){
+  if(m.doc&&m.doc.area) return m.doc.area;
+  const f=fold(m.name);
+  if(/plataforma|juego interactiv/.test(f)) return "interactivo";
+  const e=efeFor(m.name,m.doc); if(e) return PATRIAS.has(e[0])?"patrias":"fechas";
+  if(/sapo|caperucita|cerdito|jengibre|cuento|poema|cancion|cucu|rana/.test(f)) return "literatura";
+  if(/vocal|abecedario|silab|letra|alfabet|lectura|escritura/.test(f)) return "lengua";
+  if(/numer|matem|tabla|grilla|cuenta|suma/.test(f)) return "mate";
+  return "fechas";
+}
+function cicloOf(m){ const n=fold((m.doc&&m.doc.nivel)||""); if(/segundo/.test(n)) return "seg"; if(/primer/.test(n)) return "pri"; return "toda"; }
+function renderMap(){
+  const all=D?D.matList.filter(m=>m.doc.estado!=="Discontinuado"):[]; const grid={};
+  all.forEach(m=>{ const k=areaOfMat(m)+"|"+cicloOf(m); (grid[k]=grid[k]||[]).push(m); });
+  const units=k=>(grid[k]||[]).reduce((s,m)=>s+m.sold,0); const max=Math.max(1,...Object.keys(grid).map(units));
+  const root=$("#cmap"); root.textContent="";
+  root.insertAdjacentHTML("beforeend",`<span></span>`+CICLOS.map(([,l])=>`<span class="ch">${esc(l)}</span>`).join(""));
+  let gaps=[];
+  CAT_AREAS.forEach(([ak,al,c])=>{
+    root.insertAdjacentHTML("beforeend",`<div class="rh" style="--c:var(${c})"><i></i>${esc(al)}</div>`);
+    CICLOS.forEach(([ck,cl])=>{ const k=ak+"|"+ck, L=grid[k]||[]; const cell=document.createElement("div");
+      if(!L.length){ cell.className="cell gap"; cell.textContent="Hueco · crear material"; cell.title=`No tenés materiales de ${al} para ${cl}`; if(ck!=="toda") gaps.push(`${al} (${cl.toLowerCase()})`); }
+      else{ cell.className="cell"; cell.style.setProperty("--h",Math.round(units(k)/max*45));
+        cell.innerHTML=`<span class="cnt">${L.length} material${L.length>1?"es":""} · ${nf(units(k))} vendidos</span>`;
+        L.sort((a,b)=>b.sold-a.sold).forEach(m=>{ const b=document.createElement("button"); b.type="button"; b.className="mt"; b.textContent=m.name; b.title=`${m.name} · ${nf(m.sold)} vendidos`; b.addEventListener("click",()=>openMat(m)); cell.appendChild(b); }); }
+      root.appendChild(cell); });
+  });
+  $("#mapNote").textContent=gaps.length?`Huecos para crear: ${gaps.join(", ")}. Podés cambiar el área de un material desde su ficha.`:"Tenés materiales en todas las combinaciones de área y ciclo.";
+}
+{ const s=$("#mdArea"); s.innerHTML=`<option value="">Automática</option>`+CAT_AREAS.map(([k,l])=>`<option value="${k}">${esc(l)}</option>`).join(""); }
+
+// ---------- (14) AÑO ESCOLAR ----------
+function renderYear(){
+  const root=$("#yline"); if(!root) return; root.textContent="";
+  const byMonth={}; if(D) D.items.forEach(i=>{ if(i.ok&&i.d){ const m=i.d.getMonth()+1; byMonth[m]=(byMonth[m]||0)+i.q; } });
+  const max=Math.max(1,...Object.values(byMonth)); const now=new Date(); const lanzE=new Set(lanz.filter(l=>l.estado!=="Publicado").map(l=>l.efe));
+  for(let mo=2;mo<=12;mo++){
+    const col=document.createElement("div"); col.className="ym"+(now.getMonth()+1===mo?" now":"");
+    const u=byMonth[mo]||0; const name=new Date(2026,mo-1,1).toLocaleDateString("es-AR",{month:"long"});
+    col.innerHTML=`<div class="mh">${esc(name)}<span>${u?nf(u)+" vend.":""}</span></div><div class="sb">${u?`<i style="height:${Math.max(4,u/max*100)}%" title="${nf(u)} materiales vendidos en ${esc(name)}"></i>`:""}</div>`;
+    EFEMERIDES.filter(e=>+e[0].slice(0,2)===mo).forEach(e=>{
+      const inf=efeInfo(e); let pc="--danger", st="Sin material";
+      if(inf.rel.length){ if(inf.rel.some(m=>m.pass)){ pc="--ok"; st=`${inf.rel.length} material${inf.rel.length>1?"es":""}`; } else { pc="--star"; st="Sin contraseña"; } }
+      else if(lanzE.has(e[0])){ pc="--blue"; st="En lanzamientos"; }
+      const b=document.createElement("button"); b.type="button"; b.className="ev2"; b.style.setProperty("--pc",`var(${pc})`);
+      b.innerHTML=`<i></i><span>${esc(e[0].slice(3))} · ${esc(e[1])}<small>${esc(st)}${inf.units?` · ${nf(inf.units)} vendidos`:""}</small></span>`;
+      b.addEventListener("click",()=>{ if(inf.rel.length){ showView("materiales"); setMView("mat"); $("#mq").value=inf.rel[0].group||e[1]; renderMats(); } else if(lanzE.has(e[0])) showView("lanzamientos"); else openLanz(null,e); });
+      col.appendChild(b);
+    });
+    if(now.getMonth()+1===mo){ const dim=new Date(now.getFullYear(),mo,0).getDate(); const mk=document.createElement("span"); mk.className="today-mark"; mk.style.left=`calc(${(now.getDate()/dim*100).toFixed(1)}% - 1px)`; mk.title="Hoy"; col.appendChild(mk); }
+    root.appendChild(col);
+  }
+}
+
+// ---------- (2) GENERADOR DE MENSAJES ----------
+let sampleFn=null, genBusy=false;
+function adForMat(m){ return autodm.find(a=>{ const x=matForAd(a); return x&&x.k===m.k; })||null; }
+function fillGenFields(){
+  const m=D&&D.mats[$("#genMat").value]; if(!m) return;
+  const ad=adForMat(m); const p=ad?dmPrices(ad.dm):{};
+  $("#genPrice").value=m.doc.precio||(m.price?Math.round(m.price):"")||"";
+  $("#genPromo").value=p.transfer||"";
+  $("#genLink").value=(ad&&dmLink(ad.dm))||m.doc.tienda||STORE_URL;
+}
+function renderGen(){
+  const s=$("#genMat"); const cur=s.value; const L=D?[...D.matList].sort((a,b)=>a.name.localeCompare(b.name)):[];
+  s.innerHTML=L.map(m=>`<option value="${esc(m.k)}">${esc(m.name)}</option>`).join("");
+  if(cur&&D&&D.mats[cur]) s.value=cur; else if(L.length&&!s.dataset.init){ s.dataset.init="1"; fillGenFields(); }
+  $("#genMode").textContent=MODE.cloud?"Escrito por Claude con tu estilo":"Versión de navegador: usa una plantilla base";
+}
+$("#genMat").addEventListener("change",fillGenFields);
+function genTemplate(d){
+  const promo=d.promo?`\n\n✨ Valor por transferencia directa: ${money(d.promo)}\n💳 Alias: cofredidactico\n👤 Titular: Rojo Miguel Alejandro\n📩 Enviame el comprobante por este medio y recibirás el material en PDF, listo para descargar e imprimir.`:"";
+  const extra=d.extra?`\n\n⭐ ${d.extra}`:"";
+  return {
+    dm:`¡Hola! 😊 ¡Muchas gracias por tu interés en “${d.name}”! 📚✨${extra}${promo}\n\n🛒 ${d.promo?"También podés adquirirlo":"Podés adquirirlo"} con todos los medios de pago desde mi tienda online por ${money(d.price)}:\n${d.link}\n\n❤️ ¡Gracias por confiar en Cofre Didáctico!`,
+    post:`📚✨ ${d.name.toUpperCase()} ✨📚\n\nUn material pensado para trabajar en el aula de manera dinámica y significativa.${extra}\n\n✏️ Listo para descargar e imprimir\n🖨️ Formato PDF A4\n👩‍🏫 Creado por un docente, probado en el aula\n\n💬 Comentá INFO y te envío todos los detalles por mensaje directo.\n\n#CofreDidáctico #MaterialDidáctico #Docentes #Primaria #RecursosEducativos`,
+    asunto:`Nuevo en Cofre Didáctico: ${d.name}`,
+    mail:`¡Hola!\n\nTe cuento que ya está disponible “${d.name}”, un material listo para imprimir y llevar al aula.${extra}\n\nLo encontrás en la tienda por ${money(d.price)}:\n${d.link}\n\nRecordá que con el cupón COFRE tenés un 10% de descuento.\n\n¡Gracias por acompañar a Cofre Didáctico!\nAlejandro`
+  };
+}
+$("#genGo").addEventListener("click",async()=>{
+  if(genBusy) return; const m=D&&D.mats[$("#genMat").value]; const msg=$("#genMsg");
+  if(!m){ msg.textContent="Elegí un material."; return; }
+  const d={name:m.name,price:toNum($("#genPrice").value),promo:toNum($("#genPromo").value),link:$("#genLink").value.trim()||STORE_URL,extra:$("#genExtra").value.trim(),nivel:m.doc.nivel||"",grupo:m.group};
+  if(!d.price){ msg.textContent="Poné el precio de la tienda."; return; }
+  const show=r=>{ $("#genDm").value=r.dm||""; $("#genPost").value=r.post||""; $("#genSubj").value=r.asunto||""; $("#genMail").value=r.mail||""; $("#genOut").hidden=false; };
+  genBusy=true; $("#genGo").disabled=true;
+  try{
+    if(MODE.cloud&&!sampleFn){ try{ sampleFn=await claude.use("sample"); }catch{ sampleFn=null; } }
+    if(!MODE.cloud||!sampleFn){ show(genTemplate(d)); msg.textContent="Listo (plantilla base). Revisalo antes de usarlo."; return; }
+    msg.textContent="Claude está escribiendo…";
+    const ejemplos=autodm.filter(a=>a.dm).slice(0,2).map((a,i)=>`Ejemplo ${i+1} de mensaje directo real de la marca:\n"""${a.dm}"""`).join("\n\n");
+    const prompt=`Sos el redactor de "Cofre Didáctico", marca argentina de materiales didácticos (cuadernillos PDF para imprimir) creada por un docente, Alejandro. Escribí en español rioplatense (vos), cálido, cercano y profesional, con emojis como en los ejemplos.
+
+${ejemplos}
+
+Datos del material:
+- Nombre: ${d.name}
+- Tema/efeméride: ${d.grupo}
+- Nivel: ${d.nivel||"primaria"}
+- Precio en la tienda online: ${money(d.price)}
+- Precio promocional por transferencia: ${d.promo?money(d.promo)+" (alias: cofredidactico, titular: Rojo Miguel Alejandro; pedir que envíen el comprobante por mensaje)":"no hay, no menciones transferencia"}
+- Enlace de la tienda: ${d.link}
+- Para destacar: ${d.extra||"nada en particular"}
+
+Reglas: usá exactamente esos precios y ese enlace; no inventes contenidos del material que no estén indicados; no uses urgencias con fecha ("solo por hoy", "hasta las 00 hs"); el mensaje directo debe tener menos de 900 caracteres y no cortar frases; el posteo de Instagram termina invitando a comentar INFO y con 5 a 8 hashtags; el mail es para el newsletter de docentes y menciona el cupón COFRE (10% de descuento).
+
+Respondé solo con JSON: {"dm": "...", "post": "...", "asunto": "...", "mail": "..."}`;
+    const r=await sampleFn.json(prompt,{cache:false});
+    if(!r||typeof r!=="object"||!r.dm) throw {code:"invalid_json"};
+    show(r); msg.textContent="Listo. Revisalo y ajustá lo que quieras antes de usarlo.";
+  }catch(e){
+    const code=e&&e.code;
+    show(genTemplate(d));
+    msg.textContent=code==="not_granted"?"No diste permiso para usar Claude desde el panel; te dejé la plantilla base.":code==="rate_limited"?"Claude está ocupado; te dejé la plantilla base. Probá de nuevo en un rato.":"No se pudo generar con Claude; te dejé la plantilla base.";
+  }finally{ genBusy=false; $("#genGo").disabled=false; }
+});
+document.querySelectorAll("[data-copyfrom]").forEach(b=>b.addEventListener("click",()=>copyText(b,$("#"+b.dataset.copyfrom).value)));
+$("#genSaveAd").addEventListener("click",async e=>{ if(!needDb()) return; const m=D.mats[$("#genMat").value]; if(!m) return;
+  const kw=(fold(m.group).split(/\s+/).find(w=>w.length>4)||"Info"); const btn=e.currentTarget;
+  try{ await db.collection("autodm").add({titulo:m.name,material:m.k,palabras:[kw.charAt(0).toUpperCase()+kw.slice(1),"Info","Quiero"],respuestas:["¡Hola! Gracias por tu comentario, te envié toda la información por MD 💚"],dm:$("#genDm").value,activa:false,orden:Date.now(),actualizado:new Date().toISOString(),fuente:"Generado en el panel"}); btn.textContent="Guardada ✓"; }
+  catch{ btn.textContent="No se pudo guardar"; } });
+$("#genSaveTpl").addEventListener("click",async e=>{ if(!needDb()) return; const m=D.mats[$("#genMat").value]; const btn=e.currentTarget;
+  try{ await db.collection("plantillas").doc("c-"+Date.now().toString(36)).set({title:"Newsletter · "+(m?m.name:"material"),body:`Asunto: ${$("#genSubj").value}\n\n${$("#genMail").value}`,order:Date.now()}); btn.textContent="Guardado ✓"; }
+  catch{ btn.textContent="No se pudo guardar"; } });
+$("#genSavePost").addEventListener("click",()=>{ const m=D.mats[$("#genMat").value]; openPost(null); $("#pTitle").value=m?m.name:""; $("#pNote").value=$("#genPost").value; $("#pType").value="Post"; });
+
+// ---------- (13) MODO CELULAR ----------
+function renderMQ(){
+  const box=$("#mqRes"); if(!box) return; const q=fold($("#mqIn").value.trim());
+  if(q.length<2){ box.innerHTML=`<p class="muted">Escribí al menos 2 letras. Vas a ver qué compró y un botón para mandarle la contraseña.</p>`; return; }
+  const L=(D?D.clients:[]).filter(c=>c._idx.includes(q)).sort((a,b)=>(b._last||0)-(a._last||0)).slice(0,6);
+  if(!L.length){ box.innerHTML=`<p class="muted">No aparece nadie con esos datos. Si dice que compró, pedile el comprobante.</p>`; return; }
+  box.textContent="";
+  L.forEach(c=>{ const el=document.createElement("div"); el.className="mq-c";
+    el.innerHTML=`<div><b></b><span class="muted"></span></div>`; el.querySelector("b").textContent=c.n; el.querySelector(".muted").textContent=[c.e,c.d&&("DNI "+c.d)].filter(Boolean).join(" · ");
+    const ok=c.o.filter(o=>o.pg==="Finalizado"); const seen=new Set();
+    ok.forEach(o=>(o.i||[]).forEach(([,mat])=>{ if(seen.has(mat)) return; seen.add(mat);
+      const row=document.createElement("div"); row.className="mq-b"; const has=!!passFor(mat);
+      row.innerHTML=`<span></span><button class="btn ${has?"primary":""}" type="button">${has?"Enviar contraseña":"Sin contraseña"}</button>`;
+      row.querySelector("span").textContent=mat; const b=row.querySelector("button"); if(!has) b.disabled=true; else b.addEventListener("click",()=>openSend(c,o.id,mat,"t-pass"));
+      el.appendChild(row); }));
+    if(!ok.length){ const row=document.createElement("div"); row.className="mq-b"; row.innerHTML=`<span class="muted">${c.o.length?"Sin pagos aprobados":"No tiene compras"}</span><button class="btn" type="button">Mensaje</button>`; row.querySelector("button").addEventListener("click",()=>openSend(c,c.o[0]?c.o[0].id:"","",c.o.length?"t-pendiente":"t-nofigura")); el.appendChild(row); }
+    box.appendChild(el); });
+}
+$("#mqIn").addEventListener("input",renderMQ);
+$("#fab").addEventListener("click",()=>{ showView("inicio"); setTimeout(()=>{ $("#mqIn").focus(); $("#mQuick").scrollIntoView({block:"start"}); },60); });
+(function(){ // deslizar entre secciones
+  const area=document.querySelector(".main-area"); if(!area) return; let x0=null,y0=0,t0=0,ok=true;
+  const ORDER=["inicio","ventas","instagram","clientes","materiales","calendario","lanzamientos","mensajes","datos"];
+  area.addEventListener("touchstart",e=>{ if(e.touches.length!==1){ x0=null; return; } const t=e.target; ok=!t.closest("input,textarea,select,.tbl-wrap,.cal-wrap,.board,.chart,dialog"); x0=e.touches[0].clientX; y0=e.touches[0].clientY; t0=Date.now(); },{passive:true});
+  area.addEventListener("touchend",e=>{ if(x0===null||!ok) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)<80||Math.abs(dy)>45||Date.now()-t0>600) return; const i=ORDER.indexOf(currentView); const n=ORDER[i+(dx<0?1:-1)]; if(n){ showView(n); const tb=document.querySelector(`.tab[data-view="${n}"]`); if(tb) tb.scrollIntoView({inline:"center",block:"nearest"}); } },{passive:true});
+})();
+
 // ---------- Atajo de teclado ----------
 document.addEventListener("keydown",e=>{
   if(e.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)&&!document.querySelector("dialog[open]")){
@@ -2126,7 +2467,7 @@ setStatus("Cargando…");
   db.collection("gastos").onSnapshot(snap=>{ gastos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderFin(); },()=>{});
   db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
   db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
-  db.collection("autodm").onSnapshot(snap=>{ autodm=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="mensajes"&&!$("#ads").contains(document.activeElement)) renderAds(); },()=>{});
+  db.collection("autodm").onSnapshot(snap=>{ autodm=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="mensajes"&&!$("#ads").contains(document.activeElement)) renderAds(); if(currentView==="materiales") renderAudit(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("plantillas").onSnapshot(snap=>{ tplDocs={}; snap.docs.forEach(d=>{ tplDocs[d.id]=d.data(); }); if(currentView==="mensajes") renderTpls(); },()=>{});
 })();
 </script>
