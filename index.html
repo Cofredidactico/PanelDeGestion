@@ -531,7 +531,20 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .mbars i{display:block;width:100%;min-height:2px;background:color-mix(in srgb,var(--blue) 70%,transparent);border-radius:4px 4px 0 0}
 .mbars span{font-size:9.5px;color:var(--faint);margin-top:2px}.mbars b{position:absolute;top:0;font-size:9.5px;color:var(--muted)}
 .ms-t{margin:0;font-size:12.5px}
-.vdx{font-size:12.5px;max-width:340px}.vdx.warn{color:var(--star)}.vdx.ok{color:var(--ok)}.ms-t.warn{color:var(--star)}
+.vdx{font-size:12.5px;max-width:340px}
+.geo-k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.geo-k>div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-2)}
+.geo-k span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.geo-k b{font-size:22px;font-family:var(--f-brand)}
+.geo-k em{display:block;font-style:normal;font-size:12px;color:var(--muted)}
+.geo-k .hl{border-color:var(--orange);background:color-mix(in srgb,var(--orange) 12%,var(--surface-2))}.geo-k .hl b{color:var(--orange)}
+@media (max-width:700px){.geo-k{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.geo-t{font-size:14px;margin:0 0 8px}
+.gxs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.gx{border:1px solid color-mix(in srgb,var(--orange) 45%,var(--line));border-radius:12px;padding:9px 12px;background:color-mix(in srgb,var(--orange) 7%,var(--surface-2));display:grid;gap:5px;align-content:start}
+.gx-h{display:flex;align-items:center;gap:8px}.gx-f{font-size:20px}.gx-n{margin-left:auto;font-weight:800;color:var(--orange)}
+.gx-d{display:grid;gap:3px;font-size:12.5px;color:var(--muted)}.gx-bot{color:var(--star);font-size:12px}
+.gp{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:999px;margin-left:4px}.gp.warn{background:color-mix(in srgb,var(--star) 22%,transparent);color:var(--star)}.gp.ok{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok)}
+.geo-c{margin:0;padding:0;list-style:none;display:grid;gap:4px;counter-reset:gc}.geo-c li{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:4px 8px;border-radius:8px;background:var(--surface-2)}.geo-c li::before{counter-increment:gc;content:counter(gc);color:var(--faint);font-size:11px;width:18px}.geo-c li span{flex:1}.vdx.warn{color:var(--star)}.vdx.ok{color:var(--ok)}.ms-t.warn{color:var(--star)}
 .learn{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .learn li{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;border:1px solid var(--line);border-radius:9px;padding:6px 8px;background:var(--surface-2)}
 .learn li span{flex:1;min-width:0}
@@ -750,6 +763,11 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
       <div class="hbars" id="provBars"></div>
     </section>
   </div>
+  <section class="card" aria-labelledby="geoTitle">
+    <div class="sec-h"><h2 id="geoTitle">¿Desde dónde visitan tu web?</h2>
+      <div class="actions"><span class="meta" id="geoMeta"></span><div class="seg" role="group" aria-label="Período"><button type="button" data-geod="30" aria-pressed="false">30 días</button><button type="button" data-geod="90" aria-pressed="true">90 días</button><button type="button" data-geod="365" aria-pressed="false">1 año</button></div></div></div>
+    <div id="geoBox"></div>
+  </section>
   <section class="card">
     <div class="sec-h"><h2>Clientes frecuentes</h2>
       <div class="actions"><span class="meta">3 o más materiales comprados</span><button class="btn small" type="button" id="copyFreq">Copiar emails</button></div>
@@ -1832,7 +1850,7 @@ function renderVentas(){
   const stats=[["Facturado",money(fact),"--c-ventas",`${nf(okO.length)} pedidos aprobados`],["Ticket promedio",money(okO.length?fact/okO.length:0),"--c-sitio","Por pedido"],["Materiales vendidos",nf(units),"--c-trabajo",`${has?D.matList.filter(m=>m.sold).length:0} títulos distintos`],["Clientes con compras",nf(has?D.clients.filter(c=>c._ok).length:0),"--c-metricas",`${has?D.clients.filter(c=>c._ok>1).length:0} compraron más de una vez`]];
   const root=$("#vStats"); root.textContent="";
   stats.forEach(([l,v,k,n])=>{ const el=document.createElement("div"); el.className="kpi"; el.style.setProperty("--k",`var(${k})`); el.innerHTML=`<div class="kpi-l"><i></i><span>${esc(l)}</span></div><div class="kpi-v">${esc(v)}</div><div class="kpi-n">${esc(n)}</div>`; root.appendChild(el); });
-  renderMonthChart(); renderRank(); renderProv(); renderFreq(); renderSegs(); renderCross(); renderFin(); fillPromoMats(); renderPromos();
+  renderMonthChart(); renderRank(); renderProv(); renderGeo(); renderFreq(); renderSegs(); renderCross(); renderFin(); fillPromoMats(); renderPromos();
   countUp($("#vStats"));
 }
 function renderMonthChart(){
@@ -3207,6 +3225,41 @@ function renderVis(){ const box=$("#visList"); if(!box) return;
 document.querySelectorAll("[data-visd]").forEach(b=>b.addEventListener("click",()=>{ visDias=+b.dataset.visd; renderVis(); }));
 function visLine(m){ if(!visitas) return ""; const it=(visitas.items||[]).find(x=>(x.ks||[x.k]).includes(m.k)); if(!it) return ""; return `👀 En tu web (último año): ${nf(it.v365||0)} vistas y ${nf(it.b365||0)} clics en “Comprar”${it.v365?` (${Math.round((it.b365||0)/it.v365*100)}%)`:""}.`; }
 
+// ---------- Visitantes de la web por lugar (Umami) ----------
+let geo=null, geoDias=90;
+const AR_PROV={A:"Salta",B:"Buenos Aires",C:"CABA",D:"San Luis",E:"Entre Ríos",F:"La Rioja",G:"Santiago del Estero",H:"Chaco",J:"San Juan",K:"Catamarca",L:"La Pampa",M:"Mendoza",N:"Misiones",P:"Formosa",Q:"Neuquén",R:"Río Negro",S:"Santa Fe",T:"Tucumán",U:"Chubut",V:"Tierra del Fuego",W:"Corrientes",X:"Córdoba",Y:"Jujuy",Z:"Santa Cruz"};
+let regionNames=null; try{ regionNames=new Intl.DisplayNames(["es"],{type:"region"}); }catch{}
+const countryName=c=>{ try{ return (regionNames&&regionNames.of(c))||c; }catch{ return c; } };
+const flag=c=>/^[A-Z]{2}$/.test(c)?String.fromCodePoint(...[...c].map(ch=>0x1F1A5+ch.charCodeAt(0))):"🌐";
+const BOT_CITIES=/^(Ashburn|Boardman|Council Bluffs|The Dalles|Santa Clara|San Jose|Clonee|Dublin|Frankfurt am Main)$/i;
+const refName=r=>/instagram/.test(r)?"Instagram":/facebook/.test(r)?"Facebook":/google/.test(r)?"Google":/tiktok/.test(r)?"TikTok":/pinterest/.test(r)?"Pinterest":/bing|yahoo/.test(r)?"Otros buscadores":/github\.io|cofredidactico/.test(r)?"Tu propia web":r;
+function provFold(p){ const f=fold(p); if(/capital|autonoma|caba/.test(f)) return "caba"; if(/estero/.test(f)) return "santiago del estero"; return f.replace(/\s+/g," ").trim(); }
+function renderGeo(){ const box=$("#geoBox"); if(!box) return; if(!geo){ box.innerHTML=`<p class="muted">Todavía no hay datos de visitantes.</p>`; return; }
+  document.querySelectorAll("[data-geod]").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.geod===geoDias)));
+  $("#geoMeta").textContent=`Umami · actualizado el ${fmtD(new Date(geo.gen))}`;
+  const G=geo["d"+geoDias]||{}; const C=G.country||[], tot=C.reduce((s,x)=>s+x[1],0)||1, ar=(C.find(x=>x[0]==="AR")||[0,0])[1];
+  const ext=C.filter(x=>x[0]!=="AR"); const extTot=ext.reduce((s,x)=>s+x[1],0);
+  // fuera de Argentina
+  const prodName=id=>{ const it=visitas&&(visitas.items||[]).find(x=>x.id===id); return it?(it.n||id):id.replace(/-/g," "); };
+  const extHtml=ext.length?ext.map(([cc,n])=>{ const fx=(geo.foreign||{})[cc]; const bots=fx&&fx.cities&&fx.cities.filter(c=>BOT_CITIES.test(c[0])).reduce((s,c)=>s+c[1],0);
+      return `<div class="gx"><div class="gx-h"><span class="gx-f">${flag(cc)}</span><b>${esc(countryName(cc))}</b><span class="gx-n">${nf(n)}</span></div>
+        ${fx?`<div class="gx-d">${fx.cities&&fx.cities.length?`<span>📍 ${fx.cities.map(c=>esc(c[0])+(c[1]>1?` (${c[1]})`:"")).join(", ")}</span>`:""}${fx.prods&&fx.prods.length?`<span>👀 Miró: ${fx.prods.map(p=>esc(prodName(p[0]))).join(", ")}</span>`:""}${fx.refs&&fx.refs.length?`<span>↪ Llegó desde: ${[...new Set(fx.refs.map(r=>refName(r[0])))].join(", ")}</span>`:""}${bots?`<span class="gx-bot">Parte de estas visitas parecen automáticas (servidores de ${esc(fx.cities.filter(c=>BOT_CITIES.test(c[0])).map(c=>c[0]).join(", "))}), no personas.</span>`:""}</div>`:""}</div>`; }).join("")
+    :`<p class="muted">En este período no hubo visitas desde otros países.</p>`;
+  // provincias vs compradores
+  const R=(G.region||[]).map(([code,n])=>({code,n,name:AR_PROV[String(code).split("-")[1]]||code}));
+  const rt=R.reduce((s,x)=>s+x.n,0)||1, rmax=Math.max(1,...R.map(x=>x.n));
+  const buy={}; if(D) Object.entries(D.prov||{}).forEach(([p,n])=>{ buy[provFold(p)]=(buy[provFold(p)]||0)+n; }); const bt=Object.values(buy).reduce((s,x)=>s+x,0)||1;
+  const provHtml=R.map(r=>{ const b=buy[provFold(r.name)]||0; const vp=r.n/rt*100, bp=b/bt*100; const amb=/^(CABA|Buenos Aires)$/.test(r.name); const gap=amb?"":vp>=3&&bp<vp*.5?`<span class="gp warn" title="Muchas visitas, pocas compradoras">más visitas que compras</span>`:bp>=3&&bp>vp*1.6?`<span class="gp ok" title="Compran más de lo que visitan la web">compran mucho</span>`:"";
+    return `<div class="hb" style="--c:var(--c-sitio)"><span class="nm">${esc(r.name)} ${gap}</span><span class="v">${nf(r.n)} · ${vp.toFixed(0)}%${b&&!amb?` · ${nf(b)} compradores`:""}</span><span class="tr"><i style="width:${(r.n/rmax*100).toFixed(1)}%"></i></span></div>`; }).join("");
+  const cities=(G.city||[]).slice(0,15);
+  const refs={}; (G.ref||[]).forEach(([r,n])=>{ const k=refName(r); if(k!=="Tu propia web") refs[k]=(refs[k]||0)+n; }); const rft=Object.values(refs).reduce((s,x)=>s+x,0)||1;
+  box.innerHTML=`<div class="geo-k"><div><span>Visitantes</span><b>${nf(tot)}</b></div><div><span>Desde Argentina</span><b>${Math.round(ar/tot*100)}%</b></div><div class="hl"><span>Desde otros países</span><b>${nf(extTot)}</b><em>${ext.length} país${ext.length===1?"":"es"}</em></div><div><span>Llegan desde Instagram</span><b>${Math.round((refs.Instagram||0)/rft*100)}%</b></div></div>
+    <h3 class="geo-t">🌎 Fuera de Argentina</h3><p class="muted" style="margin:-4px 0 8px;font-size:12px">El detalle de ciudades, materiales y de dónde llegaron es del último año.</p><div class="gxs">${extHtml}</div>
+    <div class="grid2" style="align-items:start;margin-top:14px"><div style="min-width:0"><h3 class="geo-t">🇦🇷 Provincias</h3><div class="hbars">${provHtml||'<p class="muted">Sin datos.</p>'}</div><p class="muted" style="font-size:11.5px;margin-top:6px">Compradores según la provincia que cargan en Empretienda. En Buenos Aires y CABA no los comparo porque muchos de CABA figuran como Buenos Aires.</p></div>
+      <div style="min-width:0"><h3 class="geo-t">📍 Ciudades que más te visitan</h3><ol class="geo-c">${cities.map(([c,n])=>`<li><span>${esc(c)}</span><b>${nf(n)}</b></li>`).join("")}</ol>
+        <h3 class="geo-t" style="margin-top:12px">↪ De dónde llegan</h3><div class="hbars">${Object.entries(refs).sort((a,b)=>b[1]-a[1]).map(([k,n])=>`<div class="hb" style="--c:var(--c-redes)"><span class="nm">${esc(k)}</span><span class="v">${nf(n)} · ${Math.round(n/rft*100)}%</span><span class="tr"><i style="width:${(n/rft*100).toFixed(1)}%"></i></span></div>`).join("")}</div></div></div>`; }
+document.querySelectorAll("[data-geod]").forEach(b=>b.addEventListener("click",()=>{ geoDias=+b.dataset.geod; renderGeo(); }));
+
 // ---------- MOTOR 2: biblioteca de ejemplos, fichas, control de calidad, lectura, boceto, ilustraciones, versiones ----------
 const normTxt=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
 function pickEjemplos(r){
@@ -3712,6 +3765,7 @@ setStatus("Cargando…");
   db.doc("panel/finanzas").onSnapshot(s=>{ finCfg=s.exists?s.data():{}; if(currentView==="ventas") renderFin(); },()=>{});
   db.collection("lanzamientos").onSnapshot(snap=>{ lanz=snap.docs.map(d=>({id:d.id,...d.data()})); $("#nLanz").textContent=lanz.filter(l=>l.estado!=="Publicado").length||"—"; if(currentView==="lanzamientos") renderLanz(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("motor").onSnapshot(snap=>{ motorHist=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="motor") renderMotorHist(); },()=>{});
+  db.doc("panel/geo").onSnapshot(s=>{ geo=s.exists?s.data():null; if(currentView==="ventas") renderGeo(); },()=>{});
   db.doc("panel/visitas").onSnapshot(s=>{ visitas=s.exists?s.data():null; if(currentView==="materiales") renderVis(); },()=>{});
   db.collection("copias").onSnapshot(snap=>{ copias=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="materiales") renderCopias(); },()=>{});
   db.collection("promos").onSnapshot(snap=>{ promos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderPromos(); },()=>{});
