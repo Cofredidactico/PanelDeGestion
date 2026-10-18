@@ -873,6 +873,14 @@ table.coh td.na{background:transparent}
 .mlh{display:grid;gap:6px;padding:10px 0;border-bottom:1px solid var(--line)}.mlh:last-child{border-bottom:0}
 .mlh>div:first-child b{display:block}.mlh .muted{font-size:12px}
 .mlh-k{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--muted)}.mlh-k b{color:var(--ink)}
+
+/* Listas desplegables legibles en modo oscuro y claro (las opciones heredaban letra clara sobre fondo blanco) */
+select{color-scheme:dark;background-color:var(--solid-2);color:var(--ink)}
+select option,select optgroup{background-color:var(--solid);color:var(--ink)}
+select option:checked{background-color:color-mix(in srgb,var(--blue) 35%,var(--solid));color:var(--ink)}
+select option:disabled{color:var(--faint)}
+input[type=date],input[type=month],input[type=time]{color-scheme:dark}
+:root[data-theme="light"] select,:root[data-theme="light"] input[type=date],:root[data-theme="light"] input[type=month],:root[data-theme="light"] input[type=time]{color-scheme:light}
 </style>
 
 <div class="app">
