@@ -646,6 +646,14 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 @keyframes floaty{50%{transform:translateY(-6px)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.fav:hover{transform:none}}
+#supaGate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:grid;place-items:center;padding:16px}
+#supaGate[hidden]{display:none}
+.sg-card{width:min(380px,100%);background:var(--solid);border:1px solid var(--line);border-radius:18px;padding:28px 24px;box-shadow:var(--shadow-hover);display:grid;gap:12px}
+.sg-card h2{font-family:var(--f-brand);margin:0;color:var(--h1)}
+.sg-card .field{display:grid;gap:6px;font-weight:600;font-size:.92rem}
+.sg-card input{font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--solid-2);color:var(--ink)}
+.sg-card .btn{justify-content:center;width:100%}
+.sg-foot{font-size:.8rem;margin:0}
 </style>
 
 <div class="app">
@@ -1100,7 +1108,7 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 <!-- ============ DATOS ============ -->
 <main class="wrap view" id="view-datos" hidden>
-  <div class="view-h"><div><h1>Datos</h1><p class="lead" id="dMode"></p></div></div>
+  <div class="view-h"><div><h1>Datos</h1><p class="lead" id="dMode"></p></div><button class="btn small" type="button" id="supaOut2" hidden>Cerrar sesión</button></div>
   <section class="card">
     <h3>Importar exportaciones de Empretienda</h3>
     <p class="sub">En Empretienda exportá <b>Ventas</b> y <b>Clientes</b> a Excel y soltá los dos archivos acá. Se reemplazan las ventas cargadas; las contraseñas, fichas de materiales y envíos registrados no se tocan.</p>
@@ -1306,6 +1314,17 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
   </div>
 </dialog>
 
+<div id="supaGate" hidden role="dialog" aria-modal="true" aria-labelledby="sgTitle">
+  <form id="sgForm" class="sg-card" novalidate>
+    <h2 id="sgTitle">Panel Cofre Didáctico</h2>
+    <p class="muted" id="sgMsg">Entrá con tu usuario para ver tus datos.</p>
+    <label class="field">Email<input type="email" id="sgEmail" autocomplete="username" required></label>
+    <label class="field">Contraseña<input type="password" id="sgPass" autocomplete="current-password" required></label>
+    <p class="err" id="sgErr" role="alert"></p>
+    <button class="btn primary" type="submit" id="sgBtn">Entrar</button>
+    <p class="muted sg-foot">Tus datos se guardan en tu proyecto privado de Supabase.</p>
+  </form>
+</div>
 <script>
 // =====================================================================
 // Constantes
@@ -1459,7 +1478,7 @@ document.querySelectorAll("dialog [data-close]").forEach(b=>b.addEventListener("
 // =====================================================================
 // Guardado: cuenta de Claude (db) o este navegador (modo GitHub)
 // =====================================================================
-const MODE = {cloud:false, local:false};
+const MODE = {cloud:false, local:false, supa:false};
 // Almacén del navegador: IndexedDB (cientos de MB) con respaldo en localStorage
 const IDB={
   open(){ return new Promise((res,rej)=>{ if(!window.indexedDB) return rej(new Error("sin IndexedDB")); const r=indexedDB.open("cofre-panel",1); r.onupgradeneeded=()=>r.result.createObjectStore("kv"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }); },
@@ -1493,7 +1512,147 @@ async function LocalDB(){
       onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(inColl(c).map(k=>[k,data[k]])); if(s!==last){ last=s; next(mk()); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); } }; }
   return {doc, collection:coll, _all:()=>JSON.parse(JSON.stringify(data)), _replace:async d=>{ data=d; await save(); notify(); }, _isEmpty:()=>!Object.keys(data).length};
 }
-const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos","autodm","motor"];
+// ---------- SUPABASE (panel web privado) ----------
+// Datos del proyecto: la URL y la clave pública (anon/publishable) pueden estar en una página pública;
+// lo que protege los datos es el inicio de sesión y las reglas de la tabla (solo tu usuario puede leer o escribir).
+const SUPA_CFG = {url:"https://nsdjizuayflilgpzphlt.supabase.co", key:"sb_publishable_F5yoVVkvQjdFIaLu1acLdg_FxIh5JGR"};
+function supaCfg(){
+  const ok=c=>c&&/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(c.url||"")&&(c.key||"").length>20;
+  const c={url:(SUPA_CFG.url||"").replace(/\/+$/,""),key:SUPA_CFG.key||""};
+  if(ok(c)) return c;
+  try{ const s=JSON.parse(localStorage.getItem("cofre-supa-cfg")||"null"); if(ok(s)) return s; }catch{}
+  return null;
+}
+const SupaSes={ k:"cofre-supa-sesion",
+  get(){ try{ return JSON.parse(localStorage.getItem(this.k)||"null"); }catch{ return null; } },
+  put(s){ try{ s?localStorage.setItem(this.k,JSON.stringify(s)):localStorage.removeItem(this.k); }catch{} } };
+let supaRefreshing=null;
+function supaKeep(j,prev){ const s={at:j.access_token,rt:j.refresh_token,exp:Date.now()+(j.expires_in||3600)*1000,email:(j.user&&j.user.email)||(prev&&prev.email)||""}; SupaSes.put(s); return s; }
+async function supaLogin(cfg,email,password){
+  const r=await fetch(cfg.url+"/auth/v1/token?grant_type=password",{method:"POST",headers:{apikey:cfg.key,"Content-Type":"application/json"},body:JSON.stringify({email,password})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(/invalid/i.test(j.error_description||j.msg||j.error||"")?"El email o la contraseña no coinciden.":"No se pudo entrar. Revisá la conexión y probá de nuevo.");
+  return supaKeep(j);
+}
+async function supaToken(cfg){
+  const s=SupaSes.get(); if(!s||!s.rt) return null;
+  if(Date.now()<s.exp-90e3) return s.at;
+  if(!supaRefreshing) supaRefreshing=(async()=>{
+    try{ const r=await fetch(cfg.url+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:cfg.key,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:s.rt})});
+      if(!r.ok){ if(r.status>=400&&r.status<500) SupaSes.put(null); return null; }
+      return supaKeep(await r.json(),s).at; }
+    catch{ return null; } finally{ setTimeout(()=>{ supaRefreshing=null; },0); } })();
+  return supaRefreshing;
+}
+async function supaLogout(cfg){ const s=SupaSes.get(); SupaSes.put(null);
+  if(s&&s.at){ try{ await fetch(cfg.url+"/auth/v1/logout",{method:"POST",headers:{apikey:cfg.key,Authorization:"Bearer "+s.at}}); }catch{} } }
+
+// Orden de claves estable (Postgres reordena las claves de los JSON) para comparar documentos
+function canonJSON(v){ if(v===null||typeof v!=="object") return JSON.stringify(v);
+  if(Array.isArray(v)) return "["+v.map(canonJSON).join(",")+"]";
+  return "{"+Object.keys(v).sort().filter(k=>v[k]!==undefined).map(k=>JSON.stringify(k)+":"+canonJSON(v[k])).join(",")+"}"; }
+function hashStr(s){ let h=0x811c9dc5; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,0x01000193)>>>0; } return h.toString(16).padStart(8,"0"); }
+
+async function SupaDB(cfg){
+  const T="cofre_docs";
+  const api=async(path,opt={})=>{
+    const tok=await supaToken(cfg);
+    if(!tok){ const e=new Error("La sesión se cerró. Volvé a entrar."); e.code="auth"; supaExpired(); throw e; }
+    const r=await fetch(cfg.url+"/rest/v1/"+path,{...opt,headers:{apikey:cfg.key,Authorization:"Bearer "+tok,"Content-Type":"application/json",...(opt.headers||{})}});
+    if(r.status===401){ SupaSes.put(null); supaExpired(); const e=new Error("La sesión se cerró. Volvé a entrar."); e.code="auth"; throw e; }
+    if(!r.ok){ const t=await r.text().catch(()=>""); const e=new Error("No se pudo guardar en Supabase ("+r.status+")"); e.detail=t.slice(0,300); e.code=r.status===413?"quota_exceeded":"supabase"; throw e; }
+    if(r.status===204) return null; const t=await r.text(); return t?JSON.parse(t):null;
+  };
+  let data={}, stamps={};
+  async function fetchRows(filter){ const out=[]; for(let off=0;;off+=200){ const rows=await api(`${T}?select=path,data,updated_at${filter||""}&order=path&limit=200&offset=${off}`)||[]; out.push(...rows); if(rows.length<200) break; } return out; }
+  (await fetchRows()).forEach(r=>{ data[r.path]=r.data; stamps[r.path]=r.updated_at; });
+
+  const subs=new Set();
+  const notify=()=>subs.forEach(fn=>{ try{ fn(); }catch(e){ console.error(e); } });
+  const clone=v=>JSON.parse(JSON.stringify(v));
+  const rid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+  const snap=p=>{ const v=data[p]; return {id:p.split("/").pop(),exists:v!==undefined,data:()=>v===undefined?undefined:clone(v),metadata:{fromCache:false,hasPendingWrites:false}}; };
+  const inColl=c=>Object.keys(data).filter(k=>k.startsWith(c+"/")&&!k.slice(c.length+1).includes("/")).sort();
+  // escribe varios documentos en tandas de hasta ~1,5 MB
+  async function upsert(map){
+    const rows=Object.entries(map).map(([path,d])=>({path,data:d})); let n=0, batch=[], size=0;
+    const flush=async()=>{ if(!batch.length) return; const res=await api(`${T}?on_conflict=path`,{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify(batch)})||[];
+      res.forEach(r=>{ data[r.path]=r.data; stamps[r.path]=r.updated_at; }); n+=batch.length; batch=[]; size=0; };
+    for(const r of rows){ const s=JSON.stringify(r).length; if(batch.length&&size+s>1.5e6) await flush(); batch.push(r); size+=s; }
+    await flush(); return n;
+  }
+  async function remove(paths){ for(let i=0;i<paths.length;i+=40){ const part=paths.slice(i,i+40);
+    await api(`${T}?path=in.(${part.map(p=>'"'+encodeURIComponent(p.replace(/"/g,''))+'"').join(",")})`,{method:"DELETE"}); part.forEach(p=>{ delete data[p]; delete stamps[p]; }); } }
+
+  function doc(p){ return {id:p.split("/").pop(), path:p,
+    async get(){ return snap(p); },
+    async set(v){ await upsert({[p]:clone(v)}); notify(); },
+    async update(v){ if(data[p]===undefined){ const e=new Error("No existe"); e.code="invalid_argument"; throw e; } await upsert({[p]:{...data[p],...clone(v)}}); notify(); },
+    async delete(){ await remove([p]); notify(); },
+    onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(data[p]??null); if(s!==last){ last=s; next(snap(p)); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); },
+    collection(c){ return coll(p+"/"+c); } }; }
+  function coll(c){ const mk=()=>{ const docs=inColl(c).map(snap); return {docs,size:docs.length,empty:!docs.length,docChanges:()=>[],metadata:{fromCache:false,hasPendingWrites:false}}; };
+    return {path:c, doc:id=>doc(c+"/"+(id||rid())), async add(v){ const r=doc(c+"/"+rid()); await r.set(v); return r; },
+      async get(){ return mk(); },
+      onSnapshot(next){ let last; const fn=()=>{ const s=JSON.stringify(inColl(c).map(k=>[k,data[k]])); if(s!==last){ last=s; next(mk()); } }; subs.add(fn); setTimeout(fn,0); return ()=>subs.delete(fn); } }; }
+
+  // Cambios hechos desde otro dispositivo: se revisan cada minuto y al volver a la pestaña
+  let polling=false;
+  async function poll(){ if(polling||document.hidden) return; polling=true;
+    try{ const list=[]; for(let off=0;;off+=1000){ const rows=await api(`${T}?select=path,updated_at&order=path&limit=1000&offset=${off}`)||[]; list.push(...rows); if(rows.length<1000) break; }
+      const seen=new Set(list.map(r=>r.path)); let ch=false;
+      for(const p of Object.keys(data)) if(!seen.has(p)){ delete data[p]; delete stamps[p]; ch=true; }
+      const stale=list.filter(r=>stamps[r.path]!==r.updated_at).map(r=>r.path);
+      for(let i=0;i<stale.length;i+=30){ const part=stale.slice(i,i+30);
+        (await fetchRows(`&path=in.(${part.map(p=>'"'+encodeURIComponent(p)+'"').join(",")})`)).forEach(r=>{ data[r.path]=r.data; stamps[r.path]=r.updated_at; ch=true; }); }
+      if(ch) notify(); }
+    catch(e){ if(e.code!=="auth") console.warn(e); }
+    finally{ polling=false; } }
+  setInterval(poll,60e3); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) poll(); });
+
+  return {doc, collection:coll, _all:()=>clone(data), _stamps:()=>({...stamps}), _upsert:async m=>{ const n=await upsert(m); notify(); return n; }, _remove:async ps=>{ await remove(ps); notify(); },
+    _replace:async d=>{ await upsert(d); const gone=Object.keys(data).filter(p=>!(p in d)); if(gone.length) await remove(gone); notify(); },
+    _isEmpty:()=>!Object.keys(data).length, _poll:poll};
+}
+
+// Pantalla de ingreso
+let supaGateResolve=null;
+function supaExpired(){ const g=$("#supaGate"); if(g&&g.hidden){ g.hidden=false; $("#sgMsg").textContent="Tu sesión se cerró. Volvé a entrar para seguir guardando."; setTimeout(()=>$("#sgEmail").focus(),50); } }
+function supaGate(cfg){ return new Promise(res=>{
+  const g=$("#supaGate"); g.hidden=false; supaGateResolve=res;
+  const s=SupaSes.get(); if(s&&s.email) $("#sgEmail").value=s.email;
+  setTimeout(()=>($("#sgEmail").value?$("#sgPass"):$("#sgEmail")).focus(),50);
+  $("#sgForm").onsubmit=async e=>{ e.preventDefault(); const btn=$("#sgBtn"), err=$("#sgErr"); err.textContent=""; btn.disabled=true; btn.textContent="Entrando…";
+    try{ await supaLogin(cfg,$("#sgEmail").value.trim(),$("#sgPass").value); $("#sgPass").value=""; g.hidden=true; $("#sgMsg").textContent="";
+      if(supaGateResolve){ const r=supaGateResolve; supaGateResolve=null; r(); } else if(db&&db._poll) db._poll(); }
+    catch(x){ err.textContent=x.message; }
+    finally{ btn.disabled=false; btn.textContent="Entrar"; } };
+}); }
+async function supaStart(cfg){
+  if(!(await supaToken(cfg))) await supaGate(cfg);
+  setStatus("Cargando tus datos…");
+  for(let i=0;i<3;i++){
+    try{ return await SupaDB(cfg); }
+    catch(e){ if(e.code==="auth") await supaGate(cfg); else { setStatus("No se pudo conectar con Supabase. Reintentando…",true); await new Promise(r=>setTimeout(r,2500)); } }
+  }
+  setStatus("No se pudo conectar con Supabase. Revisá la conexión y recargá la página.",true); return null;
+}
+
+// Puente para la actualización semanal (la usa la tarea programada desde Chrome; solo funciona con la sesión abierta)
+window.cofreBridge={ buf:"", out:null,
+  begin(){ this.buf=""; return "ok"; },
+  add(s){ this.buf+=s; return this.buf.length; },
+  async commit(){ if(!MODE.supa) return "sin-supabase"; const m=JSON.parse(this.buf); this.buf=""; const n=await db._upsert(m); this.out={escritos:n}; return "escritos:"+n; },
+  async remove(paths){ if(!MODE.supa) return "sin-supabase"; await db._remove(paths); return "borrados:"+paths.length; },
+  show(obj){ document.title="datos"; document.body.innerHTML='<main translate="no"><pre id="bridgeOut" translate="no"></pre></main>'; document.getElementById("bridgeOut").textContent="INICIO_DATOS"+JSON.stringify(obj)+"FIN_DATOS"; return "ok"; },
+  // huellas de los documentos (para mandar solo lo que cambió)
+  hashes(prefixes){ const all=db._all(), out={}; for(const k in all) if(prefixes.some(p=>k.startsWith(p))) out[k]=hashStr(canonJSON(all[k])); return this.show(out); },
+  // documentos de esas colecciones modificados después de la fecha indicada (ISO)
+  since(prefixes,iso){ const all=db._all(), st=db._stamps(), out={}; for(const k in all) if(prefixes.some(p=>k.startsWith(p))&&(!iso||st[k]>iso)) out[k]=all[k]; return this.show({docs:out,stamps:st["panel/sync"]||null}); },
+  stamp(k){ return (db._stamps()[k])||null; }
+};
+
+const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos","autodm","motor","fichas","promos","copias"];
 let db=null;
 
 // =====================================================================
@@ -2154,7 +2313,7 @@ function loadXLSX(){ if(window.XLSX) return Promise.resolve(window.XLSX);
   xlsxP=xlsxP||new Promise((res,rej)=>{ const s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"; s.onload=()=>res(window.XLSX); s.onerror=()=>{ xlsxP=null; rej(new Error("No se pudo cargar el lector de Excel. Revisá la conexión a internet.")); }; document.head.appendChild(s); });
   return xlsxP; }
 function renderDatos(){
-  $("#dMode").textContent=MODE.cloud?"Todo se guarda en tu cuenta de Claude: lo ves igual desde cualquier dispositivo donde abras este panel.":"Todo se guarda solo en este navegador. Descargá un respaldo cada tanto: si borrás los datos del navegador o cambiás de computadora, se restauran desde ese archivo.";
+  $("#dMode").textContent=MODE.supa?"Todo se guarda en tu proyecto privado de Supabase: lo ves igual desde cualquier dispositivo donde entres con tu usuario. Las ventas, visitas y números se actualizan solos cada lunes.":MODE.cloud?"Todo se guarda en tu cuenta de Claude: lo ves igual desde cualquier dispositivo donde abras este panel.":"Todo se guarda solo en este navegador. Descargá un respaldo cada tanto: si borrás los datos del navegador o cambiás de computadora, se restauran desde ese archivo.";
 }
 const drop=$("#drop");
 ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{ e.preventDefault(); drop.classList.add("over"); }));
@@ -3741,6 +3900,7 @@ setStatus("Cargando…");
 
 (async()=>{
   if(window.claude&&typeof claude.use==="function"){ try{ db=await claude.use("db"); }catch{ db=null; } if(db) MODE.cloud=true; }
+  if(!db){ const cfg=supaCfg(); if(cfg){ db=await supaStart(cfg); if(db) MODE.supa=true; else return; } }
   if(!db){ db=await LocalDB(); MODE.local=true;
     if(db._isEmpty()){ for(const [id,name,url,cat,note,order,fav] of DEFAULT_LINKS) await db.doc("links/"+id).set({name,url,cat,note,order,fav,icon:""}); }
     try{ const all=db._all(); if(!Object.keys(all).some(k=>k.startsWith("autodm/"))&&!all["panel/autodm-seed"]){ for(const [id,d] of DEFAULT_AUTODM) await db.doc("autodm/"+id).set(d); await db.doc("panel/autodm-seed").set({at:new Date().toISOString()}); } }catch{}
@@ -3748,7 +3908,10 @@ setStatus("Cargando…");
     $("#goDatos").addEventListener("click",()=>showView("datos"));
   }
   setStatus("");
-  $("#navFoot").textContent=MODE.cloud?"Guardado en tu cuenta de Claude":"Guardado en este navegador";
+  if(MODE.supa){ const nf=$("#navFoot"); nf.innerHTML=`Guardado en tu Supabase · <button class="linkish" type="button" id="supaOut">Cerrar sesión</button>`;
+    const out=async()=>{ await supaLogout(supaCfg()); location.reload(); };
+    $("#supaOut").addEventListener("click",out); const o2=$("#supaOut2"); o2.hidden=false; o2.addEventListener("click",out); }
+  else $("#navFoot").textContent=MODE.cloud?"Guardado en tu cuenta de Claude":"Guardado en este navegador";
   db.collection("links").onSnapshot(s=>{ links=s.docs.map(d=>({id:d.id,...d.data()})); renderLinks(); },()=>setStatus("Se cortó la conexión con el guardado. Recargá la página.",true));
   db.doc("panel/numeros").onSnapshot(s=>{ kpis=s.exists?s.data():null; renderKpis(); },()=>{});
   db.doc("panel/notas").onSnapshot(s=>{ if(!s.exists) return; const t=s.data().text||""; lastSavedNote=t; if(document.activeElement!==$("#notes")) $("#notes").value=t; if(currentView==="inicio") renderHoy(); },()=>{});
