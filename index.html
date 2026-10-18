@@ -1649,7 +1649,34 @@ window.cofreBridge={ buf:"", out:null,
   hashes(prefixes){ const all=db._all(), out={}; for(const k in all) if(prefixes.some(p=>k.startsWith(p))) out[k]=hashStr(canonJSON(all[k])); return this.show(out); },
   // documentos de esas colecciones modificados después de la fecha indicada (ISO)
   since(prefixes,iso){ const all=db._all(), st=db._stamps(), out={}; for(const k in all) if(prefixes.some(p=>k.startsWith(p))&&(!iso||st[k]>iso)) out[k]=all[k]; return this.show({docs:out,stamps:st["panel/sync"]||null}); },
-  stamp(k){ return (db._stamps()[k])||null; }
+  stamp(k){ return (db._stamps()[k])||null; },
+  estado(){ const g=document.getElementById("supaGate"); return JSON.stringify({supa:MODE.supa,sesion:!!(g&&g.hidden&&MODE.supa),docs:db&&db._all?Object.keys(db._all()).length:0}); },
+  async marcar(){ if(!MODE.supa) return "sin-supabase"; await db._upsert({"panel/sync":{at:new Date().toISOString()}}); return this.stamp("panel/sync"); },
+  // Une las ventas nuevas leídas de Empretienda (mismo criterio que sync_ventas.py)
+  async mergeVentas(d){ if(!MODE.supa) return "sin-supabase";
+    const all=db._all(), parts=Object.keys(all).filter(k=>/^ventas\/c\d+$/.test(k)).sort((a,b)=>+a.split("/c")[1]-+b.split("/c")[1]);
+    const clients=[]; parts.forEach(k=>clients.push(...(all[k].clients||[]))); const meta=all["ventas/meta"]||{};
+    const key=(e,n)=>String(e||"").trim().toLowerCase()||"sin-email:"+String(n||"").trim().toLowerCase();
+    const idx={}, where={}; clients.forEach(c=>{ idx[key(c.e,c.n)]=c; (c.o||[]).forEach(o=>{ where[o.id]=c; }); });
+    let nuevos=0, cambios=0;
+    for(const r of (d.rows||[])){ const rc=r.c, ro={...r.o}; if(!ro.cup) delete ro.cup; ro.tot=Number(ro.tot||0);
+      const k=key(rc.e,rc.n); let c=idx[k];
+      if(!c){ c={n:rc.n||"",e:rc.e||"",d:rc.d||"",t:rc.t||"",c:rc.ci||"",p:rc.p||"",o:[]}; clients.push(c); idx[k]=c; }
+      for(const [a,b] of [["n","n"],["d","d"],["t","t"],["c","ci"],["p","p"]]) if(!c[a]&&rc[b]) c[a]=rc[b];
+      const pc=where[ro.id];
+      if(pc){ const prev=pc.o.find(o=>o.id===ro.id); if(prev.pg!==ro.pg) cambios++; Object.assign(prev,ro); }
+      else { (c.o=c.o||[]).push(ro); where[ro.id]=c; nuevos++; } }
+    const pf=s=>{ const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s||""); if(!m) return null; let y=+m[3]; if(y<100) y+=2000; return new Date(Date.UTC(y,+m[2]-1,+m[1])); };
+    const f2=d=>String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")+"/"+String(d.getUTCFullYear()).slice(2);
+    const fechas=clients.flatMap(c=>(c.o||[]).map(o=>pf(o.f)).filter(Boolean)).map(d=>+d);
+    const hoy=new Date(Date.now()-3*3600e3), hoyIso=hoy.toISOString().slice(0,10), hoyTxt=f2(hoy);
+    const enc=new TextEncoder(), chunks=[]; let cur=[], size=0;
+    for(const c of clients){ const s=enc.encode(canonJSON(c)).length; if(cur.length&&size+s>150000){ chunks.push(cur); cur=[]; size=0; } cur.push(c); size+=s; }
+    if(cur.length) chunks.push(cur);
+    const m={}; chunks.forEach((ch,i)=>{ m["ventas/c"+(i+1)]={clients:ch}; });
+    m["ventas/meta"]={...meta,updated:hoyIso,desde:meta.desde||(fechas.length?f2(new Date(Math.min(...fechas))):""),hasta:fechas.length?f2(new Date(Math.max(...fechas))):(meta.hasta||""),parts:chunks.length,fuente:"Sincronizado con Empretienda el "+hoyTxt};
+    await db._upsert(m); const sobran=parts.filter(k=>+k.split("/c")[1]>chunks.length); if(sobran.length) await db._remove(sobran);
+    return JSON.stringify({nuevos,cambios,partes:chunks.length,borrados:sobran.length}); }
 };
 
 const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos","autodm","motor","fichas","promos","copias"];
