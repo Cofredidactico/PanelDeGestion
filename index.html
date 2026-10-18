@@ -2610,9 +2610,19 @@ let mcp=null, igDaily=null, igBest=null, igMsg="", igLoading=false, igLoadedAt=n
 const tzIso=(d,end)=>`${iso(d)}T${end?"23:59:59":"00:00:00"}-03:00`;
 function payloadOf(r){ let p=r&&r.payload; if(p==null&&r&&Array.isArray(r.content)){ const t=r.content.find(c=>c.type==="text"); if(t) p=t.text; } if(typeof p==="string"){ try{ p=JSON.parse(p); }catch{ } } return p; }
 const MC_ERR={needs_reauth:"La conexión con Metricool venció. Volvé a conectarla en claude.ai, Configuración → Conectores.",server_not_connected:"Metricool no está conectado a tu cuenta de Claude. Conectalo en claude.ai, Configuración → Conectores.",not_in_manifest:"No le diste permiso a este panel para usar Metricool. Podés habilitarlo desde el menú de permisos del panel.",approval_required:"Tocá “Actualizar datos” y aprobá el acceso a Metricool.",blocked_by_policy:"Tu organización bloquea el uso de Metricool desde páginas.",server_unavailable:"Metricool no respondió. Probá de nuevo en unos minutos."};
+function igApply(rows,best){
+  igDaily=(rows||[]).map(r=>({d:String(r[IG_METRICS.length]||""),f:r[0]!=null?+r[0]:null,g:+r[1]||0,l:+r[2]||0,reach:+r[3]||0,views:+r[4]||0,eng:+r[5]||0})).filter(x=>/^\d{8}$/.test(x.d)).sort((x,y)=>x.d.localeCompare(y.d));
+  igBest=Array.isArray(best)?best:[];
+}
 async function loadIG(force){
   if(igLoading) return;
-  if(!MODE.cloud){ igMsg="Los datos de Metricool se ven en la versión del panel dentro de Claude. En esta versión podés abrir Metricool con el botón de arriba."; renderIG(); return; }
+  if(!MODE.cloud){
+    if(!db){ igMsg="Cargando…"; renderIG(); return; }
+    try{ const sn=await db.doc("panel/metricool").get(); const d=sn.exists?sn.data():null;
+      if(d&&Array.isArray(d.rows)){ igApply(d.rows,d.best); igLoadedAt=d.gen?new Date(d.gen):null; igMsg=""; }
+      else igMsg="Todavía no hay datos de Metricool guardados. Se cargan solos cada lunes, o al abrir la sección Instagram en el panel de Claude."; }
+    catch{ igMsg="No se pudieron leer los datos guardados de Metricool."; }
+    renderIG(); if(currentView==="inicio") renderHoy(); return; }
   if(igDaily&&!force) return;
   igLoading=true; igMsg=""; renderIG();
   try{
@@ -2625,9 +2635,10 @@ async function loadIG(force){
       mcp.callTool(MC,"getBestTimeToPostByNetwork",{brandId:MC_BRAND,fromDate:tzIso(t),toDate:tzIso(new Date(+t+6*DAY),true),timezone:"America/Buenos_Aires",socialNetwork:"instagram"})
     ]);
     const pa=payloadOf(a), pb=payloadOf(b);
-    igDaily=(pa&&Array.isArray(pa.rows)?pa.rows:[]).map(r=>({d:String(r[IG_METRICS.length]||""),f:r[0]!=null?+r[0]:null,g:+r[1]||0,l:+r[2]||0,reach:+r[3]||0,views:+r[4]||0,eng:+r[5]||0})).filter(x=>/^\d{8}$/.test(x.d)).sort((x,y)=>x.d.localeCompare(y.d));
-    igBest=pb&&Array.isArray(pb.data)?pb.data:[];
-    igLoadedAt=new Date();
+    const rows=pa&&Array.isArray(pa.rows)?pa.rows:[], best=pb&&Array.isArray(pb.data)?pb.data:[];
+    igApply(rows,best); igLoadedAt=new Date();
+    // copia para el panel web (se ve sin conexión directa a Metricool)
+    if(rows.length&&db){ db.doc("panel/metricool").set({gen:igLoadedAt.toISOString(),rows,best,fuente:"Metricool"}).catch(()=>{}); }
   }catch(err){ const code=err&&err.code; igMsg=MC_ERR[code]||("No se pudieron traer los datos de Metricool"+(err&&err.message?`: ${err.message}`:".")); if(["needs_reauth","server_not_connected","not_in_manifest","blocked_by_policy"].includes(code)){ igDaily=null; igBest=null; } }
   finally{ igLoading=false; renderIG(); if(currentView==="inicio") renderHoy(); }
 }
@@ -2637,7 +2648,8 @@ function bestSlots(){ if(!igBest||!igBest.length) return []; const out=[]; igBes
 const DOW=["","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
 function renderIG(){
   const ban=$("#igBanner"); ban.hidden=!igMsg&&!igLoading; ban.textContent=igLoading?"Trayendo datos de Metricool…":igMsg;
-  $("#igMeta").textContent=igLoadedAt?`Datos de @cofredidactico desde Metricool · actualizado a las ${igLoadedAt.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}.`:"Datos de @cofredidactico desde Metricool.";
+  const sameDay=igLoadedAt&&igLoadedAt.toDateString()===new Date().toDateString();
+  $("#igMeta").textContent=igLoadedAt?`Datos de @cofredidactico desde Metricool · actualizado ${sameDay?"hoy a las "+igLoadedAt.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"}):"el "+igLoadedAt.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"})}${MODE.cloud?"":" (se actualiza cada lunes)"}.`:"Datos de @cofredidactico desde Metricool.";
   const root=$("#igStats"); root.textContent="";
   if(!igDaily||!igDaily.length){ $("#igChart").innerHTML=`<p class="muted">${igLoading?"Cargando…":"Sin datos todavía."}</p>`; $("#btHeat").innerHTML=""; $("#btTop").textContent=""; return; }
   const n=igDaily.length, last30=igDaily.slice(-30), prev30=igDaily.slice(-60,-30);
@@ -3934,7 +3946,7 @@ setStatus("Cargando…");
     const b=$("#modeBanner"); b.hidden=false; b.innerHTML=`<b>Modo navegador:</b> tus datos se guardan solo en este navegador. Importá las ventas y hacé respaldos desde la pestaña <button class="linkish" type="button" id="goDatos">Datos</button>.`;
     $("#goDatos").addEventListener("click",()=>showView("datos"));
   }
-  setStatus("");
+  setStatus(""); if(!MODE.cloud) setTimeout(()=>loadIG(false),400);
   if(MODE.supa){ const nf=$("#navFoot"); nf.innerHTML=`Guardado en tu Supabase · <button class="linkish" type="button" id="supaOut">Cerrar sesión</button>`;
     const out=async()=>{ await supaLogout(supaCfg()); location.reload(); };
     $("#supaOut").addEventListener("click",out); const o2=$("#supaOut2"); o2.hidden=false; o2.addEventListener("click",out); }
