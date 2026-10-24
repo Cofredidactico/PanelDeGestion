@@ -1568,6 +1568,9 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 .is-rev-f{margin:0;font-size:12.5px;padding:8px 10px;border-radius:10px;background:var(--surface-2)}.is-rev-f.ok{background:color-mix(in srgb,#4AAE4F 12%,var(--surface))}.is-rev-f.no{background:color-mix(in srgb,#D7263D 12%,var(--surface))}.is-rev-f.warn{background:color-mix(in srgb,#F6B40E 14%,var(--surface))}
 .is-body>.is-sec+.is-sec{margin-top:22px}
 #isColorPrev canvas.is-colcv{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;border:1px solid var(--line);border-radius:12px;background:#fff}
+.is-escs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.is-esc{display:grid;gap:1px;text-align:left;padding:8px 10px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.is-esc b{font-size:12.5px}.is-esc small{font-size:11px;color:var(--muted)}.is-esc.on{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset;background:color-mix(in srgb,var(--blue) 10%,var(--surface))}
 @media (max-width:860px){.is-dlg{width:100vw;height:100dvh;border-radius:0;max-width:100vw}.is-cols{grid-template-columns:minmax(0,1fr)}.is-tipos{grid-template-columns:minmax(0,1fr)}.is-row{grid-template-columns:minmax(0,1fr)}.is-body{padding:14px}.is-h,.is-tabs{padding-left:14px;padding-right:14px}}
 
 </style>
@@ -4041,7 +4044,7 @@ async function isCargarEstilo() { try { if (db && db.doc) { const s = await db.d
 async function isGuardarEstilo() { try { localStorage.setItem("cofre-estilo-img", JSON.stringify(isEstilo)); } catch {} try { if (db && db.doc) await db.doc("panel/estiloImg").set({ ...isEstilo, updated: new Date().toISOString() }); } catch {} }
 
 // ---------- utilidades ----------
-const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [], plat: "chatgpt", pers: [], fondoTransp: false, grosor: 2, detalle: "medio", revs: [], colorImg: null, colorOut: null };
+const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [], plat: "chatgpt", pers: [], fondoTransp: false, grosor: 2, detalle: "medio", revs: [], colorImg: null, colorOut: null, esc: null, franja: true };
 function isRand(seed) { let s = seed >>> 0 || 1; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
 function isMezclar(a, seed) { const r = isRand(seed), b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
 function isEscena(k) { if (IS_ESCENAS[k]) { const e = EFEMERIDES.find((x) => x[0] === k); return { nombre: e ? e[1] : k, escena: IS_ESCENAS[k][0], objetos: IS_ESCENAS[k][1] }; } const t = IS_TEMAS[k]; return t ? { nombre: t[0], escena: t[1], objetos: t[2] } : { nombre: "Tema libre", escena: "una escena escolar alegre", objetos: ["libro", "lápiz", "pelota", "árbol", "sol", "mochila", "flor", "perro", "reloj", "maceta"] }; }
@@ -4051,12 +4054,161 @@ const IS_COLORES = ["rojo", "azul", "verde", "amarillo", "violeta", "naranja", "
 const IS_EXTRA = ["una estrella en el cielo", "un pajarito en una rama", "una mariposa", "una flor en el piso", "una nube más", "una pelota", "un gato", "una manzana", "un globo", "un caracol"];
 
 // ---------- prompts de actividades ----------
-function isDiferencias(E, n, seed) {
-  const r = isRand(seed), ob = isMezclar(E.objetos, seed), extra = isMezclar(IS_EXTRA, seed + 7), L = [];
-  const ops = [(o) => `Cambiá el color de ${o} a ${IS_COLORES[Math.floor(r() * IS_COLORES.length)]}.`, (o) => `Borrá por completo ${o} (que en su lugar se vea el fondo).`, (o) => `Dibujá ${o} un poco más grande.`, (o) => `Invertí ${o} para que mire hacia el otro lado.`, () => `Agregá ${extra[L.length % extra.length]}.`, (o) => `Agregá un segundo ${o} chico junto al primero.`, (o) => `Cambiá un detalle chico de ${o} (un botón, una raya, una mancha o un adorno).`];
-  for (let i = 0; i < n; i++) L.push(ops[i % ops.length](ob[i % ob.length]));
+// ---------- varias escenas por fecha o tema (para que el cuadernillo no repita) ----------
+const IS_MAS = {
+  "02-27": ["A orillas del Paraná",
+    ["Cosiendo la bandera", "un cuarto de una casa de Rosario en 1812 donde vecinas cosen la primera bandera celeste y blanca y escarapelas sobre una mesa de madera, con una ventana que da al río", ["rollo de tela celeste", "aguja e hilo", "tijera", "carretel", "escarapela", "canasta de costura", "vela", "mesa de madera", "silla", "gato", "jarra", "dedal", "baúl", "maceta"]],
+    ["Acto en la escuela", "el patio de una escuela actual en el acto de la Creación de la Bandera: un chico disfrazado de Belgrano con bicornio de cartulina, compañeros con banderitas y familias mirando", ["banderita", "escarapela", "micrófono", "tambor", "globo celeste", "guirnalda", "bicornio de cartulina", "cámara de fotos", "maceta", "pizarrón", "banco", "campana", "mochila", "árbol"]],
+    ["La batería Libertad", "la batería Libertad en 1812: un pequeño fuerte de troncos y tierra en la barranca del Paraná con soldados de uniforme de época, cañones y la bandera celeste y blanca", ["cañón", "balas de cañón", "empalizada de troncos", "bandera celeste y blanca", "tambor", "corneta", "catalejo", "caballo", "carpa", "barril", "balde", "bote", "pájaro", "nube"]]],
+  "03-08": ["Plaza de las profesiones",
+    ["Laboratorio de científicas", "un laboratorio luminoso donde científicas de distintas edades investigan con microscopios, plantas y un telescopio", ["microscopio", "tubo de ensayo", "telescopio", "planta en maceta", "anteojos de protección", "computadora", "libro", "lupa", "globo terráqueo", "frasco", "cuaderno", "reloj", "mariposa", "lámpara"]],
+    ["Fútbol femenino", "una cancha de barrio donde un equipo de fútbol femenino entrena con su entrenadora mientras familias alientan desde la tribuna", ["pelota", "arco", "silbato", "botella de agua", "cono", "camiseta", "bandera", "gorra", "botines", "bolso", "banco", "medalla", "perro", "nube"]],
+    ["Mujeres que construyen", "una obra en construcción y un taller mecánico donde trabajan una albañila, una arquitecta con planos y una mecánica", ["casco", "plano", "carretilla", "ladrillos", "martillo", "llave inglesa", "auto", "escalera", "balde", "grúa", "cinta métrica", "cono", "caja de herramientas", "termo"]]],
+  "03-22": ["Pueblo junto al río",
+    ["El ciclo del agua", "un paisaje con montañas nevadas, nubes, lluvia, un río que baja hasta el mar y el sol calentando el agua", ["montaña nevada", "nube", "gota de lluvia", "sol", "río", "lago", "árbol", "pez", "barco", "casa", "paraguas", "arcoíris", "pájaro", "piedra"]],
+    ["Cuidamos el agua en casa", "una casa vista en corte donde una familia cuida el agua: cierran la canilla al cepillarse los dientes, juntan agua de lluvia y riegan plantas con balde", ["canilla", "cepillo de dientes", "vaso", "ducha", "balde", "regadera", "planta", "tanque de agua", "lavarropas", "toalla", "jabón", "palangana", "bidón", "patito de goma"]],
+    ["Humedal del Litoral", "un humedal del Litoral con juncos, camalotes, carpinchos, garzas y un yacaré tomando sol", ["carpincho", "garza", "yacaré", "camalote", "junco", "pez", "rana", "tortuga", "libélula", "bote", "nido", "mariposa", "nube", "sol"]]],
+  "03-24": ["Árbol de la memoria",
+    ["Mural de la memoria", "chicos pintando un mural colorido en la pared de la escuela con palomas, flores, corazones y manos unidas", ["pincel", "lata de pintura", "rodillo", "escalera", "paloma", "flor", "corazón", "mano pintada", "sol", "delantal", "balde", "banco", "árbol", "cartel"]],
+    ["Ronda en la plaza", "una plaza con una ronda de chicos tomados de la mano alrededor de un árbol, palomas volando y pañuelos blancos pintados en las baldosas", ["paloma", "árbol", "banco", "farol", "pañuelo pintado", "flor", "pelota", "bicicleta", "mochila", "perro", "fuente", "nube", "sol", "globo"]],
+    ["Ronda de lectura", "la biblioteca de la escuela donde una maestra lee a los chicos sentados en ronda, con dibujos de palomas en la pared", ["libro", "lámpara", "estante", "alfombra", "almohadón", "dibujo de paloma", "reloj", "globo terráqueo", "maceta", "ventana", "lápiz", "cuaderno", "anteojos", "sillón"]]],
+  "04-02": ["Paisaje de las islas",
+    ["Puerto Argentino", "las calles de Puerto Argentino con casitas de colores y techos de chapa, una iglesia, un muelle y barcos de pesca", ["casita de colores", "iglesia", "muelle", "barco pesquero", "farol", "cerca de madera", "oveja", "gaviota", "bote", "ancla", "red de pesca", "chimenea", "nube", "perro"]],
+    ["Fauna de las islas", "la costa rocosa de las Malvinas con pingüinos rey y de Magallanes, lobos marinos, elefantes marinos, cormoranes y una ballena asomando", ["pingüino rey", "pingüino de Magallanes", "lobo marino", "elefante marino", "cormorán", "ballena", "cangrejo", "piedra", "alga", "nido", "gaviota", "ola", "nube", "pez"]],
+    ["Homenaje en la escuela", "el patio de la escuela en un acto de homenaje a Malvinas con un mapa grande de las islas, flores, la bandera y chicos con escarapelas", ["mapa de las islas", "bandera", "escarapela", "ramo de flores", "micrófono", "atril", "maceta", "guirnalda", "vela", "banco", "cartel", "campana", "árbol", "mochila"]]],
+  "04-07": ["Consultorio pediátrico",
+    ["Comer sano y moverse", "un parque donde familias hacen deporte y comen sano: chicos saltando la soga, una mesa con frutas y agua y bicicletas", ["soga", "pelota", "bicicleta", "manzana", "banana", "botella de agua", "zapatillas", "mochila", "frisbee", "perro", "árbol", "banco", "sol", "naranja"]],
+    ["A dormir", "una habitación de chicos a la hora de dormir con camas, una lámpara, un libro de cuentos y la luna en la ventana", ["cama", "almohada", "lámpara", "libro", "osito", "reloj despertador", "pantuflas", "luna", "estrella", "ventana", "alfombra", "vaso de agua", "cortina", "mesita de luz"]],
+    ["Manos limpias", "el baño de la escuela con chicos lavándose las manos con jabón, secándose con toallas y cepillándose los dientes", ["jabón", "canilla", "toalla", "cepillo de dientes", "pasta dental", "espejo", "vaso", "alcohol en gel", "tacho", "pileta", "peine", "mochila", "reloj", "maceta"]]],
+  "04-14": ["Mapa de América",
+    ["Mercado americano", "un mercado colorido con puestos de frutas, tejidos y artesanías de distintos países de América", ["palta", "choclo", "papa", "tomate", "ají", "mango", "canasta", "sombrero", "poncho", "vasija", "maracas", "guitarra", "banderines", "balanza"]],
+    ["Animales de América", "selva, montaña y pampa unidas en un paisaje con animales de América: yaguareté, tucán, llama, cóndor, oso hormiguero y ñandú", ["yaguareté", "tucán", "llama", "cóndor", "oso hormiguero", "ñandú", "mono", "colibrí", "rana", "árbol", "cascada", "montaña", "nube", "sol"]],
+    ["Música de América", "un escenario al aire libre con músicos de América tocando quena, charango, maracas, bombo, guitarra y marimba", ["quena", "charango", "maracas", "bombo", "guitarra", "marimba", "sikus", "micrófono", "banderines", "farol", "silla", "poncho", "sombrero", "atril"]]],
+  "04-22": ["Parque verde",
+    ["Huerta escolar", "una huerta escolar donde chicos plantan semillas, riegan y cosechan, con compostera y lombrices", ["regadera", "pala", "sobre de semillas", "zanahoria", "lechuga", "tomate", "compostera", "lombriz", "carretilla", "guantes", "espantapájaros", "mariposa", "abeja", "sol"]],
+    ["Ciudad verde", "una ciudad sustentable con techos verdes, paneles solares, bicisendas, árboles y tachos de reciclaje", ["panel solar", "molino de viento", "bicicleta", "árbol", "tacho de reciclaje", "colectivo eléctrico", "techo verde", "farol", "banco", "perro", "maceta", "pájaro", "nube", "sol"]],
+    ["Limpieza de playa", "una playa donde chicos y familias juntan residuos con bolsas y guantes, con tortugas y gaviotas", ["bolsa", "guante", "botella", "lata", "tortuga", "gaviota", "balde", "sombrilla", "cangrejo", "caracol", "ola", "sol", "tacho", "red"]]],
+  "04-23": ["Biblioteca mágica",
+    ["Feria del libro", "una feria del libro con stands, chicos eligiendo libros, una autora firmando y globos de colores", ["libro", "stand", "globo", "bolsa", "lapicera", "mesa", "silla", "banderín", "caja", "lupa", "anteojos", "reloj", "maceta", "mochila"]],
+    ["Lectura en el árbol", "chicos leyendo en una casita del árbol y en hamacas en un jardín, con libros apilados y un gato", ["casita del árbol", "hamaca", "libro", "gato", "escalera", "linterna", "almohadón", "pájaro", "manzana", "mochila", "pelota", "flor", "nube", "sol"]],
+    ["Bosque de cuentos", "un bosque de cuento con un castillo, un dragón amigable, un hada y un caballero, todos personajes originales y simpáticos", ["castillo", "dragón", "varita", "corona", "escudo de madera", "hongo", "puente", "rana", "llave", "cofre", "búho", "luna", "carroza", "árbol"]]],
+  "04-29": ["Veterinaria",
+    ["Refugio de animales", "un refugio de animales con chicos dando de comer, bañando y paseando perros y gatos", ["perro", "gato", "correa", "plato", "bañera", "cepillo", "pelota", "cucha", "manta", "hueso", "pescado", "ovillo", "balde", "cartel"]],
+    ["Animales del monte", "el monte argentino con un tatú, un zorro, un hornero, una lechuza, un carpincho y una corzuela", ["tatú", "zorro", "hornero", "lechuza", "carpincho", "corzuela", "tortuga", "cardo", "árbol", "piedra", "nido", "mariposa", "sol", "nube"]],
+    ["Guardaparques", "una reserva natural donde un guardaparques muestra animales a chicos: flamencos, guanacos, cóndores y un yaguareté", ["flamenco", "guanaco", "cóndor", "yaguareté", "binoculares", "mapa", "gorra", "cartel", "banco", "árbol", "laguna", "pez", "mochila", "cámara"]]],
+  "05-01": ["Calle del barrio",
+    ["Trabajos del campo", "un campo con un productor en tractor, una tambera ordeñando, un apicultor y un panadero en su horno de barro", ["tractor", "vaca", "balde de leche", "colmena", "abeja", "horno de barro", "pan", "pala", "sombrero", "rastrillo", "molino", "carretilla", "gallina", "tranquera"]],
+    ["Bomberos y hospital", "un cuartel de bomberos y un hospital en la misma calle con bomberas, enfermeros y una ambulancia", ["camión de bomberos", "manguera", "casco", "ambulancia", "camilla", "estetoscopio", "matafuegos", "escalera", "sirena", "botiquín", "perro dálmata", "semáforo", "cono", "reloj"]],
+    ["Mercado del barrio", "un mercado con verdulero, quesera, almacenero y florista atendiendo a vecinos", ["cajón de frutas", "balanza", "flor", "delantal", "bolsa", "queso", "pan", "frasco", "caja registradora", "canasta", "sandía", "huevos", "zanahoria", "toldo"]]],
+  "05-18": ["Patio decorado",
+    ["Taller de escarapelas", "un aula convertida en taller donde chicos fabrican escarapelas con cintas, papel y botones", ["cinta celeste", "cinta blanca", "tijera", "pegamento", "botón", "alfiler", "papel", "cartulina", "lápiz", "regla", "caja", "frasco de brillantina", "escarapela", "delantal"]],
+    ["Desfile en la ciudad", "una calle de la ciudad con un desfile escolar, chicos con escarapelas en el pecho, banda de música y vecinos en los balcones", ["escarapela", "bandera", "trompeta", "tambor", "balcón", "globo", "farol", "árbol", "perro", "gorra", "guirnalda", "cochecito", "bicicleta", "paloma"]],
+    ["Recreo patrio", "el recreo con chicos jugando a la rayuela, saltando la soga y comiendo pastelitos, todos con escarapela", ["rayuela", "soga", "pastelitos", "pelota", "escarapela", "banco", "mochila", "campana", "árbol", "vaso", "maceta", "tobogán", "aro", "sol"]]],
+  "05-25": ["Plaza y Cabildo",
+    ["Casa colonial", "el interior de una casa colonial porteña en 1810 con un patio con aljibe y una sala con candelabros donde una familia toma mate con pava de hierro", ["aljibe", "candelabro", "vela", "mate", "pava", "silla de madera", "mesa", "baúl", "maceta", "ventana con reja", "abanico", "gato", "farol", "alfombra"]],
+    ["Vendedores ambulantes", "una calle colonial de tierra en 1810 con vendedores ambulantes: aguatero con su carreta, lechero a caballo, vendedora de empanadas, velero y escobero", ["carreta con tonel", "caballo", "tarro de leche", "canasta de empanadas", "atado de velas", "escoba", "farol", "perro", "paraguas", "galera", "rueda", "mantilla", "gallina", "plumero"]],
+    ["Costa del Río de la Plata", "la costa del Río de la Plata en 1810 con lavanderas, carretas de ruedas altas que llevan pasajeros desde los barcos y el fuerte de Buenos Aires al fondo", ["carreta de ruedas altas", "barco de vela", "bote", "ropa tendida", "canasta", "balde", "caballo", "fuerte", "gaviota", "piedra", "bandera", "farol", "perro", "sombrero"]]],
+  "06-05": ["Bosque y río",
+    ["Separamos en casa", "una cocina donde una familia separa residuos orgánicos, plásticos, vidrio y papel, con una compostera en el patio", ["tacho verde", "tacho azul", "botella", "frasco", "diario", "cáscara de banana", "caja", "lata", "compostera", "bolsa de tela", "maceta", "canilla", "reloj", "gato"]],
+    ["Energía limpia", "un paisaje con molinos de viento, paneles solares, una represa y una casa con techo solar", ["molino", "panel solar", "represa", "casa", "bicicleta", "auto eléctrico", "árbol", "río", "pájaro", "nube", "sol", "lamparita", "perro", "flor"]],
+    ["Glaciar patagónico", "un glaciar patagónico con lagos turquesa, bosque de lengas, un cóndor y un huemul", ["glaciar", "lago", "lenga", "cóndor", "huemul", "bote", "montaña", "nube", "sol", "piedra", "flor", "mochila", "binoculares", "pájaro carpintero"]]],
+  "06-17": ["Cerros de Salta",
+    ["Campamento gaucho", "un campamento de gauchos de Güemes al pie de los cerros, con fogón, caballos atados, ponchos rojos tendidos y cardones", ["fogón", "poncho rojo", "caballo", "guardamontes", "olla", "mate", "pava", "cardón", "lazo", "montura", "sombrero", "tambor", "carpa", "perro"]],
+    ["Salta colonial", "una plaza de Salta en la década de 1810 con el Cabildo, casas coloniales con balcones de madera y gente en mulas", ["cabildo", "balcón de madera", "mula", "farol", "iglesia", "carreta", "poncho", "sombrero", "canasta", "campana", "vasija", "aljibe", "árbol", "perro"]],
+    ["Peña salteña", "una peña actual en Salta con chicos con poncho salteño bailando, bombo, guitarra y empanadas", ["poncho salteño", "bombo", "guitarra", "empanadas", "pañuelo", "quena", "mesa", "vela", "farol", "sombrero", "jarra", "cerro", "cardón", "guirnalda"]]],
+  "06-20": ["Monumento a la Bandera",
+    ["Bandera gigante", "el patio de la escuela con todos los chicos sosteniendo una bandera gigante y globos celestes y blancos", ["bandera gigante", "globo", "escarapela", "tambor", "micrófono", "guirnalda", "banco", "árbol", "campana", "mochila", "gorra", "maceta", "banderín", "sol"]],
+    ["Promesa a la bandera", "un acto en el salón de la escuela con chicos de cuarto grado prometiendo lealtad a la bandera, con abanderado y escoltas con banda", ["bandera", "mástil", "banda de abanderado", "guante blanco", "escarapela", "atril", "micrófono", "ramo de flores", "pizarrón", "reloj", "maceta", "silla", "cámara", "cortina"]],
+    ["Belgrano en su escritorio", "Manuel Belgrano en su escritorio en 1812, escribiendo con pluma junto a una ventana, con mapas, libros y una bandera celeste y blanca doblada", ["pluma", "tintero", "vela", "mapa", "libro", "globo terráqueo", "catalejo", "bicornio", "silla", "baúl", "reloj de arena", "bandera doblada", "ventana", "cofre"]]],
+  "07-09": ["Casa de Tucumán",
+    ["Fiesta en la plaza de 1816", "la plaza de Tucumán en julio de 1816 celebrando la Independencia con un baile popular, faroles, vecinos y guitarras", ["farol", "guitarra", "guirnalda", "naranjo", "bandera", "carreta", "caballo", "sombrero", "mantilla", "vela", "campana", "iglesia", "perro", "tambor"]],
+    ["Locro y pastelitos", "una cocina actual el 9 de Julio con una familia preparando locro en una olla grande y pastelitos", ["olla", "cuchara de madera", "zapallo", "choclo", "porotos", "pastelitos", "plato", "mantel", "bandera", "escarapela", "reloj", "ventana", "jarra", "gato"]],
+    ["El salón de la jura", "el salón de la Casa de Tucumán en 1816 con congresales sentados en sillas de madera alrededor de una mesa con el acta y tinteros", ["acta", "tintero", "pluma", "mesa", "silla", "vela", "candelabro", "cuadro", "ventana", "alfombra", "campanilla", "libro", "reloj", "bandera"]]],
+  "08-17": ["Cruce de los Andes",
+    ["Campamento de El Plumerillo", "el campamento de El Plumerillo en Mendoza con soldados entrenando, herreros haciendo herraduras, mulas cargadas y San Martín supervisando", ["herradura", "yunque", "martillo", "mula", "cañón", "carpa", "tambor", "bandera de los Andes", "montura", "barril", "carreta", "álamo", "fogón", "cantimplora"]],
+    ["Bordando la bandera", "un salón de Mendoza en 1816 donde mujeres mendocinas bordan la bandera de los Andes alrededor de una mesa", ["bandera de los Andes", "aguja", "hilo", "tijera", "dedal", "canasta", "vela", "mesa", "silla", "ventana", "taza", "gato", "carretel", "jarrón"]],
+    ["El Aconcagua", "el cerro Aconcagua nevado con guanacos, cóndores, un zorro y una laguna de altura", ["Aconcagua", "guanaco", "cóndor", "zorro", "laguna", "piedra", "flor", "nube", "sol", "mula", "arroyo", "vizcacha", "nieve", "cactus"]]],
+  "08-22": ["Peña folklórica",
+    ["Leyendas junto al fogón", "una ronda de chicos alrededor del fogón escuchando a un abuelo contar leyendas, con un ceibo, una luna grande y luciérnagas", ["fogón", "ceibo", "luna", "luciérnaga", "guitarra", "mate", "poncho", "lechuza", "banco de madera", "farol", "estrella", "perro", "olla", "libro"]],
+    ["Danzas de las regiones", "un escenario con parejas bailando chacarera, carnavalito, chamamé y malambo, cada una con su vestimenta típica", ["pañuelo", "acordeón", "bombo", "guitarra", "sombrero", "poncho", "pollera", "botas", "quena", "charango", "cinta", "guirnalda", "farol", "alfombra"]],
+    ["Feria de artesanías", "una feria de artesanías con mates tallados, ponchos tejidos, cerámica, cestería y platería", ["mate tallado", "poncho tejido", "vasija", "canasta", "rastra", "telar", "bombilla", "sombrero", "alfombra", "collar", "guitarra", "banderín", "mesa", "toldo"]]],
+  "09-11": ["Aula alegre",
+    ["Escuela rural", "una escuela rural con un maestro, pocos alumnos de distintas edades, un caballo atado afuera y una huerta", ["caballo", "bandera", "campana", "pizarrón", "huerta", "molino", "bicicleta", "banco", "mapa", "guardapolvo", "tranquera", "gallina", "regadera", "mochila"]],
+    ["Aula de antes", "un aula del siglo XIX con pupitres de madera, pizarras de mano, tinteros y un maestro de levita", ["pupitre", "pizarra de mano", "tiza", "tintero", "pluma", "libro", "campana", "globo terráqueo", "reloj de pared", "mapa", "ábaco", "vela", "sombrero", "regla"]],
+    ["Excursión al museo", "una excursión escolar a un museo de ciencias con una maestra guiando y chicos mirando un esqueleto de dinosaurio", ["esqueleto de dinosaurio", "lupa", "cuaderno", "mochila", "gorra", "cámara", "vitrina", "piedra", "planeta colgante", "banco", "colectivo escolar", "reloj", "binoculares", "cartel"]]],
+  "09-21": ["Picnic de primavera",
+    ["Jardín en flor", "un jardín lleno de flores con abejas, mariposas, un caracol, una regadera y un banco de plaza", ["girasol", "tulipán", "rosa", "abeja", "mariposa", "caracol", "regadera", "vaquita de San Antonio", "colmena", "banco", "nido", "pájaro", "maceta", "sol"]],
+    ["Día del Estudiante", "una plaza con estudiantes celebrando con guitarra, juegos y bicicletas, con banderines de colores", ["guitarra", "bicicleta", "pelota", "banderín", "mochila", "gorra", "balde de pochoclo", "jugo", "barrilete", "frisbee", "parlante", "manta", "sol", "árbol"]],
+    ["Después de la lluvia", "un barrio después de una lluvia de primavera con un arcoíris, charcos, chicos con botas de lluvia y flores abriéndose", ["arcoíris", "charco", "botas de lluvia", "paraguas", "rana", "caracol", "flor", "nube", "sol", "barquito de papel", "bicicleta", "perro", "árbol", "pájaro"]]],
+  "10-12": ["Feria de culturas",
+    ["Comunidad de la Puna", "una comunidad colla en la Puna con casas de adobe, llamas, mujeres tejiendo en telar y cerros de colores", ["llama", "telar", "casa de adobe", "cerro de colores", "vasija", "canasta", "poncho", "sombrero", "olla", "cardón", "flor", "sol", "nube", "ovillo"]],
+    ["Comunidad mapuche", "una comunidad mapuche en la Patagonia con una ruka, araucarias, un telar mapuche y familias compartiendo", ["ruka", "araucaria", "telar", "piñón", "kultrún", "caballo", "oveja", "lago", "montaña", "canasta", "vasija", "nube", "sol", "pájaro"]],
+    ["Monte chaqueño", "una comunidad wichí y qom en el monte chaqueño con artesanías de chaguar y madera de palo santo, un río y algarrobos", ["yica de chaguar", "algarrobo", "canoa", "río", "pez", "vasija", "tejido", "tallado de madera", "carpincho", "pájaro", "nube", "sol", "fogón", "canasta"]]],
+  "11-10": ["Pulpería y rancho",
+    ["Fiesta en la estancia", "una fiesta criolla en una estancia con carrera de sortija, guitarreros, bailarines de zamba y banderines", ["sortija", "caballo", "guitarra", "pañuelo", "poncho", "sombrero", "bandera", "banderines", "tranquera", "aljibe", "mate", "rastra", "carreta", "parrilla"]],
+    ["Adentro del rancho", "el interior de un rancho de adobe con una familia gaucha: fogón con olla, pava, catre, guitarra colgada y un mate que pasa de mano en mano", ["catre", "fogón", "olla", "pava", "mate", "guitarra", "poncho", "sombrero", "banco de madera", "vela", "cuero", "ventana", "gato", "alpargatas"]],
+    ["El payador bajo el ombú", "la pampa con un gaucho payador cantando con su guitarra bajo un ombú, una carreta y vacas a lo lejos", ["guitarra", "ombú", "carreta", "vaca", "caballo", "hornero", "ñandú", "tero", "tranquera", "molino", "nube", "sol", "mate", "poncho"]]],
+  "11-20": ["Vuelta de Obligado",
+    ["La batería en la barranca", "la batería argentina sobre la barranca de Obligado en 1845 con cañones, soldados con gorro rojo y la bandera", ["cañón", "balas de cañón", "tambor", "bandera", "barril", "soldado", "caballo", "carpa", "catalejo", "árbol", "nube", "río", "barco", "cadena"]],
+    ["El río hoy", "una familia navegando hoy en lancha por el río Paraná frente a las barrancas de Obligado, con el monumento, garzas e islas", ["lancha", "chaleco salvavidas", "garza", "isla", "barranca", "monumento", "bandera", "árbol", "pez", "nube", "sol", "caña de pescar", "bote", "gaviota"]],
+    ["Mural de la soberanía", "un aula donde los chicos pintan en una cartulina gigante el río Paraná con las cadenas, con banderas y escarapelas", ["cartulina", "crayón", "bandera", "escarapela", "pincel", "témpera", "tijera", "pizarrón", "globo", "maceta", "mochila", "regla", "lápiz", "delantal"]]],
+  comida: ["Cocina familiar",
+    ["La verdulería", "una verdulería de barrio con cajones de frutas y verduras de colores y vecinos comprando", ["cajón de manzanas", "banana", "sandía", "zanahoria", "lechuga", "tomate", "uvas", "balanza", "bolsa", "canasta", "pera", "choclo", "calabaza", "naranja"]],
+    ["Comedor escolar", "el comedor de la escuela con chicos almorzando platos saludables, jarras de agua y frutas de postre", ["plato", "jarra de agua", "vaso", "cuchara", "tenedor", "bandeja", "manzana", "banana", "ensalada", "pan", "servilleta", "mesa", "silla", "delantal"]],
+    ["Picnic saludable", "un picnic en el parque con una canasta llena de frutas, sándwiches integrales y agua", ["canasta", "mantel", "sándwich", "frutilla", "sandía", "uvas", "botella de agua", "termo", "yogur", "pera", "mariposa", "árbol", "perro", "pelota"]]],
+  escuela: ["Patio en el recreo",
+    ["Clase de plástica", "el aula de plástica con chicos pintando en atriles, témperas, pinceles y dibujos colgados", ["atril", "témpera", "pincel", "paleta", "delantal", "tijera", "pegamento", "crayón", "cartulina", "plastilina", "frasco con agua", "dibujo colgado", "mesa", "banco"]],
+    ["Educación física", "el gimnasio de la escuela con chicos saltando, aros, pelotas, colchonetas y un profe con silbato", ["aro", "pelota", "colchoneta", "silbato", "cono", "soga", "banco", "red", "botella", "cronómetro", "zapatillas", "mochila", "reloj", "bandera"]],
+    ["La salida", "la puerta de la escuela a la hora de la salida con familias esperando, un colectivo escolar y chicos con mochilas", ["mochila", "colectivo escolar", "bicicleta", "paraguas", "perro", "semáforo", "árbol", "banco", "cochecito", "kiosco", "farol", "gorra", "pelota", "campana"]]],
+  granja: ["La granja",
+    ["El tambo", "un tambo al amanecer con vacas, un tambero con baldes de leche, terneros y un tanque de leche", ["vaca", "ternero", "balde", "tarro de leche", "banco", "sombrero", "gallo", "perro", "tractor", "fardo", "tranquera", "sol", "molino", "gato"]],
+    ["El gallinero", "un gallinero con gallinas, pollitos, un gallo en el techo, huevos en nidos y un granjero juntando huevos", ["gallina", "pollito", "gallo", "huevo", "nido", "canasta", "maíz", "bebedero", "cerca", "pato", "conejo", "cerdo", "flor", "sol"]],
+    ["La huerta", "la huerta de la granja con zapallos, tomates, lechugas, un espantapájaros y conejos", ["zapallo", "tomate", "lechuga", "zanahoria", "espantapájaros", "conejo", "regadera", "pala", "carretilla", "mariposa", "pájaro", "cerca", "sol", "nube"]]],
+  mar: ["Playa y fondo del mar",
+    ["Puerto pesquero", "un puerto con barcos pesqueros de colores, pescadores con redes, gaviotas y un faro", ["barco", "red", "faro", "gaviota", "ancla", "cajón de pescado", "salvavidas", "boya", "soga", "gorra", "bote", "lobo marino", "cangrejo", "nube"]],
+    ["Arrecife de coral", "un arrecife de coral con peces de colores, tortuga, pulpo, caballito de mar y un submarino amarillo", ["coral", "pez payaso", "tortuga", "pulpo", "caballito de mar", "submarino", "estrella de mar", "almeja", "burbujas", "alga", "medusa", "tiburón simpático", "cofre", "ancla"]],
+    ["Día de playa", "una playa argentina con familias, sombrillas, carpas, un guardavidas en su torre y chicos haciendo castillos", ["sombrilla", "castillo de arena", "balde", "pala", "torre de guardavidas", "pelota", "heladerita", "toalla", "gorro", "ojotas", "barrilete", "gaviota", "caracol", "silla de playa"]]],
+  espacio: ["El espacio",
+    ["Base en la Luna", "una base en la Luna con astronautas, un vehículo lunar, cráteres y la Tierra en el cielo", ["vehículo lunar", "astronauta", "cráter", "Tierra", "bandera", "antena", "cohete", "cúpula", "estrella", "roca", "casco", "satélite", "cometa", "caja de herramientas"]],
+    ["Noche de telescopio", "un observatorio de noche con chicos mirando por un telescopio, el cielo estrellado y constelaciones", ["telescopio", "luna", "estrella", "cúpula", "mapa del cielo", "linterna", "manta", "termo", "búho", "árbol", "planeta", "cometa", "binoculares", "banco"]],
+    ["Sistema solar", "el sistema solar con el Sol en el centro y los ocho planetas en órbita, cada uno con su color real", ["Sol", "Mercurio", "Venus", "Tierra", "Marte", "Júpiter", "Saturno", "Urano", "Neptuno", "Luna", "cometa", "asteroide", "nave", "estrella"]]],
+  emociones: ["En el aula",
+    ["En la plaza", "una plaza donde chicos viven distintas emociones: uno festeja un gol, a otra la consuelan después de caerse, otro se sorprende con un perro", ["hamaca", "tobogán", "pelota", "perro", "banco", "curita", "helado", "globo", "árbol", "nube", "sol", "flor", "bicicleta", "mochila"]],
+    ["El cumpleaños", "un cumpleaños con chicos sintiendo alegría, sorpresa, vergüenza y emoción, con torta, globos y regalos", ["torta", "vela", "globo", "regalo", "gorrito", "guirnalda", "vaso", "plato", "cámara", "caramelos", "silla", "mesa", "piñata", "moño"]],
+    ["Rincón de la calma", "un rincón tranquilo del aula con almohadones, plantas y una botella de la calma, donde un chico respira tranquilo", ["almohadón", "planta", "botella de la calma", "libro", "peluche", "lámpara", "alfombra", "auriculares", "reloj de arena", "ventana", "cortina", "pelotita", "cuadro", "mantita"]]],
+  transporte: ["Ciudad en movimiento",
+    ["Estación de tren", "una estación de tren con andenes, un tren llegando, pasajeros con valijas y un reloj grande", ["tren", "reloj", "valija", "banco", "boletería", "barrera", "mochila", "farol", "carrito", "perro", "paraguas", "diario", "gorra", "vía"]],
+    ["Aeropuerto", "un aeropuerto con aviones, torre de control, cinta de valijas y una familia que se va de viaje", ["avión", "torre de control", "valija", "carrito", "cinta de valijas", "helicóptero", "manga", "bandera", "mochila", "reloj", "banco", "avioneta", "globo", "camión cisterna"]],
+    ["En la ruta", "una ruta argentina con camiones, un auto con casilla rodante, un tractor en el campo y un micro de larga distancia", ["camión", "casilla rodante", "tractor", "micro", "moto", "bicicleta", "señal de tránsito", "molino", "vaca", "estación de servicio", "puente", "árbol", "nube", "sol"]]],
+  higiene: ["Baño y habitación",
+    ["Cocina limpia", "una cocina donde la familia lava las frutas, los platos y se lava las manos antes de comer", ["canilla", "esponja", "detergente", "plato", "fruta", "jabón", "toalla", "delantal", "tacho", "escoba", "vaso", "olla", "mesa", "repasador"]],
+    ["En el dentista", "un consultorio odontológico amigable con una dentista que enseña a cepillarse con un diente gigante de juguete", ["diente gigante", "cepillo de dientes", "pasta dental", "espejo", "sillón", "lámpara", "vaso", "guantes", "hilo dental", "peluche", "reloj", "planta", "cuadro", "barbijo"]],
+    ["Después del deporte", "un vestuario donde chicos se duchan, se ponen ropa limpia y guardan la ropa usada en el bolso", ["ducha", "toalla", "jabón", "ojotas", "bolso", "zapatillas", "medias", "peine", "desodorante", "banco", "perchero", "botella", "reloj", "espejo"]]],
+};
+function isEscenas(k) { const b = isEscena(k), m = IS_MAS[k]; return [{ t: m ? m[0] : "Escena principal", escena: b.escena, objetos: b.objetos }, ...(m ? m.slice(1).map(([t, e, o]) => ({ t, escena: e, objetos: o })) : [])]; }
+function isUsadas() { try { return JSON.parse(localStorage.getItem("cofre-escenas-usadas") || "{}"); } catch { return {}; } }
+function isMarcarUsada() { const u = isUsadas(), k = IS.tema, i = isEscIdx(); u[k] = { ...(u[k] || {}), [i]: IS.tipo }; try { localStorage.setItem("cofre-escenas-usadas", JSON.stringify(u)); } catch {} }
+function isEscIdx() { const L = isEscenas(IS.tema); if (IS.esc != null && IS.esc < L.length) return IS.esc; const off = ({ dif: 0, falta: 1, busca: 2 })[IS.tipo] || 0, u = isUsadas()[IS.tema] || {};
+  for (let i = 0; i < L.length; i++) { const j = (off + i) % L.length; if (!(j in u)) return j; } return off % L.length; }
+function isEscenaAct() { const b = isEscena(IS.tema), L = isEscenas(IS.tema), e = L[isEscIdx()]; return { nombre: b.nombre, titulo: e.t, escena: e.escena, objetos: e.objetos }; }
+const IS_TIPO_N = { dif: "Diferencias", falta: "¿Qué falta?", busca: "Buscá y encontrá" };
+function isEscChips() { const L = isEscenas(IS.tema), sel = isEscIdx(), u = isUsadas()[IS.tema] || {};
+  return `<div class="field"><label>Escena <small class="muted">· cada actividad del cuadernillo con una distinta</small></label><div class="is-escs">${L.map((e, i) => `<button type="button" class="is-esc${i === sel ? " on" : ""}" data-isesc="${i}"><b>${esc(e.t)}</b><small>${i in u ? `✓ ya usada en ${esc(IS_TIPO_N[u[i]] || "otra")}` : "sin usar"}</small></button>`).join("")}</div>${Object.keys(u).length ? `<button class="linkish" type="button" data-isescreset>Empezar un cuadernillo nuevo (olvidar escenas usadas)</button>` : ""}</div>`; }
+
+// ---------- diferencias fáciles de encontrar ----------
+const IS_COLOR_N = ["rojo", "azul", "verde", "amarillo", "violeta", "naranja", "rosa", "negro"];
+function isDiferencias(E, n, seed, extras) {
+  const r = isRand(seed), ob = isMezclar(E.objetos, seed), ex = isMezclar([...(extras || []), ...IS_EXTRA], seed + 7), L = [];
+  let o = 0, x = 0; const sig = () => ob[o++ % ob.length];
+  for (let i = 0; i < n; i++) {
+    const tipo = i % 3;
+    if (tipo === 0) { const c = IS_COLOR_N[Math.floor(r() * IS_COLOR_N.length)]; L.push(`Cambio de color: ${sig()} pasa a ser de color ${c} entero (bien distinto al color que tenía).`); }
+    else if (tipo === 1) L.push(`Elemento que desaparece: ${sig()} (que en su lugar se vea el fondo, como si nunca hubiera estado).`);
+    else L.push(`Elemento nuevo: agregá ${ex[x++ % ex.length].replace(/^(un|una) /, "")}, de tamaño mediano, en un lugar vacío y bien visible.`);
+  }
   return L;
 }
+
 // ---------- packs de recursos ----------
 const IS_PACKS = {
   frutas: ["Comida saludable", "Frutas", ["manzana", "banana", "naranja", "frutilla", "uvas", "pera", "sandía", "kiwi", "durazno", "ananá", "cerezas", "limón"]],
@@ -4129,20 +4281,22 @@ function isSegmentos(o) {
   return L.join("\n");
 }
 function isPrompts() {
-  const E = isEscena(IS.tema), st = IS_ESTILOS[IS.estilo] || isEstilo.estilo, estilo = IS.estilo === "infantil" ? isEstilo.estilo : st;
+  const E = isEscenaAct(), st = IS_ESTILOS[IS.estilo] || isEstilo.estilo, estilo = IS.estilo === "infantil" ? isEstilo.estilo : st;
   const edad = /Inicial/.test(IS.nivel) ? "4 a 5" : /Primer/.test(IS.nivel) ? "6 a 8" : "9 a 12";
   const nObj = /Inicial/.test(IS.nivel) ? 8 : /Primer/.test(IS.nivel) ? 11 : 14;
   const objs = E.objetos.slice(0, nObj);
   if (IS.tipo === "dif" || IS.tipo === "falta") {
-    const base = isSegmentos({ tipo: `Ilustración horizontal en formato 4:3 para la actividad “${IS.tipo === "falta" ? "¿Qué falta?" : "Encontrá las diferencias"}” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena, elementos: objs.join(", "), composicion: `plano general a la altura de los ojos, con los elementos distribuidos por toda la imagen (arriba, abajo, izquierda y derecha) y bien espaciados, sobre un fondo simple. Cada elemento es lo bastante grande como para notar un cambio de color o de forma.`, estilo: estilo });
-    const L = IS.tipo === "falta" ? isMezclar(objs, IS.seed).slice(0, IS.n).map((o) => `Quitá ${o}; en su lugar se ve el fondo continuo, como si nunca hubiera estado.`) : isDiferencias({ ...E, objetos: objs }, IS.n, IS.seed);
-    const edit = `Editá la imagen que acabás de crear. Hacé ÚNICAMENTE estos ${IS.n} cambios:\n${L.map((x, i) => `${i + 1}. ${x}`).join("\n")}\n\nMantené exactamente igual todo lo demás: encuadre, tamaño, fondo, colores, iluminación, estilo de dibujo, personajes, caras, posturas y la posición de cada elemento. No mejores ni corrijas nada que no esté en la lista.\nCada cambio tiene que ser claro para chicos de ${edad} años, ni demasiado obvio ni demasiado chico.`;
+    const base = isSegmentos({ tipo: `Ilustración horizontal en formato 4:3 para la actividad “${IS.tipo === "falta" ? "¿Qué falta?" : "Encontrá las diferencias"}” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena, elementos: objs.join(", "), composicion: `plano general a la altura de los ojos, con los elementos distribuidos por toda la imagen (arriba, abajo, izquierda y derecha) y bien espaciados, sobre un fondo simple. Cada elemento es de tamaño mediano o grande, con colores planos y bien definidos, para que se note fácil si cambia de color, desaparece o aparece uno nuevo.`, estilo: estilo });
+    const L = IS.tipo === "falta" ? isMezclar(objs, IS.seed).slice(0, IS.n).map((o) => `Quitá ${o}; en su lugar se ve el fondo continuo, como si nunca hubiera estado.`) : isDiferencias({ ...E, objetos: objs }, IS.n, IS.seed, E.objetos.slice(nObj));
+    const edit = `Editá la imagen que acabás de crear. Hacé ÚNICAMENTE estos ${IS.n} cambios:\n${L.map((x, i) => `${i + 1}. ${x}`).join("\n")}\n\nMantené exactamente igual todo lo demás: encuadre, tamaño, fondo, colores, iluminación, estilo de dibujo, personajes, caras, posturas y la posición de cada elemento. No mejores ni corrijas nada que no esté en la lista.\nNo cambies el tamaño, la forma, la postura, la expresión ni la posición de ningún personaje u objeto: las únicas diferencias son cambios de color, elementos que desaparecen y elementos nuevos.\nCada cambio tiene que ser fácil de ver para chicos de ${edad} años.`;
     return { E, pasos: [["1 · Imagen original", base], ["2 · " + (IS.tipo === "falta" ? `La misma imagen sin ${IS.n} elementos` : `La misma imagen con ${IS.n} diferencias`), edit]], lista: L };
   }
   const ocultos = isMezclar([...E.objetos.slice(6), "una llave", "una estrella", "una cuchara", "un lápiz", "un pez", "una campana", "un zapato", "un corazón", "una lupa", "un sombrero"], IS.seed).slice(0, IS.n);
   IS.objetos = ocultos;
-  const busca = isSegmentos({ tipo: `Ilustración vertical en formato 3:4 para la actividad “Buscá y encontrá” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena + ", con muchos detalles y personajes realizando distintas acciones", elementos: "", composicion: `vista amplia levemente desde arriba, escena rica en detalles pero ordenada. Escondidos dentro de la escena, cada uno UNA sola vez, entero y de tamaño chico o mediano, integrados al dibujo pero visibles para quien busca con atención: ${ocultos.join(", ")}.`, estilo: estilo });
-  return { E, pasos: [["Imagen para buscar", busca], ["Íconos de los objetos (hoja de stickers)", isPromptPack(ocultos.map((o) => o.replace(/^(un|una) /, "")), IS.estilo === "linea" ? "infantil" : IS.estilo)]], lista: ocultos };
+  const nombres = ocultos.map((o) => o.replace(/^(un|una) /, ""));
+  const franja = IS.franja !== false ? `\nLa imagen tiene dos partes. ARRIBA, ocupando cerca del 78 % del alto, la escena. ABAJO, ocupando todo el ancho y cerca del 22 % del alto, un recuadro rectangular de esquinas redondeadas con fondo crema claro y borde grueso azul francia, separado de la escena por un margen. Dentro del recuadro, los ${nombres.length} objetos a buscar dibujados uno al lado del otro (en una o dos filas), cada uno dentro de un círculo blanco con borde fino, en este orden: ${nombres.join(", ")}. Cada objeto del recuadro es idéntico en forma y color al que está escondido en la escena. El recuadro no lleva texto ni números.` : "";
+  const busca = isSegmentos({ tipo: `Ilustración vertical en formato 3:4 para la actividad “Buscá y encontrá” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena + ", con muchos detalles y personajes realizando distintas acciones", elementos: "", composicion: `vista amplia levemente desde arriba, escena rica en detalles pero ordenada. Escondidos dentro de la escena, cada uno UNA sola vez, entero y de tamaño chico o mediano, integrados al dibujo pero visibles para quien busca con atención: ${ocultos.join(", ")}.${franja}`, estilo: estilo });
+  return { E, pasos: [[IS.franja !== false ? "Imagen para buscar (con el recuadro de objetos)" : "Imagen para buscar", busca], ["Opcional · íconos sueltos de los objetos (hoja de stickers)", isPromptPack(ocultos.map((o) => o.replace(/^(un|una) /, "")), IS.estilo === "linea" ? "infantil" : IS.estilo)]], lista: ocultos };
 }
 function isPromptPack(items, estilo) {
   const n = items.length, cols = n <= 4 ? 2 : n <= 9 ? 3 : 4, rows = Math.ceil(n / cols), st = estilo === "infantil" ? isEstilo.estilo : (IS_ESTILOS[estilo] || isEstilo.estilo), linea = estilo === "linea";
@@ -4265,10 +4419,10 @@ const isCirc = (m, f) => `<circle cx="${f.X + m.x * f.W}" cy="${f.Y + m.y * f.H}
 async function isPaginas() {
   const E = isEscena(IS.tema);
   if (IS.tipo === "busca") {
-    if (!IS.A) return null; const J = await isJpeg(IS.A, 1800), f = isFoto(J, 40, 168, 515, 512);
+    if (!IS.A) return null; const conFranja = IS.franja !== false, J = await isJpeg(IS.A, 1800), f = isFoto(J, 40, conFranja ? 162 : 168, 515, conFranja ? 612 : 512);
     const L = IS.objetos.length ? IS.objetos : IS.marcas.map((_, i) => `objeto ${i + 1}`);
     const chips = L.map((o, i) => { const c = i % 2, r = Math.floor(i / 2); return `<g transform="translate(${60 + c * 245},${700 + r * 18})"><rect width="14" height="14" rx="3" fill="none" stroke="#4AAE4F" stroke-width="2"/><text x="22" y="12" font-size="12.5" fill="#1A2744" font-family="Arial, sans-serif">${svgEsc(o.replace(/^(un|una) /, "").toUpperCase())}</text></g>`; }).join("");
-    const act = isMarco("Buscá y encontrá", `BUSCÁ en la imagen los ${L.length} objetos y MARCALOS con una cruz cuando los encuentres.`, f.svg + chips, "");
+    const act = isMarco("Buscá y encontrá", conFranja ? `BUSCÁ en la escena los ${L.length} objetos del recuadro y RODEALOS con un círculo cuando los encuentres.` : `BUSCÁ en la imagen los ${L.length} objetos y MARCALOS con una cruz cuando los encuentres.`, f.svg + (conFranja ? "" : chips), "");
     const sol = isMarco("Soluciones", `Así quedan marcados los ${L.length} objetos escondidos.`, f.svg + IS.marcas.map((m) => isCirc(m, f)).join(""), "");
     return [["actividad", act], ["soluciones", sol]];
   }
@@ -4368,6 +4522,8 @@ function isRenderAct() {
         <div class="field"><label for="isNivel">Nivel</label><select id="isNivel">${["Nivel Inicial", "Primaria – Primer Ciclo", "Primaria – Segundo Ciclo"].map((v) => `<option${IS.nivel === v ? " selected" : ""}>${v}</option>`).join("")}</select></div></div>
       <div class="is-row"><div class="field"><label>Cantidad</label><div class="mz-pills is-pills">${nOps.map((v) => `<button type="button" class="${IS.n === v ? "on" : ""}" data-isn="${v}"><b>${v}</b></button>`).join("")}</div></div>
         <div class="field"><label for="isEst">Estilo</label><select id="isEst">${Object.keys(IS_ESTILOS).map((k) => `<option value="${k}"${IS.estilo === k ? " selected" : ""}>${IS_EST_N[k]}</option>`).join("")}</select></div></div>
+      ${isEscChips()}
+      ${IS.tipo === "busca" ? `<label class="check"><input type="checkbox" id="isFranja" ${IS.franja !== false ? "checked" : ""}> Incluir en la imagen el recuadro con los objetos a buscar</label>` : ""}
       ${isPersLista().length ? `<div class="field"><label>¿Qué personajes aparecen? <small class="muted">(opcional)</small></label><div class="is-items is-sel">${isPersLista().map((p) => `<button type="button" class="is-chip${(IS.pers || []).includes(p.n) ? " on" : ""}" data-ispersel="${esc(p.n)}">${isRef(p.n) ? "📎 " : ""}${esc(p.n)}</button>`).join("")}</div></div>` : ""}
       ${IS_PRECISION[IS.tema] ? `<div class="is-prec">🏛️ <b>Precisión histórica incluida.</b> ${esc(IS_PRECISION[IS.tema].split(". ").slice(0, 2).join(". "))}…</div>` : ""}
       <h3>2. Pedidos para ${isPlatPills()} <button class="linkish" type="button" data-isotra>🎲 Otra variante</button></h3>
@@ -4429,10 +4585,10 @@ async function isClick(e) {
   const d = $("#isDlg"), t = e.target;
   if (t === d || t.closest("[data-iscerrar]")) { d.close(); return; }
   const tb = t.closest("[data-istab]"); if (tb) { IS.tab = tb.dataset.istab; isRender(); return; }
-  const tp = t.closest("[data-istipo]"); if (tp) { IS.tipo = tp.dataset.istipo; IS.n = IS.tipo === "busca" ? 8 : 10; IS.marcas = []; IS.A = IS.B = null; isRender(); return; }
+  const tp = t.closest("[data-istipo]"); if (tp) { IS.esc = null; IS.tipo = tp.dataset.istipo; IS.n = IS.tipo === "busca" ? 8 : 10; IS.marcas = []; IS.A = IS.B = null; isRender(); return; }
   const nn = t.closest("[data-isn]"); if (nn) { IS.n = +nn.dataset.isn; isRender(); return; }
   if (t.closest("[data-isotra]")) { IS.seed++; isRender(); return; }
-  const cp = t.closest("[data-iscopy]"); if (cp) { isCopiar(cp, isPrompts().pasos[+cp.dataset.iscopy][1]); return; }
+  const cp = t.closest("[data-iscopy]"); if (cp) { isCopiar(cp, isPrompts().pasos[+cp.dataset.iscopy][1]); if (cp.dataset.iscopy === "0") { IS.esc = isEscIdx(); isMarcarUsada(); setTimeout(isRender, 900); } return; }
   const pk = t.closest("[data-ispack]"); if (pk) { IS.packTema = pk.dataset.ispack; IS.nombres = null; IS.carpeta = null; isRender(); return; }
   if (t.closest("[data-iscopypack]")) { isCopiar(t.closest("[data-iscopypack]"), isPromptPack(IS_PACKS[IS.packTema][2], IS.packEstilo)); return; }
   if (t.closest("[data-iscortarpack]")) { const p = IS_PACKS[IS.packTema]; IS.nombres = p[2]; IS.carpeta = `${p[0]}/${p[1]}`; IS.tab = "corte"; isRender(); return; }
@@ -4441,6 +4597,8 @@ async function isClick(e) {
   if (t.closest("[data-isguardarestilo]")) { isEstilo = { estilo: $("#isEstiloTxt").value.trim(), paleta: $("#isPaleta").value.trim(), personajes: $("#isPers").value.trim() }; await isGuardarEstilo(); toast("Estilo guardado ✓", "ok"); return; }
   if (t.closest("[data-isreset]")) { isEstilo = { ...IS_DEF }; isRender(); return; }
   if (t.closest("[data-ispers]")) { const P = isEstilo.personajes.split("\n").filter(Boolean); isCopiar(t.closest("[data-ispers]"), `Hoja de personajes (character sheet) para los cuadernillos escolares de una marca argentina. Va a ser la referencia oficial: todas las ilustraciones futuras van a copiar a estos personajes.\nPersonajes, cada uno en su propia fila:\n${P.map((p) => "- " + p).join("\n")}\nComposición: cada personaje tres veces, de cuerpo entero (de frente, de perfil y de espaldas), misma altura y misma escala en las tres vistas, bien separados entre sí, sobre fondo blanco liso.\nEstilo: ${isEstilo.estilo}. Paleta de la marca: ${isEstilo.paleta}.\n${IS_CALIDAD}\nReglas firmes: sin texto, sin nombres escritos, sin sombras proyectadas, sin marcas de agua.`); return; }
+  const es = t.closest("[data-isesc]"); if (es) { IS.esc = +es.dataset.isesc; IS.marcas = []; isRender(); return; }
+  if (t.closest("[data-isescreset]")) { try { localStorage.removeItem("cofre-escenas-usadas"); } catch {} IS.esc = null; isRender(); toast("Listo: arrancás un cuadernillo nuevo", "ok"); return; }
   const pl = t.closest("[data-isplat]"); if (pl) { IS.plat = pl.dataset.isplat; isRender(); return; }
   const ps = t.closest("[data-ispersel]"); if (ps) { const n = ps.dataset.ispersel; IS.pers = (IS.pers || []).includes(n) ? IS.pers.filter((x) => x !== n) : [...(IS.pers || []), n]; isRender(); return; }
   const rd = t.closest("[data-isrefdl]"); if (rd) { const u = isRef(rd.dataset.isrefdl); if (u) { const b = await (await fetch(u)).blob(); await saveFile(`Referencia - ${slug(rd.dataset.isrefdl)}.jpg`, b); } return; }
@@ -4461,7 +4619,8 @@ async function isClick(e) {
 }
 async function isChange(e) {
   const t = e.target;
-  if (t.id === "isTema") { IS.tema = t.value; IS.marcas = []; isRender(); }
+  if (t.id === "isFranja") { IS.franja = t.checked; isRender(); }
+  if (t.id === "isTema") { IS.esc = null; IS.tema = t.value; IS.marcas = []; isRender(); }
   if (t.id === "isNivel") { IS.nivel = t.value; isRender(); }
   if (t.id === "isEst") { IS.estilo = t.value; isRender(); }
   if (t.id === "isPackEst") { IS.packEstilo = t.value; isRender(); }
