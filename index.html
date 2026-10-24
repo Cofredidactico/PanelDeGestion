@@ -1,4 +1,4 @@
-<title>Panel Cofre Didáctico</title>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1020"></head><body><title>Panel Cofre Didáctico</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap">
 <style>
@@ -1068,6 +1068,162 @@ body.tv-on{overflow:hidden}
 
 .nav-tools{margin-top:auto}.nav-tools+.nav-foot{margin-top:10px}
 .view>.foot{order:99}
+/* ===== Ventas: período, en vivo, pulso, gráfico, pendientes, efemérides, embudo, récords ===== */
+.vx-bar-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 14px}
+.vx-seg{flex-wrap:wrap;max-width:100%}
+.vx-custom{display:flex;gap:8px;flex-wrap:wrap}
+.vx-custom label{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.vx-custom input{border:1px solid var(--line);border-radius:9px;padding:6px 9px;background:var(--surface-2);color:var(--ink);font:inherit;font-size:13px}
+.vx-bell{margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer}
+.vx-bell[aria-pressed="true"]{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.vx-d{display:inline-block;font-weight:800;font-size:11.5px;padding:1px 7px;border-radius:99px;margin-right:4px}
+.vx-d.up{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.vx-d.down{color:var(--danger);background:color-mix(in srgb,var(--danger) 12%,transparent)}
+.vx-d.eq{color:var(--muted);background:var(--surface-2)}
+/* En vivo */
+.vx-live{display:flex;align-items:stretch;gap:10px;margin-bottom:14px;min-width:0}
+.vx-live-h{display:flex;align-items:center;gap:7px;font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ok);flex:none}
+.vx-dot{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent);animation:vxLat 1.8s infinite;flex:none}
+@keyframes vxLat{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 55%,transparent)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.vx-live-l{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 6px;min-width:0;flex:1;scrollbar-width:thin}
+.vx-lc{scroll-snap-align:start;flex:none;display:flex;align-items:center;gap:10px;min-width:230px;max-width:280px;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 12px;cursor:pointer;color:var(--ink);box-shadow:var(--shadow)}
+.vx-lc:hover{border-color:color-mix(in srgb,var(--blue) 40%,var(--line))}
+.vx-lc.nueva{border-color:color-mix(in srgb,var(--ok) 55%,var(--line));animation:vxEntra .7s cubic-bezier(.2,1.4,.4,1) both;background:linear-gradient(120deg,color-mix(in srgb,var(--ok) 14%,var(--surface)),var(--surface))}
+@keyframes vxEntra{from{transform:translateY(-14px) scale(.92);opacity:0}to{transform:none;opacity:1}}
+.vx-lc-i{font-size:20px}
+.vx-lc-t{display:grid;min-width:0;flex:1}
+.vx-lc-t b{font-size:13px}
+.vx-lc-t small,.vx-lc-m small{color:var(--muted);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vx-lc-m{display:grid;text-align:right;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums}
+.vx-float-w{position:fixed;right:18px;bottom:18px;z-index:80;display:grid;gap:10px;max-width:min(360px,calc(100vw - 32px))}
+.vx-float{display:flex;gap:12px;align-items:center;text-align:left;border:1px solid color-mix(in srgb,var(--ok) 50%,var(--line));background:var(--solid,var(--surface));color:var(--ink);border-radius:14px;padding:12px 14px;box-shadow:0 18px 40px rgba(0,0,0,.28);cursor:pointer;animation:vxFlota .6s cubic-bezier(.2,1.3,.4,1) both}
+.vx-float.sale{animation:vxSale .45s ease forwards}
+.vx-float-i{font-size:26px}
+.vx-float b{display:block;font-size:13.5px}
+.vx-float small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+@keyframes vxFlota{from{transform:translateX(120%);opacity:0}to{transform:none;opacity:1}}
+@keyframes vxSale{to{transform:translateX(120%);opacity:0}}
+@media (max-width:720px){.vx-float-w{right:12px;left:12px;bottom:84px;max-width:none}}
+/* Pulso */
+.vx-top2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,2fr);gap:14px;margin-bottom:16px;align-items:stretch}
+.vx-top2 .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:980px){.vx-top2{grid-template-columns:minmax(0,1fr)}}
+.vx-pulse{display:flex;flex-direction:column;gap:10px;justify-content:space-between;background:linear-gradient(140deg,color-mix(in srgb,var(--c-ventas) 16%,var(--surface)),var(--surface) 60%)}
+.vx-pulse-k{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.vx-pulse-v{display:flex;align-items:baseline;gap:10px;margin-top:4px}
+.vx-pulse-v b{font-family:var(--f-brand);font-size:32px;font-weight:600;font-variant-numeric:tabular-nums}
+.vx-pulse-v span{color:var(--muted);font-weight:600}
+.vx-pulse p{font-size:13px;margin-top:4px}
+.vx-pulse small{color:var(--faint);font-size:12px}
+.vx-pulse-g{width:100%;height:auto;display:block}
+.vx-pa{fill:none;stroke:var(--faint);stroke-width:1.5;stroke-dasharray:4 4}
+.vx-ph{fill:none;stroke:var(--c-ventas);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.vx-pn{fill:var(--c-ventas);stroke:var(--surface);stroke-width:2}
+.vx-pt{font-size:9.5px;fill:var(--c-ventas);font-weight:700;font-family:var(--f-body)}
+.vx-pt.alt{fill:var(--faint)}
+/* Gráfico */
+#monthChart{position:relative}
+.vx-svg{touch-action:pan-y}
+.chart .vx-prev{fill:none;stroke:var(--faint);stroke-width:1.2;stroke-dasharray:3 3}
+.chart .vx-bar{transition:opacity .15s,fill .15s;transform-origin:bottom;transform-box:fill-box}
+.chart .vx-bar.we{fill:color-mix(in srgb,var(--c-ventas) 70%,var(--surface))}
+.chart .vx-bar.sel{fill:var(--blue)}
+.vx-hit{fill:transparent;cursor:pointer;outline:none}
+.vx-hit:focus-visible{fill:color-mix(in srgb,var(--blue) 12%,transparent)}
+.vx-cur{stroke:var(--blue);stroke-width:1;stroke-dasharray:2 3;pointer-events:none}
+.vx-tip{position:absolute;top:0;pointer-events:none;background:var(--solid,var(--surface));border:1px solid var(--line);box-shadow:var(--shadow-hover);border-radius:10px;padding:7px 10px;font-size:12px;display:grid;gap:1px;min-width:140px;z-index:3;white-space:nowrap}
+.vx-tip b{font-size:12.5px;text-transform:capitalize}
+.vx-empty{padding:30px 0;text-align:center}
+.vx-drill-in{margin-top:12px;border-top:1px solid var(--line);padding-top:12px;animation:vxEntra .35s ease both}
+.vx-drill-h{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.vx-drill-h div{display:grid}
+.vx-drill-h span{color:var(--muted);font-size:12.5px}
+.vx-x{border:1px solid var(--line);background:var(--surface);border-radius:8px;width:30px;height:30px;cursor:pointer;color:var(--muted);flex:none}
+.vx-drill-m,.vx-firsts{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.vx-chip{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line)}
+.vx-drill-l{display:grid;gap:4px;max-height:360px;overflow:auto}
+.vx-ord{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;border:0;border-radius:9px;background:transparent;padding:8px;cursor:pointer;color:var(--ink)}
+.vx-ord:hover{background:var(--hover)}
+.vx-ord .t{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.vx-ord .n{display:grid;min-width:0}
+.vx-ord .n small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vx-ord .m{display:grid;justify-items:end;gap:3px;font-weight:700;font-variant-numeric:tabular-nums}
+/* Pendientes */
+.vx-pend{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px;border-radius:12px;border:1px solid var(--line);margin-bottom:8px;background:var(--surface-2)}
+.vx-pend-d{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;align-content:center;background:color-mix(in srgb,var(--blue) 14%,transparent);color:var(--blue);line-height:1}
+.vx-pend-d b{font-size:18px}.vx-pend-d small{font-size:10px;font-weight:700}
+.vx-pend.warn .vx-pend-d{background:color-mix(in srgb,var(--star) 20%,transparent);color:color-mix(in srgb,var(--star) 70%,var(--ink))}
+.vx-pend.late{opacity:.82}
+.vx-pend.late .vx-pend-d{background:color-mix(in srgb,var(--danger) 14%,transparent);color:var(--danger)}
+.vx-pend-t{display:grid;min-width:0}
+.vx-pend-t small{color:var(--muted);font-size:12px}
+.vx-pend-t .mt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vx-pend-a{display:grid;justify-items:end;gap:6px}
+.vx-pend-a b{font-variant-numeric:tabular-nums}
+.vx-pend-a div{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:560px){.vx-pend{grid-template-columns:auto minmax(0,1fr)}.vx-pend-a{grid-column:1/-1;justify-items:stretch}.vx-pend-a b{justify-self:start}.vx-pend-a div{justify-content:flex-start}}
+.vx-ok-empty{display:grid;place-items:center;text-align:center;padding:26px 8px;color:var(--muted)}
+.vx-ok-empty span{font-size:30px}
+.vx-note{font-size:11.5px;margin-top:6px}
+/* Récords */
+.vx-recs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.vx-rec{position:relative;border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:2px;background:var(--surface-2);overflow:hidden}
+.vx-rec .ic{font-size:20px}
+.vx-rec small{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.vx-rec b{font-family:var(--f-brand);font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.vx-rec .s{font-size:12px;color:var(--muted)}
+.vx-rec.nuevo{border-color:color-mix(in srgb,var(--star) 60%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--star) 18%,var(--surface)),var(--surface-2))}
+.vx-rec em{font-style:normal;color:var(--star);text-transform:none}
+.vx-rec.nuevo::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);animation:vxBrillo 2.8s ease-in-out infinite}
+@keyframes vxBrillo{60%,100%{transform:translateX(100%)}}
+.vx-h3,.vx-fun-x h3{font-size:13px;font-weight:800;margin:14px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.vx-hitos{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.vx-hito{display:flex;gap:10px;align-items:center;padding:9px 10px;border-radius:11px;border:1px dashed var(--line)}
+.vx-hito .ic{font-size:22px;filter:grayscale(1);opacity:.55}
+.vx-hito.on{border-style:solid;background:color-mix(in srgb,var(--ok) 8%,transparent)}
+.vx-hito.on .ic{filter:none;opacity:1}
+.vx-hito div{display:grid;gap:3px;flex:1;min-width:0}
+.vx-hito b{font-size:13px}
+.vx-hito small{color:var(--muted);font-size:11.5px}
+.vx-prog{height:5px;border-radius:99px;background:var(--surface-2);overflow:hidden;display:block}
+.vx-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--c-ventas),var(--blue));border-radius:99px}
+.vx-confeti{position:fixed;inset:0;pointer-events:none;z-index:120}
+/* Efemérides */
+.vx-efe-next{display:flex;gap:14px;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(120deg,color-mix(in srgb,var(--orange) 14%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--orange) 30%,var(--line));margin-bottom:14px}
+.vx-efe-next p{font-size:13px;color:var(--muted);margin-top:3px}
+.vx-efe-cal{width:54px;height:58px;border-radius:12px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;align-content:center;flex:none;line-height:1}
+.vx-efe-cal b{font-size:22px;color:var(--orange)}.vx-efe-cal small{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted)}
+.vx-efe-l{display:grid;gap:4px}
+.vx-efe{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(60px,.6fr) minmax(120px,1fr) minmax(0,.9fr);gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+.vx-efe-n{display:grid;min-width:0}
+.vx-efe-n small{color:var(--muted);font-size:12px}
+.vx-efe-bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.vx-efe-bar i{display:block;height:100%;background:var(--c-ventas);border-radius:99px}
+.vx-efe-h{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:1px}
+.vx-efe-m{font-size:12px;color:var(--muted)}
+.b0{background:#7b8db5}.b1{background:var(--c-sitio)}.b2{background:var(--c-ventas)}.b3{background:var(--c-trabajo)}.b4{background:var(--c-redes)}
+.vx-efe-ley{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;font-size:11.5px;color:var(--muted)}
+.vx-efe-ley span{display:flex;align-items:center;gap:5px}.vx-efe-ley i{width:10px;height:10px;border-radius:3px}
+@media (max-width:720px){.vx-efe{grid-template-columns:minmax(0,1fr) 80px}.vx-efe-h{grid-column:1/-1}.vx-efe-m{grid-column:1/-1}}
+/* Embudo */
+.vx-fun{display:grid;gap:8px;margin-bottom:12px}
+.vx-fun-s{display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:12px;align-items:center}
+.vx-fun-b{width:var(--w);margin:0 auto;display:flex;justify-content:center;align-items:center;gap:8px;height:44px;border-radius:10px;color:#fff;font-weight:800;font-size:17px;background:linear-gradient(90deg,var(--c-sitio),var(--blue));clip-path:polygon(0 0,100% 0,97% 100%,3% 100%);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.vx-fun-s:nth-child(2) .vx-fun-b{background:linear-gradient(90deg,var(--c-trabajo),var(--orange))}
+.vx-fun-s:nth-child(3) .vx-fun-b{background:linear-gradient(90deg,var(--c-ventas),var(--ok))}
+.vx-fun-t{display:grid;font-weight:700;font-size:13px}
+.vx-fun-t small{color:var(--muted);font-weight:600;font-size:12px}
+.vx-fun-x p{font-size:13.5px}
+.vx-fuga{padding:9px 11px;border-radius:10px;border-left:3px solid var(--star);background:var(--surface-2);margin-bottom:6px;display:grid;gap:2px}
+.vx-fuga.ok{border-left-color:var(--ok)}
+.vx-fuga small{color:var(--muted);font-size:12px}
+.vx-fuga p{font-size:12.5px}
+@media (max-width:560px){.vx-fun-s{grid-template-columns:minmax(0,1fr)}.vx-fun-b{width:max(var(--w),40%)}}
+.vx-live[hidden],.vx-tip[hidden],.vx-custom[hidden]{display:none!important}
+.vx-pley{display:flex;gap:14px;font-size:11.5px;font-weight:700;color:var(--faint)}.vx-pley .h{color:var(--c-ventas)}
+@media (max-width:720px){.vx-live{flex-direction:column;gap:6px}.vx-lc{min-width:220px}}
+@media (prefers-reduced-motion:reduce){.vx-dot,.vx-lc.nueva,.vx-float,.vx-rec.nuevo::after,.vx-drill-in{animation:none!important}}
+
 </style>
 
 <div class="app">
@@ -1184,14 +1340,22 @@ body.tv-on{overflow:hidden}
 <!-- ============ VENTAS ============ -->
 <main class="wrap view" id="view-ventas" hidden>
   <div class="view-h"><div><h1>Ventas</h1><p class="lead" id="vMeta">Cargá las exportaciones de Empretienda en la pestaña Datos para ver tus ventas.</p></div></div>
-  <div class="kpis" id="vStats"></div>
+  <div class="vx-bar-top" id="vxPer"></div>
+  <div class="vx-live" id="vxLive" hidden></div>
+  <div class="vx-top2"><section class="card vx-pulse" id="vxPulse" aria-label="Pulso de hoy"></section><div class="kpis" id="vStats"></div></div>
   <section class="card chart">
-    <div class="sec-h" style="margin-bottom:6px"><h2>Ventas por mes</h2><span class="meta">Barras: facturado con pago aprobado · número: pedidos</span></div>
-    <div id="monthChart"></div>
+    <div class="sec-h" style="margin-bottom:6px"><h2 id="vxChartT">Ventas por mes</h2><span class="meta" id="vxChartM"></span></div>
+    <div id="monthChart"></div><div id="vxDrill"></div>
   </section>
   <div class="grid2">
+    <section class="card"><div class="sec-h"><h2>Pendientes de cobro</h2><span class="meta" id="vxPendM"></span></div><div id="vxPend"></div></section>
+    <section class="card"><div class="sec-h"><h2>Récords y logros</h2><span class="meta">Se festejan solos cuando los superás</span></div><div id="vxRec"></div></section>
+  </div>
+  <section class="card"><div class="sec-h"><h2>Ventas por efeméride</h2><span class="meta">Cuánto vende cada fecha y con cuánta anticipación compran</span></div><div id="vxEfe"></div></section>
+  <section class="card"><div class="sec-h"><h2>Embudo de compra</h2><span class="meta" id="vxFunM"></span></div><div id="vxFun"></div></section>
+  <div class="grid2">
     <section class="card">
-      <div class="sec-h"><h2>Ranking de materiales</h2>
+      <div class="sec-h"><h2>Ranking de materiales <span class="meta" id="vxRankM"></span></h2>
         <div class="seg" role="group" aria-label="Agrupar ranking"><button type="button" data-rank="mat" aria-pressed="true">Por material</button><button type="button" data-rank="grp" aria-pressed="false">Por tema</button></div>
       </div>
       <div class="tbl-wrap" style="max-height:470px;overflow:auto"><table><thead><tr><th>#</th><th>Material</th><th class="num">Unidades</th><th class="num">Ingresos</th><th></th></tr></thead><tbody id="rankRows"></tbody></table></div>
@@ -2585,13 +2749,8 @@ function renderVentas(){
   const frescura=auto?` Se actualiza sola con tus avisos de Empretienda (última venta sumada: ${auto.toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}).`:"";
   const sinTot=has?D.clients.reduce((n,c)=>n+c.o.filter(o=>o.sinTot&&o.pg==="Finalizado").length,0):0;
   $("#vMeta").textContent=has?`Ventas del ${fmtD(D.dataStart)} al ${fmtD(D.dataEnd)}. Solo cuentan los pedidos con pago aprobado.${frescura}${sinTot?` ${sinTot} ${sinTot===1?"pedido llegó":"pedidos llegaron"} sin total en el aviso.`:""}`:"Cargá las exportaciones de Empretienda en la pestaña Datos para ver tus ventas.";
-  const okO=has?D.clients.flatMap(c=>c.o.filter(o=>o.pg==="Finalizado")):[];
-  const units=has?D.items.filter(i=>i.ok).reduce((s,i)=>s+i.q,0):0;
-  const fact=okO.reduce((s,o)=>s+(o.tot||0),0);
-  const stats=[["Facturado",money(fact),"--c-ventas",`${nf(okO.length)} pedidos aprobados`],["Ticket promedio",money(okO.length?fact/okO.length:0),"--c-sitio","Por pedido"],["Materiales vendidos",nf(units),"--c-trabajo",`${has?D.matList.filter(m=>m.sold).length:0} títulos distintos`],["Clientes con compras",nf(has?D.clients.filter(c=>c._ok).length:0),"--c-metricas",`${has?D.clients.filter(c=>c._ok>1).length:0} compraron más de una vez`]];
-  const root=$("#vStats"); root.textContent="";
-  stats.forEach(([l,v,k,n])=>{ const el=document.createElement("div"); el.className="kpi"; el.style.setProperty("--k",`var(${k})`); el.innerHTML=`<div class="kpi-l"><i></i><span>${esc(l)}</span></div><div class="kpi-v">${esc(v)}</div><div class="kpi-n">${esc(n)}</div>`; root.appendChild(el); });
-  renderMonthChart(); renderRank(); renderProv(); renderGeo(); renderFreq(); renderSegs(); renderCross(); renderFin(); fillPromoMats(); renderPromos();
+  vxRender();
+  renderRank(); renderProv(); renderGeo(); renderFreq(); renderSegs(); renderCross(); renderFin(); fillPromoMats(); renderPromos();
   countUp($("#vStats"));
 }
 function renderMonthChart(){
@@ -2609,12 +2768,397 @@ function renderMonthChart(){
     s+=`<text class="axis" x="${x(i)}" y="${H-pb+17}" text-anchor="middle" style="text-transform:capitalize">${esc(lab)}</text><text class="sub" x="${x(i)}" y="${H-pb+31}" text-anchor="middle">${esc(moneyK(m.rev))}</text>`; });
   box.innerHTML=s+"</svg>";
 }
+// =====================================================================
+// Ventas · período, comparación, gráfico interactivo, en vivo, pulso,
+// efemérides, embudo, pendientes de cobro y récords
+// =====================================================================
+const VX = { per: "mes", from: "", to: "", drill: null, known: null, live: [], sonido: false };
+try { const s = JSON.parse(localStorage.getItem("cofre-vx") || "{}"); if (s.per) VX.per = s.per; if (s.from) VX.from = s.from; if (s.to) VX.to = s.to; VX.sonido = !!s.sonido; } catch {}
+const vxSave = () => { try { localStorage.setItem("cofre-vx", JSON.stringify({ per: VX.per, from: VX.from, to: VX.to, sonido: VX.sonido })); } catch {} };
+const VX_PER = [["hoy", "Hoy"], ["7d", "7 días"], ["30d", "30 días"], ["mes", "Este mes"], ["anio", "Este año"], ["todo", "Todo"], ["custom", "Elegir fechas"]];
+const sod = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+const addD = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n, d.getHours(), d.getMinutes(), d.getSeconds());
+const isoD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const DIAS_SEM = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+
+// Pedidos con su clienta (todas las órdenes, con fecha)
+function vxOrders() { return D ? D.clients.flatMap((c) => c.o.filter((o) => o._d).map((o) => ({ o, c, d: o._d }))) : []; }
+const vxOk = (L) => L.filter((x) => x.o.pg === "Finalizado");
+
+// Rango elegido y período anterior para comparar
+function vxRange() {
+  const now = new Date(), hoy = sod(now);
+  let a, b = now, pa, pb, lab = "", cmp = "";
+  switch (VX.per) {
+    case "hoy": a = hoy; pa = addD(hoy, -7); pb = addD(now, -7); lab = "Hoy"; cmp = `el ${DIAS_SEM[pa.getDay()]} pasado a esta hora`; break;
+    case "7d": a = addD(hoy, -6); pa = addD(a, -7); pb = addD(now, -7); lab = "Últimos 7 días"; cmp = "los 7 días anteriores"; break;
+    case "30d": a = addD(hoy, -29); pa = addD(a, -30); pb = addD(now, -30); lab = "Últimos 30 días"; cmp = "los 30 días anteriores"; break;
+    case "anio": a = new Date(now.getFullYear(), 0, 1); pa = new Date(now.getFullYear() - 1, 0, 1); pb = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate(), now.getHours(), now.getMinutes()); lab = `En ${now.getFullYear()}`; cmp = `lo mismo de ${now.getFullYear() - 1}`; break;
+    case "todo": { const ds = vxOrders().map((x) => x.d); a = ds.length ? sod(new Date(Math.min(...ds))) : hoy; lab = "Desde el comienzo"; break; }
+    case "custom": {
+      const f = VX.from ? new Date(VX.from + "T00:00") : addD(hoy, -29), t = VX.to ? new Date(VX.to + "T23:59:59") : now;
+      a = f; b = t; const len = b - a; pb = new Date(+a - 1); pa = new Date(+a - len); lab = `Del ${fmtD(a)} al ${fmtD(b)}`; cmp = "el período anterior de igual largo"; break;
+    }
+    default: { a = new Date(now.getFullYear(), now.getMonth(), 1); pa = new Date(now.getFullYear(), now.getMonth() - 1, 1); const dm = new Date(now.getFullYear(), now.getMonth(), 0).getDate(); pb = new Date(now.getFullYear(), now.getMonth() - 1, Math.min(now.getDate(), dm), now.getHours(), now.getMinutes()); lab = now.toLocaleDateString("es-AR", { month: "long", year: "numeric" }); lab = lab[0].toUpperCase() + lab.slice(1); cmp = "los mismos días del mes pasado"; }
+  }
+  return { a, b, pa, pb, lab, cmp };
+}
+const inR = (d, a, b) => d >= a && d <= b;
+function vxStats(L) {
+  const ok = vxOk(L), fact = ok.reduce((s, x) => s + (x.o.tot || 0), 0);
+  const units = ok.reduce((s, x) => s + (x.o.i || []).reduce((a, i) => a + i[0], 0), 0);
+  const buyers = new Set(ok.map((x) => x.c.e || x.c.n));
+  return { fact, n: ok.length, units, buyers: buyers.size, ticket: ok.length ? fact / ok.length : 0, pend: L.filter((x) => x.o.pg === "Pendiente").length };
+}
+function vxDelta(v, p) {
+  if (p == null) return "";
+  if (!p && !v) return `<span class="vx-d eq">sin cambios</span>`;
+  if (!p) return `<span class="vx-d up">▲ nuevo</span>`;
+  const r = (v - p) / p * 100, cls = Math.abs(r) < 0.5 ? "eq" : r > 0 ? "up" : "down";
+  if (r >= 300) return `<span class="vx-d up">▲ ×${(v / p).toFixed(v / p < 10 ? 1 : 0).replace(".", ",")}</span>`;
+  return `<span class="vx-d ${cls}">${cls === "eq" ? "=" : r > 0 ? "▲" : "▼"} ${Math.abs(r).toFixed(Math.abs(r) < 10 ? 1 : 0).replace(".", ",")} %</span>`;
+}
+
+// ---------- Barra de períodos ----------
+function vxToolbar() {
+  const box = $("#vxPer"); if (!box) return;
+  const R = vxRange();
+  box.innerHTML = `<div class="seg vx-seg" role="group" aria-label="Período">${VX_PER.map(([k, t]) => `<button type="button" data-vxper="${k}" aria-pressed="${VX.per === k}">${t}</button>`).join("")}</div>
+    <div class="vx-custom"${VX.per === "custom" ? "" : " hidden"}><label>Desde <input type="date" id="vxFrom" value="${esc(VX.from || isoD(R.a))}"></label><label>Hasta <input type="date" id="vxTo" value="${esc(VX.to || isoD(R.b))}"></label></div>
+    <button class="vx-bell" type="button" id="vxBell" aria-pressed="${VX.sonido}" title="Sonido al entrar una venta">${VX.sonido ? "🔔" : "🔕"}<span>${VX.sonido ? "Sonido activado" : "Sin sonido"}</span></button>`;
+}
+document.addEventListener("click", (e) => {
+  const p = e.target.closest("[data-vxper]"); if (p) { VX.per = p.dataset.vxper; VX.drill = null; vxSave(); renderVentas(); return; }
+  if (e.target.closest("#vxBell")) { VX.sonido = !VX.sonido; vxSave(); if (VX.sonido) vxCaja(true); vxToolbar(); }
+});
+document.addEventListener("change", (e) => { if (e.target.id === "vxFrom" || e.target.id === "vxTo") { VX.from = $("#vxFrom").value; VX.to = $("#vxTo").value; VX.drill = null; vxSave(); renderVentas(); } });
+
+// ---------- Tarjetas con comparación ----------
+function vxKpis(R, cur, prev) {
+  const root = $("#vStats"); if (!root) return;
+  const P = VX.per === "todo" ? {} : prev;
+  const cards = [
+    ["Facturado", money(cur.fact), "--c-ventas", vxDelta(cur.fact, P.fact), `${nf(cur.n)} ${cur.n === 1 ? "pedido aprobado" : "pedidos aprobados"}`],
+    ["Ticket promedio", money(cur.ticket), "--c-sitio", vxDelta(cur.ticket, P.ticket), "Por pedido"],
+    ["Materiales vendidos", nf(cur.units), "--c-trabajo", vxDelta(cur.units, P.units), cur.pend ? `${cur.pend} ${cur.pend === 1 ? "pedido pendiente" : "pedidos pendientes"} de pago` : "Con pago aprobado"],
+    ["Clientas que compraron", nf(cur.buyers), "--c-metricas", vxDelta(cur.buyers, P.buyers), VX.per === "todo" ? "Desde el comienzo" : `vs. ${R.cmp}`],
+  ];
+  root.innerHTML = cards.map(([l, v, k, d, n]) => `<div class="kpi" style="--k:var(${k})"><div class="kpi-l"><i></i><span>${esc(l)}</span></div><div class="kpi-v">${esc(v)}</div><div class="kpi-n">${d} ${esc(n)}</div></div>`).join("");
+}
+
+// ---------- Pulso del día ----------
+function vxPulse(all) {
+  const box = $("#vxPulse"); if (!box) return;
+  const now = new Date(), hoy = sod(now), ant = addD(hoy, -7), antHasta = addD(now, -7);
+  const H = vxOk(all.filter((x) => inR(x.d, hoy, now))), A = vxOk(all.filter((x) => inR(x.d, ant, antHasta)));
+  const AT = vxOk(all.filter((x) => inR(x.d, ant, addD(ant, 1))));
+  const fh = H.reduce((s, x) => s + (x.o.tot || 0), 0), fa = A.reduce((s, x) => s + (x.o.tot || 0), 0);
+  const ult = all.slice().sort((a, b) => b.d - a.d)[0];
+  // acumulado por hora: hoy vs. mismo día de la semana pasada (día completo)
+  const acum = (L, base) => { const v = new Array(25).fill(0); L.forEach((x) => { const h = Math.min(23, Math.floor((x.d - base) / 3600e3)); v[h + 1] += x.o.tot || 0; }); for (let i = 1; i < 25; i++) v[i] += v[i - 1]; return v; };
+  const vh = acum(H, hoy), va = acum(AT, ant), hNow = now.getHours() + now.getMinutes() / 60;
+  const W = 260, Hh = 64, mx = Math.max(va[24], vh[24], 1), X = (i) => 4 + (W - 8) * i / 24, Y = (v) => Hh - 6 - (Hh - 14) * v / mx;
+  const lineA = va.map((v, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join("");
+  const hasta = Math.min(24, Math.ceil(hNow));
+  const lineH = vh.slice(0, hasta + 1).map((v, i) => `${i ? "L" : "M"}${X(Math.min(i, hNow)).toFixed(1)},${Y(v).toFixed(1)}`).join("");
+  const dif = fh - fa, dn = H.length - A.length;
+  const frase = !H.length && !A.length ? "Todavía sin ventas hoy, igual que el " + DIAS_SEM[ant.getDay()] + " pasado a esta hora."
+    : dif >= 0 ? `Vas <b>${money(dif)}</b> ${dn > 0 ? `y ${dn} ${dn === 1 ? "pedido" : "pedidos"} ` : ""}arriba del ${DIAS_SEM[ant.getDay()]} pasado a esta hora.`
+    : `Vas <b>${money(-dif)}</b> abajo del ${DIAS_SEM[ant.getDay()]} pasado a esta hora (ese día terminó con ${money(AT.reduce((s, x) => s + (x.o.tot || 0), 0))}).`;
+  box.innerHTML = `<div class="vx-pulse-main"><div class="vx-pulse-k"><span class="vx-dot" aria-hidden="true"></span>Pulso de hoy</div>
+      <div class="vx-pulse-v"><b>${money(fh)}</b><span>${H.length} ${H.length === 1 ? "venta" : "ventas"}</span></div>
+      <p>${frase}</p>
+      <small>${ult ? `Última venta: ${vxHace(ult.d)} · ${esc(ult.c.p || ult.c.c || "")}` : ""}</small></div>
+    <svg class="vx-pulse-g" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Ventas acumuladas de hoy comparadas con el ${DIAS_SEM[ant.getDay()]} pasado">
+      <path d="${lineA}" class="vx-pa"/><path d="${lineH}" class="vx-ph"/>
+      <circle cx="${X(hNow).toFixed(1)}" cy="${Y(vh[hasta]).toFixed(1)}" r="3.5" class="vx-pn"/>
+      </svg><div class="vx-pley"><span class="h">━ hoy</span><span>┅ ${DIAS_SEM[ant.getDay()]} pasado</span></div>`;
+}
+function vxHace(d) { const m = Math.round((Date.now() - d) / 60000); if (m < 1) return "recién"; if (m < 60) return `hace ${m} min`; const h = Math.round(m / 60); if (h < 24) return `hace ${h} h`; const dd = Math.round(h / 24); return dd === 1 ? "ayer" : `hace ${dd} días`; }
+
+// ---------- Gráfico interactivo ----------
+function vxBuckets(R, all) {
+  const span = (R.b - R.a) / DAY;
+  const unit = span <= 1.01 ? "hora" : span <= 62 ? "dia" : "mes";
+  const B = [];
+  if (unit === "hora") { for (let h = 0; h < 24; h++) B.push({ a: new Date(+R.a + h * 3600e3), b: new Date(+R.a + (h + 1) * 3600e3 - 1), lab: `${h}h`, full: `${h}:00 a ${h}:59` }); }
+  else if (unit === "dia") { for (let d = sod(R.a); d <= R.b; d = addD(d, 1)) B.push({ a: d, b: new Date(+addD(d, 1) - 1), lab: String(d.getDate()), full: d.toLocaleDateString("es-AR", { weekday: "long", day: "numeric", month: "long" }), wk: d.getDay() }); }
+  else { for (let d = new Date(R.a.getFullYear(), R.a.getMonth(), 1); d <= R.b; d = new Date(d.getFullYear(), d.getMonth() + 1, 1)) B.push({ a: d, b: new Date(d.getFullYear(), d.getMonth() + 1, 1, 0, 0, -1), lab: d.toLocaleDateString("es-AR", { month: "short" }).replace(".", ""), full: d.toLocaleDateString("es-AR", { month: "long", year: "numeric" }), yr: d.getFullYear() }); }
+  const shift = R.pa ? (+R.a - +R.pa) : 0;
+  B.forEach((x) => {
+    const L = all.filter((o) => inR(o.d, x.a, x.b)), ok = vxOk(L);
+    x.L = L; x.rev = ok.reduce((s, o) => s + (o.o.tot || 0), 0); x.n = ok.length;
+    if (R.pa && VX.per !== "todo") { const pa = new Date(+x.a - shift), pb = new Date(+x.b - shift); x.prev = vxOk(all.filter((o) => inR(o.d, pa, pb))).reduce((s, o) => s + (o.o.tot || 0), 0); }
+  });
+  return { B, unit };
+}
+function vxChart(R, all) {
+  const box = $("#monthChart"); if (!box) return;
+  const { B, unit } = vxBuckets(R, all);
+  $("#vxChartT").textContent = unit === "hora" ? "Ventas por hora" : unit === "dia" ? "Ventas por día" : "Ventas por mes";
+  $("#vxChartM").textContent = R.pa && VX.per !== "todo" ? `Barras: facturado aprobado · contorno: ${R.cmp} · tocá una barra para ver el detalle` : "Barras: facturado con pago aprobado · tocá una barra para ver el detalle";
+  if (!B.some((x) => x.rev || x.prev)) { box.innerHTML = `<p class="muted vx-empty">No hay ventas aprobadas en este período.</p>`; $("#vxDrill").innerHTML = ""; return; }
+  const W = Math.max(320, Math.round(box.clientWidth || 760)), H = W < 560 ? 230 : 270, pl = W < 560 ? 46 : 58, pr = 10, pt = 22, pb = 36, iw = W - pl - pr, ih = H - pt - pb;
+  const max = Math.max(...B.map((x) => Math.max(x.rev, x.prev || 0))); const step = niceStep(max / 4); const top = Math.ceil(max / step) * step || 1;
+  const n = B.length, bw = Math.max(3, Math.min(54, iw / n * 0.64)), X = (i) => pl + iw * (i + 0.5) / n, Y = (v) => pt + ih * (1 - v / top);
+  const every = Math.ceil(n / Math.max(4, Math.floor(iw / 46)));
+  let s = `<svg viewBox="0 0 ${W} ${H}" class="vx-svg" role="img" aria-label="${esc($("#vxChartT").textContent)}">`;
+  for (let v = 0; v <= top + 1e-6; v += step) s += `<line class="grid" x1="${pl}" x2="${W - pr}" y1="${Y(v)}" y2="${Y(v)}"/><text class="axis" x="${pl - 8}" y="${Y(v) + 4}" text-anchor="end">${esc(moneyK(v))}</text>`;
+  B.forEach((x, i) => {
+    if (x.prev) s += `<rect class="vx-prev" x="${X(i) - bw / 2}" y="${Y(x.prev)}" width="${bw}" height="${Math.max(1, ih * x.prev / top)}" rx="3"/>`;
+    s += `<rect class="bar vx-bar${VX.drill === i ? " sel" : ""}${x.wk === 0 || x.wk === 6 ? " we" : ""}" style="--i:${i}" x="${X(i) - bw / 2}" y="${Y(x.rev)}" width="${bw}" height="${Math.max(x.rev ? 2 : 0, ih * x.rev / top)}" rx="3"/>`;
+    if (unit === "mes" && n <= 14 && x.n) s += `<text class="val" x="${X(i)}" y="${Y(x.rev) - 6}" text-anchor="middle">${x.n}</text>`;
+    if (i % every === 0 || i === n - 1) s += `<text class="axis" x="${X(i)}" y="${H - pb + 16}" text-anchor="middle" style="text-transform:capitalize">${esc(x.lab)}</text>`;
+  });
+  B.forEach((x, i) => { s += `<rect class="vx-hit" data-vxi="${i}" x="${pl + iw * i / n}" y="${pt}" width="${iw / n}" height="${ih + 4}" tabindex="0" role="button" aria-label="${esc(x.full)}: ${esc(money(x.rev))}, ${x.n} pedidos"/>`; });
+  s += `<line class="vx-cur" x1="0" x2="0" y1="${pt}" y2="${pt + ih}" hidden/></svg><div class="vx-tip" hidden></div>`;
+  box.innerHTML = s; box._B = B; box._geo = { pl, iw, n, W, X };
+  vxDrillRender();
+}
+function vxTip(i) {
+  const box = $("#monthChart"), B = box._B; if (!B || !B[i]) return;
+  const x = B[i], g = box._geo, tip = box.querySelector(".vx-tip"), cur = box.querySelector(".vx-cur"), svg = box.querySelector("svg");
+  const px = g.X(i) / g.W * svg.getBoundingClientRect().width;
+  cur.setAttribute("x1", g.X(i)); cur.setAttribute("x2", g.X(i)); cur.hidden = false;
+  tip.innerHTML = `<b>${esc(x.full)}</b><span>${money(x.rev)} · ${x.n} ${x.n === 1 ? "pedido" : "pedidos"}</span>${x.prev != null && VX.per !== "todo" ? `<span class="muted">Antes: ${money(x.prev)} ${vxDelta(x.rev, x.prev)}</span>` : ""}`;
+  tip.hidden = false; const w = tip.offsetWidth, bw = box.clientWidth;
+  tip.style.left = Math.max(0, Math.min(bw - w, px - w / 2)) + "px";
+}
+function vxTipOff() { const box = $("#monthChart"); const t = box && box.querySelector(".vx-tip"), c = box && box.querySelector(".vx-cur"); if (t) t.hidden = true; if (c) c.hidden = true; }
+(() => {
+  const box = $("#monthChart"); if (!box) return;
+  const idx = (e) => { const svg = box.querySelector("svg"), g = box._geo; if (!svg || !g) return -1; const r = svg.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width * g.W; return Math.floor((x - g.pl) / g.iw * g.n); };
+  box.addEventListener("pointermove", (e) => { const i = idx(e); if (box._B && i >= 0 && i < box._B.length) vxTip(i); else vxTipOff(); });
+  box.addEventListener("pointerleave", vxTipOff);
+  box.addEventListener("click", (e) => { const i = idx(e); if (!box._B || i < 0 || i >= box._B.length) return; VX.drill = VX.drill === i ? null : i; box.querySelectorAll(".vx-bar").forEach((r, k) => r.classList.toggle("sel", k === VX.drill)); vxDrillRender(true); });
+  box.addEventListener("keydown", (e) => { const h = e.target.closest("[data-vxi]"); if (h && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); VX.drill = +h.dataset.vxi; vxDrillRender(true); } });
+  box.addEventListener("focusin", (e) => { const h = e.target.closest("[data-vxi]"); if (h) vxTip(+h.dataset.vxi); });
+})();
+function vxDrillRender(scroll) {
+  const box = $("#vxDrill"), B = $("#monthChart")._B; if (!box) return;
+  if (VX.drill == null || !B || !B[VX.drill]) { box.innerHTML = ""; return; }
+  const x = B[VX.drill], L = x.L.slice().sort((a, b) => b.d - a.d);
+  const mats = {}; vxOk(L).forEach((o) => (o.o.i || []).forEach(([q, n]) => { mats[n] = (mats[n] || 0) + q; }));
+  const topM = Object.entries(mats).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const pg = (o) => o.pg === "Finalizado" ? `<span class="pill ok">Aprobado</span>` : o.pg === "Pendiente" ? `<span class="pill wait">Pendiente</span>` : `<span class="pill no">${esc(o.pg)}</span>`;
+  box.innerHTML = `<div class="vx-drill-in"><div class="vx-drill-h"><div><b>${esc(x.full[0].toUpperCase() + x.full.slice(1))}</b><span>${money(x.rev)} · ${x.n} ${x.n === 1 ? "pedido aprobado" : "pedidos aprobados"}${L.length > x.n ? ` · ${L.length - x.n} sin aprobar` : ""}</span></div><button class="vx-x" type="button" id="vxDrillX" aria-label="Cerrar detalle">✕</button></div>
+    ${topM.length ? `<div class="vx-drill-m">${topM.map(([n, q]) => `<span class="vx-chip">${esc(n)} <b>×${q}</b></span>`).join("")}</div>` : ""}
+    <div class="vx-drill-l">${L.slice(0, 40).map((o) => `<button type="button" class="vx-ord" data-goclient="${esc(o.c.e || o.c.n)}"><span class="t">${o.d.toLocaleString("es-AR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}</span><span class="n"><b>${esc(o.c.n || o.c.e || "Clienta")}</b><small>${esc([o.c.c, o.c.p].filter(Boolean).join(", "))} · ${esc((o.o.i || []).map((i) => (i[0] > 1 ? i[0] + "× " : "") + i[1]).join(" · "))}</small></span><span class="m">${money(o.o.tot || 0)}${pg(o.o)}</span></button>`).join("") || `<p class="muted">Sin pedidos.</p>`}${L.length > 40 ? `<p class="muted">Y ${L.length - 40} más.</p>` : ""}</div></div>`;
+  if (scroll) box.scrollIntoView({ behavior: RM ? "auto" : "smooth", block: "nearest" });
+}
+document.addEventListener("click", (e) => {
+  if (e.target.closest("#vxDrillX")) { VX.drill = null; vxDrillRender(); $("#monthChart").querySelectorAll(".vx-bar").forEach((r) => r.classList.remove("sel")); return; }
+  const g = e.target.closest("#vxDrill [data-goclient],#vxPend [data-goclient],#vxRec [data-goclient]"); if (g) goClient(g.dataset.goclient);
+});
+
+// ---------- Ranking del período ----------
+function vxRankItems(R) { if (!D) return []; return VX.per === "todo" ? D.items : D.items.filter((i) => i.d && inR(i.d, R.a, R.b)); }
+
+// ---------- Ventas en vivo ----------
+function vxDetectar() {
+  if (!D) return;
+  const all = vxOrders(), ids = new Set(all.map((x) => x.o.id));
+  if (VX.known === null) { VX.known = ids; VX.live = all.slice().sort((a, b) => b.d - a.d).slice(0, 6).map((x) => ({ ...x, nueva: false })); return; }
+  const nuevas = all.filter((x) => !VX.known.has(x.o.id)).sort((a, b) => b.d - a.d);
+  VX.known = ids;
+  if (!nuevas.length) return;
+  VX.live = [...nuevas.map((x) => ({ ...x, nueva: true, t: Date.now() })), ...VX.live.map((x) => ({ ...x, nueva: false }))].slice(0, 6);
+  if (VX.sonido) vxCaja();
+  nuevas.slice(0, 3).forEach((x, k) => setTimeout(() => vxFlotante(x), k * 900));
+  setTimeout(vxRecordsCheck, 1200);
+}
+function vxLiveRender() {
+  const box = $("#vxLive"); if (!box) return;
+  if (!VX.live.length) { box.innerHTML = ""; box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = `<div class="vx-live-h"><span class="vx-dot" aria-hidden="true"></span>En vivo</div><div class="vx-live-l" aria-live="polite">${VX.live.map((x) => `<button type="button" class="vx-lc${x.nueva ? " nueva" : ""}" data-goclient="${esc(x.c.e || x.c.n)}"><span class="vx-lc-i">${x.o.pg === "Finalizado" ? "🛒" : "⏳"}</span><span class="vx-lc-t"><b>${esc(x.c.p || x.c.c || "Argentina")}</b><small>${esc((x.o.i || []).map((i) => i[1]).join(" · ")).slice(0, 70)}</small></span><span class="vx-lc-m">${money(x.o.tot || 0)}<small>${vxHace(x.d)}</small></span></button>`).join("")}</div>`;
+}
+document.addEventListener("click", (e) => { const b = e.target.closest("#vxLive [data-goclient]"); if (b) goClient(b.dataset.goclient); });
+function vxFlotante(x) {
+  let w = $("#vxFloat"); if (!w) { w = document.createElement("div"); w.id = "vxFloat"; w.className = "vx-float-w"; document.body.appendChild(w); }
+  const el = document.createElement("button"); el.type = "button"; el.className = "vx-float";
+  el.innerHTML = `<span class="vx-float-i">${x.o.pg === "Finalizado" ? "🛒" : "⏳"}</span><span><b>${x.o.pg === "Finalizado" ? "¡Nueva venta!" : "Nuevo pedido (pago pendiente)"} · ${money(x.o.tot || 0)}</b><small>${esc([x.c.c, x.c.p].filter(Boolean).join(", "))} · ${esc((x.o.i || []).map((i) => i[1]).join(" · ")).slice(0, 80)}</small></span>`;
+  el.onclick = () => { showView("ventas"); el.remove(); };
+  w.prepend(el); setTimeout(() => { el.classList.add("sale"); setTimeout(() => el.remove(), 500); }, 7000);
+}
+let vxAudio = null;
+function vxCaja(prueba) {
+  try {
+    vxAudio = vxAudio || new (window.AudioContext || window.webkitAudioContext)(); const c = vxAudio; if (c.state === "suspended") c.resume();
+    [[880, 0], [1320, 0.11]].forEach(([f, t]) => { const o = c.createOscillator(), g = c.createGain(); o.type = "sine"; o.frequency.value = f; g.gain.setValueAtTime(0.0001, c.currentTime + t); g.gain.exponentialRampToValueAtTime(prueba ? 0.08 : 0.14, c.currentTime + t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + t + 0.35); o.connect(g).connect(c.destination); o.start(c.currentTime + t); o.stop(c.currentTime + t + 0.4); });
+  } catch {}
+}
+
+// ---------- Pendientes de cobro ----------
+function vxPendientes(all) {
+  let ocultos = []; try { ocultos = JSON.parse(localStorage.getItem("cofre-vx-pend-ok") || "[]"); } catch {}
+  const lim = Date.now() - 30 * DAY;
+  return all.filter((x) => x.o.pg === "Pendiente" && +x.d >= lim && !ocultos.includes(x.o.id)).sort((a, b) => a.d - b.d);
+}
+function vxPendRender(all) {
+  const box = $("#vxPend"); if (!box) return;
+  const L = vxPendientes(all), tot = L.reduce((s, x) => s + (x.o.tot || 0), 0);
+  $("#vxPendM").textContent = L.length ? `${L.length} ${L.length === 1 ? "pedido" : "pedidos"} · ${money(tot)} por cobrar` : "Nada pendiente 🎉";
+  if (!L.length) { box.innerHTML = `<div class="vx-ok-empty"><span>✅</span><p>No hay pagos pendientes de los últimos 30 días.</p></div>`; return; }
+  box.innerHTML = L.map((x) => {
+    const dias = Math.floor((Date.now() - x.d) / DAY), lvl = dias >= 7 ? "late" : dias >= 2 ? "warn" : "new";
+    const etiqueta = dias === 0 ? "hoy" : dias === 1 ? "hace 1 día" : `hace ${dias} días`;
+    return `<div class="vx-pend ${lvl}"><div class="vx-pend-d"><b>${dias}</b><small>${dias === 1 ? "día" : "días"}</small></div>
+      <div class="vx-pend-t"><b>${esc(x.c.n || x.c.e || "Clienta")}</b><small>#${x.o.id} · ${esc(x.o.m || "")} · ${etiqueta}${lvl === "late" ? " · probablemente no se complete" : ""}</small><small class="mt">${esc((x.o.i || []).map((i) => i[1]).join(" · "))}</small></div>
+      <div class="vx-pend-a"><b>${money(x.o.tot || 0)}</b><div><button class="btn small" type="button" data-vxrec="${x.o.id}">Copiar recordatorio</button><button class="linkish" type="button" data-goclient="${esc(x.c.e || x.c.n)}">Ficha</button><button class="linkish" type="button" data-vxpok="${x.o.id}" title="Ya lo resolviste: ocultarlo de esta lista">Listo</button></div></div></div>`;
+  }).join("") + `<p class="muted vx-note">El estado se actualiza cuando llega la información de Empretienda. “Listo” solo lo oculta de esta lista en este dispositivo.</p>`;
+}
+document.addEventListener("click", (e) => {
+  const r = e.target.closest("[data-vxrec]");
+  if (r) { const x = vxOrders().find((y) => String(y.o.id) === r.dataset.vxrec); if (!x) return; const nom = String(x.c.n || "").split(" ")[0];
+    const mat = (x.o.i || []).map((i) => i[1]).join(", ");
+    const t = `¡Hola${nom ? " " + nom : ""}! 😊 Vi que tu pedido #${x.o.id} de «${mat}» en Cofre Didáctico quedó pendiente de pago.\n${/transfer/i.test(x.o.m || "") ? "Si ya hiciste la transferencia, ¿me mandás el comprobante por acá así lo acredito enseguida?" : "Si tuviste algún problema con el pago, avisame y te ayudo."}\nSi preferís, también podés completarlo desde la tienda: ${STORE_URL}\n¡Gracias! 💙`;
+    copyText(r, t, "¡Mensaje copiado!"); return; }
+  const k = e.target.closest("[data-vxpok]");
+  if (k) { let o = []; try { o = JSON.parse(localStorage.getItem("cofre-vx-pend-ok") || "[]"); } catch {} o.push(+k.dataset.vxpok); try { localStorage.setItem("cofre-vx-pend-ok", JSON.stringify(o.slice(-300))); } catch {} vxPendRender(vxOrders()); }
+});
+
+// ---------- Ventas por efeméride ----------
+function vxEfeData(all) {
+  const ok = vxOk(all), res = {};
+  ok.forEach((x) => (x.o.i || []).forEach(([q, n]) => {
+    const e = efeFor(n, null); if (!e) return; const [mm, dd] = e[0].split("-").map(Number);
+    // fecha de la efeméride más cercana a la compra (la próxima, o una que pasó hace menos de 20 días)
+    let f = new Date(x.d.getFullYear(), mm - 1, dd); const dif = Math.round((f - sod(x.d)) / DAY);
+    let antic = dif; if (dif < -20) { f = new Date(x.d.getFullYear() + 1, mm - 1, dd); antic = Math.round((f - sod(x.d)) / DAY); }
+    if (antic > 150) return;
+    const r = res[e[0]] = res[e[0]] || { key: e[0], name: e[1], units: 0, rev: 0, ant: [], porAnio: {} };
+    const precio = (x.o.tot || 0) * q / Math.max(1, (x.o.i || []).reduce((s, i) => s + i[0], 0));
+    r.units += q; r.rev += precio; for (let k = 0; k < q; k++) r.ant.push(antic);
+    const y = f.getFullYear(); r.porAnio[y] = (r.porAnio[y] || 0) + q;
+  }));
+  return Object.values(res).map((r) => { const a = r.ant.slice().sort((x, y) => x - y); const med = a[Math.floor(a.length / 2)];
+    const bins = [[">30 días", (v) => v > 30], ["15-30", (v) => v > 14 && v <= 30], ["8-14", (v) => v > 7 && v <= 14], ["1-7", (v) => v >= 1 && v <= 7], ["El día o después", (v) => v <= 0]].map(([l, f]) => [l, a.filter(f).length]);
+    const p25 = a[Math.floor(a.length * 0.25)], p75 = a[Math.floor(a.length * 0.75)];
+    return { ...r, med, p25, p75, bins }; });
+}
+function vxEfeRender(all) {
+  const box = $("#vxEfe"); if (!box) return;
+  const L = vxEfeData(all).sort((a, b) => b.rev - a.rev);
+  if (!L.length) { box.innerHTML = `<p class="muted">Todavía no hay ventas asociadas a efemérides.</p>`; return; }
+  const hoy = sod(new Date());
+  const prox = EFEMERIDES.map(([k, n]) => { const [mm, dd] = k.split("-").map(Number); let f = new Date(hoy.getFullYear(), mm - 1, dd); if (f < hoy) f = new Date(hoy.getFullYear() + 1, mm - 1, dd); return { k, n, f, faltan: Math.round((f - hoy) / DAY), d: L.find((x) => x.key === k) }; }).filter((x) => x.d).sort((a, b) => a.faltan - b.faltan)[0];
+  const maxR = L[0].rev || 1;
+  let consejo = "";
+  if (prox) { const d = prox.d, ini = addD(prox.f, -(d.p75 || 14)), pico = addD(prox.f, -(d.p25 || 3));
+    const pasado = d.porAnio[prox.f.getFullYear() - 1] || 0;
+    consejo = `<div class="vx-efe-next"><div class="vx-efe-cal"><b>${prox.f.getDate()}</b><small>${prox.f.toLocaleDateString("es-AR", { month: "short" }).replace(".", "")}</small></div><div><b>Próxima: ${esc(prox.n)}</b> · faltan ${prox.faltan} días<p>${pasado ? `El año pasado vendiste ${pasado} ${pasado === 1 ? "material" : "materiales"} para esta fecha. ` : ""}La mitad de las docentes compra entre <b>${d.p75}</b> y <b>${Math.max(0, d.p25)}</b> días antes: conviene publicar desde el <b>${fmtDM(ini)}</b>${ini < hoy ? " (¡ya empezó la ventana de compra!)" : ""} y reforzar cerca del ${fmtDM(pico)}.</p></div></div>`; }
+  box.innerHTML = consejo + `<div class="vx-efe-l">${L.slice(0, 14).map((r) => { const tot = r.bins.reduce((s, b) => s + b[1], 0) || 1;
+    return `<div class="vx-efe"><div class="vx-efe-n"><b>${esc(r.name)}</b><small>${r.key.split("-").reverse().join("/")} · ${nf(r.units)} vendidos · ${money(r.rev)}</small></div>
+      <div class="vx-efe-bar"><i style="width:${(r.rev / maxR * 100).toFixed(1)}%"></i></div>
+      <div class="vx-efe-h" role="img" aria-label="Cuándo compran: ${r.bins.map((b) => b[0] + " " + Math.round(b[1] / tot * 100) + "%").join(", ")}">${r.bins.map((b, k) => `<span class="b${k}" style="flex:${Math.max(b[1], 0.0001)}" title="${esc(b[0])}: ${Math.round(b[1] / tot * 100)} %"></span>`).join("")}</div>
+      <div class="vx-efe-m">${r.med > 0 ? `compran <b>${r.med} días antes</b> (mediana)` : "compran sobre la fecha"}</div></div>`; }).join("")}</div>
+    <div class="vx-efe-ley">${["Más de 30 días antes", "15 a 30", "8 a 14", "1 a 7", "El día o después"].map((t, k) => `<span><i class="b${k}"></i>${t}</span>`).join("")}</div>`;
+}
+
+// ---------- Embudo de compra ----------
+function vxFunRender(R) {
+  const box = $("#vxFun"); if (!box) return;
+  if (!visitas) { box.innerHTML = `<p class="muted">El embudo necesita las visitas de tu web (Umami). Se cargan con la actualización de los lunes.</p>`; return; }
+  const span = VX.per === "todo" ? 365 : (R.b - R.a) / DAY, dias = span <= 30 ? 30 : span <= 90 ? 90 : 365;
+  const L = visRows(dias); const v = L.reduce((s, r) => s + r.v, 0), c = L.reduce((s, r) => s + r.c, 0), b = L.reduce((s, r) => s + r.b, 0), so = L.reduce((s, r) => s + r.sold, 0);
+  $("#vxFunM").textContent = `Últimos ${dias} días · Umami + ventas`;
+  const pasos = [["Vieron un material", v, "👀"], ["Tocaron “Comprar”", b, "👉"], ["Compraron", so, "🛒"]];
+  const mx = Math.max(v, 1);
+  const fugas = L.filter((r) => r.lvl === "warn").slice(0, 4), estrellas = L.filter((r) => r.lvl === "ok").slice(0, 3);
+  box.innerHTML = `<div class="vx-fun">${pasos.map(([t, n, ic], k) => `<div class="vx-fun-s" style="--w:${Math.max(18, n / mx * 100).toFixed(1)}%;--k:${k}"><div class="vx-fun-b"><span>${ic}</span><b>${nf(n)}</b></div><div class="vx-fun-t">${t}${k ? `<small>${pasos[k - 1][1] ? Math.round(n / pasos[k - 1][1] * 100) : 0} % del paso anterior</small>` : `<small>${nf(c)} abrieron la ficha</small>`}</div></div>`).join("")}</div>
+    <div class="vx-fun-x">${v ? `<p>De cada <b>100</b> personas que miran un material, <b>${(b / v * 100).toFixed(1).replace(".", ",")}</b> tocan “Comprar” y <b>${(so / v * 100).toFixed(1).replace(".", ",")}</b> terminan comprando.</p>` : ""}
+    ${fugas.length ? `<h3>Dónde se pierden compradoras</h3>${fugas.map((r) => `<div class="vx-fuga"><b>${esc(r.name)}</b><small>${nf(r.v)} visitas → ${nf(r.b)} “Comprar” → ${nf(r.sold)} ventas</small><p>${esc(r.dx)}</p></div>`).join("")}` : ""}
+    ${estrellas.length ? `<h3>Los que mejor convierten</h3>${estrellas.map((r) => `<div class="vx-fuga ok"><b>${esc(r.name)}</b><small>${nf(r.v)} visitas → ${nf(r.sold)} ventas</small></div>`).join("")}` : ""}</div>`;
+}
+
+// ---------- Récords y logros ----------
+function vxRecords(all) {
+  const ok = vxOk(all); if (!ok.length) return null;
+  const by = (f) => { const m = {}; ok.forEach((x) => { const k = f(x.d); const r = m[k] = m[k] || { k, rev: 0, n: 0, d: x.d }; r.rev += x.o.tot || 0; r.n++; }); return Object.values(m); };
+  const dias = by((d) => isoD(d)), meses = by((d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0"));
+  const semanas = by((d) => { const l = sod(d); l.setDate(l.getDate() - ((l.getDay() + 6) % 7)); return isoD(l); });
+  const best = (L) => L.slice().sort((a, b) => b.rev - a.rev)[0];
+  const ped = ok.slice().sort((a, b) => (b.o.tot || 0) - (a.o.tot || 0))[0];
+  const set = new Set(dias.map((x) => x.k)); let racha = 0, mejorRacha = 0, cur = 0; const ds = [...set].sort();
+  ds.forEach((k, i) => { cur = i && (new Date(k + "T12:00") - new Date(ds[i - 1] + "T12:00")) / DAY < 1.5 ? cur + 1 : 1; mejorRacha = Math.max(mejorRacha, cur); });
+  { let d = sod(new Date()); if (!set.has(isoD(d))) d = addD(d, -1); while (set.has(isoD(d))) { racha++; d = addD(d, -1); } }
+  const provs = {}; ok.slice().sort((a, b) => a.d - b.d).forEach((x) => { const p = x.c.p, k = fold(p).replace(/^(provincia de |pcia\.? de )/, "").replace(/ciudad autonoma de buenos aires|capital federal|caba/, "caba").trim(); if (p && k && k !== "sin dato" && !provs[k]) provs[k] = x; });
+  const nuevasProv = Object.values(provs).filter((x) => Date.now() - x.d < 30 * DAY).map((x) => [x.c.p, x]);
+  const total = ok.reduce((s, x) => s + (x.o.tot || 0), 0), unidades = ok.reduce((s, x) => s + (x.o.i || []).reduce((a, i) => a + i[0], 0), 0);
+  const clientas = new Set(ok.map((x) => x.c.e || x.c.n)).size;
+  return { bd: best(dias), bw: best(semanas), bm: best(meses), ped, racha, mejorRacha, provs: Object.keys(provs).length, nuevasProv, total, n: ok.length, unidades, clientas, dias, meses };
+}
+const VX_HITOS = [
+  ["pedidos", "Pedidos aprobados", [100, 250, 500, 1000, 2000, 5000], "📦"],
+  ["unidades", "Materiales vendidos", [100, 500, 1000, 2500, 5000, 10000], "📚"],
+  ["clientas", "Docentes que te eligieron", [50, 100, 250, 500, 1000, 2500], "👩‍🏫"],
+  ["provs", "Provincias alcanzadas", [5, 10, 15, 20, 24], "🗺️"],
+];
+function vxRecRender(all) {
+  const box = $("#vxRec"); if (!box) return;
+  const R = vxRecords(all); if (!R) { box.innerHTML = `<p class="muted">Los récords aparecen con las primeras ventas.</p>`; return; }
+  const fd = (k) => new Date(k + "T12:00").toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
+  const fm = (k) => { const [y, m] = k.split("-"); const t = new Date(+y, +m - 1, 1).toLocaleDateString("es-AR", { month: "long", year: "numeric" }); return t[0].toUpperCase() + t.slice(1); };
+  const hoyK = isoD(new Date()), mesK = hoyK.slice(0, 7);
+  const recs = [
+    ["🏆", "Mejor día", money(R.bd.rev), `${fd(R.bd.k)} · ${R.bd.n} pedidos`, R.bd.k === hoyK],
+    ["📅", "Mejor semana", money(R.bw.rev), `Desde el ${fd(R.bw.k)} · ${R.bw.n} pedidos`, false],
+    ["🌟", "Mejor mes", money(R.bm.rev), `${fm(R.bm.k)} · ${R.bm.n} pedidos`, R.bm.k === mesK],
+    ["💎", "Pedido más grande", money(R.ped.o.tot || 0), `#${R.ped.o.id} · ${(R.ped.o.i || []).reduce((s, i) => s + i[0], 0)} materiales`, false],
+    ["🔥", "Racha de días con ventas", `${R.racha} ${R.racha === 1 ? "día" : "días"}`, `Récord: ${R.mejorRacha} días seguidos`, R.racha && R.racha >= R.mejorRacha],
+  ];
+  const hitos = VX_HITOS.map(([k, t, metas, ic]) => { const v = k === "pedidos" ? R.n : R[k]; const prox = metas.find((m) => m > v); const logrado = metas.filter((m) => m <= v).pop();
+    return `<div class="vx-hito${logrado ? " on" : ""}"><span class="ic">${ic}</span><div><b>${logrado ? nf(logrado) + " " + t.toLowerCase() : t}</b><small>${prox ? `${nf(v)} de ${nf(prox)}` : `¡${nf(v)}! Todas las metas cumplidas`}</small>${prox ? `<span class="vx-prog"><i style="width:${Math.min(100, v / prox * 100).toFixed(1)}%"></i></span>` : ""}</div></div>`; }).join("");
+  box.innerHTML = `<div class="vx-recs">${recs.map(([ic, t, v, s, nuevo]) => `<div class="vx-rec${nuevo ? " nuevo" : ""}"><span class="ic">${ic}</span><small>${t}${nuevo ? ` <em>¡ahora!</em>` : ""}</small><b>${esc(v)}</b><span class="s">${esc(s)}</span></div>`).join("")}</div>
+    ${R.nuevasProv.length ? `<div class="vx-firsts">${R.nuevasProv.map(([p, x]) => `<span class="vx-chip">🎉 Primera venta en <b>${esc(p)}</b> · ${fmtDM(x.d)}</span>`).join("")}</div>` : ""}
+    <h3 class="vx-h3">Logros</h3><div class="vx-hitos">${hitos}</div>`;
+}
+// Celebra un récord nuevo una sola vez por dispositivo
+function vxRecordsCheck() {
+  const R = vxRecords(vxOrders()); if (!R) return;
+  let prev = null; try { prev = JSON.parse(localStorage.getItem("cofre-vx-rec") || "null"); } catch {}
+  const now = { bd: R.bd.rev, bm: R.bm.rev, racha: R.mejorRacha, provs: R.provs, n: R.n, hitos: VX_HITOS.map(([k, , metas]) => metas.filter((m) => m <= (k === "pedidos" ? R.n : R[k])).length) };
+  try { localStorage.setItem("cofre-vx-rec", JSON.stringify(now)); } catch {}
+  if (!prev) return;
+  const msgs = [];
+  if (now.bd > prev.bd && R.bd.k === isoD(new Date())) msgs.push("🏆 ¡Nuevo récord: hoy es tu mejor día de ventas!");
+  if (now.bm > prev.bm && R.bm.k === isoD(new Date()).slice(0, 7)) msgs.push("🌟 ¡Este mes ya es tu mejor mes!");
+  if (now.racha > prev.racha) msgs.push(`🔥 ¡Récord de racha: ${now.racha} días seguidos con ventas!`);
+  if (now.provs > prev.provs) msgs.push(`🗺️ ¡Llegaste a una provincia nueva! Ya vendiste en ${now.provs}.`);
+  (now.hitos || []).forEach((h, i) => { if (prev.hitos && h > prev.hitos[i]) { const [, t, metas, ic] = VX_HITOS[i]; msgs.push(`${ic} ¡Logro desbloqueado: ${nf(metas[h - 1])} ${t.toLowerCase()}!`); } });
+  if (msgs.length) { vxConfeti(); msgs.forEach((m, k) => setTimeout(() => toast(m, "ok"), k * 2600)); }
+}
+function vxConfeti() {
+  if (RM) return;
+  const cv = document.createElement("canvas"); cv.className = "vx-confeti"; cv.width = innerWidth; cv.height = innerHeight; document.body.appendChild(cv);
+  const x = cv.getContext("2d"), cols = ["#4cb4f2", "#ff9b4d", "#5ad19a", "#a993ff", "#ff7fae", "#ffd84d"];
+  const P = Array.from({ length: 140 }, () => ({ x: innerWidth / 2 + (Math.random() - 0.5) * 200, y: innerHeight * 0.35, vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.floor(Math.random() * cols.length)], a: Math.random() * 6, va: (Math.random() - 0.5) * 0.3 }));
+  const t0 = performance.now();
+  (function paso(t) { x.clearRect(0, 0, cv.width, cv.height); P.forEach((p) => { p.vy += 0.35; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); });
+    if (t - t0 < 2600) requestAnimationFrame(paso); else cv.remove(); })(t0);
+}
+
+// ---------- Render principal de la parte nueva ----------
+function vxRender() {
+  const all = vxOrders(), R = vxRange();
+  vxToolbar();
+  const cur = vxStats(all.filter((x) => inR(x.d, R.a, R.b))), prev = R.pa ? vxStats(all.filter((x) => inR(x.d, R.pa, R.pb))) : {};
+  vxKpis(R, cur, prev); vxPulse(all); vxLiveRender(); vxChart(R, all); vxPendRender(all); vxEfeRender(all); vxFunRender(R); vxRecRender(all);
+  const rl = $("#vxRankM"); if (rl) rl.textContent = VX.per === "todo" ? "Desde el comienzo" : R.lab;
+  return R;
+}
+setInterval(() => { if (currentView === "ventas" && !document.hidden) { vxPulse(vxOrders()); vxLiveRender(); } }, 60e3);
+let vxRs = null, vxW = 0; addEventListener("resize", () => { clearTimeout(vxRs); vxRs = setTimeout(() => { const w = ($("#monthChart") || {}).clientWidth || 0; if (currentView === "ventas" && Math.abs(w - vxW) > 30) { vxW = w; vxChart(vxRange(), vxOrders()); } }, 250); });
+
 function niceStep(v){ if(v<=0) return 1; const p=Math.pow(10,Math.floor(Math.log10(v))); const n=v/p; return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p; }
 document.querySelectorAll("[data-rank]").forEach(b=>b.addEventListener("click",()=>{ rankMode=b.dataset.rank; document.querySelectorAll("[data-rank]").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); renderRank(); }));
 function rankData(){
   if(!D) return [];
-  if(rankMode==="mat") return D.matList.filter(m=>m.sold).map(m=>({name:m.name,sub:m.group!==m.name?m.group:"",units:m.sold,rev:m.rev}));
-  const g={}; D.matList.filter(m=>m.sold).forEach(m=>{ const x=g[m.group]=g[m.group]||{name:m.group,sub:"",units:0,rev:0,n:0}; x.units+=m.sold; x.rev+=m.rev; x.n++; });
+  const m={}; vxRankItems(vxRange()).filter(i=>i.ok).forEach(i=>{ const x=m[i.k]=m[i.k]||{k:i.k,name:i.name,units:0,rev:0}; x.units+=i.q; x.rev+=i.rev; });
+  const L=Object.values(m).map(x=>({...x,group:(D.mats[x.k]&&D.mats[x.k].group)||autoGroup(x.name)}));
+  if(rankMode==="mat") return L.map(x=>({name:x.name,sub:x.group!==x.name?x.group:"",units:x.units,rev:x.rev}));
+  const g={}; L.forEach(x=>{ const y=g[x.group]=g[x.group]||{name:x.group,sub:"",units:0,rev:0,n:0}; y.units+=x.units; y.rev+=x.rev; y.n++; });
   return Object.values(g).map(x=>({...x,sub:x.n>1?`${x.n} materiales`:""}));
 }
 function renderRank(){
@@ -5333,7 +5877,7 @@ document.addEventListener("keydown",e=>{
 // Arranque
 // =====================================================================
 function rerenderData(){
-  derive();
+  derive(); vxDetectar();
   $("#nClientes").textContent=D.clients.length?nf(D.clients.length):"—";
   renderMats(); // también actualiza el contador de pestaña
   if(currentView==="inicio"){ renderResumen(); renderHoy(); }
@@ -5402,3 +5946,4 @@ setStatus("Cargando…");
   db.collection("plantillas").onSnapshot(snap=>{ tplDocs={}; snap.docs.forEach(d=>{ tplDocs[d.id]=d.data(); }); if(currentView==="mensajes") renderTpls(); },()=>{});
 })();
 </script>
+</body></html>
