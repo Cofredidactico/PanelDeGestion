@@ -1510,6 +1510,52 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 @media (max-width:760px){.mz-libro{width:100vw;height:100dvh;border-radius:0}.mz-nav{display:none}.mz-hojas{grid-template-columns:repeat(2,minmax(0,1fr))}.mz-hoja-a{width:150px;height:212px}.mz-hoja-a .a4{transform:scale(.2521)}}
 @media (prefers-reduced-motion:reduce){.mz-orb i,.mz-bar i,.mz-li,.mz-mp,.mz-hoja,.mz-empty .ic,.mz-lb-p,.mz-fresh .clase{animation:none!important}}
 
+/* ===== Estudio de imágenes ===== */
+.is-dlg{width:min(1180px,calc(100vw - 20px));height:min(900px,calc(100vh - 20px));max-height:none;padding:0;border:1px solid var(--line);border-radius:22px;background:var(--bg);color:var(--ink);box-shadow:0 40px 100px rgba(0,0,0,.5);overflow:hidden}
+.is-dlg::backdrop{background:rgba(8,12,24,.6);backdrop-filter:blur(6px)}
+.is-w{display:grid;grid-template-rows:auto auto minmax(0,1fr);height:100%}
+.is-h{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;background:linear-gradient(90deg,color-mix(in srgb,var(--orange) 14%,var(--surface)),var(--surface))}
+.is-h h2{font-family:var(--f-brand);font-size:23px;font-weight:600}
+.is-tabs{display:flex;gap:6px;padding:10px 22px;border-bottom:1px solid var(--line);overflow-x:auto;background:var(--surface)}
+.is-tabs button{flex:none;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);border-radius:99px;padding:8px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.is-tabs button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.is-body{overflow:auto;padding:18px 22px}
+.is-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.is-sec{display:grid;gap:12px;min-width:0}
+.is-sec h3{font-size:15px;font-weight:800;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.is-tipos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.is-tipo{display:grid;gap:2px;text-align:left;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.is-tipo span{font-size:24px}.is-tipo b{font-size:13.5px}.is-tipo small{color:var(--muted);font-size:11.5px}
+.is-tipo.on{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset;background:color-mix(in srgb,var(--blue) 10%,var(--surface))}
+.is-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.is-sec select,.is-sec input:not([type=checkbox]),.is-sec textarea{border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:var(--surface-2);color:var(--ink);font:inherit;width:100%}
+.is-pills button{min-width:56px;padding:8px 12px}.is-pills b{font-size:20px}
+.is-prompt{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.is-p-h{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 12px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.is-p-h b{font-size:13px}
+.is-prompt pre{margin:0;padding:12px;white-space:pre-wrap;font:12.5px/1.5 var(--f-body);max-height:220px;overflow:auto}
+.is-note{font-size:12.5px}
+.is-tip{padding:12px 14px;border-radius:12px;border:1px dashed color-mix(in srgb,var(--blue) 40%,var(--line));background:color-mix(in srgb,var(--blue) 6%,var(--surface));font-size:13px}
+.is-ups{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.is-up{display:grid;justify-items:center;gap:4px;text-align:center;padding:14px;border-radius:14px;border:2px dashed var(--line);background:var(--surface);cursor:pointer;min-height:150px;align-content:center}
+.is-up span{font-size:30px}.is-up b{font-size:13px}.is-up small{color:var(--muted);font-size:11.5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.is-up img{max-width:100%;max-height:120px;border-radius:8px;object-fit:contain}
+.is-up.ok{border-style:solid;border-color:color-mix(in srgb,var(--ok) 50%,var(--line))}
+.is-up.big{min-height:220px}.is-up.big img{max-height:200px}
+.is-canvas{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;line-height:0}
+.is-canvas canvas{width:100%;height:auto;cursor:crosshair}
+.is-pg{display:grid;gap:5px}.is-pg small{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.is-pg>div{display:flex;flex-wrap:wrap;gap:6px}
+.is-chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.is-chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.is-items{display:flex;flex-wrap:wrap;gap:6px}.is-items span{font-size:12.5px;padding:4px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line)}
+.is-tree{margin:0;padding:12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font:12px/1.5 ui-monospace,Menlo,monospace;max-height:220px;overflow:auto}
+.is-cortes{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.is-cortes figure{margin:0;display:grid;gap:4px;justify-items:center;padding:8px;border-radius:10px;border:1px solid var(--line);background:repeating-conic-gradient(#e9edf5 0 25%,#fff 0 50%) 0 0/14px 14px}
+.is-cv{max-width:100%;max-height:100px;width:auto!important;height:auto!important}
+.is-cortes figcaption{font-size:11.5px;font-weight:700;color:#1A2744;text-align:center}
+@media (max-width:860px){.is-dlg{width:100vw;height:100dvh;border-radius:0;max-width:100vw}.is-cols{grid-template-columns:minmax(0,1fr)}.is-tipos{grid-template-columns:minmax(0,1fr)}.is-row{grid-template-columns:minmax(0,1fr)}.is-body{padding:14px}.is-h,.is-tabs{padding-left:14px;padding-right:14px}}
+
 </style>
 
 <div class="app">
@@ -3709,7 +3755,7 @@ function mzHero() {
   const gaps = upcomingEfes(366).filter((u) => !efeInfo(u.e).rel.length); const g = gaps[0];
   const prox = upcomingEfes(60).find((u) => efeInfo(u.e).rel.length);
   box.innerHTML = `<div class="mz-h-t"><span class="mz-k">✨ Estudio creativo</span><h1>Motor creador</h1><p>Planificá la secuencia y el cuadernillo con tu estilo, miralo hoja por hoja y llevalo a Corel.</p>
-      <div class="mz-h-acts"><button class="btn primary mz-big" type="button" data-mzwiz>✨ Nuevo material</button><button class="btn" type="button" id="mzFoco" aria-pressed="${document.querySelector(".app").classList.contains("mz-foco")}">🎯 Modo foco</button></div></div>
+      <div class="mz-h-acts"><button class="btn primary mz-big" type="button" data-mzwiz>✨ Nuevo material</button><button class="btn mz-big2" type="button" data-isopen="act">🖼️ Estudio de imágenes</button><button class="btn" type="button" id="mzFoco" aria-pressed="${document.querySelector(".app").classList.contains("mz-foco")}">🎯 Modo foco</button></div></div>
     <div class="mz-h-s">
       <div class="mz-stat"><span>📝</span><b>${nf(hist.length)}</b><small>${hist.length === 1 ? "material planificado" : "materiales planificados"}</small></div>
       ${g ? `<button class="mz-stat mz-gap" type="button" data-mzwizefe="${g.e[0]}"><span>${mzIcon(g.e[0])}</span><b>${esc(g.e[1])}</b><small>Sin material · faltan ${g.diff} días</small><em>Crear ahora →</em></button>` : ""}
@@ -3926,6 +3972,337 @@ function mzLibroAjustar() { const d = $("#mzLibro"); if (!d || !d.open) return; 
   const ancho = st.clientWidth - (innerWidth < 760 ? 16 : 130), alto = st.clientHeight - 8, h = Math.max(200, Math.min(alto, ancho * 842 / 595));
   pe.style.height = h + "px"; pe.style.width = (h * 595 / 842) + "px"; const a = pe.querySelector(".a4"); if (a) a.style.transform = `scale(${h / 842})`; }
 addEventListener("resize", mzLibroAjustar);
+
+// =====================================================================
+// Estudio de imágenes · Mi estilo · Actividades con imagen · Packs de recursos · Recortador
+// =====================================================================
+const IS_ESCENAS = {
+  "02-27": ["las barrancas del río Paraná en Rosario en 1812: Belgrano con uniforme de época izando la primera bandera celeste y blanca, soldados formados y una batería junto al río", ["bandera celeste y blanca", "Belgrano con bicornio", "cañón", "tambor", "soldado con uniforme", "bote en el río", "árbol", "gaviota", "caballo", "catalejo", "barranca", "nube", "farol", "escarapela"]],
+  "03-08": ["una plaza soleada donde mujeres de distintas edades y profesiones conversan y trabajan: una médica, una maestra, una obrera de la construcción, una científica y una futbolista", ["estetoscopio", "pizarrón", "casco amarillo", "microscopio", "pelota de fútbol", "libro", "guitarra", "bicicleta", "flores violetas", "computadora", "banco de plaza", "globo terráqueo", "maletín", "perro"]],
+  "03-22": ["un pueblo junto a un río limpio donde una familia cuida el agua: chicos regando una huerta, una canilla cerrada, nubes con lluvia y patos en el río", ["canilla", "gota de agua", "nube con lluvia", "regadera", "balde", "vaso de agua", "pez", "pato", "paraguas", "botella reutilizable", "bote", "molino", "sol", "rana"]],
+  "03-24": ["una plaza escolar donde chicos y docentes plantan un árbol de la memoria, con palomas blancas, pañuelos blancos pintados en el piso y carteles hechos por los alumnos", ["árbol joven", "paloma blanca", "pañuelo blanco pintado", "pala", "regadera", "cartel escolar", "banco", "libro", "flor", "sol", "mochila", "farol", "maceta", "guardapolvo"]],
+  "04-02": ["las Islas Malvinas con un faro, casitas de techo rojo, pingüinos en la costa, ovejas pastando y un barco en el mar", ["faro", "pingüino", "oveja", "casita de techo rojo", "barco", "bandera argentina", "gaviota", "lobo marino", "flor", "nube", "mapa de las islas", "piedras", "escarapela", "ballena"]],
+  "04-07": ["un consultorio pediátrico alegre con una doctora revisando a un chico, frutas en la mesa y afiches de higiene en la pared", ["estetoscopio", "termómetro", "manzana", "cepillo de dientes", "jabón", "curita", "botiquín", "balanza", "vaso de agua", "pelota", "osito de peluche", "reloj", "planta", "camilla"]],
+  "04-14": ["un mapa ilustrado de América con paisajes típicos: cordillera con llamas y cóndores, selva con colibríes, pirámide maya y campos de maíz", ["llama", "cóndor", "planta de maíz", "poncho", "sombrero", "guitarra", "maracas", "cactus", "pirámide", "colibrí", "tucán", "canoa", "sol", "volcán"]],
+  "04-22": ["un parque verde donde chicos cuidan el planeta: separan residuos en tachos de colores, plantan árboles y andan en bicicleta, con un molino de viento y paneles solares", ["planeta Tierra", "árbol", "flor", "mariposa", "tacho de reciclaje", "regadera", "bicicleta", "sol", "panel solar", "molino de viento", "abeja", "pájaro", "botella", "huerta"]],
+  "04-23": ["una biblioteca escolar mágica con estantes llenos de libros, chicos leyendo en almohadones y personajes de cuentos saliendo de un libro abierto", ["libro abierto", "estante", "lupa", "lámpara", "anteojos", "lápiz", "globo terráqueo", "búho", "sillón", "alfombra", "dragón de cuento", "corona", "reloj", "almohadón"]],
+  "04-29": ["una veterinaria y su patio con chicos cuidando mascotas y animales de granja", ["perro", "gato", "conejo", "tortuga", "loro", "pecera con pez", "caballo", "vaca", "pollito", "plato de comida", "cucha", "pelota", "hueso", "zanahoria"]],
+  "05-01": ["una calle de barrio donde distintos trabajadores hacen su tarea: albañil, panadero, cartera, jardinero, peluquera y camionero", ["casco", "pala", "carretilla", "martillo", "escoba", "pan", "sobre de carta", "camión", "maceta", "tijera", "ladrillos", "delantal", "escalera", "llave inglesa"]],
+  "05-18": ["un patio escolar decorado para el acto con chicos luciendo escarapelas, guirnaldas celestes y blancas, globos y un pizarrón", ["escarapela", "bandera", "guirnalda", "globo celeste", "tambor", "banderín", "pizarrón", "cinta", "estrella", "micrófono", "sol", "maceta", "campana", "mochila"]],
+  "05-25": ["la Plaza de Mayo en 1810 frente al Cabildo, con gente con paraguas, vendedores ambulantes, un aguatero con su carreta y damas con peinetón", ["Cabildo", "paraguas", "canasta de empanadas", "carreta del aguatero", "farol", "vela", "escarapela", "galera", "peinetón", "abanico", "carruaje", "perro", "tambor", "pirámide de Mayo"]],
+  "06-05": ["un bosque y un río limpios donde chicos juntan residuos, plantan árboles y observan animales", ["árbol", "bolsa de residuos", "tacho de reciclaje", "pájaro", "ardilla", "flor", "hongo", "río", "pez", "mariposa", "lupa", "regadera", "sol", "nube"]],
+  "06-17": ["los cerros de Salta con gauchos de poncho rojo a caballo con guardamontes de cuero, cardones y una iglesia colonial", ["poncho rojo", "sombrero gaucho", "caballo", "guardamontes", "cerros", "cardón", "iglesia colonial", "llama", "mate", "empanada salteña", "bombo", "sol", "cóndor", "tranquera"]],
+  "06-20": ["el Monumento a la Bandera en Rosario junto al río Paraná con chicos haciendo flamear banderas y un barco pasando", ["bandera", "sol de mayo", "escarapela", "monumento", "barco", "río", "globo", "árbol", "gaviota", "banderín", "nube", "bicicleta", "perro", "farol"]],
+  "07-09": ["la Casa de Tucumán en 1816 con su portón colonial, carruajes llegando, congresales con levita y una plaza con naranjos", ["Casa de Tucumán", "carruaje", "farol", "aljibe", "pluma y tintero", "acta", "campana", "naranjo", "escarapela", "vela", "galera", "bastón", "caballo", "bandera"]],
+  "08-17": ["la cordillera de los Andes nevada con el Ejército de los Andes cruzando a caballo y en mula, cóndores volando y la bandera de los Andes", ["caballo blanco", "mula", "cóndor", "bandera de los Andes", "cantimplora", "poncho", "montaña nevada", "catalejo", "tienda de campaña", "mapa", "fogata", "piedras", "sol", "tambor"]],
+  "08-22": ["una peña folklórica en un patio criollo con parejas bailando zamba con pañuelos, músicos con guitarra y bombo y una mesa con empanadas", ["guitarra", "bombo legüero", "charango", "pañuelo", "poncho", "empanadas", "mate", "botas", "sombrero", "farol", "mesa", "jarra de agua", "silla de paja", "guirnalda"]],
+  "09-11": ["un aula alegre con una maestra junto al pizarrón y chicos trabajando en sus bancos", ["pizarrón", "tiza", "globo terráqueo", "libros", "manzana", "regla", "mochila", "reloj", "mapa", "lápices de colores", "campana", "banco", "maceta", "abecedario"]],
+  "09-21": ["un parque en primavera con chicos haciendo un picnic, flores, mariposas y barriletes en el cielo", ["flor", "mariposa", "mantel de picnic", "pelota", "guitarra", "sol", "abeja", "barrilete", "sombrero", "mochila", "bicicleta", "helado", "canasta", "pájaro"]],
+  "10-12": ["una feria en una plaza donde familias de distintas culturas comparten artesanías, música y comidas", ["telar", "vasija de cerámica", "quena", "charango", "poncho", "canasta", "choclo", "mate", "tambor", "collar", "sombrero", "banderines", "llama", "alfombra tejida"]],
+  "11-10": ["una pulpería y un rancho criollo en la llanura pampeana con gauchos tomando mate junto al fogón, caballos, un ombú y un hornero en su nido", ["gaucho", "mate", "pava", "fogón", "guitarra", "caballo", "lazo", "tranquera", "aljibe", "poncho", "alpargatas", "ombú", "hornero", "rancho"]],
+  "11-20": ["las barrancas de la Vuelta de Obligado sobre el río Paraná con cadenas cruzando el río, barcos de vela y la bandera en lo alto", ["bandera", "barranca", "río", "barco de vela", "cadena", "bote", "árbol", "gaviota", "caballo", "sombrero", "nube", "sol", "escarapela", "tambor"]],
+};
+const IS_TEMAS = {
+  "comida": ["Comida saludable", "una cocina luminosa donde una familia prepara una comida saludable con frutas y verduras frescas sobre la mesa", ["manzana", "banana", "zanahoria", "brócoli", "tomate", "pan integral", "vaso de leche", "queso", "huevo", "pescado", "jarra de agua", "uvas", "naranja", "lechuga"]],
+  "escuela": ["La escuela", "el patio de una escuela con chicos en el recreo, una maestra, la bandera y el edificio escolar", ["campana", "mochila", "pelota", "bandera", "pizarrón", "lápiz", "cuaderno", "regla", "árbol", "banco", "reloj", "maceta", "rayuela", "tobogán"]],
+  "granja": ["La granja", "una granja con establo, huerta y animales", ["vaca", "caballo", "cerdo", "oveja", "gallina", "pollito", "pato", "perro", "tractor", "granero", "molino", "zanahoria", "balde", "espantapájaros"]],
+  "mar": ["El mar", "una playa y el fondo del mar con animales marinos", ["pez", "pulpo", "cangrejo", "estrella de mar", "ballena", "caracol", "medusa", "tortuga marina", "barco", "balde y pala", "sombrilla", "castillo de arena", "gaviota", "ancla"]],
+  "espacio": ["El espacio", "el espacio con planetas, una nave y astronautas", ["cohete", "astronauta", "luna", "estrella", "Saturno", "Tierra", "sol", "cometa", "satélite", "telescopio", "planeta rojo", "alien amigable", "meteorito", "bandera"]],
+  "emociones": ["Las emociones", "un grupo de chicos en el aula mostrando distintas emociones", ["cara alegre", "cara triste", "cara enojada", "cara sorprendida", "cara asustada", "corazón", "nube", "sol", "abrazo", "globo", "flor", "libro", "lápiz", "pelota"]],
+  "transporte": ["Los medios de transporte", "una ciudad con calles, río y cielo llenos de medios de transporte", ["auto", "colectivo", "bicicleta", "tren", "avión", "barco", "helicóptero", "camión", "moto", "semáforo", "globo aerostático", "subte", "taxi", "patineta"]],
+  "higiene": ["Higiene y cuidado", "un baño y una habitación ordenados con chicos cuidando su higiene", ["jabón", "cepillo de dientes", "pasta dental", "toalla", "peine", "shampoo", "bañera", "canilla", "alcohol en gel", "pañuelo", "espejo", "ropa limpia", "patito de goma", "esponja"]],
+};
+const IS_ESTILOS = {
+  infantil: "ilustración digital infantil, contornos negros definidos, colores vivos y planos, personajes amables con rasgos simples, estética de cuadernillo escolar argentino",
+  kawaii: "ilustración infantil animada estilo kawaii, cada objeto con carita sonriente (ojos y mejillas rosadas), contornos marcados, colores vivos y alegres",
+  epoca: "ilustración digital semirrealista pintada, rasgos y vestimenta de época fieles a la historia argentina, colores intensos y luz suave",
+  linea: "dibujo de línea para colorear: contorno negro grueso y limpio, sin relleno de color, sin grises ni sombras, fondo blanco",
+  acuarela: "ilustración en acuarela suave con contornos finos, colores pastel, estilo de libro infantil",
+};
+const IS_EST_N = { infantil: "Infantil (tu estilo)", kawaii: "Animado con carita", epoca: "Histórico de época", linea: "Para colorear", acuarela: "Acuarela" };
+const IS_DEF = { estilo: "ilustración digital infantil con contornos negros definidos, colores vivos (azul francia, rojo, naranja, verde y amarillo), personajes amables con rasgos simples, fondos limpios, estética de cuadernillo escolar argentino", paleta: "azul francia #1E5BB8, rojo #D7263D, naranja #F28C28, verde #4AAE4F, amarillo #F6B40E, celeste #74ACDF", personajes: "Tomi: nene de 8 años, pelo castaño corto, guardapolvo blanco, mochila roja\nSofi: nena de 8 años, trenzas negras, anteojos redondos, guardapolvo blanco\nSeño Ana: maestra joven, pelo marrón recogido, sweater celeste" };
+let isEstilo = { ...IS_DEF };
+(async () => { try { const raw = localStorage.getItem("cofre-estilo-img"); if (raw) isEstilo = { ...isEstilo, ...JSON.parse(raw) }; } catch {} })();
+async function isCargarEstilo() { try { if (db && db.doc) { const s = await db.doc("panel/estiloImg").get(); if (s && s.exists) isEstilo = { ...IS_DEF, ...s.data() }; } } catch {} }
+async function isGuardarEstilo() { try { localStorage.setItem("cofre-estilo-img", JSON.stringify(isEstilo)); } catch {} try { if (db && db.doc) await db.doc("panel/estiloImg").set({ ...isEstilo, updated: new Date().toISOString() }); } catch {} }
+
+// ---------- utilidades ----------
+const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [] };
+function isRand(seed) { let s = seed >>> 0 || 1; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+function isMezclar(a, seed) { const r = isRand(seed), b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+function isEscena(k) { if (IS_ESCENAS[k]) { const e = EFEMERIDES.find((x) => x[0] === k); return { nombre: e ? e[1] : k, escena: IS_ESCENAS[k][0], objetos: IS_ESCENAS[k][1] }; } const t = IS_TEMAS[k]; return t ? { nombre: t[0], escena: t[1], objetos: t[2] } : { nombre: "Tema libre", escena: "una escena escolar alegre", objetos: ["libro", "lápiz", "pelota", "árbol", "sol", "mochila", "flor", "perro", "reloj", "maceta"] }; }
+const isNivelTxt = (n) => /Inicial/.test(n) ? "Nivel Inicial (4-5 años): pocos elementos, grandes y muy claros" : /Primer/.test(n) ? "primer ciclo de primaria (6-8 años): elementos claros y de tamaño mediano" : "segundo ciclo de primaria (9-12 años): escena más rica en detalles";
+const isCopiar = (b, t) => copyText(b, t, "¡Copiado! Pegalo en ChatGPT");
+const IS_COLORES = ["rojo", "azul", "verde", "amarillo", "violeta", "naranja", "rosa", "celeste"];
+const IS_EXTRA = ["una estrella en el cielo", "un pajarito en una rama", "una mariposa", "una flor en el piso", "una nube más", "una pelota", "un gato", "una manzana", "un globo", "un caracol"];
+
+// ---------- prompts de actividades ----------
+function isDiferencias(E, n, seed) {
+  const r = isRand(seed), ob = isMezclar(E.objetos, seed), extra = isMezclar(IS_EXTRA, seed + 7), L = [];
+  const ops = [(o) => `Cambiá el color de ${o} a ${IS_COLORES[Math.floor(r() * IS_COLORES.length)]}.`, (o) => `Borrá por completo ${o} (que en su lugar se vea el fondo).`, (o) => `Dibujá ${o} un poco más grande.`, (o) => `Invertí ${o} para que mire hacia el otro lado.`, () => `Agregá ${extra[L.length % extra.length]}.`, (o) => `Agregá un segundo ${o} chico junto al primero.`, (o) => `Cambiá un detalle chico de ${o} (un botón, una raya, una mancha o un adorno).`];
+  for (let i = 0; i < n; i++) L.push(ops[i % ops.length](ob[i % ob.length]));
+  return L;
+}
+function isPrompts() {
+  const E = isEscena(IS.tema), st = IS_ESTILOS[IS.estilo] || isEstilo.estilo, marca = `Estilo de la marca Cofre Didáctico: ${isEstilo.estilo}. Paleta: ${isEstilo.paleta}.`;
+  const base = `Creá una ilustración horizontal (formato 4:3) para una actividad de un cuadernillo escolar argentino, pensada para ${isNivelTxt(IS.nivel)}.\nEscena: ${E.escena}.\nTienen que verse claramente, cada uno separado y fácil de reconocer: ${E.objetos.join(", ")}.\nEstilo: ${st}. ${marca}\nComposición ordenada, sin elementos cortados en los bordes, sin texto ni letras, sin marcas de agua, alta resolución para imprimir en A4.`;
+  if (IS.tipo === "dif" || IS.tipo === "falta") {
+    const L = IS.tipo === "falta" ? isMezclar(E.objetos, IS.seed).slice(0, IS.n).map((o) => `Borrá por completo ${o} (que en su lugar se vea el fondo, sin dejar huecos raros).`) : isDiferencias(E, IS.n, IS.seed);
+    const edit = `Usá EXACTAMENTE la misma imagen que acabás de crear (mismo encuadre, mismo tamaño, mismos colores, mismo estilo, mismos personajes en el mismo lugar) y hacé SOLO estos ${IS.n} cambios, nada más:\n${L.map((x, i) => `${i + 1}. ${x}`).join("\n")}\nNo cambies nada que no esté en la lista. Los cambios tienen que ser visibles para chicos de ${/Inicial/.test(IS.nivel) ? "4-5" : /Primer/.test(IS.nivel) ? "6-8" : "9-12"} años.`;
+    return { E, pasos: [["1 · Imagen original", base], ["2 · " + (IS.tipo === "falta" ? `La misma imagen sin ${IS.n} elementos` : `La misma imagen con ${IS.n} diferencias`), edit]], lista: L };
+  }
+  const ocultos = isMezclar([...E.objetos.slice(6), "una llave", "una estrella", "una cuchara", "un lápiz", "un pez", "una campana", "un zapato", "un corazón", "una lupa", "un sombrero"], IS.seed).slice(0, IS.n);
+  IS.objetos = ocultos;
+  const busca = `Creá una ilustración vertical (formato 3:4) muy detallada y llena de elementos para la actividad "Buscá y encontrá" de un cuadernillo escolar argentino, pensada para ${isNivelTxt(IS.nivel)}.\nEscena: ${E.escena}.\nEscondé dentro de la escena estos ${ocultos.length} objetos, cada uno UNA sola vez, completo, de tamaño chico o mediano, integrados al dibujo pero visibles para un chico que busca con atención: ${ocultos.join(", ")}.\nEstilo: ${st}. ${marca}\nSin texto ni letras, sin marcas de agua, alta resolución para imprimir.`;
+  return { E, pasos: [["Imagen para buscar", busca], ["Íconos de los objetos (hoja de stickers)", isPromptPack(ocultos.map((o) => o.replace(/^(un|una) /, "")), IS.estilo === "linea" ? "infantil" : IS.estilo)]], lista: ocultos };
+}
+
+// ---------- packs de recursos ----------
+const IS_PACKS = {
+  frutas: ["Comida saludable", "Frutas", ["manzana", "banana", "naranja", "frutilla", "uvas", "pera", "sandía", "kiwi", "durazno", "ananá", "cerezas", "limón"]],
+  verduras: ["Comida saludable", "Verduras", ["zanahoria", "tomate", "lechuga", "brócoli", "choclo", "papa", "calabaza", "morrón", "cebolla", "arvejas", "berenjena", "pepino"]],
+  alimentos: ["Comida saludable", "Otros alimentos", ["vaso de leche", "queso", "yogur", "huevo", "pan integral", "jarra de agua", "pescado", "lentejas", "arroz", "nueces", "pollo", "miel"]],
+  utiles: ["Escuela", "Útiles escolares", ["lápiz", "goma", "sacapuntas", "regla", "tijera", "pegamento", "cuaderno", "libro", "mochila", "crayones", "témperas", "pincel"]],
+  consignas: ["Para todas las actividades", "Íconos de consignas", ["lápiz (escribí)", "tijera (recortá)", "pegamento (pegá)", "crayón (pintá)", "ojo (observá)", "oreja (escuchá)", "lupa (buscá)", "flecha (uní)", "estrella (desafío)", "reloj (tiempo)", "chicos en grupo (en equipo)", "cerebro (pensá)"]],
+  chicos: ["Personas", "Chicos y docentes diversos", ["nena con trenzas", "nene con anteojos", "nene en silla de ruedas", "nena con audífono", "nene con síndrome de Down", "nena de pueblo originario", "maestra", "maestro", "nena con bastón blanco", "nene con muletas", "abuela", "papá con bebé"]],
+  patrios: ["Fechas patrias", "Símbolos patrios", ["bandera argentina", "escarapela", "sol de mayo", "escudo nacional", "Cabildo", "Casa de Tucumán", "gorro frigio", "pirámide de Mayo", "paraguas de 1810", "farol colonial", "pluma y tintero", "tambor"]],
+  tradicion: ["Fechas patrias", "Tradición gaucha", ["mate", "pava", "guitarra criolla", "poncho", "sombrero gaucho", "botas de potro", "caballo criollo", "rancho", "ombú", "hornero", "empanada", "tranquera"]],
+  animalesAr: ["Animales", "Animales de Argentina", ["yaguareté", "hornero", "carpincho", "ñandú", "cóndor", "guanaco", "pingüino", "ballena franca", "tatú", "oso hormiguero", "zorro", "tucán"]],
+  granja: ["Animales", "Animales de granja", ["vaca", "caballo", "cerdo", "oveja", "gallina", "pollito", "pato", "conejo", "perro", "gato", "cabra", "burro"]],
+  emociones: ["Emociones", "Caritas de emociones", ["alegría", "tristeza", "enojo", "sorpresa", "miedo", "calma", "vergüenza", "orgullo", "amor", "aburrimiento", "cansancio", "nervios"]],
+  clima: ["Naturaleza", "Clima y estaciones", ["sol", "nube", "lluvia", "nieve", "viento", "arcoíris", "rayo", "hoja de otoño", "flor de primavera", "paraguas", "bufanda", "anteojos de sol"]],
+  deco: ["Diseño", "Marcos y decoraciones", ["marco redondeado", "banderines", "flor viñeta", "cinta para título", "globo de diálogo", "flecha curva", "estrella", "cartel de madera", "nube de pensamiento", "etiqueta", "guirnalda", "sello de premio"]],
+  reciclaje: ["Naturaleza", "Cuidado del ambiente", ["tacho de reciclaje verde", "tacho de reciclaje azul", "botella", "lata", "caja de cartón", "planeta Tierra", "árbol", "regadera", "panel solar", "bicicleta", "gota de agua", "hoja"]],
+};
+function isPromptPack(items, estilo) {
+  const n = items.length, cols = n <= 4 ? 2 : n <= 9 ? 3 : 4, rows = Math.ceil(n / cols), st = IS_ESTILOS[estilo] || isEstilo.estilo, linea = estilo === "linea";
+  return `Creá una hoja de stickers con ${n} ilustraciones SEPARADAS, ordenadas en una grilla de ${cols} columnas por ${rows} filas, en este orden (de izquierda a derecha y de arriba hacia abajo): ${items.join(", ")}.\nEstilo: ${st}. ${linea ? "" : `Paleta de la marca: ${isEstilo.paleta}.`}\nReglas: cada elemento completo, centrado en su casillero y con MUCHO espacio vacío alrededor (que ninguno se toque ni se superponga), todos de tamaño parecido y en vista frontal. ${linea ? "Fondo blanco liso." : "Fondo totalmente TRANSPARENTE (PNG)."} Sin texto, sin números, sin sombras proyectadas, sin marcos ni borde blanco tipo sticker, sin marcas de agua. Alta resolución para imprimir.`;
+}
+
+// ---------- detección de diferencias ----------
+function isCargarImg(file) { return new Promise((ok, no) => { const r = new FileReader(); r.onload = () => { const im = new Image(); im.onload = () => ok({ im, url: r.result, w: im.naturalWidth, h: im.naturalHeight, name: file.name }); im.onerror = () => no(new Error("No se pudo abrir la imagen.")); im.src = r.result; }; r.onerror = () => no(new Error("No se pudo leer el archivo.")); r.readAsDataURL(file); }); }
+function isPixeles(img, W, H) { const c = document.createElement("canvas"); c.width = W; c.height = H; const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img.im, 0, 0, W, H); return x.getImageData(0, 0, W, H).data; }
+function isBlur(d, W, H) { const o = new Float32Array(W * H); const g = new Float32Array(W * H); for (let i = 0; i < W * H; i++) g[i] = (d[i * 4] * 0.3 + d[i * 4 + 1] * 0.59 + d[i * 4 + 2] * 0.11); const R = 2;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let s = 0, n = 0; for (let dy = -R; dy <= R; dy++) { const yy = y + dy; if (yy < 0 || yy >= H) continue; for (let dx = -R; dx <= R; dx++) { const xx = x + dx; if (xx < 0 || xx >= W) continue; s += g[yy * W + xx]; n++; } } o[y * W + x] = s / n; } return o; }
+function isColorBlur(d, W, H) { const ch = [0, 1, 2].map((c) => { const t = new Uint8ClampedArray(W * H * 4); for (let i = 0; i < W * H; i++) { t[i * 4] = t[i * 4 + 1] = t[i * 4 + 2] = d[i * 4 + c]; } return isBlur(t, W, H); }); return ch; }
+function isDetectar(A, B, n) {
+  const W = 320, H = Math.round(W * A.h / A.w), da = isPixeles(A, W, H), dbb = isPixeles(B, W, H);
+  const ca = isColorBlur(da, W, H), cb = isColorBlur(dbb, W, H), dif = new Float32Array(W * H);
+  for (let i = 0; i < W * H; i++) dif[i] = Math.abs(ca[0][i] - cb[0][i]) + Math.abs(ca[1][i] - cb[1][i]) + Math.abs(ca[2][i] - cb[2][i]);
+  const ord = Array.from(dif).sort((a, b) => a - b), p90 = ord[Math.floor(ord.length * 0.9)], thr = Math.max(45, p90 * 2.2);
+  let m = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) m[i] = dif[i] > thr ? 1 : 0;
+  // abrir (quitar ruido) y cerrar (unir piezas)
+  const morf = (src, r, dil) => { const o = new Uint8Array(W * H); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let v = dil ? 0 : 1; for (let dy = -r; dy <= r && (dil ? !v : v); dy++) for (let dx = -r; dx <= r; dx++) { const yy = y + dy, xx = x + dx; if (yy < 0 || yy >= H || xx < 0 || xx >= W) continue; const s = src[yy * W + xx]; if (dil && s) { v = 1; break; } if (!dil && !s) { v = 0; break; } } o[y * W + x] = v; } return o; };
+  m = morf(morf(m, 1, false), 1, true); m = morf(morf(m, 2, true), 2, false);
+  const lab = new Int32Array(W * H), comps = []; let id = 0;
+  for (let i = 0; i < W * H; i++) { if (!m[i] || lab[i]) continue; id++; const st = [i]; lab[i] = id; let x0 = W, y0 = H, x1 = 0, y1 = 0, area = 0, peso = 0;
+    while (st.length) { const p = st.pop(), x = p % W, y = (p / W) | 0; area++; peso += dif[p]; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+      for (const q of [p - 1, p + 1, p - W, p + W]) { if (q < 0 || q >= W * H || lab[q] || !m[q]) continue; if ((q === p - 1 && x === 0) || (q === p + 1 && x === W - 1)) continue; lab[q] = id; st.push(q); } }
+    if (area >= 12) comps.push({ x: (x0 + x1) / 2 / W, y: (y0 + y1) / 2 / H, r: Math.max(0.035, Math.max(x1 - x0, (y1 - y0) * H / W) / 2 / W + 0.02), peso }); }
+  return comps.sort((a, b) => b.peso - a.peso).slice(0, n).map(({ x, y, r }) => ({ x, y, r }));
+}
+
+// ---------- páginas A4 en SVG ----------
+async function isJpeg(img, max) { const s = Math.min(1, max / img.w), c = document.createElement("canvas"); c.width = Math.round(img.w * s); c.height = Math.round(img.h * s); c.getContext("2d").drawImage(img.im, 0, 0, c.width, c.height); return { url: c.toDataURL("image/jpeg", 0.9), w: c.width, h: c.height }; }
+function isMarco(titulo, consigna, cuerpo, num) {
+  const F = `font-family="Fredoka, 'Baloo 2', 'Arial Rounded MT Bold', sans-serif"`, logo = mzLogo();
+  const lin = mzPartir(String(consigna).toUpperCase(), 62).slice(0, 2);
+  const cons = lin.map((l, i) => `<tspan x="${i ? 58 : 40}" dy="${i ? 17 : 0}">${i ? "" : '<tspan fill="#E8492E" font-size="17">✿ </tspan>'}${svgEsc(l).replace(i ? /^$/ : /^(\S+)/, '<tspan font-weight="900">$1</tspan>')}</tspan>`).join("");
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 595 842" width="595" height="842"><rect width="595" height="842" fill="#fff"/><rect x="16" y="16" width="563" height="810" rx="18" fill="none" stroke="#1A2744" stroke-width="1.6"/>
+    ${logo ? `<image href="${logo}" x="34" y="30" width="42" height="42"/>` : ""}<text x="551" y="62" text-anchor="end" font-size="30">${mzIcon(IS.tema)}</text>
+    <text x="297.5" y="${titulo.length > 26 ? 92 : 104}" text-anchor="middle" font-size="${titulo.length > 26 ? 24 : 30}" font-weight="700" fill="#1E5BB8" ${F}>${svgEsc(titulo.toUpperCase())}</text>
+    <text x="40" y="138" font-size="13.5" fill="#1A2744" font-family="Arial, sans-serif">${cons}</text>
+    ${cuerpo}
+    ${logo ? `<image href="${logo}" x="246" y="790" width="22" height="22"/>` : ""}<text x="272" y="806" font-size="12" font-weight="700" fill="#1A2744" ${F}>COFRE DIDÁCTICO${num ? ` · ${num}` : ""}</text></svg>`;
+}
+function isFoto(J, x, y, w, h) { const s = Math.min(w / J.w, h / J.h), W = J.w * s, H = J.h * s, X = x + (w - W) / 2, Y = y + (h - H) / 2; return { svg: `<rect x="${X - 4}" y="${Y - 4}" width="${W + 8}" height="${H + 8}" rx="10" fill="none" stroke="#F28C28" stroke-width="2.4" stroke-dasharray="7 5"/><image href="${J.url}" x="${X}" y="${Y}" width="${W}" height="${H}" preserveAspectRatio="none"/>`, X, Y, W, H }; }
+const isCirc = (m, f) => `<circle cx="${f.X + m.x * f.W}" cy="${f.Y + m.y * f.H}" r="${Math.max(9, m.r * f.W)}" fill="none" stroke="#D7263D" stroke-width="3.2"/>`;
+async function isPaginas() {
+  const E = isEscena(IS.tema);
+  if (IS.tipo === "busca") {
+    if (!IS.A) return null; const J = await isJpeg(IS.A, 1800), f = isFoto(J, 40, 168, 515, 512);
+    const L = IS.objetos.length ? IS.objetos : IS.marcas.map((_, i) => `objeto ${i + 1}`);
+    const chips = L.map((o, i) => { const c = i % 2, r = Math.floor(i / 2); return `<g transform="translate(${60 + c * 245},${700 + r * 18})"><rect width="14" height="14" rx="3" fill="none" stroke="#4AAE4F" stroke-width="2"/><text x="22" y="12" font-size="12.5" fill="#1A2744" font-family="Arial, sans-serif">${svgEsc(o.replace(/^(un|una) /, "").toUpperCase())}</text></g>`; }).join("");
+    const act = isMarco("Buscá y encontrá", `BUSCÁ en la imagen los ${L.length} objetos y MARCALOS con una cruz cuando los encuentres.`, f.svg + chips, "");
+    const sol = isMarco("Soluciones", `Así quedan marcados los ${L.length} objetos escondidos.`, f.svg + IS.marcas.map((m) => isCirc(m, f)).join(""), "");
+    return [["actividad", act], ["soluciones", sol]];
+  }
+  if (!IS.A || !IS.B) return null;
+  const JA = await isJpeg(IS.A, 1600), JB = await isJpeg(IS.B, 1600), fa = isFoto(JA, 40, 168, 515, 282), fb = isFoto(JB, 40, 466, 515, 282);
+  const n = IS.n, cajas = Array.from({ length: n }, (_, i) => `<rect x="${297.5 - n * 14 + i * 28}" y="760" width="20" height="20" rx="5" fill="none" stroke="#4AAE4F" stroke-width="2"/>`).join("");
+  const tit = IS.tipo === "falta" ? "¿Qué falta?" : `Encontrá las ${n} diferencias`;
+  const cons = IS.tipo === "falta" ? `OBSERVÁ las dos imágenes y DESCUBRÍ los ${n} elementos que faltan en la segunda.` : `OBSERVÁ las dos imágenes y ENCONTRÁ las ${n} diferencias. PINTÁ un casillero por cada una.`;
+  const act = isMarco(tit, cons, fa.svg + fb.svg + cajas, "");
+  const fs = isFoto(JB, 40, 160, 515, 560), sol = isMarco("Soluciones", `${tit}: así quedan marcadas.`, fs.svg + IS.marcas.map((m) => isCirc(m, fs)).join(""), "");
+  return [["actividad", act], ["soluciones", sol]];
+}
+
+// ---------- recortador de hojas de stickers ----------
+async function isRecortar(img, nombres, carpeta, quitarBlanco) {
+  const c = document.createElement("canvas"); c.width = img.w; c.height = img.h; const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img.im, 0, 0);
+  const D = x.getImageData(0, 0, img.w, img.h).data;
+  const esq = [0, img.w - 1, (img.h - 1) * img.w, img.h * img.w - 1].map((i) => D[i * 4 + 3]); const transp = esq.some((a) => a < 200);
+  const s = Math.min(1, 500 / Math.max(img.w, img.h)), W = Math.round(img.w * s), H = Math.round(img.h * s);
+  const m = new Uint8Array(W * H);
+  for (let y = 0; y < H; y++) for (let xx = 0; xx < W; xx++) { const i = (Math.floor(y / s) * img.w + Math.floor(xx / s)) * 4; m[y * W + xx] = transp ? (D[i + 3] > 25 ? 1 : 0) : (Math.min(D[i], D[i + 1], D[i + 2]) < 232 && D[i + 3] > 25 ? 1 : 0); }
+  const R = Math.max(2, Math.round(Math.max(W, H) * 0.012)), dl = new Uint8Array(W * H);
+  for (let y = 0; y < H; y++) for (let xx = 0; xx < W; xx++) { if (!m[y * W + xx]) continue; for (let dy = -R; dy <= R; dy++) for (let dx = -R; dx <= R; dx++) { const yy = y + dy, x2 = xx + dx; if (yy >= 0 && yy < H && x2 >= 0 && x2 < W) dl[yy * W + x2] = 1; } }
+  const lab = new Int32Array(W * H), B = []; let id = 0;
+  for (let i = 0; i < W * H; i++) { if (!dl[i] || lab[i]) continue; id++; const st = [i]; lab[i] = id; let x0 = W, y0 = H, x1 = 0, y1 = 0, a = 0;
+    while (st.length) { const p = st.pop(), px = p % W, py = (p / W) | 0; a++; if (px < x0) x0 = px; if (px > x1) x1 = px; if (py < y0) y0 = py; if (py > y1) y1 = py;
+      for (const q of [p - 1, p + 1, p - W, p + W]) { if (q < 0 || q >= W * H || lab[q] || !dl[q]) continue; if ((q === p - 1 && px === 0) || (q === p + 1 && px === W - 1)) continue; lab[q] = id; st.push(q); } }
+    if (a > W * H * 0.002) B.push({ x0: Math.max(0, (x0 + R * 0.6) / s), y0: Math.max(0, (y0 + R * 0.6) / s), x1: Math.min(img.w, (x1 - R * 0.6) / s), y1: Math.min(img.h, (y1 - R * 0.6) / s) }); }
+  // orden de lectura: filas y después columnas
+  const hm = B.reduce((t, b) => t + (b.y1 - b.y0), 0) / Math.max(1, B.length);
+  B.sort((a, b) => (Math.abs(a.y0 - b.y0) < hm * 0.5 ? a.x0 - b.x0 : a.y0 - b.y0));
+  const out = [];
+  for (let k = 0; k < B.length; k++) { const b = B[k], pad = 8, X0 = Math.max(0, Math.floor(b.x0 - pad)), Y0 = Math.max(0, Math.floor(b.y0 - pad)), X1 = Math.min(img.w, Math.ceil(b.x1 + pad)), Y1 = Math.min(img.h, Math.ceil(b.y1 + pad));
+    const w = X1 - X0, h = Y1 - Y0, cc = document.createElement("canvas"); cc.width = w; cc.height = h; const cx = cc.getContext("2d", { willReadFrequently: true }); cx.drawImage(c, X0, Y0, w, h, 0, 0, w, h);
+    if (!transp && quitarBlanco) { const id2 = cx.getImageData(0, 0, w, h), d = id2.data, vis = new Uint8Array(w * h), st = []; const blanco = (p) => d[p * 4] > 228 && d[p * 4 + 1] > 228 && d[p * 4 + 2] > 228;
+      for (let xx = 0; xx < w; xx++) { st.push(xx, (h - 1) * w + xx); } for (let yy = 0; yy < h; yy++) { st.push(yy * w, yy * w + w - 1); }
+      while (st.length) { const p = st.pop(); if (p < 0 || p >= w * h || vis[p] || !blanco(p)) continue; vis[p] = 1; d[p * 4 + 3] = 0; const px = p % w; st.push(p + w, p - w); if (px > 0) st.push(p - 1); if (px < w - 1) st.push(p + 1); }
+      cx.putImageData(id2, 0, 0); }
+    const nom = (nombres[k] || `recurso-${String(k + 1).padStart(2, "0")}`).replace(/\s*\(.*\)$/, "");
+    out.push({ canvas: cc, nombre: nom, archivo: `${carpeta ? carpeta + "/" : ""}${slug(nom)}.png` }); }
+  return out;
+}
+// ZIP sin compresión (para descargar muchos PNG juntos)
+const isCRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return (u) => { let c = 0xffffffff; for (let i = 0; i < u.length; i++) c = t[(c ^ u[i]) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; }; })();
+function isZip(files) {
+  const enc = new TextEncoder(), parts = [], dir = []; let off = 0;
+  const u16 = (v) => [v & 255, (v >>> 8) & 255], u32 = (v) => [v & 255, (v >>> 8) & 255, (v >>> 16) & 255, (v >>> 24) & 255];
+  files.forEach(({ name, data }) => { const nm = enc.encode(name), crc = isCRC(data), sz = data.length;
+    const lh = new Uint8Array([...u32(0x04034b50), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(crc), ...u32(sz), ...u32(sz), ...u16(nm.length), ...u16(0)]);
+    parts.push(lh, nm, data);
+    dir.push(new Uint8Array([...u32(0x02014b50), ...u16(20), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(crc), ...u32(sz), ...u32(sz), ...u16(nm.length), ...u16(0), ...u16(0), ...u16(0), ...u16(0), ...u32(0), ...u32(off)]), nm);
+    off += lh.length + nm.length + sz; });
+  const dsz = dir.reduce((s, p) => s + p.length, 0);
+  const end = new Uint8Array([...u32(0x06054b50), ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length), ...u32(dsz), ...u32(off), ...u16(0)]);
+  return new Blob([...parts, ...dir, end], { type: "application/zip" });
+}
+const isPng = (cv) => new Promise((ok) => cv.toBlob((b) => b.arrayBuffer().then((a) => ok(new Uint8Array(a))), "image/png"));
+
+// ---------- interfaz ----------
+function isOpen(tab) {
+  let d = $("#isDlg"); if (!d) { d = document.createElement("dialog"); d.id = "isDlg"; d.className = "is-dlg"; d.setAttribute("aria-labelledby", "isT"); document.body.appendChild(d);
+    d.addEventListener("click", isClick); d.addEventListener("change", isChange); d.addEventListener("input", isInput); }
+  if (tab) IS.tab = tab; isCargarEstilo().then(() => { if (d.open && IS.tab === "estilo") isRender(); }); isRender(); if (!d.open) d.showModal();
+}
+function isTemas() { const ef = EFEMERIDES.filter((e) => IS_ESCENAS[e[0]]).map((e) => `<option value="${e[0]}"${IS.tema === e[0] ? " selected" : ""}>${mzIcon(e[0])} ${esc(e[1])}</option>`).join(""); const te = Object.entries(IS_TEMAS).map(([k, t]) => `<option value="${k}"${IS.tema === k ? " selected" : ""}>${esc(t[0])}</option>`).join(""); return `<optgroup label="Efemérides">${ef}</optgroup><optgroup label="Temas para todo el año">${te}</optgroup>`; }
+function isRender() {
+  const d = $("#isDlg"); if (!d) return;
+  const tabs = [["act", "🧩 Actividades con imagen"], ["pack", "🍎 Packs de recursos"], ["corte", "✂️ Recortar hoja de stickers"], ["estilo", "🎨 Mi estilo"]];
+  let body = "";
+  if (IS.tab === "act") body = isRenderAct();
+  else if (IS.tab === "pack") body = isRenderPack();
+  else if (IS.tab === "corte") body = isRenderCorte();
+  else body = `<div class="is-sec"><h3>Mi estilo visual</h3><p class="muted">Se suma a todos los pedidos de imagen para que tus ilustraciones salgan siempre con la misma estética.</p>
+    <div class="field"><label for="isEstiloTxt">Cómo son mis ilustraciones</label><textarea id="isEstiloTxt" rows="4">${esc(isEstilo.estilo)}</textarea></div>
+    <div class="field"><label for="isPaleta">Paleta de colores</label><input id="isPaleta" value="${esc(isEstilo.paleta)}"></div>
+    <div class="field"><label for="isPers">Mis personajes fijos (uno por renglón: nombre: descripción)</label><textarea id="isPers" rows="5">${esc(isEstilo.personajes)}</textarea></div>
+    <div class="actions"><button class="btn primary" type="button" data-isguardarestilo>Guardar mi estilo</button><button class="btn" type="button" data-ispers>Copiar pedido de hoja de personajes</button><button class="linkish" type="button" data-isreset>Volver a los valores sugeridos</button></div>
+    <div class="is-tip">💡 <b>Truco de consistencia:</b> generá primero la <b>hoja de personajes</b> (cada personaje de frente, de costado y de espaldas) y en cada imagen nueva subila a ChatGPT junto con el pedido: “usá estos personajes exactamente así”.</div></div>`;
+  d.innerHTML = `<div class="is-w"><header class="is-h"><div><span class="mz-k">Estudio de imágenes</span><h2 id="isT">Imágenes para tus cuadernillos</h2></div><button class="vx-x" type="button" data-iscerrar aria-label="Cerrar">✕</button></header>
+    <nav class="is-tabs">${tabs.map(([k, t]) => `<button type="button" data-istab="${k}" aria-pressed="${IS.tab === k}">${t}</button>`).join("")}</nav>
+    <div class="is-body">${body}</div></div>`;
+  if (IS.tab === "act" && (IS.A || IS.B)) isDibujarMarcas();
+}
+function isRenderAct() {
+  const P = isPrompts(), tipos = [["dif", "🔍", "Encontrá las diferencias", "Imagen original + versión con cambios"], ["falta", "❓", "¿Qué falta?", "La segunda imagen tiene elementos borrados"], ["busca", "🕵️", "Buscá y encontrá", "Objetos escondidos en una escena"]];
+  const nOps = IS.tipo === "busca" ? [6, 8, 10] : [5, 7, 10];
+  const subir = IS.tipo === "busca" ? [["A", "Imagen con los objetos escondidos"]] : [["A", "Imagen original"], ["B", IS.tipo === "falta" ? "Imagen con elementos borrados" : "Imagen con las diferencias"]];
+  const listo = IS.tipo === "busca" ? !!IS.A : !!(IS.A && IS.B);
+  return `<div class="is-cols"><div class="is-sec">
+      <h3>1. Elegí la actividad</h3><div class="is-tipos">${tipos.map(([k, ic, t, s]) => `<button type="button" class="is-tipo${IS.tipo === k ? " on" : ""}" data-istipo="${k}"><span>${ic}</span><b>${t}</b><small>${s}</small></button>`).join("")}</div>
+      <div class="is-row"><div class="field"><label for="isTema">Fecha o tema</label><select id="isTema">${isTemas()}</select></div>
+        <div class="field"><label for="isNivel">Nivel</label><select id="isNivel">${["Nivel Inicial", "Primaria – Primer Ciclo", "Primaria – Segundo Ciclo"].map((v) => `<option${IS.nivel === v ? " selected" : ""}>${v}</option>`).join("")}</select></div></div>
+      <div class="is-row"><div class="field"><label>Cantidad</label><div class="mz-pills is-pills">${nOps.map((v) => `<button type="button" class="${IS.n === v ? "on" : ""}" data-isn="${v}"><b>${v}</b></button>`).join("")}</div></div>
+        <div class="field"><label for="isEst">Estilo</label><select id="isEst">${Object.keys(IS_ESTILOS).map((k) => `<option value="${k}"${IS.estilo === k ? " selected" : ""}>${IS_EST_N[k]}</option>`).join("")}</select></div></div>
+      <h3>2. Pedidos para ChatGPT <button class="linkish" type="button" data-isotra>🎲 Otra variante</button></h3>
+      ${P.pasos.map(([t, p], i) => `<div class="is-prompt"><div class="is-p-h"><b>${esc(t)}</b><button class="btn small primary" type="button" data-iscopy="${i}">Copiar</button></div><pre>${esc(p)}</pre></div>`).join("")}
+      <p class="muted is-note">${IS.tipo === "busca" ? "Pegá el primer pedido en ChatGPT. El segundo te da los íconos de los objetos para la lista (opcional)." : "Pegá el pedido 1 en ChatGPT; cuando tengas la imagen, pegá el pedido 2 en el MISMO chat para que edite esa imagen."}</p>
+    </div><div class="is-sec">
+      <h3>3. Subí ${subir.length > 1 ? "las imágenes" : "la imagen"}</h3>
+      <div class="is-ups">${subir.map(([k, t]) => `<label class="is-up${IS[k] ? " ok" : ""}"><input type="file" accept="image/*" data-isup="${k}" hidden>${IS[k] ? `<img src="${IS[k].url}" alt="">` : `<span>⬆️</span>`}<b>${t}</b><small>${IS[k] ? esc(IS[k].name) + " · tocá para cambiar" : "PNG o JPG"}</small></label>`).join("")}</div>
+      ${listo ? `<h3>4. ${IS.tipo === "busca" ? `Tocá dónde está cada objeto (${IS.marcas.length}/${IS.objetos.length})` : `Diferencias detectadas: ${IS.marcas.length}`}</h3>
+        <p class="muted is-note">${IS.tipo === "busca" ? `Siguiente: <b>${esc((IS.objetos[IS.marcas.length] || "listo ✓"))}</b>. Tocá un círculo para borrarlo.` : "Revisalas: tocá la imagen para agregar una que falte y tocá un círculo para borrarlo."}</p>
+        <div class="is-canvas"><canvas id="isCv"></canvas></div>
+        <div class="actions"><button class="btn primary" type="button" data-isdl="actividad">⬇ Página de la actividad (SVG)</button><button class="btn" type="button" data-isdl="soluciones">⬇ Página de soluciones (SVG)</button>${IS.tipo !== "busca" ? `<button class="linkish" type="button" data-isredetect>Volver a detectar</button>` : `<button class="linkish" type="button" data-isundo>Deshacer</button>`}</div>`
+        : `<div class="is-tip">Cuando subas ${subir.length > 1 ? "las dos imágenes" : "la imagen"}, ${IS.tipo === "busca" ? "vas a marcar dónde está cada objeto" : "el panel encuentra solo las diferencias"} y te arma la página de la actividad y la de soluciones con tu diagramación, en SVG para Corel.</div>`}
+    </div></div>`;
+}
+function isRenderPack() {
+  const [cat, t, items] = IS_PACKS[IS.packTema] || IS_PACKS.frutas, grupos = {};
+  Object.entries(IS_PACKS).forEach(([k, p]) => { (grupos[p[0]] = grupos[p[0]] || []).push([k, p]); });
+  const prompt = isPromptPack(items, IS.packEstilo);
+  return `<div class="is-cols"><div class="is-sec"><h3>Elegí un pack</h3>${Object.entries(grupos).map(([g, L]) => `<div class="is-pg"><small>${esc(g)}</small><div>${L.map(([k, p]) => `<button type="button" class="is-chip${IS.packTema === k ? " on" : ""}" data-ispack="${k}">${esc(p[1])}</button>`).join("")}</div></div>`).join("")}
+      <div class="field"><label for="isPackEst">Estilo</label><select id="isPackEst">${Object.keys(IS_ESTILOS).map((k) => `<option value="${k}"${IS.packEstilo === k ? " selected" : ""}>${IS_EST_N[k]}</option>`).join("")}</select></div>
+      <div class="is-tip">💡 Pedí cada pack en <b>dos estilos</b>: a color y “para colorear”. Así tenés la versión para pintar de todos tus recursos.</div></div>
+    <div class="is-sec"><h3>${esc(t)} <small class="muted">· ${items.length} elementos</small></h3><div class="is-items">${items.map((x) => `<span>${esc(x)}</span>`).join("")}</div>
+      <div class="is-prompt"><div class="is-p-h"><b>Pedido para ChatGPT</b><button class="btn small primary" type="button" data-iscopypack>Copiar</button></div><pre>${esc(prompt)}</pre></div>
+      <div class="actions"><button class="btn" type="button" data-iscortarpack>✂️ Ya la tengo: recortarla</button></div>
+      <h3>Tu carpeta de recursos</h3><pre class="is-tree">${esc(isArbol())}</pre>
+      <div class="actions"><button class="btn small" type="button" data-iscarpetas>⬇ Descargar la estructura de carpetas (ZIP)</button></div>
+      <p class="muted is-note">Nombres sugeridos: <b>tema/elemento-estilo.png</b> (por ejemplo <i>Comida saludable/Frutas/manzana-kawaii.png</i>). Así la misma imagen te sirve para otros materiales: la manzana de “Comida saludable” la reusás en “Día del Maestro” o en “La granja”.</p></div></div>`;
+}
+function isArbol() { const g = {}; Object.values(IS_PACKS).forEach(([c, t]) => { (g[c] = g[c] || []).push(t); }); return "Recursos Cofre Didáctico/\n" + Object.entries(g).map(([c, L]) => `├── ${c}/\n${L.map((t) => `│   ├── ${t}/  (color y para-colorear)`).join("\n")}`).join("\n") + "\n└── Personajes/  (Tomi, Sofi, Seño Ana…)"; }
+function isRenderCorte() {
+  const [cat, t, items] = IS_PACKS[IS.packTema] || ["", "", []];
+  return `<div class="is-cols"><div class="is-sec"><h3>Subí la hoja de stickers</h3><p class="muted">El panel encuentra cada dibujo, lo recorta con fondo transparente y te los descarga todos juntos con su nombre.</p>
+      <label class="is-up big${IS.hoja ? " ok" : ""}"><input type="file" accept="image/*" data-isuphoja hidden>${IS.hoja ? `<img src="${IS.hoja.url}" alt="">` : "<span>⬆️</span>"}<b>${IS.hoja ? esc(IS.hoja.name) : "Hoja de stickers (PNG con fondo transparente o blanco)"}</b><small>Tocá para elegir</small></label>
+      <div class="field"><label for="isNombres">Nombres en orden (uno por renglón, de izquierda a derecha y de arriba hacia abajo)</label><textarea id="isNombres" rows="6">${esc((IS.nombres || items).join("\n"))}</textarea></div>
+      <div class="field"><label for="isCarpeta">Carpeta</label><input id="isCarpeta" value="${esc(IS.carpeta || (cat ? `${cat}/${t}` : "Recursos"))}"></div>
+      <label class="check"><input type="checkbox" id="isBlanco" ${IS.blanco !== false ? "checked" : ""}> Quitar el fondo blanco (si la hoja no es transparente)</label>
+      <div class="actions"><button class="btn primary" type="button" data-iscortar ${IS.hoja ? "" : "disabled"}>✂️ Recortar</button></div></div>
+    <div class="is-sec"><h3>${IS.cortes && IS.cortes.length ? `${IS.cortes.length} recursos listos` : "Vista previa"}</h3>
+      ${IS.cortes && IS.cortes.length ? `<div class="is-cortes" id="isCortes"></div><div class="actions"><button class="btn primary" type="button" data-iszip>⬇ Descargar todos (ZIP)</button></div>` : `<div class="is-tip">Si dos dibujos quedan juntos en uno solo, pedile a ChatGPT “más espacio entre los elementos”. Si un dibujo se parte en dos, escribí su nombre una sola vez y unilo después en Corel.</div>`}</div></div>`;
+}
+function isDibujarMarcas() {
+  const cv = $("#isCv"); if (!cv) return; const img = IS.tipo === "busca" ? IS.A : IS.B; if (!img) return;
+  const W = Math.min(cv.parentElement.clientWidth || 520, 900), H = Math.round(W * img.h / img.w); cv.width = W; cv.height = H;
+  const x = cv.getContext("2d"); x.drawImage(img.im, 0, 0, W, H);
+  IS.marcas.forEach((m, i) => { x.beginPath(); x.arc(m.x * W, m.y * H, Math.max(10, m.r * W), 0, 7); x.lineWidth = 3; x.strokeStyle = "#D7263D"; x.stroke(); x.fillStyle = "#D7263D"; x.font = "bold 13px sans-serif"; x.fillText(String(i + 1), m.x * W + Math.max(10, m.r * W) * 0.75, m.y * H - Math.max(10, m.r * W) * 0.75); });
+  cv.onclick = (e) => { const r = cv.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    const hit = IS.marcas.findIndex((m) => Math.hypot((m.x - px) * W, (m.y - py) * H) < Math.max(14, m.r * W)); if (hit >= 0) IS.marcas.splice(hit, 1); else IS.marcas.push({ x: px, y: py, r: IS.tipo === "busca" ? 0.045 : 0.05 });
+    isRender(); };
+}
+async function isClick(e) {
+  const d = $("#isDlg"), t = e.target;
+  if (t === d || t.closest("[data-iscerrar]")) { d.close(); return; }
+  const tb = t.closest("[data-istab]"); if (tb) { IS.tab = tb.dataset.istab; isRender(); return; }
+  const tp = t.closest("[data-istipo]"); if (tp) { IS.tipo = tp.dataset.istipo; IS.n = IS.tipo === "busca" ? 8 : 10; IS.marcas = []; IS.A = IS.B = null; isRender(); return; }
+  const nn = t.closest("[data-isn]"); if (nn) { IS.n = +nn.dataset.isn; isRender(); return; }
+  if (t.closest("[data-isotra]")) { IS.seed++; isRender(); return; }
+  const cp = t.closest("[data-iscopy]"); if (cp) { isCopiar(cp, isPrompts().pasos[+cp.dataset.iscopy][1]); return; }
+  const pk = t.closest("[data-ispack]"); if (pk) { IS.packTema = pk.dataset.ispack; IS.nombres = null; IS.carpeta = null; isRender(); return; }
+  if (t.closest("[data-iscopypack]")) { isCopiar(t.closest("[data-iscopypack]"), isPromptPack(IS_PACKS[IS.packTema][2], IS.packEstilo)); return; }
+  if (t.closest("[data-iscortarpack]")) { const p = IS_PACKS[IS.packTema]; IS.nombres = p[2]; IS.carpeta = `${p[0]}/${p[1]}`; IS.tab = "corte"; isRender(); return; }
+  if (t.closest("[data-iscarpetas]")) { const enc = new TextEncoder(), F = []; Object.values(IS_PACKS).forEach(([c, tt]) => { F.push({ name: `Recursos Cofre Didactico/${c}/${tt}/color/LEEME.txt`, data: enc.encode(`Guardá acá los PNG a color de ${tt}.`) }, { name: `Recursos Cofre Didactico/${c}/${tt}/para-colorear/LEEME.txt`, data: enc.encode(`Guardá acá las versiones para colorear de ${tt}.`) }); });
+    F.push({ name: "Recursos Cofre Didactico/Personajes/LEEME.txt", data: enc.encode(isEstilo.personajes) }); await saveFile("Recursos Cofre Didactico (carpetas).zip", isZip(F)); return; }
+  if (t.closest("[data-isguardarestilo]")) { isEstilo = { estilo: $("#isEstiloTxt").value.trim(), paleta: $("#isPaleta").value.trim(), personajes: $("#isPers").value.trim() }; await isGuardarEstilo(); toast("Estilo guardado ✓", "ok"); return; }
+  if (t.closest("[data-isreset]")) { isEstilo = { ...IS_DEF }; isRender(); return; }
+  if (t.closest("[data-ispers]")) { const P = isEstilo.personajes.split("\n").filter(Boolean); isCopiar(t.closest("[data-ispers]"), `Creá una hoja de personajes (character sheet) para un cuadernillo escolar, con fondo blanco. Personajes:\n${P.map((p) => "- " + p).join("\n")}\nMostrá a cada uno de frente, de costado y de espaldas, de cuerpo entero, separados entre sí, con su nombre escrito debajo.\nEstilo: ${isEstilo.estilo}. Paleta: ${isEstilo.paleta}.`); return; }
+  if (t.closest("[data-isredetect]")) { IS.marcas = isDetectar(IS.A, IS.B, IS.n); isRender(); return; }
+  if (t.closest("[data-isundo]")) { IS.marcas.pop(); isRender(); return; }
+  const dl = t.closest("[data-isdl]"); if (dl) { const P = await isPaginas(); if (!P) return; const [nom, svg] = P.find((x) => x[0] === dl.dataset.isdl); const E = isEscena(IS.tema);
+    await saveFile(`${({ dif: "Diferencias", falta: "Que falta", busca: "Busca y encontra" })[IS.tipo]} - ${E.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "")} - ${nom}.svg`, new Blob([svg], { type: "image/svg+xml" })); return; }
+  if (t.closest("[data-iscortar]")) { const b = t.closest("[data-iscortar]"); b.disabled = true; b.textContent = "Recortando…";
+    IS.nombres = $("#isNombres").value.split("\n").map((x) => x.trim()).filter(Boolean); IS.carpeta = $("#isCarpeta").value.trim(); IS.blanco = $("#isBlanco").checked;
+    try { IS.cortes = await isRecortar(IS.hoja, IS.nombres, IS.carpeta, IS.blanco); isRender(); const box = $("#isCortes"); IS.cortes.forEach((c) => { const f = document.createElement("figure"); c.canvas.className = "is-cv"; f.appendChild(c.canvas); const cap = document.createElement("figcaption"); cap.textContent = c.nombre; f.appendChild(cap); box.appendChild(f); }); }
+    catch (err) { toast(err.message || "No se pudo recortar."); b.disabled = false; b.textContent = "✂️ Recortar"; } return; }
+  if (t.closest("[data-iszip]")) { const F = []; for (const c of IS.cortes) F.push({ name: c.archivo, data: await isPng(c.canvas) }); await saveFile(`${(IS.carpeta || "Recursos").split("/").pop().normalize("NFD").replace(/[\u0300-\u036f]/g, "")} (recortes).zip`, isZip(F)); return; }
+}
+async function isChange(e) {
+  const t = e.target;
+  if (t.id === "isTema") { IS.tema = t.value; IS.marcas = []; isRender(); }
+  if (t.id === "isNivel") { IS.nivel = t.value; isRender(); }
+  if (t.id === "isEst") { IS.estilo = t.value; isRender(); }
+  if (t.id === "isPackEst") { IS.packEstilo = t.value; isRender(); }
+  if (t.dataset && t.dataset.isup && t.files[0]) { try { IS[t.dataset.isup] = await isCargarImg(t.files[0]); if (IS.tipo !== "busca" && IS.A && IS.B) IS.marcas = isDetectar(IS.A, IS.B, IS.n); else if (IS.tipo === "busca") IS.marcas = []; isRender(); } catch (err) { toast(err.message); } }
+  if (t.dataset && "isuphoja" in t.dataset && t.files[0]) { try { IS.hoja = await isCargarImg(t.files[0]); IS.cortes = null; IS.nombres = $("#isNombres") ? $("#isNombres").value.split("\n").map((x) => x.trim()).filter(Boolean) : IS.nombres; IS.carpeta = $("#isCarpeta") ? $("#isCarpeta").value : IS.carpeta; isRender(); } catch (err) { toast(err.message); } }
+}
+function isInput() {}
+document.addEventListener("click", (e) => { const b = e.target.closest("[data-isopen]"); if (b) isOpen(b.dataset.isopen || "act"); });
 
 function niceStep(v){ if(v<=0) return 1; const p=Math.pow(10,Math.floor(Math.log10(v))); const n=v/p; return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p; }
 document.querySelectorAll("[data-rank]").forEach(b=>b.addEventListener("click",()=>{ rankMode=b.dataset.rank; document.querySelectorAll("[data-rank]").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); renderRank(); }));
