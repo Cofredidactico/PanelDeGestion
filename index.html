@@ -1554,6 +1554,20 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 .is-cortes figure{margin:0;display:grid;gap:4px;justify-items:center;padding:8px;border-radius:10px;border:1px solid var(--line);background:repeating-conic-gradient(#e9edf5 0 25%,#fff 0 50%) 0 0/14px 14px}
 .is-cv{max-width:100%;max-height:100px;width:auto!important;height:auto!important}
 .is-cortes figcaption{font-size:11.5px;font-weight:700;color:#1A2744;text-align:center}
+.is-prec{font-size:12.5px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--yellow,#F6B40E) 14%,var(--surface));border:1px solid color-mix(in srgb,#F6B40E 40%,var(--line))}
+.is-plat{display:inline-flex;gap:4px;vertical-align:middle}.is-plat button{padding:5px 12px;font-size:13px;font-weight:700}
+.is-row-a{align-items:end}.is-sel{gap:6px}
+.is-pers{display:grid;gap:10px}.is-per{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.is-per img,.is-per-v{width:72px;height:72px;border-radius:12px;object-fit:cover;background:var(--surface-2)}.is-per-v{display:grid;place-items:center;font-size:28px;font-weight:800;color:var(--blue)}
+.is-per small{display:block;color:var(--muted);font-size:12px;margin:2px 0 6px}.is-per-a{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.is-per-a label.btn{cursor:pointer}
+.is-revs{display:grid;gap:12px;margin-top:12px}.is-rev{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--surface);display:grid;gap:10px}
+.is-rev-h{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;align-items:center}.is-rev-h img{width:84px;height:84px;object-fit:contain;border-radius:10px;background:repeating-conic-gradient(#e9e9e9 0 25%,#fff 0 50%) 0 0/14px 14px}
+.is-rev-h small{display:block;color:var(--muted);font-size:12px}.is-rev-h b{word-break:break-word}
+.is-rev-t{display:flex;flex-wrap:wrap;gap:6px}.is-sem{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface-2)}
+.is-sem i{width:9px;height:9px;border-radius:50%;background:#4AAE4F}.is-sem.warn i{background:#F6B40E}.is-sem.no i{background:#D7263D}
+.is-rev-f{margin:0;font-size:12.5px;padding:8px 10px;border-radius:10px;background:var(--surface-2)}.is-rev-f.ok{background:color-mix(in srgb,#4AAE4F 12%,var(--surface))}.is-rev-f.no{background:color-mix(in srgb,#D7263D 12%,var(--surface))}.is-rev-f.warn{background:color-mix(in srgb,#F6B40E 14%,var(--surface))}
+.is-body>.is-sec+.is-sec{margin-top:22px}
+#isColorPrev canvas.is-colcv{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;border:1px solid var(--line);border-radius:12px;background:#fff}
 @media (max-width:860px){.is-dlg{width:100vw;height:100dvh;border-radius:0;max-width:100vw}.is-cols{grid-template-columns:minmax(0,1fr)}.is-tipos{grid-template-columns:minmax(0,1fr)}.is-row{grid-template-columns:minmax(0,1fr)}.is-body{padding:14px}.is-h,.is-tabs{padding-left:14px;padding-right:14px}}
 
 </style>
@@ -3989,7 +4003,7 @@ const IS_ESCENAS = {
   "04-29": ["una veterinaria y su patio con chicos cuidando mascotas y animales de granja", ["perro", "gato", "conejo", "tortuga", "loro", "pecera con pez", "caballo", "vaca", "pollito", "plato de comida", "cucha", "pelota", "hueso", "zanahoria"]],
   "05-01": ["una calle de barrio donde distintos trabajadores hacen su tarea: albañil, panadero, cartera, jardinero, peluquera y camionero", ["casco", "pala", "carretilla", "martillo", "escoba", "pan", "sobre de carta", "camión", "maceta", "tijera", "ladrillos", "delantal", "escalera", "llave inglesa"]],
   "05-18": ["un patio escolar decorado para el acto con chicos luciendo escarapelas, guirnaldas celestes y blancas, globos y un pizarrón", ["escarapela", "bandera", "guirnalda", "globo celeste", "tambor", "banderín", "pizarrón", "cinta", "estrella", "micrófono", "sol", "maceta", "campana", "mochila"]],
-  "05-25": ["la Plaza de Mayo en 1810 frente al Cabildo, con gente con paraguas, vendedores ambulantes, un aguatero con su carreta y damas con peinetón", ["Cabildo", "paraguas", "canasta de empanadas", "carreta del aguatero", "farol", "vela", "escarapela", "galera", "peinetón", "abanico", "carruaje", "perro", "tambor", "pirámide de Mayo"]],
+  "05-25": ["la Plaza de Mayo en 1810 frente al Cabildo, con gente con paraguas, vendedores ambulantes, un aguatero con su carreta y damas con mantilla", ["Cabildo", "paraguas", "canasta de empanadas", "carreta del aguatero", "farol", "vela", "escarapela", "galera", "mantilla", "abanico", "carruaje", "perro", "tambor", "pirámide de Mayo"]],
   "06-05": ["un bosque y un río limpios donde chicos juntan residuos, plantan árboles y observan animales", ["árbol", "bolsa de residuos", "tacho de reciclaje", "pájaro", "ardilla", "flor", "hongo", "río", "pez", "mariposa", "lupa", "regadera", "sol", "nube"]],
   "06-17": ["los cerros de Salta con gauchos de poncho rojo a caballo con guardamontes de cuero, cardones y una iglesia colonial", ["poncho rojo", "sombrero gaucho", "caballo", "guardamontes", "cerros", "cardón", "iglesia colonial", "llama", "mate", "empanada salteña", "bombo", "sol", "cóndor", "tranquera"]],
   "06-20": ["el Monumento a la Bandera en Rosario junto al río Paraná con chicos haciendo flamear banderas y un barco pasando", ["bandera", "sol de mayo", "escarapela", "monumento", "barco", "río", "globo", "árbol", "gaviota", "banderín", "nube", "bicicleta", "perro", "farol"]],
@@ -4027,7 +4041,7 @@ async function isCargarEstilo() { try { if (db && db.doc) { const s = await db.d
 async function isGuardarEstilo() { try { localStorage.setItem("cofre-estilo-img", JSON.stringify(isEstilo)); } catch {} try { if (db && db.doc) await db.doc("panel/estiloImg").set({ ...isEstilo, updated: new Date().toISOString() }); } catch {} }
 
 // ---------- utilidades ----------
-const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [] };
+const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [], plat: "chatgpt", pers: [], fondoTransp: false, grosor: 2, detalle: "medio", revs: [], colorImg: null, colorOut: null };
 function isRand(seed) { let s = seed >>> 0 || 1; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
 function isMezclar(a, seed) { const r = isRand(seed), b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
 function isEscena(k) { if (IS_ESCENAS[k]) { const e = EFEMERIDES.find((x) => x[0] === k); return { nombre: e ? e[1] : k, escena: IS_ESCENAS[k][0], objetos: IS_ESCENAS[k][1] }; } const t = IS_TEMAS[k]; return t ? { nombre: t[0], escena: t[1], objetos: t[2] } : { nombre: "Tema libre", escena: "una escena escolar alegre", objetos: ["libro", "lápiz", "pelota", "árbol", "sol", "mochila", "flor", "perro", "reloj", "maceta"] }; }
@@ -4043,20 +4057,6 @@ function isDiferencias(E, n, seed) {
   for (let i = 0; i < n; i++) L.push(ops[i % ops.length](ob[i % ob.length]));
   return L;
 }
-function isPrompts() {
-  const E = isEscena(IS.tema), st = IS_ESTILOS[IS.estilo] || isEstilo.estilo, marca = `Estilo de la marca Cofre Didáctico: ${isEstilo.estilo}. Paleta: ${isEstilo.paleta}.`;
-  const base = `Creá una ilustración horizontal (formato 4:3) para una actividad de un cuadernillo escolar argentino, pensada para ${isNivelTxt(IS.nivel)}.\nEscena: ${E.escena}.\nTienen que verse claramente, cada uno separado y fácil de reconocer: ${E.objetos.join(", ")}.\nEstilo: ${st}. ${marca}\nComposición ordenada, sin elementos cortados en los bordes, sin texto ni letras, sin marcas de agua, alta resolución para imprimir en A4.`;
-  if (IS.tipo === "dif" || IS.tipo === "falta") {
-    const L = IS.tipo === "falta" ? isMezclar(E.objetos, IS.seed).slice(0, IS.n).map((o) => `Borrá por completo ${o} (que en su lugar se vea el fondo, sin dejar huecos raros).`) : isDiferencias(E, IS.n, IS.seed);
-    const edit = `Usá EXACTAMENTE la misma imagen que acabás de crear (mismo encuadre, mismo tamaño, mismos colores, mismo estilo, mismos personajes en el mismo lugar) y hacé SOLO estos ${IS.n} cambios, nada más:\n${L.map((x, i) => `${i + 1}. ${x}`).join("\n")}\nNo cambies nada que no esté en la lista. Los cambios tienen que ser visibles para chicos de ${/Inicial/.test(IS.nivel) ? "4-5" : /Primer/.test(IS.nivel) ? "6-8" : "9-12"} años.`;
-    return { E, pasos: [["1 · Imagen original", base], ["2 · " + (IS.tipo === "falta" ? `La misma imagen sin ${IS.n} elementos` : `La misma imagen con ${IS.n} diferencias`), edit]], lista: L };
-  }
-  const ocultos = isMezclar([...E.objetos.slice(6), "una llave", "una estrella", "una cuchara", "un lápiz", "un pez", "una campana", "un zapato", "un corazón", "una lupa", "un sombrero"], IS.seed).slice(0, IS.n);
-  IS.objetos = ocultos;
-  const busca = `Creá una ilustración vertical (formato 3:4) muy detallada y llena de elementos para la actividad "Buscá y encontrá" de un cuadernillo escolar argentino, pensada para ${isNivelTxt(IS.nivel)}.\nEscena: ${E.escena}.\nEscondé dentro de la escena estos ${ocultos.length} objetos, cada uno UNA sola vez, completo, de tamaño chico o mediano, integrados al dibujo pero visibles para un chico que busca con atención: ${ocultos.join(", ")}.\nEstilo: ${st}. ${marca}\nSin texto ni letras, sin marcas de agua, alta resolución para imprimir.`;
-  return { E, pasos: [["Imagen para buscar", busca], ["Íconos de los objetos (hoja de stickers)", isPromptPack(ocultos.map((o) => o.replace(/^(un|una) /, "")), IS.estilo === "linea" ? "infantil" : IS.estilo)]], lista: ocultos };
-}
-
 // ---------- packs de recursos ----------
 const IS_PACKS = {
   frutas: ["Comida saludable", "Frutas", ["manzana", "banana", "naranja", "frutilla", "uvas", "pera", "sandía", "kiwi", "durazno", "ananá", "cerezas", "limón"]],
@@ -4074,10 +4074,155 @@ const IS_PACKS = {
   deco: ["Diseño", "Marcos y decoraciones", ["marco redondeado", "banderines", "flor viñeta", "cinta para título", "globo de diálogo", "flecha curva", "estrella", "cartel de madera", "nube de pensamiento", "etiqueta", "guirnalda", "sello de premio"]],
   reciclaje: ["Naturaleza", "Cuidado del ambiente", ["tacho de reciclaje verde", "tacho de reciclaje azul", "botella", "lata", "caja de cartón", "planeta Tierra", "árbol", "regadera", "panel solar", "bicicleta", "gota de agua", "hoja"]],
 };
-function isPromptPack(items, estilo) {
-  const n = items.length, cols = n <= 4 ? 2 : n <= 9 ? 3 : 4, rows = Math.ceil(n / cols), st = IS_ESTILOS[estilo] || isEstilo.estilo, linea = estilo === "linea";
-  return `Creá una hoja de stickers con ${n} ilustraciones SEPARADAS, ordenadas en una grilla de ${cols} columnas por ${rows} filas, en este orden (de izquierda a derecha y de arriba hacia abajo): ${items.join(", ")}.\nEstilo: ${st}. ${linea ? "" : `Paleta de la marca: ${isEstilo.paleta}.`}\nReglas: cada elemento completo, centrado en su casillero y con MUCHO espacio vacío alrededor (que ninguno se toque ni se superponga), todos de tamaño parecido y en vista frontal. ${linea ? "Fondo blanco liso." : "Fondo totalmente TRANSPARENTE (PNG)."} Sin texto, sin números, sin sombras proyectadas, sin marcos ni borde blanco tipo sticker, sin marcas de agua. Alta resolución para imprimir.`;
+// ---------- precisión histórica por efeméride ----------
+const IS_GENERAL = "Si aparece la bandera argentina: tres franjas horizontales del mismo ancho, celeste, blanca y celeste, con el Sol de Mayo dorado en el centro solo cuando es la bandera oficial de ceremonia. La escarapela argentina: círculos celeste y blanco (celeste afuera, blanco y celeste al centro).";
+const IS_PRECISION = {
+  "02-27": "Febrero de 1812, orillas del río Paraná en Rosario. La bandera que creó Belgrano es celeste y blanca SIN sol (el Sol de Mayo se agregó recién en 1818). Belgrano: uniforme militar de época azul oscuro con charreteras doradas y sombrero bicornio. Soldados con uniformes de 1812, sin armas modernas.",
+  "03-08": "Escena actual y positiva. Mujeres reales y diversas (edades, cuerpos, tonos de piel), con ropa de trabajo realista para cada profesión; sin estereotipos.",
+  "03-24": "Tono respetuoso y sereno, apto para chicos: sin violencia ni escenas de represión. El pañuelo blanco de las Madres de Plaza de Mayo es triangular y se lleva en la cabeza. Palomas, árboles y carteles escolares con mensajes de memoria.",
+  "04-02": "Tono respetuoso, sin escenas de combate. Islas Malvinas: paisaje de costa rocosa y pastizal bajo, sin árboles altos, clima frío y cielo gris celeste; pingüinos de Magallanes, ovejas, faro. La bandera argentina como homenaje.",
+  "04-14": "Representá a los pueblos de América con respeto y fidelidad: vestimentas, artesanías y paisajes reales de cada región, sin disfraces genéricos ni plumas estereotipadas.",
+  "05-18": "La escarapela se usa del lado izquierdo del pecho. Colores celeste y blanco, en círculos concéntricos.",
+  "05-25": "Buenos Aires en mayo de 1810: el Cabildo colonial blanco con su torre central y galería de arcos (en 1810 tenía 11 arcos, era más ancho que hoy). Llovía: paraguas de época. Vecinos con levita, chaleco y galera o sombrero bicornio; mujeres con vestido largo de talle alto y mantilla (el peinetón grande es posterior, de 1830). Vendedores ambulantes: aguatero con carreta y tonel, vendedora de empanadas, farolero. Calles de tierra, faroles con velas.",
+  "06-17": "Salta, década de 1810. Martín Miguel de Güemes con uniforme militar y poncho; sus gauchos “Infernales” con poncho rojo (la franja negra del poncho salteño se agregó después, como luto por su muerte), sombrero y guardamontes de cuero en el caballo. Cerros, cardones y quebradas del norte.",
+  "06-20": "Día de la Bandera: la bandera argentina actual con Sol de Mayo en el centro (sol con cara y 32 rayos, alternando rectos y ondulados). Monumento a la Bandera de Rosario junto al río Paraná.",
+  "07-09": "San Miguel de Tucumán, 1816. La Casa Histórica: fachada colonial blanca con portón de dos columnas salomónicas (retorcidas) y rejas de hierro en las ventanas. Congresales con levita oscura y pañuelo al cuello; carruajes y caballos; la bandera celeste y blanca todavía sin sol.",
+  "08-17": "Cruce de los Andes (1817): José de San Martín con uniforme de granadero (casaca azul oscuro con cuello y vivos rojos, botones dorados), bicornio y capote o poncho; cruzó mayormente en mula. Bandera del Ejército de los Andes: dividida en dos mitades verticales, celeste y blanca, con un escudo al centro de dos manos estrechadas que sostienen una pica con gorro frigio sobre un cerro. Cordillera nevada, cóndores, sin escenas sangrientas.",
+  "08-22": "Peña folklórica argentina: zamba con pañuelo blanco, guitarra criolla, bombo legüero de madera y cuero con pelo, charango. Vestimenta tradicional del norte o de gaucho.",
+  "09-11": "Domingo Faustino Sarmiento (si aparece): hombre mayor, calvo, con patillas y levita oscura del siglo XIX. Aula con guardapolvos blancos.",
+  "10-12": "Día del Respeto a la Diversidad Cultural (no “descubrimiento”). Pueblos originarios argentinos (por ejemplo qom, wichí, mapuche, guaraní, colla) representados con respeto: textiles, cerámica y vestimenta reales de cada pueblo, en escenas actuales y cotidianas, sin estereotipos.",
+  "11-10": "Día de la Tradición (nacimiento de José Hernández, autor del Martín Fierro). Gaucho pampeano: sombrero, pañuelo al cuello, poncho pampa, chiripá o bombacha, rastra (cinturón con monedas) y botas de potro o alpargatas. Rancho de adobe con techo de paja, ombú, hornero en su nido de barro, fogón con pava y mate con bombilla. Escena familiar y sin armas.",
+  "11-20": "Vuelta de Obligado, 20 de noviembre de 1845: barrancas altas sobre el río Paraná, gruesas cadenas cruzando el río apoyadas sobre lanchones, barcos de vela y de vapor de la flota anglo-francesa, la bandera argentina en lo alto de la barranca. Sin escenas sangrientas.",
+};
+const IS_EXCLUSIONES = "Al final, como reglas firmes: sin texto ni letras, sin marcas de agua, sin firmas, sin logos.";
+const IS_CALIDAD = "Calidad: anatomía correcta (cinco dedos por mano, caras simétricas y amables), cada objeto entero y separado de los demás, formas limpias y reconocibles, elementos completos dentro del encuadre, nitidez en toda la imagen, máxima resolución disponible.";
+
+// ---------- personajes con imagen de referencia ----------
+function isPersLista() { return String(isEstilo.personajes || "").split("\n").map((l) => l.trim()).filter(Boolean).map((l) => { const i = l.indexOf(":"); return i > 0 ? { n: l.slice(0, i).trim(), d: l.slice(i + 1).trim() } : { n: l, d: "" }; }); }
+const isRefKey = (n) => "cofre-ref-" + slug(n);
+function isRef(n) { try { return localStorage.getItem(isRefKey(n)); } catch { return null; } }
+async function isGuardarRef(n, file) { const img = await isCargarImg(file), s = Math.min(1, 900 / Math.max(img.w, img.h)), c = document.createElement("canvas"); c.width = Math.round(img.w * s); c.height = Math.round(img.h * s); c.getContext("2d").drawImage(img.im, 0, 0, c.width, c.height);
+  const url = c.toDataURL("image/jpeg", 0.86); try { localStorage.setItem(isRefKey(n), url); } catch { throw new Error("No hay más espacio para referencias en este navegador."); } }
+function isPersBloque(plat) {
+  const sel = isPersLista().filter((p) => (IS.pers || []).includes(p.n)); if (!sel.length) return "";
+  const refs = sel.filter((p) => isRef(p.n));
+  return `\nPersonajes (respetá su aspecto exacto en todas las imágenes):\n${sel.map((p) => `- ${p.n}: ${p.d}`).join("\n")}` + (refs.length ? `\nTe adjunto ${refs.length === 1 ? "su imagen de referencia" : "sus imágenes de referencia"}: ${refs.map((p, i) => `${plat === "gemini" ? "Imagen" : "imagen"} ${i + 1} = ${p.n}`).join("; ")}. Dibujalos exactamente igual: misma cara, peinado, ropa, colores y proporciones.` : "");
 }
+
+// ---------- pedidos por plataforma ----------
+function isSegmentos(o) {
+  // o: {tipo, escena, elementos, composicion, estilo, extra}
+  const prec = IS_PRECISION[IS.tema], E = o;
+  const L = [
+    `${E.tipo}`,
+    `Escena: ${E.escena}.`,
+    E.elementos ? `Elementos que tienen que estar, cada uno entero, separado y fácil de reconocer: ${E.elementos}.` : "",
+    `Composición: ${E.composicion}`,
+    `Estilo: ${E.estilo}. Paleta de la marca: ${isEstilo.paleta}.`,
+    prec || /^\d{2}-\d{2}$/.test(IS.tema) ? `Precisión histórica y cultural: ${prec ? prec + " " : ""}${IS_GENERAL}` : "",
+    isPersBloque(IS.plat).trim(),
+    E.extra || "",
+    IS_CALIDAD,
+    IS_EXCLUSIONES,
+  ].filter(Boolean);
+  if (IS.plat === "gemini") return L.map((x) => x.replace(/^(Escena|Composición|Estilo|Precisión histórica y cultural|Calidad|Personajes[^:]*):/, (m) => m.toUpperCase())).join("\n\n");
+  return L.join("\n");
+}
+function isPrompts() {
+  const E = isEscena(IS.tema), st = IS_ESTILOS[IS.estilo] || isEstilo.estilo, estilo = IS.estilo === "infantil" ? isEstilo.estilo : st;
+  const edad = /Inicial/.test(IS.nivel) ? "4 a 5" : /Primer/.test(IS.nivel) ? "6 a 8" : "9 a 12";
+  const nObj = /Inicial/.test(IS.nivel) ? 8 : /Primer/.test(IS.nivel) ? 11 : 14;
+  const objs = E.objetos.slice(0, nObj);
+  if (IS.tipo === "dif" || IS.tipo === "falta") {
+    const base = isSegmentos({ tipo: `Ilustración horizontal en formato 4:3 para la actividad “${IS.tipo === "falta" ? "¿Qué falta?" : "Encontrá las diferencias"}” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena, elementos: objs.join(", "), composicion: `plano general a la altura de los ojos, con los elementos distribuidos por toda la imagen (arriba, abajo, izquierda y derecha) y bien espaciados, sobre un fondo simple. Cada elemento es lo bastante grande como para notar un cambio de color o de forma.`, estilo: estilo });
+    const L = IS.tipo === "falta" ? isMezclar(objs, IS.seed).slice(0, IS.n).map((o) => `Quitá ${o}; en su lugar se ve el fondo continuo, como si nunca hubiera estado.`) : isDiferencias({ ...E, objetos: objs }, IS.n, IS.seed);
+    const edit = `Editá la imagen que acabás de crear. Hacé ÚNICAMENTE estos ${IS.n} cambios:\n${L.map((x, i) => `${i + 1}. ${x}`).join("\n")}\n\nMantené exactamente igual todo lo demás: encuadre, tamaño, fondo, colores, iluminación, estilo de dibujo, personajes, caras, posturas y la posición de cada elemento. No mejores ni corrijas nada que no esté en la lista.\nCada cambio tiene que ser claro para chicos de ${edad} años, ni demasiado obvio ni demasiado chico.`;
+    return { E, pasos: [["1 · Imagen original", base], ["2 · " + (IS.tipo === "falta" ? `La misma imagen sin ${IS.n} elementos` : `La misma imagen con ${IS.n} diferencias`), edit]], lista: L };
+  }
+  const ocultos = isMezclar([...E.objetos.slice(6), "una llave", "una estrella", "una cuchara", "un lápiz", "un pez", "una campana", "un zapato", "un corazón", "una lupa", "un sombrero"], IS.seed).slice(0, IS.n);
+  IS.objetos = ocultos;
+  const busca = isSegmentos({ tipo: `Ilustración vertical en formato 3:4 para la actividad “Buscá y encontrá” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena + ", con muchos detalles y personajes realizando distintas acciones", elementos: "", composicion: `vista amplia levemente desde arriba, escena rica en detalles pero ordenada. Escondidos dentro de la escena, cada uno UNA sola vez, entero y de tamaño chico o mediano, integrados al dibujo pero visibles para quien busca con atención: ${ocultos.join(", ")}.`, estilo: estilo });
+  return { E, pasos: [["Imagen para buscar", busca], ["Íconos de los objetos (hoja de stickers)", isPromptPack(ocultos.map((o) => o.replace(/^(un|una) /, "")), IS.estilo === "linea" ? "infantil" : IS.estilo)]], lista: ocultos };
+}
+function isPromptPack(items, estilo) {
+  const n = items.length, cols = n <= 4 ? 2 : n <= 9 ? 3 : 4, rows = Math.ceil(n / cols), st = estilo === "infantil" ? isEstilo.estilo : (IS_ESTILOS[estilo] || isEstilo.estilo), linea = estilo === "linea";
+  const transp = IS.plat === "chatgpt" && IS.fondoTransp && !linea;
+  const L = [
+    `Hoja de stickers: ${n} ilustraciones individuales, ordenadas en una grilla de ${cols} columnas por ${rows} filas, en este orden (de izquierda a derecha y de arriba hacia abajo): ${items.join(", ")}.`,
+    `Composición: cada elemento entero y centrado en su casillero, con mucho espacio libre alrededor y separado de los vecinos; todos del mismo tamaño aproximado, en vista frontal, la misma escala y la misma línea de dibujo.`,
+    `Estilo: ${st}.${linea ? "" : ` Paleta de la marca: ${isEstilo.paleta}.`}`,
+    `Fondo: ${transp ? "totalmente transparente (PNG con canal alfa)" : "blanco liso y uniforme en toda la hoja"}.`,
+    IS_CALIDAD,
+    "Reglas firmes: sin texto, sin números, sin sombras proyectadas, sin marcos ni borde blanco de sticker, sin marcas de agua.",
+  ];
+  return IS.plat === "gemini" ? L.join("\n\n") : L.join("\n");
+}
+
+// ---------- revisión para imprenta ----------
+const IS_TAMANOS = [["Página completa", 18], ["Media página", 12], ["Ilustración chica", 7], ["Ícono o sticker", 3.5]];
+function isAnalizar(img, file) {
+  const s = Math.min(1, 400 / Math.max(img.w, img.h)), W = Math.max(8, Math.round(img.w * s)), H = Math.max(8, Math.round(img.h * s)), d = isPixeles(img, W, H);
+  let transp = 0; for (let i = 3; i < d.length; i += 4) if (d[i] < 250) transp++;
+  const pct = transp / (W * H);
+  // “transparencia falsa”: cuadriculado gris y blanco pintado
+  // “transparencia falsa”: cuadriculado gris y blanco pintado (se mira cada esquina a tamaño real)
+  const Z = Math.min(96, img.w, img.h), cz = document.createElement("canvas"); cz.width = cz.height = Z; const xz = cz.getContext("2d", { willReadFrequently: true });
+  let esquinasCuadro = 0;
+  for (const [sx, sy] of [[0, 0], [img.w - Z, 0], [0, img.h - Z], [img.w - Z, img.h - Z]]) {
+    xz.clearRect(0, 0, Z, Z); xz.drawImage(img.im, sx, sy, Z, Z, 0, 0, Z, Z); const q = xz.getImageData(0, 0, Z, Z).data;
+    let bl = 0, gr = 0, otro = 0, cambios = 0;
+    for (let y = 0; y < Z; y++) { let prev = -1; for (let x = 0; x < Z; x++) { const i = (y * Z + x) * 4, v = q[i], neutro = Math.abs(q[i] - q[i + 1]) + Math.abs(q[i] - q[i + 2]) < 12 && q[i + 3] > 250;
+      const k = !neutro ? -1 : v > 238 ? 1 : v > 160 && v < 228 ? 0 : -1; if (k === 1) bl++; else if (k === 0) gr++; else otro++; if (k >= 0 && prev >= 0 && k !== prev) cambios++; prev = k; } }
+    const tot = Z * Z; if (otro / tot < 0.1 && bl / tot > 0.2 && gr / tot > 0.2 && cambios > Z * 2) esquinasCuadro++;
+  }
+  const falsa = pct < 0.01 && esquinasCuadro >= 2;
+  const fondoBlanco = pct < 0.01 && !falsa && [0, W - 1, (H - 1) * W, H * W - 1].every((p) => d[p * 4] > 240 && d[p * 4 + 1] > 240 && d[p * 4 + 2] > 240);
+  const maxCm = img.w / 300 * 2.54;
+  return { nombre: file.name, w: img.w, h: img.h, tipo: (file.type || "").replace("image/", "").toUpperCase() || "—", kb: Math.round(file.size / 1024), pct, falsa, fondoBlanco, maxCm, tam: IS_TAMANOS.map(([t, cm]) => { const dpi = Math.round(img.w / (cm / 2.54)); return [t, cm, dpi, dpi >= 300 ? "ok" : dpi >= 200 ? "warn" : "no"]; }) };
+}
+function isRenderPrint() {
+  const L = IS.revs || [];
+  return `<div class="is-sec"><h3>Revisá tus imágenes antes de diagramar</h3><p class="muted">Subí una o varias: el panel te dice hasta qué tamaño se pueden imprimir bien (300 dpi) y si el fondo es realmente transparente.</p>
+    <label class="is-up"><input type="file" accept="image/*" multiple data-isprint hidden><span>⬆️</span><b>Elegir imágenes</b><small>PNG o JPG · podés elegir varias juntas</small></label>
+    ${L.length ? `<div class="is-revs">${L.map((r) => `<div class="is-rev"><div class="is-rev-h"><img src="${r.url}" alt=""><div><b>${esc(r.nombre)}</b><small>${r.w} × ${r.h} px · ${esc(r.tipo)} · ${r.kb} KB</small><small>Imprime bien hasta <b>${r.maxCm.toFixed(1).replace(".", ",")} cm</b> de ancho</small></div></div>
+      <div class="is-rev-t">${r.tam.map(([t, cm, dpi, k]) => `<span class="is-sem ${k}" title="${dpi} dpi"><i></i>${t} (${String(cm).replace(".", ",")} cm): ${k === "ok" ? "excelente" : k === "warn" ? "aceptable" : "se va a ver pixelada"}</span>`).join("")}</div>
+      <p class="is-rev-f ${r.falsa ? "no" : r.pct > 0.02 ? "ok" : r.fondoBlanco ? "warn" : ""}">${r.falsa ? "⚠️ <b>Transparencia falsa:</b> el cuadriculado gris y blanco está pintado en la imagen. Pedile a ChatGPT “fondo blanco liso” y quitalo con el recortador." : r.pct > 0.02 ? `✅ Fondo transparente de verdad (${Math.round(r.pct * 100)} % transparente).` : r.fondoBlanco ? "ℹ️ Fondo blanco: si la querés recortada, pasala por “Recortar hoja de stickers”." : "ℹ️ Imagen con fondo completo (sin transparencia)."}</p>
+      ${r.maxCm < 7 ? `<p class="is-rev-f warn">💡 Para usarla más grande: agrandala con un ampliador de imágenes con IA (×2 o ×4) o vectorizala en Corel con PowerTRACE.</p>` : ""}</div>`).join("")}</div>` : ""}</div>`;
+}
+
+// ---------- versión para colorear ----------
+function isColorear(img, grosor, detalle) {
+  const s = Math.min(1, 2200 / Math.max(img.w, img.h)), W = Math.round(img.w * s), H = Math.round(img.h * s), d = isPixeles(img, W, H), N = W * H;
+  const lum = new Float32Array(N), a = new Uint8Array(N); for (let i = 0; i < N; i++) { a[i] = d[i * 4 + 3]; const k = a[i] / 255; lum[i] = (d[i * 4] * 0.3 + d[i * 4 + 1] * 0.59 + d[i * 4 + 2] * 0.11) * k + 255 * (1 - k); }
+  // suavizado 3x3 por canal
+  const ch = [0, 1, 2].map((c) => { const o = new Float32Array(N); for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { let t = 0; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const p = (y + dy) * W + x + dx, k = a[p] / 255; t += d[p * 4 + c] * k + 255 * (1 - k); } o[y * W + x] = t / 9; } return o; });
+  const T = detalle === "alto" ? 34 : detalle === "bajo" ? 90 : 55, m = new Uint8Array(N);
+  for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) { const p = y * W + x; if (lum[p] < 85) { m[p] = 1; continue; } let g = 0;
+    for (const c of ch) { const gx = c[p + 1] - c[p - 1], gy = c[p + W] - c[p - W]; g = Math.max(g, Math.abs(gx) + Math.abs(gy)); } if (g > T) m[p] = 1; }
+  // zonas oscuras grandes (pelo, ropa negra): dejar solo su contorno para poder pintarlas
+  { const R = Math.max(4, Math.round(W / 400)), dk = new Uint8Array(N); for (let i = 0; i < N; i++) dk[i] = lum[i] < 85 ? 1 : 0;
+    const h = new Uint8Array(N); for (let y = 0; y < H; y++) { let run = 0; const row = y * W; const L = new Int32Array(W); for (let x = 0; x < W; x++) { run = dk[row + x] ? run + 1 : 0; L[x] = run; } run = 0; for (let x = W - 1; x >= 0; x--) { run = dk[row + x] ? run + 1 : 0; if (Math.min(L[x], run) > R) h[row + x] = 1; } }
+    for (let x = 0; x < W; x++) { let run = 0; const U = new Int32Array(H); for (let y = 0; y < H; y++) { run = h[y * W + x] ? run + 1 : 0; U[y] = run; } run = 0; for (let y = H - 1; y >= 0; y--) { run = h[y * W + x] ? run + 1 : 0; if (Math.min(U[y], run) > R) m[y * W + x] = 0; } } }
+  // quitar puntitos sueltos
+  const min = detalle === "alto" ? 12 : detalle === "bajo" ? 60 : 30, lab = new Int32Array(N); let id = 0;
+  for (let i = 0; i < N; i++) { if (!m[i] || lab[i]) continue; id++; const st = [i], comp = [i]; lab[i] = id; while (st.length) { const p = st.pop(), x = p % W; for (const q of [p - 1, p + 1, p - W, p + W, p - W - 1, p - W + 1, p + W - 1, p + W + 1]) { if (q < 0 || q >= N || lab[q] || !m[q]) continue; const qx = q % W; if (Math.abs(qx - x) > 1) continue; lab[q] = id; st.push(q); comp.push(q); } } if (comp.length < min) comp.forEach((q) => { m[q] = 0; }); }
+  // engrosar
+  let r = m; for (let k = 1; k < grosor; k++) { const o = new Uint8Array(N); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const p = y * W + x; if (r[p] || (x > 0 && r[p - 1]) || (x < W - 1 && r[p + 1]) || (y > 0 && r[p - W]) || (y < H - 1 && r[p + W])) o[p] = 1; } r = o; }
+  const blanco = document.createElement("canvas"), lineas = document.createElement("canvas"); [blanco, lineas].forEach((c) => { c.width = W; c.height = H; });
+  const b1 = blanco.getContext("2d").createImageData(W, H), b2 = lineas.getContext("2d").createImageData(W, H);
+  for (let i = 0; i < N; i++) { const v = r[i] ? 20 : 255; b1.data[i * 4] = b1.data[i * 4 + 1] = b1.data[i * 4 + 2] = v; b1.data[i * 4 + 3] = 255; b2.data[i * 4] = b2.data[i * 4 + 1] = b2.data[i * 4 + 2] = 20; b2.data[i * 4 + 3] = r[i] ? 255 : 0; }
+  blanco.getContext("2d").putImageData(b1, 0, 0); lineas.getContext("2d").putImageData(b2, 0, 0);
+  return { blanco, lineas };
+}
+function isRenderColor() {
+  return `<div class="is-cols"><div class="is-sec"><h3>De color a “para colorear”</h3><p class="muted">Subí una ilustración a color y el panel arma la versión de contornos negros para la página de pintar. Funciona mejor con dibujos de colores planos y contorno marcado, como los tuyos.</p>
+      <label class="is-up big${IS.colorImg ? " ok" : ""}"><input type="file" accept="image/*" data-iscolorup hidden>${IS.colorImg ? `<img src="${IS.colorImg.url}" alt="">` : "<span>⬆️</span>"}<b>${IS.colorImg ? esc(IS.colorImg.name) : "Ilustración a color"}</b><small>Tocá para elegir</small></label>
+      <div class="is-row"><div class="field"><label>Grosor de línea</label><div class="mz-pills is-pills">${[1, 2, 3, 4].map((v) => `<button type="button" class="${(IS.grosor || 2) === v ? "on" : ""}" data-isgrosor="${v}"><b>${v}</b></button>`).join("")}</div></div>
+        <div class="field"><label>Detalle</label><div class="mz-pills is-pills">${[["bajo", "Bajo"], ["medio", "Medio"], ["alto", "Alto"]].map(([k, t]) => `<button type="button" class="${(IS.detalle || "medio") === k ? "on" : ""}" data-isdetalle="${k}"><b style="font-size:14px">${t}</b></button>`).join("")}</div></div></div>
+      <div class="is-tip">💡 Para un resultado perfecto: usá esta versión como base en Corel (PowerTRACE en modo “Line art”) o pedile a ChatGPT: “convertí esta ilustración en un dibujo para colorear: solo contorno negro grueso, sin relleno, fondo blanco, mismo dibujo”.</div></div>
+    <div class="is-sec"><h3>Resultado</h3>${IS.colorOut ? `<div class="is-canvas" id="isColorPrev"></div><div class="actions"><button class="btn primary" type="button" data-iscolordl="blanco">⬇ PNG con fondo blanco</button><button class="btn" type="button" data-iscolordl="lineas">⬇ PNG solo líneas (transparente)</button></div>` : `<div class="is-tip">Subí una ilustración para ver la versión para colorear.</div>`}</div></div>`;
+}
+
 
 // ---------- detección de diferencias ----------
 function isCargarImg(file) { return new Promise((ok, no) => { const r = new FileReader(); r.onload = () => { const im = new Image(); im.onload = () => ok({ im, url: r.result, w: im.naturalWidth, h: im.naturalHeight, name: file.name }); im.onerror = () => no(new Error("No se pudo abrir la imagen.")); im.src = r.result; }; r.onerror = () => no(new Error("No se pudo leer el archivo.")); r.readAsDataURL(file); }); }
@@ -4191,17 +4336,22 @@ function isOpen(tab) {
 function isTemas() { const ef = EFEMERIDES.filter((e) => IS_ESCENAS[e[0]]).map((e) => `<option value="${e[0]}"${IS.tema === e[0] ? " selected" : ""}>${mzIcon(e[0])} ${esc(e[1])}</option>`).join(""); const te = Object.entries(IS_TEMAS).map(([k, t]) => `<option value="${k}"${IS.tema === k ? " selected" : ""}>${esc(t[0])}</option>`).join(""); return `<optgroup label="Efemérides">${ef}</optgroup><optgroup label="Temas para todo el año">${te}</optgroup>`; }
 function isRender() {
   const d = $("#isDlg"); if (!d) return;
-  const tabs = [["act", "🧩 Actividades con imagen"], ["pack", "🍎 Packs de recursos"], ["corte", "✂️ Recortar hoja de stickers"], ["estilo", "🎨 Mi estilo"]];
+  const tabs = [["act", "🧩 Actividades con imagen"], ["pack", "🍎 Packs de recursos"], ["corte", "✂️ Recortar hoja de stickers"], ["print", "🖨️ Revisar para imprenta"], ["color", "🖍️ Versión para colorear"], ["estilo", "🎨 Mi estilo y personajes"]];
   let body = "";
   if (IS.tab === "act") body = isRenderAct();
   else if (IS.tab === "pack") body = isRenderPack();
   else if (IS.tab === "corte") body = isRenderCorte();
+  else if (IS.tab === "print") body = isRenderPrint();
+  else if (IS.tab === "color") body = isRenderColor();
   else body = `<div class="is-sec"><h3>Mi estilo visual</h3><p class="muted">Se suma a todos los pedidos de imagen para que tus ilustraciones salgan siempre con la misma estética.</p>
     <div class="field"><label for="isEstiloTxt">Cómo son mis ilustraciones</label><textarea id="isEstiloTxt" rows="4">${esc(isEstilo.estilo)}</textarea></div>
     <div class="field"><label for="isPaleta">Paleta de colores</label><input id="isPaleta" value="${esc(isEstilo.paleta)}"></div>
     <div class="field"><label for="isPers">Mis personajes fijos (uno por renglón: nombre: descripción)</label><textarea id="isPers" rows="5">${esc(isEstilo.personajes)}</textarea></div>
     <div class="actions"><button class="btn primary" type="button" data-isguardarestilo>Guardar mi estilo</button><button class="btn" type="button" data-ispers>Copiar pedido de hoja de personajes</button><button class="linkish" type="button" data-isreset>Volver a los valores sugeridos</button></div>
-    <div class="is-tip">💡 <b>Truco de consistencia:</b> generá primero la <b>hoja de personajes</b> (cada personaje de frente, de costado y de espaldas) y en cada imagen nueva subila a ChatGPT junto con el pedido: “usá estos personajes exactamente así”.</div></div>`;
+    <div class="is-tip">💡 <b>Truco de consistencia:</b> generá primero la <b>hoja de personajes</b> (cada personaje de frente, de costado y de espaldas) y en cada imagen nueva subila a ChatGPT junto con el pedido: “usá estos personajes exactamente así”.</div></div>
+    <div class="is-sec"><h3>Fotos de referencia de cada personaje</h3><p class="muted">Cuando tengas el dibujo definitivo de cada uno, subilo acá. El panel lo nombra en los pedidos (“imagen 1 = Tomi”) y te lo deja a mano para adjuntarlo. Se guarda en este navegador.</p>
+      <div class="is-pers">${isPersLista().map((p) => { const r = isRef(p.n); return `<div class="is-per">${r ? `<img src="${r}" alt="">` : `<span class="is-per-v">${esc(p.n.slice(0, 1).toUpperCase())}</span>`}<div><b>${esc(p.n)}</b><small>${esc(p.d || "Sin descripción")}</small>
+        <div class="is-per-a"><label class="btn small"><input type="file" accept="image/*" data-isrefup="${esc(p.n)}" hidden>${r ? "Cambiar imagen" : "⬆ Subir imagen"}</label>${r ? `<button class="btn small" type="button" data-isrefdl="${esc(p.n)}">⬇ Descargar</button><button class="linkish" type="button" data-isrefdel="${esc(p.n)}">Quitar</button>` : ""}</div></div></div>`; }).join("") || `<div class="is-tip">Escribí tus personajes arriba y guardá.</div>`}</div></div>`;
   d.innerHTML = `<div class="is-w"><header class="is-h"><div><span class="mz-k">Estudio de imágenes</span><h2 id="isT">Imágenes para tus cuadernillos</h2></div><button class="vx-x" type="button" data-iscerrar aria-label="Cerrar">✕</button></header>
     <nav class="is-tabs">${tabs.map(([k, t]) => `<button type="button" data-istab="${k}" aria-pressed="${IS.tab === k}">${t}</button>`).join("")}</nav>
     <div class="is-body">${body}</div></div>`;
@@ -4218,9 +4368,12 @@ function isRenderAct() {
         <div class="field"><label for="isNivel">Nivel</label><select id="isNivel">${["Nivel Inicial", "Primaria – Primer Ciclo", "Primaria – Segundo Ciclo"].map((v) => `<option${IS.nivel === v ? " selected" : ""}>${v}</option>`).join("")}</select></div></div>
       <div class="is-row"><div class="field"><label>Cantidad</label><div class="mz-pills is-pills">${nOps.map((v) => `<button type="button" class="${IS.n === v ? "on" : ""}" data-isn="${v}"><b>${v}</b></button>`).join("")}</div></div>
         <div class="field"><label for="isEst">Estilo</label><select id="isEst">${Object.keys(IS_ESTILOS).map((k) => `<option value="${k}"${IS.estilo === k ? " selected" : ""}>${IS_EST_N[k]}</option>`).join("")}</select></div></div>
-      <h3>2. Pedidos para ChatGPT <button class="linkish" type="button" data-isotra>🎲 Otra variante</button></h3>
+      ${isPersLista().length ? `<div class="field"><label>¿Qué personajes aparecen? <small class="muted">(opcional)</small></label><div class="is-items is-sel">${isPersLista().map((p) => `<button type="button" class="is-chip${(IS.pers || []).includes(p.n) ? " on" : ""}" data-ispersel="${esc(p.n)}">${isRef(p.n) ? "📎 " : ""}${esc(p.n)}</button>`).join("")}</div></div>` : ""}
+      ${IS_PRECISION[IS.tema] ? `<div class="is-prec">🏛️ <b>Precisión histórica incluida.</b> ${esc(IS_PRECISION[IS.tema].split(". ").slice(0, 2).join(". "))}…</div>` : ""}
+      <h3>2. Pedidos para ${isPlatPills()} <button class="linkish" type="button" data-isotra>🎲 Otra variante</button></h3>
+      ${isRefsAdjuntar()}
       ${P.pasos.map(([t, p], i) => `<div class="is-prompt"><div class="is-p-h"><b>${esc(t)}</b><button class="btn small primary" type="button" data-iscopy="${i}">Copiar</button></div><pre>${esc(p)}</pre></div>`).join("")}
-      <p class="muted is-note">${IS.tipo === "busca" ? "Pegá el primer pedido en ChatGPT. El segundo te da los íconos de los objetos para la lista (opcional)." : "Pegá el pedido 1 en ChatGPT; cuando tengas la imagen, pegá el pedido 2 en el MISMO chat para que edite esa imagen."}</p>
+      <p class="muted is-note">${IS.tipo === "busca" ? "Pegá el primer pedido en ChatGPT. El segundo te da los íconos de los objetos para la lista (opcional)." : (IS.plat === "gemini" ? "Pegá el pedido 1 en Gemini; cuando tengas la imagen, pegá el pedido 2 en la MISMA conversación (Gemini es muy bueno respetando la imagen al editar)." : "Pegá el pedido 1 en ChatGPT; cuando tengas la imagen, pegá el pedido 2 en el MISMO chat para que edite esa imagen.")}</p>
     </div><div class="is-sec">
       <h3>3. Subí ${subir.length > 1 ? "las imágenes" : "la imagen"}</h3>
       <div class="is-ups">${subir.map(([k, t]) => `<label class="is-up${IS[k] ? " ok" : ""}"><input type="file" accept="image/*" data-isup="${k}" hidden>${IS[k] ? `<img src="${IS[k].url}" alt="">` : `<span>⬆️</span>`}<b>${t}</b><small>${IS[k] ? esc(IS[k].name) + " · tocá para cambiar" : "PNG o JPG"}</small></label>`).join("")}</div>
@@ -4231,6 +4384,10 @@ function isRenderAct() {
         : `<div class="is-tip">Cuando subas ${subir.length > 1 ? "las dos imágenes" : "la imagen"}, ${IS.tipo === "busca" ? "vas a marcar dónde está cada objeto" : "el panel encuentra solo las diferencias"} y te arma la página de la actividad y la de soluciones con tu diagramación, en SVG para Corel.</div>`}
     </div></div>`;
 }
+
+function isPlatPills() { return `<span class="mz-pills is-plat">${[["chatgpt", "ChatGPT"], ["gemini", "Gemini"]].map(([k, t]) => `<button type="button" class="${IS.plat === k ? "on" : ""}" data-isplat="${k}">${t}</button>`).join("")}</span>`; }
+function isRefsAdjuntar() { const sel = isPersLista().filter((p) => (IS.pers || []).includes(p.n) && isRef(p.n)); if (!sel.length) return (IS.pers || []).length ? `<p class="muted is-note">Tip: subí la imagen de referencia de tus personajes en 🎨 Mi estilo para que salgan siempre iguales.</p>` : "";
+  return `<div class="is-tip">📎 Adjuntá en el mismo mensaje del pedido 1, en este orden: ${sel.map((p, i) => `<button class="btn small" type="button" data-isrefdl="${esc(p.n)}">⬇ ${i + 1}. ${esc(p.n)}</button>`).join(" ")}</div>`; }
 function isRenderPack() {
   const [cat, t, items] = IS_PACKS[IS.packTema] || IS_PACKS.frutas, grupos = {};
   Object.entries(IS_PACKS).forEach(([k, p]) => { (grupos[p[0]] = grupos[p[0]] || []).push([k, p]); });
@@ -4239,7 +4396,9 @@ function isRenderPack() {
       <div class="field"><label for="isPackEst">Estilo</label><select id="isPackEst">${Object.keys(IS_ESTILOS).map((k) => `<option value="${k}"${IS.packEstilo === k ? " selected" : ""}>${IS_EST_N[k]}</option>`).join("")}</select></div>
       <div class="is-tip">💡 Pedí cada pack en <b>dos estilos</b>: a color y “para colorear”. Así tenés la versión para pintar de todos tus recursos.</div></div>
     <div class="is-sec"><h3>${esc(t)} <small class="muted">· ${items.length} elementos</small></h3><div class="is-items">${items.map((x) => `<span>${esc(x)}</span>`).join("")}</div>
-      <div class="is-prompt"><div class="is-p-h"><b>Pedido para ChatGPT</b><button class="btn small primary" type="button" data-iscopypack>Copiar</button></div><pre>${esc(prompt)}</pre></div>
+      <div class="is-row is-row-a"><div class="field"><label>Plataforma</label>${isPlatPills()}</div>${IS.plat === "chatgpt" && IS.packEstilo !== "linea" ? `<label class="check"><input type="checkbox" id="isTransp" ${IS.fondoTransp ? "checked" : ""}> Pedir fondo transparente</label>` : ""}</div>
+      <p class="muted is-note">${IS.plat === "chatgpt" && IS.fondoTransp ? "ChatGPT a veces “pinta” el cuadriculado en vez de dejarlo transparente: revisalo en 🖨️ Revisar para imprenta." : "Fondo blanco liso: es lo más seguro. El recortador lo quita y te deja cada dibujo transparente."}</p>
+      <div class="is-prompt"><div class="is-p-h"><b>Pedido para ${IS.plat === "gemini" ? "Gemini" : "ChatGPT"}</b><button class="btn small primary" type="button" data-iscopypack>Copiar</button></div><pre>${esc(prompt)}</pre></div>
       <div class="actions"><button class="btn" type="button" data-iscortarpack>✂️ Ya la tengo: recortarla</button></div>
       <h3>Tu carpeta de recursos</h3><pre class="is-tree">${esc(isArbol())}</pre>
       <div class="actions"><button class="btn small" type="button" data-iscarpetas>⬇ Descargar la estructura de carpetas (ZIP)</button></div>
@@ -4281,7 +4440,15 @@ async function isClick(e) {
     F.push({ name: "Recursos Cofre Didactico/Personajes/LEEME.txt", data: enc.encode(isEstilo.personajes) }); await saveFile("Recursos Cofre Didactico (carpetas).zip", isZip(F)); return; }
   if (t.closest("[data-isguardarestilo]")) { isEstilo = { estilo: $("#isEstiloTxt").value.trim(), paleta: $("#isPaleta").value.trim(), personajes: $("#isPers").value.trim() }; await isGuardarEstilo(); toast("Estilo guardado ✓", "ok"); return; }
   if (t.closest("[data-isreset]")) { isEstilo = { ...IS_DEF }; isRender(); return; }
-  if (t.closest("[data-ispers]")) { const P = isEstilo.personajes.split("\n").filter(Boolean); isCopiar(t.closest("[data-ispers]"), `Creá una hoja de personajes (character sheet) para un cuadernillo escolar, con fondo blanco. Personajes:\n${P.map((p) => "- " + p).join("\n")}\nMostrá a cada uno de frente, de costado y de espaldas, de cuerpo entero, separados entre sí, con su nombre escrito debajo.\nEstilo: ${isEstilo.estilo}. Paleta: ${isEstilo.paleta}.`); return; }
+  if (t.closest("[data-ispers]")) { const P = isEstilo.personajes.split("\n").filter(Boolean); isCopiar(t.closest("[data-ispers]"), `Hoja de personajes (character sheet) para los cuadernillos escolares de una marca argentina. Va a ser la referencia oficial: todas las ilustraciones futuras van a copiar a estos personajes.\nPersonajes, cada uno en su propia fila:\n${P.map((p) => "- " + p).join("\n")}\nComposición: cada personaje tres veces, de cuerpo entero (de frente, de perfil y de espaldas), misma altura y misma escala en las tres vistas, bien separados entre sí, sobre fondo blanco liso.\nEstilo: ${isEstilo.estilo}. Paleta de la marca: ${isEstilo.paleta}.\n${IS_CALIDAD}\nReglas firmes: sin texto, sin nombres escritos, sin sombras proyectadas, sin marcas de agua.`); return; }
+  const pl = t.closest("[data-isplat]"); if (pl) { IS.plat = pl.dataset.isplat; isRender(); return; }
+  const ps = t.closest("[data-ispersel]"); if (ps) { const n = ps.dataset.ispersel; IS.pers = (IS.pers || []).includes(n) ? IS.pers.filter((x) => x !== n) : [...(IS.pers || []), n]; isRender(); return; }
+  const rd = t.closest("[data-isrefdl]"); if (rd) { const u = isRef(rd.dataset.isrefdl); if (u) { const b = await (await fetch(u)).blob(); await saveFile(`Referencia - ${slug(rd.dataset.isrefdl)}.jpg`, b); } return; }
+  const rx = t.closest("[data-isrefdel]"); if (rx) { try { localStorage.removeItem(isRefKey(rx.dataset.isrefdel)); } catch {} isRender(); return; }
+  const gr = t.closest("[data-isgrosor]"); if (gr) { IS.grosor = +gr.dataset.isgrosor; isColorCalc(); return; }
+  const de = t.closest("[data-isdetalle]"); if (de) { IS.detalle = de.dataset.isdetalle; isColorCalc(); return; }
+  const cd = t.closest("[data-iscolordl]"); if (cd && IS.colorOut) { const cv = IS.colorOut[cd.dataset.iscolordl], b = await new Promise((ok) => cv.toBlob(ok, "image/png")); const base = (IS.colorImg.name || "imagen").replace(/\.[^.]+$/, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w -]/g, "");
+    await saveFile(`${base} - para colorear${cd.dataset.iscolordl === "lineas" ? " (lineas)" : ""}.png`, b); return; }
   if (t.closest("[data-isredetect]")) { IS.marcas = isDetectar(IS.A, IS.B, IS.n); isRender(); return; }
   if (t.closest("[data-isundo]")) { IS.marcas.pop(); isRender(); return; }
   const dl = t.closest("[data-isdl]"); if (dl) { const P = await isPaginas(); if (!P) return; const [nom, svg] = P.find((x) => x[0] === dl.dataset.isdl); const E = isEscena(IS.tema);
@@ -4298,10 +4465,15 @@ async function isChange(e) {
   if (t.id === "isNivel") { IS.nivel = t.value; isRender(); }
   if (t.id === "isEst") { IS.estilo = t.value; isRender(); }
   if (t.id === "isPackEst") { IS.packEstilo = t.value; isRender(); }
+  if (t.id === "isTransp") { IS.fondoTransp = t.checked; isRender(); }
+  if (t.dataset && t.dataset.isrefup && t.files[0]) { try { await isGuardarRef(t.dataset.isrefup, t.files[0]); toast("Referencia guardada ✓", "ok"); isRender(); } catch (err) { toast(err.message); } }
+  if (t.dataset && "isprint" in t.dataset && t.files.length) { const L = []; for (const f of t.files) { try { const img = await isCargarImg(f); L.push({ ...isAnalizar(img, f), url: img.url }); } catch (err) { toast(err.message); } } IS.revs = [...L, ...(IS.revs || [])].slice(0, 12); isRender(); }
+  if (t.dataset && "iscolorup" in t.dataset && t.files[0]) { try { IS.colorImg = await isCargarImg(t.files[0]); isColorCalc(); } catch (err) { toast(err.message); } }
   if (t.dataset && t.dataset.isup && t.files[0]) { try { IS[t.dataset.isup] = await isCargarImg(t.files[0]); if (IS.tipo !== "busca" && IS.A && IS.B) IS.marcas = isDetectar(IS.A, IS.B, IS.n); else if (IS.tipo === "busca") IS.marcas = []; isRender(); } catch (err) { toast(err.message); } }
   if (t.dataset && "isuphoja" in t.dataset && t.files[0]) { try { IS.hoja = await isCargarImg(t.files[0]); IS.cortes = null; IS.nombres = $("#isNombres") ? $("#isNombres").value.split("\n").map((x) => x.trim()).filter(Boolean) : IS.nombres; IS.carpeta = $("#isCarpeta") ? $("#isCarpeta").value : IS.carpeta; isRender(); } catch (err) { toast(err.message); } }
 }
 function isInput() {}
+function isColorCalc() { if (!IS.colorImg) { isRender(); return; } IS.colorOut = isColorear(IS.colorImg, IS.grosor || 2, IS.detalle || "medio"); isRender(); const box = $("#isColorPrev"); if (box) { const c = IS.colorOut.blanco; c.className = "is-colcv"; box.appendChild(c); } }
 document.addEventListener("click", (e) => { const b = e.target.closest("[data-isopen]"); if (b) isOpen(b.dataset.isopen || "act"); });
 
 function niceStep(v){ if(v<=0) return 1; const p=Math.pow(10,Math.floor(Math.log10(v))); const n=v/p; return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p; }
