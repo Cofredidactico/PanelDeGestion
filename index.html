@@ -2157,31 +2157,75 @@ window.cofreBridge={ buf:"", out:null,
   estado(){ const g=document.getElementById("supaGate"); return JSON.stringify({supa:MODE.supa,sesion:!!(g&&g.hidden&&MODE.supa),docs:db&&db._all?Object.keys(db._all()).length:0}); },
   async marcar(){ if(!MODE.supa) return "sin-supabase"; await db._upsert({"panel/sync":{at:new Date().toISOString()}}); return this.stamp("panel/sync"); },
   // Une las ventas nuevas leídas de Empretienda (mismo criterio que sync_ventas.py)
-  async mergeVentas(d){ if(!MODE.supa) return "sin-supabase";
-    const all=db._all(), parts=Object.keys(all).filter(k=>/^ventas\/c\d+$/.test(k)).sort((a,b)=>+a.split("/c")[1]-+b.split("/c")[1]);
-    const clients=[]; parts.forEach(k=>clients.push(...(all[k].clients||[]))); const meta=all["ventas/meta"]||{};
-    const key=(e,n)=>String(e||"").trim().toLowerCase()||"sin-email:"+String(n||"").trim().toLowerCase();
-    const idx={}, where={}; clients.forEach(c=>{ idx[key(c.e,c.n)]=c; (c.o||[]).forEach(o=>{ where[o.id]=c; }); });
-    let nuevos=0, cambios=0;
+  async mergeVentas(d){ if(!MODE.supa) return "sin-supabase"; await this.ventasAuto().catch(()=>{});
+    const V=ventasCargar(); let nuevos=0, cambios=0;
     for(const r of (d.rows||[])){ const rc=r.c, ro={...r.o}; if(!ro.cup) delete ro.cup; ro.tot=Number(ro.tot||0);
-      const k=key(rc.e,rc.n); let c=idx[k];
-      if(!c){ c={n:rc.n||"",e:rc.e||"",d:rc.d||"",t:rc.t||"",c:rc.ci||"",p:rc.p||"",o:[]}; clients.push(c); idx[k]=c; }
-      for(const [a,b] of [["n","n"],["d","d"],["t","t"],["c","ci"],["p","p"]]) if(!c[a]&&rc[b]) c[a]=rc[b];
-      const pc=where[ro.id];
-      if(pc){ const prev=pc.o.find(o=>o.id===ro.id); if(prev.pg!==ro.pg) cambios++; Object.assign(prev,ro); }
-      else { (c.o=c.o||[]).push(ro); where[ro.id]=c; nuevos++; } }
-    const pf=s=>{ const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s||""); if(!m) return null; let y=+m[3]; if(y<100) y+=2000; return new Date(Date.UTC(y,+m[2]-1,+m[1])); };
-    const f2=d=>String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")+"/"+String(d.getUTCFullYear()).slice(2);
-    const fechas=clients.flatMap(c=>(c.o||[]).map(o=>pf(o.f)).filter(Boolean)).map(d=>+d);
-    const hoy=new Date(Date.now()-3*3600e3), hoyIso=hoy.toISOString().slice(0,10), hoyTxt=f2(hoy);
-    const enc=new TextEncoder(), chunks=[]; let cur=[], size=0;
-    for(const c of clients){ const s=enc.encode(canonJSON(c)).length; if(cur.length&&size+s>150000){ chunks.push(cur); cur=[]; size=0; } cur.push(c); size+=s; }
-    if(cur.length) chunks.push(cur);
-    const m={}; chunks.forEach((ch,i)=>{ m["ventas/c"+(i+1)]={clients:ch}; });
-    m["ventas/meta"]={...meta,updated:hoyIso,desde:meta.desde||(fechas.length?f2(new Date(Math.min(...fechas))):""),hasta:fechas.length?f2(new Date(Math.max(...fechas))):(meta.hasta||""),parts:chunks.length,fuente:"Sincronizado con Empretienda el "+hoyTxt};
-    await db._upsert(m); const sobran=parts.filter(k=>+k.split("/c")[1]>chunks.length); if(sobran.length) await db._remove(sobran);
-    return JSON.stringify({nuevos,cambios,partes:chunks.length,borrados:sobran.length}); }
+      const c=ventasCliente(V,rc); const pc=V.where[ro.id];
+      if(pc){ const prev=pc.o.find(o=>o.id===ro.id); if(prev.pg!==ro.pg) cambios++; delete prev.src; Object.assign(prev,ro); }
+      else { (c.o=c.o||[]).push(ro); V.where[ro.id]=c; nuevos++; } }
+    const r=await ventasGuardar(V,"Sincronizado con Empretienda el "+fechaCorta(new Date(Date.now()-3*3600e3)));
+    return JSON.stringify({nuevos,cambios,...r}); },
+  // Ventas de la web en el formato del lector de Empretienda (para pasarlas al panel de Claude sin mover documentos enteros)
+  ventasFilas(desdeNum,dias){ const V=ventasCargar(), lim=Date.now()-(dias||45)*864e5, rows=[];
+    const pf=s=>{ const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s||""); if(!m) return 0; let y=+m[3]; if(y<100) y+=2000; return Date.UTC(y,+m[2]-1,+m[1]); };
+    V.clients.forEach(c=>(c.o||[]).forEach(o=>{ if(o.id>(+desdeNum||0)||pf(o.f)>=lim) rows.push({c:{n:c.n||"",e:c.e||"",d:c.d||"",t:c.t||"",ci:c.c||"",p:c.p||""},o}); }));
+    rows.sort((a,b)=>a.o.id-b.o.id); const ids=Object.keys(V.where).map(Number);
+    return this.show({total:ids.length,max:ids.length?Math.max(...ids):0,rows,fuente:(V.meta&&V.meta.fuente)||""}); },
+  // Suma las órdenes que tu lector de Gmail guardó en Supabase (corre sola al abrir el panel web y cada 10 minutos)
+  ventasAuto(){ if(!this._va||Date.now()-this._vaT>60e3){ this._vaT=Date.now(); this._va=ventasDesdeGmail(); } return this._va; }
 };
+const fechaCorta=d=>String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")+"/"+String(d.getUTCFullYear()).slice(2);
+function ventasCargar(){ const all=db._all(), parts=Object.keys(all).filter(k=>/^ventas\/c\d+$/.test(k)).sort((a,b)=>+a.split("/c")[1]-+b.split("/c")[1]);
+  const clients=[]; parts.forEach(k=>clients.push(...JSON.parse(JSON.stringify(all[k].clients||[])))); const meta=all["ventas/meta"]||{};
+  const key=(e,n)=>String(e||"").trim().toLowerCase()||"sin-email:"+String(n||"").trim().toLowerCase();
+  const idx={}, where={}; clients.forEach(c=>{ idx[key(c.e,c.n)]=c; (c.o||[]).forEach(o=>{ where[o.id]=c; }); });
+  return {clients,idx,where,parts,meta,key}; }
+function ventasCliente(V,rc){ const k=V.key(rc.e,rc.n); let c=V.idx[k];
+  if(!c){ c={n:rc.n||"",e:rc.e||"",d:rc.d||"",t:rc.t||"",c:rc.ci||"",p:rc.p||"",o:[]}; V.clients.push(c); V.idx[k]=c; }
+  for(const [a,b] of [["n","n"],["d","d"],["t","t"],["c","ci"],["p","p"]]) if(!c[a]&&rc[b]) c[a]=rc[b];
+  return c; }
+async function ventasGuardar(V,fuente,extra={}){
+  const pf=s=>{ const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s||""); if(!m) return null; let y=+m[3]; if(y<100) y+=2000; return new Date(Date.UTC(y,+m[2]-1,+m[1])); };
+  const fechas=V.clients.flatMap(c=>(c.o||[]).map(o=>pf(o.f)).filter(Boolean)).map(d=>+d);
+  const hoy=new Date(Date.now()-3*3600e3);
+  const enc=new TextEncoder(), chunks=[]; let cur=[], size=0;
+  for(const c of V.clients){ const s=enc.encode(canonJSON(c)).length; if(cur.length&&size+s>150000){ chunks.push(cur); cur=[]; size=0; } cur.push(c); size+=s; }
+  if(cur.length) chunks.push(cur);
+  const m={}; chunks.forEach((ch,i)=>{ m["ventas/c"+(i+1)]={clients:ch}; });
+  m["ventas/meta"]={...V.meta,...extra,updated:hoy.toISOString().slice(0,10),desde:V.meta.desde||(fechas.length?fechaCorta(new Date(Math.min(...fechas))):""),hasta:fechas.length?fechaCorta(new Date(Math.max(...fechas))):(V.meta.hasta||""),parts:chunks.length,fuente};
+  // solo se escriben los documentos que cambiaron
+  const all=db._all(), cambiados={}; for(const k in m) if(!all[k]||canonJSON(all[k])!==canonJSON(m[k])) cambiados[k]=m[k];
+  if(Object.keys(cambiados).length) await db._upsert(cambiados);
+  const sobran=V.parts.filter(k=>+k.split("/c")[1]>chunks.length); if(sobran.length) await db._remove(sobran);
+  return {partes:chunks.length,escritos:Object.keys(cambiados).length,borrados:sobran.length}; }
+const PG_MAIL=e=>/aprob|acredit|pagad|finaliz/i.test(e||"")?"Finalizado":/rechaz/i.test(e||"")?"Rechazado":/cancel|anul|devuel/i.test(e||"")?"Cancelado":"Pendiente";
+const M_MAIL=m=>/mercado/i.test(m||"")?"Mercado Pago":/transfer/i.test(m||"")?"Transferencia":(m?"Otro":"");
+const tituloNombre=s=>String(s||"").toLowerCase().replace(/(^|[\s'-])\S/g,c=>c.toUpperCase()).replace(/\b(De|Del|La|Las|Los|Y)\b/g,w=>w.toLowerCase()).replace(/^\S/,c=>c.toUpperCase());
+let ventasAutoInfo=null;
+async function ventasDesdeGmail(){
+  if(!MODE.supa||!db||!db._api) return {estado:"sin-supabase"};
+  const desde=new Date(Date.now()-60*864e5).toISOString();
+  let ords=[]; try{ ords=await db._api(`cofre_ordenes?select=orden,email,nombre,items,productos,metodo,estado,total,cupon,ciudad,provincia,fecha_orden,fecha&fecha=gte.${encodeURIComponent(desde)}&order=fecha.asc&limit=2000`)||[]; }
+  catch(e){ ventasAutoInfo={error:e.message||"sin acceso"}; return {estado:"error",error:String(e.message||e)}; }
+  const V=ventasCargar(); let nuevos=0, cambios=0, sumados=[];
+  const toAR=iso=>{ const d=new Date(new Date(iso).getTime()-3*3600e3); return fechaCorta(d)+" "+d.getUTCHours()+":"+String(d.getUTCMinutes()).padStart(2,"0"); };
+  for(const x of ords){ const id=parseInt(String(x.orden).replace(/\D/g,""),10); if(!id||!x.email) continue;
+    const pg=PG_MAIL(x.estado), tot=x.total!=null?Number(x.total):null;
+    const pc=V.where[id];
+    if(pc){ const prev=pc.o.find(o=>o.id===id); let toc=false;
+      if(prev.pg==="Pendiente"&&pg!=="Pendiente"){ prev.pg=pg; toc=true; }
+      if(!prev.tot&&tot){ prev.tot=tot; toc=true; }
+      if(toc) cambios++; continue; }
+    const items=(Array.isArray(x.items)&&x.items.length?x.items:(x.productos||[]).map(p=>[1,p])).map(i=>[+i[0]||1,String(i[1])]);
+    const ro={id,f:toAR(x.fecha_orden||x.fecha),pg,m:M_MAIL(x.metodo)||"Otro",tot:tot||0,i:items,src:"gmail"}; if(x.cupon) ro.cup=Number(x.cupon); if(tot==null) ro.sinTot=1;
+    const c=ventasCliente(V,{n:tituloNombre(x.nombre),e:String(x.email).toLowerCase(),ci:x.ciudad||"",p:x.provincia||""});
+    (c.o=c.o||[]).push(ro); V.where[id]=c; nuevos++; sumados.push(ro); }
+  const ahora=new Date().toISOString();
+  ventasAutoInfo={at:ahora,nuevos,cambios,leidas:ords.length};
+  if(!nuevos&&!cambios) return {estado:"al-dia",nuevos,cambios,leidas:ords.length};
+  const r=await ventasGuardar(V,"Al día con tus avisos de Empretienda (Gmail)",{auto:ahora});
+  if(nuevos){ const tot=sumados.filter(o=>o.pg==="Finalizado").reduce((s,o)=>s+o.tot,0); toast(`🛒 ${nuevos===1?"1 venta nueva":nuevos+" ventas nuevas"} sumada${nuevos===1?"":"s"} desde tus correos${tot?" · "+money(tot):""}`,"ok"); }
+  return {estado:"actualizado",nuevos,cambios,leidas:ords.length,...r}; }
 
 const COLLECTIONS = ["links","panel","ventas","materiales","envios","posts","plantillas","gastos","lanzamientos","autodm","motor","fichas","promos","copias"];
 let db=null;
@@ -2537,7 +2581,10 @@ $("#notes").addEventListener("input",()=>{ if(!db) return; $("#noteState").textC
 // ---------- VENTAS ----------
 function renderVentas(){
   const has=D&&D.items.length;
-  $("#vMeta").textContent=has?`Ventas del ${fmtD(D.dataStart)} al ${fmtD(D.dataEnd)}. Solo cuentan los pedidos con pago aprobado.`:"Cargá las exportaciones de Empretienda en la pestaña Datos para ver tus ventas.";
+  const auto=salesMeta&&salesMeta.auto?new Date(salesMeta.auto):null;
+  const frescura=auto?` Se actualiza sola con tus avisos de Empretienda (última venta sumada: ${auto.toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}).`:"";
+  const sinTot=has?D.clients.reduce((n,c)=>n+c.o.filter(o=>o.sinTot&&o.pg==="Finalizado").length,0):0;
+  $("#vMeta").textContent=has?`Ventas del ${fmtD(D.dataStart)} al ${fmtD(D.dataEnd)}. Solo cuentan los pedidos con pago aprobado.${frescura}${sinTot?` ${sinTot} ${sinTot===1?"pedido llegó":"pedidos llegaron"} sin total en el aviso.`:""}`:"Cargá las exportaciones de Empretienda en la pestaña Datos para ver tus ventas.";
   const okO=has?D.clients.flatMap(c=>c.o.filter(o=>o.pg==="Finalizado")):[];
   const units=has?D.items.filter(i=>i.ok).reduce((s,i)=>s+i.q,0):0;
   const fact=okO.reduce((s,o)=>s+(o.tot||0),0);
@@ -5319,6 +5366,9 @@ setStatus("Cargando…");
   }
   db=wrapDbToasts(db); setTimeout(()=>{ if(!dataReady){ dataReady=true; scheduleRerender(); } },8000);
   setStatus(""); setTimeout(()=>loadIG("snap"),400);
+  if(MODE.supa){ setTimeout(()=>cofreBridge.ventasAuto().catch(()=>{}),1500);
+    setInterval(()=>{ if(document.visibilityState==="visible") cofreBridge.ventasAuto().catch(()=>{}); },10*60e3);
+    document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") cofreBridge.ventasAuto().catch(()=>{}); }); }
   if(MODE.supa){ const nf=$("#navFoot"); nf.innerHTML=`Guardado en tu Supabase · <button class="linkish" type="button" id="supaOut">Cerrar sesión</button>`;
     const out=async()=>{ await supaLogout(supaCfg()); location.reload(); };
     $("#supaOut").addEventListener("click",out); const o2=$("#supaOut2"); o2.hidden=false; o2.addEventListener("click",out); }
