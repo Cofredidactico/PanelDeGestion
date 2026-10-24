@@ -1591,6 +1591,9 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 .is-cmp-t{position:absolute;top:10px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border-radius:99px;background:rgba(20,30,50,.75);color:#fff;pointer-events:none}.is-cmp-t.a{left:10px}.is-cmp-t.b{right:10px}
 .is-stats{display:flex;flex-wrap:wrap;gap:6px}.is-stats span{font-size:12px;padding:5px 10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line)}
 @media (max-width:860px){.is-presets{grid-template-columns:minmax(0,1fr)}}
+.is-tipos{grid-template-columns:repeat(3,minmax(0,1fr))}
+.is-labcol{display:flex;gap:8px;flex-wrap:wrap}.is-labcol button{width:34px;height:34px;border-radius:10px;border:3px solid var(--c2);background:var(--c1);cursor:pointer}.is-labcol button.on{box-shadow:0 0 0 3px var(--surface),0 0 0 5px var(--blue)}
+#isLabPrev canvas.is-colcv{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
 @media (max-width:860px){.is-dlg{width:100vw;height:100dvh;border-radius:0;max-width:100vw}.is-cols{grid-template-columns:minmax(0,1fr)}.is-tipos{grid-template-columns:minmax(0,1fr)}.is-row{grid-template-columns:minmax(0,1fr)}.is-body{padding:14px}.is-h,.is-tabs{padding-left:14px;padding-right:14px}}
 
 </style>
@@ -4057,14 +4060,15 @@ const IS_ESTILOS = {
   acuarela: "ilustración en acuarela suave con contornos finos, colores pastel, estilo de libro infantil",
 };
 const IS_EST_N = { infantil: "Infantil (tu estilo)", kawaii: "Animado con carita", epoca: "Histórico de época", linea: "Para colorear", acuarela: "Acuarela" };
-const IS_DEF = { estilo: "ilustración digital infantil con contornos negros definidos, colores vivos (azul francia, rojo, naranja, verde y amarillo), personajes amables con rasgos simples, fondos limpios, estética de cuadernillo escolar argentino", paleta: "azul francia #1E5BB8, rojo #D7263D, naranja #F28C28, verde #4AAE4F, amarillo #F6B40E, celeste #74ACDF", personajes: "Tomi: nene de 8 años, pelo castaño corto, guardapolvo blanco, mochila roja\nSofi: nena de 8 años, trenzas negras, anteojos redondos, guardapolvo blanco\nSeño Ana: maestra joven, pelo marrón recogido, sweater celeste" };
+const IS_EST_BASE_DEF = "ilustración digital infantil tipo libro de cuentos moderno: personajes cartoon tiernos con cabeza grande, ojos grandes y brillantes con reflejos blancos, mejillas rosadas y sonrisas amables; contornos oscuros limpios y continuos de grosor medio; colores vivos, cálidos y saturados con sombreado suave tipo cel-shading y luz cálida; fondos con detalles pero ordenados, con texturas sutiles; chicos diversos (tonos de piel, peinados, chicos con discapacidad) representados con naturalidad";
+const IS_DEF = { act: {}, estilo: IS_EST_BASE_DEF, paleta: "azul francia #1E5BB8, rojo #D7263D, naranja #F28C28, verde #4AAE4F, amarillo #F6B40E, celeste #74ACDF", personajes: "Tomi: nene de 8 años, pelo castaño corto, guardapolvo blanco, mochila roja\nSofi: nena de 8 años, trenzas negras, anteojos redondos, guardapolvo blanco\nSeño Ana: maestra joven, pelo marrón recogido, sweater celeste" };
 let isEstilo = { ...IS_DEF };
 (async () => { try { const raw = localStorage.getItem("cofre-estilo-img"); if (raw) isEstilo = { ...isEstilo, ...JSON.parse(raw) }; } catch {} })();
 async function isCargarEstilo() { try { if (db && db.doc) { const s = await db.doc("panel/estiloImg").get(); if (s && s.exists) isEstilo = { ...IS_DEF, ...s.data() }; } } catch {} }
 async function isGuardarEstilo() { try { localStorage.setItem("cofre-estilo-img", JSON.stringify(isEstilo)); } catch {} try { if (db && db.doc) await db.doc("panel/estiloImg").set({ ...isEstilo, updated: new Date().toISOString() }); } catch {} }
 
 // ---------- utilidades ----------
-const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [], plat: "chatgpt", pers: [], fondoTransp: false, grosor: 2, detalle: "medio", revs: [], colorImg: null, colorOut: null, esc: null, franja: true, col: { grosor: 3, detalle: 3, negro: true, marco: false, numeros: false }, colBusy: false, colPaso: 0 };
+const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [], plat: "chatgpt", pers: [], fondoTransp: false, grosor: 2, detalle: "medio", revs: [], colorImg: null, colorOut: null, esc: null, franja: true, col: { grosor: 3, detalle: 3, negro: true, marco: false, numeros: false }, colBusy: false, colPaso: 0, orient: {}, textoImg: {}, titulos: {}, dosEnUna: true, buscaLista: "abajo", labModo: "panel", labDif: 2, labColor: "verde", labImg: null, labOut: null, labArea: null, labProt: null, labMeta: null, labFrase: "", infoVar: "patria", infoSecs: null, infoDatos: "", AB: null, rB: null };
 function isRand(seed) { let s = seed >>> 0 || 1; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
 function isMezclar(a, seed) { const r = isRand(seed), b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
 function isEscena(k) { if (IS_ESCENAS[k]) { const e = EFEMERIDES.find((x) => x[0] === k); return { nombre: e ? e[1] : k, escena: IS_ESCENAS[k][0], objetos: IS_ESCENAS[k][1] }; } const t = IS_TEMAS[k]; return t ? { nombre: t[0], escena: t[1], objetos: t[2] } : { nombre: "Tema libre", escena: "una escena escolar alegre", objetos: ["libro", "lápiz", "pelota", "árbol", "sol", "mochila", "flor", "perro", "reloj", "maceta"] }; }
@@ -4294,29 +4298,12 @@ function isSegmentos(o) {
     prec || /^\d{2}-\d{2}$/.test(IS.tema) ? `Precisión histórica y cultural: ${prec ? prec + " " : ""}${IS_GENERAL}` : "",
     isPersBloque(IS.plat).trim(),
     E.extra || "",
+    E.textos && E.textos.length ? `Textos de la imagen (solo estos): ${E.textos.map((t) => `«${t}»`).join(", ")}. ${IS_TIPOGRAFIA}` : "",
     IS_CALIDAD,
-    IS_EXCLUSIONES,
+    E.textos && E.textos.length ? "Al final, como reglas firmes: ningún otro texto además de los indicados, sin marcas de agua, sin firmas, sin logos." : IS_EXCLUSIONES,
   ].filter(Boolean);
-  if (IS.plat === "gemini") return L.map((x) => x.replace(/^(Escena|Composición|Estilo|Precisión histórica y cultural|Calidad|Personajes[^:]*):/, (m) => m.toUpperCase())).join("\n\n");
+  if (IS.plat === "gemini") return L.map((x) => x.replace(/^(Escena|Composición|Estilo|Precisión histórica y cultural|Calidad|Textos de la imagen[^:]*|Personajes[^:]*):/, (m) => m.toUpperCase())).join("\n\n");
   return L.join("\n");
-}
-function isPrompts() {
-  const E = isEscenaAct(), st = IS_ESTILOS[IS.estilo] || isEstilo.estilo, estilo = IS.estilo === "infantil" ? isEstilo.estilo : st;
-  const edad = /Inicial/.test(IS.nivel) ? "4 a 5" : /Primer/.test(IS.nivel) ? "6 a 8" : "9 a 12";
-  const nObj = /Inicial/.test(IS.nivel) ? 8 : /Primer/.test(IS.nivel) ? 11 : 14;
-  const objs = E.objetos.slice(0, nObj);
-  if (IS.tipo === "dif" || IS.tipo === "falta") {
-    const base = isSegmentos({ tipo: `Ilustración horizontal en formato 4:3 para la actividad “${IS.tipo === "falta" ? "¿Qué falta?" : "Encontrá las diferencias"}” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena, elementos: objs.join(", "), composicion: `plano general a la altura de los ojos, con los elementos distribuidos por toda la imagen (arriba, abajo, izquierda y derecha) y bien espaciados, sobre un fondo simple. Cada elemento es de tamaño mediano o grande, con colores planos y bien definidos, para que se note fácil si cambia de color, desaparece o aparece uno nuevo.`, estilo: estilo });
-    const L = IS.tipo === "falta" ? isMezclar(objs, IS.seed).slice(0, IS.n).map((o) => `Quitá ${o}; en su lugar se ve el fondo continuo, como si nunca hubiera estado.`) : isDiferencias({ ...E, objetos: objs }, IS.n, IS.seed, E.objetos.slice(nObj));
-    const edit = `Editá la imagen que acabás de crear. Hacé ÚNICAMENTE estos ${IS.n} cambios:\n${L.map((x, i) => `${i + 1}. ${x}`).join("\n")}\n\nMantené exactamente igual todo lo demás: encuadre, tamaño, fondo, colores, iluminación, estilo de dibujo, personajes, caras, posturas y la posición de cada elemento. No mejores ni corrijas nada que no esté en la lista.\nNo cambies el tamaño, la forma, la postura, la expresión ni la posición de ningún personaje u objeto: las únicas diferencias son cambios de color, elementos que desaparecen y elementos nuevos.\nCada cambio tiene que ser fácil de ver para chicos de ${edad} años.`;
-    return { E, pasos: [["1 · Imagen original", base], ["2 · " + (IS.tipo === "falta" ? `La misma imagen sin ${IS.n} elementos` : `La misma imagen con ${IS.n} diferencias`), edit]], lista: L };
-  }
-  const ocultos = isMezclar([...E.objetos.slice(6), "una llave", "una estrella", "una cuchara", "un lápiz", "un pez", "una campana", "un zapato", "un corazón", "una lupa", "un sombrero"], IS.seed).slice(0, IS.n);
-  IS.objetos = ocultos;
-  const nombres = ocultos.map((o) => o.replace(/^(un|una) /, ""));
-  const franja = IS.franja !== false ? `\nLa imagen tiene dos partes. ARRIBA, ocupando cerca del 78 % del alto, la escena. ABAJO, ocupando todo el ancho y cerca del 22 % del alto, un recuadro rectangular de esquinas redondeadas con fondo crema claro y borde grueso azul francia, separado de la escena por un margen. Dentro del recuadro, los ${nombres.length} objetos a buscar dibujados uno al lado del otro (en una o dos filas), cada uno dentro de un círculo blanco con borde fino, en este orden: ${nombres.join(", ")}. Cada objeto del recuadro es idéntico en forma y color al que está escondido en la escena. El recuadro no lleva texto ni números.` : "";
-  const busca = isSegmentos({ tipo: `Ilustración vertical en formato 3:4 para la actividad “Buscá y encontrá” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena + ", con muchos detalles y personajes realizando distintas acciones", elementos: "", composicion: `vista amplia levemente desde arriba, escena rica en detalles pero ordenada. Escondidos dentro de la escena, cada uno UNA sola vez, entero y de tamaño chico o mediano, integrados al dibujo pero visibles para quien busca con atención: ${ocultos.join(", ")}.${franja}`, estilo: estilo });
-  return { E, pasos: [[IS.franja !== false ? "Imagen para buscar (con el recuadro de objetos)" : "Imagen para buscar", busca], ["Opcional · íconos sueltos de los objetos (hoja de stickers)", isPromptPack(ocultos.map((o) => o.replace(/^(un|una) /, "")), IS.estilo === "linea" ? "infantil" : IS.estilo)]], lista: ocultos };
 }
 function isPromptPack(items, estilo) {
   const n = items.length, cols = n <= 4 ? 2 : n <= 9 ? 3 : 4, rows = Math.ceil(n / cols), st = estilo === "infantil" ? isEstilo.estilo : (IS_ESTILOS[estilo] || isEstilo.estilo), linea = estilo === "linea";
@@ -4577,6 +4564,264 @@ function isColMontar(anim) {
 }
 
 
+// =====================================================================
+// Estilo Cofre Didáctico por actividad (analizado de sus propias imágenes) · formato horizontal / vertical
+// =====================================================================
+const IS_ACT_EST = {
+  dif: "Escena tierna y muy ordenada, con pocos elementos grandes, bien separados y en vista frontal, sobre un fondo liso y cálido (pared crema, piso de baldosas o pasto), composición simétrica tipo vidriera. Colores planos muy saturados (naranja, violeta, fucsia, azul, verde, amarillo), contornos oscuros limpios y sombreado suave, para que cada cambio de color o cada elemento que aparece o desaparece se note enseguida.",
+  busca: "Escena muy cargada de detalles y llena de vida: muchos objetos y personajes cartoon con expresiones divertidas (ojos grandes, bocas expresivas), ambiente envolvente y acogedor (un interior de madera, una feria, una plaza, un altar, un aula). Colores cálidos y saturados, contornos oscuros marcados, sombreado suave y luz cálida. Cada objeto escondido está entero y se distingue mirando con atención, sin quedar tapado.",
+  lab: "Estilo libro de cuentos con texturas suaves tipo acuarela digital y luz de día cálida. Paisaje amable relacionado con el tema (cielo celeste con nubes esponjosas, pasto con florcitas, árboles redondeados, agua) que enmarca el laberinto sin taparlo. Laberinto de grilla rectangular con paredes gruesas de puntas redondeadas color verde pasto con borde verde más oscuro y pasillos anchos color crema. Protagonista tierno al costado, mirando hacia la meta con ilusión, y la meta destacada al otro lado (por ejemplo dentro de una nube de pensamiento).",
+  pintar: "Página para colorear en blanco y negro: solo contornos negros limpios y continuos, de grosor parejo medio, con todas las formas cerradas e interiores en blanco puro, sin grises ni sombreado. Personajes chibi tiernos de cabeza grande, ojos grandes rellenos de negro con brillo blanco y sonrisas grandes; ropa y objetos con guardas y estampados simples para pintar. Composición llena y equilibrada: personajes al centro, elementos típicos del tema alrededor y adelante, y detrás un elemento grande que enmarca (una bandera flameando, una guirnalda, un arco de flores, papel picado).",
+  info: "Infografía infantil de página completa, alegre y muy ordenada: fondo crema, tarjetas de esquinas redondeadas con pestañas de título de colores, íconos ilustrados chiquitos al lado de cada texto, una ilustración central grande y detallada, personajes chibi diversos en las esquinas y una franja final con un mensaje. Jerarquía clara: título enorme, subtítulo en cinta, textos cortos y aireados.",
+};
+const IS_EST_BASE = "ilustración digital infantil tipo libro de cuentos moderno: personajes cartoon tiernos con cabeza grande, ojos grandes y brillantes con reflejos blancos, mejillas rosadas y sonrisas amables; contornos oscuros limpios y continuos de grosor medio; colores vivos, cálidos y saturados con sombreado suave tipo cel-shading y luz cálida; fondos con detalles pero ordenados, con texturas sutiles; chicos diversos (tonos de piel, peinados, chicos con discapacidad) representados con naturalidad";
+const IS_INFO_VAR = {
+  patria: ["Patria clásica", "como un afiche patrio: fondo crema tipo papel pergamino con textura suave. ARRIBA: una cinta azul con la fecha en letras blancas, debajo el título enorme en dos colores (rojo y azul marino) con letras gruesas, una escarapela con cintas en la esquina superior izquierda y en la superior derecha un cuadrito tipo pergamino con marco de madera y una frase corta. Una ilustración central grande y detallada, con estilo de pintura digital cálida. El resto en tarjetas de esquinas redondeadas, cada una con una pestaña-título de un color distinto (verde azulado, verde, naranja, violeta, azul, rojo) y renglones de ícono ilustrado + texto corto en mayúsculas. Una línea de tiempo vertical con los años en pastillas de colores. AL PIE, una franja tipo cartel con la frase final y chicos diversos ilustrados en las esquinas de abajo"],
+  pastel: ["Pastel festiva", "alegre y festiva: fondo crema claro con una guirnalda de banderines o papel picado de colores arriba. Título grande en letras redondeadas gruesas (violeta y azul marino) con salpicaduras de colores alrededor y un subtítulo dentro de una cinta amarilla. Dos personajes chibi tiernos en las esquinas de arriba. Tarjetas de colores pastel (lila, amarillo, celeste, verde agua, rosa) con títulos en pastillas de color fuerte, texto en minúscula redondeada y clara, y una ilustración central grande. Una lista de elementos con íconos en filas de colores. AL PIE, una franja lila con la frase final y florcitas"],
+};
+const IS_ACT_N = { dif: "Encontrá las diferencias", falta: "¿Qué falta?", busca: "Buscá y encontrá", lab: "Laberinto", pintar: "Para pintar", info: "Infografía A4" };
+const IS_ORIENT_DEF = { dif: "h", falta: "h", busca: "h", lab: "h", pintar: "h", info: "v" };
+const IS_TXT_DEF = { dif: false, falta: false, busca: true, lab: true, pintar: true, info: true };
+const IS_TIPOGRAFIA = "Tipografía: letras de imprenta grandes, gruesas y redondeadas (estilo display infantil, como Fredoka o Baloo), azul marino oscuro, con la palabra clave del título destacada en otro color de la paleta y pequeñas rayitas decorativas a los costados del título. Las consignas van dentro de un cartel tipo píldora de esquinas redondeadas, fondo crema y borde punteado de color. Escribí cada texto exactamente como está entre comillas, con sus tildes y signos de apertura (¡ ¿), una sola vez y bien legible.";
+const IS_LAB_DEF = {
+  "02-27": ["Belgrano sonriente con la bandera celeste y blanca", "la barranca del río Paraná"], "04-02": ["un pingüino de Magallanes", "las Islas Malvinas con su faro"], "04-22": ["una gotita de agua sonriente", "el planeta Tierra"],
+  "04-23": ["un ratoncito lector con anteojos", "el libro de cuentos abierto"], "04-29": ["un perrito juguetón", "su cucha con un hueso"], "05-18": ["una nena con escarapela", "la escuela decorada para el acto"],
+  "05-25": ["un nene de 1810 con galera y escarapela", "el Cabildo"], "06-17": ["un gaucho de Güemes con poncho rojo, a caballo", "los cerros de Salta"], "06-20": ["una nena con una bandera", "el Monumento a la Bandera"],
+  "07-09": ["un nene con escarapela", "la Casa de Tucumán"], "08-17": ["San Martín, montado en su mula", "la cima nevada de la cordillera de los Andes"], "08-22": ["una nena con pañuelo de zamba", "la peña folklórica"],
+  "09-11": ["un nene con guardapolvo y mochila", "la escuela"], "09-21": ["una abejita", "el jardín lleno de flores"], "10-12": ["una nena con poncho tejido", "la feria de las culturas"],
+  "11-10": ["un gauchito con poncho y sombrero, en su caballo criollo", "el rancho con el fogón y el mate"], "03-22": ["una gotita de agua", "el río limpio"],
+  comida: ["una manzana sonriente", "la canasta de frutas"], escuela: ["una nena con guardapolvo", "la escuela"], granja: ["un pollito", "la gallina mamá"], mar: ["un pececito", "el arrecife de coral"],
+  espacio: ["un astronauta", "el cohete"], emociones: ["un nene sonriente", "el abrazo de sus amigos"], transporte: ["un autito rojo", "la estación"], higiene: ["una nena con cepillo de dientes", "el baño reluciente"],
+};
+const isEstAct = (k) => { k = k === "falta" ? "dif" : k; const a = isEstilo.act || {}; return String(a[k] || IS_ACT_EST[k] || "").trim(); };
+function isPlural(s) { const [w, ...r] = s.split(" "); let p; if (/z$/.test(w)) p = w.slice(0, -1) + "ces"; else if (/[aeiouáéó]$/.test(w)) p = w + "s"; else p = w.normalize("NFD").replace(/([aeiou])\u0301(?=[^aeiou]*$)/, "$1").normalize("NFC") + "es"; return [p, ...r].join(" "); }
+const isOrient = () => (IS.orient && IS.orient[IS.tipo]) || IS_ORIENT_DEF[IS.tipo];
+const isConTxt = () => (IS.textoImg && IS.textoImg[IS.tipo] != null ? IS.textoImg[IS.tipo] : IS_TXT_DEF[IS.tipo]);
+const isFmt = (o) => o === "v" ? "vertical en formato 2:3 (1024 × 1536 px), para ocupar una hoja A4 vertical" : "horizontal en formato 3:2 (1536 × 1024 px), para una hoja A4 apaisada o media hoja";
+const isA = (s) => String(s).replace(/\ba el\b/g, "al").replace(/\bde el\b/g, "del");
+function isLabDef() { const d = IS_LAB_DEF[IS.tema]; return { prot: (IS.labProt != null ? IS.labProt : d ? d[0] : "un nene y una nena con guardapolvo"), meta: (IS.labMeta != null ? IS.labMeta : d ? d[1] : isEscenaAct().objetos[0]) }; }
+function isTituloDef() { const E = isEscenaAct(), n = IS.n, L = isLabDef();
+  return { dif: `¡ENCONTRÁ LAS ${n} DIFERENCIAS!`, falta: `¿QUÉ FALTA? ¡DESCUBRÍ LOS ${n} ELEMENTOS!`, busca: "¡ENCONTRÁ LOS ELEMENTOS ESCONDIDOS!", lab: `¡AYUDEMOS ${L.prot.split(",")[0].split(/ con | en | de /)[0].replace(/^un /, "AL ").replace(/^una /, "A LA ").replace(/^(?!AL |A LA )/, "A ").toUpperCase()} A LLEGAR!`, pintar: E.nombre.toUpperCase(), info: E.nombre.toUpperCase() }[IS.tipo]; }
+const isTitulo = () => { const t = IS.titulos && IS.titulos[IS.tipo]; return t ? t : isTituloDef(); };
+function isFechaTxt() { if (!/^\d{2}-\d{2}$/.test(IS.tema)) return ""; const [m, d] = IS.tema.split("-").map(Number); return `${d} DE ${String(MESES[m - 1]).toUpperCase()}`; }
+const IS_SECS_DEF = (E) => /^\d{2}-\d{2}$/.test(IS.tema) ? ["¿Qué recordamos?", "¿Qué pasó?", "¿Por qué es importante?", "Datos importantes", "Línea de tiempo", "¿Cómo lo celebramos hoy?"] : [`¿Qué es ${E.nombre.toLowerCase()}?`, "¿Para qué sirve?", "Datos curiosos", "¿Cómo lo cuidamos?", "Para recordar"];
+
+// ---------- pedidos por actividad ----------
+function isPrompts() {
+  const E = isEscenaAct(), o = isOrient(), fmt = isFmt(o), txt = isConTxt(), tit = isTitulo();
+  const edad = /Inicial/.test(IS.nivel) ? "4 a 5" : /Primer/.test(IS.nivel) ? "6 a 8" : "9 a 12";
+  const nObj = /Inicial/.test(IS.nivel) ? 8 : /Primer/.test(IS.nivel) ? 11 : 14, objs = E.objetos.slice(0, nObj);
+  const estilo = (k) => IS.estilo === "infantil" ? `${isEstAct(k)} Estética de la marca: ${isEstilo.estilo}` : `${IS_ESTILOS[IS.estilo]}. ${isEstAct(k)}`;
+  const tituloTxt = txt ? `ARRIBA, el título «${tit}». ` : "";
+  if (IS.tipo === "dif" || IS.tipo === "falta") {
+    const falta = IS.tipo === "falta", L = falta ? isMezclar(objs, IS.seed).slice(0, IS.n).map((x) => `Elemento que falta: ${x} (en su lugar se ve el fondo, como si nunca hubiera estado).`) : isDiferencias({ ...E, objetos: objs }, IS.n, IS.seed, E.objetos.slice(nObj));
+    const lista = L.map((x, i) => `${i + 1}. ${x}`).join("\n"), pos = o === "h" ? ["izquierda", "derecha"] : ["arriba", "abajo"];
+    if (IS.dosEnUna !== false) {
+      const p1 = isSegmentos({ tipo: `Página de actividad “${IS_ACT_N[IS.tipo]}” para un cuadernillo escolar argentino, para chicos de ${edad} años. Imagen ${fmt}.`, escena: E.escena, elementos: objs.join(", "),
+        composicion: `${tituloTxt}Dos paneles del mismo tamaño, ${o === "h" ? "uno al lado del otro (izquierda y derecha)" : "uno arriba del otro"}, con esquinas redondeadas, un borde fino de color y una franja blanca angosta entre ambos. Los dos paneles muestran EXACTAMENTE la misma escena: mismo encuadre, mismos elementos en las mismas posiciones y mismo estilo. La única diferencia está en el panel de ${pos[1] === "abajo" ? "abajo" : "la " + pos[1]}, que tiene estos ${IS.n} cambios:\n${lista}\nNo hay ninguna otra diferencia: ni de tamaño, ni de forma, ni de posición, ni de postura o expresión de los personajes.`,
+        estilo: estilo("dif"), textos: txt ? [tit] : [] });
+      const p2 = `Revisá la imagen que creaste. El panel de ${pos[0] === "arriba" ? "arriba" : "la " + pos[0]} queda igual y el de ${pos[1] === "abajo" ? "abajo" : "la " + pos[1]} tiene que tener exactamente estos ${IS.n} cambios y ninguno más:\n${lista}\nSi falta alguno, agregalo. Si hay otra diferencia que no está en la lista, sacala para que ese detalle quede igual en los dos paneles.\nMantené exactamente igual todo lo demás: encuadre, estilo, colores, personajes y posiciones.`;
+      return { E, pasos: [["Imagen con los dos paneles", p1], ["Solo si hace falta · corregir las diferencias", p2]], lista: L };
+    }
+    const base = isSegmentos({ tipo: `Ilustración ${fmt} para la actividad “${IS_ACT_N[IS.tipo]}” de un cuadernillo escolar argentino, para chicos de ${edad} años.`, escena: E.escena, elementos: objs.join(", "), composicion: `plano general frontal, con los elementos distribuidos por toda la imagen y bien espaciados, de tamaño mediano o grande y con colores planos bien definidos.`, estilo: estilo("dif") });
+    const edit = `Editá la imagen que acabás de crear. Hacé ÚNICAMENTE estos ${IS.n} cambios:\n${lista}\n\nMantené exactamente igual todo lo demás: encuadre, tamaño, fondo, colores, iluminación, estilo de dibujo, personajes, caras, posturas y la posición de cada elemento. No mejores ni corrijas nada que no esté en la lista.\nNo cambies el tamaño, la forma, la postura, la expresión ni la posición de ningún personaje u objeto: las únicas diferencias son cambios de color, elementos que desaparecen y elementos nuevos.\nCada cambio tiene que ser fácil de ver para chicos de ${edad} años.`;
+    return { E, pasos: [["1 · Imagen original", base], ["2 · " + (falta ? `La misma imagen sin ${IS.n} elementos` : `La misma imagen con ${IS.n} diferencias`), edit]], lista: L };
+  }
+  if (IS.tipo === "busca") {
+    const r = isRand(IS.seed + 3), ocultos = isMezclar([...E.objetos.slice(6), "una llave", "una estrella", "una cuchara", "un lápiz", "un pez", "una campana", "un zapato", "un corazón", "una lupa", "un sombrero"], IS.seed).slice(0, IS.n);
+    const nombres = ocultos.map((x) => x.replace(/^(un|una) /, "")), modo = o === "v" && IS.buscaLista === "costado" ? "abajo" : (IS.buscaLista || "abajo");
+    const cant = nombres.map(() => modo === "costado" && !/Inicial/.test(IS.nivel) ? 1 + Math.floor(r() * 3) : 1);
+    IS.objetos = modo === "costado" ? nombres.flatMap((n, i) => Array.from({ length: cant[i] }, (_, k) => cant[i] > 1 ? `${n} (${k + 1}/${cant[i]})` : n)) : ocultos;
+    const up = (s) => s.toUpperCase();
+    let comp, textos = txt ? [tit] : [];
+    if (modo === "abajo") { comp = `${tituloTxt}En el centro, ocupando cerca del ${txt ? 68 : 76} % del alto, la escena dentro de un marco de esquinas redondeadas. ABAJO, en todo el ancho, un recuadro de esquinas redondeadas con fondo crema y borde de color, con una etiqueta a la izquierda en forma de nube amarilla que dice «ENCONTRÁ ESTOS OBJETOS EN LA IMAGEN» y a continuación los ${nombres.length} objetos ${o === "v" && nombres.length > 5 ? "en dos filas" : "en una fila"}, separados por líneas punteadas verticales, cada uno dibujado igual que en la escena y con su nombre en mayúsculas debajo: ${nombres.map((x) => `«${up(x)}»`).join(", ")}.\nEscondidos dentro de la escena, cada uno UNA sola vez, entero, de tamaño chico o mediano, integrados al dibujo pero visibles para quien busca con atención: ${ocultos.join(", ")}.`;
+      textos = [...textos, "ENCONTRÁ ESTOS OBJETOS EN LA IMAGEN", ...nombres.map(up)]; }
+    else if (modo === "costado") { comp = `${tituloTxt}Debajo del título, la consigna en un cartel tipo píldora: «OBSERVÁ CON ATENCIÓN LA IMAGEN Y ENCONTRÁ LOS ELEMENTOS DE LA LISTA.» A la IZQUIERDA, ocupando cerca del 78 % del ancho, la escena dentro de un marco de esquinas redondeadas. A la DERECHA, un panel vertical con borde punteado de color y el título «¿QUÉ TENÉS QUE ENCONTRAR?», con una fila por objeto: el dibujito del objeto, un circulito blanco con borde de color con el número de veces que aparece y el nombre en mayúsculas: ${nombres.map((x, i) => `${cant[i]} «${up(cant[i] > 1 ? isPlural(x) : x)}»`).join(", ")}.\nEn la escena aparecen EXACTAMENTE esas cantidades de cada objeto, ni más ni menos, enteros y repartidos por distintas partes de la escena.`;
+      textos = [...textos, "OBSERVÁ CON ATENCIÓN LA IMAGEN Y ENCONTRÁ LOS ELEMENTOS DE LA LISTA.", "¿QUÉ TENÉS QUE ENCONTRAR?", ...nombres.map((x, i) => up(cant[i] > 1 ? isPlural(x) : x)), ...cant.map(String)]; }
+    else comp = `${tituloTxt}La escena ocupa toda la imagen. Escondidos dentro de la escena, cada uno UNA sola vez, entero, de tamaño chico o mediano, integrados al dibujo pero visibles para quien busca con atención: ${ocultos.join(", ")}.`;
+    const p1 = isSegmentos({ tipo: `Página de actividad “Buscá y encontrá” para un cuadernillo escolar argentino, para chicos de ${edad} años. Imagen ${fmt}.`, escena: E.escena + ", con muchos detalles y personajes realizando distintas acciones", elementos: "", composicion: comp, estilo: estilo("busca"), textos });
+    const pasos = [["Imagen para buscar", p1]]; if (modo === "pagina") pasos.push(["Opcional · íconos sueltos de los objetos (hoja de stickers)", isPromptPack(nombres, IS.estilo === "linea" ? "infantil" : IS.estilo)]);
+    return { E, pasos, lista: IS.objetos };
+  }
+  if (IS.tipo === "lab") {
+    const L = isLabDef(), panel = IS.labModo !== "ia", corto = (s) => s.split(",")[0], v = o === "v";
+    const C = [6, 9, 13][(IS.labDif || 2) - 1], cons = isA(`Recorré el laberinto y ayudá a ${corto(L.prot)} a llegar a ${corto(L.meta)}.`), frase = IS.labFrase || "¡VAMOS, VOS PODÉS!";
+    const tablero = panel ? "un tablero rectangular de esquinas redondeadas con un borde verde grueso y el interior color crema liso, uniforme y totalmente VACÍO (sin paredes ni caminos adentro: el laberinto se agrega después)" : `un laberinto rectangular de grilla de unos ${C} casilleros de ancho, con paredes gruesas de puntas redondeadas verdes y pasillos anchos color crema, con UN solo camino posible de la entrada a la salida y varios callejones sin salida`;
+    const comp = `${txt ? `ARRIBA, el título «${tit}»; debajo, la consigna en un cartel píldora crema con borde punteado verde: «${cons}» ` : ""}En el centro, ocupando cerca del ${v ? "80 % del ancho y 55 %" : "58 % del ancho y 62 %"} del alto, ${tablero}. ${v ? "Una flecha verde apunta hacia el lado izquierdo del tablero cerca de abajo (entrada) y otra sale del lado derecho cerca de arriba (salida)." : "Una flecha verde a media altura apunta hacia el lado izquierdo del tablero (entrada) y otra sale del lado derecho a la misma altura (salida)."} ${v ? `Abajo a la izquierda, junto a la entrada, ${L.prot}, mirando hacia el tablero. Arriba a la derecha, junto a la salida, ${L.meta}.` : `A la IZQUIERDA del tablero, ${L.prot}, mirando hacia la meta con ilusión. A la DERECHA, junto a la salida, ${L.meta}, destacada (por ejemplo dentro de una nube de pensamiento).`}${txt ? ` ABAJO, centrado, un cartel crema con borde punteado y la frase «${frase}» con un corazoncito.` : ""}`;
+    const p1 = isSegmentos({ tipo: `Página de actividad “Laberinto” para un cuadernillo escolar argentino, para chicos de ${edad} años. Imagen ${fmt}.`, escena: `un paisaje relacionado con ${E.nombre}: ${E.escena}, que rodea el ${panel ? "tablero" : "laberinto"} sin taparlo`, elementos: "", composicion: comp, estilo: estilo("lab"), textos: txt ? [tit, cons, frase] : [] });
+    return { E, pasos: [[panel ? "Escena con el tablero vacío (el panel dibuja el laberinto)" : "Escena con laberinto dibujado por la IA", p1]], lista: [] };
+  }
+  if (IS.tipo === "pintar") {
+    const p1 = isSegmentos({ tipo: `Página para colorear en blanco y negro para un cuadernillo escolar argentino, para chicos de ${edad} años. Imagen ${fmt}.`, escena: `${E.escena}, protagonizada por un nene y una nena tiernos vestidos de acuerdo al tema`, elementos: objs.slice(0, 9).join(", "),
+      composicion: `${o === "h" ? "los personajes al centro, los elementos del tema a los costados y adelante, y detrás un elemento grande que enmarca la escena" : "los personajes en el centro de la hoja, los elementos del tema alrededor y abajo, y arriba un elemento que enmarca (guirnalda, bandera o arco)"}; todo ocupa la hoja con márgenes parejos y formas grandes, fáciles de pintar para chicos de ${edad} años.${txt ? ` ABAJO, una cinta ancha con el título «${tit}» en letras gruesas HUECAS (solo el contorno, para pintar).` : ""}`,
+      estilo: isEstAct("pintar"), extra: "Línea negra pura sobre fondo blanco puro: sin grises, sin sombras, sin relleno de color, sin texturas ni tramas.", textos: txt ? [tit] : [] });
+    return { E, pasos: [["Imagen para pintar", p1]], lista: [] };
+  }
+  // infografía
+  const V = IS_INFO_VAR[IS.infoVar || "patria"], secs = (IS.infoSecs != null ? IS.infoSecs : IS_SECS_DEF(E).join("\n")).split("\n").map((s) => s.trim()).filter(Boolean), fecha = isFechaTxt();
+  const datos = String(IS.infoDatos || "").trim();
+  const p1 = isSegmentos({ tipo: `Infografía educativa de página completa para la apertura de un cuadernillo escolar argentino sobre «${E.nombre}», para chicos de ${edad} años. Imagen ${fmt}.`, escena: `una infografía con una ilustración central grande de ${E.escena}`, elementos: "",
+    composicion: `diseño ${V[1]}.\nTítulo: «${tit}»${fecha ? `; fecha: «${fecha}»` : ""}.\nSecciones, cada una en su tarjeta con el título en una pestaña de color y de 2 a 4 renglones cortos con un ícono ilustrado al lado de cada uno: ${secs.map((s) => `«${s}»`).join(", ")}.\nAl pie, una frase final breve e inspiradora.`,
+    estilo: estilo("info"), extra: `Textos: escribilos vos, breves (una o dos líneas por idea), con datos correctos y comprobados, en español rioplatense con voseo y vocabulario para chicos de ${edad} años.${datos ? ` Tienen que aparecer estos datos: ${datos}` : ""} Revisá dos veces la ortografía, las tildes y las fechas antes de dibujar los textos.`, textos: [tit, ...(fecha ? [fecha] : []), ...secs] });
+  const p2 = "En la infografía que creaste, corregí solamente estos textos (escribí cómo tienen que quedar):\n- …\nMantené exactamente igual todo lo demás: diseño, colores, ilustraciones y el resto de los textos.";
+  return { E, pasos: [["Infografía A4", p1], ["Solo si hace falta · corregir textos", p2]], lista: [] };
+}
+
+// ---------- diferencias en una sola imagen: separar los dos paneles y alinearlos ----------
+function isRecorte(img, x, y, w, h) { const c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w)); c.height = Math.max(1, Math.round(h)); c.getContext("2d").drawImage(img.im, Math.round(x), Math.round(y), c.width, c.height, 0, 0, c.width, c.height); return { im: c, url: c.toDataURL("image/jpeg", 0.9), w: c.width, h: c.height, name: img.name }; }
+function isGris(img, k) { const W = Math.max(8, Math.round(img.w * k)), H = Math.max(8, Math.round(img.h * k)), d = isPixeles(img, W, H), g = new Float32Array(W * H); for (let i = 0; i < W * H; i++) g[i] = d[i * 4] * 0.3 + d[i * 4 + 1] * 0.59 + d[i * 4 + 2] * 0.11; return { g, W, H }; }
+function isPartir(img, o) {
+  const k = Math.min(1, 520 / Math.max(img.w, img.h)), { g, W, H } = isGris(img, k), hz = o !== "v", len = hz ? W : H, alto = hz ? H : W;
+  const claro = (i) => { let v = 0; for (let j = 0; j < alto; j++) v += g[hz ? j * W + i : i * W + j] > 228 ? 1 : 0; return v / alto; };
+  let best = Math.round(len / 2), bv = -1; for (let i = Math.round(len * 0.4); i <= Math.round(len * 0.6); i++) { const v = claro(i) - Math.abs(i - len / 2) / len * 0.3; if (v > bv) { bv = v; best = i; } }
+  let a = best, b = best; while (a > len * 0.3 && claro(a - 1) > 0.8) a--; while (b < len * 0.7 && claro(b + 1) > 0.8) b++;
+  const cut0 = a / k, cut1 = (b + 1) / k, A = hz ? { x: 0, y: 0, w: cut0, h: img.h } : { x: 0, y: 0, w: img.w, h: cut0 }, B = hz ? { x: cut1, y: 0, w: img.w - cut1, h: img.h } : { x: 0, y: cut1, w: img.w, h: img.h - cut1 };
+  // alineación fina: busca el corrimiento que más hace coincidir los dos paneles
+  const ka = 300 / Math.max(A.w, A.h), ga = isGris(isRecorte(img, A.x, A.y, A.w, A.h), ka), gb = isGris(isRecorte(img, B.x, B.y, B.w, B.h), ka), R = 12;
+  let bd = 1e18, dx0 = 0, dy0 = 0;
+  for (let dy = -R; dy <= R; dy++) for (let dx = -R; dx <= R; dx++) { let s = 0, n = 0;
+    for (let y = R; y < ga.H - R; y += 2) { const yb = y + dy; if (yb < 0 || yb >= gb.H) continue; for (let x = R; x < ga.W - R; x += 2) { const xb = x + dx; if (xb < 0 || xb >= gb.W) continue; s += Math.abs(ga.g[y * ga.W + x] - gb.g[yb * gb.W + xb]); n++; } }
+    if (n && s / n < bd) { bd = s / n; dx0 = dx; dy0 = dy; } }
+  const Dx = dx0 / ka, Dy = dy0 / ka, ax = Math.max(0, -Dx), ay = Math.max(0, -Dy), w = Math.min(A.w - ax, B.w - (ax + Dx)), h = Math.min(A.h - ay, B.h - (ay + Dy));
+  const rA = { x: A.x + ax, y: A.y + ay, w, h }, rB = { x: B.x + ax + Dx, y: B.y + ay + Dy, w, h };
+  return { A: isRecorte(img, rA.x, rA.y, w, h), B: isRecorte(img, rB.x, rB.y, w, h), rA, rB };
+}
+
+// ---------- laberinto: el panel lo dibuja dentro del tablero vacío (siempre tiene solución) ----------
+const IS_LAB_COL = { verde: ["#6DB33F", "#3E7A23"], azul: ["#5B9BE0", "#1E5BB8"], violeta: ["#A47BDB", "#5B3A99"], naranja: ["#F59A3C", "#B85E10"], marron: ["#B07A4F", "#6B4226"] };
+function isLabArea(img) {
+  const k = Math.min(1, 360 / Math.max(img.w, img.h)), W = Math.round(img.w * k), H = Math.round(img.h * k), d = isPixeles(img, W, H), N = W * H;
+  const cx = W >> 1, cy = H >> 1, rr = [], gg = [], bb = []; for (let y = cy - 5; y <= cy + 5; y++) for (let x = cx - 5; x <= cx + 5; x++) { const i = (y * W + x) * 4; rr.push(d[i]); gg.push(d[i + 1]); bb.push(d[i + 2]); }
+  const med = (a) => a.sort((p, q) => p - q)[a.length >> 1], R = med(rr), G = med(gg), B = med(bb), ok = new Uint8Array(N);
+  for (let i = 0; i < N; i++) ok[i] = Math.abs(d[i * 4] - R) + Math.abs(d[i * 4 + 1] - G) + Math.abs(d[i * 4 + 2] - B) < 48 ? 1 : 0;
+  const seen = new Uint8Array(N), q = new Int32Array(N); let h = 0, t = 0, x0 = cx, x1 = cx, y0 = cy, y1 = cy; q[t++] = cy * W + cx; seen[cy * W + cx] = 1;
+  while (h < t) { const p = q[h++], x = p % W, y = (p / W) | 0; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+    for (const n of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p - W, p + W]) if (n >= 0 && n < N && !seen[n] && ok[n]) { seen[n] = 1; q[t++] = n; } }
+  const area = (x1 - x0 + 1) * (y1 - y0 + 1), tocaBorde = x0 <= 1 || y0 <= 1 || x1 >= W - 2 || y1 >= H - 2;
+  if (t < N * 0.08 || tocaBorde || t < area * 0.7) return { x: 0.22, y: 0.24, w: 0.56, h: 0.56, auto: false };
+  return { x: (x0 + 1) / W, y: (y0 + 1) / H, w: (x1 - x0 - 1) / W, h: (y1 - y0 - 1) / H, auto: true };
+}
+function isLabGen(C, R, e, s, seed) {
+  const r = isRand(seed), wall = Array.from({ length: R }, () => Array.from({ length: C }, () => ({ n: 1, s: 1, e: 1, w: 1 }))), vis = Array.from({ length: R }, () => Array(C).fill(false));
+  const D = [["n", 0, -1, "s"], ["s", 0, 1, "n"], ["e", 1, 0, "w"], ["w", -1, 0, "e"]], st = [[0, e]]; vis[e][0] = true;
+  while (st.length) { const [x, y] = st[st.length - 1], op = D.filter(([, dx, dy]) => { const nx = x + dx, ny = y + dy; return nx >= 0 && ny >= 0 && nx < C && ny < R && !vis[ny][nx]; });
+    if (!op.length) { st.pop(); continue; } const [dd, dx, dy, o] = op[Math.floor(r() * op.length)]; wall[y][x][dd] = 0; wall[y + dy][x + dx][o] = 0; vis[y + dy][x + dx] = true; st.push([x + dx, y + dy]); }
+  wall[e][0].w = 0; wall[s][C - 1].e = 0;
+  const prev = new Map([[`0,${e}`, null]]), q = [[0, e]];
+  while (q.length) { const [x, y] = q.shift(); if (x === C - 1 && y === s) break; for (const [dd, dx, dy] of D) { if (wall[y][x][dd]) continue; const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= C || ny >= R) continue; const kk = nx + "," + ny; if (!prev.has(kk)) { prev.set(kk, [x, y]); q.push([nx, ny]); } } }
+  const path = []; let cur = [C - 1, s]; while (cur) { path.unshift(cur); cur = prev.get(cur[0] + "," + cur[1]); }
+  return { wall, path, C, R, e, s };
+}
+function isLabGeom(img, area) {
+  const ax = area.x * img.w, ay = area.y * img.h, aw = area.w * img.w, ah = area.h * img.h, v = isOrient() === "v";
+  const C = [6, 9, 13][(IS.labDif || 2) - 1], R = Math.max(3, Math.round(C * ah / aw)), pad = Math.min(aw, ah) * 0.045, cs = Math.min((aw - 2 * pad) / C, (ah - 2 * pad) / R);
+  const ox = ax + (aw - cs * C) / 2, oy = ay + (ah - cs * R) / 2, M = isLabGen(C, R, v ? R - 1 : Math.floor(R / 2), v ? 0 : Math.floor(R / 2), IS.seed);
+  return { ...M, cs, ox, oy, ax, ay, aw, ah };
+}
+function isLabPath(G) { let d = ""; const r = (n) => Math.round(n * 10) / 10;
+  for (let y = 0; y < G.R; y++) for (let x = 0; x < G.C; x++) { const X = G.ox + x * G.cs, Y = G.oy + y * G.cs, w = G.wall[y][x];
+    if (w.n) d += `M${r(X)} ${r(Y)}H${r(X + G.cs)}`; if (w.w) d += `M${r(X)} ${r(Y)}V${r(Y + G.cs)}`; if (y === G.R - 1 && w.s) d += `M${r(X)} ${r(Y + G.cs)}H${r(X + G.cs)}`; if (x === G.C - 1 && w.e) d += `M${r(X + G.cs)} ${r(Y)}V${r(Y + G.cs)}`; }
+  return d; }
+function isLabSolPts(G) { return [[-0.7, G.e], ...G.path, [G.C - 1 + 0.7, G.s]].map(([x, y]) => [G.ox + x * G.cs + G.cs / 2, G.oy + y * G.cs + G.cs / 2]); }
+function isLabRender() {
+  const img = IS.labImg; if (!img) return null; const G = isLabGeom(img, IS.labArea), [c1, c2] = IS_LAB_COL[IS.labColor || "verde"], ww = G.cs * 0.2, path = new Path2D(isLabPath(G));
+  const mk = (sol) => { const c = document.createElement("canvas"); c.width = img.w; c.height = img.h; const x = c.getContext("2d"); x.drawImage(img.im, 0, 0);
+    x.fillStyle = "#FBF6E9"; x.beginPath(); x.roundRect(G.ox - ww * 0.5, G.oy - ww * 0.5, G.cs * G.C + ww, G.cs * G.R + ww, ww); x.fill();
+    if (sol) { x.strokeStyle = "rgba(232,67,46,.9)"; x.lineWidth = G.cs * 0.2; x.lineCap = x.lineJoin = "round"; x.beginPath(); isLabSolPts(G).forEach(([px, py], i) => i ? x.lineTo(px, py) : x.moveTo(px, py)); x.stroke(); }
+    x.lineCap = x.lineJoin = "round"; x.strokeStyle = c2; x.lineWidth = ww * 1.45; x.stroke(path); x.strokeStyle = c1; x.lineWidth = ww; x.stroke(path); return c; };
+  const r = (n) => Math.round(n * 10) / 10, vb = `${r(G.ox - ww)} ${r(G.oy - ww)} ${r(G.cs * G.C + 2 * ww)} ${r(G.cs * G.R + 2 * ww)}`, d = isLabPath(G);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}"><title>Laberinto · Cofre Didáctico</title><g id="paredes" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="${d}" stroke="${c2}" stroke-width="${r(ww * 1.45)}"/><path d="${d}" stroke="${c1}" stroke-width="${r(ww)}"/></g><g id="solucion" visibility="hidden"><polyline points="${isLabSolPts(G).map(([a, b]) => `${r(a)},${r(b)}`).join(" ")}" fill="none" stroke="#E8432E" stroke-width="${r(G.cs * 0.2)}" stroke-linecap="round" stroke-linejoin="round"/></g></svg>`;
+  return { act: mk(false), sol: mk(true), svg, G };
+}
+
+// ---------- columna derecha según la actividad ----------
+function isRenderDerecha() {
+  const t = IS.tipo;
+  if (t === "lab") { const L = IS.labOut;
+    return `<h3>3. Subí la escena</h3><label class="is-up${IS.labImg ? " ok" : ""}"><input type="file" accept="image/*" data-isup="L" hidden>${IS.labImg ? `<img src="${IS.labImg.url}" alt="">` : "<span>⬆️</span>"}<b>${IS.labImg ? esc(IS.labImg.name) : "Imagen con el tablero vacío"}</b><small>${IS.labImg ? "Tocá para cambiarla" : "PNG o JPG"}</small></label>
+      ${L ? `<h3>4. Tu laberinto ${IS.labArea && !IS.labArea.auto ? `<small class="muted">· no encontré el tablero: lo puse al centro</small>` : ""}</h3>
+        <div class="is-row"><div class="field"><label>Dificultad</label><div class="mz-pills is-pills">${[[1, "Fácil"], [2, "Media"], [3, "Difícil"]].map(([k, tt]) => `<button type="button" class="${(IS.labDif || 2) === k ? "on" : ""}" data-islabdif="${k}"><b style="font-size:14px">${tt}</b></button>`).join("")}</div></div>
+          <div class="field"><label>Color de las paredes</label><div class="is-labcol">${Object.entries(IS_LAB_COL).map(([k, [c1, c2]]) => `<button type="button" class="${(IS.labColor || "verde") === k ? "on" : ""}" data-islabcolor="${k}" style="--c1:${c1};--c2:${c2}" aria-label="${k}"></button>`).join("")}</div></div></div>
+        <div class="is-canvas" id="isLabPrev"></div><p class="muted is-note">El camino tiene ${L.G.path.length} casilleros · siempre tiene una sola solución. <button class="linkish" type="button" data-islabotro>🎲 Otro laberinto</button></p>
+        <div class="actions"><button class="btn primary" type="button" data-islabdl="act">⬇ Actividad (PNG)</button><button class="btn" type="button" data-islabdl="sol">⬇ Solución (PNG)</button><button class="btn" type="button" data-islabdl="svg">⬇ Laberinto en vectores (SVG)</button></div>`
+      : `<div class="is-tip">${IS.labModo === "ia" ? "Revisá que el laberinto de la IA tenga salida: muchas veces no la tiene. Te conviene la opción “el panel dibuja el laberinto”." : "Cuando subas la escena, el panel encuentra el tablero vacío y dibuja adentro un laberinto con tus colores, con entrada y salida alineadas con las flechas y siempre con solución."}</div>`}`; }
+  if (t === "pintar") return `<h3>3. Cuando tengas la imagen</h3><div class="is-tip">Bajala en la mayor calidad y llevala a Corel. Si querés las líneas en vectores o más limpias, pasala por <button class="linkish" type="button" data-istab="color">🖍️ Versión para colorear</button> (opción “Detallado”).</div><div class="is-tip">💡 Si algún contorno quedó abierto o con gris, pedile: “dejá solo líneas negras puras, cerrá todos los contornos y sacá cualquier gris o sombra”.</div>`;
+  if (t === "info") return `<h3>3. Antes de usarla</h3><div class="is-tip">📝 Leé todos los textos con atención: la IA a veces cambia una letra, una tilde o una fecha. Si algo salió mal, usá el segundo pedido para corregir solo esos textos, o tapalo en Corel con tu tipografía.</div><div class="is-tip">🖨️ Revisala en <button class="linkish" type="button" data-istab="print">Revisar para imprenta</button>: para A4 completa conviene ampliarla ×2 antes de imprimir.</div>`;
+  const dos = (t === "dif" || t === "falta") && IS.dosEnUna !== false;
+  const subir = t === "busca" ? [["A", "Imagen para buscar"]] : dos ? [["AB", "Imagen con los dos paneles"]] : [["A", "Imagen original"], ["B", t === "falta" ? "Imagen con elementos borrados" : "Imagen con las diferencias"]];
+  const listo = t === "busca" ? !!IS.A : !!(IS.A && IS.B);
+  return `<h3>3. Subí ${subir.length > 1 ? "las imágenes" : "la imagen"}</h3>
+      <div class="is-ups">${subir.map(([k, tt]) => `<label class="is-up${IS[k] ? " ok" : ""}"><input type="file" accept="image/*" data-isup="${k}" hidden>${IS[k] ? `<img src="${IS[k].url}" alt="">` : `<span>⬆️</span>`}<b>${tt}</b><small>${IS[k] ? esc(IS[k].name) + " · tocá para cambiar" : "PNG o JPG"}</small></label>`).join("")}</div>
+      ${listo ? `<h3>4. ${t === "busca" ? `Tocá dónde está cada objeto (${IS.marcas.length}/${IS.objetos.length})` : `Diferencias detectadas: ${IS.marcas.length}`}</h3>
+        <p class="muted is-note">${t === "busca" ? `Siguiente: <b>${esc((IS.objetos[IS.marcas.length] || "listo ✓"))}</b>. Tocá un círculo para borrarlo.` : `${dos ? "Separé los dos paneles y los alineé. " : ""}Revisalas: tocá la imagen para agregar una que falte y tocá un círculo para borrarlo.`}</p>
+        <div class="is-canvas"><canvas id="isCv"></canvas></div>
+        <div class="actions"><button class="btn primary" type="button" data-isdl="actividad">⬇ Página de la actividad (SVG)</button><button class="btn" type="button" data-isdl="soluciones">⬇ Página de soluciones (SVG)</button>${t !== "busca" ? `<button class="linkish" type="button" data-isredetect>Volver a detectar</button>` : `<button class="linkish" type="button" data-isundo>Deshacer</button>`}</div>`
+        : `<div class="is-tip">Cuando subas ${subir.length > 1 ? "las dos imágenes" : "la imagen"}, ${t === "busca" ? "vas a marcar dónde está cada objeto" : dos ? "el panel separa los dos paneles, los alinea y encuentra solo las diferencias" : "el panel encuentra solo las diferencias"} y te arma la página de la actividad y la de soluciones, en SVG para Corel.</div>`}`;
+}
+function isOpcionesAct() {
+  const t = IS.tipo, o = isOrient(), txt = isConTxt();
+  const orient = `<div class="field"><label>Orientación</label><div class="mz-pills is-plat">${[["h", "▭ Horizontal"], ["v", "▯ Vertical"]].map(([k, tt]) => `<button type="button" class="${o === k ? "on" : ""}" data-isorient="${k}">${tt}</button>`).join("")}</div></div>`;
+  const texto = `<label class="check"><input type="checkbox" id="isTxt" ${txt ? "checked" : ""}> Título${t === "busca" || t === "lab" ? ", consigna" : ""} y textos dentro de la imagen</label>${txt ? `<div class="field"><label for="isTit">Título</label><input id="isTit" value="${esc(isTitulo())}"></div>` : ""}`;
+  let extra = "";
+  if (t === "dif" || t === "falta") extra = `<label class="check"><input type="checkbox" id="isDos" ${IS.dosEnUna !== false ? "checked" : ""}> Las dos versiones en una sola imagen, ${o === "h" ? "lado a lado" : "una arriba de la otra"} (como tus diferencias)</label>`;
+  if (t === "busca") extra = `<div class="field"><label for="isLista">Lista de objetos</label><select id="isLista">${[["abajo", "En un recuadro abajo, con dibujito y nombre"], ...(o === "h" ? [["costado", "En un panel al costado, con cantidades"]] : []), ["pagina", "Sin lista (la pongo en la página)"]].map(([k, tt]) => `<option value="${k}"${(IS.buscaLista || "abajo") === k ? " selected" : ""}>${tt}</option>`).join("")}</select></div>`;
+  if (t === "lab") { const L = isLabDef(); extra = `<div class="is-row"><div class="field"><label for="isProt">¿Quién recorre?</label><input id="isProt" value="${esc(L.prot)}"></div><div class="field"><label for="isMeta">¿Adónde llega?</label><input id="isMeta" value="${esc(L.meta)}"></div></div>
+      ${txt ? `<div class="field"><label for="isFrase">Frase de aliento</label><input id="isFrase" value="${esc(IS.labFrase || "¡VAMOS, VOS PODÉS!")}"></div>` : ""}
+      <div class="field"><label for="isLabModo">El laberinto</label><select id="isLabModo"><option value="panel"${IS.labModo !== "ia" ? " selected" : ""}>Lo dibuja el panel (siempre tiene solución) · recomendado</option><option value="ia"${IS.labModo === "ia" ? " selected" : ""}>Lo dibuja la IA</option></select></div>`; }
+  if (t === "info") { const E = isEscenaAct(); extra = `<div class="field"><label>Diseño</label><div class="mz-pills is-plat">${Object.entries(IS_INFO_VAR).map(([k, [n]]) => `<button type="button" class="${(IS.infoVar || "patria") === k ? "on" : ""}" data-isinfovar="${k}">${n}</button>`).join("")}</div></div>
+      <div class="field"><label for="isSecs">Secciones (una por renglón)</label><textarea id="isSecs" rows="5">${esc(IS.infoSecs != null ? IS.infoSecs : IS_SECS_DEF(E).join("\n"))}</textarea></div>
+      <div class="field"><label for="isDatos">Datos que tienen que aparecer <small class="muted">(opcional)</small></label><textarea id="isDatos" rows="3" placeholder="Ej.: nació el 8 de febrero de 1785 en Salta; murió el 17 de junio de 1821">${esc(IS.infoDatos || "")}</textarea></div>`; }
+  return `<div class="is-row">${orient}</div>${t === "pintar" || t === "info" ? "" : ""}${texto}${extra}`;
+}
+function isRenderAct() {
+  const P = isPrompts(), tipos = [["dif", "🔍", "Encontrá las diferencias", "Dos versiones con cambios fáciles"], ["falta", "❓", "¿Qué falta?", "La segunda versión tiene elementos menos"], ["busca", "🕵️", "Buscá y encontrá", "Objetos escondidos y su lista"], ["lab", "🌀", "Laberinto", "Escena con tablero y camino"], ["pintar", "🖍️", "Para pintar", "Blanco y negro, animada"], ["info", "📰", "Infografía A4", "Página completa de apertura"]];
+  const conN = IS.tipo === "dif" || IS.tipo === "falta" || IS.tipo === "busca", nOps = IS.tipo === "busca" ? [6, 8, 10] : [5, 7, 10];
+  return `<div class="is-cols"><div class="is-sec">
+      <h3>1. Elegí la actividad</h3><div class="is-tipos">${tipos.map(([k, ic, t, s]) => `<button type="button" class="is-tipo${IS.tipo === k ? " on" : ""}" data-istipo="${k}"><span>${ic}</span><b>${t}</b><small>${s}</small></button>`).join("")}</div>
+      <div class="is-row"><div class="field"><label for="isTema">Fecha o tema</label><select id="isTema">${isTemas()}</select></div>
+        <div class="field"><label for="isNivel">Nivel</label><select id="isNivel">${["Nivel Inicial", "Primaria – Primer Ciclo", "Primaria – Segundo Ciclo"].map((v) => `<option${IS.nivel === v ? " selected" : ""}>${v}</option>`).join("")}</select></div></div>
+      <div class="is-row">${conN ? `<div class="field"><label>Cantidad</label><div class="mz-pills is-pills">${nOps.map((v) => `<button type="button" class="${IS.n === v ? "on" : ""}" data-isn="${v}"><b>${v}</b></button>`).join("")}</div></div>` : ""}
+        ${IS.tipo === "pintar" ? "" : `<div class="field"><label for="isEst">Estilo</label><select id="isEst">${Object.keys(IS_ESTILOS).map((k) => `<option value="${k}"${IS.estilo === k ? " selected" : ""}>${IS_EST_N[k]}</option>`).join("")}</select></div>`}</div>
+      ${isOpcionesAct()}
+      ${IS.tipo === "info" ? "" : isEscChips()}
+      ${isPersLista().length ? `<div class="field"><label>¿Qué personajes aparecen? <small class="muted">(opcional)</small></label><div class="is-items is-sel">${isPersLista().map((p) => `<button type="button" class="is-chip${(IS.pers || []).includes(p.n) ? " on" : ""}" data-ispersel="${esc(p.n)}">${isRef(p.n) ? "📎 " : ""}${esc(p.n)}</button>`).join("")}</div></div>` : ""}
+      ${IS_PRECISION[IS.tema] ? `<div class="is-prec">🏛️ <b>Precisión histórica incluida.</b> ${esc(IS_PRECISION[IS.tema].split(". ").slice(0, 2).join(". "))}…</div>` : ""}
+      <h3>2. Pedidos para ${isPlatPills()} <button class="linkish" type="button" data-isotra>🎲 Otra variante</button></h3>
+      ${isRefsAdjuntar()}
+      ${P.pasos.map(([t, p], i) => `<div class="is-prompt"><div class="is-p-h"><b>${esc(t)}</b><button class="btn small primary" type="button" data-iscopy="${i}">Copiar</button></div><pre>${esc(p)}</pre></div>`).join("")}
+      <p class="muted is-note">${P.pasos.length > 1 && /Solo si hace falta/.test(P.pasos[1][0]) ? `Pegá el primer pedido en ${IS.plat === "gemini" ? "Gemini" : "ChatGPT"}. Usá el segundo solo si la imagen salió con algún error, en la MISMA conversación.` : P.pasos.length > 1 ? `Pegá el pedido 1 en ${IS.plat === "gemini" ? "Gemini" : "ChatGPT"}; cuando tengas la imagen, pegá el pedido 2 en la MISMA conversación.` : `Pegá el pedido en ${IS.plat === "gemini" ? "Gemini" : "ChatGPT"} y pedí la imagen en la mayor calidad.`}</p>
+    </div><div class="is-sec">${isRenderDerecha()}</div></div>`;
+}
+
+// ---------- páginas SVG ----------
+async function isPaginas() {
+  const E = isEscena(IS.tema);
+  if (IS.tipo === "busca") {
+    if (!IS.A) return null; const conLista = (IS.buscaLista || "abajo") !== "pagina", J = await isJpeg(IS.A, 1800), f = isFoto(J, 40, conLista ? 162 : 168, 515, conLista ? 612 : 512);
+    const L = IS.objetos.length ? IS.objetos : IS.marcas.map((_, i) => `objeto ${i + 1}`);
+    const chips = L.map((o, i) => { const c = i % 2, r = Math.floor(i / 2); return `<g transform="translate(${60 + c * 245},${700 + r * 18})"><rect width="14" height="14" rx="3" fill="none" stroke="#4AAE4F" stroke-width="2"/><text x="22" y="12" font-size="12.5" fill="#1A2744" font-family="Arial, sans-serif">${svgEsc(o.replace(/^(un|una) /, "").toUpperCase())}</text></g>`; }).join("");
+    const act = isMarco("Buscá y encontrá", conLista ? `BUSCÁ en la escena los objetos de la lista y RODEALOS con un círculo cuando los encuentres.` : `BUSCÁ en la imagen los ${L.length} objetos y MARCALOS con una cruz cuando los encuentres.`, f.svg + (conLista ? "" : chips), "");
+    const sol = isMarco("Soluciones", `Así quedan marcados los objetos escondidos.`, f.svg + IS.marcas.map((m) => isCirc(m, f)).join(""), "");
+    return [["actividad", act], ["soluciones", sol]];
+  }
+  if (!IS.A || !IS.B) return null;
+  const n = IS.n, tit = IS.tipo === "falta" ? "¿Qué falta?" : `Encontrá las ${n} diferencias`;
+  const cons = IS.tipo === "falta" ? `OBSERVÁ las dos imágenes y DESCUBRÍ los ${n} elementos que faltan en la segunda.` : `OBSERVÁ las dos imágenes y ENCONTRÁ las ${n} diferencias. PINTÁ un casillero por cada una.`;
+  const cajas = Array.from({ length: n }, (_, i) => `<rect x="${297.5 - n * 14 + i * 28}" y="760" width="20" height="20" rx="5" fill="none" stroke="#4AAE4F" stroke-width="2"/>`).join("");
+  if (IS.AB && IS.rB && IS.dosEnUna !== false) {
+    const J = await isJpeg(IS.AB, 2000), f = isFoto(J, 40, 166, 515, 580), AB = IS.AB, rB = IS.rB;
+    const map = (m) => ({ x: (rB.x + m.x * rB.w) / AB.w, y: (rB.y + m.y * rB.h) / AB.h, r: m.r * rB.w / AB.w });
+    return [["actividad", isMarco(tit, cons, f.svg + cajas, "")], ["soluciones", isMarco("Soluciones", `${tit}: así quedan marcadas.`, f.svg + IS.marcas.map((m) => isCirc(map(m), f)).join(""), "")]];
+  }
+  const JA = await isJpeg(IS.A, 1600), JB = await isJpeg(IS.B, 1600), fa = isFoto(JA, 40, 168, 515, 282), fb = isFoto(JB, 40, 466, 515, 282);
+  const act = isMarco(tit, cons, fa.svg + fb.svg + cajas, "");
+  const fs = isFoto(JB, 40, 160, 515, 560), sol = isMarco("Soluciones", `${tit}: así quedan marcadas.`, fs.svg + IS.marcas.map((m) => isCirc(m, fs)).join(""), "");
+  return [["actividad", act], ["soluciones", sol]];
+}
+function isLabMontar() { const box = $("#isLabPrev"); if (!box || !IS.labOut) return; const c = IS.labOut.act; c.className = "is-colcv"; box.innerHTML = ""; box.appendChild(c); }
+function isLabCalc() { if (!IS.labImg) return; IS.labOut = isLabRender(); isRender(); }
+
+
 // ---------- detección de diferencias ----------
 function isCargarImg(file) { return new Promise((ok, no) => { const r = new FileReader(); r.onload = () => { const im = new Image(); im.onload = () => ok({ im, url: r.result, w: im.naturalWidth, h: im.naturalHeight, name: file.name }); im.onerror = () => no(new Error("No se pudo abrir la imagen.")); im.src = r.result; }; r.onerror = () => no(new Error("No se pudo leer el archivo.")); r.readAsDataURL(file); }); }
 function isPixeles(img, W, H) { const c = document.createElement("canvas"); c.width = W; c.height = H; const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img.im, 0, 0, W, H); return x.getImageData(0, 0, W, H).data; }
@@ -4615,26 +4860,6 @@ function isMarco(titulo, consigna, cuerpo, num) {
 }
 function isFoto(J, x, y, w, h) { const s = Math.min(w / J.w, h / J.h), W = J.w * s, H = J.h * s, X = x + (w - W) / 2, Y = y + (h - H) / 2; return { svg: `<rect x="${X - 4}" y="${Y - 4}" width="${W + 8}" height="${H + 8}" rx="10" fill="none" stroke="#F28C28" stroke-width="2.4" stroke-dasharray="7 5"/><image href="${J.url}" x="${X}" y="${Y}" width="${W}" height="${H}" preserveAspectRatio="none"/>`, X, Y, W, H }; }
 const isCirc = (m, f) => `<circle cx="${f.X + m.x * f.W}" cy="${f.Y + m.y * f.H}" r="${Math.max(9, m.r * f.W)}" fill="none" stroke="#D7263D" stroke-width="3.2"/>`;
-async function isPaginas() {
-  const E = isEscena(IS.tema);
-  if (IS.tipo === "busca") {
-    if (!IS.A) return null; const conFranja = IS.franja !== false, J = await isJpeg(IS.A, 1800), f = isFoto(J, 40, conFranja ? 162 : 168, 515, conFranja ? 612 : 512);
-    const L = IS.objetos.length ? IS.objetos : IS.marcas.map((_, i) => `objeto ${i + 1}`);
-    const chips = L.map((o, i) => { const c = i % 2, r = Math.floor(i / 2); return `<g transform="translate(${60 + c * 245},${700 + r * 18})"><rect width="14" height="14" rx="3" fill="none" stroke="#4AAE4F" stroke-width="2"/><text x="22" y="12" font-size="12.5" fill="#1A2744" font-family="Arial, sans-serif">${svgEsc(o.replace(/^(un|una) /, "").toUpperCase())}</text></g>`; }).join("");
-    const act = isMarco("Buscá y encontrá", conFranja ? `BUSCÁ en la escena los ${L.length} objetos del recuadro y RODEALOS con un círculo cuando los encuentres.` : `BUSCÁ en la imagen los ${L.length} objetos y MARCALOS con una cruz cuando los encuentres.`, f.svg + (conFranja ? "" : chips), "");
-    const sol = isMarco("Soluciones", `Así quedan marcados los ${L.length} objetos escondidos.`, f.svg + IS.marcas.map((m) => isCirc(m, f)).join(""), "");
-    return [["actividad", act], ["soluciones", sol]];
-  }
-  if (!IS.A || !IS.B) return null;
-  const JA = await isJpeg(IS.A, 1600), JB = await isJpeg(IS.B, 1600), fa = isFoto(JA, 40, 168, 515, 282), fb = isFoto(JB, 40, 466, 515, 282);
-  const n = IS.n, cajas = Array.from({ length: n }, (_, i) => `<rect x="${297.5 - n * 14 + i * 28}" y="760" width="20" height="20" rx="5" fill="none" stroke="#4AAE4F" stroke-width="2"/>`).join("");
-  const tit = IS.tipo === "falta" ? "¿Qué falta?" : `Encontrá las ${n} diferencias`;
-  const cons = IS.tipo === "falta" ? `OBSERVÁ las dos imágenes y DESCUBRÍ los ${n} elementos que faltan en la segunda.` : `OBSERVÁ las dos imágenes y ENCONTRÁ las ${n} diferencias. PINTÁ un casillero por cada una.`;
-  const act = isMarco(tit, cons, fa.svg + fb.svg + cajas, "");
-  const fs = isFoto(JB, 40, 160, 515, 560), sol = isMarco("Soluciones", `${tit}: así quedan marcadas.`, fs.svg + IS.marcas.map((m) => isCirc(m, fs)).join(""), "");
-  return [["actividad", act], ["soluciones", sol]];
-}
-
 // ---------- recortador de hojas de stickers ----------
 async function isRecortar(img, nombres, carpeta, quitarBlanco) {
   const c = document.createElement("canvas"); c.width = img.w; c.height = img.h; const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img.im, 0, 0);
@@ -4700,6 +4925,7 @@ function isRender() {
     <div class="field"><label for="isEstiloTxt">Cómo son mis ilustraciones</label><textarea id="isEstiloTxt" rows="4">${esc(isEstilo.estilo)}</textarea></div>
     <div class="field"><label for="isPaleta">Paleta de colores</label><input id="isPaleta" value="${esc(isEstilo.paleta)}"></div>
     <div class="field"><label for="isPers">Mis personajes fijos (uno por renglón: nombre: descripción)</label><textarea id="isPers" rows="5">${esc(isEstilo.personajes)}</textarea></div>
+    <details class="is-ia" open><summary>🎯 Mi estilo por actividad <small class="muted">(analizado de tus imágenes)</small></summary>${[["dif", "🔍 Diferencias y ¿Qué falta?"], ["busca", "🕵️ Buscá y encontrá"], ["lab", "🌀 Laberinto"], ["pintar", "🖍️ Para pintar"], ["info", "📰 Infografía"]].map(([k, t]) => `<div class="field"><label for="isAct_${k}">${t}</label><textarea id="isAct_${k}" rows="4">${esc(isEstAct(k))}</textarea></div>`).join("")}</details>
     <div class="actions"><button class="btn primary" type="button" data-isguardarestilo>Guardar mi estilo</button><button class="btn" type="button" data-ispers>Copiar pedido de hoja de personajes</button><button class="linkish" type="button" data-isreset>Volver a los valores sugeridos</button></div>
     <div class="is-tip">💡 <b>Truco de consistencia:</b> generá primero la <b>hoja de personajes</b> (cada personaje de frente, de costado y de espaldas) y en cada imagen nueva subila a ChatGPT junto con el pedido: “usá estos personajes exactamente así”.</div></div>
     <div class="is-sec"><h3>Fotos de referencia de cada personaje</h3><p class="muted">Cuando tengas el dibujo definitivo de cada uno, subilo acá. El panel lo nombra en los pedidos (“imagen 1 = Tomi”) y te lo deja a mano para adjuntarlo. Se guarda en este navegador.</p>
@@ -4708,39 +4934,10 @@ function isRender() {
   d.innerHTML = `<div class="is-w"><header class="is-h"><div><span class="mz-k">Estudio de imágenes</span><h2 id="isT">Imágenes para tus cuadernillos</h2></div><button class="vx-x" type="button" data-iscerrar aria-label="Cerrar">✕</button></header>
     <nav class="is-tabs">${tabs.map(([k, t]) => `<button type="button" data-istab="${k}" aria-pressed="${IS.tab === k}">${t}</button>`).join("")}</nav>
     <div class="is-body">${body}</div></div>`;
-  if (IS.tab === "act" && (IS.A || IS.B)) isDibujarMarcas();
+  if (IS.tab === "act" && (IS.A || IS.B) && IS.tipo !== "lab") isDibujarMarcas();
   if (IS.tab === "color" && IS.colorOut && !IS.colBusy) isColMontar(false);
+  if (IS.tab === "act" && IS.tipo === "lab") isLabMontar();
 }
-function isRenderAct() {
-  const P = isPrompts(), tipos = [["dif", "🔍", "Encontrá las diferencias", "Imagen original + versión con cambios"], ["falta", "❓", "¿Qué falta?", "La segunda imagen tiene elementos borrados"], ["busca", "🕵️", "Buscá y encontrá", "Objetos escondidos en una escena"]];
-  const nOps = IS.tipo === "busca" ? [6, 8, 10] : [5, 7, 10];
-  const subir = IS.tipo === "busca" ? [["A", "Imagen con los objetos escondidos"]] : [["A", "Imagen original"], ["B", IS.tipo === "falta" ? "Imagen con elementos borrados" : "Imagen con las diferencias"]];
-  const listo = IS.tipo === "busca" ? !!IS.A : !!(IS.A && IS.B);
-  return `<div class="is-cols"><div class="is-sec">
-      <h3>1. Elegí la actividad</h3><div class="is-tipos">${tipos.map(([k, ic, t, s]) => `<button type="button" class="is-tipo${IS.tipo === k ? " on" : ""}" data-istipo="${k}"><span>${ic}</span><b>${t}</b><small>${s}</small></button>`).join("")}</div>
-      <div class="is-row"><div class="field"><label for="isTema">Fecha o tema</label><select id="isTema">${isTemas()}</select></div>
-        <div class="field"><label for="isNivel">Nivel</label><select id="isNivel">${["Nivel Inicial", "Primaria – Primer Ciclo", "Primaria – Segundo Ciclo"].map((v) => `<option${IS.nivel === v ? " selected" : ""}>${v}</option>`).join("")}</select></div></div>
-      <div class="is-row"><div class="field"><label>Cantidad</label><div class="mz-pills is-pills">${nOps.map((v) => `<button type="button" class="${IS.n === v ? "on" : ""}" data-isn="${v}"><b>${v}</b></button>`).join("")}</div></div>
-        <div class="field"><label for="isEst">Estilo</label><select id="isEst">${Object.keys(IS_ESTILOS).map((k) => `<option value="${k}"${IS.estilo === k ? " selected" : ""}>${IS_EST_N[k]}</option>`).join("")}</select></div></div>
-      ${isEscChips()}
-      ${IS.tipo === "busca" ? `<label class="check"><input type="checkbox" id="isFranja" ${IS.franja !== false ? "checked" : ""}> Incluir en la imagen el recuadro con los objetos a buscar</label>` : ""}
-      ${isPersLista().length ? `<div class="field"><label>¿Qué personajes aparecen? <small class="muted">(opcional)</small></label><div class="is-items is-sel">${isPersLista().map((p) => `<button type="button" class="is-chip${(IS.pers || []).includes(p.n) ? " on" : ""}" data-ispersel="${esc(p.n)}">${isRef(p.n) ? "📎 " : ""}${esc(p.n)}</button>`).join("")}</div></div>` : ""}
-      ${IS_PRECISION[IS.tema] ? `<div class="is-prec">🏛️ <b>Precisión histórica incluida.</b> ${esc(IS_PRECISION[IS.tema].split(". ").slice(0, 2).join(". "))}…</div>` : ""}
-      <h3>2. Pedidos para ${isPlatPills()} <button class="linkish" type="button" data-isotra>🎲 Otra variante</button></h3>
-      ${isRefsAdjuntar()}
-      ${P.pasos.map(([t, p], i) => `<div class="is-prompt"><div class="is-p-h"><b>${esc(t)}</b><button class="btn small primary" type="button" data-iscopy="${i}">Copiar</button></div><pre>${esc(p)}</pre></div>`).join("")}
-      <p class="muted is-note">${IS.tipo === "busca" ? "Pegá el primer pedido en ChatGPT. El segundo te da los íconos de los objetos para la lista (opcional)." : (IS.plat === "gemini" ? "Pegá el pedido 1 en Gemini; cuando tengas la imagen, pegá el pedido 2 en la MISMA conversación (Gemini es muy bueno respetando la imagen al editar)." : "Pegá el pedido 1 en ChatGPT; cuando tengas la imagen, pegá el pedido 2 en el MISMO chat para que edite esa imagen.")}</p>
-    </div><div class="is-sec">
-      <h3>3. Subí ${subir.length > 1 ? "las imágenes" : "la imagen"}</h3>
-      <div class="is-ups">${subir.map(([k, t]) => `<label class="is-up${IS[k] ? " ok" : ""}"><input type="file" accept="image/*" data-isup="${k}" hidden>${IS[k] ? `<img src="${IS[k].url}" alt="">` : `<span>⬆️</span>`}<b>${t}</b><small>${IS[k] ? esc(IS[k].name) + " · tocá para cambiar" : "PNG o JPG"}</small></label>`).join("")}</div>
-      ${listo ? `<h3>4. ${IS.tipo === "busca" ? `Tocá dónde está cada objeto (${IS.marcas.length}/${IS.objetos.length})` : `Diferencias detectadas: ${IS.marcas.length}`}</h3>
-        <p class="muted is-note">${IS.tipo === "busca" ? `Siguiente: <b>${esc((IS.objetos[IS.marcas.length] || "listo ✓"))}</b>. Tocá un círculo para borrarlo.` : "Revisalas: tocá la imagen para agregar una que falte y tocá un círculo para borrarlo."}</p>
-        <div class="is-canvas"><canvas id="isCv"></canvas></div>
-        <div class="actions"><button class="btn primary" type="button" data-isdl="actividad">⬇ Página de la actividad (SVG)</button><button class="btn" type="button" data-isdl="soluciones">⬇ Página de soluciones (SVG)</button>${IS.tipo !== "busca" ? `<button class="linkish" type="button" data-isredetect>Volver a detectar</button>` : `<button class="linkish" type="button" data-isundo>Deshacer</button>`}</div>`
-        : `<div class="is-tip">Cuando subas ${subir.length > 1 ? "las dos imágenes" : "la imagen"}, ${IS.tipo === "busca" ? "vas a marcar dónde está cada objeto" : "el panel encuentra solo las diferencias"} y te arma la página de la actividad y la de soluciones con tu diagramación, en SVG para Corel.</div>`}
-    </div></div>`;
-}
-
 function isPlatPills() { return `<span class="mz-pills is-plat">${[["chatgpt", "ChatGPT"], ["gemini", "Gemini"]].map(([k, t]) => `<button type="button" class="${IS.plat === k ? "on" : ""}" data-isplat="${k}">${t}</button>`).join("")}</span>`; }
 function isRefsAdjuntar() { const sel = isPersLista().filter((p) => (IS.pers || []).includes(p.n) && isRef(p.n)); if (!sel.length) return (IS.pers || []).length ? `<p class="muted is-note">Tip: subí la imagen de referencia de tus personajes en 🎨 Mi estilo para que salgan siempre iguales.</p>` : "";
   return `<div class="is-tip">📎 Adjuntá en el mismo mensaje del pedido 1, en este orden: ${sel.map((p, i) => `<button class="btn small" type="button" data-isrefdl="${esc(p.n)}">⬇ ${i + 1}. ${esc(p.n)}</button>`).join(" ")}</div>`; }
@@ -4785,7 +4982,7 @@ async function isClick(e) {
   const d = $("#isDlg"), t = e.target;
   if (t === d || t.closest("[data-iscerrar]")) { d.close(); return; }
   const tb = t.closest("[data-istab]"); if (tb) { IS.tab = tb.dataset.istab; isRender(); return; }
-  const tp = t.closest("[data-istipo]"); if (tp) { IS.esc = null; IS.tipo = tp.dataset.istipo; IS.n = IS.tipo === "busca" ? 8 : 10; IS.marcas = []; IS.A = IS.B = null; isRender(); return; }
+  const tp = t.closest("[data-istipo]"); if (tp) { IS.esc = null; IS.AB = IS.rB = null; IS.tipo = tp.dataset.istipo; IS.n = IS.tipo === "busca" ? 8 : 10; IS.marcas = []; IS.A = IS.B = null; isRender(); return; }
   const nn = t.closest("[data-isn]"); if (nn) { IS.n = +nn.dataset.isn; isRender(); return; }
   if (t.closest("[data-isotra]")) { IS.seed++; isRender(); return; }
   const cp = t.closest("[data-iscopy]"); if (cp) { isCopiar(cp, isPrompts().pasos[+cp.dataset.iscopy][1]); if (cp.dataset.iscopy === "0") { IS.esc = isEscIdx(); isMarcarUsada(); setTimeout(isRender, 900); } return; }
@@ -4794,9 +4991,18 @@ async function isClick(e) {
   if (t.closest("[data-iscortarpack]")) { const p = IS_PACKS[IS.packTema]; IS.nombres = p[2]; IS.carpeta = `${p[0]}/${p[1]}`; IS.tab = "corte"; isRender(); return; }
   if (t.closest("[data-iscarpetas]")) { const enc = new TextEncoder(), F = []; Object.values(IS_PACKS).forEach(([c, tt]) => { F.push({ name: `Recursos Cofre Didactico/${c}/${tt}/color/LEEME.txt`, data: enc.encode(`Guardá acá los PNG a color de ${tt}.`) }, { name: `Recursos Cofre Didactico/${c}/${tt}/para-colorear/LEEME.txt`, data: enc.encode(`Guardá acá las versiones para colorear de ${tt}.`) }); });
     F.push({ name: "Recursos Cofre Didactico/Personajes/LEEME.txt", data: enc.encode(isEstilo.personajes) }); await saveFile("Recursos Cofre Didactico (carpetas).zip", isZip(F)); return; }
-  if (t.closest("[data-isguardarestilo]")) { isEstilo = { estilo: $("#isEstiloTxt").value.trim(), paleta: $("#isPaleta").value.trim(), personajes: $("#isPers").value.trim() }; await isGuardarEstilo(); toast("Estilo guardado ✓", "ok"); return; }
+  if (t.closest("[data-isguardarestilo]")) { const act = {}; ["dif", "busca", "lab", "pintar", "info"].forEach((k) => { const v = $("#isAct_" + k).value.trim(); if (v && v !== IS_ACT_EST[k]) act[k] = v; });
+    isEstilo = { estilo: $("#isEstiloTxt").value.trim(), paleta: $("#isPaleta").value.trim(), personajes: $("#isPers").value.trim(), act }; await isGuardarEstilo(); toast("Estilo guardado ✓", "ok"); return; }
   if (t.closest("[data-isreset]")) { isEstilo = { ...IS_DEF }; isRender(); return; }
   if (t.closest("[data-ispers]")) { const P = isEstilo.personajes.split("\n").filter(Boolean); isCopiar(t.closest("[data-ispers]"), `Hoja de personajes (character sheet) para los cuadernillos escolares de una marca argentina. Va a ser la referencia oficial: todas las ilustraciones futuras van a copiar a estos personajes.\nPersonajes, cada uno en su propia fila:\n${P.map((p) => "- " + p).join("\n")}\nComposición: cada personaje tres veces, de cuerpo entero (de frente, de perfil y de espaldas), misma altura y misma escala en las tres vistas, bien separados entre sí, sobre fondo blanco liso.\nEstilo: ${isEstilo.estilo}. Paleta de la marca: ${isEstilo.paleta}.\n${IS_CALIDAD}\nReglas firmes: sin texto, sin nombres escritos, sin sombras proyectadas, sin marcas de agua.`); return; }
+  const ori = t.closest("[data-isorient]"); if (ori) { IS.orient[IS.tipo] = ori.dataset.isorient; if (IS.labImg) IS.labOut = isLabRender(); isRender(); return; }
+  const iv = t.closest("[data-isinfovar]"); if (iv) { IS.infoVar = iv.dataset.isinfovar; isRender(); return; }
+  const ld = t.closest("[data-islabdif]"); if (ld) { IS.labDif = +ld.dataset.islabdif; isLabCalc(); return; }
+  const lc = t.closest("[data-islabcolor]"); if (lc) { IS.labColor = lc.dataset.islabcolor; isLabCalc(); return; }
+  if (t.closest("[data-islabotro]")) { IS.seed++; isLabCalc(); return; }
+  const ldl = t.closest("[data-islabdl]"); if (ldl && IS.labOut) { const k = ldl.dataset.islabdl, E = isEscena(IS.tema), base = `Laberinto - ${E.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`;
+    if (k === "svg") { await saveFile(`${base} - laberinto.svg`, new Blob([IS.labOut.svg], { type: "image/svg+xml" })); return; }
+    const b = await new Promise((ok) => IS.labOut[k].toBlob(ok, "image/png")); await saveFile(`${base}${k === "sol" ? " - solucion" : ""}.png`, b); return; }
   const es = t.closest("[data-isesc]"); if (es) { IS.esc = +es.dataset.isesc; IS.marcas = []; isRender(); return; }
   if (t.closest("[data-isescreset]")) { try { localStorage.removeItem("cofre-escenas-usadas"); } catch {} IS.esc = null; isRender(); toast("Listo: arrancás un cuadernillo nuevo", "ok"); return; }
   const pl = t.closest("[data-isplat]"); if (pl) { IS.plat = pl.dataset.isplat; isRender(); return; }
@@ -4822,7 +5028,16 @@ async function isChange(e) {
   const t = e.target;
   if (t.id === "isColG" || t.id === "isColD") { IS.col[t.id === "isColG" ? "grosor" : "detalle"] = +t.value; isColorCalc(); }
   if (t.id === "isColN" || t.id === "isColM" || t.id === "isColNum") { IS.col[({ isColN: "negro", isColM: "marco", isColNum: "numeros" })[t.id]] = t.checked; isColorCalc(); }
-  if (t.id === "isFranja") { IS.franja = t.checked; isRender(); }
+  if (t.id === "isTxt") { IS.textoImg[IS.tipo] = t.checked; isRender(); }
+  if (t.id === "isTit") { IS.titulos[IS.tipo] = t.value.trim(); isRender(); }
+  if (t.id === "isDos") { IS.dosEnUna = t.checked; IS.A = IS.B = IS.AB = IS.rB = null; IS.marcas = []; isRender(); }
+  if (t.id === "isLista") { IS.buscaLista = t.value; IS.marcas = []; isRender(); }
+  if (t.id === "isProt") { IS.labProt = t.value.trim(); isRender(); }
+  if (t.id === "isMeta") { IS.labMeta = t.value.trim(); isRender(); }
+  if (t.id === "isFrase") { IS.labFrase = t.value.trim(); isRender(); }
+  if (t.id === "isLabModo") { IS.labModo = t.value; isRender(); }
+  if (t.id === "isSecs") { IS.infoSecs = t.value; isRender(); }
+  if (t.id === "isDatos") { IS.infoDatos = t.value; isRender(); }
   if (t.id === "isTema") { IS.esc = null; IS.tema = t.value; IS.marcas = []; isRender(); }
   if (t.id === "isNivel") { IS.nivel = t.value; isRender(); }
   if (t.id === "isEst") { IS.estilo = t.value; isRender(); }
@@ -4831,7 +5046,10 @@ async function isChange(e) {
   if (t.dataset && t.dataset.isrefup && t.files[0]) { try { await isGuardarRef(t.dataset.isrefup, t.files[0]); toast("Referencia guardada ✓", "ok"); isRender(); } catch (err) { toast(err.message); } }
   if (t.dataset && "isprint" in t.dataset && t.files.length) { const L = []; for (const f of t.files) { try { const img = await isCargarImg(f); L.push({ ...isAnalizar(img, f), url: img.url }); } catch (err) { toast(err.message); } } IS.revs = [...L, ...(IS.revs || [])].slice(0, 12); isRender(); }
   if (t.dataset && "iscolorup" in t.dataset && t.files[0]) { try { IS.colorImg = await isCargarImg(t.files[0]); isColorCalc(); } catch (err) { toast(err.message); } }
-  if (t.dataset && t.dataset.isup && t.files[0]) { try { IS[t.dataset.isup] = await isCargarImg(t.files[0]); if (IS.tipo !== "busca" && IS.A && IS.B) IS.marcas = isDetectar(IS.A, IS.B, IS.n); else if (IS.tipo === "busca") IS.marcas = []; isRender(); } catch (err) { toast(err.message); } }
+  if (t.dataset && t.dataset.isup && t.files[0]) { const k = t.dataset.isup; try { const img = await isCargarImg(t.files[0]);
+      if (k === "L") { IS.labImg = img; IS.labArea = isLabArea(img); IS.labOut = isLabRender(); isRender(); return; }
+      if (k === "AB") { const P = isPartir(img, isOrient()); IS.AB = img; IS.A = P.A; IS.B = P.B; IS.rB = P.rB; IS.marcas = isDetectar(IS.A, IS.B, IS.n); isRender(); return; }
+      IS[k] = img; if (IS.tipo !== "busca" && IS.A && IS.B) IS.marcas = isDetectar(IS.A, IS.B, IS.n); else if (IS.tipo === "busca") IS.marcas = []; isRender(); } catch (err) { console.error(err); toast(err.message || "No se pudo leer la imagen."); } }
   if (t.dataset && "isuphoja" in t.dataset && t.files[0]) { try { IS.hoja = await isCargarImg(t.files[0]); IS.cortes = null; IS.nombres = $("#isNombres") ? $("#isNombres").value.split("\n").map((x) => x.trim()).filter(Boolean) : IS.nombres; IS.carpeta = $("#isCarpeta") ? $("#isCarpeta").value : IS.carpeta; isRender(); } catch (err) { toast(err.message); } }
 }
 function isInput(e) { const t = e.target; if (t.id === "isColG" || t.id === "isColD") { const o = t.parentElement.querySelector("output"); if (o) o.textContent = t.id === "isColG" ? t.value : ["Mínima", "Pocas", "Media", "Muchas", "Máxima"][t.value - 1]; } }
