@@ -1312,6 +1312,204 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 @media (max-width:720px){.igw-pod{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.mx-b-i,.m3-bars i{animation:none!important}}
 
+/* ===== Motor creador: estudio ===== */
+.mz-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:center;padding:22px;border-radius:20px;margin-bottom:16px;border:1px solid var(--line);position:relative;overflow:hidden;
+  background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--blue) 26%,transparent),transparent 55%),radial-gradient(90% 120% at 100% 100%,color-mix(in srgb,var(--orange) 22%,transparent),transparent 60%),var(--surface);box-shadow:var(--shadow)}
+.mz-hero::after{content:"✏️ 📐 🎨 📚";position:absolute;right:18px;top:10px;font-size:15px;opacity:.35;letter-spacing:6px}
+.mz-k{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.mz-h-t h1{font-family:var(--f-brand);font-size:clamp(28px,4vw,40px);font-weight:600;line-height:1.05;margin:4px 0 6px}
+.mz-h-t p{color:var(--muted);max-width:46ch}
+.mz-h-acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.mz-big{font-size:15px;padding:12px 20px;border-radius:12px;box-shadow:0 10px 26px color-mix(in srgb,var(--blue) 35%,transparent)}
+.mz-h-s{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mz-stat{display:grid;gap:1px;align-content:start;text-align:left;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 80%,transparent);backdrop-filter:blur(6px);color:var(--ink);font:inherit}
+.mz-stat span{font-size:22px}.mz-stat b{font-size:15px;line-height:1.25}.mz-stat small{color:var(--muted);font-size:12px}
+.mz-gap{cursor:pointer;border-color:color-mix(in srgb,var(--orange) 50%,var(--line));background:color-mix(in srgb,var(--orange) 10%,var(--surface))}
+.mz-gap em{font-style:normal;font-weight:800;color:var(--orange);font-size:12px;margin-top:4px}
+.mz-gap:hover{transform:translateY(-2px);transition:transform .15s}
+@media (max-width:900px){.mz-hero{grid-template-columns:minmax(0,1fr);padding:16px}.mz-hero::after{display:none}}
+.app.mz-foco{grid-template-columns:minmax(0,1fr)}
+.app.mz-foco .side-nav,.app.mz-foco .hero{display:none!important}
+/* columna de ajustes */
+@media (min-width:981px){.motor{grid-template-columns:330px minmax(0,1fr)}}
+.motor-form{border-radius:18px;background:linear-gradient(180deg,color-mix(in srgb,var(--blue) 6%,var(--surface)),var(--surface) 140px)}
+.motor-form #mfTitle{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--f-brand);font-size:18px;font-weight:600}
+.motor-form .perfil{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-2)}
+.motor-form .perfil>summary{cursor:pointer;font-weight:700;font-size:13px}
+.motor-form .hist{border-top:1px solid var(--line);padding-top:10px}
+/* estado vacío */
+.mz-empty{display:grid;justify-items:center;text-align:center;gap:10px;padding:46px 20px;border:2px dashed color-mix(in srgb,var(--blue) 35%,var(--line));border-radius:20px;background:radial-gradient(70% 90% at 50% 0%,color-mix(in srgb,var(--blue) 10%,transparent),transparent),var(--surface)}
+.mz-empty .ic{font-size:54px;animation:mzFlota 3.5s ease-in-out infinite}
+@keyframes mzFlota{50%{transform:translateY(-8px) rotate(-4deg)}}
+.mz-empty h2{font-family:var(--f-brand);font-size:24px;font-weight:600}
+.mz-empty p{color:var(--muted);max-width:52ch}
+.mz-empty ol{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;list-style:none;padding:0;margin:6px 0}
+.mz-empty li{font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line)}
+/* pestañas del documento */
+#moDoc .doc-bar{position:sticky;top:8px;z-index:5;padding:8px;border-radius:14px;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:var(--shadow)}
+#moDoc .doc-bar .seg{border-radius:11px;flex-wrap:wrap}
+#moDoc .doc-bar .seg button{padding:8px 12px}
+.mz-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-left:5px;vertical-align:middle;animation:vxLat 1.8s infinite}
+.mz-fresh .clase{animation:vxEntra .55s cubic-bezier(.2,1.2,.4,1) both}
+.mz-fresh .clase:nth-of-type(2){animation-delay:.1s}.mz-fresh .clase:nth-of-type(3){animation-delay:.2s}.mz-fresh .clase:nth-of-type(4){animation-delay:.3s}.mz-fresh .clase:nth-of-type(5){animation-delay:.4s}.mz-fresh .clase:nth-of-type(6){animation-delay:.5s}.mz-fresh .clase:nth-of-type(7){animation-delay:.6s}.mz-fresh .clase:nth-of-type(8){animation-delay:.7s}
+/* ===== Asistente ===== */
+.mz-wiz{width:min(1080px,calc(100vw - 20px));height:min(860px,calc(100vh - 20px));max-height:none;padding:0;border:1px solid var(--line);border-radius:22px;background:var(--bg);color:var(--ink);box-shadow:0 40px 100px rgba(0,0,0,.5);overflow:hidden}
+.mz-wiz::backdrop{background:rgba(8,12,24,.6);backdrop-filter:blur(6px)}
+.mz-w{display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100%}
+.mz-w-h{display:flex;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,color-mix(in srgb,var(--blue) 12%,var(--surface)),var(--surface))}
+.mz-w-h>div{min-width:180px}
+.mz-w-h h2{font-family:var(--f-brand);font-size:24px;font-weight:600;line-height:1.1}
+.mz-steps{display:flex;gap:6px;list-style:none;margin:0 0 0 auto;padding:0;flex-wrap:wrap}
+.mz-steps button{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px 6px 6px;font:inherit;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.mz-steps span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-size:12px}
+.mz-steps .cur button{border-color:var(--blue);color:var(--ink);box-shadow:0 0 0 1px var(--blue) inset}
+.mz-steps .cur span{background:var(--blue);color:#fff}
+.mz-steps .done span{background:var(--ok);color:#fff}
+.mz-steps button:disabled{opacity:.5;cursor:default}
+.mz-w-body{overflow:auto;padding:20px 22px;display:grid;gap:18px;align-content:start}
+.mz-w-sec{display:grid;gap:12px;min-width:0}
+.mz-w-body>*,.mz-plant,.mz-pl,.mz-efes{min-width:0}
+.mz-empty h2,.mz-empty{color:var(--ink)}
+.mz-w-sec h3,.mz-plant h3{font-size:15px;font-weight:800}
+.mz-plant h3 small{color:var(--muted);font-weight:600}
+.mz-w-sh{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.mz-w-sh input{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--surface-2);color:var(--ink);font:inherit;min-width:200px}
+.mz-pl{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.mz-pl-i{flex:none;scroll-snap-align:start;width:190px;display:grid;gap:3px;text-align:left;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.mz-pl-i span{font-size:24px}.mz-pl-i b{font-size:13.5px}.mz-pl-i small{color:var(--muted);font-size:12px}
+.mz-pl-i.on,.mz-pl-i:hover{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
+.mz-efes{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.mz-efe{position:relative;display:grid;gap:3px;align-content:start;text-align:left;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;transition:transform .12s,border-color .12s}
+.mz-efe:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--blue) 50%,var(--line))}
+.mz-efe.on{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset;background:color-mix(in srgb,var(--blue) 10%,var(--surface))}
+.mz-efe .ic{font-size:26px}
+.mz-efe .dt{position:absolute;right:10px;top:10px;display:grid;justify-items:center;font-size:10.5px;font-weight:800;text-transform:uppercase;color:var(--muted);line-height:1.05}
+.mz-efe .dt b{font-size:19px;color:var(--ink)}
+.mz-efe .nm{font-size:13.5px;line-height:1.25;padding-right:6px}
+.mz-efe small{color:var(--muted);font-size:12px}
+.mz-efe em{font-style:normal;justify-self:start;font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;margin-top:3px}
+.mz-efe em.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.mz-efe em.gap{background:color-mix(in srgb,var(--orange) 18%,transparent);color:var(--orange)}
+.mz-efe em.nv{background:color-mix(in srgb,var(--c-metricas) 18%,transparent);color:var(--c-metricas)}
+.mz-efe .win{font-style:normal;position:absolute;left:12px;top:-8px;font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;background:var(--blue);color:#fff}
+.mz-otra{border-style:dashed}
+.mz-otra-in input,.mz-w-body select,.mz-w-body textarea{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface-2);color:var(--ink);font:inherit;width:100%}
+.mz-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mz-tile{display:grid;justify-items:center;gap:4px;padding:22px 12px;border-radius:16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.mz-tile span{font-size:38px}.mz-tile b{font-size:16px}.mz-tile small{color:var(--muted);font-size:12px}
+.mz-tile.on{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset;background:color-mix(in srgb,var(--blue) 10%,var(--surface))}
+.mz-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mz-pills{display:flex;gap:10px;flex-wrap:wrap}
+.mz-pills button{display:grid;justify-items:center;min-width:92px;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.mz-pills b{font-family:var(--f-brand);font-size:26px;line-height:1}.mz-pills small{color:var(--muted);font-size:12px}
+.mz-pills .on{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset;background:color-mix(in srgb,var(--blue) 10%,var(--surface))}
+.mz-togs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mz-tog{position:relative;display:flex;gap:10px;align-items:flex-start;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.mz-tog input{position:absolute;opacity:0}
+.mz-tog .ic{font-size:24px}.mz-tog b{display:block;font-size:13.5px}.mz-tog small{color:var(--muted);font-size:12px}
+.mz-tog i{margin-left:auto;flex:none;width:38px;height:22px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);position:relative;transition:background .2s}
+.mz-tog i::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.mz-tog input:checked~i{background:var(--ok);border-color:var(--ok)}.mz-tog input:checked~i::after{transform:translateX(16px)}
+.mz-tog:has(input:checked){border-color:color-mix(in srgb,var(--ok) 50%,var(--line))}
+.mz-tog input:focus-visible~i{outline:2px solid var(--blue);outline-offset:2px}
+.mz-sug{display:flex;flex-wrap:wrap;gap:6px}
+.mz-sug button{border:1px dashed var(--line);background:var(--surface);color:var(--muted);border-radius:99px;padding:5px 11px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.mz-sug button:hover{color:var(--blue);border-color:var(--blue)}.mz-sug button:disabled{opacity:.4}
+.mz-res{display:flex;gap:16px;align-items:center;padding:16px;border-radius:16px;border:1px solid color-mix(in srgb,var(--blue) 35%,var(--line));background:color-mix(in srgb,var(--blue) 7%,var(--surface))}
+.mz-res-ic{font-size:50px}
+.mz-res-l{display:grid;gap:8px;flex:1;min-width:0}
+.mz-res-l div{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:10px;align-items:baseline}
+.mz-res-l span{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.mz-w-f{display:flex;gap:12px;align-items:center;padding:14px 22px;border-top:1px solid var(--line);background:var(--surface)}
+.mz-w-p{flex:1;height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.mz-w-p i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--c-ventas));border-radius:99px;transition:width .4s}
+@media (max-width:760px){.mz-wiz{width:100vw;height:100dvh;border-radius:0;max-width:100vw}.mz-w-h{flex-wrap:wrap;padding:14px}.mz-steps{margin:0;order:3;width:100%}.mz-steps button{padding:4px 9px 4px 4px;font-size:11.5px}.mz-tiles{grid-template-columns:1fr 1fr}.mz-togs{grid-template-columns:minmax(0,1fr)}.mz-row2{grid-template-columns:minmax(0,1fr)}.mz-w-body{padding:14px}.mz-efes{grid-template-columns:repeat(2,minmax(0,1fr))}.mz-res-l div{grid-template-columns:minmax(0,1fr) auto}.mz-res-l span{grid-column:1/-1}.mz-res-ic{display:none}.mz-w-f{padding:12px 14px}}
+/* ===== Generación en vivo ===== */
+.mz-live{border-radius:18px;padding:18px;border:1px solid color-mix(in srgb,var(--blue) 40%,var(--line));background:radial-gradient(80% 120% at 0% 0%,color-mix(in srgb,var(--blue) 14%,transparent),transparent),var(--surface);box-shadow:var(--shadow);display:grid;gap:12px;transition:opacity .4s,transform .4s}
+.mz-live.mz-out{opacity:0;transform:scale(.98)}
+.mz-live-h{display:flex;gap:14px;align-items:center}
+.mz-live-h>div:nth-child(2){display:grid;flex:1;min-width:0}
+.mz-live-h b{font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mz-time{font-variant-numeric:tabular-nums;font-weight:800;color:var(--muted)}
+.mz-orb{position:relative;width:44px;height:44px;flex:none}
+.mz-orb i{position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:var(--blue);animation:mzGira 1.2s linear infinite}
+.mz-orb i:nth-child(2){inset:6px;border-top-color:var(--orange);animation-duration:1.7s;animation-direction:reverse}
+.mz-orb i:nth-child(3){inset:13px;border-top-color:var(--c-ventas);animation-duration:.9s}
+@keyframes mzGira{to{transform:rotate(360deg)}}
+.mz-bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.mz-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--c-metricas),var(--orange));background-size:200% 100%;animation:mzBrilla 2s linear infinite;transition:width .6s}
+@keyframes mzBrilla{to{background-position:-200% 0}}
+.mz-et{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.mz-et li{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--faint);font-weight:600}
+.mz-et span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-size:11px;flex:none}
+.mz-et .cur{color:var(--ink)}.mz-et .cur span{background:var(--blue);color:#fff;animation:vxLat 1.6s infinite}
+.mz-et .done{color:var(--muted)}.mz-et .done span{background:var(--ok);color:#fff}
+@media (max-width:760px){.mz-et{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.mz-live-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:14px}
+.mz-live-g:empty{display:none}
+.mz-live-g h4{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.mz-li{display:flex;gap:9px;align-items:center;padding:7px 10px;border-radius:10px;background:var(--surface-2);margin-bottom:5px;font-size:13px;font-weight:600;animation:vxEntra .45s both;animation-delay:var(--d)}
+.mz-li span{width:22px;height:22px;border-radius:7px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px;flex:none}
+.mz-mini{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:6px}
+.mz-mp{aspect-ratio:210/297;border-radius:6px;background:#fff;border:1px solid #d9dfeb;padding:6px;display:grid;align-content:start;gap:3px;color:#1A2744;animation:mzHoja .45s cubic-bezier(.2,1.3,.4,1) both;animation-delay:var(--d);box-shadow:0 4px 10px rgba(0,0,0,.12)}
+.mz-mp b{font-size:10px;color:#1E5BB8}.mz-mp span{font-size:8.5px;font-weight:700;line-height:1.15;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
+@keyframes mzHoja{from{transform:translateY(10px) rotate(-4deg) scale(.9);opacity:0}to{transform:none;opacity:1}}
+@media (max-width:760px){.mz-live-g{grid-template-columns:minmax(0,1fr)}}
+/* ===== Hoja A4 ===== */
+.a4{width:595px;height:842px;background:#fff;color:#1A2744;position:relative;font-family:var(--f-body);overflow:hidden;flex:none}
+.a4 svg{display:block;width:100%;height:100%}
+.a4-in{position:absolute;inset:16px;border:1.6px solid #1A2744;border-radius:18px;padding:18px 34px 16px 24px;display:flex;flex-direction:column;gap:12px}
+.a4-top{display:flex;justify-content:space-between;align-items:center;height:44px}
+.a4-top img{height:42px}.a4-ic{font-size:34px}
+.a4-t{font-family:var(--f-brand);font-weight:700;font-size:30px;line-height:1.05;text-align:center;color:#1E5BB8;letter-spacing:.5px;margin:0 10px}
+.a4-c{font-size:14.5px;line-height:1.35;font-weight:500;display:flex;gap:8px;align-items:flex-start}
+.a4-c b{font-weight:900}.a4-c .flor{color:#E8492E;font-size:20px;line-height:1}
+.a4-box{flex:1;min-height:0;overflow:hidden;border:2.4px dashed #F28C28;border-radius:18px;padding:14px 16px;font-size:13.5px;line-height:1.45;display:grid;align-content:start;gap:6px;position:relative}
+.a4-box::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40px;background:linear-gradient(transparent,#fff)}
+.a4-box ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.a4-box li{padding-left:22px;position:relative}
+.a4-box li::before{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border-radius:50%;background:#4AAE4F}
+.a4-j{font-weight:700;color:#1E5BB8}
+.a4-ilu{border:2px dashed #9AB6E6;background:#F5F8FF;border-radius:14px;padding:10px 12px;font-size:12px;color:#4E6894;min-height:70px}
+.a4-sol{border:1.5px solid #1A2744;border-radius:10px;padding:5px 10px;font-size:10px;transform:rotate(180deg);color:#4a5670;max-height:40px;overflow:hidden}
+.a4-pie{display:flex;justify-content:center;align-items:center;gap:6px;font-family:var(--f-brand);font-weight:700;font-size:13px}
+.a4-pie img{height:22px}.a4-pie span{color:#8a95aa}
+.a4-v{position:absolute;right:6px;top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:center;font-family:var(--f-brand);font-weight:700;font-size:11px;letter-spacing:4px;color:#1E5BB8;white-space:nowrap;width:0;display:flex;justify-content:center}
+/* Vista previa */
+.mz-tapas{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.mz-tapas>b{font-size:13px;width:100%}
+.mz-tp{display:grid;justify-items:center;gap:6px;border:2px solid transparent;background:none;border-radius:12px;padding:6px;font:inherit;font-size:12.5px;font-weight:700;color:var(--ink);cursor:pointer}
+.mz-tp-m{width:96px;height:136px;overflow:hidden;border-radius:6px;box-shadow:0 6px 16px rgba(0,0,0,.18);background:#fff}
+.mz-tp-m svg{width:100%;height:100%}
+.mz-tp.on{border-color:var(--blue)}
+.mz-tp-dl{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.mz-hojas{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px}
+.mz-hoja{display:grid;gap:7px;justify-items:center;border:0;background:none;padding:0;cursor:zoom-in;font:inherit;color:var(--ink);animation:mzHoja .5s cubic-bezier(.2,1.2,.4,1) both;animation-delay:var(--d)}
+.mz-hoja-a{width:170px;height:240px;overflow:hidden;border-radius:6px;box-shadow:0 10px 24px rgba(0,0,0,.22);transition:transform .18s;background:#fff;position:relative}
+.mz-hoja-a .a4{transform:scale(.2857);transform-origin:0 0}
+.mz-hoja:hover .mz-hoja-a{transform:translateY(-4px) rotate(-1deg)}
+.mz-hoja small{font-size:12px;font-weight:700;color:var(--muted);text-align:center;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mz-libro{width:min(980px,calc(100vw - 16px));height:calc(100vh - 16px);max-height:none;padding:0;border:0;border-radius:18px;background:#2a2f3b;color:#fff;overflow:hidden}
+.mz-libro::backdrop{background:rgba(5,8,16,.75);backdrop-filter:blur(4px)}
+.mz-lb{display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100%}
+.mz-lb header{display:flex;gap:12px;align-items:center;padding:12px 16px}
+.mz-lb header b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mz-lb header span{color:#c8cfdd;font-variant-numeric:tabular-nums}
+.mz-lb .vx-x{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+.mz-lb-s{display:flex;align-items:center;justify-content:center;gap:12px;min-height:0;padding:0 10px}
+.mz-lb-p{position:relative;flex:none;box-shadow:0 30px 60px rgba(0,0,0,.5);border-radius:4px;overflow:hidden;background:#fff}
+.mz-lb-p .a4{position:absolute;left:0;top:0;transform-origin:0 0}
+.mz-lb-p.der{animation:mzPasaD .4s ease both}.mz-lb-p.izq{animation:mzPasaI .4s ease both}
+@keyframes mzPasaD{from{transform:perspective(1200px) rotateY(-25deg) translateX(30px);opacity:.3}}
+@keyframes mzPasaI{from{transform:perspective(1200px) rotateY(25deg) translateX(-30px);opacity:.3}}
+.mz-nav{width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:28px;cursor:pointer;flex:none}
+.mz-nav:disabled{opacity:.25}
+.mz-lb-t{display:flex;gap:6px;overflow-x:auto;padding:12px 16px}
+.mz-lb-t button{flex:none;min-width:34px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.mz-lb-t .on{background:var(--blue);border-color:var(--blue)}
+@media (max-width:760px){.mz-libro{width:100vw;height:100dvh;border-radius:0}.mz-nav{display:none}.mz-hojas{grid-template-columns:repeat(2,minmax(0,1fr))}.mz-hoja-a{width:150px;height:212px}.mz-hoja-a .a4{transform:scale(.2521)}}
+@media (prefers-reduced-motion:reduce){.mz-orb i,.mz-bar i,.mz-li,.mz-mp,.mz-hoja,.mz-empty .ic,.mz-lb-p,.mz-fresh .clase{animation:none!important}}
+
 </style>
 
 <div class="app">
@@ -1619,11 +1817,11 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 
 <!-- ============ MOTOR ============ -->
 <main class="wrap view" id="view-motor" hidden>
-  <div class="view-h"><div><h1>Motor creador de materiales</h1><p class="lead">Elegí una efeméride y un nivel: el motor planifica la secuencia didáctica y el contenido de cada página del cuadernillo, siguiendo cómo armás tus materiales. Vos después lo diseñás en Corel.</p></div>
-    <span class="pill info" id="motorMode"></span></div>
+  <section class="mz-hero" id="mzHero" aria-label="Estudio creativo"></section>
+  <span class="pill info" id="motorMode" hidden></span>
   <div class="motor">
     <section class="card motor-form" aria-labelledby="mfTitle">
-      <h3 id="mfTitle">Nuevo material</h3>
+      <h3 id="mfTitle">Ajustes rápidos <button class="btn small" type="button" data-mzwiz>✨ Asistente</button></h3>
       <div class="field"><label for="moEfe">Efeméride o tema</label><select id="moEfe"></select><div class="ficha-line" id="moFicha"></div></div>
       <div class="field" id="moOtraWrap" hidden><label for="moOtra">¿Cuál?</label><input id="moOtra" maxlength="120" placeholder="Ej.: Día de la Tradición (10 de noviembre)"></div>
       <div class="field"><label>Nivel</label>
@@ -1672,10 +1870,10 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
       <div class="hist"><h3 style="font-size:13.5px">Materiales planificados</h3><div id="moHist"></div></div>
     </section>
     <section class="motor-out" id="moOut" aria-live="polite">
-      <div class="empty-box" id="moEmpty">Elegí la efeméride y el nivel, y tocá <b>Planificar el material</b>. En un par de minutos vas a tener la secuencia didáctica completa y el contenido página por página.</div>
+      <div class="empty-box mz-empty" id="moEmpty"><span class="ic">📚</span><h2>Tu próximo cuadernillo empieza acá</h2><p>El asistente te guía en 4 pasos y en un par de minutos tenés la secuencia didáctica, cada página del cuadernillo, la tapa y la vista previa hoja por hoja.</p><ol><li>📅 Fecha</li><li>🎒 Nivel</li><li>🧩 Contenido</li><li>✨ Tu toque</li></ol><button class="btn primary mz-big" type="button" data-mzwiz>✨ Crear un material nuevo</button></div>
       <div id="moDoc" hidden>
         <div class="doc-bar">
-          <div class="seg" role="group" aria-label="Sección"><button type="button" data-mtab="sec" aria-pressed="true">Secuencia didáctica</button><button type="button" data-mtab="pag" aria-pressed="false">Páginas del cuadernillo</button><button type="button" data-mtab="ilu" aria-pressed="false">Ilustraciones</button><button type="button" data-mtab="extra" aria-pressed="false">Venta y extras</button></div>
+          <div class="seg" role="group" aria-label="Sección"><button type="button" data-mtab="sec" aria-pressed="true">📋 Secuencia</button><button type="button" data-mtab="pag" aria-pressed="false">📄 Páginas</button><button type="button" data-mtab="prev" aria-pressed="false">📖 Vista previa<span class="mz-dot" id="mzPrevDot" hidden></span></button><button type="button" data-mtab="ilu" aria-pressed="false">🎨 Ilustraciones</button><button type="button" data-mtab="extra" aria-pressed="false">Venta y extras</button></div>
           <div class="actions"><button class="btn small primary" type="button" id="moBoc">📐 Boceto para Corel</button><button class="btn small" type="button" id="moVers">Otras versiones</button><button class="btn small" type="button" id="moDocx">Descargar Word</button><button class="btn small" type="button" id="moCopy">Copiar todo</button><button class="btn small" type="button" id="moLanz">Llevar a Lanzamientos</button></div>
         </div>
         <div id="moVchips"></div>
@@ -1683,6 +1881,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
         <article class="doc" id="moSec"></article>
         <article class="doc" id="moPag" hidden></article>
         <article class="doc" id="moIlu" hidden></article>
+        <article class="doc mz-prev" id="moPrev" hidden></article>
         <article class="doc" id="moExtra" hidden></article>
         <div class="card adjust"><h3>Pedile cambios</h3><p class="sub">Ej.: "cambiá la clase 3 por una de canciones folclóricas", "más actividades de matemática", "simplificá las consignas".</p>
           <div class="toolbar"><input class="sel" id="moAdj" style="flex:1 1 260px;min-width:0" maxlength="400" placeholder="¿Qué querés cambiar?"><button class="btn primary" type="button" id="moAdjGo">Aplicar cambios</button></div></div>
@@ -2592,6 +2791,7 @@ function showView(v){
   renderView(v);
 }
 function renderView(v){
+  if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
   if(v==="stats") renderStats();
   if(v==="ventas") renderVentas();
@@ -3483,6 +3683,250 @@ function igWinRender() {
 document.addEventListener("click", (e) => { const f = e.target.closest("[data-igwf]"), o = e.target.closest("[data-igwo]"); if (!f && !o) return; if (f) IGW.f = f.dataset.igwf; if (o) IGW.o = o.dataset.igwo; igWinRender(); renderIgPosts(); });
 
 $("#mdOpen360").addEventListener("click",()=>{ const k=matEditing&&matEditing.k; $("#mdlg").close(); if(k) m360Open(k); });
+// =====================================================================
+// Motor creador · estudio, asistente, plantillas, generación en vivo, vista previa A4 y tapas
+// =====================================================================
+const MZ_ICON = { "02-27": "🇦🇷", "03-08": "💜", "03-22": "💧", "03-24": "🕊️", "04-02": "🇦🇷", "04-07": "🩺", "04-14": "🌎", "04-22": "🌱", "04-23": "📚", "04-29": "🐾", "05-01": "🛠️", "05-18": "🎗️", "05-25": "🏛️", "06-05": "🌳", "06-17": "🐴", "06-20": "🇦🇷", "07-09": "🏠", "08-17": "⛰️", "08-22": "🪕", "09-11": "✏️", "09-21": "🌸", "10-12": "🌍", "11-10": "🧉", "11-20": "⚓",
+  "02-22": "🐧", "03-21": "💛", "05-11": "🎶", "05-28": "🧸", "06-15": "📖", "08-01": "🌽", "09-04": "🚢", "09-08": "🔤", "09-13": "📚", "09-16": "✏️", "09-17": "🍎", "11-22": "🎵", "12-03": "♿" };
+const mzIcon = (k) => MZ_ICON[k] || "📘";
+const mzLogo = () => { const i = document.querySelector(".nav-brand img"); return i ? i.src : ""; };
+const MZ_PLANTILLAS = [
+  { id: "c1", ic: "✏️", t: "Cuadernillo clásico · 1.er ciclo", s: "5 clases · 18 páginas · accesible", nivel: "Primaria – Primer Ciclo", clases: 5, pags: 18, acc: true, plat: false, venta: true, ideas: "" },
+  { id: "c2", ic: "📚", t: "Cuadernillo completo · 2.º ciclo", s: "5 clases · 24 páginas", nivel: "Primaria – Segundo Ciclo", clases: 5, pags: 24, acc: true, plat: false, venta: true, ideas: "" },
+  { id: "pl", ic: "🎮", t: "Plataforma + cuadernillo", s: "Ideas de juegos interactivos incluidas", nivel: "Primaria – Primer Ciclo", clases: 5, pags: 18, acc: true, plat: true, venta: true, ideas: "Pensalo para combinar con una plataforma interactiva: actividades que se puedan jugar en pantalla y en papel." },
+  { id: "acto", ic: "🎤", t: "Acto escolar", s: "4 clases · 12 páginas · guion y poesía", nivel: "Primaria – Primer Ciclo", clases: 4, pags: 12, acc: true, plat: false, venta: true, ideas: "Incluí un guion breve para el acto escolar, una poesía corta para recitar, una cartelera y una actividad para preparar el acto con las familias." },
+  { id: "mini", ic: "⚡", t: "Mini proyecto de 1 semana", s: "5 clases · 12 páginas · producto final", nivel: "Primaria – Primer Ciclo", clases: 5, pags: 12, acc: true, plat: false, venta: true, ideas: "Armalo como proyecto integrado de una semana, una clase por día, que termine con un producto final para exponer." },
+  { id: "ini", ic: "🧸", t: "Nivel Inicial", s: "4 encuentros · 12 páginas · muy visual", nivel: "Nivel Inicial", clases: 4, pags: 12, acc: true, plat: false, venta: true, ideas: "Muy visual, con pictogramas, para pintar, recortar y pegar. Consignas cortas para leer con la docente." },
+];
+const MZ_SUG = ["que tenga un recortable", "incluí un acróstico", "más juegos y menos texto", "consignas cortas con pictogramas", "actividades para hacer en familia", "una infografía a color y otra para pintar", "una canción o poesía", "un cierre para exponer en la cartelera"];
+const WZ = { paso: 1, q: "" };
+const mzNivelCorto = (n) => /Inicial/.test(n) ? "Nivel Inicial" : /Primer/.test(n) ? "1.er ciclo" : /Segundo/.test(n) ? "2.º ciclo" : /Secundaria/.test(n) ? "Secundaria" : n;
+
+// ---------- Estudio: encabezado ----------
+function mzHero() {
+  const box = $("#mzHero"); if (!box) return;
+  const hist = (typeof motorHist !== "undefined" && motorHist) ? motorHist : [];
+  const gaps = upcomingEfes(366).filter((u) => !efeInfo(u.e).rel.length); const g = gaps[0];
+  const prox = upcomingEfes(60).find((u) => efeInfo(u.e).rel.length);
+  box.innerHTML = `<div class="mz-h-t"><span class="mz-k">✨ Estudio creativo</span><h1>Motor creador</h1><p>Planificá la secuencia y el cuadernillo con tu estilo, miralo hoja por hoja y llevalo a Corel.</p>
+      <div class="mz-h-acts"><button class="btn primary mz-big" type="button" data-mzwiz>✨ Nuevo material</button><button class="btn" type="button" id="mzFoco" aria-pressed="${document.querySelector(".app").classList.contains("mz-foco")}">🎯 Modo foco</button></div></div>
+    <div class="mz-h-s">
+      <div class="mz-stat"><span>📝</span><b>${nf(hist.length)}</b><small>${hist.length === 1 ? "material planificado" : "materiales planificados"}</small></div>
+      ${g ? `<button class="mz-stat mz-gap" type="button" data-mzwizefe="${g.e[0]}"><span>${mzIcon(g.e[0])}</span><b>${esc(g.e[1])}</b><small>Sin material · faltan ${g.diff} días</small><em>Crear ahora →</em></button>` : ""}
+      ${prox ? `<div class="mz-stat"><span>${mzIcon(prox.e[0])}</span><b>${esc(prox.e[1])}</b><small>En ${prox.diff} días · ya tenés material</small></div>` : ""}
+      <div class="mz-stat"><span>${MODE.cloud ? "🤖" : "📋"}</span><b>${MODE.cloud ? "Con Claude" : "Versión web"}</b><small>${MODE.cloud ? "Escribe con tu estilo" : "Prepara el pedido para Claude"}</small></div>
+    </div>`;
+}
+document.addEventListener("click", (e) => {
+  if (e.target.closest("#mzFoco")) { const a = document.querySelector(".app"); a.classList.toggle("mz-foco"); e.target.closest("#mzFoco").setAttribute("aria-pressed", a.classList.contains("mz-foco")); if (a.classList.contains("mz-foco")) toast("Modo foco: tocá 🎯 de nuevo para volver al menú"); return; }
+  const w = e.target.closest("[data-mzwiz]"); if (w) { mzWizOpen(); return; }
+  const we = e.target.closest("[data-mzwizefe]"); if (we) { mzWizOpen(); mzElegirFecha(we.dataset.mzwizefe); mzPaso(2); }
+});
+
+// ---------- 1) Asistente paso a paso ----------
+function mzWizDlg() {
+  let d = $("#mzWiz"); if (d) return d;
+  d = document.createElement("dialog"); d.id = "mzWiz"; d.className = "mz-wiz"; d.setAttribute("aria-labelledby", "mzWizT"); document.body.appendChild(d);
+  d.addEventListener("click", mzWizClick); d.addEventListener("input", (e) => { if (e.target.id === "mzQ") { WZ.q = e.target.value; mzPasoRender(); const q = $("#mzQ"); q.focus(); q.setSelectionRange(q.value.length, q.value.length); } if (e.target.id === "mzOtra") { $("#moOtra").value = e.target.value; } if (e.target.id === "mzIdeas") $("#moIdeas").value = e.target.value; });
+  d.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.tagName !== "TEXTAREA" && e.target.id !== "mzQ") { e.preventDefault(); if (WZ.paso < 4) mzSiguiente(); } });
+  return d;
+}
+function mzWizOpen() { const d = mzWizDlg(); WZ.paso = 1; WZ.q = ""; if (typeof renderMotor === "function") { try { renderMotor(); } catch {} } mzPasoRender(); if (!d.open) d.showModal(); }
+function mzReq() { return motorRequest(); }
+function mzElegirFecha(k, otra) { const s = $("#moEfe"); if (k === "otra") { s.value = "otra"; $("#moOtra").value = otra || $("#moOtra").value; } else if ([...s.options].some((o) => o.value === k)) s.value = k; else { s.value = "otra"; $("#moOtra").value = otra || ""; } s.dispatchEvent(new Event("change")); $("#moOtraWrap").hidden = s.value !== "otra"; }
+function mzNivel(v) { const r = document.querySelector(`input[name="moNivel"][value="${v}"]`); if (r) { r.checked = true; r.dispatchEvent(new Event("change", { bubbles: true })); } }
+function mzPlantilla(id) { const p = MZ_PLANTILLAS.find((x) => x.id === id); if (!p) return; mzNivel(p.nivel); $("#moClases").value = String(p.clases); $("#moPags").value = String(p.pags); $("#moAcc").checked = p.acc; $("#moPlat").checked = p.plat; $("#moVenta").checked = p.venta; $("#moIdeas").value = p.ideas; WZ.plant = id; }
+function mzOk(paso) { const r = mzReq(); if (paso === 1) return !!r.efe; return true; }
+function mzSiguiente() { if (!mzOk(WZ.paso)) { toast(WZ.paso === 1 ? "Elegí una fecha o escribí el tema." : "Completá este paso."); return; } mzPaso(WZ.paso + 1); }
+function mzPaso(n) { WZ.paso = Math.max(1, Math.min(4, n)); mzPasoRender(); const b = $("#mzWiz .mz-w-body"); if (b) b.scrollTop = 0; }
+function mzPasoRender() {
+  const d = mzWizDlg(), r = mzReq(), P = WZ.paso;
+  const pasos = [["Fecha", "📅"], ["Nivel", "🎒"], ["Contenido", "🧩"], ["Tu toque", "✨"]];
+  let body = "";
+  if (P === 1) {
+    const hoy = startOfDay(new Date()); const q = fold(WZ.q || "");
+    const lista = upcomingEfes(366).filter((u, i, A) => A.findIndex((x) => x.e[0] === u.e[0]) === i).map((u) => ({ k: u.e[0], n: u.e[1], d: u.d, diff: u.diff, rel: efeInfo(u.e).rel, tm: null }));
+    const extra = (typeof MX_FECHAS_EXTRA !== "undefined" ? MX_FECHAS_EXTRA : []).filter(([k, n]) => !lista.some((x) => x.k === k && fold(x.n) === fold(n))).map(([k, n]) => { const d = nextDate(k); return { k, n, d, diff: Math.round((d - hoy) / DAY), rel: [], extra: true }; });
+    const todas = [...lista, ...extra].sort((a, b) => a.diff - b.diff).filter((x) => !q || fold(x.n).includes(q));
+    const sel = r.efeKey === "otra" ? null : r.efeKey;
+    body = `<div class="mz-plant"><h3>Empezá con una plantilla <small>(opcional)</small></h3><div class="mz-pl">${MZ_PLANTILLAS.map((p) => `<button type="button" class="mz-pl-i${WZ.plant === p.id ? " on" : ""}" data-mzplant="${p.id}"><span>${p.ic}</span><b>${esc(p.t)}</b><small>${esc(p.s)}</small></button>`).join("")}</div></div>
+      <div class="mz-w-sec"><div class="mz-w-sh"><h3>¿Para qué fecha es el material?</h3><input id="mzQ" type="search" placeholder="Buscar fecha…" value="${esc(WZ.q || "")}" autocomplete="off"></div>
+      <div class="mz-efes">${todas.map((x) => { const win = x.rel.length && x.diff <= 45; return `<button type="button" class="mz-efe${sel === x.k && !x.extra ? " on" : ""}${x.extra && r.efeKey === "otra" && fold($("#moOtra").value).startsWith(fold(x.n)) ? " on" : ""}" data-mzefe="${x.k}" ${x.extra ? `data-mzotra="${esc(x.n + " (" + x.k.split("-").reverse().join("/") + ")")}"` : ""}><span class="ic">${mzIcon(x.k)}</span><span class="dt"><b>${x.d.getDate()}</b>${esc(x.d.toLocaleDateString("es-AR", { month: "short" }).replace(".", ""))}</span><b class="nm">${esc(x.n)}</b><small>${x.diff === 0 ? "¡Hoy!" : `faltan ${x.diff} días`}</small>${x.rel.length ? `<em class="ok">Tenés ${x.rel.length}</em>` : `<em class="${x.extra ? "nv" : "gap"}">${x.extra ? "Fecha nueva" : "Sin material"}</em>`}${win ? `<i class="win">Ventana de compra</i>` : ""}</button>`; }).join("")}
+        <button type="button" class="mz-efe mz-otra${r.efeKey === "otra" && !todas.some((x) => x.extra && fold($("#moOtra").value).startsWith(fold(x.n))) ? " on" : ""}" data-mzefe="otra"><span class="ic">✍️</span><b class="nm">Otra fecha o tema</b><small>Escribilo vos</small></button></div>
+      ${r.efeKey === "otra" ? `<div class="field mz-otra-in"><label for="mzOtra">¿Cuál?</label><input id="mzOtra" maxlength="120" placeholder="Ej.: Día de la Familia" value="${esc($("#moOtra").value)}"></div>` : ""}</div>`;
+  } else if (P === 2) {
+    const nv = r.nivel; const niveles = [["Nivel Inicial", "🧸", "Salas de 3, 4 y 5"], ["Primaria – Primer Ciclo", "✏️", "1.º, 2.º y 3.º grado"], ["Primaria – Segundo Ciclo", "📚", "4.º a 7.º grado"], ["Secundaria", "🎓", "1.º a 5.º año"]];
+    body = `<div class="mz-w-sec"><h3>¿Para quiénes es?</h3><div class="mz-tiles">${niveles.map(([v, ic, s]) => `<button type="button" class="mz-tile${nv === v ? " on" : ""}" data-mznivel="${esc(v)}"><span>${ic}</span><b>${esc(mzNivelCorto(v))}</b><small>${s}</small></button>`).join("")}</div>
+      <div class="mz-row2"><div class="field"><label for="mzGrado">Sala o grado</label><select id="mzGrado">${[...$("#moGrado").options].map((o) => `<option${o.value === $("#moGrado").value ? " selected" : ""}>${esc(o.value)}</option>`).join("")}</select></div>
+      <div class="field"><label for="mzJur">Diseño curricular</label><select id="mzJur">${[...$("#moJur").options].map((o) => `<option${o.value === $("#moJur").value ? " selected" : ""}>${esc(o.value)}</option>`).join("")}</select></div></div></div>`;
+  } else if (P === 3) {
+    const pill = (id, vals, cur, fmt) => `<div class="mz-pills" data-mzsel="${id}">${vals.map((v) => `<button type="button" class="${String(cur) === String(v) ? "on" : ""}" data-v="${v}">${fmt(v)}</button>`).join("")}</div>`;
+    const tog = (id, ic, t, s) => `<label class="mz-tog"><input type="checkbox" data-mzchk="${id}" ${$("#" + id).checked ? "checked" : ""}><span class="ic">${ic}</span><span><b>${t}</b><small>${s}</small></span><i aria-hidden="true"></i></label>`;
+    body = `<div class="mz-w-sec"><h3>¿Cuántas clases?</h3>${pill("moClases", [4, 5, 6, 8], r.clases, (v) => `<b>${v}</b><small>clases</small>`)}
+      <h3>¿Cuántas páginas tiene el cuadernillo?</h3>${pill("moPags", [12, 18, 24, 30], r.pags, (v) => `<b>${v}</b><small>${v <= 12 ? "liviano" : v <= 18 ? "estándar" : v <= 24 ? "completo" : "extendido"}</small>`)}
+      <h3>Incluir</h3><div class="mz-togs">${tog("moAcc", "♿", "Adaptaciones accesibles", "Apoyos visuales y consignas adaptadas (DUA)")}${tog("moPlat", "🎮", "Ideas para plataforma interactiva", "Juegos para la versión digital")}${tog("moVenta", "🛒", "Texto de venta para la web", "Descripción, qué incluye y texto para la tienda")}</div></div>`;
+  } else {
+    const cambio = (p) => `<button type="button" class="linkish" data-mzir="${p}">Cambiar</button>`;
+    body = `<div class="mz-w-sec"><h3>¿Querés pedirle algo especial?</h3><textarea id="mzIdeas" rows="4" maxlength="600" placeholder="Ej.: que tenga un recortable del rancho criollo y una actividad con el poncho">${esc($("#moIdeas").value)}</textarea>
+      <div class="mz-sug">${MZ_SUG.map((s) => `<button type="button" data-mzsug="${esc(s)}">+ ${esc(s)}</button>`).join("")}</div></div>
+      <div class="mz-res"><div class="mz-res-ic">${mzIcon(r.efeKey)}</div><div class="mz-res-l">
+        <div><span>Fecha</span><b>${esc(r.efe || "—")}${r.fecha ? ` · ${esc(r.fecha)}` : ""}</b>${cambio(1)}</div>
+        <div><span>Para</span><b>${esc(mzNivelCorto(r.nivel))} · ${esc(r.grado)} · ${esc(r.jur)}</b>${cambio(2)}</div>
+        <div><span>Contenido</span><b>${r.clases} clases · ${r.pags} páginas${r.acc ? " · accesible" : ""}${r.plat ? " · plataforma" : ""}${r.venta ? " · texto de venta" : ""}</b>${cambio(3)}</div></div></div>`;
+  }
+  d.innerHTML = `<div class="mz-w">
+    <header class="mz-w-h"><div><span class="mz-k">Nuevo material</span><h2 id="mzWizT">${["", "Elegí la fecha", "Nivel y grado", "Qué va a tener", "Tu toque final"][P]}</h2></div>
+      <ol class="mz-steps">${pasos.map(([t, ic], i) => `<li class="${i + 1 < P ? "done" : i + 1 === P ? "cur" : ""}"><button type="button" data-mzir="${i + 1}"${i + 1 > P && !mzOk(1) ? " disabled" : ""}><span>${i + 1 < P ? "✓" : ic}</span>${t}</button></li>`).join("")}</ol>
+      <button class="vx-x" type="button" data-mzcerrar aria-label="Cerrar">✕</button></header>
+    <div class="mz-w-body">${body}</div>
+    <footer class="mz-w-f"><button class="btn" type="button" data-mzatras ${P === 1 ? "disabled" : ""}>← Atrás</button><span class="mz-w-p"><i style="width:${P / 4 * 100}%"></i></span>${P < 4 ? `<button class="btn primary" type="button" data-mzsig>Siguiente →</button>` : `<button class="btn primary mz-big" type="button" data-mzcrear>✨ Crear material</button>`}</footer></div>`;
+}
+function mzWizClick(e) {
+  const d = $("#mzWiz"); const t = e.target;
+  if (t === d || t.closest("[data-mzcerrar]")) { d.close(); return; }
+  const pl = t.closest("[data-mzplant]"); if (pl) { mzPlantilla(pl.dataset.mzplant); toast("Plantilla aplicada: ahora elegí la fecha"); mzPasoRender(); return; }
+  const ef = t.closest("[data-mzefe]"); if (ef) { mzElegirFecha(ef.dataset.mzefe, ef.dataset.mzotra); mzPasoRender(); if (ef.dataset.mzefe !== "otra") setTimeout(() => mzPaso(2), 220); else setTimeout(() => { const i = $("#mzOtra"); if (i) i.focus(); }, 30); return; }
+  const nv = t.closest("[data-mznivel]"); if (nv) { mzNivel(nv.dataset.mznivel); mzPasoRender(); return; }
+  const ps = t.closest("[data-mzsel] button"); if (ps) { const id = ps.closest("[data-mzsel]").dataset.mzsel; $("#" + id).value = ps.dataset.v; mzPasoRender(); return; }
+  const sg = t.closest("[data-mzsug]"); if (sg) { const ta = $("#mzIdeas"); ta.value = (ta.value.trim() ? ta.value.trim().replace(/[.,;]?$/, ", ") : "") + sg.dataset.mzsug; $("#moIdeas").value = ta.value; sg.disabled = true; return; }
+  const ir = t.closest("[data-mzir]"); if (ir) { mzPaso(+ir.dataset.mzir); return; }
+  if (t.closest("[data-mzatras]")) { mzPaso(WZ.paso - 1); return; }
+  if (t.closest("[data-mzsig]")) { mzSiguiente(); return; }
+  if (t.closest("[data-mzcrear]")) { const r = mzReq(); if (!r.efe) { mzPaso(1); toast("Elegí la fecha."); return; } d.close(); $("#moGo").click(); }
+}
+document.addEventListener("change", (e) => {
+  if (e.target.id === "mzGrado") $("#moGrado").value = e.target.value;
+  if (e.target.id === "mzJur") { $("#moJur").value = e.target.value; $("#moJur").dispatchEvent(new Event("change")); }
+  const c = e.target.closest && e.target.closest("[data-mzchk]"); if (c) $("#" + c.dataset.mzchk).checked = c.checked;
+});
+
+// ---------- 2) Generación en vivo ----------
+const MZL = { ctl: null, t0: 0, timer: null, fase: "", clases: [], pags: [], total: { c: 5, p: 18 } };
+function mzLiveStart(r, label) {
+  MZL.ctl = new AbortController(); MZL.t0 = Date.now(); MZL.fase = "plan"; MZL.clases = []; MZL.pags = []; MZL.total = { c: r.clases || 5, p: r.pags || 18 }; MZL.label = label || "";
+  let box = $("#mzLive"); if (!box) { box = document.createElement("section"); box.id = "mzLive"; box.className = "mz-live"; box.setAttribute("aria-live", "polite"); $("#moOut").prepend(box); }
+  box.hidden = false; $("#moEmpty").hidden = true; mzLiveRender();
+  clearInterval(MZL.timer); MZL.timer = setInterval(mzLiveRender, 1000);
+  box.scrollIntoView({ behavior: RM ? "auto" : "smooth", block: "start" });
+}
+const mzCampos = (txt, campo) => [...String(txt).matchAll(new RegExp(`"${campo}"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"`, "g"))].map((m) => m[1].replace(/\\"/g, '"').replace(/\\n/g, " "));
+function mzOnText(fase) { return ({ text }) => {
+  if (fase === "plan") { const ts = mzCampos(text, "titulo"); MZL.clases = ts.slice(1); MZL.plTitulo = ts[0]; }
+  else { MZL.pags = mzCampos(text, "titulo"); MZL.secs = mzCampos(text, "seccion"); }
+  MZL.chars = text.length; mzLiveRender(); }; }
+function mzLiveFase(f) { MZL.fase = f; mzLiveRender(); }
+function mzLiveRender() {
+  const box = $("#mzLive"); if (!box || box.hidden) return;
+  const seg = Math.round((Date.now() - MZL.t0) / 1000), mm = Math.floor(seg / 60), ss = String(seg % 60).padStart(2, "0");
+  const f = MZL.fase, nc = Math.min(MZL.clases.length, MZL.total.c), np = Math.min(MZL.pags.length, MZL.total.p);
+  const pct = f === "plan" ? 6 + 34 * nc / MZL.total.c : f === "pags" ? 42 + 50 * np / MZL.total.p : f === "qa" ? 96 : 100;
+  const etapas = [["plan0", "Leyendo la fecha, el diseño curricular y tus modelos", f !== "plan" || nc > 0 || MZL.chars > 0], ["plan", `Planificando las ${MZL.total.c} clases`, f !== "plan"], ["pags", `Escribiendo las ${MZL.total.p} páginas del cuadernillo`, f === "qa" || f === "fin"], ["qa", "Control de calidad y guardado", f === "fin"]];
+  const curI = f === "plan" ? (nc ? 1 : 0) : f === "pags" ? 2 : 3;
+  const ahora = f === "plan" ? (nc ? `Clase ${nc}: ${MZL.clases[nc - 1]}` : MZL.chars ? "Armando la fundamentación y los propósitos…" : "Claude está pensando… (puede tardar hasta un minuto)") : f === "pags" ? (np ? `Página ${np}: ${MZL.pags[np - 1]}` : "Preparando la diagramación de las páginas…") : f === "qa" ? "Revisando y guardando…" : "¡Listo!";
+  box.innerHTML = `<div class="mz-live-h"><div class="mz-orb" aria-hidden="true"><i></i><i></i><i></i></div><div><span class="mz-k">${esc(MZL.label || "Creando tu material")}</span><b>${esc(ahora)}</b></div><span class="mz-time">${mm}:${ss}</span>${f !== "fin" ? `<button class="btn small" type="button" id="mzStop">Detener</button>` : ""}</div>
+    <div class="mz-bar"><i style="width:${pct.toFixed(1)}%"></i></div>
+    <ol class="mz-et">${etapas.map(([k, t, done], i) => `<li class="${done ? "done" : i === curI ? "cur" : ""}"><span>${done ? "✓" : i + 1}</span>${esc(t)}</li>`).join("")}</ol>
+    <div class="mz-live-g">${MZL.clases.length ? `<div><h4>Clases</h4>${MZL.clases.slice(0, MZL.total.c).map((t, i) => `<div class="mz-li" style="--d:${i * 40}ms"><span>${i + 1}</span>${esc(t)}</div>`).join("")}</div>` : ""}
+      ${MZL.pags.length ? `<div><h4>Páginas</h4><div class="mz-mini">${MZL.pags.slice(0, MZL.total.p).map((t, i) => `<div class="mz-mp" title="${esc(t)}" style="--d:${i * 30}ms"><b>${i + 1}</b><span>${esc(t)}</span></div>`).join("")}</div></div>` : ""}</div>`;
+}
+function mzLiveEnd(ok) { clearInterval(MZL.timer); const box = $("#mzLive"); if (!box) return; if (ok) { MZL.fase = "fin"; mzLiveRender(); setTimeout(() => { box.classList.add("mz-out"); setTimeout(() => { box.hidden = true; box.classList.remove("mz-out"); }, 400); }, 1800); } else box.hidden = true; }
+document.addEventListener("click", (e) => { if (e.target.closest("#mzStop") && MZL.ctl) { MZL.ctl.abort(); toast("Generación detenida."); } });
+
+// ---------- 4 y 5) Vista previa A4 y tapas ----------
+const MZ_TAPAS = [["clasica", "Clásica"], ["patria", "Patria"], ["moderna", "Moderna"]];
+const svgEsc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function mzPartir(t, max) { const w = String(t).split(/\s+/), L = []; let c = ""; w.forEach((x) => { if ((c + " " + x).trim().length > max && c) { L.push(c); c = x; } else c = (c + " " + x).trim(); }); if (c) L.push(c); return L; }
+function mzTapaSVG(c, diseno) {
+  const p = c.plan || {}, r = c.req || {}, titulo = String(p.efemeride || c.efe || c.titulo || "").toUpperCase(), fecha = (p.fecha || r.fecha || "").trim();
+  const fechaTxt = fecha && /^\d{1,2}\/\d{1,2}$/.test(fecha) ? (() => { const [d, m] = fecha.split("/").map(Number); return `${d} DE ${MESES[m - 1].toUpperCase()}`; })() : fecha.toUpperCase();
+  const nivel = mzNivelCorto(c.nivel || r.nivel || ""), logo = mzLogo();
+  const lineas = mzPartir(titulo, diseno === "moderna" ? 14 : 16).slice(0, 4), fs = lineas.length > 2 ? 44 : 54;
+  const F = `font-family="Fredoka, 'Baloo 2', 'Arial Rounded MT Bold', sans-serif"`;
+  const ilu = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="22" fill="#F5F8FF" stroke="#9AB6E6" stroke-width="2.5" stroke-dasharray="10 8"/><text x="${x + w / 2}" y="${y + h / 2 - 6}" text-anchor="middle" font-size="40">${mzIcon(r.efeKey)}</text><text x="${x + w / 2}" y="${y + h / 2 + 30}" text-anchor="middle" font-size="14" fill="#6C7FA6" font-family="Arial, sans-serif">ILUSTRACIÓN PRINCIPAL</text>`;
+  const pie = `${logo ? `<image href="${logo}" x="246" y="770" width="40" height="40"/>` : ""}<text x="${logo ? 292 : 297.5}" y="797" ${logo ? "" : 'text-anchor="middle"'} font-size="15" font-weight="700" fill="#1A2744" ${F}>COFRE DIDÁCTICO</text>`;
+  let s = "";
+  if (diseno === "patria") {
+    s = `<rect width="595" height="842" fill="#fff"/><rect x="0" y="0" width="595" height="58" fill="#74ACDF"/><rect x="0" y="58" width="595" height="22" fill="#fff"/><rect x="0" y="80" width="595" height="26" fill="#74ACDF"/>
+      ${Array.from({ length: 12 }, (_, i) => `<path d="M${i * 50},106 l25,34 l25,-34z" fill="${["#74ACDF", "#fff", "#F6B40E"][i % 3]}" stroke="#74ACDF" stroke-width="1"/>`).join("")}
+      ${logo ? `<image href="${logo}" x="24" y="8" width="44" height="44"/>` : ""}
+      ${fechaTxt ? `<rect x="147" y="176" width="301" height="46" rx="23" fill="#1E5BB8"/><text x="297.5" y="207" text-anchor="middle" font-size="22" font-weight="700" fill="#fff" ${F}>${svgEsc(fechaTxt)}</text>` : ""}
+      ${lineas.map((l, i) => `<text x="297.5" y="${282 + i * (fs + 6)}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="#1E5BB8" ${F}>${svgEsc(l)}</text>`).join("")}
+      ${ilu(112, 304 + lineas.length * (fs + 6), 371, Math.min(300, 720 - (304 + lineas.length * (fs + 6))))}
+      <rect x="0" y="736" width="595" height="106" fill="#74ACDF"/><rect x="0" y="752" width="595" height="74" fill="#fff"/><text x="297.5" y="${logo ? 822 : 800}" text-anchor="middle" font-size="13" font-weight="700" fill="#1E5BB8" ${F}>${svgEsc("CUADERNILLO DE ACTIVIDADES · " + nivel.toUpperCase())}</text>${pie.replace(/y="770"/, 'y="756"').replace(/y="797"/, 'y="783"')}`;
+  } else if (diseno === "moderna") {
+    s = `<rect width="595" height="842" fill="#FFF9F2"/><path d="M0,0 H595 V250 L0,360 Z" fill="#1E5BB8"/><path d="M0,360 L595,250 V285 L0,395 Z" fill="#F28C28"/><circle cx="520" cy="70" r="90" fill="#2E73D6" opacity=".6"/><circle cx="60" cy="300" r="30" fill="#F6B40E" opacity=".8"/>
+      ${logo ? `<image href="${logo}" x="34" y="30" width="54" height="54"/>` : ""}
+      ${fechaTxt ? `<text x="40" y="128" font-size="20" font-weight="700" fill="#FFD27A" ${F} letter-spacing="2">${svgEsc(fechaTxt)}</text>` : ""}
+      ${lineas.map((l, i) => `<text x="40" y="${178 + i * (fs + 4)}" font-size="${fs}" font-weight="700" fill="#fff" ${F}>${svgEsc(l)}</text>`).join("")}
+      ${ilu(90, 420, 415, 290)}
+      <rect x="40" y="732" width="${Math.max(160, nivel.length * 13 + 40)}" height="40" rx="20" fill="#F28C28"/><text x="${40 + Math.max(160, nivel.length * 13 + 40) / 2}" y="758" text-anchor="middle" font-size="17" font-weight="700" fill="#fff" ${F}>${svgEsc(nivel.toUpperCase())}</text>
+      <text x="555" y="758" text-anchor="end" font-size="13" font-weight="700" fill="#1A2744" ${F}>CUADERNILLO DE ACTIVIDADES</text>${pie.replace('x="246"', 'x="40"').replace(/x="292"/, 'x="86"').replace(/y="770"/, 'y="786"').replace(/y="797"/, 'y="813"')}`;
+  } else {
+    s = `<rect width="595" height="842" fill="#fff"/><rect x="18" y="18" width="559" height="806" rx="26" fill="none" stroke="#1A2744" stroke-width="2"/>
+      ${logo ? `<image href="${logo}" x="38" y="34" width="58" height="58"/>` : ""}<text x="555" y="62" text-anchor="end" font-size="34">${mzIcon(r.efeKey)}</text>
+      ${fechaTxt ? `<path d="M120,120 H475 L455,146 L475,172 H120 L140,146 Z" fill="#1E5BB8"/><text x="297.5" y="154" text-anchor="middle" font-size="22" font-weight="700" fill="#fff" ${F}>${svgEsc(fechaTxt)}</text>` : ""}
+      ${lineas.map((l, i) => `<text x="297.5" y="${236 + i * (fs + 6)}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="#D7263D" stroke="#fff" stroke-width="1" ${F}>${svgEsc(l)}</text>`).join("")}
+      ${ilu(92, 262 + lineas.length * (fs + 6), 411, Math.min(330, 684 - (262 + lineas.length * (fs + 6))))}
+      <rect x="120" y="700" width="355" height="44" rx="22" fill="#FFF1E3" stroke="#F28C28" stroke-width="2"/><text x="297.5" y="728" text-anchor="middle" font-size="15" font-weight="700" fill="#C25A0A" ${F}>${svgEsc("CUADERNILLO DE ACTIVIDADES · " + nivel.toUpperCase())}</text>${pie}`;
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 842" width="595" height="842">${s}</svg>`;
+}
+function mzConsigna(t) { const s = String(t || "").toUpperCase(); return esc(s).replace(/(^|[.!?]\s+)([A-ZÁÉÍÓÚÑÜ]+)/g, (m, a, b) => `${a}<b>${b}</b>`); }
+function mzContenido(t) {
+  const L = String(t || "").split(/\n+/).map((x) => x.trim()).filter(Boolean).slice(0, 14);
+  return L.map((x) => /^([-•*✔]|\d+[.)])\s*/.test(x) ? `<li>${esc(x.replace(/^([-•*✔]|\d+[.)])\s*/, ""))}</li>` : `<p>${esc(x)}</p>`).join("").replace(/(<li>.*?<\/li>)+/g, (m) => `<ul>${m}</ul>`);
+}
+function mzPaginaHTML(c, g, i) {
+  if (i === 0 || /portada/i.test(g.seccion || "")) return `<div class="a4 a4-tapa">${mzTapaSVG(c, c.tapa || "clasica")}</div>`;
+  const logo = mzLogo(), ic = mzIcon((c.req || {}).efeKey);
+  return `<div class="a4"><div class="a4-in">
+    <div class="a4-top">${logo ? `<img src="${logo}" alt="">` : "<span></span>"}<span class="a4-ic">${ic}</span></div>
+    <h3 class="a4-t">${esc(String(g.titulo || g.seccion || "").toUpperCase())}</h3>
+    ${g.consigna ? `<p class="a4-c"><span class="flor">✿</span>${mzConsigna(g.consigna)}</p>` : ""}
+    <div class="a4-box">${g.contenido ? mzContenido(g.contenido) : ""}${g.juego ? `<p class="a4-j">🧩 ${esc((typeof GAME_TIPOS !== "undefined" && GAME_TIPOS[g.juego.tipo]) || "Juego")}: se arma en “Juegos listos para Corel”.</p>` : ""}</div>
+    ${g.ilustracion ? `<div class="a4-ilu">🎨 ${esc(g.ilustracion).slice(0, 140)}</div>` : ""}
+    ${g.solucion ? `<div class="a4-sol"><span>RESPUESTAS: ${esc(String(g.solucion).slice(0, 160))}</span></div>` : ""}
+    <div class="a4-pie">${logo ? `<img src="${logo}" alt="">` : ""}COFRE DIDÁCTICO <span>· ${esc(g.n || i + 1)}</span></div>
+    <span class="a4-v">COFRE DIDÁCTICO</span></div></div>`;
+}
+function mzPaginas(c) { const P = (c.extra && c.extra.paginas) || []; if (!P.length) return []; return /portada/i.test(P[0].seccion || "") ? P : [{ n: 0, seccion: "Portada", titulo: "Portada" }, ...P]; }
+function mzPrevRender() {
+  const box = $("#moPrev"); if (!box || !motorCur) return; const c = motorCur, P = mzPaginas(c);
+  if (!P.length) { box.innerHTML = `<header class="dh"><small>Vista previa</small><h2>${esc(c.titulo || c.efe)}</h2></header><p class="muted">${motorBusy ? "Escribiendo las páginas… la vista previa aparece cuando terminen." : "Todavía no hay páginas para este material."}</p>`; return; }
+  box.innerHTML = `<header class="dh"><small>Vista previa · ${P.length} páginas A4</small><h2>${esc(c.plan && c.plan.titulo || c.titulo || c.efe)}</h2><span>Así se vería con tu diagramación. Tocá una hoja para hojearla en grande.</span></header>
+    <div class="mz-tapas"><b>Diseño de tapa</b>${MZ_TAPAS.map(([k, t]) => `<button type="button" class="mz-tp${(c.tapa || "clasica") === k ? " on" : ""}" data-mztapa="${k}"><span class="mz-tp-m">${mzTapaSVG(c, k)}</span>${t}</button>`).join("")}
+      <div class="mz-tp-dl"><button class="btn small" type="button" data-mztapadl="svg">⬇ Tapa en SVG (Corel)</button><button class="btn small" type="button" data-mztapadl="png">⬇ Tapa en PNG</button></div></div>
+    <div class="mz-hojas">${P.map((g, i) => `<button type="button" class="mz-hoja" data-mzhoja="${i}" style="--d:${Math.min(i, 20) * 35}ms" aria-label="Página ${i + 1}: ${esc(g.titulo || "")}"><span class="mz-hoja-a">${mzPaginaHTML(c, g, i)}</span><small>${i + 1} · ${esc(g.seccion || g.titulo || "")}</small></button>`).join("")}</div>`;
+}
+function mzLibro(i) {
+  const c = motorCur, P = mzPaginas(c); if (!P.length) return;
+  let d = $("#mzLibro"); if (!d) { d = document.createElement("dialog"); d.id = "mzLibro"; d.className = "mz-libro"; document.body.appendChild(d);
+    d.addEventListener("click", (e) => { if (e.target === d || e.target.closest("[data-mzlx]")) d.close(); const n = e.target.closest("[data-mzln]"); if (n) mzLibro(+n.dataset.mzln); });
+    d.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") mzLibro(Math.min(d._i + 1, mzPaginas(motorCur).length - 1)); if (e.key === "ArrowLeft") mzLibro(Math.max(d._i - 1, 0)); });
+    let x0 = null; d.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true }); d.addEventListener("touchend", (e) => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) mzLibro(Math.max(0, Math.min(mzPaginas(motorCur).length - 1, d._i + (dx < 0 ? 1 : -1)))); x0 = null; }); }
+  const dir = d._i == null ? 0 : i > d._i ? 1 : i < d._i ? -1 : 0; d._i = i; const g = P[i];
+  d.innerHTML = `<div class="mz-lb"><header><b>${esc(g.titulo || g.seccion || "Página")}</b><span>${i + 1} de ${P.length}</span><button class="vx-x" type="button" data-mzlx aria-label="Cerrar">✕</button></header>
+    <div class="mz-lb-s"><button class="mz-nav" type="button" data-mzln="${Math.max(0, i - 1)}" ${i ? "" : "disabled"} aria-label="Anterior">‹</button><div class="mz-lb-p ${dir > 0 ? "der" : dir < 0 ? "izq" : ""}">${mzPaginaHTML(c, g, i)}</div><button class="mz-nav" type="button" data-mzln="${Math.min(P.length - 1, i + 1)}" ${i < P.length - 1 ? "" : "disabled"} aria-label="Siguiente">›</button></div>
+    <div class="mz-lb-t">${P.map((x, k) => `<button type="button" class="${k === i ? "on" : ""}" data-mzln="${k}" aria-label="Página ${k + 1}">${k + 1}</button>`).join("")}</div></div>`;
+  if (!d.open) d.showModal(); mzLibroAjustar(); const on = d.querySelector(".mz-lb-t .on"); if (on) on.scrollIntoView({ block: "nearest", inline: "center" });
+}
+document.addEventListener("click", async (e) => {
+  const h = e.target.closest("[data-mzhoja]"); if (h) { mzLibro(+h.dataset.mzhoja); return; }
+  const tp = e.target.closest("[data-mztapa]"); if (tp && motorCur) { motorCur.tapa = tp.dataset.mztapa; mzPrevRender(); try { await saveMotor(); } catch {} return; }
+  const dl = e.target.closest("[data-mztapadl]"); if (dl && motorCur) { const svg = mzTapaSVG(motorCur, motorCur.tapa || "clasica"), nom = `Tapa - ${String(motorCur.plan && motorCur.plan.efemeride || motorCur.efe || "material").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9 .,()-]/g, "").trim()}`;
+    try {
+      if (dl.dataset.mztapadl === "svg") { await saveFile(nom + ".svg", new Blob([svg], { type: "image/svg+xml" })); return; }
+      const im = new Image(); im.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg); await im.decode();
+      const cv = document.createElement("canvas"); cv.width = 1785; cv.height = 2526; const x = cv.getContext("2d"); x.drawImage(im, 0, 0, cv.width, cv.height);
+      const blob = await new Promise((ok) => cv.toBlob(ok, "image/png")); await saveFile(nom + ".png", blob);
+    } catch (err) { toast("No se pudo descargar la tapa."); } }
+});
+
+function mzLibroAjustar() { const d = $("#mzLibro"); if (!d || !d.open) return; const st = d.querySelector(".mz-lb-s"), pe = d.querySelector(".mz-lb-p"); if (!st || !pe) return;
+  const ancho = st.clientWidth - (innerWidth < 760 ? 16 : 130), alto = st.clientHeight - 8, h = Math.max(200, Math.min(alto, ancho * 842 / 595));
+  pe.style.height = h + "px"; pe.style.width = (h * 595 / 842) + "px"; const a = pe.querySelector(".a4"); if (a) a.style.transform = `scale(${h / 842})`; }
+addEventListener("resize", mzLibroAjustar);
+
 function niceStep(v){ if(v<=0) return 1; const p=Math.pow(10,Math.floor(Math.log10(v))); const n=v/p; return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p; }
 document.querySelectorAll("[data-rank]").forEach(b=>b.addEventListener("click",()=>{ rankMode=b.dataset.rank; document.querySelectorAll("[data-rank]").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); renderRank(); }));
 function rankData(){
@@ -4429,6 +4873,7 @@ function renderMotor(){
     s.innerHTML=ordered.map(e=>`<option value="${e[0]}">${esc(e[0].split("-").reverse().join("/"))} · ${esc(e[1])}${efeInfo(e).rel.length?"":" (sin material)"}</option>`).join("")+`<option value="otra">Otra fecha o tema…</option>`;
     const firstGap=ordered.find(e=>!efeInfo(e).rel.length); if(firstGap) s.value=firstGap[0];
   }
+  mzHero();
   const ta=$("#moPerfil"); if(document.activeElement!==ta){ ta.value=motorPerfil(); $("#moPerfilSave").disabled=true; }
   renderMotorHist(); renderLearn(); renderFichaLine();
   if(motorCur) renderMotorDoc();
@@ -4503,26 +4948,26 @@ Respondé SOLO con JSON válido:
 }
 function motorProgress(on,txt){ const m=$("#moMsg"); if(on){ m.innerHTML=`<span class="gen-progress"><i></i></span><span style="display:block;margin-top:6px">${esc(txt)}</span>`; } else m.textContent=txt||""; }
 async function getSample(){ if(!MODE.cloud) return null; if(!sampleFn){ try{ sampleFn=await claude.use("sample"); }catch{ sampleFn=null; } } return sampleFn; }
-function sampleErr(e){ const c=e&&e.code; return c==="not_granted"?"No diste permiso para que el panel use Claude. Podés habilitarlo desde el menú de permisos del panel.":c==="rate_limited"?"Claude está ocupado. Probá de nuevo en un rato.":c==="invalid_json"?"La respuesta salió incompleta. Probá de nuevo o pedí menos páginas.":"No se pudo completar. Probá de nuevo."; }
+function sampleErr(e){ const c=e&&e.code; if(c==="aborted"||c==="abort"||(e&&e.name==="AbortError")) return "Detuviste la generación."; return c==="not_granted"?"No diste permiso para que el panel use Claude. Podés habilitarlo desde el menú de permisos del panel.":c==="rate_limited"?"Claude está ocupado. Probá de nuevo en un rato.":c==="invalid_json"?"La respuesta salió incompleta. Probá de nuevo o pedí menos páginas.":"No se pudo completar. Probá de nuevo."; }
 async function runMotor(r,o={}){
   const sf=await getSample(); if(!sf) return false;
-  motorBusy=true; $("#moGo").disabled=true; const L=o.label?o.label+" · ":""; let cur=null;
+  motorBusy=true; $("#moGo").disabled=true; const L=o.label?o.label+" · ":""; let cur=null; mzLiveStart(r,o.label);
   try{
     const req={...r,ctx:o.ctx||""};
     motorProgress(true,L+"Planificando la secuencia didáctica… (1 de 2)");
-    const plan=await sf.json(promptPlan(req),{cache:false,modelTier:"complex"});
+    const plan=await sf.json(promptPlan(req),{cache:false,modelTier:"complex",onText:mzOnText("plan"),signal:MZL.ctl.signal});
     if(!plan||!plan.clases) throw {code:"invalid_json"};
     const {ctx,...reqSave}=req;
     cur={titulo:plan.titulo||r.efe,efe:r.efe,nivel:r.nivel,req:reqSave,plan,extra:null,creado:new Date().toISOString(),modelos:pickEjemplos(r).map(b=>b.titulo)}; if(o.grupo) cur.grupo=o.grupo;
-    motorCur=cur; motorTab="sec"; renderMotorDoc();
+    motorCur=cur; motorTab="sec"; $("#moSec").classList.add("mz-fresh"); renderMotorDoc(); setTimeout(()=>$("#moSec").classList.remove("mz-fresh"),1500); mzLiveFase("pags");
     motorProgress(true,L+"Escribiendo el contenido de cada página… (2 de 2)");
-    const extra=await sf.json(promptPages(req,plan),{cache:false,modelTier:"complex"});
+    const extra=await sf.json(promptPages(req,plan),{cache:false,modelTier:"complex",onText:mzOnText("pags"),signal:MZL.ctl.signal});
     if(!extra||!extra.paginas) throw {code:"invalid_json",partial:true};
-    cur.extra=extra; if(motorCur===cur) renderMotorDoc();
-    await saveMotor(cur);
+    cur.extra=extra; if(motorCur===cur) renderMotorDoc(); mzLiveFase("qa"); const dt=$("#mzPrevDot"); if(dt) dt.hidden=false;
+    await saveMotor(cur); mzLiveEnd(true);
     if(!o.label) motorProgress(false,"Listo. Quedó guardado en “Materiales planificados”. Mirá el control de calidad arriba del documento.");
     return true;
-  }catch(e){ motorProgress(false,L+(cur&&cur.plan&&!cur.extra?"La secuencia quedó lista, pero falló el contenido de las páginas. ":"")+sampleErr(e)); if(cur&&cur.plan) await saveMotor(cur); return false; }
+  }catch(e){ mzLiveEnd(false); motorProgress(false,L+(cur&&cur.plan&&!cur.extra?"La secuencia quedó lista, pero falló el contenido de las páginas. ":"")+sampleErr(e)); if(cur&&cur.plan) await saveMotor(cur); return false; }
   finally{ motorBusy=false; $("#moGo").disabled=false; }
 }
 $("#moGo").addEventListener("click",async()=>{
@@ -4578,7 +5023,7 @@ function renderMotorDoc(){
   const c=motorCur; if(!c||!c.plan) return; const p=c.plan;
   $("#moEmpty").hidden=true; $("#moDoc").hidden=false;
   document.querySelectorAll("[data-mtab]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mtab===motorTab)));
-  $("#moSec").hidden=motorTab!=="sec"; $("#moPag").hidden=motorTab!=="pag"; $("#moExtra").hidden=motorTab!=="extra"; $("#moIlu").hidden=motorTab!=="ilu";
+  $("#moSec").hidden=motorTab!=="sec"; $("#moPag").hidden=motorTab!=="pag"; $("#moExtra").hidden=motorTab!=="extra"; $("#moIlu").hidden=motorTab!=="ilu"; $("#moPrev").hidden=motorTab!=="prev"; if(motorTab==="prev"){ mzPrevRender(); const dt=$("#mzPrevDot"); if(dt) dt.hidden=true; }
   $("#moBoc").disabled=!c.extra; $("#moVchips").innerHTML=versionChips(c); renderQA(); if(motorTab==="ilu") renderIlus();
   const d=p.datos||{}, al=p.alineacion;
   $("#moSec").innerHTML=`<header class="dh"><small>Secuencia didáctica</small><h2>${esc(p.efemeride||c.efe)}</h2><span>${esc([p.fecha,p.nivel||c.nivel,c.req&&c.req.grado,c.req&&c.req.jur].filter(Boolean).join(" · "))}</span>${c.modelos&&c.modelos.length?`<div class="modelos">Tomó como modelo: ${esc(c.modelos.join(" y "))}</div>`:""}</header>
