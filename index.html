@@ -1567,10 +1567,30 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 .is-sem i{width:9px;height:9px;border-radius:50%;background:#4AAE4F}.is-sem.warn i{background:#F6B40E}.is-sem.no i{background:#D7263D}
 .is-rev-f{margin:0;font-size:12.5px;padding:8px 10px;border-radius:10px;background:var(--surface-2)}.is-rev-f.ok{background:color-mix(in srgb,#4AAE4F 12%,var(--surface))}.is-rev-f.no{background:color-mix(in srgb,#D7263D 12%,var(--surface))}.is-rev-f.warn{background:color-mix(in srgb,#F6B40E 14%,var(--surface))}
 .is-body>.is-sec+.is-sec{margin-top:22px}
-#isColorPrev canvas.is-colcv{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;border:1px solid var(--line);border-radius:12px;background:#fff}
 .is-escs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 .is-esc{display:grid;gap:1px;text-align:left;padding:8px 10px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
 .is-esc b{font-size:12.5px}.is-esc small{font-size:11px;color:var(--muted)}.is-esc.on{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset;background:color-mix(in srgb,var(--blue) 10%,var(--surface))}
+.is-presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.is-col input[type=range]{width:100%;accent-color:var(--blue)}.is-col label output{float:right;font-weight:800;color:var(--blue)}
+.is-ia{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface)}.is-ia summary{cursor:pointer;font-weight:700;font-size:13px}
+.is-gen{display:grid;gap:14px}.is-gen-img{position:relative;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.is-gen-img img{display:block;width:100%;max-height:52vh;object-fit:contain;filter:saturate(.4) brightness(1.05)}
+.is-scan{position:absolute;left:0;right:0;top:0;height:28%;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--blue) 35%,transparent) 70%,var(--blue) 98%,transparent);animation:isScan 1.6s ease-in-out infinite alternate;will-change:transform}
+@keyframes isScan{from{transform:translateY(-100%)}to{transform:translateY(360%)}}
+.is-pasos{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13px}.is-pasos li{display:flex;gap:8px;align-items:center;color:var(--muted)}
+.is-pasos li::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid var(--line);flex:none}
+.is-pasos li.on{color:var(--ink);font-weight:700}.is-pasos li.on::before{border-color:var(--blue);border-top-color:transparent;animation:isGira .8s linear infinite}
+.is-pasos li.ok{color:var(--ink)}.is-pasos li.ok::before{content:"✓";display:grid;place-items:center;font-size:10px;color:#fff;background:#4AAE4F;border-color:#4AAE4F}
+@keyframes isGira{to{transform:rotate(360deg)}}
+.is-cmp{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;touch-action:pan-y}
+.is-cmp-res canvas.is-colcv{display:block;width:100%;height:auto;max-height:62vh;object-fit:contain}
+.is-cmp-orig{position:absolute;inset:0;width:100%;height:100%;clip-path:inset(0 calc(100% - var(--cut)) 0 0)}
+.is-cmp-bar{position:absolute;top:0;bottom:0;left:var(--cut);width:3px;margin-left:-1.5px;background:var(--blue);box-shadow:0 0 0 1px #fff}
+.is-cmp-bar::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.is-cmp input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.is-cmp-t{position:absolute;top:10px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border-radius:99px;background:rgba(20,30,50,.75);color:#fff;pointer-events:none}.is-cmp-t.a{left:10px}.is-cmp-t.b{right:10px}
+.is-stats{display:flex;flex-wrap:wrap;gap:6px}.is-stats span{font-size:12px;padding:5px 10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line)}
+@media (max-width:860px){.is-presets{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:860px){.is-dlg{width:100vw;height:100dvh;border-radius:0;max-width:100vw}.is-cols{grid-template-columns:minmax(0,1fr)}.is-tipos{grid-template-columns:minmax(0,1fr)}.is-row{grid-template-columns:minmax(0,1fr)}.is-body{padding:14px}.is-h,.is-tabs{padding-left:14px;padding-right:14px}}
 
 </style>
@@ -4044,7 +4064,7 @@ async function isCargarEstilo() { try { if (db && db.doc) { const s = await db.d
 async function isGuardarEstilo() { try { localStorage.setItem("cofre-estilo-img", JSON.stringify(isEstilo)); } catch {} try { if (db && db.doc) await db.doc("panel/estiloImg").set({ ...isEstilo, updated: new Date().toISOString() }); } catch {} }
 
 // ---------- utilidades ----------
-const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [], plat: "chatgpt", pers: [], fondoTransp: false, grosor: 2, detalle: "medio", revs: [], colorImg: null, colorOut: null, esc: null, franja: true };
+const IS = { tab: "act", tipo: "dif", tema: "11-10", nivel: "Primaria – Primer Ciclo", n: 10, estilo: "infantil", seed: 1, A: null, B: null, marcas: [], objetos: [], packTema: "frutas", packEstilo: "kawaii", hojas: [], plat: "chatgpt", pers: [], fondoTransp: false, grosor: 2, detalle: "medio", revs: [], colorImg: null, colorOut: null, esc: null, franja: true, col: { grosor: 3, detalle: 3, negro: true, marco: false, numeros: false }, colBusy: false, colPaso: 0 };
 function isRand(seed) { let s = seed >>> 0 || 1; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
 function isMezclar(a, seed) { const r = isRand(seed), b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
 function isEscena(k) { if (IS_ESCENAS[k]) { const e = EFEMERIDES.find((x) => x[0] === k); return { nombre: e ? e[1] : k, escena: IS_ESCENAS[k][0], objetos: IS_ESCENAS[k][1] }; } const t = IS_TEMAS[k]; return t ? { nombre: t[0], escena: t[1], objetos: t[2] } : { nombre: "Tema libre", escena: "una escena escolar alegre", objetos: ["libro", "lápiz", "pelota", "árbol", "sol", "mochila", "flor", "perro", "reloj", "maceta"] }; }
@@ -4345,36 +4365,215 @@ function isRenderPrint() {
 }
 
 // ---------- versión para colorear ----------
-function isColorear(img, grosor, detalle) {
-  const s = Math.min(1, 2200 / Math.max(img.w, img.h)), W = Math.round(img.w * s), H = Math.round(img.h * s), d = isPixeles(img, W, H), N = W * H;
-  const lum = new Float32Array(N), a = new Uint8Array(N); for (let i = 0; i < N; i++) { a[i] = d[i * 4 + 3]; const k = a[i] / 255; lum[i] = (d[i * 4] * 0.3 + d[i * 4 + 1] * 0.59 + d[i * 4 + 2] * 0.11) * k + 255 * (1 - k); }
-  // suavizado 3x3 por canal
-  const ch = [0, 1, 2].map((c) => { const o = new Float32Array(N); for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { let t = 0; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const p = (y + dy) * W + x + dx, k = a[p] / 255; t += d[p * 4 + c] * k + 255 * (1 - k); } o[y * W + x] = t / 9; } return o; });
-  const T = detalle === "alto" ? 34 : detalle === "bajo" ? 90 : 55, m = new Uint8Array(N);
-  for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) { const p = y * W + x; if (lum[p] < 85) { m[p] = 1; continue; } let g = 0;
-    for (const c of ch) { const gx = c[p + 1] - c[p - 1], gy = c[p + W] - c[p - W]; g = Math.max(g, Math.abs(gx) + Math.abs(gy)); } if (g > T) m[p] = 1; }
-  // zonas oscuras grandes (pelo, ropa negra): dejar solo su contorno para poder pintarlas
-  { const R = Math.max(4, Math.round(W / 400)), dk = new Uint8Array(N); for (let i = 0; i < N; i++) dk[i] = lum[i] < 85 ? 1 : 0;
-    const h = new Uint8Array(N); for (let y = 0; y < H; y++) { let run = 0; const row = y * W; const L = new Int32Array(W); for (let x = 0; x < W; x++) { run = dk[row + x] ? run + 1 : 0; L[x] = run; } run = 0; for (let x = W - 1; x >= 0; x--) { run = dk[row + x] ? run + 1 : 0; if (Math.min(L[x], run) > R) h[row + x] = 1; } }
-    for (let x = 0; x < W; x++) { let run = 0; const U = new Int32Array(H); for (let y = 0; y < H; y++) { run = h[y * W + x] ? run + 1 : 0; U[y] = run; } run = 0; for (let y = H - 1; y >= 0; y--) { run = h[y * W + x] ? run + 1 : 0; if (Math.min(U[y], run) > R) m[y * W + x] = 0; } } }
-  // quitar puntitos sueltos
-  const min = detalle === "alto" ? 12 : detalle === "bajo" ? 60 : 30, lab = new Int32Array(N); let id = 0;
-  for (let i = 0; i < N; i++) { if (!m[i] || lab[i]) continue; id++; const st = [i], comp = [i]; lab[i] = id; while (st.length) { const p = st.pop(), x = p % W; for (const q of [p - 1, p + 1, p - W, p + W, p - W - 1, p - W + 1, p + W - 1, p + W + 1]) { if (q < 0 || q >= N || lab[q] || !m[q]) continue; const qx = q % W; if (Math.abs(qx - x) > 1) continue; lab[q] = id; st.push(q); comp.push(q); } } if (comp.length < min) comp.forEach((q) => { m[q] = 0; }); }
-  // engrosar
-  let r = m; for (let k = 1; k < grosor; k++) { const o = new Uint8Array(N); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const p = y * W + x; if (r[p] || (x > 0 && r[p - 1]) || (x < W - 1 && r[p + 1]) || (y > 0 && r[p - W]) || (y < H - 1 && r[p + W])) o[p] = 1; } r = o; }
-  const blanco = document.createElement("canvas"), lineas = document.createElement("canvas"); [blanco, lineas].forEach((c) => { c.width = W; c.height = H; });
-  const b1 = blanco.getContext("2d").createImageData(W, H), b2 = lineas.getContext("2d").createImageData(W, H);
-  for (let i = 0; i < N; i++) { const v = r[i] ? 20 : 255; b1.data[i * 4] = b1.data[i * 4 + 1] = b1.data[i * 4 + 2] = v; b1.data[i * 4 + 3] = 255; b2.data[i * 4] = b2.data[i * 4 + 1] = b2.data[i * 4 + 2] = 20; b2.data[i * 4 + 3] = r[i] ? 255 : 0; }
-  blanco.getContext("2d").putImageData(b1, 0, 0); lineas.getContext("2d").putImageData(b2, 0, 0);
-  return { blanco, lineas };
+// ---------- versión para colorear: motor profesional ----------
+// zonas de color (k-means en Lab) → limpieza → contornos cerrados → líneas suaves → PNG 2x + SVG vectorial
+const IS_COL_PASOS = ["Leyendo la ilustración", "Simplificando colores", "Limpiando zonas chicas", "Trazando contornos cerrados", "Suavizando líneas", "Vectorizando para Corel"];
+const IS_COL_PRESETS = [["inicial", "🧸", "Nivel Inicial", "Líneas gruesas, pocas zonas grandes", 5, 1], ["primaria", "✏️", "Primaria", "Equilibrado, como un libro de pintar", 3, 3], ["detalle", "🔎", "Detallado", "Más zonas y líneas finas", 2, 5]];
+function isLabArr(R, G, B, N) {
+  const L = new Float32Array(N), A = new Float32Array(N), Bb = new Float32Array(N), lut = new Float32Array(256);
+  for (let i = 0; i < 256; i++) { const c = i / 255; lut[i] = c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  const f = (t) => t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116;
+  for (let i = 0; i < N; i++) { const r = lut[Math.min(255, Math.round(R[i]))], g = lut[Math.min(255, Math.round(G[i]))], b = lut[Math.min(255, Math.round(B[i]))];
+    const x = f((r * 0.4124 + g * 0.3576 + b * 0.1805) / 0.95047), y = f(r * 0.2126 + g * 0.7152 + b * 0.0722), z = f((r * 0.0193 + g * 0.1192 + b * 0.9505) / 1.08883);
+    L[i] = 116 * y - 16; A[i] = 500 * (x - y); Bb[i] = 200 * (y - z); }
+  return [L, A, Bb];
 }
+function isBox(src, W, H, r) { // desenfoque de caja separable
+  const tmp = new Float32Array(W * H), out = new Float32Array(W * H), n = 2 * r + 1;
+  for (let y = 0; y < H; y++) { let s = 0; const o = y * W; for (let x = -r; x <= r; x++) s += src[o + Math.min(W - 1, Math.max(0, x))];
+    for (let x = 0; x < W; x++) { tmp[o + x] = s / n; s += src[o + Math.min(W - 1, x + r + 1)] - src[o + Math.max(0, x - r)]; } }
+  for (let x = 0; x < W; x++) { let s = 0; for (let y = -r; y <= r; y++) s += tmp[Math.min(H - 1, Math.max(0, y)) * W + x];
+    for (let y = 0; y < H; y++) { out[y * W + x] = s / n; s += tmp[Math.min(H - 1, y + r + 1) * W + x] - tmp[Math.max(0, y - r) * W + x]; } }
+  return out;
+}
+function isComponentes(lab, W, H) { // regiones conexas (4 vecinos)
+  const N = W * H, comp = new Int32Array(N).fill(-1), q = new Int32Array(N), area = [], lbl = [], seed = []; let nc = 0;
+  for (let i = 0; i < N; i++) { if (comp[i] >= 0) continue; const l = lab[i]; let h = 0, t = 0; q[t++] = i; comp[i] = nc;
+    while (h < t) { const p = q[h++], x = p % W; if (x > 0 && comp[p - 1] < 0 && lab[p - 1] === l) { comp[p - 1] = nc; q[t++] = p - 1; } if (x < W - 1 && comp[p + 1] < 0 && lab[p + 1] === l) { comp[p + 1] = nc; q[t++] = p + 1; }
+      if (p >= W && comp[p - W] < 0 && lab[p - W] === l) { comp[p - W] = nc; q[t++] = p - W; } if (p < N - W && comp[p + W] < 0 && lab[p + W] === l) { comp[p + W] = nc; q[t++] = p + W; } }
+    area.push(t); lbl.push(l); seed.push(i); nc++; }
+  return { comp, area, lbl, nc };
+}
+function isChamfer(mask, W, H) { // distancia a la línea más cercana
+  const N = W * H, d = new Float32Array(N), D = 1.4142;
+  for (let i = 0; i < N; i++) d[i] = mask[i] ? 0 : 1e9;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const p = y * W + x; let v = d[p];
+    if (x > 0) v = Math.min(v, d[p - 1] + 1); if (y > 0) { v = Math.min(v, d[p - W] + 1); if (x > 0) v = Math.min(v, d[p - W - 1] + D); if (x < W - 1) v = Math.min(v, d[p - W + 1] + D); } d[p] = v; }
+  for (let y = H - 1; y >= 0; y--) for (let x = W - 1; x >= 0; x--) { const p = y * W + x; let v = d[p];
+    if (x < W - 1) v = Math.min(v, d[p + 1] + 1); if (y < H - 1) { v = Math.min(v, d[p + W] + 1); if (x < W - 1) v = Math.min(v, d[p + W + 1] + D); if (x > 0) v = Math.min(v, d[p + W - 1] + D); } d[p] = v; }
+  return d;
+}
+async function isLineArt(img, o, paso) {
+  const tick = () => new Promise((r) => setTimeout(r, 20)), lvl = Math.max(1, Math.min(5, o.detalle || 3)) - 1;
+  paso(0); await tick();
+  const s = Math.min(1, 1400 / Math.max(img.w, img.h)), W = Math.max(24, Math.round(img.w * s)), H = Math.max(24, Math.round(img.h * s)), N = W * H, d = isPixeles(img, W, H);
+  let R = new Float32Array(N), G = new Float32Array(N), B = new Float32Array(N);
+  for (let i = 0; i < N; i++) { const k = d[i * 4 + 3] / 255; R[i] = d[i * 4] * k + 255 * (1 - k); G[i] = d[i * 4 + 1] * k + 255 * (1 - k); B[i] = d[i * 4 + 2] * k + 255 * (1 - k); }
+  R = isBox(R, W, H, 1); G = isBox(G, W, H, 1); B = isBox(B, W, H, 1);
+  const [L, A, Bb] = isLabArr(R, G, B, N);
+  paso(1); await tick();
+  // k-means en una muestra
+  const K = [6, 9, 13, 18, 24][lvl], rnd = isRand(7), S = Math.min(N, 7000), sm = new Int32Array(S); for (let i = 0; i < S; i++) sm[i] = Math.floor(rnd() * N);
+  const dist = (i, c) => { const a = L[i] - c[0], b = A[i] - c[1], e = Bb[i] - c[2]; return a * a + b * b + e * e; };
+  let C = [[L[sm[0]], A[sm[0]], Bb[sm[0]]]]; const dm = new Float32Array(S).fill(1e12);
+  while (C.length < K) { let tot = 0; const c = C[C.length - 1]; for (let j = 0; j < S; j++) { dm[j] = Math.min(dm[j], dist(sm[j], c)); tot += dm[j]; } if (!tot) break; let r = rnd() * tot, j = 0; for (; j < S - 1; j++) { r -= dm[j]; if (r <= 0) break; } C.push([L[sm[j]], A[sm[j]], Bb[sm[j]]]); }
+  const near = (i) => { let b = 0, bd = 1e12; for (let c = 0; c < C.length; c++) { const v = dist(i, C[c]); if (v < bd) { bd = v; b = c; } } return b; };
+  let cnt = [];
+  for (let it = 0; it < 10; it++) { const acc = C.map(() => [0, 0, 0, 0]); for (let j = 0; j < S; j++) { const i = sm[j], c = near(i); acc[c][0] += L[i]; acc[c][1] += A[i]; acc[c][2] += Bb[i]; acc[c][3]++; }
+    C = acc.filter((a) => a[3]).map((a) => [a[0] / a[3], a[1] / a[3], a[2] / a[3]]); cnt = acc.filter((a) => a[3]).map((a) => a[3]); }
+  // unir colores parecidos (sombras suaves no generan líneas)
+  const T = [24, 18, 14, 11, 8][lvl], de = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  for (;;) { let bi = -1, bj = -1, bd = T; for (let i = 0; i < C.length; i++) for (let j = i + 1; j < C.length; j++) { const v = de(C[i], C[j]); if (v < bd) { bd = v; bi = i; bj = j; } }
+    if (bi < 0) break; const wi = cnt[bi], wj = cnt[bj]; C[bi] = C[bi].map((v, k) => (v * wi + C[bj][k] * wj) / (wi + wj)); cnt[bi] = wi + wj; C.splice(bj, 1); cnt.splice(bj, 1); }
+  let lab = new Uint8Array(N); for (let i = 0; i < N; i++) lab[i] = near(i);
+  paso(2); await tick();
+  // filtro de mayoría 3x3 (dos pasadas)
+  const nk = C.length;
+  for (let pass = 0; pass < 2; pass++) { const o2 = new Uint8Array(lab), h = new Uint16Array(nk);
+    for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { const p = y * W + x; h.fill(0); let best = lab[p], bc = 0;
+      for (let dy = -W; dy <= W; dy += W) for (let dx = -1; dx <= 1; dx++) { const l = lab[p + dy + dx], c = ++h[l]; if (c > bc) { bc = c; best = l; } } if (bc >= 5) o2[p] = best; }
+    lab = o2; }
+  // zonas chicas → se suman a la vecina más común; manchitas negras chicas (ojos, bocas) se rellenan
+  const minA = N * [0.0025, 0.0012, 0.0006, 0.0003, 0.00014][lvl], negros = new Uint8Array(N);
+  for (let it = 0; it < 3; it++) { const { comp, area, lbl, nc } = isComponentes(lab, W, H), cambia = new Int16Array(nc).fill(-1); let alguno = false;
+    const vec = new Map();
+    for (let p = 0; p < N; p++) { const c = comp[p]; if (area[c] >= minA) continue; const x = p % W;
+      for (const q of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p - W, p + W]) { if (q < 0 || q >= N || comp[q] === c) continue; let m = vec.get(c); if (!m) vec.set(c, (m = new Map())); m.set(lab[q], (m.get(lab[q]) || 0) + 1); } }
+    for (const [c, m] of vec) { const oscuro = C[lbl[c]][0] < 30; if (oscuro && o.negro && it === 0 && area[c] > 6) { cambia[c] = -2; continue; } let b = -1, bc = 0; for (const [l, v] of m) if (v > bc) { bc = v; b = l; } if (b >= 0) { cambia[c] = b; alguno = true; } }
+    for (let p = 0; p < N; p++) { const k = cambia[comp[p]]; if (k === -2) negros[p] = 1; else if (k >= 0) lab[p] = k; }
+    if (!alguno) break; }
+  // contornos negros originales (zonas oscuras finas) → se vuelven línea, así no queda doble trazo
+  { const osc = new Uint8Array(N); let hay = false; for (let i = 0; i < N; i++) if (C[lab[i]][0] < 32) { osc[i] = 1; hay = true; }
+    if (hay) { const fuera = new Uint8Array(N); for (let i = 0; i < N; i++) fuera[i] = osc[i] ? 0 : 1; const dz = isChamfer(fuera, W, H), fino = Math.max(3, W / 230), nucleo = new Uint8Array(N);
+      for (let i = 0; i < N; i++) nucleo[i] = dz[i] > fino ? 1 : 0; const dc = isChamfer(nucleo, W, H);
+      for (let i = 0; i < N; i++) if (osc[i] && dc[i] > fino + 1.5) negros[i] = 1; } }
+  // tiritas finas (el halo de color al lado de un contorno) → se suman a la zona vecina
+  for (let it = 0; it < 2; it++) { const borde = new Uint8Array(N);
+    for (let p = 0; p < N; p++) { const x = p % W; if (negros[p]) { borde[p] = 1; continue; } if ((x > 0 && lab[p - 1] !== lab[p]) || (x < W - 1 && lab[p + 1] !== lab[p]) || (p >= W && lab[p - W] !== lab[p]) || (p < N - W && lab[p + W] !== lab[p]) || (x > 0 && negros[p - 1]) || (x < W - 1 && negros[p + 1]) || (p >= W && negros[p - W]) || (p < N - W && negros[p + W])) borde[p] = 1; }
+    const dz = isChamfer(borde, W, H), { comp, nc } = isComponentes(lab, W, H), gr2 = new Float32Array(nc), vec = new Map();
+    for (let i = 0; i < N; i++) if (!negros[i] && dz[i] > gr2[comp[i]]) gr2[comp[i]] = dz[i];
+    for (let p = 0; p < N; p++) { const c = comp[p]; if (negros[p] || gr2[c] > 1.5) continue; const x = p % W;
+      for (const q of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p - W, p + W]) { if (q < 0 || q >= N || comp[q] === c) continue; let mm = vec.get(c); if (!mm) vec.set(c, (mm = new Map())); const k = negros[q] ? -1 : lab[q]; mm.set(k, (mm.get(k) || 0) + 1); } }
+    if (!vec.size) break; const dest = new Int16Array(nc).fill(-3);
+    for (const [c, mm] of vec) { let bk = -2, bc = 0; for (const [k, v] of mm) if (k >= 0 && v > bc) { bc = v; bk = k; } dest[c] = bk >= 0 ? bk : -1; }
+    for (let p = 0; p < N; p++) { const d2 = dest[comp[p]]; if (d2 >= 0) lab[p] = d2; else if (d2 === -1) negros[p] = 1; } }
+  paso(3); await tick();
+  // degradés y sombras suaves: si el borde entre dos zonas casi no tiene contraste real, se unen
+  const grp = new Int32Array(N);
+  { const { comp, nc } = isComponentes(lab, W, H), par = new Int32Array(nc); for (let i = 0; i < nc; i++) par[i] = i;
+    const raiz = (i) => { while (par[i] !== i) { par[i] = par[par[i]]; i = par[i]; } return i; }, acc = new Map(), Te = [13, 11, 9, 7, 6][lvl];
+    const dE = (a, b) => Math.hypot(L[a] - L[b], A[a] - A[b], Bb[a] - Bb[b]);
+    for (let y = 2; y < H - 3; y++) for (let x = 2; x < W - 3; x++) { const p = y * W + x;
+      for (const [q, a, b] of [[p + 1, p - 1, p + 2], [p + W, p - W, p + 2 * W]]) { const c1 = comp[p], c2 = comp[q]; if (c1 === c2) continue; const k = c1 < c2 ? c1 * nc + c2 : c2 * nc + c1, v = acc.get(k); const e = dE(a, b); if (v) { v[0] += e; v[1]++; } else acc.set(k, [e, 1]); } }
+    for (const [k, [sum, n]] of acc) if (n > 3 && sum / n < Te) { const a = raiz(Math.floor(k / nc)), b = raiz(k % nc); if (a !== b) par[a] = b; }
+    for (let i = 0; i < N; i++) grp[i] = raiz(comp[i]); }
+  // contornos: cambio de zona = línea (siempre cerrada)
+  const m = new Uint8Array(N);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const p = y * W + x; if (negros[p]) { m[p] = 1; continue; } if ((x < W - 1 && grp[p] !== grp[p + 1] && !negros[p + 1]) || (y < H - 1 && grp[p] !== grp[p + W] && !negros[p + W])) m[p] = 1; }
+  if (o.marco) for (let x = 0; x < W; x++) { m[x] = m[N - W + x] = 1; } if (o.marco) for (let y = 0; y < H; y++) { m[y * W] = m[y * W + W - 1] = 1; }
+  paso(4); await tick();
+  const Rl = Math.max(0.7, (o.grosor || 3) * 0.75 * W / 1400), dd = isChamfer(m, W, H), F0 = new Float32Array(N);
+  for (let i = 0; i < N; i++) F0[i] = dd[i] <= Rl ? 1 : dd[i] <= Rl + 1 ? Rl + 1 - dd[i] : 0;
+  const br = Math.max(1, Math.round(Rl * 0.55)); let F = isBox(isBox(F0, W, H, br), W, H, br);
+  // zonas para pintar (por números)
+  const fin = new Uint8Array(N); for (let i = 0; i < N; i++) fin[i] = F[i] >= 0.5 || i < W || i >= N - W || i % W === 0 || i % W === W - 1 ? 1 : 0;
+  const numeros = [], usados = new Map();
+  { const { comp, nc } = isComponentes(grp, W, H), dl = isChamfer(fin, W, H), mejor = new Int32Array(nc).fill(-1);
+    for (let p = 0; p < N; p++) { if (fin[p] || negros[p]) continue; const c = comp[p]; if (mejor[c] < 0 || dl[p] > dl[mejor[c]]) mejor[c] = p; }
+    const orden = C.map((c, i) => [c[0], i]).sort((a, b) => b[0] - a[0]).map((x) => x[1]);
+    for (let c = 0; c < nc; c++) { const p = mejor[c]; if (p < 0 || dl[p] < Math.max(7, W / 160)) continue; const l = lab[p]; if (!usados.has(l)) usados.set(l, 0);
+      numeros.push({ x: p % W, y: Math.floor(p / W), r: dl[p], l }); }
+    const ls = [...usados.keys()].sort((a, b) => orden.indexOf(a) - orden.indexOf(b)); ls.forEach((l, i) => usados.set(l, i + 1)); numeros.forEach((n) => { n.n = usados.get(n.l); });
+    var zonas = nc; }
+  const leyenda = [...usados].sort((a, b) => a[1] - b[1]).map(([l, n]) => ({ n, rgb: isLabRgb(C[l]) }));
+  // salida raster 2x con bordes suavizados
+  const esc = Math.min(2, 3200 / Math.max(W, H)), OW = Math.round(W * esc), OH = Math.round(H * esc);
+  const mk = (blanco) => { const c = document.createElement("canvas"); c.width = OW; c.height = OH; const x = c.getContext("2d"), im = x.createImageData(OW, OH), D = im.data;
+    for (let y = 0; y < OH; y++) { const fy = Math.min(H - 1.001, Math.max(0, (y + 0.5) / esc - 0.5)), y0 = fy | 0, ty = fy - y0;
+      for (let xx = 0; xx < OW; xx++) { const fx = Math.min(W - 1.001, Math.max(0, (xx + 0.5) / esc - 0.5)), x0 = fx | 0, tx = fx - x0, p = y0 * W + x0;
+        const v = (F[p] * (1 - tx) + F[p + 1] * tx) * (1 - ty) + (F[p + W] * (1 - tx) + F[p + W + 1] * tx) * ty;
+        let a = (v - 0.42) / 0.16; a = a <= 0 ? 0 : a >= 1 ? 1 : a * a * (3 - 2 * a); const i = (y * OW + xx) * 4;
+        if (blanco) { const g = Math.round(255 - a * (255 - 22)); D[i] = D[i + 1] = D[i + 2] = g; D[i + 3] = 255; } else { D[i] = D[i + 1] = D[i + 2] = 22; D[i + 3] = Math.round(a * 255); } } }
+    x.putImageData(im, 0, 0); return c; };
+  const blanco = mk(true), lineas = mk(false);
+  paso(5); await tick();
+  const svg = isTrazarSvg(F, W, H, o.numeros ? numeros : [], o.numeros ? leyenda : []);
+  if (o.numeros) { isDibujarNumeros(blanco, numeros, leyenda, esc, true); isDibujarNumeros(lineas, numeros, leyenda, esc, false); }
+  return { blanco, lineas, svg, W, H, OW, OH: blanco.height, zonas, numeros, leyenda };
+}
+function isLabRgb(c) { const fy = (c[0] + 16) / 116, fx = fy + c[1] / 500, fz = fy - c[2] / 200, g = (t) => t ** 3 > 0.008856 ? t ** 3 : (t - 16 / 116) / 7.787;
+  const X = g(fx) * 0.95047, Y = g(fy), Z = g(fz) * 1.08883, r = X * 3.2406 - Y * 1.5372 - Z * 0.4986, gg = -X * 0.9689 + Y * 1.8758 + Z * 0.0415, b = X * 0.0557 - Y * 0.204 + Z * 1.057;
+  const s = (v) => Math.round(255 * Math.max(0, Math.min(1, v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055))); return [s(r), s(gg), s(b)]; }
+function isDibujarNumeros(cv, nums, ley, esc, blanco) {
+  const leyH = Math.round(cv.width * 0.09), c2 = document.createElement("canvas"); c2.width = cv.width; c2.height = cv.height + leyH; const x = c2.getContext("2d");
+  if (blanco) { x.fillStyle = "#fff"; x.fillRect(0, 0, c2.width, c2.height); }
+  x.drawImage(cv, 0, 0); x.fillStyle = "#3a3a3a"; x.textAlign = "center"; x.textBaseline = "middle";
+  nums.forEach((n) => { const fs = Math.max(11, Math.min(n.r * 1.05, cv.width / 40)) * esc; x.font = `700 ${Math.min(fs, 34 * esc)}px Arial, sans-serif`; x.fillText(String(n.n), n.x * esc, n.y * esc); });
+  const k = ley.length, cw = Math.min(cv.width / Math.max(1, k), leyH * 1.8), y0 = cv.height + leyH / 2;
+  ley.forEach((l, i) => { const cx = cv.width / 2 + (i - (k - 1) / 2) * cw, r = Math.min(leyH * 0.28, cw * 0.28); x.beginPath(); x.arc(cx - r * 0.9, y0, r, 0, 7); x.fillStyle = `rgb(${l.rgb.join(",")})`; x.fill(); x.lineWidth = Math.max(1.5, r * 0.12); x.strokeStyle = "#222"; x.stroke();
+    x.fillStyle = "#222"; x.font = `800 ${r * 1.3}px Arial, sans-serif`; x.fillText(String(l.n), cx + r * 0.75, y0); });
+  cv.width = c2.width; cv.height = c2.height; cv.getContext("2d").drawImage(c2, 0, 0);
+}
+function isTrazarSvg(F, W, H, nums, ley) {
+  // marching squares sobre el campo suavizado (con borde vacío para cerrar todo)
+  const PW = W + 2, PH = H + 2, P = new Float32Array(PW * PH); for (let y = 0; y < H; y++) P.set(F.subarray(y * W, y * W + W), (y + 1) * PW + 1);
+  const n1 = new Int32Array(PW * PH * 2).fill(-1), n2 = new Int32Array(PW * PH * 2).fill(-1), link = (a, b) => { if (n1[a] < 0) n1[a] = b; else n2[a] = b; if (n1[b] < 0) n1[b] = a; else n2[b] = a; };
+  for (let y = 0; y < PH - 1; y++) for (let x = 0; x < PW - 1; x++) { const p = y * PW + x, a = P[p] >= 0.5, b = P[p + 1] >= 0.5, c = P[p + PW + 1] >= 0.5, dd = P[p + PW] >= 0.5, cs = (a ? 8 : 0) | (b ? 4 : 0) | (c ? 2 : 0) | (dd ? 1 : 0);
+    if (!cs || cs === 15) continue; const Tt = p * 2, Ll = p * 2 + 1, Bb = (p + PW) * 2, Rr = (p + 1) * 2 + 1, ctr = (P[p] + P[p + 1] + P[p + PW] + P[p + PW + 1]) / 4 >= 0.5;
+    switch (cs) { case 1: case 14: link(Ll, Bb); break; case 2: case 13: link(Bb, Rr); break; case 3: case 12: link(Ll, Rr); break; case 4: case 11: link(Tt, Rr); break; case 6: case 9: link(Tt, Bb); break; case 7: case 8: link(Ll, Tt); break;
+      case 5: if (ctr) { link(Ll, Tt); link(Bb, Rr); } else { link(Ll, Bb); link(Tt, Rr); } break; case 10: if (ctr) { link(Tt, Rr); link(Ll, Bb); } else { link(Ll, Tt); link(Bb, Rr); } break; } }
+  const pt = (e) => { const p = e >> 1, x = p % PW, y = (p / PW) | 0; if (e & 1) { const v0 = P[p], v1 = P[p + PW]; return [x - 1, y - 1 + (0.5 - v0) / ((v1 - v0) || 1e-6)]; } const v0 = P[p], v1 = P[p + 1]; return [x - 1 + (0.5 - v0) / ((v1 - v0) || 1e-6), y - 1]; };
+  const vis = new Uint8Array(PW * PH * 2), loops = [];
+  for (let e0 = 0; e0 < n1.length; e0++) { if (vis[e0] || n1[e0] < 0) continue; const L = []; let prev = -1, e = e0; while (e >= 0 && !vis[e]) { vis[e] = 1; L.push(pt(e)); const nx = n1[e] !== prev ? n1[e] : n2[e]; prev = e; e = nx; } if (L.length > 2) loops.push(L); }
+  const rdp = (pts, eps) => { if (pts.length < 4) return pts; const keep = new Uint8Array(pts.length); keep[0] = keep[pts.length - 1] = 1; const st = [[0, pts.length - 1]];
+    while (st.length) { const [i, j] = st.pop(), [x1, y1] = pts[i], [x2, y2] = pts[j], dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy) || 1e-6; let md = 0, mi = -1;
+      for (let k = i + 1; k < j; k++) { const dist = Math.abs(dy * pts[k][0] - dx * pts[k][1] + x2 * y1 - y2 * x1) / len; if (dist > md) { md = dist; mi = k; } } if (md > eps && mi > 0) { keep[mi] = 1; st.push([i, mi], [mi, j]); } }
+    return pts.filter((_, k) => keep[k]); };
+  const f = (v) => Math.round(v * 10) / 10;
+  const d = loops.map((L0) => { const h = L0.length >> 1, L = [...rdp(L0.slice(0, h + 1), 0.35).slice(0, -1), ...rdp(L0.slice(h).concat([L0[0]]), 0.35).slice(0, -1)]; if (L.length < 3) return "";
+    const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]; let s = `M${f(mid(L[L.length - 1], L[0])[0])} ${f(mid(L[L.length - 1], L[0])[1])}`;
+    for (let i = 0; i < L.length; i++) { const m = mid(L[i], L[(i + 1) % L.length]); s += `Q${f(L[i][0])} ${f(L[i][1])} ${f(m[0])} ${f(m[1])}`; } return s + "Z"; }).join("");
+  const leyH = ley.length ? Math.round(W * 0.09) : 0, mmW = 180, mmH = Math.round(mmW * (H + leyH) / W * 10) / 10;
+  const txt = nums.map((n) => `<text x="${f(n.x)}" y="${f(n.y)}" font-size="${f(Math.max(11, Math.min(n.r * 1.05, W / 40, 34)))}">${n.n}</text>`).join("");
+  const k = ley.length, cw = Math.min(W / Math.max(1, k), leyH * 1.8), r = Math.min(leyH * 0.28, cw * 0.28);
+  const lg = ley.map((l, i) => { const cx = W / 2 + (i - (k - 1) / 2) * cw; return `<circle cx="${f(cx - r * 0.9)}" cy="${f(H + leyH / 2)}" r="${f(r)}" fill="rgb(${l.rgb.join(",")})" stroke="#222" stroke-width="${f(Math.max(1.5, r * 0.12))}"/><text x="${f(cx + r * 0.75)}" y="${f(H + leyH / 2)}" font-size="${f(r * 1.3)}" font-weight="800" fill="#222">${l.n}</text>`; }).join("");
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H + leyH}" width="${mmW}mm" height="${mmH}mm"><title>Para colorear · Cofre Didáctico</title><path d="${d}" fill="#161616" fill-rule="evenodd"/>${txt ? `<g font-family="Arial, sans-serif" font-weight="700" fill="#3a3a3a" text-anchor="middle" dominant-baseline="central">${txt}</g>` : ""}${lg ? `<g font-family="Arial, sans-serif" dominant-baseline="central">${lg}</g>` : ""}</svg>`;
+}
+const isColPrompt = () => `Convertí la ilustración que te adjunto en una página para colorear de un cuadernillo escolar.\nConservá exactamente el mismo dibujo: mismos personajes, mismas formas, misma composición y mismo encuadre.\nEstilo: solo contornos negros limpios y continuos, de grosor parejo y bastante marcado, con todas las formas cerradas para poder pintarlas sin salirse. Interior de todas las zonas en blanco puro.\nSimplificá sombras y texturas: cada zona de color se convierte en un área blanca con su contorno. Ojos y detalles chiquitos en negro.\nFondo blanco liso.\n${IS_CALIDAD}\nReglas firmes: sin grises, sin sombreado, sin rellenos de color, sin texto, sin marcas de agua.`;
 function isRenderColor() {
-  return `<div class="is-cols"><div class="is-sec"><h3>De color a “para colorear”</h3><p class="muted">Subí una ilustración a color y el panel arma la versión de contornos negros para la página de pintar. Funciona mejor con dibujos de colores planos y contorno marcado, como los tuyos.</p>
-      <label class="is-up big${IS.colorImg ? " ok" : ""}"><input type="file" accept="image/*" data-iscolorup hidden>${IS.colorImg ? `<img src="${IS.colorImg.url}" alt="">` : "<span>⬆️</span>"}<b>${IS.colorImg ? esc(IS.colorImg.name) : "Ilustración a color"}</b><small>Tocá para elegir</small></label>
-      <div class="is-row"><div class="field"><label>Grosor de línea</label><div class="mz-pills is-pills">${[1, 2, 3, 4].map((v) => `<button type="button" class="${(IS.grosor || 2) === v ? "on" : ""}" data-isgrosor="${v}"><b>${v}</b></button>`).join("")}</div></div>
-        <div class="field"><label>Detalle</label><div class="mz-pills is-pills">${[["bajo", "Bajo"], ["medio", "Medio"], ["alto", "Alto"]].map(([k, t]) => `<button type="button" class="${(IS.detalle || "medio") === k ? "on" : ""}" data-isdetalle="${k}"><b style="font-size:14px">${t}</b></button>`).join("")}</div></div></div>
-      <div class="is-tip">💡 Para un resultado perfecto: usá esta versión como base en Corel (PowerTRACE en modo “Line art”) o pedile a ChatGPT: “convertí esta ilustración en un dibujo para colorear: solo contorno negro grueso, sin relleno, fondo blanco, mismo dibujo”.</div></div>
-    <div class="is-sec"><h3>Resultado</h3>${IS.colorOut ? `<div class="is-canvas" id="isColorPrev"></div><div class="actions"><button class="btn primary" type="button" data-iscolordl="blanco">⬇ PNG con fondo blanco</button><button class="btn" type="button" data-iscolordl="lineas">⬇ PNG solo líneas (transparente)</button></div>` : `<div class="is-tip">Subí una ilustración para ver la versión para colorear.</div>`}</div></div>`;
+  const c = IS.col, R = IS.colorOut, maxCm = R ? (R.OW / 300 * 2.54).toFixed(1).replace(".", ",") : "";
+  const pasos = `<ol class="is-pasos">${IS_COL_PASOS.map((t, i) => `<li class="${IS.colPaso > i ? "ok" : IS.colPaso === i ? "on" : ""}">${t}</li>`).join("")}</ol>`;
+  return `<div class="is-cols is-col"><div class="is-sec"><h3>De color a “para colorear”</h3><p class="muted">El panel divide la ilustración en zonas de color, cierra todos los contornos y te entrega líneas limpias en alta resolución y en vectores para Corel.</p>
+      <label class="is-up${IS.colorImg ? " ok" : ""}"><input type="file" accept="image/*" data-iscolorup hidden>${IS.colorImg ? `<img src="${IS.colorImg.url}" alt="">` : "<span>⬆️</span>"}<b>${IS.colorImg ? esc(IS.colorImg.name) : "Ilustración a color"}</b><small>${IS.colorImg ? "Tocá para cambiarla" : "PNG o JPG · mejor si tiene colores planos"}</small></label>
+      <div class="field"><label>Para quién es</label><div class="is-presets">${IS_COL_PRESETS.map(([k, ic, t, s2, g, dd]) => `<button type="button" class="is-tipo${c.grosor === g && c.detalle === dd ? " on" : ""}" data-iscolpre="${k}"><span>${ic}</span><b>${t}</b><small>${s2}</small></button>`).join("")}</div></div>
+      <div class="is-row"><div class="field"><label for="isColG">Grosor de línea <output>${c.grosor}</output></label><input type="range" id="isColG" min="1" max="6" step="1" value="${c.grosor}"></div>
+        <div class="field"><label for="isColD">Cantidad de zonas <output>${["Mínima", "Pocas", "Media", "Muchas", "Máxima"][c.detalle - 1]}</output></label><input type="range" id="isColD" min="1" max="5" step="1" value="${c.detalle}"></div></div>
+      <label class="check"><input type="checkbox" id="isColN" ${c.negro ? "checked" : ""}> Ojos y detalles chiquitos en negro</label>
+      <label class="check"><input type="checkbox" id="isColM" ${c.marco ? "checked" : ""}> Marco alrededor del dibujo</label>
+      <label class="check"><input type="checkbox" id="isColNum" ${c.numeros ? "checked" : ""}> 🔢 Pintar por números (numera las zonas y agrega la referencia de colores)</label>
+      <details class="is-ia"><summary>✨ ¿Querés un resultado de ilustrador? Pedido para ${IS.plat === "gemini" ? "Gemini" : "ChatGPT"}</summary><p class="muted is-note">Adjuntá tu ilustración con este pedido. Después subí lo que te devuelva acá: el panel lo limpia, lo cierra y lo pasa a vectores.</p><div class="is-prompt"><div class="is-p-h"><b>Pedido</b><button class="btn small primary" type="button" data-iscolprompt>Copiar</button></div><pre>${esc(isColPrompt())}</pre></div></details></div>
+    <div class="is-sec"><h3>Resultado</h3>
+      ${IS.colBusy ? `<div class="is-gen"><div class="is-gen-img">${IS.colorImg ? `<img src="${IS.colorImg.url}" alt="">` : ""}<i class="is-scan"></i></div>${pasos}</div>`
+      : R ? `<div class="is-cmp" id="isCmp" style="--cut:100%"><div class="is-cmp-res" id="isColorPrev"></div><canvas class="is-cmp-orig" id="isCmpO"></canvas><i class="is-cmp-bar"></i><span class="is-cmp-t a">Original</span><span class="is-cmp-t b">Para colorear</span><input type="range" min="0" max="100" value="100" id="isCmpR" aria-label="Comparar original y resultado"></div>
+        <div class="is-stats"><span><b>${R.zonas}</b> zonas para pintar</span><span><b>${R.OW} × ${R.OH}</b> px</span><span>Imprime a 300 dpi hasta <b>${maxCm} cm</b></span>${c.numeros ? `<span><b>${R.leyenda.length}</b> colores</span>` : ""}</div>
+        <div class="actions"><button class="btn primary" type="button" data-iscolordl="svg">⬇ SVG vectorial (Corel)</button><button class="btn" type="button" data-iscolordl="blanco">⬇ PNG fondo blanco</button><button class="btn" type="button" data-iscolordl="lineas">⬇ PNG transparente</button></div>
+        <p class="muted is-note">El SVG entra en Corel como curvas editables, de 18 cm de ancho, sin pasar por PowerTRACE.</p>`
+      : `<div class="is-tip">Subí una ilustración y elegí para quién es. En unos segundos vas a ver cómo se transforma.</div>`}</div></div>`;
+}
+async function isColorCalc() {
+  if (!IS.colorImg) { isRender(); return; } const id = (IS.colRun = (IS.colRun || 0) + 1);
+  IS.colBusy = true; IS.colPaso = 0; isRender();
+  const paso = (i) => { if (id !== IS.colRun) return; IS.colPaso = i; const ol = $(".is-pasos"); if (ol) [...ol.children].forEach((li, k) => { li.className = k < i ? "ok" : k === i ? "on" : ""; }); };
+  try { const out = await isLineArt(IS.colorImg, IS.col, paso); if (id !== IS.colRun) return; IS.colorOut = out; }
+  catch (err) { console.error(err); toast("No se pudo procesar la imagen."); }
+  IS.colBusy = false; if (IS.tab !== "color") return; isRender(); isColMontar(true);
+}
+function isColMontar(anim) {
+  const box = $("#isColorPrev"), cmp = $("#isCmp"); if (!box || !IS.colorOut) return; const c = IS.colorOut.blanco; c.className = "is-colcv"; box.appendChild(c);
+  const o = $("#isCmpO"); if (o) { o.width = c.width; o.height = c.height; const x = o.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, o.width, o.height); x.drawImage(IS.colorImg.im, 0, 0, IS.colorOut.OW, IS.colorOut.OW * IS.colorImg.h / IS.colorImg.w); }
+  const r = $("#isCmpR"), set = (v) => { cmp.style.setProperty("--cut", v + "%"); r.value = v; };
+  r.oninput = () => set(+r.value);
+  if (anim && !matchMedia("(prefers-reduced-motion: reduce)").matches) { const t0 = performance.now(); const step = (t) => { const k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 3); set(Math.round(100 - e * 50)); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); } else set(50);
 }
 
 
@@ -4510,6 +4709,7 @@ function isRender() {
     <nav class="is-tabs">${tabs.map(([k, t]) => `<button type="button" data-istab="${k}" aria-pressed="${IS.tab === k}">${t}</button>`).join("")}</nav>
     <div class="is-body">${body}</div></div>`;
   if (IS.tab === "act" && (IS.A || IS.B)) isDibujarMarcas();
+  if (IS.tab === "color" && IS.colorOut && !IS.colBusy) isColMontar(false);
 }
 function isRenderAct() {
   const P = isPrompts(), tipos = [["dif", "🔍", "Encontrá las diferencias", "Imagen original + versión con cambios"], ["falta", "❓", "¿Qué falta?", "La segunda imagen tiene elementos borrados"], ["busca", "🕵️", "Buscá y encontrá", "Objetos escondidos en una escena"]];
@@ -4603,10 +4803,11 @@ async function isClick(e) {
   const ps = t.closest("[data-ispersel]"); if (ps) { const n = ps.dataset.ispersel; IS.pers = (IS.pers || []).includes(n) ? IS.pers.filter((x) => x !== n) : [...(IS.pers || []), n]; isRender(); return; }
   const rd = t.closest("[data-isrefdl]"); if (rd) { const u = isRef(rd.dataset.isrefdl); if (u) { const b = await (await fetch(u)).blob(); await saveFile(`Referencia - ${slug(rd.dataset.isrefdl)}.jpg`, b); } return; }
   const rx = t.closest("[data-isrefdel]"); if (rx) { try { localStorage.removeItem(isRefKey(rx.dataset.isrefdel)); } catch {} isRender(); return; }
-  const gr = t.closest("[data-isgrosor]"); if (gr) { IS.grosor = +gr.dataset.isgrosor; isColorCalc(); return; }
-  const de = t.closest("[data-isdetalle]"); if (de) { IS.detalle = de.dataset.isdetalle; isColorCalc(); return; }
-  const cd = t.closest("[data-iscolordl]"); if (cd && IS.colorOut) { const cv = IS.colorOut[cd.dataset.iscolordl], b = await new Promise((ok) => cv.toBlob(ok, "image/png")); const base = (IS.colorImg.name || "imagen").replace(/\.[^.]+$/, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w -]/g, "");
-    await saveFile(`${base} - para colorear${cd.dataset.iscolordl === "lineas" ? " (lineas)" : ""}.png`, b); return; }
+  const cpre = t.closest("[data-iscolpre]"); if (cpre) { const P = IS_COL_PRESETS.find((x) => x[0] === cpre.dataset.iscolpre); IS.col.grosor = P[4]; IS.col.detalle = P[5]; isColorCalc(); return; }
+  if (t.closest("[data-iscolprompt]")) { isCopiar(t.closest("[data-iscolprompt]"), isColPrompt()); return; }
+  const cd = t.closest("[data-iscolordl]"); if (cd && IS.colorOut) { const k = cd.dataset.iscolordl, base = (IS.colorImg.name || "imagen").replace(/\.[^.]+$/, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w -]/g, "").trim() || "imagen", suf = IS.col.numeros ? " - pintar por numeros" : " - para colorear";
+    if (k === "svg") { await saveFile(`${base}${suf}.svg`, new Blob([IS.colorOut.svg], { type: "image/svg+xml" })); return; }
+    const b = await new Promise((ok) => IS.colorOut[k].toBlob(ok, "image/png")); await saveFile(`${base}${suf}${k === "lineas" ? " (transparente)" : ""}.png`, b); return; }
   if (t.closest("[data-isredetect]")) { IS.marcas = isDetectar(IS.A, IS.B, IS.n); isRender(); return; }
   if (t.closest("[data-isundo]")) { IS.marcas.pop(); isRender(); return; }
   const dl = t.closest("[data-isdl]"); if (dl) { const P = await isPaginas(); if (!P) return; const [nom, svg] = P.find((x) => x[0] === dl.dataset.isdl); const E = isEscena(IS.tema);
@@ -4619,6 +4820,8 @@ async function isClick(e) {
 }
 async function isChange(e) {
   const t = e.target;
+  if (t.id === "isColG" || t.id === "isColD") { IS.col[t.id === "isColG" ? "grosor" : "detalle"] = +t.value; isColorCalc(); }
+  if (t.id === "isColN" || t.id === "isColM" || t.id === "isColNum") { IS.col[({ isColN: "negro", isColM: "marco", isColNum: "numeros" })[t.id]] = t.checked; isColorCalc(); }
   if (t.id === "isFranja") { IS.franja = t.checked; isRender(); }
   if (t.id === "isTema") { IS.esc = null; IS.tema = t.value; IS.marcas = []; isRender(); }
   if (t.id === "isNivel") { IS.nivel = t.value; isRender(); }
@@ -4631,8 +4834,7 @@ async function isChange(e) {
   if (t.dataset && t.dataset.isup && t.files[0]) { try { IS[t.dataset.isup] = await isCargarImg(t.files[0]); if (IS.tipo !== "busca" && IS.A && IS.B) IS.marcas = isDetectar(IS.A, IS.B, IS.n); else if (IS.tipo === "busca") IS.marcas = []; isRender(); } catch (err) { toast(err.message); } }
   if (t.dataset && "isuphoja" in t.dataset && t.files[0]) { try { IS.hoja = await isCargarImg(t.files[0]); IS.cortes = null; IS.nombres = $("#isNombres") ? $("#isNombres").value.split("\n").map((x) => x.trim()).filter(Boolean) : IS.nombres; IS.carpeta = $("#isCarpeta") ? $("#isCarpeta").value : IS.carpeta; isRender(); } catch (err) { toast(err.message); } }
 }
-function isInput() {}
-function isColorCalc() { if (!IS.colorImg) { isRender(); return; } IS.colorOut = isColorear(IS.colorImg, IS.grosor || 2, IS.detalle || "medio"); isRender(); const box = $("#isColorPrev"); if (box) { const c = IS.colorOut.blanco; c.className = "is-colcv"; box.appendChild(c); } }
+function isInput(e) { const t = e.target; if (t.id === "isColG" || t.id === "isColD") { const o = t.parentElement.querySelector("output"); if (o) o.textContent = t.id === "isColG" ? t.value : ["Mínima", "Pocas", "Media", "Muchas", "Máxima"][t.value - 1]; } }
 document.addEventListener("click", (e) => { const b = e.target.closest("[data-isopen]"); if (b) isOpen(b.dataset.isopen || "act"); });
 
 function niceStep(v){ if(v<=0) return 1; const p=Math.pow(10,Math.floor(Math.log10(v))); const n=v/p; return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p; }
