@@ -594,6 +594,24 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.ml2-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1.05fr);gap:16px;align-items:start;margin-bottom:16px}.ml2-col{display:grid;gap:16px;min-width:0}.ml2-der{position:sticky;top:12px}
+@media (max-width:1050px){.ml2-grid{grid-template-columns:minmax(0,1fr)}.ml2-der{position:static}}
+.ml2{display:grid;gap:10px}.ml2 h3{margin:0}.ml2-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media (max-width:620px){.ml2-row{grid-template-columns:1fr}}
+.ml2 .field span,.ml2-lab{font-size:12px;font-weight:700;color:var(--muted)}.ml2-lab em{font-style:normal;font-weight:600}
+.ml2 input,.ml2 textarea,.ml2 select{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--surface-2);color:var(--ink);font:inherit;font-size:13.5px}.ml2 textarea{resize:vertical;line-height:1.5}
+.ml-cnt{float:right;font-style:normal;font-weight:700;font-size:11.5px}.ml-cnt.ok{color:#1F9D55}.ml-cnt.warn{color:#C2410C}
+.ml2-temas{display:flex;flex-wrap:wrap;gap:6px}.ml2-temas button{display:inline-flex;align-items:center;gap:4px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}.ml2-temas button.on{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}.ml2-temas i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.ml2-emo{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.ml2-emo span{display:flex;gap:3px;flex-wrap:wrap}.ml2-ideas{display:flex;flex-wrap:wrap;gap:6px}.ml2-ideas .chipb{text-align:left}
+.ml2 .vars{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}.ml2 .vars code{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:11.5px}
+.ml2-blqs{display:grid;gap:8px}.ml-blq{border:1px solid var(--line);border-radius:12px;background:var(--surface-2);padding:8px 10px}.ml-blq.off{opacity:.6}.ml-bh{display:flex;align-items:center;justify-content:space-between;gap:8px}.ml-bh label{display:inline-flex;gap:8px;align-items:center;margin:0;font-size:13.5px}.ml-bh input{width:auto!important}.ml-bh .btn{padding:2px 7px}
+.ml-bc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.ml-c{display:grid;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}.ml-c.w{grid-column:1/-1}.ml-c i{font-weight:500;font-style:normal}
+.ml-add{display:flex;gap:6px;align-items:center}.ml-add select{flex:1}
+.ml2-segs{display:flex;flex-wrap:wrap;gap:6px}.ml2-segs .chipb.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.ml2-ph{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.ml2-inbox{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);font-size:13px;min-width:0}.ml2-inbox img{width:34px;height:34px;border-radius:50%;flex:none}.ml2-inbox div{min-width:0;display:grid}.ml2-inbox span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}.ml2-inbox span b{color:var(--ink)}
+.ml2-frame{background:#DDE3EC;border-radius:12px;padding:10px;display:flex;justify-content:center;overflow:hidden}.ml2-frame iframe{width:100%;height:760px;border:0;border-radius:10px;background:#fff;transition:width .25s}
+.ml2-check{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13px}.ml2-check li.no{color:#C2410C;font-weight:600}
+.ml-sts{display:grid;gap:4px;max-width:420px}.ml-st{display:grid;grid-template-columns:100px 1fr 44px;gap:8px;align-items:center;font-size:12.5px}.ml-st i{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.ml-st i b{display:block;height:100%}.ml-st em{font-style:normal;font-weight:800;text-align:right}
 .bn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1.05fr);gap:16px;align-items:start}@media (max-width:1000px){.bn-grid{grid-template-columns:minmax(0,1fr)}}
 .bn-det summary{cursor:pointer;font-weight:700;margin-top:10px}.bn-form{display:grid;gap:8px;margin-top:8px}.bn-form label{display:grid;gap:4px;font-size:12.5px;font-weight:700}.bn-form textarea,.bn-form input,#bnTema,#bnDibLista{width:100%;border:1px solid var(--line);border-radius:9px;padding:7px 9px;background:var(--surface);color:inherit;font:inherit;font-size:13px;font-weight:500;resize:vertical}
 .bn-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media (max-width:560px){.bn-2{grid-template-columns:1fr}}
@@ -2170,7 +2188,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 <!-- ============ INSTAGRAM ============ -->
 <!-- ============ CORREOS ============ -->
 <main class="wrap view" id="view-correos" hidden>
-  <div class="view-h"><div><h1>Correos a tus clientes</h1><p class="lead">Elegí a quién, escribí el mensaje y mandalo desde acá. Cada correo sale personalizado, con tu marca y un link para darse de baja.</p></div></div>
+  <div class="view-h"><div><h1>Correos a tus clientes</h1><p class="lead">Diseñá correos con tu marca, armados por bloques: elegí un material de tu web y el correo se completa solo con la tapa, lo que incluye, páginas de muestra y el precio. Sale personalizado, con un link para darse de baja.</p></div></div>
   <p class="banner" id="mlOff" hidden></p>
   <div id="mlApp">
     <p class="muted" id="mlStatus"></p>
@@ -2178,30 +2196,39 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
       <ol class="ml-steps"><li>Creá una cuenta gratis en <a href="https://www.brevo.com/es/" target="_blank" rel="noopener">Brevo</a> y verificá el email remitente (ideal: uno de tu dominio, como hola@cofredidactico.com.ar).</li>
       <li>En Brevo, generá una <b>clave de API</b> (SMTP y API → Claves API).</li>
       <li>En Supabase → SQL Editor, pegá el contenido de <b>bajas.sql</b> y tocá Run.</li>
-      <li>En Supabase → Edge Functions → <b>Deploy a new function</b> → “Via Editor”: nombre <code>enviar-correos</code>, pegá el contenido de <b>enviar-correos.ts</b> y desactivá “Verify JWT” (la función controla tu sesión ella misma).</li>
-      <li>En Edge Functions → <b>Secrets</b>, agregá <code>BREVO_API_KEY</code> (tu clave de Brevo) y <code>REMITENTE</code> (el email verificado). Recargá esta página.</li></ol></section>
-    <div class="ml-grid">
-      <section class="card"><h3>1. A quién</h3>
-        <div class="ml-f"><label class="field"><span>Incluir</span><select id="mlBase" class="sel"><option value="ok">Clientes con al menos una compra aprobada</option><option value="pend">Con un pago pendiente (últimos 30 días)</option><option value="all">Todos los contactos con email</option></select></label>
-        <label class="field"><span>Que compraron</span><select id="mlTema" class="sel"></select></label>
-        <label class="field"><span>Que todavía no compraron</span><select id="mlNoTema" class="sel"></select></label>
-        <label class="field"><span>Provincia</span><select id="mlProv" class="sel"></select></label>
-        <label class="field"><span>Última compra</span><select id="mlLast" class="sel"><option value="">En cualquier momento</option><option value="r30">En los últimos 30 días</option><option value="r90">En los últimos 90 días</option><option value="o90">Hace más de 90 días</option><option value="o180">Hace más de 6 meses</option></select></label></div>
-        <p class="ml-n"><b id="mlN">0</b> personas reciben este correo <span class="muted">(se excluyen las bajas y los emails inválidos)</span></p>
-        <details class="ml-list"><summary>Ver la lista</summary><div id="mlList"></div></details></section>
-      <section class="card"><h3>2. Mensaje</h3>
-        <label class="field"><span>Plantilla</span><select id="mlTpl" class="sel"></select></label>
-        <label class="field"><span>Asunto</span><input id="mlAsunto" maxlength="150"></label>
-        <label class="field"><span>Mensaje</span><textarea id="mlCuerpo" rows="10"></textarea></label>
-        <div class="vars"><span class="muted">Insertar:</span><button type="button" class="chipb" data-mlvar="nombre">{nombre}</button><button type="button" class="chipb" data-mlvar="ultimo_material">{ultimo_material}</button><button type="button" class="chipb" data-mlvar="tema">{tema}</button><button type="button" class="chipb" data-mlvar="efemeride">{efemeride}</button><button type="button" class="chipb" data-mlvar="tienda">{tienda}</button></div>
-        <p class="muted">Dejá una línea en blanco entre párrafos. **texto** sale en negrita.</p>
-        <div class="row2"><label class="field"><span>Botón (opcional)</span><input id="mlBoton" maxlength="40"></label><label class="field"><span>Link del botón</span><input id="mlLink" maxlength="300"></label></div></section>
-      <section class="card ml-prev"><h3>Vista previa</h3><p class="ml-subj"><span class="muted">Asunto:</span> <b id="mlPrevSubj"></b></p><iframe id="mlPrev" title="Vista previa del correo" sandbox=""></iframe></section>
+      <li>En Supabase → Edge Functions → <b>Deploy a new function</b> → “Via Editor”: nombre <code>enviar-correos</code>, pegá el contenido de <b>enviar-correos.ts</b> y desactivá “Verify JWT”.</li>
+      <li>En Edge Functions → <b>Secrets</b>, agregá <code>BREVO_API_KEY</code> y <code>REMITENTE</code>. Recargá esta página.</li></ol></section>
+    <div class="ml2-grid">
+      <div class="ml2-col">
+        <section class="card ml2"><h3>1. ¿Qué correo?</h3>
+          <div class="ml2-row"><label class="field"><span>Tipo de correo</span><select id="mlTpl" class="sel"></select></label><label class="field"><span>Material (de tu web)</span><select id="mlMat" class="sel"></select></label></div>
+          <div class="field"><span class="ml2-lab">Estilo</span><div class="ml2-temas" id="mlTemas"></div></div>
+          <label class="field"><span class="ml2-lab">Asunto <em id="mlAsuntoN" class="ml-cnt"></em></span><input id="mlAsunto" maxlength="150"></label>
+          <div class="ml2-emo"><button type="button" class="btn small ghost" id="mlIdeasBtn">💡 Ideas de asunto</button><span><button type="button" class="chipb" data-mlemo="🆕">🆕</button><button type="button" class="chipb" data-mlemo="✨">✨</button><button type="button" class="chipb" data-mlemo="📚">📚</button><button type="button" class="chipb" data-mlemo="🎁">🎁</button><button type="button" class="chipb" data-mlemo="💙">💙</button><button type="button" class="chipb" data-mlemo="👀">👀</button><button type="button" class="chipb" data-mlemo="🇦🇷">🇦🇷</button><button type="button" class="chipb" data-mlemo="⏰">⏰</button></span></div>
+          <div class="ml2-ideas" id="mlIdeas" hidden></div>
+          <label class="field"><span class="ml2-lab">Texto de vista previa <em class="muted">(lo que se lee al lado del asunto en la bandeja)</em></span><input id="mlPre" maxlength="140"></label>
+          <div class="vars"><span class="muted">Podés usar:</span><code>{nombre}</code><code>{ultimo_material}</code><code>{material}</code><code>{efemeride}</code><code>{tienda}</code></div></section>
+        <section class="card ml2"><h3>2. Bloques del correo</h3><p class="muted" style="margin:0;font-size:12.5px">Prendé, apagá y ordená cada parte. Todo se ve al instante a la derecha.</p><div id="mlBlq" class="ml2-blqs"></div></section>
+        <section class="card ml2"><h3>3. ¿A quién?</h3>
+          <div class="ml2-segs"><button type="button" class="chipb" data-mlseg="todos">Todas las clientas</button><button type="button" class="chipb" data-mlseg="falta">Les falta este material</button><button type="button" class="chipb" data-mlseg="parecido">Compraron algo del tema</button><button type="button" class="chipb" data-mlseg="frec">Frecuentes (3+ compras)</button><button type="button" class="chipb" data-mlseg="recientes">Compraron hace poco</button><button type="button" class="chipb" data-mlseg="dormidas">No compran hace 6 meses</button></div>
+          <div class="ml-f ml2-row"><label class="field"><span>Incluir</span><select id="mlBase" class="sel"><option value="ok">Clientes con al menos una compra aprobada</option><option value="frec">Clientes frecuentes (3 compras o más)</option><option value="pend">Con un pago pendiente (últimos 30 días)</option><option value="all">Todos los contactos con email</option></select></label>
+          <label class="field"><span>Que compraron</span><select id="mlTema" class="sel"></select></label>
+          <label class="field"><span>Que todavía no compraron</span><select id="mlNoTema" class="sel"></select></label>
+          <label class="field"><span>Provincia</span><select id="mlProv" class="sel"></select></label>
+          <label class="field"><span>Última compra</span><select id="mlLast" class="sel"><option value="">En cualquier momento</option><option value="r30">En los últimos 30 días</option><option value="r90">En los últimos 90 días</option><option value="o90">Hace más de 90 días</option><option value="o180">Hace más de 6 meses</option></select></label></div>
+          <p class="ml-n"><b id="mlN">0</b> personas reciben este correo <span class="muted">(se excluyen las bajas y los emails inválidos)</span></p>
+          <details class="ml-list"><summary>Ver la lista</summary><div id="mlList"></div></details></section>
+      </div>
+      <div class="ml2-col ml2-der">
+        <section class="card ml2 ml2-prev"><div class="ml2-ph"><h3>Así lo va a ver</h3><div class="is-opts"><button type="button" class="on" data-mlvista="pc">💻 Compu</button><button type="button" data-mlvista="cel">📱 Celular</button></div></div>
+          <div class="ml2-inbox"><img src="https://cofredidactico.com.ar/logo.png" alt=""><div><b>Cofre Didáctico</b><span><b id="mlPrevSubj"></b> — <span id="mlPrevPre"></span></span></div></div>
+          <div class="ml2-frame"><iframe id="mlPrev" title="Vista previa del correo" sandbox=""></iframe></div>
+          <ul class="ml2-check" id="mlCheck"></ul>
+          <div class="actions"><button class="btn" type="button" id="mlTest">✉️ Enviarme una prueba</button><button class="btn primary" type="button" id="mlSend" disabled>Enviar</button><button class="btn danger" type="button" id="mlStop" hidden>Pausar</button><button class="btn small ghost" type="button" id="mlCopiar">Copiar el HTML</button></div>
+          <progress id="mlProg" max="1" value="0" hidden></progress><p class="muted" id="mlMsg"></p>
+          <p class="muted" style="font-size:12px;margin:0">Con la cuenta gratis de Brevo podés mandar hasta 300 correos por día; si son más, el envío queda en pausa y lo continuás al día siguiente.</p></section>
+      </div>
     </div>
-    <section class="card ml-send"><h3>3. Enviar</h3>
-      <div class="actions"><button class="btn" type="button" id="mlTest">Enviarme una prueba</button><button class="btn primary" type="button" id="mlSend" disabled>Enviar</button><button class="btn danger" type="button" id="mlStop" hidden>Pausar</button></div>
-      <progress id="mlProg" max="1" value="0" hidden></progress><p class="muted" id="mlMsg"></p>
-      <p class="muted">Con la cuenta gratis de Brevo podés mandar hasta 300 correos por día; si son más, el envío queda en pausa y lo continuás al día siguiente.</p></section>
     <div class="grid2"><section class="card"><h3>Envíos anteriores</h3><div id="mlHist"></div></section><section class="card"><h3>Bajas</h3><div id="mlBajas"></div></section></div>
   </div>
 </main>
@@ -14213,16 +14240,21 @@ function renderIgPosts(){
   tableToggle($("#igPosts").closest(".card"),["Publicación","Tipo","Vendidos 72 h","Ritmo normal","Facturado","Alcance","Comentarios"],P.map(p=>[`${dm(p.d)} · ${p.t}`,p.tipo,one(p.u),one(p.base),money(p.rev),nf(p.reach),nf(p.com)]));
 }
 
-// ---------- CORREOS (Brevo a través de tu Supabase) ----------
+// ---------- CORREOS (Brevo a través de tu Supabase) · editor por bloques ----------
 const ML_FN="enviar-correos";
-let mlBajas=null, mlCuenta=null, mlBusy=false, mlEnvios=[];
+let mlBajas=null, mlCuenta=null, mlBusy=false, mlEnvios=[], mlCat=null, mlVista="pc";
+const ML_WEB="https://cofredidactico.com.ar";
+const ML_TEMAS={cofre:{n:"Cofre",a:"#0B8BD6",b:"#EF7F22",bg:"#EEF2F8",suave:"#FFF4E6",ink:"#253047"},patrio:{n:"Patrio 🇦🇷",a:"#2B7BC0",b:"#D48B0B",bg:"#EAF4FC",suave:"#F1F8FE",ink:"#1A2744"},pastel:{n:"Pastel",a:"#8E6CC9",b:"#F27BA3",bg:"#F6F1FB",suave:"#FDF0F5",ink:"#3A2E4F"},verde:{n:"Naturaleza",a:"#2E9E6A",b:"#F2A33A",bg:"#EEF7F1",suave:"#F3FAF5",ink:"#1F3A2C"}};
+const ML_BLQ={hero:"🖼️ Portada",texto:"✍️ Texto",datos:"🏷️ Datos rápidos",incluye:"📦 Qué incluye",galeria:"🖼️ Galería de páginas",precio:"💲 Precio y botón",cupon:"🎟️ Cupón",boton:"🔘 Botón",testimonio:"💬 Opinión de una docente",firma:"✒️ Firma",redes:"📱 Redes"};
+const mlB=(t,o={})=>({t,on:true,...o});
 const ML_TPL={
-  novedad:{n:"Material nuevo",a:"¡Hay un material nuevo en Cofre Didáctico! 📚",c:"Hola {nombre}:\n\nTe escribo porque ya está disponible un material nuevo que creo que te va a servir para el aula.\n\n**[Escribí acá de qué se trata y qué incluye]**\n\nComo ya confiaste en Cofre Didáctico, quería que fueras de las primeras en enterarte.\n\n¡Gracias por acompañarme siempre! 💙\nAlejandro",b:"Ver el material",l:"{tienda}"},
-  efe:{n:"Se viene una efeméride",a:"Se viene {efemeride}: ¿ya tenés el material?",c:"Hola {nombre}:\n\nFalta poco para **{efemeride}** y quería recordarte que tengo materiales listos para imprimir y trabajar en el aula.\n\nEl año pasado muchas docentes lo prepararon con tiempo: así llegás tranquila a la fecha.\n\n¡Cualquier consulta, respondé este correo!\nAlejandro · Cofre Didáctico",b:"Ver materiales",l:"{tienda}"},
-  pend:{n:"Pago pendiente",a:"Tu pedido de {ultimo_material} quedó pendiente",c:"Hola {nombre}:\n\nVi que empezaste la compra de **{ultimo_material}** pero el pago quedó pendiente.\n\nSi tuviste algún problema para pagar, respondé este correo y te ayudo. También podés pagar por transferencia (alias: cofredidactico).\n\n¡Gracias!\nAlejandro",b:"Volver a la tienda",l:"{tienda}"},
-  gracias:{n:"Gracias y recomendación",a:"{nombre}, ¿cómo te fue con {ultimo_material}?",c:"Hola {nombre}:\n\nQuería agradecerte por elegir **{ultimo_material}**. Ojalá lo hayas disfrutado con tus alumnos.\n\nSi te sirvió, te recomiendo mirar también los otros materiales de la tienda: están pensados para trabajar en conjunto.\n\nY si tenés un minuto, me encantaría saber qué te pareció: respondé este correo con tu opinión. 💛\nAlejandro",b:"Ver la tienda",l:"{tienda}"},
-  blanco:{n:"En blanco",a:"",c:"Hola {nombre}:\n\n",b:"",l:""}
-};
+  lanzamiento:{n:"🆕 Material nuevo (diseño completo)",asunto:"🆕 {material}: ¡ya está disponible!",pre:"{nombre}, te cuento qué trae y por qué te va a encantar 💙",tema:"cofre",bl:()=>[mlB("hero",{etq:"¡NUEVO MATERIAL!",tit:"",sub:"",img:""}),mlB("texto",{txt:"¡Hola, {nombre}! 👋\n\nTe escribo porque acabo de publicar un material nuevo y, como ya confiaste en Cofre Didáctico, quería que fueras de las primeras en enterarte."}),mlB("datos",{items:[]}),mlB("incluye",{tit:"¿Qué vas a encontrar?",items:[]}),mlB("galeria",{tit:"Mirá algunas páginas por dentro 👀",imgs:[]}),mlB("precio",{precio:"",antes:"",nota:"",boton:"¡Quiero mi material!",link:"",link2:""}),mlB("cupon",{on:false,codigo:"",txt:"Usá este código en la tienda y llevate un descuento especial:"}),mlB("testimonio",{on:false,txt:"",autor:""}),mlB("firma",{txt:"¡Gracias por acompañarme siempre! 💙",nombre:"Alejandro",cargo:"Cofre Didáctico"}),mlB("redes")]},
+  efe:{n:"📅 Se viene una efeméride",asunto:"Se viene {efemeride}: ¿ya tenés el material? 📚",pre:"Llegá tranquila a la fecha con todo listo para imprimir",tema:"patrio",bl:()=>[mlB("hero",{etq:"SE VIENE",tit:"{efemeride}",sub:"Materiales listos para imprimir y trabajar en el aula",img:""}),mlB("texto",{txt:"Hola, {nombre}:\n\nFalta poco para **{efemeride}** y quería recordarte que tengo materiales listos para imprimir y trabajar en el aula.\n\nEl año pasado muchas docentes lo prepararon con tiempo: así llegás tranquila a la fecha."}),mlB("boton",{txt:"Ver los materiales",link:"{tienda}"}),mlB("firma",{txt:"¡Cualquier consulta, respondé este correo!",nombre:"Alejandro",cargo:"Cofre Didáctico"}),mlB("redes")]},
+  cupon:{n:"🎟️ Cupón de regalo",asunto:"{nombre}, te guardé un regalo 🎁",pre:"Un descuento especial solo para vos, por tiempo limitado",tema:"pastel",bl:()=>[mlB("hero",{etq:"UN REGALO PARA VOS",tit:"¡Gracias por elegir Cofre Didáctico!",sub:"Te dejo un descuento especial para tu próximo material",img:""}),mlB("texto",{txt:"Hola, {nombre}:\n\nComo ya trabajaste con **{ultimo_material}**, quería agradecerte con un descuento para que sigas sumando materiales a tu aula."}),mlB("cupon",{codigo:"GRACIAS10",txt:"Copiá este código y usalo en la tienda:"}),mlB("boton",{txt:"Ir a la tienda",link:"{tienda}"}),mlB("firma",{txt:"¡Que lo disfrutes!",nombre:"Alejandro",cargo:"Cofre Didáctico"})]},
+  pend:{n:"⏳ Pago pendiente",asunto:"Tu pedido de {ultimo_material} quedó pendiente",pre:"Si tuviste un problema para pagar, te ayudo",tema:"cofre",bl:()=>[mlB("texto",{txt:"Hola, {nombre}:\n\nVi que empezaste la compra de **{ultimo_material}** pero el pago quedó pendiente.\n\nSi tuviste algún problema para pagar, respondé este correo y te ayudo. También podés pagar por transferencia (alias: cofredidactico)."}),mlB("boton",{txt:"Volver a la tienda",link:"{tienda}"}),mlB("firma",{txt:"¡Gracias!",nombre:"Alejandro",cargo:"Cofre Didáctico"})]},
+  gracias:{n:"💛 Gracias y opinión",asunto:"{nombre}, ¿cómo te fue con {ultimo_material}?",pre:"Me encantaría saber qué te pareció",tema:"cofre",bl:()=>[mlB("texto",{txt:"Hola, {nombre}:\n\nQuería agradecerte por elegir **{ultimo_material}**. Ojalá lo hayas disfrutado con tus alumnos.\n\nSi tenés un minuto, me encantaría saber qué te pareció: respondé este correo con tu opinión o con una foto del trabajo en el aula (sin caras de los chicos). 💛"}),mlB("boton",{txt:"Ver más materiales",link:"{tienda}"}),mlB("firma",{txt:"¡Gracias de corazón!",nombre:"Alejandro",cargo:"Cofre Didáctico"}),mlB("redes")]},
+  blanco:{n:"📝 En blanco",asunto:"",pre:"",tema:"cofre",bl:()=>[mlB("texto",{txt:"Hola, {nombre}:\n\n"}),mlB("firma",{txt:"",nombre:"Alejandro",cargo:"Cofre Didáctico"})]}};
+let ML={tpl:"lanzamiento",tema:"cofre",asunto:"",pre:"",mat:"",bl:[]};
 const mlEmailOk=e=>/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(e||"");
 const firstName=n=>{ const w=String(n||"").trim().split(/\s+/)[0]||""; return w?w.charAt(0).toUpperCase()+w.slice(1).toLowerCase():""; };
 function mlNextEfe(){ const u=upcomingEfes(60).find(x=>D&&D.matList.some(m=>{ const f=efeFor(m.name,m.doc); return f&&f[0]===x.e[0]; }))||upcomingEfes(60)[0]; return u?u.e[1]:"la próxima efeméride"; }
@@ -14234,6 +14266,7 @@ function mlAudience(){
     const ok=c.o.filter(o=>o.pg==="Finalizado");
     if(base==="ok"&&!ok.length) return false;
     if(base==="pend"&&!c.o.some(o=>o.pg==="Pendiente"&&o._d&&(t-o._d)/DAY<=30)) return false;
+    if(base==="frec"&&ok.length<3) return false;
     const groups=new Set(ok.flatMap(o=>(o.i||[]).map(x=>groupOf(x[1]))));
     if(tema&&!groups.has(tema)) return false; if(noTema&&groups.has(noTema)) return false;
     if(prov&&provFold(c.p||"")!==prov) return false;
@@ -14242,94 +14275,176 @@ function mlAudience(){
   .map(c=>{ const o=(c.o.find(o=>o.pg==="Finalizado")||(base==="pend"?c.o.find(o=>o.pg==="Pendiente"):null)||c.o[0]); const mat=o&&o.i&&o.i[0]?o.i[0][1]:"tu material";
     return {email:String(c.e).trim().toLowerCase(),name:c.n||"",vars:{nombre:firstName(c.n)||"docente",ultimo_material:mat,tema:tema||groupOf(mat),efemeride:mlNextEfe(),tienda:STORE_URL}}; });
 }
-// Texto simple -> HTML de correo (párrafos, **negrita**, enlaces). Las variables quedan como {{ params.x }} para Brevo.
-function mlBody(txt){ const p=esc(txt).replace(/\r/g,"").split(/\n{2,}/).map(par=>par.replace(/\n/g,"<br>"));
-  return p.map(par=>`<p style="margin:0 0 14px;font-size:16px;line-height:1.6;color:#253047">${par.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" style="color:#0b8bd6">$1</a>')}</p>`).join(""); }
-function mlHtml({cuerpo,boton,link}){
-  const btn=boton&&link?`<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 18px"><tr><td style="background:#0b8bd6;border-radius:10px"><a href="${esc(link)}" style="display:inline-block;padding:13px 22px;color:#ffffff;font-weight:700;font-size:16px;text-decoration:none;font-family:Arial,sans-serif">${esc(boton)}</a></td></tr></table>`:"";
-  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cofre Didáctico</title></head><body style="margin:0;background:#eef2f8;padding:0">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef2f8"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;font-family:'Nunito',Arial,sans-serif">
-<tr><td style="padding:22px 28px;border-bottom:4px solid #ef7f22;background:#ffffff"><span style="font-size:24px;font-weight:800;color:#0b8bd6">Cofre</span> <span style="font-size:24px;font-weight:800;color:#ef7f22">Didáctico</span><div style="font-size:12px;letter-spacing:2px;color:#8a95aa;text-transform:uppercase;margin-top:2px">Materiales para docentes</div></td></tr>
-<tr><td style="padding:26px 28px 10px">${mlBody(cuerpo)}${btn}</td></tr>
-<tr><td style="padding:16px 28px 22px;background:#f6f8fc;font-size:12px;line-height:1.5;color:#7a849a">Recibís este correo porque compraste en Cofre Didáctico (<a href="https://cofredidactico.com.ar" style="color:#7a849a">cofredidactico.com.ar</a>). Si no querés recibir más correos, <a href="{{ params.baja }}" style="color:#7a849a">date de baja acá</a>.</td></tr>
-</table></td></tr></table></body></html>`;
+const mlVarRe=/\{(nombre|ultimo_material|tema|efemeride|tienda|material)\}/g;
+function mlFill(s,vars,forBrevo){ return String(s||"").replace(mlVarRe,(m,k)=>k==="material"?(mlMatSel()||{}).nombre||"el material nuevo":forBrevo&&k!=="tienda"?`{{ params.${k} }}`:(vars[k]??"")); }
+// texto simple -> párrafos (**negrita**, enlaces)
+function mlParr(txt,T,size=16){ return esc(txt).replace(/\r/g,"").split(/\n{2,}/).filter(p=>p.trim()).map(par=>`<p style="margin:0 0 14px;font-size:${size}px;line-height:1.6;color:${T.ink}">${par.replace(/\n/g,"<br>").replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/(https?:\/\/[^\s<]+)/g,`<a href="$1" style="color:${T.a}">$1</a>`)}</p>`).join(""); }
+const mlUrl=u=>!u?"":/^(https?:|data:|\{)/.test(u)?u:`${ML_WEB}/${String(u).replace(/^\/+/,"")}`;
+const mlBtn=(txt,link,T,full)=>`<table role="presentation" cellpadding="0" cellspacing="0" ${full?'width="100%"':""} style="margin:6px auto 4px"><tr><td align="center" bgcolor="${T.b}" style="background:${T.b};border-radius:999px;box-shadow:0 4px 0 rgba(0,0,0,.12)"><a href="${esc(link)}" style="display:block;padding:15px 30px;color:#ffffff;font-weight:800;font-size:17px;text-decoration:none;font-family:Arial,sans-serif;letter-spacing:.2px">${esc(txt)}</a></td></tr></table>`;
+// arma el HTML del correo (tablas e inline, compatible con Gmail, Outlook y celulares)
+function mlHtml2(d,vars,forBrevo){ const T=ML_TEMAS[d.tema]||ML_TEMAS.cofre, F=s=>mlFill(s,vars,forBrevo), pre=F(d.pre||"");
+  const blq=d.bl.filter(b=>b.on).map(b=>{ const P='style="padding:0 32px"', Q="padding:0 32px";
+    if(b.t==="hero"){ const img=mlUrl(F(b.img)); return `<tr><td class="px" style="padding:26px 32px 6px;text-align:center">${b.etq?`<div style="display:inline-block;background:${T.suave};color:${T.b};font-weight:800;font-size:12.5px;letter-spacing:2px;padding:7px 14px;border-radius:999px;margin-bottom:12px">${esc(F(b.etq))}</div>`:""}${b.tit?`<h1 style="margin:0 0 8px;font-size:28px;line-height:1.2;color:${T.ink};font-family:Arial,sans-serif">${esc(F(b.tit))}</h1>`:""}${b.sub?`<p style="margin:0 0 16px;font-size:16px;line-height:1.5;color:#5A6680">${esc(F(b.sub))}</p>`:""}${img?`<img src="${esc(img)}" width="536" alt="${esc(F(b.tit||"Material"))}" style="display:block;width:100%;max-width:536px;height:auto;border-radius:16px;margin:4px auto 6px;border:0">`:""}</td></tr>`; }
+    if(b.t==="texto") return `<tr><td class="px" style="padding:18px 32px 4px">${mlParr(F(b.txt),T)}</td></tr>`;
+    if(b.t==="datos"){ const L=(b.items||[]).filter(Boolean); return L.length?`<tr><td class="px" style="padding:4px 32px 10px;text-align:center">${L.map(x=>`<span style="display:inline-block;margin:4px 3px;padding:8px 13px;border-radius:999px;background:${T.bg};color:${T.ink};font-size:13.5px;font-weight:700">${esc(F(x))}</span>`).join("")}</td></tr>`:""; }
+    if(b.t==="incluye"){ const L=(b.items||[]).filter(Boolean); if(!L.length) return ""; const half=Math.ceil(L.length/2), col=a=>a.map(x=>{ const m=String(x).match(/^(\p{Extended_Pictographic}[\u{FE0F}\u{200D}\p{Extended_Pictographic}]*)\s*(.*)$/u); return `<tr><td valign="top" style="width:28px;font-size:17px;padding:5px 6px 5px 0">${m?m[1]:"✔️"}</td><td style="font-size:14.5px;line-height:1.45;color:${T.ink};padding:5px 0">${esc(F(m?m[2]:x))}</td></tr>`; }).join("");
+      return `<tr><td class="px" style="padding:12px 32px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${T.suave};border-radius:16px"><tr><td style="padding:20px 22px 12px"><h2 style="margin:0 0 10px;font-size:20px;color:${T.ink};font-family:Arial,sans-serif">${esc(F(b.tit))}</h2><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td class="col2" valign="top" width="50%"><table role="presentation" cellpadding="0" cellspacing="0">${col(L.slice(0,half))}</table></td><td class="col2" valign="top" width="50%"><table role="presentation" cellpadding="0" cellspacing="0">${col(L.slice(half))}</table></td></tr></table></td></tr></table></td></tr>`; }
+    if(b.t==="galeria"){ const I=(b.imgs||[]).filter(Boolean).slice(0,4).map(u=>mlUrl(F(u))); if(!I.length) return ""; const cell=u=>`<td class="col2" width="50%" style="padding:6px" valign="top"><img src="${esc(u)}" width="262" alt="Página del material" style="display:block;width:100%;height:auto;border-radius:12px;border:1px solid #E3E8F0"></td>`;
+      let rows=""; for(let i=0;i<I.length;i+=2) rows+=`<tr>${cell(I[i])}${I[i+1]?cell(I[i+1]):'<td class="col2" width="50%"></td>'}</tr>`; return `<tr><td class="px" style="padding:14px 26px 4px">${b.tit?`<h2 style="margin:0 6px 8px;font-size:19px;color:${T.ink};font-family:Arial,sans-serif;text-align:center">${esc(F(b.tit))}</h2>`:""}<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table></td></tr>`; }
+    if(b.t==="precio"){ const p=numAR(b.precio), a=numAR(b.antes), ah=a>p&&p?a-p:0; return `<tr><td class="px" style="padding:16px 32px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:2px solid ${T.b};border-radius:18px"><tr><td style="padding:22px 20px;text-align:center">${p?`<div style="font-size:14px;color:#5A6680;margin-bottom:4px">${a>p?`Antes <s>${money(a)}</s> · `:""}Precio</div><div style="font-size:38px;font-weight:900;color:${T.ink};font-family:Arial,sans-serif;line-height:1.1">${money(p)}</div>${ah?`<div style="display:inline-block;margin-top:8px;background:${T.b};color:#fff;font-weight:800;font-size:13px;padding:5px 12px;border-radius:999px">Ahorrás ${money(ah)} (${Math.round(ah/a*100)}% OFF)</div>`:""}`:""}${b.nota?`<p style="margin:10px 0 2px;font-size:14px;color:${T.b};font-weight:700">⏰ ${esc(F(b.nota))}</p>`:""}<div style="height:12px"></div>${b.boton&&b.link?mlBtn(F(b.boton),F(b.link),T,true):""}${b.link2?`<p style="margin:12px 0 0;font-size:13.5px"><a href="${esc(F(b.link2))}" style="color:${T.a};font-weight:700">o mirá todos los detalles en la web →</a></p>`:""}</td></tr></table></td></tr>`; }
+    if(b.t==="cupon") return b.codigo?`<tr><td class="px" style="padding:12px 32px;text-align:center"><p style="margin:0 0 8px;font-size:15px;color:${T.ink}">${esc(F(b.txt))}</p><div style="display:inline-block;border:2px dashed ${T.b};border-radius:14px;padding:12px 26px;font-size:26px;font-weight:900;letter-spacing:4px;color:${T.b};font-family:'Courier New',monospace;background:#fff">${esc(F(b.codigo))}</div></td></tr>`:"";
+    if(b.t==="boton") return b.txt&&b.link?`<tr><td class="px" style="padding:10px 32px 16px;text-align:center">${mlBtn(F(b.txt),F(b.link),T,false)}</td></tr>`:"";
+    if(b.t==="testimonio") return b.txt?`<tr><td class="px" style="padding:12px 32px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-left:4px solid ${T.a};background:${T.bg};border-radius:0 14px 14px 0"><tr><td style="padding:16px 18px"><p style="margin:0 0 6px;font-size:15.5px;line-height:1.55;font-style:italic;color:${T.ink}">“${esc(F(b.txt))}”</p>${b.autor?`<p style="margin:0;font-size:13.5px;font-weight:700;color:${T.a}">— ${esc(F(b.autor))}</p>`:""}</td></tr></table></td></tr>`:"";
+    if(b.t==="firma") return `<tr><td class="px" style="padding:16px 32px 8px"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td valign="middle" style="padding-right:12px"><img src="${ML_WEB}/logo.png" width="52" height="52" alt="Cofre Didáctico" style="display:block;border-radius:50%;border:0"></td><td valign="middle">${b.txt?`<p style="margin:0 0 2px;font-size:15px;color:${T.ink}">${esc(F(b.txt))}</p>`:""}<p style="margin:0;font-size:15px;font-weight:800;color:${T.ink}">${esc(F(b.nombre||""))}</p><p style="margin:0;font-size:13px;color:#7A849A">${esc(F(b.cargo||""))}</p></td></tr></table></td></tr>`;
+    if(b.t==="redes") return `<tr><td class="px" style="padding:14px 32px 6px;text-align:center"><a href="https://www.instagram.com/cofredidactico/" style="display:inline-block;margin:0 6px;padding:9px 16px;border-radius:999px;background:${T.bg};color:${T.ink};font-weight:700;font-size:13.5px;text-decoration:none">📸 Instagram</a><a href="${ML_WEB}" style="display:inline-block;margin:0 6px;padding:9px 16px;border-radius:999px;background:${T.bg};color:${T.ink};font-weight:700;font-size:13.5px;text-decoration:none">🌐 cofredidactico.com.ar</a></td></tr>`;
+    return ""; }).join("");
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Cofre Didáctico</title>
+<style>body{margin:0;padding:0}img{-ms-interpolation-mode:bicubic}a{text-decoration:none}@media (max-width:600px){.px{padding-left:18px!important;padding-right:18px!important}.col2{display:block!important;width:100%!important}h1{font-size:24px!important}}</style></head>
+<body style="margin:0;background:${T.bg};padding:0"><div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent">${esc(pre)}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${T.bg}"><tr><td align="center" style="padding:22px 10px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:22px;overflow:hidden;font-family:Arial,'Helvetica Neue',sans-serif">
+<tr><td style="height:6px;background:${T.a};font-size:0;line-height:0">&nbsp;</td></tr>
+<tr><td class="px" style="padding:18px 32px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td valign="middle" width="54"><img src="${ML_WEB}/logo.png" width="46" height="46" alt="" style="display:block;border:0"></td><td valign="middle"><span style="font-size:22px;font-weight:900;color:${T.a}">Cofre</span> <span style="font-size:22px;font-weight:900;color:${T.b}">Didáctico</span><div style="font-size:11px;letter-spacing:2px;color:#8A95AA;text-transform:uppercase">Materiales para docentes</div></td></tr></table></td></tr>
+${blq}
+<tr><td style="padding:22px 32px 26px;background:#F6F8FC;font-size:12px;line-height:1.6;color:#7A849A;text-align:center">Recibís este correo porque compraste en Cofre Didáctico (<a href="${ML_WEB}" style="color:#7A849A;text-decoration:underline">cofredidactico.com.ar</a>).<br>Si no querés recibir más correos, <a href="{{ params.baja }}" style="color:#7A849A;text-decoration:underline">date de baja acá</a>.</td></tr>
+</table></td></tr></table></body></html>`; }
+// correos viejos (texto simple), para continuar envíos ya empezados
+function mlHtml({cuerpo,boton,link}){ return mlHtml2({tema:"cofre",pre:"",bl:[mlB("texto",{txt:cuerpo}),...(boton&&link?[mlB("boton",{txt:boton,link})]:[])]},{},false); }
+
+// ---------- catálogo de la web (para armar el correo del material) ----------
+async function mlCatalogo(){ if(mlCat) return mlCat; try{ const r=await fetch(`${ML_WEB}/productos.json`,{cache:"no-store"}); const j=await r.json(); mlCat=(Array.isArray(j)?j:(j.productos||Object.values(j)[0]||[])).filter(p=>p.activo!==false&&p.activo!=="False"); }
+  catch{ mlCat=(D?D.matList:[]).map(m=>({id:m.k,nombre:m.name,precio:(D.mats[m.k]||{}).precio||"",imagen:(m.doc&&m.doc.cover)||"",descripcion:"",link:STORE_URL,_local:true})); } return mlCat; }
+const mlMatSel=()=>(mlCat||[]).find(p=>p.id===ML.mat);
+function mlUsarMaterial(p){ if(!p) return; const inc=String(p.descripcionLarga||"").split("\n"), i0=inc.findIndex(l=>/qué vas a encontrar|incluye/i.test(l)), items=[]; if(i0>=0) for(let i=i0+1;i<inc.length&&inc[i].trim();i++) items.push(inc[i].trim());
+  const niv=p.nivelGrupo==="1ciclo"?"Primer ciclo":p.nivelGrupo==="2ciclo"?"Segundo ciclo":p.nivelGrupo==="inicial"?"Nivel inicial":(p.nivel||""), pag=p.paginas?`📄 ${p.paginas} hojas A4`:"", fmt=/png/i.test(p.descripcionLarga||"")?"🖼️ PDF + imágenes PNG":"🖨️ PDF listo para imprimir";
+  ML.bl.forEach(b=>{ if(b.t==="hero"){ if(ML.tpl==="lanzamiento"||!b.img) b.img=p.imagen||""; if(ML.tpl==="lanzamiento"){ b.tit=p.nombre; let d=String(p.descripcion||"").replace(/^[\p{Extended_Pictographic}\u{FE0F}\u{200D}\u{1F1E6}-\u{1F1FF}\s]+/u,""); if(d.length>170){ const c=d.slice(0,170); const e=c.lastIndexOf(". "), k=c.lastIndexOf(":"); d=e>80?c.slice(0,e+1):k>80?c.slice(0,k)+".":c.slice(0,c.lastIndexOf(" "))+"…"; } b.sub=d; } }
+    if(b.t==="datos") b.items=[pag,fmt,niv?`🎯 ${niv}`:"","📩 Llega al instante a tu mail"].filter(Boolean);
+    if(b.t==="incluye") b.items=items.slice(0,18);
+    if(b.t==="galeria") b.imgs=(p.previews||[]).slice(0,4);
+    if(b.t==="precio"){ b.precio=p.precio||""; b.antes=p.precioTachado||""; b.link=p.link||STORE_URL; b.link2=p._local?"":`${ML_WEB}/p/${p.id}.html`; } });
+  if(ML.tpl==="lanzamiento"){ ML.asunto=`🆕 ${p.nombre}: ¡ya está disponible!`; const g=groupOf(p.nombre); if($("#mlNoTema")&&[...$("#mlNoTema").options].some(o=>o.value===g)){ $("#mlNoTema").value=g; mlRenderAud(); } } }
+// ideas de asunto (fórmulas que funcionan con docentes)
+function mlIdeas(){ const p=mlMatSel(), n=p?p.nombre.replace(/^\d+\s+de\s+\w+\s*-\s*/i,""):"el material nuevo"; return [`🆕 ${n}: ¡ya está disponible!`,`{nombre}, te va a encantar esto para tu aula 💙`,`Listo para imprimir: ${n} 🖨️`,`¿Ya tenés todo para ${n}? 👀`,`${p&&p.paginas?p.paginas+" hojas":"Todo"} listas para trabajar ${n} ✨`,`Abrí y mirá lo que preparé para ${n} 🎁`]; }
+function mlChequeo(){ const L=[], d=ML, s=d.asunto.trim(); L.push([s.length>=20&&s.length<=70,s?`Asunto de ${s.length} caracteres${s.length>70?" (largo: en el celular se corta)":s.length<20?" (muy corto)":" (ideal)"}`:"Falta el asunto"]);
+  L.push([!!(d.pre||"").trim(),d.pre?"Tiene texto de vista previa":"Falta el texto de vista previa (lo que se ve al lado del asunto)"]);
+  const links=d.bl.filter(b=>b.on&&(b.t==="precio"||b.t==="boton")).map(b=>b.link).filter(Boolean); L.push([links.length>0,links.length?"Tiene un botón con link":"No tiene botón: sumá uno para que puedan comprar"]);
+  const imgs=d.bl.filter(b=>b.on).flatMap(b=>[b.img,...(b.imgs||[])]).filter(Boolean); L.push([!imgs.some(u=>/^data:/.test(u)),imgs.some(u=>/^data:/.test(u))?"Hay imágenes que no están en tu web: no se van a ver en el correo":"Todas las imágenes están en tu web"]);
+  L.push([!/\b(gratis|urgente|100%|ganá|dinero)\b/i.test(s),/\b(gratis|urgente|100%|ganá|dinero)\b/i.test(s)?"El asunto tiene palabras que suelen ir a spam":"El asunto no tiene palabras de spam"]); return L; }
+
+// ---------- vista previa ----------
+function mlRenderPrev(){ const a=mlAudience(), v=(a[0]&&a[0].vars)||{nombre:"María",ultimo_material:"Revolución de Mayo",tema:"Revolución de Mayo",efemeride:mlNextEfe(),tienda:STORE_URL};
+  const html=mlHtml2(ML,v,false).replace("{{ params.baja }}","#"); const fr=$("#mlPrev"); if(fr){ fr.srcdoc=html; fr.style.width=mlVista==="cel"?"390px":"100%"; }
+  const sj=$("#mlPrevSubj"); if(sj) sj.textContent=mlFill(ML.asunto,v)||"(sin asunto)"; const pr=$("#mlPrevPre"); if(pr) pr.textContent=mlFill(ML.pre,v);
+  const c=$("#mlAsuntoN"); if(c){ const n=ML.asunto.length; c.textContent=`${n} caracteres`; c.className="ml-cnt "+(n>=20&&n<=70?"ok":n?"warn":""); }
+  const ch=$("#mlCheck"); if(ch) ch.innerHTML=mlChequeo().map(([ok,t])=>`<li class="${ok?"si":"no"}">${ok?"✅":"⚠️"} ${esc(t)}</li>`).join("");
+  clearTimeout(mlRenderPrev.g); mlRenderPrev.g=setTimeout(()=>{ try{ db.doc("panel/correoBorrador").set({...ML,updated:new Date().toISOString()}); }catch{} },1500); }
+// ---------- editor de bloques ----------
+function mlCampos(b,i){ const inp=(k,l,o={})=>`<label class="ml-c${o.w?" w":""}"><span>${l}</span>${o.area?`<textarea data-mlk="${k}" data-mli="${i}" rows="${o.area}">${esc(b[k]||"")}</textarea>`:`<input data-mlk="${k}" data-mli="${i}" value="${esc(b[k]||"")}" ${o.ph?`placeholder="${esc(o.ph)}"`:""}>`}</label>`, lst=(k,l,ph)=>`<label class="ml-c w"><span>${l} <i>(uno por línea)</i></span><textarea data-mlk="${k}" data-mli="${i}" data-mllist="1" rows="4" placeholder="${esc(ph||"")}">${esc((b[k]||[]).join("\n"))}</textarea></label>`;
+  return b.t==="hero"?inp("etq","Etiqueta",{ph:"¡NUEVO MATERIAL!"})+inp("tit","Título",{w:1})+inp("sub","Bajada",{w:1})+inp("img","Imagen (dirección en tu web)",{w:1,ph:"images/…"})
+    :b.t==="texto"?inp("txt","Texto (**negrita**; dejá una línea en blanco entre párrafos)",{w:1,area:6})
+    :b.t==="datos"?lst("items","Datos","📄 34 hojas A4")
+    :b.t==="incluye"?inp("tit","Título",{w:1})+lst("items","Actividades","📖 Infografía ilustrada")
+    :b.t==="galeria"?inp("tit","Título",{w:1})+lst("imgs","Imágenes (hasta 4)","images/preview-…")
+    :b.t==="precio"?inp("precio","Precio")+inp("antes","Precio anterior (tachado)")+inp("nota","Aviso (opcional)",{w:1,ph:"Precio promocional hasta el domingo"})+inp("boton","Texto del botón")+inp("link","Link del botón")+inp("link2","Link a la web (opcional)",{w:1})
+    :b.t==="cupon"?inp("codigo","Código")+inp("txt","Texto",{w:1})
+    :b.t==="boton"?inp("txt","Texto")+inp("link","Link")
+    :b.t==="testimonio"?inp("txt","Lo que dijo",{w:1,area:3})+inp("autor","Quién lo dijo",{ph:"Seño Laura, Córdoba"})
+    :b.t==="firma"?inp("txt","Frase de cierre",{w:1})+inp("nombre","Nombre")+inp("cargo","Debajo del nombre")
+    :`<p class="muted" style="margin:0;font-size:12.5px">Botones a tu Instagram y a tu web.</p>`; }
+function mlBloques(){ const box=$("#mlBlq"); if(!box) return; box.innerHTML=ML.bl.map((b,i)=>`<div class="ml-blq${b.on?"":" off"}" data-mlb="${i}"><div class="ml-bh"><label class="check"><input type="checkbox" data-mlon="${i}" ${b.on?"checked":""}> <b>${ML_BLQ[b.t]||b.t}</b></label><span><button type="button" class="btn small ghost" data-mlup="${i}" title="Subir">▲</button><button type="button" class="btn small ghost" data-mldn="${i}" title="Bajar">▼</button><button type="button" class="btn small ghost" data-mlx="${i}" title="Quitar">✕</button></span></div>${b.on?`<div class="ml-bc">${mlCampos(b,i)}</div>`:""}</div>`).join("")
+  +`<div class="ml-add"><select id="mlAddSel" class="sel">${Object.entries(ML_BLQ).map(([k,n])=>`<option value="${k}">${n}</option>`).join("")}</select><button type="button" class="btn small" id="mlAdd">+ Agregar bloque</button></div>`; }
+function mlCargarTpl(k,keepMat){ const t=ML_TPL[k]||ML_TPL.blanco; ML={...ML,tpl:k,tema:t.tema,asunto:t.asunto,pre:t.pre,bl:t.bl()}; if(keepMat&&mlMatSel()) mlUsarMaterial(mlMatSel()); mlSync(); }
+function mlSync(){ const set=(id,v)=>{ const e=$(id); if(e&&e.value!==v) e.value=v; }; set("#mlTpl",ML.tpl); set("#mlAsunto",ML.asunto); set("#mlPre",ML.pre); set("#mlMat",ML.mat||"");
+  document.querySelectorAll("[data-mltema]").forEach(b=>b.classList.toggle("on",b.dataset.mltema===ML.tema)); mlBloques(); mlRenderPrev(); }
+async function mlLoadBajas(){ try{ mlBajas=await db._api("cofre_bajas?select=email,fecha,origen&order=fecha.desc")||[]; }catch{ mlBajas=mlBajas||[]; } }
+function mlFillSelects(){
+  if(!D) return; const groups=[...new Set(D.matList.map(m=>m.group))].sort((a,b)=>a.localeCompare(b));
+  const provs={}; D.clients.forEach(c=>{ if(c.p) provs[provFold(c.p)]=c.p; });
+  const fill=(sel,first,opts)=>{ const v=sel.value; sel.innerHTML=`<option value="">${first}</option>`+opts.map(([k,l])=>`<option value="${esc(k)}">${esc(l)}</option>`).join(""); sel.value=v; };
+  fill($("#mlTema"),"Cualquier material",groups.map(g=>[g,g])); fill($("#mlNoTema"),"— (sin excluir)",groups.map(g=>[g,g])); fill($("#mlProv"),"Todas las provincias",Object.entries(provs).sort((a,b)=>a[1].localeCompare(b[1])));
 }
-const mlVarRe=/\{(nombre|ultimo_material|tema|efemeride|tienda)\}/g;
-function mlFill(s,vars,forBrevo){ return String(s||"").replace(mlVarRe,(m,k)=>forBrevo&&k!=="tienda"?`{{ params.${k} }}`:(vars[k]??"")); }
-function mlDraft(){ return {asunto:$("#mlAsunto").value.trim(),cuerpo:$("#mlCuerpo").value,boton:$("#mlBoton").value.trim(),link:$("#mlLink").value.trim()}; }
-function mlRenderPrev(){ const a=mlAudience(), d=mlDraft(); const v=(a[0]&&a[0].vars)||{nombre:"María",ultimo_material:"Revolución de Mayo",tema:"Revolución de Mayo",efemeride:mlNextEfe(),tienda:STORE_URL};
-  const html=mlHtml({cuerpo:mlFill(d.cuerpo,v),boton:d.boton,link:mlFill(d.link,v)}).replace("{{ params.baja }}","#");
-  $("#mlPrevSubj").textContent=mlFill(d.asunto,v)||"(sin asunto)"; $("#mlPrev").srcdoc=html; }
+function mlRenderAud(){ const a=mlAudience(); $("#mlN").textContent=nf(a.length); const sb=$("#mlSend"); sb.textContent=`📨 Enviar a ${nf(a.length)} persona${a.length===1?"":"s"}`; sb.disabled=!a.length||mlBusy||!MODE.supa;
+  $("#mlList").innerHTML=a.slice(0,60).map(x=>`<div><b>${esc(x.name||x.email)}</b> <span class="muted">${esc(x.email)} · ${esc(x.vars.ultimo_material)}</span></div>`).join("")+(a.length>60?`<p class="muted">y ${nf(a.length-60)} más.</p>`:"");
+  mlRenderPrev(); }
 async function mlCall(body){
   const cfg=supaCfg(); if(!MODE.supa||!cfg) throw new Error("solo-web"); const tok=await supaToken(cfg); if(!tok){ supaExpired(); throw new Error("Tu sesión se cerró. Volvé a entrar."); }
   let r; try{ r=await fetch(`${cfg.url}/functions/v1/${ML_FN}`,{method:"POST",headers:{apikey:cfg.key,Authorization:"Bearer "+tok,"Content-Type":"application/json"},body:JSON.stringify(body)}); }
   catch{ const e=new Error("No se pudo conectar con el servicio de correos."); e.code="red"; throw e; }
   const j=await r.json().catch(()=>({})); if(!r.ok){ const e=new Error(j.error||`Error ${r.status}`); e.status=r.status; throw e; } return j;
 }
-async function mlLoadBajas(){ try{ mlBajas=await db._api("cofre_bajas?select=email,fecha,origen&order=fecha.desc")||[]; }catch{ mlBajas=mlBajas||[]; } }
-function mlFillSelects(){
-  if(!D) return; const groups=[...new Set(D.matList.filter(m=>m.sold).map(m=>m.group))].sort((a,b)=>a.localeCompare(b));
-  const provs={}; D.clients.forEach(c=>{ if(c.p) provs[provFold(c.p)]=c.p; });
-  const fill=(sel,first,opts)=>{ const v=sel.value; sel.innerHTML=`<option value="">${first}</option>`+opts.map(([k,l])=>`<option value="${esc(k)}">${esc(l)}</option>`).join(""); sel.value=v; };
-  fill($("#mlTema"),"Cualquier material",groups.map(g=>[g,g])); fill($("#mlNoTema"),"— (sin excluir)",groups.map(g=>[g,g])); fill($("#mlProv"),"Todas las provincias",Object.entries(provs).sort((a,b)=>a[1].localeCompare(b[1])));
-}
-function mlRenderAud(){ const a=mlAudience(); $("#mlN").textContent=nf(a.length); $("#mlSend").textContent=`Enviar a ${nf(a.length)} persona${a.length===1?"":"s"}`; $("#mlSend").disabled=!a.length||mlBusy;
-  $("#mlList").innerHTML=a.slice(0,60).map(x=>`<div><b>${esc(x.name||x.email)}</b> <span class="muted">${esc(x.email)} · ${esc(x.vars.ultimo_material)}</span></div>`).join("")+(a.length>60?`<p class="muted">y ${nf(a.length-60)} más.</p>`:"");
-  mlRenderPrev(); }
 async function renderCorreos(){
-  const st=$("#mlStatus"); if(!st) return;
-  const off=!MODE.supa; $("#mlApp").hidden=off; $("#mlOff").hidden=!off;
-  if(off){ $("#mlOff").innerHTML=MODE.cloud?`Los correos se mandan desde tu <b>panel web</b> (<a href="https://cofredidactico.github.io/PanelDeGestion/#correos" target="_blank" rel="noopener">abrir</a>), porque usan tu Supabase y tu cuenta de Brevo. Desde acá no se pueden enviar.`:`Iniciá sesión en tu panel web para usar los correos.`; return; }
-  mlFillSelects(); if(!mlBajas) await mlLoadBajas(); mlRenderAud(); mlRenderHist();
-  $("#mlBajas").innerHTML=mlBajas&&mlBajas.length?`<p class="muted">${nf(mlBajas.length)} ${mlBajas.length>1?"personas se dieron":"persona se dio"} de baja; nunca les llegan correos.</p>`+mlBajas.slice(0,20).map(b=>`<div class="muted">${esc(b.email)} · ${esc(new Date(b.fecha).toLocaleDateString("es-AR"))}</div>`).join(""):`<p class="muted">Nadie se dio de baja.</p>`;
+  const st=$("#mlStatus"); if(!st) return; $("#mlApp").hidden=false;
+  if(!renderCorreos.ok){ renderCorreos.ok=1; try{ const s=await db.doc("panel/correoBorrador").get(); if(s.exists){ const d=s.data(); if(Array.isArray(d.bl)&&d.bl.length) ML={tpl:d.tpl||"lanzamiento",tema:d.tema||"cofre",asunto:d.asunto||"",pre:d.pre||"",mat:d.mat||"",bl:d.bl}; } }catch{} if(!ML.bl.length) mlCargarTpl("lanzamiento");
+    await mlCatalogo(); const ms=$("#mlMat"); if(ms) ms.innerHTML=`<option value="">— Elegí el material —</option>`+(mlCat||[]).slice().sort((a,b)=>(b.etiqueta==="nuevo")-(a.etiqueta==="nuevo")||String(a.nombre).localeCompare(b.nombre)).map(p=>`<option value="${esc(p.id)}">${p.etiqueta==="nuevo"?"🆕 ":""}${esc(p.nombre)}</option>`).join(""); }
+  mlFillSelects(); mlSync();
+  if(!MODE.supa){ $("#mlOff").hidden=false; $("#mlOff").innerHTML=MODE.cloud?`Desde acá podés <b>diseñar y ver</b> el correo. Para <b>enviarlo</b>, abrí tu <a href="https://cofredidactico.github.io/PanelDeGestion/#correos" target="_blank" rel="noopener">panel web</a>: el borrador te espera ahí, porque el envío usa tu Supabase y tu cuenta de Brevo.`:`Iniciá sesión en tu panel web para enviar los correos.`; st.textContent=""; mlRenderAud(); $("#mlHist").innerHTML=`<p class="muted">Los envíos y sus estadísticas se ven en el panel web.</p>`; $("#mlBajas").innerHTML=""; return; }
+  $("#mlOff").hidden=true; if(!mlBajas) await mlLoadBajas(); mlRenderAud(); mlRenderHist();
+  $("#mlBajas").innerHTML=mlBajas&&mlBajas.length?`<p class="muted">${nf(mlBajas.length)} persona${mlBajas.length>1?"s":""} se dieron de baja; nunca les llegan correos.</p>`+mlBajas.slice(0,20).map(b=>`<div class="muted">${esc(b.email)} · ${esc(new Date(b.fecha).toLocaleDateString("es-AR"))}</div>`).join(""):`<p class="muted">Nadie se dio de baja.</p>`;
   st.textContent="Conectando con Brevo…";
   try{ mlCuenta=await mlCall({accion:"cuenta"}); st.innerHTML=`<span class="pill ok">Conectado</span> Remitente: <b>${esc(mlCuenta.remitente)}</b> · Hoy podés enviar <b>${mlCuenta.restantes==null?"sin límite":nf(mlCuenta.restantes)}</b> correo${mlCuenta.restantes===1?"":"s"} más.`; $("#mlSetup").hidden=true; }
   catch(e){ mlCuenta=null; st.innerHTML=`<span class="pill wait">Sin conectar</span> ${esc(e.status===404?"Falta instalar la función de envío en Supabase.":e.message)}`; $("#mlSetup").hidden=false; }
 }
 function mlRenderHist(){ const box=$("#mlHist"); const L=Object.entries(db._all()).filter(([k])=>k.startsWith("correos/")).map(([k,v])=>({id:k.split("/")[1],...v})).sort((a,b)=>String(b.creado).localeCompare(String(a.creado)));
   mlEnvios=L; if(!L.length){ box.innerHTML=`<p class="muted">Todavía no enviaste correos desde el panel.</p>`; return; }
-  box.innerHTML=L.map(c=>{ const n=(c.enviados||[]).length, t=(c.para||[]).length; const s=c.stats;
-    return `<div class="mlh"><div><b>${esc(mlFill(c.asunto,((c.para||[])[0]||{}).vars||{}))}</b><span class="muted">${esc(new Date(c.creado).toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))} · ${esc(c.filtro||"")}</span></div>
-      <div class="mlh-k"><span><b>${nf(n)}</b> de ${nf(t)} enviados</span>${s?`<span><b>${nf(s.delivered||0)}</b> entregados</span><span><b>${s.delivered?pctf((s.uniqueOpens||0)/s.delivered,0):"—"}</b> abrieron</span><span><b>${s.delivered?pctf((s.uniqueClicks||0)/s.delivered,1):"—"}</b> hicieron clic</span>${s.hardBounces?`<span>${nf(s.hardBounces)} rebotados</span>`:""}`:""}</div>
-      <div class="actions">${n<t?`<button class="btn small primary" type="button" data-mlcont="${esc(c.id)}">Continuar envío (${nf(t-n)})</button>`:""}<button class="btn small" type="button" data-mlstats="${esc(c.id)}">Actualizar estadísticas</button></div></div>`; }).join("");
+  const bar=(v,l,c)=>`<div class="ml-st"><span>${l}</span><i><b style="width:${Math.min(100,v*100)}%;background:${c}"></b></i><em>${pctf(v,0)}</em></div>`;
+  box.innerHTML=L.map(c=>{ const n=(c.enviados||[]).length, t=(c.para||[]).length; const s=c.stats, del=s&&s.delivered;
+    return `<div class="mlh"><div><b>${esc(c.asunto)}</b><span class="muted">${esc(new Date(c.creado).toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))} · ${esc(c.filtro||"")}</span></div>
+      <div class="mlh-k"><span><b>${nf(n)}</b> de ${nf(t)} enviados</span>${del?`<span><b>${nf(del)}</b> entregados</span>${s.hardBounces?`<span>${nf(s.hardBounces)} rebotados</span>`:""}`:""}</div>
+      ${del?`<div class="ml-sts">${bar((s.uniqueOpens||0)/del,"Abrieron","#0B8BD6")}${bar((s.uniqueClicks||0)/del,"Hicieron clic","#EF7F22")}</div>`:""}
+      <div class="actions">${n<t?`<button class="btn small primary" type="button" data-mlcont="${esc(c.id)}">Continuar envío (${nf(t-n)})</button>`:""}<button class="btn small" type="button" data-mlstats="${esc(c.id)}">Actualizar estadísticas</button>${c.dis?`<button class="btn small ghost" type="button" data-mlreuse="${esc(c.id)}">Usar como base</button>`:""}</div></div>`; }).join("");
   box.querySelectorAll("[data-mlcont]").forEach(b=>b.addEventListener("click",()=>{ const c=L.find(x=>x.id===b.dataset.mlcont); mlSend(c); }));
+  box.querySelectorAll("[data-mlreuse]").forEach(b=>b.addEventListener("click",()=>{ const c=L.find(x=>x.id===b.dataset.mlreuse); ML=JSON.parse(JSON.stringify(c.dis)); mlSync(); window.scrollTo({top:0,behavior:"smooth"}); }));
   box.querySelectorAll("[data-mlstats]").forEach(b=>b.addEventListener("click",async()=>{ const c=L.find(x=>x.id===b.dataset.mlstats); b.disabled=true; b.textContent="Consultando…";
     try{ const s=await mlCall({accion:"estadisticas",tag:c.tag}); await db.doc("correos/"+c.id).set({...c,id:undefined,stats:s.stats,statsAt:new Date().toISOString()}); mlRenderHist(); }catch(e){ b.textContent=e.message; } }));
 }
+const mlHtmlCamp=camp=>camp.dis?mlHtml2(camp.dis,{tienda:STORE_URL},true):mlHtml({cuerpo:mlFill(camp.cuerpo,{tienda:STORE_URL},true),boton:camp.boton,link:mlFill(camp.link,{tienda:STORE_URL},false)});
 async function mlSend(camp){
   if(mlBusy) return; mlBusy=true; const prog=$("#mlProg"), msg=$("#mlMsg"); prog.hidden=false; $("#mlStop").hidden=false; let stop=false; $("#mlStop").onclick=()=>{ stop=true; };
   try{
     let cuenta=null; try{ cuenta=await mlCall({accion:"cuenta"}); }catch(e){ throw new Error("No se pudo conectar con Brevo: "+e.message); }
-    let left=cuenta.restantes==null?Infinity:cuenta.restantes; const done=new Set(camp.enviados||[]); const pend=camp.para.filter(p=>!done.has(p.email));
+    let left=cuenta.restantes==null?Infinity:cuenta.restantes; const done=new Set(camp.enviados||[]); const pend=camp.para.filter(p=>!done.has(p.email)), html=mlHtmlCamp(camp);
     for(let i=0;i<pend.length&&!stop;i+=40){ if(left<=0){ msg.textContent=`Se llegó al límite de hoy. Mañana tocá “Continuar envío” en Envíos anteriores.`; break; }
       const part=pend.slice(i,i+Math.min(40,left));
-      const r=await mlCall({accion:"enviar",tag:camp.tag,asunto:camp.asunto,html:mlHtml({cuerpo:mlFill(camp.cuerpo,{tienda:STORE_URL},true),boton:camp.boton,link:mlFill(camp.link,{tienda:STORE_URL},false)}),
-        para:part.map(p=>({email:p.email,nombre:p.name,asunto:mlFill(camp.asunto,p.vars),params:Object.fromEntries(Object.entries(p.vars).map(([k,v])=>[k,esc(v)]))}))});
+      const r=await mlCall({accion:"enviar",tag:camp.tag,asunto:camp.asunto,html,para:part.map(p=>({email:p.email,nombre:p.name,asunto:mlFill(camp.asunto,p.vars),params:Object.fromEntries(Object.entries(p.vars).map(([k,v])=>[k,esc(v)]))}))});
       (r.enviados||[]).forEach(e=>done.add(e)); left-=(r.enviados||[]).length;
       camp.enviados=[...done]; camp.omitidos=[...new Set([...(camp.omitidos||[]),...(r.omitidos||[])])]; await db.doc("correos/"+camp.id).set({...camp,id:undefined});
       prog.value=done.size/camp.para.length; msg.textContent=`Enviados ${nf(done.size)} de ${nf(camp.para.length)}…`; }
-    if(done.size>=camp.para.length) msg.textContent=`Listo: se enviaron ${nf(done.size)} correos.`; else if(stop) msg.textContent=`Envío pausado: ${nf(done.size)} de ${nf(camp.para.length)}. Podés continuarlo desde Envíos anteriores.`;
+    if(done.size>=camp.para.length) msg.textContent=`🎉 Listo: se enviaron ${nf(done.size)} correos.`; else if(stop) msg.textContent=`Envío pausado: ${nf(done.size)} de ${nf(camp.para.length)}. Podés continuarlo desde Envíos anteriores.`;
   }catch(e){ msg.textContent=e.message; }
   finally{ mlBusy=false; $("#mlStop").hidden=true; renderCorreos(); }
 }
 function mlSetupEvents(){
-  const tpl=$("#mlTpl"); tpl.innerHTML=Object.entries(ML_TPL).map(([k,t])=>`<option value="${k}">${esc(t.n)}</option>`).join("");
-  const load=k=>{ const t=ML_TPL[k]; $("#mlAsunto").value=t.a; $("#mlCuerpo").value=t.c; $("#mlBoton").value=t.b; $("#mlLink").value=t.l; mlRenderPrev(); };
-  tpl.addEventListener("change",()=>load(tpl.value)); load("novedad");
+  const v=$("#view-correos"); $("#mlTpl").innerHTML=Object.entries(ML_TPL).map(([k,t])=>`<option value="${k}">${esc(t.n)}</option>`).join("");
+  $("#mlTemas").innerHTML=Object.entries(ML_TEMAS).map(([k,t])=>`<button type="button" data-mltema="${k}" title="${esc(t.n)}"><i style="background:${t.a}"></i><i style="background:${t.b}"></i>${esc(t.n)}</button>`).join("");
+  $("#mlTpl").addEventListener("change",e=>mlCargarTpl(e.target.value,true));
+  $("#mlMat").addEventListener("change",e=>{ ML.mat=e.target.value; const p=mlMatSel(); if(p){ mlUsarMaterial(p); mlSync(); } });
   ["#mlBase","#mlTema","#mlNoTema","#mlProv","#mlLast"].forEach(s=>$(s).addEventListener("change",mlRenderAud));
-  ["#mlAsunto","#mlCuerpo","#mlBoton","#mlLink"].forEach(s=>$(s).addEventListener("input",()=>{ clearTimeout(mlRenderPrev.t); mlRenderPrev.t=setTimeout(mlRenderPrev,250); }));
-  document.querySelectorAll("[data-mlvar]").forEach(b=>b.addEventListener("click",()=>{ const ta=$("#mlCuerpo"); const v=`{${b.dataset.mlvar}}`; const s=ta.selectionStart??ta.value.length; ta.value=ta.value.slice(0,s)+v+ta.value.slice(ta.selectionEnd??s); ta.focus(); ta.selectionStart=ta.selectionEnd=s+v.length; mlRenderPrev(); }));
-  $("#mlTest").addEventListener("click",async()=>{ const d=mlDraft(); const msg=$("#mlMsg"); if(!d.asunto){ msg.textContent="Escribí un asunto."; return; }
+  $("#mlAsunto").addEventListener("input",e=>{ ML.asunto=e.target.value; clearTimeout(mlRenderPrev.t); mlRenderPrev.t=setTimeout(mlRenderPrev,200); });
+  $("#mlPre").addEventListener("input",e=>{ ML.pre=e.target.value; clearTimeout(mlRenderPrev.t); mlRenderPrev.t=setTimeout(mlRenderPrev,200); });
+  v.addEventListener("input",e=>{ const t=e.target; if(t.dataset.mlk==null) return; const b=ML.bl[+t.dataset.mli]; b[t.dataset.mlk]=t.dataset.mllist?t.value.split("\n").map(s=>s.trim()).filter(Boolean):t.value; clearTimeout(mlRenderPrev.t); mlRenderPrev.t=setTimeout(mlRenderPrev,300); });
+  v.addEventListener("change",e=>{ const t=e.target; if(t.dataset.mlon!=null){ ML.bl[+t.dataset.mlon].on=t.checked; mlBloques(); mlRenderPrev(); } });
+  v.addEventListener("click",e=>{ const t=e.target.closest("button"); if(!t) return;
+    if(t.dataset.mltema){ ML.tema=t.dataset.mltema; mlSync(); return; }
+    if(t.dataset.mlup!=null||t.dataset.mldn!=null){ const i=+(t.dataset.mlup??t.dataset.mldn), j=i+(t.dataset.mlup!=null?-1:1); if(j>=0&&j<ML.bl.length){ [ML.bl[i],ML.bl[j]]=[ML.bl[j],ML.bl[i]]; mlBloques(); mlRenderPrev(); } return; }
+    if(t.dataset.mlx!=null){ ML.bl.splice(+t.dataset.mlx,1); mlBloques(); mlRenderPrev(); return; }
+    if(t.id==="mlAdd"){ const k=$("#mlAddSel").value; ML.bl.splice(Math.max(0,ML.bl.length-2),0,mlB(k,{})); if(mlMatSel()&&["datos","incluye","galeria","precio"].includes(k)) mlUsarMaterial(mlMatSel()); mlBloques(); mlRenderPrev(); return; }
+    if(t.dataset.mlvista){ mlVista=t.dataset.mlvista; document.querySelectorAll("[data-mlvista]").forEach(b=>b.classList.toggle("on",b===t)); mlRenderPrev(); return; }
+    if(t.id==="mlIdeasBtn"){ const box=$("#mlIdeas"); box.hidden=!box.hidden; box.innerHTML=mlIdeas().map(s=>`<button type="button" class="chipb" data-mlidea="${esc(s)}">${esc(s)}</button>`).join(""); return; }
+    if(t.dataset.mlidea){ ML.asunto=t.dataset.mlidea; $("#mlAsunto").value=ML.asunto; mlRenderPrev(); return; }
+    if(t.dataset.mlemo){ const a=$("#mlAsunto"), s=a.selectionStart??a.value.length; a.value=a.value.slice(0,s)+t.dataset.mlemo+a.value.slice(a.selectionEnd??s); ML.asunto=a.value; a.focus(); mlRenderPrev(); return; }
+    if(t.dataset.mlseg){ const S={todos:["ok","","","",""],parecido:["ok",groupOf((mlMatSel()||{}).nombre||""),"","",""],falta:["ok","",groupOf((mlMatSel()||{}).nombre||""),"",""],frec:["frec","","","",""],dormidas:["ok","","","","o180"],recientes:["ok","","","","r90"]}[t.dataset.mlseg];
+      ["#mlBase","#mlTema","#mlNoTema","#mlProv","#mlLast"].forEach((id,i)=>{ const el=$(id); el.value=[...el.options].some(o=>o.value===S[i])?S[i]:""; }); document.querySelectorAll("[data-mlseg]").forEach(b=>b.classList.toggle("on",b===t)); mlRenderAud(); return; }
+    if(t.id==="mlCopiar"){ const html=mlHtml2(ML,{nombre:"{nombre}"},false); copyText(t,html,"¡HTML copiado!"); return; } });
+  $("#mlTest").addEventListener("click",async()=>{ const msg=$("#mlMsg"); if(!MODE.supa){ msg.textContent="La prueba se envía desde el panel web."; return; } if(!ML.asunto){ msg.textContent="Escribí un asunto."; return; }
     const me=(SupaSes.get()||{}).email; const a=mlAudience()[0]; const vars=a?a.vars:{nombre:"Alejandro",ultimo_material:"Revolución de Mayo",tema:"Revolución de Mayo",efemeride:mlNextEfe(),tienda:STORE_URL};
     msg.textContent="Enviando la prueba…";
-    try{ await mlCall({accion:"enviar",tag:"cofre-prueba",prueba:true,asunto:"[Prueba] "+mlFill(d.asunto,vars),html:mlHtml({cuerpo:mlFill(d.cuerpo,{tienda:STORE_URL},true),boton:d.boton,link:mlFill(d.link,vars,false)}),para:[{email:me,nombre:"Prueba",asunto:"[Prueba] "+mlFill(d.asunto,vars),params:Object.fromEntries(Object.entries(vars).map(([k,v])=>[k,esc(v)]))}]});
-      msg.textContent=`Te mandé la prueba a ${me}. Revisá tu bandeja (y la carpeta de spam).`; }catch(e){ msg.textContent=e.message; } });
-  $("#mlSend").addEventListener("click",()=>{ const d=mlDraft(), a=mlAudience(), msg=$("#mlMsg"); if(!d.asunto||!d.cuerpo.trim()){ msg.textContent="Completá el asunto y el mensaje."; return; } if(!a.length) return;
-    $("#mlcN").textContent=nf(a.length); $("#mlcSubj").textContent=mlFill(d.asunto,a[0].vars); $("#mlcLim").textContent=mlCuenta&&mlCuenta.restantes!=null&&mlCuenta.restantes<a.length?`Hoy te quedan ${nf(mlCuenta.restantes)} envíos: se mandan esos y el resto lo continuás mañana.`:""; $("#mlcdlg").showModal(); });
-  $("#mlcOk").addEventListener("click",async()=>{ $("#mlcdlg").close(); const d=mlDraft(), a=mlAudience(); const id="c"+Date.now().toString(36);
+    try{ await mlCall({accion:"enviar",tag:"cofre-prueba",prueba:true,asunto:"[Prueba] "+mlFill(ML.asunto,vars),html:mlHtml2(ML,{tienda:STORE_URL},true),para:[{email:me,nombre:"Prueba",asunto:"[Prueba] "+mlFill(ML.asunto,vars),params:Object.fromEntries(Object.entries(vars).map(([k,v])=>[k,esc(v)]))}]});
+      msg.textContent=`Te mandé la prueba a ${me}. Revisala en la compu y en el celular (y en la carpeta de spam).`; }catch(e){ msg.textContent=e.message; } });
+  $("#mlSend").addEventListener("click",()=>{ const a=mlAudience(), msg=$("#mlMsg"); if(!ML.asunto||!ML.bl.some(b=>b.on)){ msg.textContent="Completá el asunto y el mensaje."; return; } if(!a.length) return;
+    $("#mlcN").textContent=nf(a.length); $("#mlcSubj").textContent=mlFill(ML.asunto,a[0].vars); $("#mlcLim").textContent=mlCuenta&&mlCuenta.restantes!=null&&mlCuenta.restantes<a.length?`Hoy te quedan ${nf(mlCuenta.restantes)} envíos: se mandan esos y el resto lo continuás mañana.`:""; $("#mlcdlg").showModal(); });
+  $("#mlcOk").addEventListener("click",async()=>{ $("#mlcdlg").close(); const a=mlAudience(); const id="c"+Date.now().toString(36);
     const filtro=[$("#mlBase").selectedOptions[0].text,$("#mlTema").value&&("compraron "+$("#mlTema").value),$("#mlNoTema").value&&("no compraron "+$("#mlNoTema").value),$("#mlProv").value&&$("#mlProv").selectedOptions[0].text,$("#mlLast").value&&$("#mlLast").selectedOptions[0].text].filter(Boolean).join(" · ");
-    const camp={...d,tag:"cofre-"+id,creado:new Date().toISOString(),filtro,para:a,enviados:[]}; await db.doc("correos/"+id).set(camp); camp.id=id; mlSend(camp); });
+    const camp={asunto:ML.asunto,dis:JSON.parse(JSON.stringify(ML)),tag:"cofre-"+id,creado:new Date().toISOString(),filtro,para:a,enviados:[]}; await db.doc("correos/"+id).set(camp); camp.id=id; mlSend(camp); });
 }
 
 // ---------- PÁGINA PARA OTROS PAÍSES ----------
