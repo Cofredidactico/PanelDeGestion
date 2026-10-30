@@ -594,6 +594,14 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.bn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1.05fr);gap:16px;align-items:start}@media (max-width:1000px){.bn-grid{grid-template-columns:minmax(0,1fr)}}
+.bn-det summary{cursor:pointer;font-weight:700;margin-top:10px}.bn-form{display:grid;gap:8px;margin-top:8px}.bn-form label{display:grid;gap:4px;font-size:12.5px;font-weight:700}.bn-form textarea,.bn-form input,#bnTema,#bnDibLista{width:100%;border:1px solid var(--line);border-radius:9px;padding:7px 9px;background:var(--surface);color:inherit;font:inherit;font-size:13px;font-weight:500;resize:vertical}
+.bn-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media (max-width:560px){.bn-2{grid-template-columns:1fr}}
+.bn-dibs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.bn-dib{position:relative;margin:0;width:92px;display:grid;gap:3px;justify-items:center;font-size:11.5px;text-align:center}.bn-dimg{width:84px;height:84px;border:1px solid var(--line);border-radius:10px;background:#fff;display:grid;place-items:center;padding:4px}.bn-dimg svg,.bn-dimg img{width:100%;height:100%;object-fit:contain}.bn-dib .btn{position:absolute;top:-6px;right:0;padding:1px 6px}
+.bn-tipos{display:grid;gap:10px}.bn-grupo b{font-size:13.5px}.bn-chks{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:4px}.bn-chks label.check{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin:0}.bn-chks input{width:auto!important}
+.bn-pags{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px;max-height:900px;overflow:auto;padding:4px}.bn-pag{margin:0;display:grid;gap:5px}.bn-hoja{background:#fff;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,.18);overflow:hidden;line-height:0}.bn-hoja svg{display:block;width:100%;height:auto}
+.bn-pag figcaption{font-size:12px;display:flex;gap:4px;align-items:center;flex-wrap:wrap}.bn-acc{margin-left:auto;display:flex;gap:2px}.bn-acc .btn{padding:2px 6px}
+.bn-grande{position:fixed;inset:0;z-index:60;background:rgba(10,15,25,.7);overflow:auto;padding:20px}.bn-grande-in{max-width:760px;margin:0 auto;display:grid;gap:14px}.bn-grande-in svg{background:#fff;border-radius:6px;width:100%;height:auto}.bn-grande-in .btn{justify-self:end}
 .po-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,1fr);gap:16px;align-items:start}.po-col{display:grid;gap:16px;min-width:0}.po-der{position:sticky;top:12px}
 @media (max-width:1000px){.po-grid{grid-template-columns:minmax(0,1fr)}.po-der{position:static}}
 .po-cola{display:grid;gap:8px;margin-top:12px}.po-vacio{display:grid;gap:6px;justify-items:center;text-align:center;padding:26px 14px;border:1px dashed var(--line);border-radius:12px}
@@ -1947,6 +1955,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Mensajes</span></button>
     <button class="tab" role="tab" data-view="video" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg><span>Estudio de video</span></button>
     <button class="tab" role="tab" data-view="pdf" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 13 3 3 3-3"/><path d="M12 9v7"/></svg><span>Optimizar PDF</span></button>
+    <button class="tab" role="tab" data-view="fichas" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span>Fichas B/N</span></button>
     <button class="tab" role="tab" data-view="correos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Correos</span></button>
     <button class="tab" role="tab" data-view="datos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg><span>Datos</span></button>
     </div>
@@ -2544,6 +2553,45 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     </div>
     <div class="po-col po-der"><section class="card" id="poRes"></section></div>
   </div>
+</main>
+
+<main class="wrap view" id="view-fichas" hidden>
+  <div class="view-h"><div><h1>Fichas en blanco y negro</h1><p class="lead">Actividades listas para fotocopiar sobre cualquier temática: juegos de palabras, grafomotricidad, matemática, lectura, visuales, para recortar, escritura y dibujos para pintar. Salen en PDF A4 y en SVG para CorelDRAW.</p></div></div>
+  <div class="bn-grid">
+    <div class="vs-col">
+      <section class="card"><h2 style="margin:0 0 10px">1. Temática</h2>
+        <div class="field"><label for="bnTema">¿Sobre qué tema?</label><input id="bnTema" list="bnTemas" maxlength="80" placeholder="Ej.: Día de la Tradición, Los animales de la granja, El sistema solar"><datalist id="bnTemas"></datalist></div>
+        <div class="field"><label>Nivel</label><div class="is-opts" id="bnNivel"></div></div>
+        <div class="actions"><button class="btn primary" type="button" id="bnIA">✨ Preparar el contenido con Claude</button><span class="muted" style="font-size:12.5px">O completalo a mano abajo.</span></div>
+        <details class="bn-det"><summary>📝 Contenido (podés editarlo)</summary>
+          <div class="bn-form">
+            <label>Palabras clave (separadas por coma)<textarea id="bnPal" rows="2" placeholder="GAUCHO, MATE, RANCHO, GUITARRA…"></textarea></label>
+            <label>Título de la lectura<input id="bnTit" maxlength="80"></label>
+            <label>Texto para leer<textarea id="bnTexto" rows="4"></textarea></label>
+            <label>Preguntas (una por línea)<textarea id="bnPreg" rows="3"></textarea></label>
+            <label>Verdadero o falso (una por línea, empezando con V: o F:)<textarea id="bnVF" rows="3" placeholder="V: El mate se toma con bombilla."></textarea></label>
+            <label>Secuencia en orden (una por línea)<textarea id="bnSec" rows="3"></textarea></label>
+            <label>Problemas (uno por línea)<textarea id="bnProb" rows="3"></textarea></label>
+            <label>Crucigrama (PALABRA: pista, una por línea)<textarea id="bnPis" rows="3"></textarea></label>
+            <div class="bn-2"><label>Palabra del acróstico y banderines<input id="bnAcr" maxlength="14"></label><label>Frase del código secreto<input id="bnFrase" maxlength="60"></label></div>
+            <label>Comienzo de un cuento<textarea id="bnCuento" rows="2"></textarea></label>
+          </div></details></section>
+      <section class="card"><h2 style="margin:0 0 6px">2. Dibujos del tema</h2><p class="muted" style="margin:0 0 8px;font-size:13px">Dibujos de línea para pintar, recortar y jugar. Si no hay, se usan dibujos genéricos.</p>
+        <div class="field"><label for="bnDibLista">¿Qué dibujamos? (separado por comas)</label><input id="bnDibLista" maxlength="200" placeholder="mate, guitarra, caballo, sombrero de gaucho"></div>
+        <div class="actions"><button class="btn" type="button" id="bnDibIA">✨ Dibujar con Claude</button><label class="btn"><input type="file" id="bnImg" accept="image/*" hidden>🖼️ Subir una imagen y pasarla a línea</label><label class="muted" style="font-size:12.5px;display:inline-flex;gap:6px;align-items:center">Detalle <input type="range" id="bnUmbral" min="25" max="120" value="60" style="width:90px"></label></div>
+        <div class="bn-dibs" id="bnDibs"></div></section>
+      <section class="card"><div class="sec-h" style="margin:0 0 8px"><h2 style="margin:0">3. Actividades</h2><span class="actions" style="margin:0"><button class="btn small" type="button" id="bnTodas">Todas</button><button class="btn small ghost" type="button" id="bnNinguna">Ninguna</button></span></div>
+        <div id="bnTipos" class="bn-tipos"></div></section>
+    </div>
+    <div class="vs-col vs-der">
+      <section class="card"><h2 style="margin:0 0 10px">4. Fichas <span class="muted" id="bnN" style="font-size:14px;font-weight:600"></span></h2>
+        <div class="vs-checks"><label class="check"><input type="checkbox" id="bnColor"> 🎨 Versión color (para la tienda)</label><label class="check"><input type="checkbox" id="bnA5"> 🖨️ 2 fichas por hoja A4 (ahorro de papel)</label><label class="check"><input type="checkbox" id="bnEnc" checked> Nombre, fecha y grado arriba</label><label class="check"><input type="checkbox" id="bnSol" checked> Agregar las soluciones al final</label></div>
+        <div class="actions"><button class="btn primary" type="button" id="bnGo">✏️ Armar las fichas</button><button class="btn" type="button" id="bnPdf" disabled>⬇ PDF para imprimir</button><button class="btn" type="button" id="bnZip" disabled>⬇ SVG para Corel (ZIP)</button></div>
+        <p class="muted" id="bnMsg" style="margin:6px 0 0;font-size:13px">En blanco y negro, sin fondos ni rellenos: ahorran tinta y salen bien en fotocopia.</p>
+        <div class="bn-pags" id="bnPags"></div></section>
+    </div>
+  </div>
+  <div class="bn-grande" id="bnGrande" hidden></div>
 </main>
 
 <main class="wrap view" id="view-datos" hidden>
@@ -3680,7 +3728,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","video","pdf","correos","datos"];
+  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","video","pdf","fichas","correos","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -3694,6 +3742,7 @@ function renderView(v){
   if((v==="video"||v==="mensajes")&&!window.__kitDb){ window.__kitDb=1; kitCargar().then(()=>{ if(typeof kitRefrescar==="function"&&document.getElementById("kitPrev")) kitRefrescar(); }); }
   if(v==="video"){ vsInit(); vsDibujar(); }
   if(v==="pdf") poInit();
+  if(v==="fichas") bnInit();
   if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
   if(v==="stats") renderStats();
@@ -12716,6 +12765,319 @@ function poInit(){ const v=$("#view-pdf"); if(!v||v.dataset.ok) return; v.datase
     const row=ev.target.closest(".po-item"); if(row&&PO.sel!==+row.dataset.poid){ PO.sel=+row.dataset.poid; poPintarCola(); poPintarRes(); } });
   v.addEventListener("input",ev=>{ if(ev.target.id==="poPos"){ poCmp.pos=+ev.target.value; poCmpDibujar(); } }); v.addEventListener("change",ev=>{ if(ev.target.id==="poZoom"){ poCmp.zoom=+ev.target.value; poCmpRender(); } });
   try{ const g=localStorage.getItem("cofre.pomodo"); if(g&&PO_MODOS.some(m=>m.k===g)){ PO.modo=g; $("#poModos").innerHTML=poModosHtml(); } }catch{} }
+
+// =====================================================================
+// FICHAS EN BLANCO Y NEGRO: actividades listas para fotocopiar sobre cualquier temática
+// =====================================================================
+const BN_GRUPOS=[
+  ["🔤 Juegos de palabras",[["sopa","Sopa de letras"],["sopaf","Sopa de letras con forma"],["cruci","Crucigrama"],["codigo","Código secreto"],["anag","Letras desordenadas"]]],
+  ["✏️ Grafomotricidad",[["trazos","Trazos para repasar"],["repasar","Letras y palabras para repasar"],["caminos","Caminos con el lápiz"]]],
+  ["🔢 Matemática lúdica",[["puntos","Unir los puntos"],["pixel","Pintar según el resultado"],["piramide","Pirámides de sumas"],["problemas","Problemas ilustrados"],["conteo","Contar y escribir"]]],
+  ["📖 Lectura y comprensión",[["lectura","Texto y preguntas"],["vf","Verdadero o falso"],["secuencia","Ordenar la secuencia (recortable)"],["completar","Completar con el banco de palabras"]]],
+  ["👀 Visuales",[["difer","Encontrar las 7 diferencias"],["sombras","Unir con la sombra"],["buscar","Buscar y contar"],["laberinto","Laberinto"],["espejo","Completar la mitad (espejo)"]]],
+  ["✂️ Para recortar y armar",[["tarjetas","Tarjetas de vocabulario"],["memo","Memotest"],["domino","Dominó"],["puzzle","Rompecabezas"],["banderines","Banderines"],["titeres","Títeres de palito"]]],
+  ["📝 Escritura creativa",[["acrostico","Acróstico"],["quepasa","Dibujá y escribí qué pasa"],["tarjeta","Tarjeta para llevar a casa"],["final","Inventá otro final"]]],
+  ["🎨 Para pintar",[["pintar","Dibujos para pintar"]]]];
+const BN_NOM=Object.fromEntries(BN_GRUPOS.flatMap(g=>g[1]));
+const BN={tema:"",nivel:"Primer ciclo",color:false,a5:false,enc:true,sol:true,C:null,dib:[],sel:new Set(["sopa","trazos","puntos","pixel","lectura","difer","sombras","tarjetas","acrostico","pintar"]),pags:[],seed:7,busy:false};
+const BN_W=186, BN_H=226, BN_ACC=["#F28C28","#1E5BB8","#3BAA6E","#E85A8A","#F6B40E","#74ACDF"];
+const bx=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const bn2=n=>Math.round(n*100)/100;
+const bnSlug=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,60)||"tema";
+const bnK=()=>/Inicial/i.test(BN.nivel)?"ini":/Segundo/i.test(BN.nivel)?"sc":"pc";
+const bnAc=(i=0)=>BN.color?BN_ACC[i%BN_ACC.length]:"#000";
+// texto con salto de línea dentro de un ancho (mm), aproximado por cantidad de letras
+function bnWrap(t,maxW,fs){ const per=Math.max(6,Math.floor(maxW/(fs*0.52))), out=[]; String(t||"").split("\n").forEach(par=>{ let l=""; par.split(/\s+/).filter(Boolean).forEach(w=>{ if((l+" "+w).trim().length>per&&l){ out.push(l); l=w; } else l=(l+" "+w).trim(); }); out.push(l); }); return out; }
+function bnT(x,y,s,fs,o={}){ return `<text x="${bn2(x)}" y="${bn2(y)}" font-family="${o.f||"Andika, Nunito, Arial, sans-serif"}" font-size="${bn2(fs)}" font-weight="${o.w||400}" text-anchor="${o.a||"start"}" fill="${o.fill||"#000"}"${o.st?` stroke="${o.st}" stroke-width="${o.sw||0.25}" stroke-dasharray="${o.da||""}"`:""}${o.extra||""}>${bx(s)}</text>`; }
+function bnParr(x,y,t,maxW,fs,o={}){ const L=bnWrap(t,maxW,fs), lh=fs*(o.lh||1.35); return {svg:L.map((l,i)=>bnT(x,y+i*lh,l,fs,o)).join(""),h:L.length*lh}; }
+function bnLineas(x,y,w,n,gap=9){ let s=""; for(let i=0;i<n;i++) s+=`<line x1="${bn2(x)}" y1="${bn2(y+i*gap)}" x2="${bn2(x+w)}" y2="${bn2(y+i*gap)}" stroke="#000" stroke-width="0.25"/>`; return s; }
+const bnCaja=(x,y,w,h,o={})=>`<rect x="${bn2(x)}" y="${bn2(y)}" width="${bn2(w)}" height="${bn2(h)}" rx="${o.r??3}" fill="${o.fill||"none"}" stroke="${o.st||"#000"}" stroke-width="${o.sw||0.4}"${o.da?` stroke-dasharray="${o.da}"`:""}/>`;
+const bnTijera=(x,y)=>bnT(x,y,"✂",5,{f:"Arial",fill:"#000"});
+function bnShuffle(a,rnd){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+// ---------- íconos propios (línea, 0–100), con color sugerido para la versión color ----------
+const BN_IC={
+  estrella:['<polygon points="50,6 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38"/>',"#F6B40E"],
+  corazon:['<path d="M50 88 C20 66 6 48 10 30 C14 13 36 10 50 28 C64 10 86 13 90 30 C94 48 80 66 50 88Z"/>',"#E85A8A"],
+  sol:['<circle cx="50" cy="50" r="20"/><path d="M50 6v14M50 80v14M6 50h14M80 50h14M19 19l10 10M71 71l10 10M81 19l-10 10M29 71l-10 10"/>',"#F6B40E"],
+  luna:['<path d="M64 10 A40 40 0 1 0 90 66 A32 32 0 1 1 64 10Z"/>',"#F6B40E"],
+  nube:['<path d="M24 74 C8 74 6 54 20 50 C18 34 40 28 48 40 C54 24 80 26 80 46 C94 46 96 74 78 74Z"/>',"#74ACDF"],
+  flor:['<circle cx="50" cy="36" r="9"/><ellipse cx="50" cy="17" rx="8" ry="11"/><ellipse cx="50" cy="55" rx="8" ry="11"/><ellipse cx="31" cy="36" rx="11" ry="8"/><ellipse cx="69" cy="36" rx="11" ry="8"/><path d="M50 64 V94 M50 82 C40 74 32 76 30 80 M50 86 C60 78 68 80 70 84"/>',"#E85A8A"],
+  arbol:['<path d="M44 94 V66 H56 V94Z"/><path d="M50 8 C30 8 20 24 26 36 C12 42 16 66 34 64 C40 72 60 72 66 64 C84 66 88 42 74 36 C80 24 70 8 50 8Z"/>',"#3BAA6E"],
+  casa:['<path d="M14 46 L50 14 L86 46"/><path d="M22 40 V90 H78 V40"/><rect x="42" y="64" width="16" height="26"/><rect x="28" y="50" width="12" height="12"/><rect x="60" y="50" width="12" height="12"/>',"#F28C28"],
+  pez:['<path d="M14 50 C30 26 62 26 76 50 C62 74 30 74 14 50Z"/><path d="M76 50 L94 34 L94 66Z"/><circle cx="30" cy="46" r="3"/><path d="M44 36 C48 44 48 56 44 64"/>',"#74ACDF"],
+  manzana:['<path d="M50 30 C36 18 12 26 14 52 C16 76 34 92 50 84 C66 92 84 76 86 52 C88 26 64 18 50 30Z"/><path d="M50 30 C50 20 54 12 58 8"/><path d="M54 18 C62 10 74 12 76 16 C68 22 60 22 54 18Z"/>',"#E85A8A"],
+  hoja:['<path d="M12 88 C12 40 40 12 88 12 C88 60 60 88 12 88Z"/><path d="M12 88 L70 30 M36 64 L36 46 M52 48 L52 34 M46 64 L64 64"/>',"#3BAA6E"],
+  gota:['<path d="M50 8 C40 30 22 46 22 64 C22 80 36 92 50 92 C64 92 78 80 78 64 C78 46 60 30 50 8Z"/>',"#74ACDF"],
+  globo:['<ellipse cx="50" cy="38" rx="26" ry="30"/><path d="M46 68 L54 68 L50 74Z"/><path d="M50 74 C44 82 56 86 50 96"/>',"#E85A8A"],
+  paraguas:['<path d="M8 50 C8 22 92 22 92 50 C86 44 78 44 72 50 C66 44 56 44 50 50 C44 44 34 44 28 50 C22 44 14 44 8 50Z"/><path d="M50 50 V84 C50 92 40 92 40 84"/>',"#1E5BB8"],
+  barco:['<path d="M10 64 H90 L78 84 H22Z"/><path d="M50 64 V12"/><path d="M50 14 L82 56 H50Z"/><path d="M48 22 L22 56 H48"/>',"#1E5BB8"],
+  campana:['<path d="M24 74 C24 50 28 24 50 22 C72 24 76 50 76 74Z"/><path d="M16 74 H84"/><circle cx="50" cy="82" r="6"/><circle cx="50" cy="16" r="5"/>',"#F6B40E"],
+  llave:['<circle cx="28" cy="50" r="16"/><circle cx="28" cy="50" r="6"/><path d="M44 50 H92 M78 50 V62 M88 50 V60"/>',"#F6B40E"],
+  taza:['<path d="M20 34 H74 V62 C74 80 62 88 47 88 C32 88 20 80 20 62Z"/><path d="M74 42 C90 42 90 66 74 66"/><path d="M36 26 C32 18 40 14 36 6 M52 26 C48 18 56 14 52 6"/>',"#F28C28"],
+  libro:['<path d="M50 24 C40 16 22 16 10 20 V82 C22 78 40 78 50 86 C60 78 78 78 90 82 V20 C78 16 60 16 50 24Z"/><path d="M50 24 V86"/>',"#1E5BB8"],
+  lapiz:['<path d="M18 82 L22 64 L70 16 L84 30 L36 78Z"/><path d="M22 64 L36 78 M62 24 L76 38"/>',"#F6B40E"],
+  pelota:['<circle cx="50" cy="50" r="38"/><path d="M12 50 C30 40 70 40 88 50 M50 12 C40 30 40 70 50 88"/>',"#E85A8A"],
+  barrilete:['<path d="M50 6 L80 40 L50 78 L20 40Z"/><path d="M50 6 V78 M20 40 H80"/><path d="M50 78 C42 84 58 88 50 94"/>',"#74ACDF"],
+  hongo:['<path d="M10 52 C10 22 90 22 90 52Z"/><path d="M36 52 V84 C36 90 64 90 64 84 V52"/><circle cx="34" cy="38" r="5"/><circle cx="62" cy="34" r="6"/>',"#E85A8A"],
+  gato:['<circle cx="50" cy="56" r="30"/><path d="M26 38 L24 12 L44 28 M74 38 L76 12 L56 28"/><circle cx="40" cy="52" r="3"/><circle cx="60" cy="52" r="3"/><path d="M46 64 L50 68 L54 64 M20 62 H38 M20 70 L38 66 M80 62 H62 M80 70 L62 66"/>',"#F28C28"],
+  pajaro:['<path d="M18 58 C18 36 40 26 58 34 C66 22 82 26 84 36 L94 40 L84 44 C84 64 66 78 44 76 L22 86 L28 72 C22 68 18 64 18 58Z"/><path d="M36 52 C46 62 58 60 64 50"/><circle cx="76" cy="36" r="2.5"/>',"#3BAA6E"],
+  mariposa:['<path d="M50 30 C36 6 6 14 12 36 C16 50 36 52 50 46Z"/><path d="M50 30 C64 6 94 14 88 36 C84 50 64 52 50 46Z"/><path d="M50 50 C40 56 22 64 26 80 C32 92 48 80 50 62Z"/><path d="M50 50 C60 56 78 64 74 80 C68 92 52 80 50 62Z"/><path d="M50 24 V80 M50 24 L42 12 M50 24 L58 12"/>',"#E85A8A"]};
+const BN_ICN=Object.keys(BN_IC);
+// un dibujo (de Claude, subido o ícono) dentro de una caja
+function bnDibujo(d,x,y,w,h,o={}){ if(!d) return ""; const pad=o.pad??0;
+  if(d.img) return `<image href="${d.img}" x="${bn2(x+pad)}" y="${bn2(y+pad)}" width="${bn2(w-2*pad)}" height="${bn2(h-2*pad)}" preserveAspectRatio="xMidYMid meet"${o.flip?` transform="translate(${bn2(2*x+w)} 0) scale(-1 1)"`:""}/>`;
+  let inner=d.svg, vb=d.vb||"0 0 200 200", sw=d.ic?3:4;
+  if(o.sil) inner=inner.replace(/fill="[^"]*"/g,'fill="#000"').replace(/stroke="[^"]*"/g,'stroke="#000"');
+  else if(BN.color&&!o.bn) inner=inner.replace(/data-color="(#[0-9a-fA-F]{3,6})"([^>]*?)fill="(?:none|#fff|#ffffff|white)"/g,'data-color="$1"$2fill="$1"').replace(/fill="(?:none|#fff|#ffffff|white)"([^>]*?)data-color="(#[0-9a-fA-F]{3,6})"/g,'fill="$2"$1data-color="$2"');
+  const base=d.ic?`fill="${o.sil?"#000":BN.color&&!o.bn?d.color+"55":"none"}" stroke="#000" stroke-width="${o.sw||sw}" stroke-linejoin="round" stroke-linecap="round"`:'';
+  const g=d.ic?`<g ${base}>${inner}</g>`:inner;
+  const fl=o.flip?` transform="translate(${bn2(2*x+w)} 0) scale(-1 1)"`:"";
+  return `<g${fl}><svg x="${bn2(x+pad)}" y="${bn2(y+pad)}" width="${bn2(w-2*pad)}" height="${bn2(h-2*pad)}" viewBox="${d.ic?"0 0 100 100":vb}" preserveAspectRatio="xMidYMid meet" overflow="visible">${g}</svg></g>`; }
+const BN_ICNOM={corazon:"corazón",arbol:"árbol",lapiz:"lápiz",pajaro:"pájaro",manzana:"manzana"};
+const bnIc=n=>({n:BN_ICNOM[n]||n,ic:true,svg:BN_IC[n][0],color:BN_IC[n][1]});
+// lista de dibujos para usar: primero los del tema, después los íconos
+function bnItems(n,rnd,soloVector=false){ const tema=BN.dib.filter(d=>!soloVector||d.svg); const ics=bnShuffle(BN_ICN,rnd).map(bnIc); return [...tema,...ics].slice(0,n); }
+const bnNombre=d=>d.n||"";
+
+// ---------- dibujos en cuadritos (pintar según el resultado y espejo) ----------
+const BN_PX={
+  corazon:{p:["rojo"],m:["............","..11....11..",".1111..1111.","111111111111","111111111111","111111111111",".1111111111.","..11111111..","...111111...","....1111....",".....11.....","............"]},
+  casa:{p:["rojo","amarillo","marrón","celeste"],m:[".....11.....","....1111....","...111111...","..11111111..",".1111111111.","..22222222..","..24422442..","..24422442..","..22233222..","..22233222..","..22233222..","............"]},
+  hongo:{p:["rojo","amarillo","marrón"],m:["....1111....","..11111111..",".1121111211.",".1111111111.","112111111211","111111111111","....3333....","....3333....","....3333....","...333333...","............","............"]},
+  arbol:{p:["verde","marrón"],m:[".....11.....","....1111....","...111111...","..11111111..","...111111...","..11111111..",".1111111111.","..11111111..",".....22.....",".....22.....","....2222....","............"]},
+  cara:{p:["amarillo","marrón"],m:["...111111...","..11111111..",".1111111111.","111221122111","111221122111","111111111111","112111111211","111211112111",".1112222111.","..11111111..","...111111...","............"]},
+  pez:{p:["naranja","azul"],m:["............","....111.....","..1111111..1",".11211111.11","111111111111","111111111111",".111111111.1","..1111111..1","....111.....","............","............","............"]}};
+const BN_PXC={rojo:"#E53935",amarillo:"#F6B40E",marrón:"#8D5A2B",celeste:"#74ACDF",verde:"#3BAA6E",naranja:"#F28C28",azul:"#1E5BB8"};
+
+// ---------- las actividades ----------
+// cada una devuelve {t: título, c: consigna, b: cuerpo SVG en el área de 186×226 mm, s?: cuerpo con la solución} o una lista de esas páginas
+function bnPalabras(n){ const C=BN.C||{}; let L=(C.palabras||[]).map(w=>String(w).trim()).filter(Boolean); if(!L.length) L=BN.dib.map(bnNombre).filter(Boolean); return L.slice(0,n); }
+const bnMay=s=>String(s||"").toUpperCase();
+function bnJuego(tipo,j,rnd,titulo,consigna){ const r=buildGame({tipo,...j},BN.nivel,Math.floor(rnd()*99999)); const pick=s=>{ const vb=(s.match(/viewBox="([^"]+)"/)||[])[1]||"0 0 180 180", body=s.replace(/^[\s\S]*?<svg[^>]*>/,"").replace(/<\/svg>\s*$/,""), [,,vw,vh]=vb.split(" ").map(Number), sc=Math.min(BN_W/vw,BN_H/vh,1.7), w=vw*sc, h=vh*sc;
+    let b=BN.color?body:body.replace(/fill="#(?!000|fff|FFF|000000|ffffff)[0-9a-fA-F]{3,6}"/g,'fill="#000"').replace(/stroke="#(?!000|fff|999|bbb|ccc)[0-9a-fA-F]{3,6}"/g,'stroke="#000"');
+    return `<svg x="${bn2((BN_W-w)/2)}" y="0" width="${bn2(w)}" height="${bn2(h)}" viewBox="${vb}">${b}</svg>`; };
+  const solB=pick(r.sol).replace(/stroke="#000" stroke-opacity="0.75"/g,'stroke="#999" stroke-opacity="0.6"'); return {t:titulo,c:consigna,b:pick(r.act),s:solB}; }
+const BN_GEN={
+  sopa(r){ const P=bnPalabras(14); if(P.length<3) throw new Error("Hacen falta al menos 3 palabras."); return bnJuego("sopa",{palabras:P},r,"Sopa de letras",`Buscá en la sopa de letras ${P.length>8?"todas las palabras":"las palabras"} de la lista y pintalas.`); },
+  sopaf(r){ const P=bnPalabras(12).map(w=>w.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-ZÑ]/g,"")).filter(w=>w.length>=3&&w.length<=10); if(P.length<3) throw new Error("Hacen falta al menos 3 palabras.");
+    const N=bnK()==="ini"?9:13, forma=["corazon","estrella","circulo"][Math.floor(r()*3)], dentro=(x,y)=>{ const u=(x+0.5)/N*2-1, v=(y+0.5)/N*2-1; if(forma==="circulo") return u*u+v*v<=1.02; if(forma==="corazon"){ const X=u*1.15, Y=-v*1.2+0.25; return Math.pow(X*X+Y*Y-1,3)-X*X*Y*Y*Y<=0.02; } const a=Math.atan2(v,u), rr=Math.hypot(u,v), k=0.55+0.45*Math.pow(Math.abs(Math.cos(2.5*(a+Math.PI/2))),0.6); return rr<=k*1.05; };
+    for(let t=0;t<80;t++){ const g=Array.from({length:N},()=>Array(N).fill("")), pl=[]; let ok=true;
+      for(const w of [...P].sort((a,b)=>b.length-a.length)){ let done=false; for(let k=0;k<300&&!done;k++){ const [dx,dy]=[[1,0],[0,1],[1,1]][Math.floor(r()*(bnK()==="sc"?3:2))], x0=Math.floor(r()*N), y0=Math.floor(r()*N); let f=true; for(let i=0;i<w.length;i++){ const x=x0+dx*i, y=y0+dy*i; if(x>=N||y>=N||!dentro(x,y)||(g[y][x]&&g[y][x]!==w[i])){ f=false; break; } } if(!f) continue; for(let i=0;i<w.length;i++) g[y0+dy*i][x0+dx*i]=w[i]; pl.push({w,x0,y0,dx,dy}); done=true; } if(!done){ ok=false; break; } }
+      if(!ok) continue; const AL="AAAEEEIIOOUUBCDLMNPRRSSTGV", cell=Math.min(150/N,15), ox=(BN_W-cell*N)/2, oy=4; let b="", s="";
+      pl.forEach(p=>{ const c=v=>v*cell+cell/2; s+=`<line x1="${bn2(ox+c(p.x0))}" y1="${bn2(oy+c(p.y0))}" x2="${bn2(ox+c(p.x0+p.dx*(p.w.length-1)))}" y2="${bn2(oy+c(p.y0+p.dy*(p.w.length-1)))}" stroke="#999" stroke-opacity="0.6" stroke-width="${bn2(cell*0.75)}" stroke-linecap="round"/>`; });
+      for(let y=0;y<N;y++) for(let x=0;x<N;x++){ if(!dentro(x,y)) continue; const L=g[y][x]||AL[Math.floor(r()*AL.length)], X=ox+x*cell, Y=oy+y*cell; b+=bnCaja(X,Y,cell,cell,{r:0,sw:0.3})+bnT(X+cell/2,Y+cell*0.7,L,cell*0.55,{a:"middle",w:700,f:"Arial"}); }
+      const by=oy+N*cell+8; let bank=""; P.forEach((w,i)=>{ bank+=bnCaja(4+(i%3)*62,by+Math.floor(i/3)*11-6,8,8,{r:1.5,sw:0.4})+bnT(16+(i%3)*62,by+Math.floor(i/3)*11,w,5,{w:700}); });
+      return {t:"Sopa de letras con forma",c:`La sopa tiene forma de ${forma==="circulo"?"círculo":forma==="corazon"?"corazón":"estrella"}. Buscá las palabras y marcá cada una que encuentres.`,b:b+bank,s:s+b+bank}; }
+    throw new Error("No entraron las palabras en la forma: probá con palabras más cortas."); },
+  cruci(r){ const C=BN.C||{}, P=(C.pistas&&C.pistas.length?C.pistas:bnPalabras(8).map(p=>({palabra:p,pista:"Escribí: "+p.toLowerCase()}))).slice(0,bnK()==="ini"?5:9); if(P.length<3) throw new Error("Hacen falta al menos 3 palabras con su pista."); return bnJuego("crucigrama",{items:P},r,"Crucigrama","Leé cada pista y escribí la palabra en el crucigrama, una letra por casillero."); },
+  codigo(r){ const C=BN.C||{}, f=C.frase||(bnPalabras(3).join(" ")); if(!f) throw new Error("Falta la frase secreta."); return bnJuego("codigo",{frase:f},r,"Código secreto","Descubrí el mensaje secreto: buscá cada símbolo en la clave y escribí la letra que le corresponde."); },
+  anag(r){ const P=bnPalabras(8); if(P.length<3) throw new Error("Hacen falta al menos 3 palabras."); return bnJuego("anagramas",{palabras:P},r,"Letras desordenadas","Ordená las letras y escribí la palabra correcta. ¡Podés dibujarla en el cuadrito!"); },
+  laberinto(r){ const g=bnJuego("laberinto",{},r,"Laberinto",""); return {...g,c:"Encontrá el camino desde el INICIO hasta la LLEGADA y seguilo con el lápiz, sin chocar con las paredes."}; },
+  trazos(r){ const k=bnK(), n=k==="ini"?6:7, gap=BN_H/n, it=bnItems(n*2,r), P=["linea","zigzag","ondas","bucles","montanas","castillo","espiral"]; let b="";
+    for(let i=0;i<n;i++){ const y=gap*i+gap/2, tipo=P[i%P.length], x0=26, x1=BN_W-26, A=gap*0.28; let d=`M${x0} ${y}`;
+      for(let x=x0;x<=x1;x+=1.5){ const t=(x-x0); let yy=y; if(tipo==="zigzag") yy=y+A*(Math.abs(((t/10)%2)-1)*2-1); else if(tipo==="ondas") yy=y+A*Math.sin(t/7); else if(tipo==="montanas") yy=y+A-2*A*Math.abs(Math.sin(t/12)); else if(tipo==="castillo") yy=y+(Math.floor(t/10)%2?-A:A); else if(tipo==="bucles"){ const ph=t/6; d+=` L${bn2(x+Math.sin(ph)*4)} ${bn2(y-A*0.9*Math.cos(ph)*0.5-A*0.3)}`; continue; } else if(tipo==="espiral"){ const ph=t/5; d+=` L${bn2(x+Math.cos(ph)*5)} ${bn2(y+Math.sin(ph)*A*0.8)}`; continue; } d+=` L${bn2(x)} ${bn2(yy)}`; }
+      b+=`<path d="${d}" fill="none" stroke="${bnAc(i)}" stroke-width="0.7" stroke-dasharray="1.4 1.6" stroke-linecap="round"/><circle cx="${x0}" cy="${bn2(y)}" r="1.4" fill="#000"/>`+bnDibujo(it[i*2],2,y-11,22,22)+bnDibujo(it[i*2+1],BN_W-24,y-11,22,22); }
+    return {t:"Trazos para repasar",c:"Repasá cada línea con el lápiz, sin levantarlo, desde el punto hasta el dibujo.",b}; },
+  repasar(r){ const k=bnK(), P=k==="ini"?["A","E","I","O","U","1","2","3"]:bnPalabras(6).map(bnMay); if(!P.length) throw new Error("Hacen falta palabras para repasar.");
+    const filas=Math.min(P.length,k==="ini"?8:6), gap=BN_H/filas; let b="";
+    P.slice(0,filas).forEach((w,i)=>{ const y=i*gap+gap*0.72, fs=Math.min(k==="ini"?20:15,(BN_W-10)/(Math.max(1,w.length)*0.62*(k==="ini"?6:3))); const lt=fs*0.72;
+      b+=`<line x1="0" y1="${bn2(y)}" x2="${BN_W}" y2="${bn2(y)}" stroke="#000" stroke-width="0.35"/><line x1="0" y1="${bn2(y-lt)}" x2="${BN_W}" y2="${bn2(y-lt)}" stroke="#000" stroke-width="0.2"/><line x1="0" y1="${bn2(y-lt/2)}" x2="${BN_W}" y2="${bn2(y-lt/2)}" stroke="#000" stroke-width="0.15" stroke-dasharray="1 1.5"/>`;
+      const wW=w.length*fs*0.68+6, cop=Math.max(1,Math.floor((BN_W-wW)/wW)); b+=bnT(2,y,w,fs,{w:700,fill:bnAc(i)});
+      for(let c=0;c<cop;c++) b+=bnT(2+wW*(c+1),y,w,fs,{w:700,fill:"none",st:"#000",sw:0.3,da:"0.8 0.8"}); });
+    return {t:k==="ini"?"Vocales y números para repasar":"Palabras para repasar",c:k==="ini"?"Repasá con el lápiz siguiendo los puntitos. Después pintá la letra de la izquierda.":"Leé cada palabra y repasala siguiendo los puntitos, en imprenta mayúscula.",b}; },
+  caminos(r){ const n=4, gap=BN_H/n, it=bnItems(n*2,r); let b="";
+    for(let i=0;i<n;i++){ const y=i*gap+gap/2, x0=34, x1=BN_W-34, A=gap*0.3; let d=`M${x0} ${bn2(y)}`; const f=[t=>Math.sin(t/9)*A,t=>(Math.abs(((t/14)%2)-1)*2-1)*A,t=>Math.sin(t/5)*A*0.5+Math.sin(t/17)*A*0.5,t=>t<(x1-x0)/2?-A*Math.sin(t/((x1-x0)/2)*Math.PI):A*Math.sin((t-(x1-x0)/2)/((x1-x0)/2)*Math.PI)][i%4];
+      for(let x=x0;x<=x1;x+=1.2) d+=` L${bn2(x)} ${bn2(y+f(x-x0))}`;
+      b+=`<path d="${d}" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-opacity="0.12"/><path d="${d}" fill="none" stroke="${bnAc(i)}" stroke-width="0.7" stroke-dasharray="1.4 1.6"/>`+bnDibujo(it[i*2],0,y-15,30,30)+bnDibujo(it[i*2+1],BN_W-30,y-15,30,30); }
+    return {t:"Caminos con el lápiz",c:"Llevá a cada dibujo hasta su compañero: seguí el camino con el lápiz sin salirte.",b}; },
+  puntos(r){ const k=bnK(), ics=Object.keys(BN_DOTS), ic=ics[Math.floor(r()*ics.length)]; const pts=bnPuntos(BN_DOTS[ic],k==="ini"?10:k==="pc"?24:30);
+    const paso=k==="sc"?[2,5,10][Math.floor(r()*3)]:1, S=Math.min(BN_W,BN_H-12)*0.95/100, ox=(BN_W-100*S)/2, oy=4, cx=50, cy=50; let b="", s="";
+    pts.forEach((p,i)=>{ const X=ox+p[0]*S, Y=oy+p[1]*S, ang=Math.atan2(p[1]-cy,p[0]-cx), lx=X+Math.cos(ang)*5, ly=Y+Math.sin(ang)*5+1.3; b+=`<circle cx="${bn2(X)}" cy="${bn2(Y)}" r="1.1" fill="#000"/>`+bnT(lx,ly,String((i+1)*paso),k==="ini"?4.6:3.6,{a:"middle",w:700,f:"Arial",fill:bnAc(0)}); });
+    s=`<polygon points="${pts.map(p=>bn2(ox+p[0]*S)+","+bn2(oy+p[1]*S)).join(" ")}" fill="none" stroke="#999" stroke-width="0.8"/>`+b;
+    return {t:"Unir los puntos",c:`Uní los puntos en orden${paso>1?` contando de ${paso} en ${paso}`:""}, del ${paso} al ${pts.length*paso}. ¿Qué dibujo apareció? Pintalo.`,b,s}; },
+  pixel(r){ const k=bnK(), keys=Object.keys(BN_PX), nm=keys[Math.floor(r()*keys.length)], M=BN_PX[nm], N=12, cell=Math.min(BN_W/N,(BN_H-40)/N), ox=(BN_W-cell*N)/2;
+    const res=M.p.map((_,i)=>k==="ini"?i+1:k==="pc"?[5,8,10,12][i]:[12,18,24,30][i]), libres=k==="ini"?[0]:k==="pc"?[3,4,6,7,9,11]:[10,14,15,16,20,21]; const op=v=>{ if(k==="ini") return v?String(v):""; if(k==="pc"){ const a=Math.floor(r()*(v-1))+1; return r()<0.6||a>=v?`${a}+${v-a}`:`${v+a}-${a}`; } const ds=[2,3,4,5,6].filter(d=>v%d===0&&v/d<=10); const d=ds.length?ds[Math.floor(r()*ds.length)]:1; return d>1?`${d}×${v/d}`:`${v}+0`; };
+    let b="", s=""; for(let y=0;y<N;y++) for(let x=0;x<N;x++){ const ch=M.m[y][x], c=ch==="."?0:+ch, v=c?res[c-1]:libres[Math.floor(r()*libres.length)], X=ox+x*cell, Y=y*cell; const t=c||k!=="ini"?op(v):""; b+=bnCaja(X,Y,cell,cell,{r:0,sw:0.3})+(t?bnT(X+cell/2,Y+cell*0.62,t,Math.min(3.6,cell*(t.length>3?0.27:0.36)),{a:"middle",f:"Arial"}):""); if(c) s+=`<rect x="${bn2(X)}" y="${bn2(Y)}" width="${bn2(cell)}" height="${bn2(cell)}" fill="${BN_PXC[M.p[c-1]]}"/>`; }
+    const ky=N*cell+8; let key=""; M.p.forEach((col,i)=>{ const X=i*46; key+=bnCaja(X,ky-6,10,8,{r:1.5,fill:BN.color?BN_PXC[col]:"none"})+bnT(X+13,ky,`${res[i]} = ${col}`,4.6,{w:700}); });
+    return {t:k==="ini"?"Pintá según el número":"Pintá según el resultado",c:k==="ini"?"Pintá cada cuadradito con el color de su número. Los que no tienen número quedan en blanco.":"Resolvé cada cuenta y pintá el cuadradito con el color del resultado. Los demás quedan en blanco.",b:b+key,s:s+b+key}; },
+  piramide(r){ const k=bnK(), n=3, maxB=k==="ini"?3:k==="pc"?9:25; let b="", s=""; const filas=4;
+    for(let p=0;p<n;p++){ const base=Array.from({length:filas},()=>1+Math.floor(r()*maxB)), T=[base]; for(let f=1;f<filas;f++){ const prev=T[f-1]; T.push(prev.slice(1).map((v,i)=>v+prev[i])); }
+      const cw=Math.min(40,BN_W/filas-2), ch=15, top=p*(BN_H/n)+6, hide=new Set(); T.forEach((row,f)=>row.forEach((_,i)=>{ if(f>0&&r()<0.75) hide.add(f+","+i); }));
+      T.forEach((row,f)=>row.forEach((v,i)=>{ const X=(BN_W-row.length*cw)/2+i*cw, Y=top+(filas-1-f)*ch; b+=bnCaja(X,Y,cw,ch,{r:0,sw:0.4})+(hide.has(f+","+i)?"":bnT(X+cw/2,Y+ch*0.7,String(v),7,{a:"middle",w:700,f:"Arial"})); s+=bnCaja(X,Y,cw,ch,{r:0,sw:0.4})+bnT(X+cw/2,Y+ch*0.7,String(v),7,{a:"middle",w:700,f:"Arial",fill:hide.has(f+","+i)?"#888":"#000"}); })); }
+    return {t:"Pirámides de sumas",c:"Cada ladrillo es la suma de los dos que tiene abajo. Completá los ladrillos vacíos.",b,s}; },
+  problemas(r){ const C=BN.C||{}, it=bnItems(3,r); let P=(C.problemas||[]).filter(Boolean).slice(0,3); if(!P.length){ const k=bnK(), m=k==="ini"?5:k==="pc"?15:60; P=it.map(d=>{ const a=2+Math.floor(r()*m), c=1+Math.floor(r()*m), nm=(bnNombre(d)||"objetos").toLowerCase(); return r()<0.5?`Hay ${a} ${nm} y llegan ${c} más. ¿Cuántos ${nm} hay en total?`:`Había ${a+c} ${nm} y se llevaron ${c}. ¿Cuántos quedaron?`; }); }
+    const hP=BN_H/P.length; let b=""; P.forEach((t,i)=>{ const y=i*hP; const pa=bnParr(16,y+6,t,BN_W-46,4.6); b+=`<circle cx="6" cy="${bn2(y+4.5)}" r="4" fill="none" stroke="${bnAc(i)}" stroke-width="0.6"/>`+bnT(6,y+6.2,String(i+1),4.4,{a:"middle",w:700})+pa.svg+bnDibujo(it[i],BN_W-26,y,26,26);
+      const yb=y+Math.max(pa.h,22)+6, hh=hP-(yb-y)-6; b+=bnCaja(0,yb,BN_W*0.48,hh,{r:3,sw:0.35})+bnT(3,yb+5,"Dibujá",3.4,{fill:"#555"})+bnCaja(BN_W*0.52,yb,BN_W*0.48,hh,{r:3,sw:0.35})+bnT(BN_W*0.52+3,yb+5,"Cálculo",3.4,{fill:"#555"})+bnT(BN_W*0.52+3,yb+hh-4,"Respuesta: ____________________",3.8,{}); });
+    return {t:"Problemas para pensar",c:"Leé cada problema, dibujá lo que pasa, hacé la cuenta y escribí la respuesta.",b}; },
+  conteo(r){ const k=bnK(), n=6, gap=BN_H/n, mx=k==="ini"?6:k==="pc"?12:20, it=bnItems(n,r); let b="", s="";
+    for(let i=0;i<n;i++){ const y=i*gap+3, c=1+Math.floor(r()*mx), boxW=BN_W-34, sz=Math.min(gap-8,Math.sqrt(boxW*(gap-8)/c)*0.85), per=Math.max(1,Math.floor(boxW/sz)); let g=bnCaja(0,y,boxW,gap-6,{r:3,sw:0.35});
+      for(let j=0;j<c;j++) g+=bnDibujo(it[i],2+(j%per)*sz,y+2+Math.floor(j/per)*sz,sz-1,sz-1,{sw:4});
+      b+=g+bnCaja(BN_W-28,y+(gap-6)/2-10,26,20,{r:3,sw:0.6}); s+=g+bnCaja(BN_W-28,y+(gap-6)/2-10,26,20,{r:3,sw:0.6})+bnT(BN_W-15,y+(gap-6)/2+3,String(c),9,{a:"middle",w:700,fill:"#888"}); }
+    return {t:"Contar y escribir",c:"Contá los dibujos de cada fila y escribí el número en el cuadro.",b,s}; },
+  lectura(){ const C=BN.C||{}; if(!C.texto) throw new Error("Falta el texto (completalo en Contenido)."); const Q=(C.preguntas||[]).slice(0,5); const pa=bnParr(5,9,C.texto,BN_W-10,4.6,{lh:1.45}); let b=bnCaja(0,0,BN_W,pa.h+8,{r:4,sw:0.5,st:bnAc(1)})+pa.svg; let y=pa.h+18;
+    const lin=Math.max(1,Math.min(3,Math.floor((BN_H-y)/Math.max(1,Q.length)/9)-1)); Q.forEach((q,i)=>{ const qp=bnParr(8,y,`${i+1}. ${q}`,BN_W-8,4.5,{w:700}); b+=qp.svg; y+=qp.h+2; b+=bnLineas(4,y+6,BN_W-4,lin); y+=lin*9+5; });
+    return {t:C.titulo||"Leemos y comprendemos",c:"Leé el texto con atención y respondé las preguntas con oraciones completas.",b}; },
+  vf(){ const C=BN.C||{}, L=(C.vf||[]).slice(0,8); if(L.length<3) throw new Error("Faltan oraciones de verdadero o falso."); const gap=Math.min(32,BN_H/L.length); let b="", s="";
+    L.forEach((o,i)=>{ const y=i*gap+10, pa=bnParr(4,y,`${i+1}. ${o.t}`,BN_W-44,5.4); b+=`<line x1="0" y1="${bn2(y+gap-14)}" x2="${BN_W}" y2="${bn2(y+gap-14)}" stroke="#000" stroke-width="0.15" stroke-dasharray="1 2"/>`; const bxs=bnCaja(BN_W-34,y-6,13,10,{r:2,sw:0.5})+bnT(BN_W-27.5,y+1,"V",5,{a:"middle",w:700})+bnCaja(BN_W-17,y-6,13,10,{r:2,sw:0.5})+bnT(BN_W-10.5,y+1,"F",5,{a:"middle",w:700}); b+=pa.svg+bxs; s+=pa.svg+bxs+`<circle cx="${o.v?BN_W-27.5:BN_W-10.5}" cy="${y-1}" r="7" fill="none" stroke="#888" stroke-width="0.8"/>`; });
+    return {t:"¿Verdadero o falso?",c:"Leé cada oración y marcá V si es verdadera o F si es falsa.",b,s}; },
+  secuencia(r){ const C=BN.C||{}, S=(C.secuencia||[]).slice(0,6); if(S.length<3) throw new Error("Faltan los pasos de la secuencia."); const n=S.length, cols=n>4?3:2, rows=Math.ceil(n/cols), fw=BN_W/cols-4, fh=(BN_H*0.62)/rows-4; let b="";
+    for(let i=0;i<n;i++){ const X=(i%cols)*(fw+4)+2, Y=Math.floor(i/cols)*(fh+4); b+=bnCaja(X,Y,fw,fh,{r:3,sw:0.45})+`<circle cx="${bn2(X+6)}" cy="${bn2(Y+6)}" r="4" fill="none" stroke="${bnAc(i)}" stroke-width="0.6"/>`+bnT(X+6,Y+7.6,String(i+1),4.4,{a:"middle",w:700})+bnCaja(X+4,Y+fh-14,fw-8,11,{r:1.5,sw:0.3,da:"1 1"}); }
+    const cy=BN_H*0.62+10, sh=bnShuffle(S.map((t,i)=>({t,i})),r), ch=(BN_H-cy)/sh.length; b+=`<line x1="0" y1="${cy-4}" x2="${BN_W}" y2="${cy-4}" stroke="#000" stroke-width="0.3" stroke-dasharray="2 1.5"/>`+bnTijera(0,cy-2);
+    sh.forEach((o,j)=>{ const y=cy+j*ch; b+=bnCaja(10,y,BN_W-20,ch-2.5,{r:1,sw:0.3,da:"2 1.5"})+bnParr(14,y+ch/2+0.5,o.t,BN_W-28,3.9).svg; });
+    return {t:"Ordenamos la secuencia",c:"Recortá las oraciones de abajo, pegalas en orden en cada cuadro y dibujá lo que pasa en cada momento.",b}; },
+  completar(){ const C=BN.C||{}; if(!C.texto) throw new Error("Falta el texto."); const reW=w=>new RegExp(`(^|[^\\p{L}])(${w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")})(?=[^\\p{L}]|$)`,"iu"), ban=bnPalabras(30).filter(w=>reW(w).test(C.texto)).slice(0,8); if(ban.length<3) throw new Error("Hacen falta al menos 3 palabras del banco que aparezcan en el texto.");
+    let t=C.texto; ban.forEach(w=>{ t=t.replace(reW(w),"$1__________"); }); let b=bnCaja(0,0,BN_W,24,{r:4,sw:0.5,st:bnAc(2)})+bnT(4,7,"Banco de palabras",3.8,{w:700}); ban.slice().sort().forEach((w,i)=>{ b+=bnT(6+(i%4)*45,14+Math.floor(i/4)*7,w,4.4,{w:700}); });
+    const pa=bnParr(2,40,t,BN_W-4,5.6,{lh:2.1}); b+=pa.svg; return {t:"Completamos el texto",c:"Leé el texto y completá los espacios con las palabras del banco. Cada palabra se usa una sola vez.",b}; },
+  difer(r){ const it=bnItems(8,r,true), cols=4, rows=3, pw=BN_W, ph=BN_H/2-6, cw=pw/cols, chh=ph/rows, esc=[]; for(let i=0;i<cols*rows;i++) esc.push({d:it[i%it.length],s:0.62+r()*0.3,dx:(r()-0.5)*cw*0.15,dy:(r()-0.5)*chh*0.15,f:false});
+    const cambios=bnShuffle([...Array(esc.length).keys()],r).slice(0,7), dos=esc.map(e=>({...e})), tipos=["quitar","cambiar","espejo","achicar","agrandar","quitar","cambiar"]; cambios.forEach((ix,j)=>{ const t=tipos[j], e=dos[ix]; if(t==="quitar") e.d=null; else if(t==="cambiar") e.d=bnIc(BN_ICN.find(n=>!esc.some(x=>x.d&&x.d.ic&&x.d.svg===BN_IC[n][0]))||"estrella"); else if(t==="espejo") e.f=!e.f; else if(t==="achicar") e.s*=0.6; else e.s=Math.min(1,e.s*1.35); });
+    const panel=(L,y0)=>bnCaja(0,y0,pw,ph,{r:4,sw:0.6})+L.map((e,i)=>{ if(!e.d) return ""; const w=Math.min(cw,chh)*e.s, x=(i%cols)*cw+(cw-w)/2+e.dx, y=y0+Math.floor(i/cols)*chh+(chh-w)/2+e.dy; return bnDibujo(e.d,x,y,w,w,{flip:e.f,bn:true}); }).join("");
+    const b=panel(esc,0)+panel(dos,ph+12); let s=b; cambios.forEach(ix=>{ const x=(ix%cols)*cw+cw/2, y=ph+12+Math.floor(ix/cols)*chh+chh/2; s+=`<circle cx="${bn2(x)}" cy="${bn2(y)}" r="${bn2(Math.min(cw,chh)*0.48)}" fill="none" stroke="#888" stroke-width="1"/>`; });
+    return {t:"Encontrá las 7 diferencias",c:"Mirá bien los dos dibujos: hay 7 diferencias. Marcalas con un círculo en el dibujo de abajo.",b,s}; },
+  sombras(r){ const it=bnItems(5,r,true).filter(d=>!d.img); const n=it.length, gap=BN_H/n, sz=Math.min(gap-6,40), ord=bnShuffle([...Array(n).keys()],r); let b="", s="";
+    it.forEach((d,i)=>{ const y=i*gap+(gap-sz)/2; b+=bnDibujo(d,6,y,sz,sz,{bn:true})+`<circle cx="${bn2(sz+12)}" cy="${bn2(y+sz/2)}" r="1.6" fill="#000"/>`; });
+    ord.forEach((ix,j)=>{ const y=j*gap+(gap-sz)/2; b+=bnDibujo(it[ix],BN_W-sz-6,y,sz,sz,{sil:true})+`<circle cx="${bn2(BN_W-sz-12)}" cy="${bn2(y+sz/2)}" r="1.6" fill="#000"/>`; s+=`<line x1="${bn2(sz+12)}" y1="${bn2(ix*gap+gap/2)}" x2="${bn2(BN_W-sz-12)}" y2="${bn2(j*gap+gap/2)}" stroke="#888" stroke-width="0.8"/>`; });
+    return {t:"Cada dibujo con su sombra",c:"Uní con una línea cada dibujo con su sombra. Después pintá los dibujos.",b,s:b+s}; },
+  buscar(r){ const tipos=bnItems(4,r,true), H=BN_H-50, pos=[], tot={}; let b=bnCaja(0,0,BN_W,H,{r:4,sw:0.5}); tipos.forEach((_,i)=>tot[i]=0);
+    for(let t=0;t<900&&pos.length<40;t++){ const sz=12+r()*7, x=2+r()*(BN_W-sz-4), y=2+r()*(H-sz-4); if(pos.some(p=>Math.hypot(p.x-x,p.y-y)<(p.sz+sz)/2+1)) continue; const ti=Math.floor(r()*tipos.length); pos.push({x,y,sz,ti}); tot[ti]++; b+=bnDibujo(tipos[ti],x,y,sz,sz,{flip:r()<0.3,bn:true,sw:5}); }
+    let s=b; tipos.forEach((d,i)=>{ const X=(i%2)*(BN_W/2), Y=H+8+Math.floor(i/2)*21; const row=bnDibujo(d,X+2,Y,17,17,{bn:true})+bnT(X+24,Y+11,"¿Cuántos hay?",4.4,{})+bnCaja(X+60,Y+2,18,13,{r:2,sw:0.5}); b+=row; s+=row+bnT(X+69,Y+12,String(tot[i]),6,{a:"middle",w:700,fill:"#888"}); });
+    return {t:"Buscá y contá",c:"Buscá cada dibujo en el recuadro, contá cuántas veces aparece y escribí el número.",b,s}; },
+  espejo(r){ const ks=["corazon","casa","hongo","arbol","cara"], nm=ks[Math.floor(r()*ks.length)], M=BN_PX[nm], N=12, cell=Math.min(BN_W/N,(BN_H-30)/N), ox=(BN_W-cell*N)/2; let b="", s="";
+    for(let y=0;y<N;y++) for(let x=0;x<N;x++){ const ch=M.m[y][x], X=ox+x*cell, Y=y*cell, ini=(M.p[+ch-1]||"")[0]; b+=bnCaja(X,Y,cell,cell,{r:0,sw:0.3}); s+=bnCaja(X,Y,cell,cell,{r:0,sw:0.3}); if(ch!=="."){ if(x<N/2) b+=BN.color?`<rect x="${bn2(X)}" y="${bn2(Y)}" width="${bn2(cell)}" height="${bn2(cell)}" fill="${BN_PXC[M.p[+ch-1]]}"/>`:bnT(X+cell/2,Y+cell*0.66,ini.toUpperCase(),cell*0.45,{a:"middle",w:700,f:"Arial"}); s+=`<rect x="${bn2(X)}" y="${bn2(Y)}" width="${bn2(cell)}" height="${bn2(cell)}" fill="${BN_PXC[M.p[+ch-1]]}" fill-opacity="${x<N/2?1:0.5}"/>`; } }
+    b+=`<line x1="${bn2(ox+cell*N/2)}" y1="-3" x2="${bn2(ox+cell*N/2)}" y2="${bn2(cell*N+3)}" stroke="#000" stroke-width="0.9" stroke-dasharray="3 2"/>`; const key=M.p.map(c=>`${c[0].toUpperCase()} = ${c}`).join("   ·   "); b+=bnT(BN_W/2,cell*N+10,key,4.4,{a:"middle",w:700}); s+=bnT(BN_W/2,cell*N+10,key,4.4,{a:"middle",w:700});
+    return {t:"Completá la otra mitad",c:"Pintá cada cuadradito con el color de su letra y completá la otra mitad igual, como en un espejo.",b,s}; },
+  tarjetas(r){ const it=bnItems(8,r), cw=BN_W/2, ch=BN_H/4; let b="";
+    it.forEach((d,i)=>{ const X=(i%2)*cw, Y=Math.floor(i/2)*ch; b+=bnCaja(X+1,Y+1,cw-2,ch-2,{r:4,sw:0.35,da:"2 1.5"})+bnDibujo(d,X+(cw-ch*0.62)/2,Y+4,ch*0.62,ch*0.62)+bnT(X+cw/2,Y+ch-8,bnMay(bnNombre(d)||"____________"),6,{a:"middle",w:700,f:"Fredoka, Nunito, Arial"}); });
+    return {t:"Tarjetas de vocabulario",c:"Pintá las tarjetas y recortalas por la línea punteada. Usalas para leer, jugar y armar oraciones.",b:b+bnTijera(-2,2)}; },
+  memo(r){ const it=bnItems(8,r).filter(d=>d.n||d.ic).slice(0,8), cards=bnShuffle(it.flatMap(d=>[{d,t:"img"},{d,t:"pal"}]),r), cols=4, cw=BN_W/cols, ch=BN_H/4; let b="";
+    cards.slice(0,16).forEach((c,i)=>{ const X=(i%cols)*cw, Y=Math.floor(i/cols)*ch; b+=bnCaja(X+1,Y+1,cw-2,ch-2,{r:4,sw:0.35,da:"2 1.5"})+(c.t==="img"?bnDibujo(c.d,X+6,Y+6,cw-12,ch-12):bnT(X+cw/2,Y+ch/2+2,bnMay(bnNombre(c.d)||"?"),Math.min(6,(cw-8)/Math.max(4,bnNombre(c.d).length)/0.62),{a:"middle",w:700,f:"Fredoka, Nunito, Arial"})); });
+    return {t:"Memotest",c:"Pintá y recortá las tarjetas. Ponelas boca abajo y buscá cada dibujo con su palabra.",b:b+bnTijera(-2,2)}; },
+  domino(r){ const it=bnItems(8,r).filter(d=>d.n||d.ic), n=it.length; if(n<4) throw new Error("Hacen falta al menos 4 dibujos con nombre."); const pw=BN_W/2-4, ph=BN_H/Math.ceil(n/2)-4; let b="";
+    for(let i=0;i<n;i++){ const X=(i%2)*(pw+8), Y=Math.floor(i/2)*(ph+4), a=it[i], z=it[(i+1)%n]; b+=bnCaja(X,Y,pw,ph,{r:3,sw:0.45,da:"2 1.5"})+`<line x1="${bn2(X+pw/2)}" y1="${bn2(Y+3)}" x2="${bn2(X+pw/2)}" y2="${bn2(Y+ph-3)}" stroke="#000" stroke-width="0.4"/>`+bnT(X+pw/4,Y+ph/2+2,bnMay(bnNombre(a)),Math.min(5,(pw/2-4)/Math.max(4,bnNombre(a).length)/0.62),{a:"middle",w:700,f:"Fredoka, Nunito, Arial"})+bnDibujo(z,X+pw/2+3,Y+3,pw/2-6,ph-6); }
+    return {t:"Dominó",c:"Recortá las fichas. Para jugar, uní cada palabra con su dibujo hasta formar una ronda.",b:b+bnTijera(-2,2)}; },
+  puzzle(r){ const d=bnItems(1,r)[0], S=Math.min(BN_W,BN_H-10), ox=(BN_W-S)/2, n=bnK()==="ini"?3:4; let b=bnCaja(ox,0,S,S,{r:2,sw:0.6})+bnDibujo(d,ox+6,6,S-12,S-12,{sw:2.5}); const st=S/n;
+    for(let i=1;i<n;i++){ let dv=`M${bn2(ox+i*st)} 0`, dh=`M${bn2(ox)} ${bn2(i*st)}`; for(let j=0;j<n;j++){ const s=r()<0.5?1:-1, y0=j*st, x0=ox+j*st; dv+=` L${bn2(ox+i*st)} ${bn2(y0+st*0.38)} C${bn2(ox+i*st+s*st*0.22)} ${bn2(y0+st*0.3)} ${bn2(ox+i*st+s*st*0.22)} ${bn2(y0+st*0.7)} ${bn2(ox+i*st)} ${bn2(y0+st*0.62)} L${bn2(ox+i*st)} ${bn2(y0+st)}`; const t=r()<0.5?1:-1; dh+=` L${bn2(x0+st*0.38)} ${bn2(i*st)} C${bn2(x0+st*0.3)} ${bn2(i*st+t*st*0.22)} ${bn2(x0+st*0.7)} ${bn2(i*st+t*st*0.22)} ${bn2(x0+st*0.62)} ${bn2(i*st)} L${bn2(x0+st)} ${bn2(i*st)}`; }
+      b+=`<path d="${dv}" fill="none" stroke="#000" stroke-width="0.45" stroke-dasharray="2 1.5"/><path d="${dh}" fill="none" stroke="#000" stroke-width="0.45" stroke-dasharray="2 1.5"/>`; }
+    return {t:"Rompecabezas",c:`Pintá el dibujo, recortá las ${n*n} piezas por la línea punteada y volvé a armarlo.`,b:b+bnT(BN_W/2,S+8,bnMay(bnNombre(d)),6,{a:"middle",w:700,f:"Fredoka, Nunito, Arial"})}; },
+  banderines(){ const w=bnMay(BN.C&&BN.C.acrostico||BN.tema||"FIESTA").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-ZÑ]/g,"").slice(0,12); const L=[...w].slice(0,6), cw=BN_W/3, ch=BN_H/2; let b="";
+    L.forEach((l,i)=>{ const X=(i%3)*cw, Y=Math.floor(i/3)*ch; b+=`<path d="M${bn2(X+3)} ${bn2(Y+10)} H${bn2(X+cw-3)} L${bn2(X+cw/2)} ${bn2(Y+ch-6)}Z" fill="none" stroke="#000" stroke-width="0.45" stroke-dasharray="2 1.5"/><line x1="${bn2(X+3)}" y1="${bn2(Y+16)}" x2="${bn2(X+cw-3)}" y2="${bn2(Y+16)}" stroke="#000" stroke-width="0.3" stroke-dasharray="1 1.4"/><circle cx="${bn2(X+12)}" cy="${bn2(Y+13)}" r="1.3" fill="none" stroke="#000" stroke-width="0.3"/><circle cx="${bn2(X+cw-12)}" cy="${bn2(Y+13)}" r="1.3" fill="none" stroke="#000" stroke-width="0.3"/>`+bnT(X+cw/2,Y+ch*0.55,l,ch*0.42,{a:"middle",w:700,f:"Fredoka, Nunito, Arial",fill:"none",st:bnAc(i),sw:0.8}); });
+    return {t:"Banderines para decorar",c:`Pintá cada letra, recortá los banderines y colgalos en orden con un hilo: forman la palabra ${w.slice(0,6)}.${w.length>6?" Imprimí otra hoja para las letras que faltan.":""}`,b:b+bnTijera(-2,2)}; },
+  titeres(r){ const it=bnItems(2,r,true), cw=BN_W/2; let b="";
+    it.forEach((d,i)=>{ const X=i*cw, R=cw/2-6; b+=`<circle cx="${bn2(X+cw/2)}" cy="${bn2(R+6)}" r="${bn2(R)}" fill="none" stroke="#000" stroke-width="0.45" stroke-dasharray="2 1.5"/>`+bnDibujo(d,X+cw/2-R*0.75,6+R*0.25,R*1.5,R*1.5,{sw:2.5})+`<rect x="${bn2(X+cw/2-5)}" y="${bn2(2*R+8)}" width="10" height="${bn2(BN_H-2*R-30)}" rx="2" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="1.4 1.2"/>`+bnT(X+cw/2,2*R+20,"pegá el palito",3.4,{a:"middle",fill:"#555",extra:` transform="rotate(90 ${bn2(X+cw/2)} ${bn2(2*R+20)})"`})+bnT(X+cw/2,BN_H-6,bnMay(bnNombre(d)),5.5,{a:"middle",w:700,f:"Fredoka, Nunito, Arial"}); });
+    return {t:"Títeres de palito",c:"Pintá los personajes, recortalos y pegales un palito de helado para armar tu propia obra.",b}; },
+  acrostico(){ const w=bnMay(BN.C&&BN.C.acrostico||BN.tema||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-ZÑ]/g,"").slice(0,12); if(w.length<3) throw new Error("Falta la palabra del acróstico."); const gap=Math.min(22,BN_H/w.length); let b="";
+    [...w].forEach((l,i)=>{ const y=i*gap; b+=bnCaja(0,y+1,gap-3,gap-3,{r:3,sw:0.5,st:bnAc(i)})+bnT((gap-3)/2,y+gap*0.72,l,gap*0.55,{a:"middle",w:700,f:"Fredoka, Nunito, Arial"})+bnLineas(gap+2,y+gap-4,BN_W-gap-2,1); });
+    return {t:"Acróstico",c:`Escribí una palabra o una frase que empiece con cada letra de ${w}.`,b}; },
+  quepasa(r){ const d=bnItems(1,r)[0], h=BN_H*0.52; const b=bnCaja(0,0,BN_W,h,{r:4,sw:0.5})+bnDibujo(d,BN_W/2-h*0.42,h*0.08,h*0.84,h*0.84,{sw:2.5})+bnLineas(0,h+16,BN_W,Math.floor((BN_H-h-16)/10)+1,10);
+    return {t:"Mirá, pintá y escribí",c:`Pintá el dibujo y escribí qué está pasando. ¿Quién es? ¿Dónde está? ¿Qué hace?`,b}; },
+  tarjeta(r){ const d=bnItems(1,r)[0], hh=BN_H/2; let b=bnCaja(0,0,BN_W,BN_H,{r:3,sw:0.45,da:"2 1.5"})+`<line x1="0" y1="${bn2(hh)}" x2="${BN_W}" y2="${bn2(hh)}" stroke="#000" stroke-width="0.4" stroke-dasharray="5 2 1 2"/>`+bnT(BN_W-2,hh-2,"doblar acá",3,{a:"end",fill:"#555"});
+    b+=`<g transform="rotate(180 ${BN_W/2} ${hh/2})">`+bnT(BN_W/2,16,bnMay(BN.tema||"¡Para vos!"),8,{a:"middle",w:700,f:"Fredoka, Nunito, Arial"})+bnDibujo(d,BN_W/2-hh*0.33,22,hh*0.66,hh*0.66,{sw:2.5})+`</g>`;
+    b+=bnT(10,hh+16,"Para: ______________________",5,{})+bnLineas(10,hh+32,BN_W-20,8,11)+bnT(BN_W-10,BN_H-8,"De: ______________",5,{a:"end"});
+    return {t:"Tarjeta para llevar a casa",c:"Recortá la tarjeta, doblala por la mitad, pintá el dibujo y escribí un mensaje para tu familia.",b}; },
+  final(r){ const C=BN.C||{}; const ini=C.inicioCuento||`Había una vez ${BN.tema?`un día muy especial: ${BN.tema}`:"un lugar muy especial"}…`; const pa=bnParr(5,9,ini,BN_W-10,4.6,{lh:1.45}); const h=pa.h+8, d=bnItems(1,r)[0];
+    const b=bnCaja(0,0,BN_W,h,{r:4,sw:0.5,st:bnAc(3)})+pa.svg+bnT(0,h+10,"Inventá otro final para el cuento:",4.6,{w:700})+bnLineas(0,h+22,BN_W-60,Math.floor((BN_H-h-22)/10)+1,10)+bnCaja(BN_W-56,h+16,56,56,{r:4,sw:0.4})+bnT(BN_W-28,h+20,"Dibujalo",3.4,{a:"middle",fill:"#555"})+(d?bnDibujo(d,BN_W-50,h+24,44,44,{sw:2,bn:true}).replace(/stroke="#000"/g,'stroke="#bbb"'):"");
+    return {t:"Inventá otro final",c:"Leé el comienzo del cuento e inventá un final distinto. Después dibujalo.",b}; },
+  pintar(r){ const L=BN.dib.length?BN.dib.slice(0,8):bnItems(4,r); return L.map(d=>({t:bnNombre(d)?`Pintá: ${bnNombre(d).toLowerCase()}`:"Para pintar",c:"Pintá el dibujo con tus colores favoritos. ¡Podés agregarle un fondo!",b:bnDibujo(d,4,6,BN_W-8,BN_H-12,{sw:2.4,bn:true})})); }};
+// puntos sobre el contorno de un ícono (se miden en la página)
+const BN_DOTS={estrella:"M50 6 L61 38 L95 38 L67 58 L78 92 L50 71 L22 92 L33 58 L5 38 L39 38 Z",corazon:"M50 88 C20 66 6 48 10 30 C14 13 36 10 50 28 C64 10 86 13 90 30 C94 48 80 66 50 88 Z",casa:"M18 92 L18 46 L10 46 L50 10 L90 46 L82 46 L82 92 Z",pez:"M8 50 C24 24 58 24 74 44 L92 28 L92 72 L74 56 C58 76 24 76 8 50 Z",pino:"M50 6 L72 36 L62 36 L80 60 L66 60 L86 84 L56 84 L56 96 L44 96 L44 84 L14 84 L34 60 L20 60 L38 36 L28 36 Z",barco:"M50 8 L80 54 L52 54 L52 62 L90 62 L76 86 L24 86 L10 62 L48 62 L48 8 Z",cohete:"M50 6 C64 18 68 40 66 62 L78 82 L62 76 L58 90 L42 90 L38 76 L22 82 L34 62 C32 40 36 18 50 6 Z",gato:"M22 40 L24 10 L42 27 C47 26 53 26 58 27 L76 10 L78 40 C86 52 82 76 66 84 C56 90 44 90 34 84 C18 76 14 52 22 40 Z",campana:"M50 8 C58 8 60 14 60 18 C72 22 76 44 76 70 L86 80 L14 80 L24 70 C24 44 28 22 40 18 C40 14 42 8 50 8 Z"};
+function bnPuntos(d,n){ const ns="http://www.w3.org/2000/svg", s=document.createElementNS(ns,"svg"); s.setAttribute("style","position:absolute;left:-9999px;width:10px;height:10px"); const el=document.createElementNS(ns,"path"); el.setAttribute("d",d);
+  s.appendChild(el); document.body.appendChild(s); let L=0; try{ L=el.getTotalLength(); }catch{} const out=[]; for(let i=0;i<n;i++){ try{ const p=el.getPointAtLength(L*i/n); out.push([p.x,p.y]); }catch{ out.push([50+40*Math.cos(i/n*6.283),50+40*Math.sin(i/n*6.283)]); } } s.remove(); return out; }
+
+// ---------- página A4 completa ----------
+function bnPagina(f,i,tot,sol){ const tema=BN.tema||"", ac=bnAc(0); let s=`<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297"><rect width="210" height="297" fill="#fff"/>`;
+  if(BN.enc) s+=bnT(12,12.5,"Nombre: ______________________________",3.9,{})+bnT(126,12.5,"Fecha: ____________",3.9,{})+bnT(176,12.5,"Grado: _____",3.9,{});
+  s+=`<rect x="12" y="17" width="186" height="15" rx="7.5" fill="${BN.color?"#FFF1DC":"none"}" stroke="${ac}" stroke-width="0.7"/>`+bnT(105,27.4,(sol?"Solución · ":"")+f.t,7.2,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?"#1A2744":"#000"});
+  const cs=bnParr(22,41,f.c||"",172,4.3,{lh:1.3}); s+=`<circle cx="15.5" cy="39.6" r="4" fill="${BN.color?ac:"none"}" stroke="${ac}" stroke-width="0.6"/>`+bnT(15.5,41.2,"✎",4.4,{a:"middle",fill:BN.color?"#fff":"#000",f:"Arial"})+cs.svg;
+  const top=Math.max(52,41+cs.h+3), sc=Math.min(1,(286-top)/BN_H); s+=`<g transform="translate(${bn2(12+(BN_W-BN_W*sc)/2)} ${bn2(top)}) scale(${bn2(sc)})">${sol?f.s:f.b}</g>`;
+  s+=bnT(105,292.5,`Cofre Didáctico${tema?" · "+tema:""}`,2.8,{a:"middle",fill:"#666",f:"Fredoka, Nunito, Arial"})+"</svg>"; return s; }
+// arma todas las páginas elegidas
+function bnArmar(){ const out=[], err=[]; let seed=BN.seed; const ids=BN_GRUPOS.flatMap(g=>g[1].map(x=>x[0])).filter(id=>BN.sel.has(id));
+  ids.forEach(id=>{ const rnd=mulberry(seed+=101); try{ let r=BN_GEN[id](rnd); (Array.isArray(r)?r:[r]).forEach(p=>out.push({id,p,seed})); }catch(e){ err.push(`${BN_NOM[id]}: ${e.message||e}`); } });
+  BN.pags=out; return err; }
+
+// ---------- fuentes incrustadas (para que el PDF salga igual en cualquier compu) ----------
+let bnFontCss=null;
+async function bnFuentes(){ if(bnFontCss!==null) return bnFontCss; let css="";
+  try{ const r=await fetch("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Andika:wght@400;700&display=swap"); const t=await r.text(); const blocks=t.split("@font-face").slice(1).filter(b=>/latin \*\/|U\+0000-00FF/.test(b)||!/unicode-range/.test(b));
+    for(const bl of blocks){ const fam=(bl.match(/font-family:\s*'([^']+)'/)||[])[1], w=(bl.match(/font-weight:\s*(\d+)/)||[])[1], u=(bl.match(/url\(([^)]+)\)/)||[])[1]; if(!fam||!u) continue; const fb=await (await fetch(u)).arrayBuffer(); let bin=""; const a=new Uint8Array(fb); for(let i=0;i<a.length;i+=32768) bin+=String.fromCharCode.apply(null,a.subarray(i,i+32768)); css+=`@font-face{font-family:'${fam}';font-weight:${w};src:url(data:font/woff2;base64,${btoa(bin)}) format('woff2');}`; } }catch{}
+  bnFontCss=css; return css; }
+async function bnRaster(svg,px){ const css=await bnFuentes(), full=css?svg.replace(/(<svg[^>]*>)/,`$1<style>${css}</style>`):svg, url=URL.createObjectURL(new Blob([full],{type:"image/svg+xml"}));
+  try{ const im=new Image(); await new Promise((ok,ko)=>{ im.onload=ok; im.onerror=()=>ko(new Error("No se pudo dibujar la ficha.")); im.src=url; }); const c=document.createElement("canvas"); c.width=px; c.height=Math.round(px*297/210); const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c.width,c.height); g.drawImage(im,0,0,c.width,c.height); return c; } finally{ URL.revokeObjectURL(url); } }
+function bnPaginasSvg(){ const L=[]; BN.pags.forEach((pg,i)=>{ L.push({svg:bnPagina(pg.p,i,BN.pags.length,false),n:`${String(L.length+1).padStart(2,"0")} - ${pg.p.t}`}); }); if(BN.sol) BN.pags.forEach((pg,i)=>{ if(pg.p.s) L.push({svg:bnPagina(pg.p,i,BN.pags.length,true),n:`${String(L.length+1).padStart(2,"0")} - Solución - ${pg.p.t}`}); }); return L; }
+async function bnPdf(){ if(!BN.pags.length) return; const m=$("#bnMsg"), btn=$("#bnPdf"); btn.disabled=true; try{ await poLibs(); const {PDFDocument}=PDFLib, doc=await PDFDocument.create(), L=bnPaginasSvg();
+    const A4=[595.28,841.89]; for(let i=0;i<L.length;i++){ m.textContent=`Armando el PDF… ${i+1} de ${L.length}`; const c=await bnRaster(L[i].svg,2480), png=await new Promise(ok=>c.toBlob(ok,"image/png")), img=await doc.embedPng(await png.arrayBuffer());
+      if(BN.a5){ if(i%2===0) doc.addPage([A4[1],A4[0]]); const pg=doc.getPage(doc.getPageCount()-1), w=A4[1]/2, h=A4[0]; pg.drawImage(img,{x:(i%2)*w+4,y:4,width:w-8,height:h-8}); if(i%2===0) pg.drawLine({start:{x:w,y:10},end:{x:w,y:h-10},thickness:0.4,dashArray:[3,3]}); }
+      else { const pg=doc.addPage(A4); pg.drawImage(img,{x:0,y:0,width:A4[0],height:A4[1]}); } }
+    doc.setTitle(`Fichas - ${BN.tema||"Cofre Didáctico"}`); doc.setAuthor("Cofre Didáctico"); const bytes=await doc.save(); const nm=`Fichas ${BN.color?"color":"BN"} - ${(BN.tema||"Cofre Didáctico").replace(/[\\/:*?"<>|]/g,"").slice(0,50)}.pdf`;
+    await saveFile(nm,new Blob([bytes],{type:"application/pdf"}),"application/pdf"); m.textContent=`Listo: ${L.length} ${L.length===1?"hoja":"hojas"}${BN.a5?" (2 por hoja A4)":""}, ${(bytes.length/1048576).toFixed(1)} MB.`; }
+  catch(e){ m.textContent=(e&&e.message)||"No se pudo armar el PDF."; } finally{ btn.disabled=false; } }
+async function bnZip(){ if(!BN.pags.length) return; const Z=new (await loadJSZip())(); bnPaginasSvg().forEach(p=>Z.file(p.n.replace(/[\\/:*?"<>|]/g,"")+".svg",p.svg)); const b=await Z.generateAsync({type:"blob"}); await saveFile(`Fichas SVG (Corel) - ${(BN.tema||"Cofre Didáctico").replace(/[\\/:*?"<>|]/g,"").slice(0,50)}.zip`,b,"application/zip"); }
+
+// ---------- Claude: contenido y dibujos ----------
+async function bnContenidoIA(){ const sf=await getSample(), m=$("#bnMsg"); if(!sf){ m.textContent="“Preparar con Claude” funciona en el panel dentro de Claude. En el panel web, completá el contenido a mano."; return; } if(!BN.tema.trim()){ m.textContent="Escribí primero la temática."; return; }
+  const b=$("#bnIA"); b.disabled=true; b.textContent="✨ Preparando…"; m.textContent="Claude está preparando el contenido…";
+  try{ const k=bnK(), edad=k==="ini"?"4 a 5 años (nivel inicial, todavía no leen de corrido)":k==="pc"?"6 a 8 años (primer ciclo de primaria)":"9 a 12 años (segundo ciclo de primaria)";
+    const C=await sf.json(`Sos una docente argentina con mucha experiencia. Prepará el contenido para fichas de actividades en blanco y negro sobre "${BN.tema}" para chicos de ${edad}. Usá español rioplatense, datos correctos y sencillos, sin violencia. Devolvé SOLO un JSON con esta forma:
+{"titulo":"título corto para la lectura","palabras":["10 a 12 palabras clave del tema, sustantivos concretos, de 3 a 10 letras, en mayúsculas"],"texto":"texto informativo o narrativo de ${k==="ini"?"40 a 60":k==="pc"?"70 a 100":"110 a 150"} palabras que use varias de las palabras clave","preguntas":["4 preguntas de comprensión sobre el texto"],"vf":[{"t":"oración","v":true}],"secuencia":["4 a 6 oraciones cortas, en orden, que cuenten un proceso o una historia del tema"],"problemas":["3 problemas de matemática del tema, acordes a la edad, con números"],"pistas":[{"palabra":"PALABRA","pista":"pista corta"}],"acrostico":"una palabra del tema de 5 a 9 letras, en mayúsculas","frase":"frase secreta corta del tema, de 3 a 6 palabras","inicioCuento":"comienzo de un cuento del tema, 2 o 3 oraciones, que deje abierto el final","dibujos":["6 cosas del tema fáciles de dibujar con líneas simples (objetos, animales, personajes)"]}
+vf: 6 oraciones, mitad verdaderas y mitad falsas. pistas: 6 a 8, con palabras de "palabras".`,{modelTier:"default",cache:false});
+    if(!C||!Array.isArray(C.palabras)) throw {code:"invalid_json"}; BN.C=C; if(!BN.C.titulo) BN.C.titulo=BN.tema; bnFormLlenar(); await bnGuardar(); m.textContent="Contenido listo. Revisalo abajo y, si querés, pedí los dibujos."; }
+  catch(e){ m.textContent=typeof sampleErr==="function"?sampleErr(e):"No se pudo preparar."; } finally{ b.disabled=false; b.textContent="✨ Preparar el contenido con Claude"; } }
+// limpia el SVG de Claude: solo formas simples
+function bnLimpiarSvg(src){ try{ const doc=new DOMParser().parseFromString(String(src).trim(),"image/svg+xml"), root=doc.documentElement; if(root.nodeName!=="svg") return null; const OK=new Set(["path","circle","ellipse","rect","line","polyline","polygon","g"]), AT=new Set(["d","cx","cy","r","rx","ry","x","y","width","height","x1","y1","x2","y2","points","transform","fill","stroke","stroke-width","stroke-linecap","stroke-linejoin","data-color"]);
+    const out=[]; const walk=(n,dep)=>{ for(const c of [...n.children]){ if(!OK.has(c.nodeName)||dep>6) continue; const at=[...c.attributes].filter(a=>AT.has(a.name)&&!/url\(|javascript:/i.test(a.value)).map(a=>{ let v=a.value; if(a.name==="fill"&&!/^(none|#fff|#ffffff|white)$/i.test(v)) v="none"; if(a.name==="stroke") v="#000"; return `${a.name}="${bx(v)}"`; }); if(c.nodeName!=="g"&&!at.some(x=>x.startsWith("fill="))) at.push('fill="none"'); if(c.nodeName==="g"){ out.push(`<g ${at.join(" ")}>`); walk(c,dep+1); out.push("</g>"); } else out.push(`<${c.nodeName} ${at.join(" ")}/>`); } };
+    walk(root,0); if(out.length<2) return null; const vb=root.getAttribute("viewBox")||"0 0 200 200";
+    return {vb,svg:`<g fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">${out.join("")}</g>`}; }catch{ return null; } }
+async function bnDibujosIA(){ const sf=await getSample(), m=$("#bnMsg"); if(!sf){ m.textContent="Los dibujos con Claude se piden desde el panel dentro de Claude. En el panel web podés subir tus imágenes y pasarlas a línea."; return; }
+  const L=String($("#bnDibLista").value||"").split(/[,\n]/).map(s=>s.trim()).filter(Boolean).slice(0,8); if(!L.length){ m.textContent="Escribí qué querés que dibuje (separado por comas)."; return; }
+  const b=$("#bnDibIA"); b.disabled=true; let ok=0;
+  for(const [i,n] of L.entries()){ b.textContent=`✨ Dibujando ${i+1} de ${L.length}…`;
+    try{ const r=await sf.json(`Dibujá "${n}" (tema: ${BN.tema||"escolar"}) como un dibujo para colorear de libro infantil: contorno negro limpio, formas grandes y simples, pocos detalles interiores, sin texto, sin sombras ni rellenos negros, todo cerrado para poder pintarlo. Devolvé SOLO un JSON {"svg":"<svg viewBox=\\"0 0 200 200\\" xmlns=\\"http://www.w3.org/2000/svg\\">…</svg>"} usando solo path, circle, ellipse, rect, line, polyline, polygon y g, con fill="none" y stroke="#000" stroke-width="4". Agregá a cada forma un atributo data-color con el color sugerido en hexadecimal (para la versión color). Centrá el dibujo y ocupá casi todo el espacio.`,{modelTier:"complex",cache:false});
+      const L2=bnLimpiarSvg(r&&r.svg); if(L2){ BN.dib=BN.dib.filter(d=>d.n.toLowerCase()!==n.toLowerCase()); BN.dib.push({n,...L2}); ok++; bnDibPintar(); } }catch(e){ m.textContent=typeof sampleErr==="function"?sampleErr(e):"No se pudo dibujar."; if(e&&(e.code==="not_granted"||e.code==="rate_limited")) break; } }
+  b.disabled=false; b.textContent="✨ Dibujar con Claude"; if(ok){ await bnGuardar(); m.textContent=`Listos ${ok} dibujos. Se usan en las fichas visuales, las de recortar y las de pintar.`; } }
+// pasa una imagen propia a dibujo de línea (para pintar)
+async function bnSubirImg(file){ const m=$("#bnMsg"); try{ const bmp=await createImageBitmap(file), S=Math.min(1,700/Math.max(bmp.width,bmp.height)), w=Math.round(bmp.width*S), h=Math.round(bmp.height*S), c=document.createElement("canvas"); c.width=w; c.height=h; const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,w,h); g.drawImage(bmp,0,0,w,h);
+    const d=g.getImageData(0,0,w,h), a=d.data, L=new Float32Array(w*h); for(let i=0;i<w*h;i++) L[i]=0.3*a[i*4]+0.59*a[i*4+1]+0.11*a[i*4+2]; const o=g.createImageData(w,h), q=o.data, U=+($("#bnUmbral")?.value||60);
+    for(let y=1;y<h-1;y++) for(let x=1;x<w-1;x++){ const i=y*w+x, gx=-L[i-w-1]-2*L[i-1]-L[i+w-1]+L[i-w+1]+2*L[i+1]+L[i+w+1], gy=-L[i-w-1]-2*L[i-w]-L[i-w+1]+L[i+w-1]+2*L[i+w]+L[i+w+1], e=Math.hypot(gx,gy)>U*4||L[i]<40; const v=e?0:255; q[i*4]=q[i*4+1]=q[i*4+2]=v; q[i*4+3]=255; }
+    g.putImageData(o,0,0); const n=file.name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ").slice(0,30); BN.dib.push({n,img:c.toDataURL("image/png")}); bnDibPintar(); await bnGuardar(); m.textContent=`“${n}” pasado a línea. Si quedó con muchas manchas, subí el número de “Detalle” y probá de nuevo.`; }
+  catch{ m.textContent="No pude leer esa imagen (JPG, PNG o WEBP)."; } }
+
+// ---------- guardar el tema (contenido y dibujos) ----------
+async function bnGuardar(){ if(!db||!BN.tema.trim()) return; try{ const dib=BN.dib.filter(d=>d.svg||(d.img&&d.img.length<160000)).slice(0,14); await db.doc("bndib/"+bnSlug(BN.tema)).set({tema:BN.tema,nivel:BN.nivel,C:BN.C||null,dib,updated:new Date().toISOString()}); }catch{} }
+async function bnCargarTema(){ if(!db||!BN.tema.trim()) return false; try{ const s=await db.doc("bndib/"+bnSlug(BN.tema)).get(); if(!s.exists) return false; const d=s.data(); BN.C=d.C||BN.C; BN.dib=Array.isArray(d.dib)?d.dib:[]; return true; }catch{ return false; } }
+async function bnTemasGuardados(){ try{ const q=await db.collection("bndib").get(); const L=[]; q.forEach(d=>{ const v=d.data(); L.push([d.id,v.tema||d.id]); }); return L; }catch{ return []; } }
+
+// ---------- interfaz ----------
+function bnFormLlenar(){ const C=BN.C||{}, set=(id,v)=>{ const e=$("#"+id); if(e) e.value=v; };
+  set("bnPal",(C.palabras||[]).join(", ")); set("bnTit",C.titulo||""); set("bnTexto",C.texto||""); set("bnPreg",(C.preguntas||[]).join("\n")); set("bnVF",(C.vf||[]).map(o=>(o.v?"V: ":"F: ")+o.t).join("\n")); set("bnSec",(C.secuencia||[]).join("\n")); set("bnProb",(C.problemas||[]).join("\n")); set("bnPis",(C.pistas||[]).map(p=>`${p.palabra}: ${p.pista}`).join("\n")); set("bnAcr",C.acrostico||""); set("bnFrase",C.frase||""); set("bnCuento",C.inicioCuento||""); set("bnDibLista",(C.dibujos||[]).join(", ")); }
+function bnFormLeer(){ const v=id=>($("#"+id)||{}).value||"", lines=id=>v(id).split("\n").map(s=>s.trim()).filter(Boolean);
+  BN.C={...(BN.C||{}),titulo:v("bnTit").trim(),palabras:v("bnPal").split(/[,\n]/).map(s=>s.trim()).filter(Boolean),texto:v("bnTexto").trim(),preguntas:lines("bnPreg"),vf:lines("bnVF").map(l=>({v:!/^f\s*[:.-]/i.test(l),t:l.replace(/^[vf]\s*[:.-]\s*/i,"")})),secuencia:lines("bnSec"),problemas:lines("bnProb"),pistas:lines("bnPis").map(l=>{ const [p,...r]=l.split(":"); return {palabra:p.trim(),pista:r.join(":").trim()}; }).filter(p=>p.palabra&&p.pista),acrostico:v("bnAcr").trim(),frase:v("bnFrase").trim(),inicioCuento:v("bnCuento").trim(),dibujos:v("bnDibLista").split(/[,\n]/).map(s=>s.trim()).filter(Boolean)}; }
+function bnDibPintar(){ const b=$("#bnDibs"); if(!b) return; b.innerHTML=BN.dib.length?BN.dib.map((d,i)=>`<figure class="bn-dib"><div class="bn-dimg">${d.img?`<img src="${d.img}" alt="">`:`<svg viewBox="${d.vb||"0 0 200 200"}">${d.svg}</svg>`}</div><figcaption>${bx(d.n)}</figcaption><button type="button" class="btn small ghost" data-bndel="${i}" title="Quitar">✕</button></figure>`).join(""):`<span class="muted" style="font-size:12.5px">Sin dibujos del tema todavía: las fichas usan dibujos genéricos (estrella, flor, casa…).</span>`; }
+function bnSelPintar(){ const b=$("#bnTipos"); if(!b) return; b.innerHTML=BN_GRUPOS.map(([g,L],gi)=>`<div class="bn-grupo"><b>${g}</b><div class="bn-chks">${L.map(([id,n])=>`<label class="check"><input type="checkbox" data-bnsel="${id}" ${BN.sel.has(id)?"checked":""}> ${n}</label>`).join("")}</div></div>`).join(""); }
+function bnVista(){ const g=$("#bnPags"), n=$("#bnN"); if(!g) return; if(!BN.pags.length){ g.innerHTML=`<div class="vs-vacio"><b>Todavía no armaste las fichas</b><span class="muted">Elegí la temática y las actividades, y tocá “Armar las fichas”.</span></div>`; if(n) n.textContent=""; return; }
+  g.innerHTML=BN.pags.map((pg,i)=>`<figure class="bn-pag"><div class="bn-hoja">${bnPagina(pg.p,i,BN.pags.length,false).replace('width="210mm" height="297mm"','width="100%"')}</div><figcaption><b>${i+1}.</b> ${bx(pg.p.t)}<span class="bn-acc"><button type="button" class="btn small ghost" data-bnotra="${i}" title="Otra versión">🔄</button><button type="button" class="btn small ghost" data-bnver="${i}" title="Ver grande">🔍</button><button type="button" class="btn small ghost" data-bnquitar="${i}" title="Quitar">✕</button></span></figcaption></figure>`).join("");
+  if(n) n.textContent=`${BN.pags.length} ${BN.pags.length===1?"hoja":"hojas"}${BN.sol?` + ${BN.pags.filter(p=>p.p.s).length} soluciones`:""}`; ["#bnPdf","#bnZip"].forEach(id=>{ const e=$(id); if(e) e.disabled=false; }); }
+async function bnInit(){ const v=$("#view-fichas"); if(!v||v.dataset.ok) return; v.dataset.ok="1";
+  if(!document.getElementById("bnFontLink")){ const l=document.createElement("link"); l.id="bnFontLink"; l.rel="stylesheet"; l.href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap"; document.head.appendChild(l); }
+  $("#bnNivel").innerHTML=["Nivel Inicial","Primer ciclo","Segundo ciclo"].map(n=>`<button type="button" class="${BN.nivel===n?"on":""}" data-bnniv="${n}">${n}</button>`).join("");
+  bnSelPintar(); bnDibPintar(); bnVista(); if(!MODE.cloud){ $("#bnIA").title="Funciona en el panel dentro de Claude"; $("#bnDibIA").title="Funciona en el panel dentro de Claude"; }
+  bnTemasGuardados().then(L=>{ const dl=$("#bnTemas"); if(dl) dl.innerHTML=L.map(([,t])=>`<option value="${bx(t)}">`).join(""); });
+  $("#bnTema").addEventListener("change",async e=>{ BN.tema=e.target.value.trim(); if(await bnCargarTema()){ bnFormLlenar(); bnDibPintar(); $("#bnMsg").textContent=`Recuperé el contenido y los dibujos que ya tenías de “${BN.tema}”.`; } });
+  $("#bnTema").addEventListener("input",e=>{ BN.tema=e.target.value; });
+  v.addEventListener("click",async e=>{ const t=e.target.closest("button,[data-bnniv]"); if(!t) return;
+    if(t.dataset.bnniv){ BN.nivel=t.dataset.bnniv; t.parentElement.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===t)); return; }
+    if(t.id==="bnIA") return bnContenidoIA(); if(t.id==="bnDibIA") return bnDibujosIA();
+    if(t.dataset.bndel!=null){ BN.dib.splice(+t.dataset.bndel,1); bnDibPintar(); bnGuardar(); return; }
+    if(t.id==="bnTodas"||t.id==="bnNinguna"){ BN.sel=t.id==="bnTodas"?new Set(Object.keys(BN_GEN)):new Set(); bnSelPintar(); return; }
+    if(t.id==="bnGo"){ bnFormLeer(); const err=bnArmar(); bnVista(); $("#bnMsg").textContent=err.length?`Armé ${BN.pags.length} hojas. No pude armar: ${err.join(" · ")}`:`Listas ${BN.pags.length} hojas. Revisalas y descargalas en PDF.`; bnGuardar(); return; }
+    if(t.dataset.bnotra!=null){ const i=+t.dataset.bnotra, pg=BN.pags[i]; try{ const r=BN_GEN[pg.id](mulberry(pg.seed+=7919)); const L=Array.isArray(r)?r:[r]; pg.p=L[Math.min(L.length-1,BN.pags.filter((x,j)=>x.id===pg.id&&j<i).length)]; bnVista(); }catch(er){ $("#bnMsg").textContent=er.message; } return; }
+    if(t.dataset.bnquitar!=null){ BN.pags.splice(+t.dataset.bnquitar,1); bnVista(); return; }
+    if(t.dataset.bnver!=null){ const pg=BN.pags[+t.dataset.bnver], w=$("#bnGrande"); w.innerHTML=`<div class="bn-grande-in"><button type="button" class="btn small" id="bnCerrar">✕ Cerrar</button>${bnPagina(pg.p,0,1,false).replace('width="210mm" height="297mm"','width="100%"')}${pg.p.s&&BN.sol?bnPagina(pg.p,0,1,true).replace('width="210mm" height="297mm"','width="100%"'):""}</div>`; w.hidden=false; return; }
+    if(t.id==="bnCerrar"){ $("#bnGrande").hidden=true; return; }
+    if(t.id==="bnPdf") return bnPdf(); if(t.id==="bnZip") return bnZip(); });
+  v.addEventListener("change",e=>{ const t=e.target; if(t.dataset.bnsel){ t.checked?BN.sel.add(t.dataset.bnsel):BN.sel.delete(t.dataset.bnsel); return; }
+    if(t.id==="bnColor"||t.id==="bnA5"||t.id==="bnEnc"||t.id==="bnSol"){ BN[{bnColor:"color",bnA5:"a5",bnEnc:"enc",bnSol:"sol"}[t.id]]=t.checked; bnVista(); return; }
+    if(t.id==="bnImg"&&t.files[0]){ bnSubirImg(t.files[0]); t.value=""; } });
+  $("#bnGrande").addEventListener("click",e=>{ if(e.target.id==="bnGrande") e.currentTarget.hidden=true; }); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
