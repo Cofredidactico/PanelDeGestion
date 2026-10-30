@@ -14275,7 +14275,7 @@ function mlAudience(){
     const lastD=ok[0]&&ok[0]._d; if(last){ if(!lastD) return false; const days=(t-lastD)/DAY; if(last==="r30"&&days>30||last==="r90"&&days>90||last==="o90"&&days<=90||last==="o180"&&days<=180) return false; }
     seen.add(e); return true; })
   .map(c=>{ const o=(c.o.find(o=>o.pg==="Finalizado")||(base==="pend"?c.o.find(o=>o.pg==="Pendiente"):null)||c.o[0]); const mat=o&&o.i&&o.i[0]?o.i[0][1]:"tu material";
-    return {email:String(c.e).trim().toLowerCase(),name:c.n||"",vars:{nombre:firstName(c.n)||"docente",ultimo_material:mat,tema:tema||groupOf(mat),efemeride:mlNextEfe(),tienda:STORE_URL}}; });
+    return {email:String(c.e).trim().toLowerCase(),name:c.n||"",rec:(()=>{ const f=c.o.find(o=>o.pg==="Finalizado"); return f&&f._d?+f._d:0; })(),vars:{nombre:firstName(c.n)||"docente",ultimo_material:mat,tema:tema||groupOf(mat),efemeride:mlNextEfe(),tienda:STORE_URL}}; });
 }
 const mlVarRe=/\{(nombre|ultimo_material|tema|efemeride|tienda|material)\}/g;
 function mlFill(s,vars,forBrevo){ return String(s||"").replace(mlVarRe,(m,k)=>k==="material"?(mlMatSel()||{}).nombre||"el material nuevo":forBrevo&&k!=="tienda"?`{{ params.${k} }}`:(vars[k]??"")); }
@@ -14399,28 +14399,43 @@ function mlRenderHist(){ const box=$("#mlHist"); const L=Object.entries(db._all(
   mlEnvios=L; if(!L.length){ box.innerHTML=`<p class="muted">Todavía no enviaste correos desde el panel.</p>`; return; }
   const bar=(v,l,c)=>`<div class="ml-st"><span>${l}</span><i><b style="width:${Math.min(100,v*100)}%;background:${c}"></b></i><em>${pctf(v,0)}</em></div>`;
   box.innerHTML=L.map(c=>{ const n=(c.enviados||[]).length, t=(c.para||[]).length; const s=c.stats, del=s&&s.delivered;
+    const om=(c.omitidos||[]).length, falta=Math.max(0,t-n-om), fin=c.auto&&falta?mlFinEstimado(c):null;
+    const auto=c.auto?`<div style="margin:6px 0;padding:8px 10px;border-radius:10px;background:rgba(128,128,128,.13);border:1px solid rgba(128,128,128,.25);font-size:12.5px">${falta?(c.pausa?`⏸️ <b>Pausado</b> · faltan ${nf(falta)}`:`📆 <b>Automático</b>: ${nf(c.porDia||100)} por día a las 10 h · faltan ${nf(falta)}${fin?` · termina aprox. el ${esc(fin.toLocaleDateString("es-AR",{weekday:"short",day:"numeric",month:"short",timeZone:"UTC"}))}`:""}`):`✅ <b>Terminado</b>${c.terminado?` el ${esc(new Date(c.terminado+"T12:00:00Z").toLocaleDateString("es-AR",{day:"numeric",month:"short",timeZone:"UTC"}))}`:""}`}
+      ${(c.lotes||[]).length?`<div class="muted" style="margin-top:4px">${(c.lotes||[]).slice(-6).map(l=>`${esc(new Date(l.dia+"T12:00:00Z").toLocaleDateString("es-AR",{day:"numeric",month:"short",timeZone:"UTC"}))}: ${nf(l.n)}`).join(" · ")}</div>`:""}${c.aviso&&falta?`<div style="margin-top:4px;color:#C2452D">⚠️ ${esc(c.aviso)}</div>`:""}</div>`:"";
     return `<div class="mlh"><div><b>${esc(c.asunto)}</b><span class="muted">${esc(new Date(c.creado).toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))} · ${esc(c.filtro||"")}</span></div>
-      <div class="mlh-k"><span><b>${nf(n)}</b> de ${nf(t)} enviados</span>${del?`<span><b>${nf(del)}</b> entregados</span>${s.hardBounces?`<span>${nf(s.hardBounces)} rebotados</span>`:""}`:""}</div>
+      ${auto}<div class="mlh-k"><span><b>${nf(n)}</b> de ${nf(t)} enviados</span>${om?`<span>${nf(om)} omitidos (bajas)</span>`:""}${del?`<span><b>${nf(del)}</b> entregados</span>${s.hardBounces?`<span>${nf(s.hardBounces)} rebotados</span>`:""}`:""}</div>
       ${del?`<div class="ml-sts">${bar((s.uniqueOpens||0)/del,"Abrieron","#0B8BD6")}${bar((s.uniqueClicks||0)/del,"Hicieron clic","#EF7F22")}</div>`:""}
-      <div class="actions">${n<t?`<button class="btn small primary" type="button" data-mlcont="${esc(c.id)}">Continuar envío (${nf(t-n)})</button>`:""}<button class="btn small" type="button" data-mlstats="${esc(c.id)}">Actualizar estadísticas</button>${c.dis?`<button class="btn small ghost" type="button" data-mlreuse="${esc(c.id)}">Usar como base</button>`:""}</div></div>`; }).join("");
+      <div class="actions">${c.auto&&falta?`<button class="btn small${c.pausa?" primary":""}" type="button" data-mlpausa="${esc(c.id)}">${c.pausa?"▶️ Reanudar":"⏸️ Pausar"}</button>`:""}${!c.auto&&n+om<t?`<button class="btn small primary" type="button" data-mlcont="${esc(c.id)}">Continuar envío (${nf(t-n-om)})</button>`:""}<button class="btn small" type="button" data-mlstats="${esc(c.id)}">Actualizar estadísticas</button>${c.dis?`<button class="btn small ghost" type="button" data-mlreuse="${esc(c.id)}">Usar como base</button>`:""}</div></div>`; }).join("");
   box.querySelectorAll("[data-mlcont]").forEach(b=>b.addEventListener("click",()=>{ const c=L.find(x=>x.id===b.dataset.mlcont); mlSend(c); }));
+  box.querySelectorAll("[data-mlpausa]").forEach(b=>b.addEventListener("click",async()=>{ b.disabled=true; const c=await mlFresh(L.find(x=>x.id===b.dataset.mlpausa)); c.pausa=!c.pausa; await db.doc("correos/"+c.id).set({...c,id:undefined}); mlRenderHist(); }));
   box.querySelectorAll("[data-mlreuse]").forEach(b=>b.addEventListener("click",()=>{ const c=L.find(x=>x.id===b.dataset.mlreuse); ML=JSON.parse(JSON.stringify(c.dis)); mlSync(); window.scrollTo({top:0,behavior:"smooth"}); }));
   box.querySelectorAll("[data-mlstats]").forEach(b=>b.addEventListener("click",async()=>{ const c=L.find(x=>x.id===b.dataset.mlstats); b.disabled=true; b.textContent="Consultando…";
-    try{ const s=await mlCall({accion:"estadisticas",tag:c.tag}); await db.doc("correos/"+c.id).set({...c,id:undefined,stats:s.stats,statsAt:new Date().toISOString()}); mlRenderHist(); }catch(e){ b.textContent=e.message; } }));
+    try{ const s=await mlCall({accion:"estadisticas",tag:c.tag}); const f=await mlFresh(c); await db.doc("correos/"+c.id).set({...f,id:undefined,stats:s.stats,statsAt:new Date().toISOString()}); mlRenderHist(); }catch(e){ b.textContent=e.message; } }));
 }
+const mlHoyAR=()=>new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
+const mlYaHoy=c=>(c.lotes||[]).filter(l=>l.dia===mlHoyAR()).reduce((s,l)=>s+(l.n||0),0);
+async function mlFresh(c){ try{ if(db._api){ const r=await db._api(`cofre_docs?select=data&path=eq.${encodeURIComponent("correos/"+c.id)}`); if(r&&r[0]&&r[0].data) return {...r[0].data,id:c.id}; } }catch(e){} return c; }
+function mlFinEstimado(c){ const falta=(c.para||[]).length-(c.enviados||[]).length-(c.omitidos||[]).length; if(falta<=0) return null; const pd=c.porDia||100;
+  const cupoHoy=new Date().getUTCHours()<13?Math.max(0,pd-mlYaHoy(c)):0, resto=falta-cupoHoy; const d=new Date(mlHoyAR()+"T12:00:00Z"); if(resto>0) d.setUTCDate(d.getUTCDate()+Math.ceil(resto/pd)); return d; }
 const mlHtmlCamp=camp=>camp.dis?mlHtml2(camp.dis,{tienda:STORE_URL},true):mlHtml({cuerpo:mlFill(camp.cuerpo,{tienda:STORE_URL},true),boton:camp.boton,link:mlFill(camp.link,{tienda:STORE_URL},false)});
 async function mlSend(camp){
   if(mlBusy) return; mlBusy=true; const prog=$("#mlProg"), msg=$("#mlMsg"); prog.hidden=false; $("#mlStop").hidden=false; let stop=false; $("#mlStop").onclick=()=>{ stop=true; };
   try{
     let cuenta=null; try{ cuenta=await mlCall({accion:"cuenta"}); }catch(e){ throw new Error("No se pudo conectar con Brevo: "+e.message); }
-    let left=cuenta.restantes==null?Infinity:cuenta.restantes; const done=new Set(camp.enviados||[]); const pend=camp.para.filter(p=>!done.has(p.email)), html=mlHtmlCamp(camp);
-    for(let i=0;i<pend.length&&!stop;i+=40){ if(left<=0){ msg.textContent=`Se llegó al límite de hoy. Mañana tocá “Continuar envío” en Envíos anteriores.`; break; }
+    if(camp.auto){ camp=await mlFresh(camp); }
+    let left=cuenta.restantes==null?Infinity:cuenta.restantes; const hoyN0=camp.auto?mlYaHoy(camp):0; if(camp.auto) left=Math.min(left,Math.max(0,(camp.porDia||100)-hoyN0));
+    if(camp.auto&&left<=0){ msg.textContent=`Hoy ya salió el lote de ${nf(camp.porDia||100)} de este envío. Mañana a las 10 h sale el próximo solo.`; return; }
+    let hoyN=camp.auto?((camp.lotes||[]).find(l=>l.dia===mlHoyAR()&&l.panel)||{n:0}).n:0; const done=new Set([...(camp.enviados||[]),...(camp.omitidos||[])]); const pend=camp.para.filter(p=>!done.has(p.email)), html=mlHtmlCamp(camp);
+    for(let i=0;i<pend.length&&!stop;i+=40){ if(left<=0){ msg.textContent=camp.auto?`✅ Salió el lote de hoy. El resto sale solo, de a ${nf(camp.porDia||100)} por día a las 10 h.`:`Se llegó al límite de hoy. Mañana tocá “Continuar envío” en Envíos anteriores.`; break; }
       const part=pend.slice(i,i+Math.min(40,left));
       const r=await mlCall({accion:"enviar",tag:camp.tag,asunto:camp.asunto,html,para:part.map(p=>({email:p.email,nombre:p.name,asunto:mlFill(camp.asunto,p.vars),params:Object.fromEntries(Object.entries(p.vars).map(([k,v])=>[k,esc(v)]))}))});
-      (r.enviados||[]).forEach(e=>done.add(e)); left-=(r.enviados||[]).length; if(r.aviso&&!(r.enviados||[]).length){ msg.textContent="Brevo no aceptó el envío: "+r.aviso; break; }
-      camp.enviados=[...done]; camp.omitidos=[...new Set([...(camp.omitidos||[]),...(r.omitidos||[])])]; await db.doc("correos/"+camp.id).set({...camp,id:undefined});
+      (r.enviados||[]).forEach(e=>done.add(e)); left-=(r.enviados||[]).length; hoyN+=(r.enviados||[]).length; if(r.aviso&&!(r.enviados||[]).length){ msg.textContent="Brevo no aceptó el envío: "+r.aviso; break; }
+      camp.omitidos=[...new Set([...(camp.omitidos||[]),...(r.omitidos||[])])]; const om=new Set(camp.omitidos); camp.enviados=[...done].filter(e=>!om.has(e));
+      if(camp.auto){ const L=(camp.lotes||[]).filter(l=>!(l.dia===mlHoyAR()&&l.panel)); camp.lotes=[...L,{dia:mlHoyAR(),n:hoyN,panel:true}]; }
+      await db.doc("correos/"+camp.id).set({...camp,id:undefined});
       prog.value=done.size/camp.para.length; msg.textContent=`Enviados ${nf(done.size)} de ${nf(camp.para.length)}…`; }
-    if(done.size>=camp.para.length) msg.textContent=`🎉 Listo: se enviaron ${nf(done.size)} correos.`; else if(stop) msg.textContent=`Envío pausado: ${nf(done.size)} de ${nf(camp.para.length)}. Podés continuarlo desde Envíos anteriores.`;
+    if(camp.auto&&done.size<camp.para.length&&!stop&&left<=0) msg.textContent=`✅ Salió el lote de hoy (${nf(hoyN)}). Faltan ${nf(camp.para.length-done.size)}: salen solos, de a ${nf(camp.porDia||100)} por día a las 10 h.`;
+    else if(done.size>=camp.para.length) msg.textContent=`🎉 Listo: se enviaron ${nf(done.size)} correos.`; else if(stop) msg.textContent=`Envío pausado: ${nf(done.size)} de ${nf(camp.para.length)}. Podés continuarlo desde Envíos anteriores.`;
   }catch(e){ msg.textContent=e.message; }
   finally{ mlBusy=false; $("#mlStop").hidden=true; renderCorreos(); }
 }
@@ -14452,10 +14467,18 @@ function mlSetupEvents(){
     try{ await mlCall({accion:"enviar",tag:"cofre-prueba",prueba:true,asunto:"[Prueba] "+mlFill(ML.asunto,vars),html:mlHtml2(ML,{tienda:STORE_URL},true),para:[{email:me,nombre:"Prueba",asunto:"[Prueba] "+mlFill(ML.asunto,vars),params:Object.fromEntries(Object.entries(vars).map(([k,v])=>[k,esc(v)]))}]});
       msg.textContent=`Te mandé la prueba a ${me}. Revisala en la compu y en el celular (y en la carpeta de spam).`; }catch(e){ msg.textContent=e.message; } });
   $("#mlSend").addEventListener("click",()=>{ const a=mlAudience(), msg=$("#mlMsg"); if(!ML.asunto||!ML.bl.some(b=>b.on)){ msg.textContent="Completá el asunto y el mensaje."; return; } if(!a.length) return;
-    $("#mlcN").textContent=nf(a.length); $("#mlcSubj").textContent=mlFill(ML.asunto,a[0].vars); $("#mlcLim").textContent=mlCuenta&&mlCuenta.restantes!=null&&mlCuenta.restantes<a.length?`Hoy te quedan ${nf(mlCuenta.restantes)} envíos: se mandan esos y el resto lo continuás mañana.`:""; $("#mlcdlg").showModal(); });
+    if(!$("#mlcAutoBox")){ const d=document.createElement("label"); d.id="mlcAutoBox"; d.style.cssText="display:flex;gap:10px;align-items:flex-start;margin:10px 0;padding:10px 12px;border:1.5px solid rgba(128,128,128,.3);border-radius:12px;cursor:pointer";
+      d.innerHTML=`<input type="checkbox" id="mlcAuto" style="margin-top:3px"><span><b>📆 Enviar de a <input type="number" id="mlcPorDia" min="20" max="290" step="10" value="100" style="width:64px;padding:2px 4px"> por día</b>, sola, todos los días a las 10 h.<br><small class="muted" id="mlcAutoTxt"></small></span>`;
+      $("#mlcLim").after(d); const upd=()=>{ const n=+$("#mlcN").dataset.n||0, pd=Math.max(20,Math.min(290,+$("#mlcPorDia").value||100)); $("#mlcAutoTxt").textContent=$("#mlcAuto").checked?`Hoy salen ${nf(Math.min(n,pd))} (los que compraron más recientemente primero) y el resto en ${Math.max(0,Math.ceil(n/pd)-1)} día${Math.ceil(n/pd)-1===1?"":"s"} más. Podés pausarlo cuando quieras.`:"Se envía todo ahora (hasta el límite diario de Brevo)."; $("#mlcLim").hidden=$("#mlcAuto").checked; };
+      d.addEventListener("input",upd); d.addEventListener("change",upd); d.upd=upd; }
+    $("#mlcN").dataset.n=a.length; $("#mlcAuto").checked=a.length>100; $("#mlcAutoBox").upd();
+    $("#mlcN").textContent=nf(a.length); $("#mlcSubj").textContent=mlFill(ML.asunto,a[0].vars); $("#mlcLim").textContent=mlCuenta&&mlCuenta.restantes!=null&&mlCuenta.restantes<a.length?`Hoy te quedan ${nf(mlCuenta.restantes)} envíos: se mandan esos y el resto lo continuás mañana.`:""; $("#mlcAutoBox").upd(); $("#mlcdlg").showModal(); });
   $("#mlcOk").addEventListener("click",async()=>{ $("#mlcdlg").close(); const a=mlAudience(); const id="c"+Date.now().toString(36);
     const filtro=[$("#mlBase").selectedOptions[0].text,$("#mlTema").value&&("compraron "+$("#mlTema").value),$("#mlNoTema").value&&("no compraron "+$("#mlNoTema").value),$("#mlProv").value&&$("#mlProv").selectedOptions[0].text,$("#mlLast").value&&$("#mlLast").selectedOptions[0].text].filter(Boolean).join(" · ");
-    const camp={asunto:ML.asunto,dis:JSON.parse(JSON.stringify(ML)),tag:"cofre-"+id,creado:new Date().toISOString(),filtro,para:a,enviados:[]}; await db.doc("correos/"+id).set(camp); camp.id=id; mlSend(camp); });
+    const auto=$("#mlcAuto")&&$("#mlcAuto").checked, porDia=Math.max(20,Math.min(290,+($("#mlcPorDia")||{}).value||100));
+    const para=auto?[...a].sort((x,y)=>(y.rec||0)-(x.rec||0)):a;
+    const camp={asunto:ML.asunto,dis:JSON.parse(JSON.stringify(ML)),tag:"cofre-"+id,creado:new Date().toISOString(),filtro,para:para.map(({rec,...p})=>p),enviados:[]};
+    if(auto) Object.assign(camp,{auto:true,porDia,html:mlHtml2(ML,{tienda:STORE_URL},true),lotes:[]}); await db.doc("correos/"+id).set(camp); camp.id=id; mlSend(camp); });
 }
 
 // ---------- PÁGINA PARA OTROS PAÍSES ----------
