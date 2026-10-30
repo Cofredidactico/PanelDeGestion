@@ -611,6 +611,7 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .ml2-inbox{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);font-size:13px;min-width:0}.ml2-av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#0B8BD6,#EF7F22)}.ml2-inbox div{min-width:0;display:grid}.ml2-inbox span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}.ml2-inbox span b{color:var(--ink)}
 .ml2-frame{background:#DDE3EC;border-radius:12px;padding:10px;display:flex;justify-content:center;overflow:hidden}.ml2-frame iframe{width:100%;height:760px;border:0;border-radius:10px;background:#fff;transition:width .25s}
 .ml2-check{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13px}.ml2-check li.no{color:#C2410C;font-weight:600}
+.ml-sals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.ml-sal{display:grid;gap:2px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2)}.ml-sal b{font-size:24px;font-family:var(--f-brand)}.ml-sal span{font-weight:700;font-size:13px}.ml-sal em{font-style:normal;font-size:12.5px;font-weight:700}.ml-sal small{color:var(--muted);font-size:11.5px;line-height:1.35}.ml-sal.ok em{color:#1F9D55}.ml-sal.warn em{color:#B7791F}.ml-sal.bad em{color:#C2410C}.ml-sal.bad{border-color:#C2410C}
 .ml-sts{display:grid;gap:4px;max-width:420px}.ml-st{display:grid;grid-template-columns:100px 1fr 44px;gap:8px;align-items:center;font-size:12.5px}.ml-st i{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.ml-st i b{display:block;height:100%}.ml-st em{font-style:normal;font-weight:800;text-align:right}
 .bn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1.05fr);gap:16px;align-items:start}@media (max-width:1000px){.bn-grid{grid-template-columns:minmax(0,1fr)}}
 .bn-det summary{cursor:pointer;font-weight:700;margin-top:10px}.bn-form{display:grid;gap:8px;margin-top:8px}.bn-form label{display:grid;gap:4px;font-size:12.5px;font-weight:700}.bn-form textarea,.bn-form input,#bnTema,#bnDibLista{width:100%;border:1px solid var(--line);border-radius:9px;padding:7px 9px;background:var(--surface);color:inherit;font:inherit;font-size:13px;font-weight:500;resize:vertical}
@@ -2229,6 +2230,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
           <p class="muted" style="font-size:12px;margin:0">Con la cuenta gratis de Brevo podés mandar hasta 300 correos por día; si son más, el envío queda en pausa y lo continuás al día siguiente.</p></section>
       </div>
     </div>
+    <section class="card" style="margin-bottom:16px"><h3 style="margin:0 0 10px">🩺 Salud de tus envíos <span class="muted" style="font-size:13px;font-weight:600">· últimos 30 días</span></h3><div id="mlSalud"><p class="muted">Se ve en el panel web, cuando Brevo está conectado.</p></div></section>
     <div class="grid2"><section class="card"><h3>Envíos anteriores</h3><div id="mlHist"></div></section><section class="card"><h3>Bajas</h3><div id="mlBajas"></div></section></div>
   </div>
 </main>
@@ -14381,9 +14383,18 @@ async function renderCorreos(){
   $("#mlOff").hidden=true; if(!mlBajas) await mlLoadBajas(); mlRenderAud(); mlRenderHist();
   $("#mlBajas").innerHTML=mlBajas&&mlBajas.length?`<p class="muted">${nf(mlBajas.length)} persona${mlBajas.length>1?"s":""} se dieron de baja; nunca les llegan correos.</p>`+mlBajas.slice(0,20).map(b=>`<div class="muted">${esc(b.email)} · ${esc(new Date(b.fecha).toLocaleDateString("es-AR"))}</div>`).join(""):`<p class="muted">Nadie se dio de baja.</p>`;
   st.textContent="Conectando con Brevo…";
-  try{ mlCuenta=await mlCall({accion:"cuenta"}); st.innerHTML=`<span class="pill ok">Conectado</span> Remitente: <b>${esc(mlCuenta.remitente)}</b> · Hoy podés enviar <b>${mlCuenta.restantes==null?"sin límite":nf(mlCuenta.restantes)}</b> correo${mlCuenta.restantes===1?"":"s"} más.`; $("#mlSetup").hidden=true; }
+  try{ mlCuenta=await mlCall({accion:"cuenta"}); st.innerHTML=`<span class="pill ok">Conectado</span> Remitente: <b>${esc(mlCuenta.remitente)}</b> · Hoy podés enviar <b>${mlCuenta.restantes==null?"sin límite":nf(mlCuenta.restantes)}</b> correo${mlCuenta.restantes===1?"":"s"} más.`; $("#mlSetup").hidden=true; mlSalud(); }
   catch(e){ mlCuenta=null; st.innerHTML=`<span class="pill wait">Sin conectar</span> ${esc(e.status===404?"Falta instalar la función de envío en Supabase.":e.message)}`; $("#mlSetup").hidden=false; }
 }
+// salud de los envíos (últimos 30 días): rebotes, quejas de spam y bajas
+async function mlSalud(){ const box=$("#mlSalud"); if(!box) return; box.innerHTML=`<p class="muted">Revisando la salud de tus envíos…</p>`;
+  try{ const r=await mlCall({accion:"salud"}), s=r.stats||{}, env=s.requests||0, del=s.delivered||0;
+    if(!env){ box.innerHTML=`<p class="muted">Todavía no hay envíos en los últimos 30 días. Cuando mandes correos, acá vas a ver si llegan bien.</p>`; return; }
+    const reb=(s.hardBounces||0)/env, spam=del?(s.spamReports||0)/del:0, baja=del?(s.unsubscribed||0)/del:0, ab=del?(s.uniqueOpens||0)/del:0;
+    const fila=(l,v,ok,warn,txt)=>{ const c=v<=ok?"ok":v<=warn?"warn":"bad"; return `<div class="ml-sal ${c}"><b>${pctf(v,v<0.01?2:1)}</b><span>${l}</span><em>${c==="ok"?"✅ Bien":c==="warn"?"⚠️ Atención":"🚨 Revisar"}</em><small>${txt}</small></div>`; };
+    box.innerHTML=`<div class="ml-sals">${fila("rebotes",reb,0.02,0.05,"Direcciones que no existen. Ideal: menos del 2%.")}${fila("marcados como spam",spam,0.001,0.003,"Lo que más mira Gmail. Ideal: menos de 0,1%; nunca más de 0,3%.")}${fila("se dieron de baja",baja,0.005,0.01,"Normal: menos del 0,5% por envío.")}<div class="ml-sal ${ab>=0.3?"ok":ab>=0.15?"warn":"bad"}"><b>${pctf(ab,0)}</b><span>abrieron</span><em>${ab>=0.3?"✅ Muy bien":ab>=0.15?"⚠️ Mejorable":"🚨 Bajo"}</em><small>Docentes que abrieron tus correos. Más de 30% es muy bueno.</small></div></div>
+      <p class="muted" style="margin:8px 0 0;font-size:12.5px">Últimos 30 días: ${nf(env)} enviados, ${nf(del)} entregados.${r.sumadas?` Se sumaron solos a la lista de bajas: ${r.rebotes?nf(r.rebotes)+" rebotados":""}${r.rebotes&&(r.spam||r.bajasBrevo)?", ":""}${r.spam?nf(r.spam)+" que marcaron spam":""}${r.spam&&r.bajasBrevo?", ":""}${r.bajasBrevo?nf(r.bajasBrevo)+" bajas desde Gmail":""} (nunca les llegan más correos).`:""}</p>`; }
+  catch(e){ box.innerHTML=`<p class="muted">${e.status===400?"Para ver la salud de tus envíos, actualizá la función <b>enviar-correos</b> en Supabase con la versión nueva.":esc(e.message)}</p>`; } }
 function mlRenderHist(){ const box=$("#mlHist"); const L=Object.entries(db._all()).filter(([k])=>k.startsWith("correos/")).map(([k,v])=>({id:k.split("/")[1],...v})).sort((a,b)=>String(b.creado).localeCompare(String(a.creado)));
   mlEnvios=L; if(!L.length){ box.innerHTML=`<p class="muted">Todavía no enviaste correos desde el panel.</p>`; return; }
   const bar=(v,l,c)=>`<div class="ml-st"><span>${l}</span><i><b style="width:${Math.min(100,v*100)}%;background:${c}"></b></i><em>${pctf(v,0)}</em></div>`;
@@ -14406,7 +14417,7 @@ async function mlSend(camp){
     for(let i=0;i<pend.length&&!stop;i+=40){ if(left<=0){ msg.textContent=`Se llegó al límite de hoy. Mañana tocá “Continuar envío” en Envíos anteriores.`; break; }
       const part=pend.slice(i,i+Math.min(40,left));
       const r=await mlCall({accion:"enviar",tag:camp.tag,asunto:camp.asunto,html,para:part.map(p=>({email:p.email,nombre:p.name,asunto:mlFill(camp.asunto,p.vars),params:Object.fromEntries(Object.entries(p.vars).map(([k,v])=>[k,esc(v)]))}))});
-      (r.enviados||[]).forEach(e=>done.add(e)); left-=(r.enviados||[]).length;
+      (r.enviados||[]).forEach(e=>done.add(e)); left-=(r.enviados||[]).length; if(r.aviso&&!(r.enviados||[]).length){ msg.textContent="Brevo no aceptó el envío: "+r.aviso; break; }
       camp.enviados=[...done]; camp.omitidos=[...new Set([...(camp.omitidos||[]),...(r.omitidos||[])])]; await db.doc("correos/"+camp.id).set({...camp,id:undefined});
       prog.value=done.size/camp.para.length; msg.textContent=`Enviados ${nf(done.size)} de ${nf(camp.para.length)}…`; }
     if(done.size>=camp.para.length) msg.textContent=`🎉 Listo: se enviaron ${nf(done.size)} correos.`; else if(stop) msg.textContent=`Envío pausado: ${nf(done.size)} de ${nf(camp.para.length)}. Podés continuarlo desde Envíos anteriores.`;
