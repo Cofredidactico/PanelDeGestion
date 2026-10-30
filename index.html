@@ -3373,7 +3373,7 @@ async function LocalDB(){
 // ---------- SUPABASE (panel web privado) ----------
 // Datos del proyecto: la URL y la clave pública (anon/publishable) pueden estar en una página pública;
 // lo que protege los datos es el inicio de sesión y las reglas de la tabla (solo tu usuario puede leer o escribir).
-const SUPA_CFG = {url:"https://nsdjizuayflilgpzphlt.supabase.co", key:"Length"};
+const SUPA_CFG = {url:"https://nsdjizuayflilgpzphlt.supabase.co", key:"sb_publishable_F5yoVVkvQjdFIaLu1acLdg_FxIh5JGR"};
 function supaCfg(){
   const ok=c=>c&&/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(c.url||"")&&(c.key||"").length>20;
   const c={url:(SUPA_CFG.url||"").replace(/\/+$/,""),key:SUPA_CFG.key||""};
