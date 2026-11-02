@@ -613,14 +613,72 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .ml2-check{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13px}.ml2-check li.no{color:#C2410C;font-weight:600}
 .ml-sals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.ml-sal{display:grid;gap:2px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2)}.ml-sal b{font-size:24px;font-family:var(--f-brand)}.ml-sal span{font-weight:700;font-size:13px}.ml-sal em{font-style:normal;font-size:12.5px;font-weight:700}.ml-sal small{color:var(--muted);font-size:11.5px;line-height:1.35}.ml-sal.ok em{color:#1F9D55}.ml-sal.warn em{color:#B7791F}.ml-sal.bad em{color:#C2410C}.ml-sal.bad{border-color:#C2410C}
 .ml-sts{display:grid;gap:4px;max-width:420px}.ml-st{display:grid;grid-template-columns:100px 1fr 44px;gap:8px;align-items:center;font-size:12.5px}.ml-st i{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.ml-st i b{display:block;height:100%}.ml-st em{font-style:normal;font-weight:800;text-align:right}
-.bn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1.05fr);gap:16px;align-items:start}@media (max-width:1000px){.bn-grid{grid-template-columns:minmax(0,1fr)}}
+.bn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(400px,1.05fr);gap:16px;align-items:start}@media (max-width:1000px){.bn-grid{grid-template-columns:minmax(0,1fr)}}
+.bn-der{position:sticky;top:12px}@media (max-width:1000px){.bn-der{position:static}}
+.bn-pasos{display:flex;align-items:center;gap:6px;margin:0 0 14px;padding:8px;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow-x:auto;scrollbar-width:none}
+.bn-pasos::-webkit-scrollbar{display:none}
+.bn-paso{flex:1 0 auto;display:flex;align-items:center;gap:9px;padding:7px 10px;border:0;border-radius:11px;background:none;color:var(--ink);cursor:pointer;text-align:left;font:inherit}
+.bn-paso:hover{background:var(--hover)}
+.bn-paso i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:12.5px;border:1.5px solid var(--line);color:var(--muted)}
+.bn-paso.ok i{background:var(--ok);border-color:var(--ok);color:#fff}
+.bn-paso b{display:block;font-size:12.5px;line-height:1.2}.bn-paso small{display:block;font-size:11.5px;color:var(--muted);max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bn-flecha{flex:0 0 14px;height:1.5px;background:var(--line)}
+.bn-sec{scroll-margin-top:12px}
+.bn-sh{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px}.bn-sh h2{margin:0;font-size:18px}.bn-sh p{margin:2px 0 0;font-size:13px}
+.bn-num{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--blue),var(--orange));color:#fff;font-size:15px}
+.bn-cnt{font-size:12.5px;font-weight:700;color:var(--muted);margin-left:6px}
+.bn-cont{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.bn-cont span{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;border:1px solid var(--line)}.bn-cont span.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent)}.bn-cont span.no{color:var(--faint)}
 .bn-det summary{cursor:pointer;font-weight:700;margin-top:10px}.bn-form{display:grid;gap:8px;margin-top:8px}.bn-form label{display:grid;gap:4px;font-size:12.5px;font-weight:700}.bn-form textarea,.bn-form input,#bnTema,#bnDibLista{width:100%;border:1px solid var(--line);border-radius:9px;padding:7px 9px;background:var(--surface);color:inherit;font:inherit;font-size:13px;font-weight:500;resize:vertical}
 .bn-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media (max-width:560px){.bn-2{grid-template-columns:1fr}}
 .bn-dibs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.bn-dib{position:relative;margin:0;width:92px;display:grid;gap:3px;justify-items:center;font-size:11.5px;text-align:center}.bn-dimg{width:84px;height:84px;border:1px solid var(--line);border-radius:10px;background:#fff;display:grid;place-items:center;padding:4px}.bn-dimg svg,.bn-dimg img{width:100%;height:100%;object-fit:contain}.bn-dib .btn{position:absolute;top:-6px;right:0;padding:1px 6px}
-.bn-tipos{display:grid;gap:10px}.bn-grupo b{font-size:13.5px}.bn-chks{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:4px}.bn-chks label.check{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin:0}.bn-chks input{width:auto!important}
-.bn-pags{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px;max-height:900px;overflow:auto;padding:4px}.bn-pag{margin:0;display:grid;gap:5px}.bn-hoja{background:#fff;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,.18);overflow:hidden;line-height:0}.bn-hoja svg{display:block;width:100%;height:auto}
-.bn-pag figcaption{font-size:12px;display:flex;gap:4px;align-items:center;flex-wrap:wrap}.bn-acc{margin-left:auto;display:flex;gap:2px}.bn-acc .btn{padding:2px 6px}
-.bn-grande{position:fixed;inset:0;z-index:60;background:rgba(10,15,25,.7);overflow:auto;padding:20px}.bn-grande-in{max-width:760px;margin:0 auto;display:grid;gap:14px}.bn-grande-in svg{background:#fff;border-radius:6px;width:100%;height:auto}.bn-grande-in .btn{justify-self:end}
+.bn-presets{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.bn-chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;cursor:pointer}.bn-chip:hover{border-color:var(--blue);color:var(--blue)}
+.bn-tipos{display:grid;gap:14px}
+.bn-gh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}.bn-gh b{font-size:13.5px}
+.bn-gall{border:0;background:none;color:var(--blue);font:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:2px 4px}
+.bn-acts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.bn-act{position:relative;display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:9px;align-items:center;padding:9px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);cursor:pointer;transition:border-color .15s,background .15s,transform .15s;user-select:none}
+.bn-act:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
+.bn-act:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.bn-act.on{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 11%,transparent)}
+.bn-aic{width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;border:1px solid var(--line)}.bn-aic svg{width:24px;height:24px}
+.bn-atx b{display:block;font-size:13px;line-height:1.2}.bn-atx small{display:block;font-size:11.5px;color:var(--muted);line-height:1.25;margin-top:2px}
+.bn-ej{border:0;background:none;cursor:pointer;font-size:14px;padding:4px;border-radius:8px;opacity:.55}.bn-ej:hover{opacity:1;background:var(--hover)}
+.bn-tick{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-style:normal;font-size:11px;font-weight:800;display:grid;place-items:center;transform:scale(0);transition:transform .18s cubic-bezier(.34,1.56,.64,1)}
+.bn-act.on .bn-tick{transform:scale(1)}
+.bn-estilos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.bn-est{display:grid;justify-items:center;gap:3px;padding:10px 6px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer;text-align:center}
+.bn-est.on{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 11%,transparent)}
+.bn-est b{font-size:13px}.bn-est small{font-size:11px;color:var(--muted);line-height:1.2}
+.bn-est-m{width:46px;height:60px;background:#fff;border-radius:4px;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.25);margin-bottom:4px}
+.bn-est-m i{position:absolute;left:8px;right:8px;height:3px;background:#c9ced8;border-radius:2px}.bn-est-m i:nth-child(1){top:18px;height:6px;background:#444}.bn-est-m i:nth-child(2){top:30px}.bn-est-m i:nth-child(3){top:38px;right:16px}
+.bn-est-m.escolar{outline:1.5px solid #333;outline-offset:-4px}.bn-est-m.escolar i:nth-child(1){border-radius:1px;left:6px;right:6px}
+.bn-est-m.festivo{outline:1.5px solid #333;outline-offset:-4px;background:linear-gradient(#fff,#fff) padding-box,repeating-linear-gradient(90deg,#333 0 4px,transparent 4px 8px) 0 5px/100% 3px no-repeat}
+.bn-ops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:12px}
+.bn-op{display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;margin:0}.bn-op input{width:auto!important;margin:0}
+.bn-op:has(input:checked){border-color:color-mix(in srgb,var(--blue) 55%,var(--line));background:color-mix(in srgb,var(--blue) 8%,transparent)}
+.bn-bar{display:flex;gap:8px;flex-wrap:wrap}.bn-bar #bnGo{flex:1 1 auto}
+.bn-aviso{margin-top:10px;padding:8px 12px;border-radius:10px;font-size:12.5px;background:color-mix(in srgb,var(--star) 16%,transparent);border:1px solid color-mix(in srgb,var(--star) 40%,transparent)}
+.bn-pags{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin-top:14px;max-height:calc(100vh - 330px);min-height:240px;overflow-y:auto;overflow-x:hidden;padding:6px 4px 10px}
+@media (max-width:1000px){.bn-pags{max-height:none}}
+.bn-pag{margin:0;display:grid;grid-template-columns:minmax(0,1fr);gap:6px;cursor:grab;min-width:0}.bn-pag figcaption{min-width:0}.bn-pag.esp{cursor:default}
+.bn-pag.arr{opacity:.4}.bn-pag.sobre .bn-hoja{outline:3px solid var(--blue);outline-offset:3px}
+.bn-hoja{position:relative;background:#fff;border-radius:6px;box-shadow:0 3px 14px rgba(0,0,0,.22);overflow:hidden;line-height:0;cursor:zoom-in;transition:transform .18s,box-shadow .18s}
+.bn-hoja:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.bn-hoja>svg{display:block;width:100%;max-width:100%;height:auto}.bn-hoja{min-width:0}
+.bn-nro{position:absolute;left:6px;top:6px;line-height:1;font-size:11px;font-weight:800;color:#fff;background:rgba(17,26,47,.82);padding:4px 7px;border-radius:999px}
+.bn-pag figcaption{font-size:12px;display:flex;gap:4px;align-items:center}.bn-ft{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.bn-acc{display:flex;gap:2px;opacity:.55;transition:opacity .15s}.bn-pag:hover .bn-acc{opacity:1}
+.bn-ib{border:0;background:none;cursor:pointer;padding:3px 5px;border-radius:7px;font-size:12px}.bn-ib:hover{background:var(--hover)}
+.bn-vacio{grid-column:1/-1;display:grid;justify-items:center;gap:6px;text-align:center;padding:40px 10px}.bn-vac-ic{font-size:40px}
+.bn-grande{position:fixed;inset:0;z-index:60;background:rgba(6,10,20,.82);backdrop-filter:blur(4px);overflow:auto;padding:16px}
+.bn-grande-in{max-width:1180px;margin:0 auto;display:grid;gap:12px}
+.bn-vh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#fff}.bn-vh .muted{color:#b9c3d6}.bn-vacc{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.bn-vbody{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:10px;align-items:center}
+.bn-vhojas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:1060px;justify-self:center;width:100%}
+.bn-vhojas>svg{background:#fff;border-radius:6px;width:100%;height:auto;max-height:calc(100vh - 110px);box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.bn-nav{width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:26px;line-height:1;cursor:pointer}.bn-nav:disabled{opacity:.25;cursor:default}.bn-nav:not(:disabled):hover{background:rgba(255,255,255,.25)}
+@media (max-width:640px){.bn-vbody{grid-template-columns:1fr}.bn-nav{display:none}.bn-estilos{grid-template-columns:repeat(3,minmax(0,1fr))}.bn-ops{grid-template-columns:1fr}.bn-acts{grid-template-columns:1fr}}
 .po-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,1fr);gap:16px;align-items:start}.po-col{display:grid;gap:16px;min-width:0}.po-der{position:sticky;top:12px}
 @media (max-width:1000px){.po-grid{grid-template-columns:minmax(0,1fr)}.po-der{position:static}}
 .po-cola{display:grid;gap:8px;margin-top:12px}.po-vacio{display:grid;gap:6px;justify-items:center;text-align:center;padding:26px 14px;border:1px dashed var(--line);border-radius:12px}
@@ -2585,14 +2643,16 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 </main>
 
 <main class="wrap view" id="view-fichas" hidden>
-  <div class="view-h"><div><h1>Fichas en blanco y negro</h1><p class="lead">Actividades listas para fotocopiar sobre cualquier temática: juegos de palabras, grafomotricidad, matemática, lectura, visuales, para recortar, escritura y dibujos para pintar. Salen en PDF A4 y en SVG para CorelDRAW.</p></div></div>
+  <div class="view-h"><div><h1>Fichas en blanco y negro</h1><p class="lead">Armá un cuadernillo completo sobre cualquier tema: elegís las actividades, el estilo de hoja, y sale listo para fotocopiar en PDF A4 y en SVG para CorelDRAW.</p></div></div>
+  <nav class="bn-pasos" id="bnPasos" aria-label="Pasos"></nav>
   <div class="bn-grid">
     <div class="vs-col">
-      <section class="card"><h2 style="margin:0 0 10px">1. Temática</h2>
+      <section class="card bn-sec" id="bnS1"><div class="bn-sh"><span class="bn-num">1</span><div><h2>Temática y contenido</h2><p class="muted">El tema, el nivel y los textos que usan las actividades.</p></div></div>
         <div class="field"><label for="bnTema">¿Sobre qué tema?</label><input id="bnTema" list="bnTemas" maxlength="80" placeholder="Ej.: Día de la Tradición, Los animales de la granja, El sistema solar"><datalist id="bnTemas"></datalist></div>
         <div class="field"><label>Nivel</label><div class="is-opts" id="bnNivel"></div></div>
         <div class="actions"><button class="btn primary" type="button" id="bnIA">✨ Preparar el contenido con Claude</button><span class="muted" style="font-size:12.5px">O completalo a mano abajo.</span></div>
-        <details class="bn-det"><summary>📝 Contenido (podés editarlo)</summary>
+        <div class="bn-cont" id="bnCont"></div>
+        <details class="bn-det"><summary>📝 Ver y editar el contenido</summary>
           <div class="bn-form">
             <label>Palabras clave (separadas por coma)<textarea id="bnPal" rows="2" placeholder="GAUCHO, MATE, RANCHO, GUITARRA…"></textarea></label>
             <label>Título de la lectura<input id="bnTit" maxlength="80"></label>
@@ -2605,18 +2665,27 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
             <div class="bn-2"><label>Palabra del acróstico y banderines<input id="bnAcr" maxlength="14"></label><label>Frase del código secreto<input id="bnFrase" maxlength="60"></label></div>
             <label>Comienzo de un cuento<textarea id="bnCuento" rows="2"></textarea></label>
           </div></details></section>
-      <section class="card"><h2 style="margin:0 0 6px">2. Dibujos del tema</h2><p class="muted" style="margin:0 0 8px;font-size:13px">Dibujos de línea para pintar, recortar y jugar. Si no hay, se usan dibujos genéricos.</p>
+      <section class="card bn-sec" id="bnS2"><div class="bn-sh"><span class="bn-num">2</span><div><h2>Dibujos del tema</h2><p class="muted">Dibujos de línea para pintar, recortar, jugar y para la tapa. Si no hay, se usan dibujos genéricos.</p></div></div>
         <div class="field"><label for="bnDibLista">¿Qué dibujamos? (separado por comas)</label><input id="bnDibLista" maxlength="200" placeholder="mate, guitarra, caballo, sombrero de gaucho"></div>
         <div class="actions"><button class="btn" type="button" id="bnDibIA">✨ Dibujar con Claude</button><label class="btn"><input type="file" id="bnImg" accept="image/*" hidden>🖼️ Subir una imagen y pasarla a línea</label><label class="muted" style="font-size:12.5px;display:inline-flex;gap:6px;align-items:center">Detalle <input type="range" id="bnUmbral" min="25" max="120" value="60" style="width:90px"></label></div>
         <div class="bn-dibs" id="bnDibs"></div></section>
-      <section class="card"><div class="sec-h" style="margin:0 0 8px"><h2 style="margin:0">3. Actividades</h2><span class="actions" style="margin:0"><button class="btn small" type="button" id="bnTodas">Todas</button><button class="btn small ghost" type="button" id="bnNinguna">Ninguna</button></span></div>
+      <section class="card bn-sec" id="bnS3"><div class="bn-sh"><span class="bn-num">3</span><div><h2>Actividades <span class="bn-cnt" id="bnSelN"></span></h2><p class="muted">Tocá cada tarjeta para sumarla o sacarla. 👁 muestra un ejemplo.</p></div></div>
+        <div class="bn-presets" id="bnPresets"></div>
         <div id="bnTipos" class="bn-tipos"></div></section>
     </div>
-    <div class="vs-col vs-der">
-      <section class="card"><h2 style="margin:0 0 10px">4. Fichas <span class="muted" id="bnN" style="font-size:14px;font-weight:600"></span></h2>
-        <div class="vs-checks"><label class="check"><input type="checkbox" id="bnColor"> 🎨 Versión color (para la tienda)</label><label class="check"><input type="checkbox" id="bnA5"> 🖨️ 2 fichas por hoja A4 (ahorro de papel)</label><label class="check"><input type="checkbox" id="bnEnc" checked> Nombre, fecha y grado arriba</label><label class="check"><input type="checkbox" id="bnSol" checked> Agregar las soluciones al final</label></div>
-        <div class="actions"><button class="btn primary" type="button" id="bnGo">✏️ Armar las fichas</button><button class="btn" type="button" id="bnPdf" disabled>⬇ PDF para imprimir</button><button class="btn" type="button" id="bnZip" disabled>⬇ SVG para Corel (ZIP)</button></div>
-        <p class="muted" id="bnMsg" style="margin:6px 0 0;font-size:13px">En blanco y negro, sin fondos ni rellenos: ahorran tinta y salen bien en fotocopia.</p>
+    <div class="vs-col vs-der bn-der">
+      <section class="card bn-sec" id="bnS4"><div class="bn-sh"><span class="bn-num">4</span><div><h2>Tu cuadernillo <span class="bn-cnt" id="bnN"></span></h2><p class="muted" id="bnMsg">En blanco y negro, sin fondos ni rellenos: ahorran tinta y salen bien en fotocopia.</p></div></div>
+        <div class="bn-estilos" id="bnEstilos" role="radiogroup" aria-label="Estilo de hoja"></div>
+        <div class="bn-ops">
+          <label class="bn-op"><input type="checkbox" id="bnTapa"><span>📕 Tapa e índice</span></label>
+          <label class="bn-op"><input type="checkbox" id="bnAuto"><span>🙂 ¿Cómo me salió?</span></label>
+          <label class="bn-op"><input type="checkbox" id="bnEnc"><span>✍️ Nombre, fecha y grado</span></label>
+          <label class="bn-op"><input type="checkbox" id="bnSol"><span>✅ Soluciones al final</span></label>
+          <label class="bn-op"><input type="checkbox" id="bnColor"><span>🎨 Versión color</span></label>
+          <label class="bn-op"><input type="checkbox" id="bnA5"><span>🖨️ 2 por hoja A4</span></label>
+        </div>
+        <div class="bn-bar"><button class="btn primary" type="button" id="bnGo">✏️ Armar el cuadernillo</button><button class="btn" type="button" id="bnPdf" disabled>⬇ PDF</button><button class="btn" type="button" id="bnZip" disabled>⬇ SVG Corel</button></div>
+        <div class="bn-aviso" id="bnAviso" hidden>Cambiaste algo: tocá <b>Armar</b> para actualizar las hojas.</div>
         <div class="bn-pags" id="bnPags"></div></section>
     </div>
   </div>
@@ -12808,7 +12877,7 @@ const BN_GRUPOS=[
   ["📝 Escritura creativa",[["acrostico","Acróstico"],["quepasa","Dibujá y escribí qué pasa"],["tarjeta","Tarjeta para llevar a casa"],["final","Inventá otro final"]]],
   ["🎨 Para pintar",[["pintar","Dibujos para pintar"]]]];
 const BN_NOM=Object.fromEntries(BN_GRUPOS.flatMap(g=>g[1]));
-const BN={tema:"",nivel:"Primer ciclo",color:false,a5:false,enc:true,sol:true,C:null,dib:[],sel:new Set(["sopa","trazos","puntos","pixel","lectura","difer","sombras","tarjetas","acrostico","pintar"]),pags:[],seed:7,busy:false};
+const BN={tema:"",nivel:"Primer ciclo",color:false,a5:false,enc:true,sol:true,C:null,dib:[],sel:new Set(["sopa","trazos","puntos","pixel","lectura","difer","sombras","tarjetas","acrostico","pintar"]),pags:[],seed:7,busy:false,estilo:"escolar",tapa:true,auto:false};
 const BN_W=186, BN_H=226, BN_ACC=["#F28C28","#1E5BB8","#3BAA6E","#E85A8A","#F6B40E","#74ACDF"];
 const bx=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const bn2=n=>Math.round(n*100)/100;
@@ -13012,13 +13081,76 @@ const BN_DOTS={estrella:"M50 6 L61 38 L95 38 L67 58 L78 92 L50 71 L22 92 L33 58 
 function bnPuntos(d,n){ const ns="http://www.w3.org/2000/svg", s=document.createElementNS(ns,"svg"); s.setAttribute("style","position:absolute;left:-9999px;width:10px;height:10px"); const el=document.createElementNS(ns,"path"); el.setAttribute("d",d);
   s.appendChild(el); document.body.appendChild(s); let L=0; try{ L=el.getTotalLength(); }catch{} const out=[]; for(let i=0;i<n;i++){ try{ const p=el.getPointAtLength(L*i/n); out.push([p.x,p.y]); }catch{ out.push([50+40*Math.cos(i/n*6.283),50+40*Math.sin(i/n*6.283)]); } } s.remove(); return out; }
 
-// ---------- página A4 completa ----------
-function bnPagina(f,i,tot,sol){ const tema=BN.tema||"", ac=bnAc(0); let s=`<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297"><rect width="210" height="297" fill="#fff"/>`;
-  if(BN.enc) s+=bnT(12,12.5,"Nombre: ______________________________",3.9,{})+bnT(126,12.5,"Fecha: ____________",3.9,{})+bnT(176,12.5,"Grado: _____",3.9,{});
-  s+=`<rect x="12" y="17" width="186" height="15" rx="7.5" fill="${BN.color?"#FFF1DC":"none"}" stroke="${ac}" stroke-width="0.7"/>`+bnT(105,27.4,(sol?"Solución · ":"")+f.t,7.2,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?"#1A2744":"#000"});
-  const cs=bnParr(22,41,f.c||"",172,4.3,{lh:1.3}); s+=`<circle cx="15.5" cy="39.6" r="4" fill="${BN.color?ac:"none"}" stroke="${ac}" stroke-width="0.6"/>`+bnT(15.5,41.2,"✎",4.4,{a:"middle",fill:BN.color?"#fff":"#000",f:"Arial"})+cs.svg;
-  const top=Math.max(52,41+cs.h+3), sc=Math.min(1,(286-top)/BN_H); s+=`<g transform="translate(${bn2(12+(BN_W-BN_W*sc)/2)} ${bn2(top)}) scale(${bn2(sc)})">${sol?f.s:f.b}</g>`;
-  s+=bnT(105,292.5,`Cofre Didáctico${tema?" · "+tema:""}`,2.8,{a:"middle",fill:"#666",f:"Fredoka, Nunito, Arial"})+"</svg>"; return s; }
+// ---------- diseño editorial de cada hoja: íconos de consigna, estilos, autoevaluación, tapa e índice ----------
+const BN_INFO={sopa:["busco","Encontrar palabras escondidas"],sopaf:["busco","La sopa toma la forma de un dibujo"],cruci:["pienso","Pistas y palabras que se cruzan"],codigo:["pienso","Descifrar una frase con símbolos"],anag:["escribo","Ordenar letras y escribir la palabra"],
+  trazos:["escribo","Repasar líneas de dibujo a dibujo"],repasar:["escribo","Palabras punteadas en imprenta"],caminos:["escribo","Seguir el camino sin salirse"],
+  puntos:["uno","Unir del 1 al último y descubrir el dibujo"],pixel:["cuento","Resolver cuentas y pintar la grilla"],piramide:["cuento","Sumar de a dos para subir"],problemas:["pienso","Problemas del tema con espacio para dibujar"],conteo:["cuento","Contar los dibujos y escribir el número"],
+  lectura:["leo","Texto del tema y preguntas"],vf:["leo","Marcar si es verdadero o falso"],secuencia:["recorto","Recortar y ordenar los pasos"],completar:["leo","Completar el texto con un banco de palabras"],
+  difer:["busco","Comparar dos dibujos casi iguales"],sombras:["uno","Unir cada dibujo con su sombra"],buscar:["busco","Buscar, contar y anotar"],laberinto:["pienso","Encontrar la salida"],espejo:["pinto","Completar la otra mitad"],
+  tarjetas:["recorto","Tarjetas con dibujo y palabra"],memo:["recorto","Pares para jugar a la memoria"],domino:["recorto","Fichas de dominó del tema"],puzzle:["recorto","Un dibujo para recortar y armar"],banderines:["recorto","Una letra por banderín para colgar"],titeres:["recorto","Personajes para pegar en un palito"],
+  acrostico:["escribo","Una palabra por cada letra"],quepasa:["pinto","Dibujar una escena y contarla"],tarjeta:["pinto","Para pintar y regalar en casa"],final:["escribo","Leer el comienzo e inventar el final"],pintar:["pinto","Dibujos de línea grandes para pintar"]};
+const BN_ICONO_NOM={leo:"Leo",escribo:"Escribo",pinto:"Pinto",recorto:"Recorto",busco:"Busco",cuento:"Cuento",pienso:"Pienso",uno:"Uno"};
+// íconos de consigna dibujados con líneas (se ven igual en fotocopia y en Corel)
+function bnIcono(k,cx,cy,r,col){ const s=r/5, c=col||"#000", L=(d,w=0.55)=>`<path d="${d}" fill="none" stroke="${c}" stroke-width="${bn2(w*s)}" stroke-linecap="round" stroke-linejoin="round" transform="translate(${bn2(cx)} ${bn2(cy)}) scale(${bn2(s)})"/>`;
+  switch(k){
+    case "leo": return L("M-3.4 -2.2 Q-1.7 -3 0 -2 Q1.7 -3 3.4 -2.2 V2.6 Q1.7 1.8 0 2.8 Q-1.7 1.8 -3.4 2.6 Z M0 -2 V2.8");
+    case "escribo": return L("M-2.9 2.9 L-2.3 0.9 L1.6 -3 L3 -1.6 L-0.9 2.3 Z M0.8 -2.2 L2.2 -0.8 M-2.3 0.9 L-0.9 2.3");
+    case "pinto": return L("M-1.2 3.2 Q-3.2 3.4 -3 1.4 Q-1.4 1.6 -1.2 3.2 Z M-1.6 1.9 L2.6 -2.3 Q3.3 -3 3.1 -3.2 Q2.9 -3.4 2.2 -2.7 L-2 1.5");
+    case "recorto": return L("M-2.4 -2.6 L1.8 1.2 M-2.4 2.6 L1.8 -1.2")+`<circle cx="${bn2(cx+2.6*s)}" cy="${bn2(cy+1.9*s)}" r="${bn2(0.95*s)}" fill="none" stroke="${c}" stroke-width="${bn2(0.5*s)}"/><circle cx="${bn2(cx+2.6*s)}" cy="${bn2(cy-1.9*s)}" r="${bn2(0.95*s)}" fill="none" stroke="${c}" stroke-width="${bn2(0.5*s)}"/>`;
+    case "busco": return `<circle cx="${bn2(cx-0.7*s)}" cy="${bn2(cy-0.7*s)}" r="${bn2(2*s)}" fill="none" stroke="${c}" stroke-width="${bn2(0.6*s)}"/>`+L("M0.8 0.8 L3 3",0.8);
+    case "cuento": return bnT(cx,cy+1.2*s,"123",3.3*s,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:c});
+    case "pienso": return L("M-1.2 1.6 Q-3 0.2 -2.8 -1.2 Q-2.4 -3.4 0 -3.4 Q2.4 -3.4 2.8 -1.2 Q3 0.2 1.2 1.6 Z M-1 2.5 H1 M-0.6 3.3 H0.6");
+    case "uno": return `<circle cx="${bn2(cx-2.5*s)}" cy="${bn2(cy+1.6*s)}" r="${bn2(0.8*s)}" fill="${c}"/><circle cx="${bn2(cx+2.5*s)}" cy="${bn2(cy-1.6*s)}" r="${bn2(0.8*s)}" fill="${c}"/>`+L("M-2.5 1.6 Q-0.6 -2.2 2.5 -1.6",0.5);
+    default: return bnT(cx,cy+1.3*s,"✎",4*s,{a:"middle",f:"Arial",fill:c}); } }
+const bnCara=(cx,cy,r,tipo)=>{ const m=tipo==="bien"?`M${bn2(cx-r*.45)} ${bn2(cy+r*.2)} Q${bn2(cx)} ${bn2(cy+r*.65)} ${bn2(cx+r*.45)} ${bn2(cy+r*.2)}`:tipo==="mas"?`M${bn2(cx-r*.4)} ${bn2(cy+r*.35)} H${bn2(cx+r*.4)}`:`M${bn2(cx-r*.45)} ${bn2(cy+r*.5)} Q${bn2(cx)} ${bn2(cy+r*.1)} ${bn2(cx+r*.45)} ${bn2(cy+r*.5)}`;
+  return `<circle cx="${bn2(cx)}" cy="${bn2(cy)}" r="${bn2(r)}" fill="none" stroke="#000" stroke-width="0.35"/><circle cx="${bn2(cx-r*.33)}" cy="${bn2(cy-r*.22)}" r="${bn2(r*.1)}" fill="#000"/><circle cx="${bn2(cx+r*.33)}" cy="${bn2(cy-r*.22)}" r="${bn2(r*.1)}" fill="#000"/><path d="${m}" fill="none" stroke="#000" stroke-width="0.35" stroke-linecap="round"/>`; };
+// guirnalda de banderines (estilo festivo)
+function bnGuirnalda(y,sag=7){ let s=`<path d="M8 ${y} Q105 ${y+sag*2} 202 ${y}" fill="none" stroke="#000" stroke-width="0.3"/>`; for(let i=0;i<13;i++){ const x=14+i*14.8, t=(x-8)/194, yy=y+sag*2*2*t*(1-t)*0.98; s+=`<path d="M${bn2(x-4)} ${bn2(yy)} L${bn2(x+4)} ${bn2(yy)} L${bn2(x)} ${bn2(yy+6)} Z" fill="${BN.color?BN_ACC[i%BN_ACC.length]:"none"}" stroke="#000" stroke-width="0.3" stroke-linejoin="round"/>`; } return s; }
+// numeración: con tapa e índice, las actividades empiezan en la página 3
+const bnOffset=()=>BN.tapa?2:0;
+function bnPagina(f,i,tot,sol,id){ const tema=BN.tema||"", ac=bnAc(0), est=BN.estilo||"escolar", fest=est==="festivo", marco=est!=="clasico";
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297"><rect width="210" height="297" fill="#fff"/>`;
+  if(marco) s+=`<rect x="5" y="4.5" width="200" height="288" rx="6" fill="none" stroke="${ac}" stroke-width="0.6"/>`+(fest?"":`<rect x="6.6" y="6.1" width="196.8" height="284.8" rx="4.8" fill="none" stroke="${ac}" stroke-width="0.2"/>`);
+  let y0=fest?9:0; if(fest) s+=bnGuirnalda(6.5,1.8);
+  if(BN.enc){ const yb=(fest?22:marco?13.5:12.5)+0; s+=bnT(13,yb,"Nombre:",3.6,{w:700})+`<line x1="28" y1="${bn2(yb+0.6)}" x2="118" y2="${bn2(yb+0.6)}" stroke="#000" stroke-width="0.25"/>`+bnT(122,yb,"Fecha:",3.6,{w:700})+`<line x1="134" y1="${bn2(yb+0.6)}" x2="166" y2="${bn2(yb+0.6)}" stroke="#000" stroke-width="0.25"/>`+bnT(170,yb,"Grado:",3.6,{w:700})+`<line x1="182.5" y1="${bn2(yb+0.6)}" x2="197" y2="${bn2(yb+0.6)}" stroke="#000" stroke-width="0.25"/>`; y0=yb-12.5+(marco?1:0); }
+  else if(marco) y0+=1;
+  const ty=17+y0, titulo=(sol?"Solución · ":"")+f.t;
+  if(marco){ // título en cinta con el tema arriba
+    s+=`<path d="M18 ${bn2(ty)} H192 L188 ${bn2(ty+7.5)} L192 ${bn2(ty+15)} H18 L22 ${bn2(ty+7.5)} Z" fill="${BN.color?"#FFF1DC":"none"}" stroke="${ac}" stroke-width="0.7" stroke-linejoin="round"/>`;
+    if(tema) s+=`<rect x="${bn2(105-Math.min(80,tema.length*1.25+8)/2)}" y="${bn2(ty-3.4)}" width="${bn2(Math.min(80,tema.length*1.25+8))}" height="5.6" rx="2.8" fill="#fff" stroke="${ac}" stroke-width="0.4"/>`+bnT(105,ty+0.9,tema.toUpperCase().slice(0,60),2.5,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?ac:"#000"});
+    s+=bnT(105,ty+10.4,titulo,7,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?"#1A2744":"#000"});
+  } else s+=`<rect x="12" y="${bn2(ty)}" width="186" height="15" rx="7.5" fill="${BN.color?"#FFF1DC":"none"}" stroke="${ac}" stroke-width="0.7"/>`+bnT(105,ty+10.4,titulo,7.2,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?"#1A2744":"#000"});
+  const kind=(BN_INFO[id]||[])[0]||"", cy=ty+22.6, cs=bnParr(25,cy+1.6,f.c||"",168,4.3,{lh:1.3});
+  s+=`<circle cx="16.5" cy="${bn2(cy)}" r="5" fill="${BN.color?ac:"#fff"}" stroke="${ac}" stroke-width="0.6"/>`+bnIcono(kind,16.5,cy,4.2,BN.color?"#fff":"#000")+(kind?bnT(16.5,cy+8.6,BN_ICONO_NOM[kind]||"",2.3,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:"#000"}):"")+cs.svg;
+  const fondo=BN.auto&&!sol?274:marco?284:286, top=Math.max(cy+13,cy+1.6+cs.h+3), sc=Math.min(1,(fondo-top)/BN_H);
+  s+=`<g transform="translate(${bn2(12+(BN_W-BN_W*sc)/2)} ${bn2(top)}) scale(${bn2(sc)})">${sol?f.s:f.b}</g>`;
+  if(BN.auto&&!sol){ s+=`<rect x="120" y="276.5" width="78" height="10.5" rx="5.2" fill="none" stroke="#000" stroke-width="0.3" stroke-dasharray="1.2 1"/>`+bnT(124,283,"¿Cómo me salió?",3,{w:700,f:"Fredoka, Nunito, Arial, sans-serif"})+bnCara(167,281.7,3.4,"bien")+bnCara(178,281.7,3.4,"mas")+bnCara(189,281.7,3.4,"mal"); }
+  const nro=i>=0?i+1+bnOffset():0;
+  s+=bnT(105,marco?289.6:292.5,`Cofre Didáctico${tema?" · "+tema:""}`,2.6,{a:"middle",fill:"#666",f:"Fredoka, Nunito, Arial"})+(nro&&!sol?`<circle cx="196" cy="${marco?288.6:291.5}" r="3.2" fill="${BN.color?ac:"none"}" stroke="${ac}" stroke-width="0.4"/>`+bnT(196,marco?289.7:292.6,String(nro),2.9,{a:"middle",w:700,f:"Fredoka, Nunito, Arial",fill:BN.color?"#fff":"#000"}):"")+"</svg>"; return s; }
+// tapa del cuadernillo
+function bnTapa(){ const tema=BN.tema||"Mis actividades", ac=bnAc(0), ac2=bnAc(1), ac3=bnAc(2); let s=`<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297"><rect width="210" height="297" fill="#fff"/>`;
+  s+=`<rect x="7" y="7" width="196" height="283" rx="9" fill="none" stroke="${ac}" stroke-width="1.1"/><rect x="10" y="10" width="190" height="277" rx="7" fill="none" stroke="${ac}" stroke-width="0.3" stroke-dasharray="2 1.6"/>`;
+  s+=bnGuirnalda(14);
+  s+=`<rect x="55" y="36" width="100" height="10" rx="5" fill="${BN.color?ac2:"none"}" stroke="${ac2}" stroke-width="0.6"/>`+bnT(105,42.8,"CUADERNILLO DE ACTIVIDADES",3.9,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?"#fff":"#000"});
+  const L=bnWrap(tema.toUpperCase(),170,15).slice(0,3), fs=Math.min(L.length>2?13:L.length>1?15:17,165/(Math.max(...L.map(l=>l.length))*0.66)); L.forEach((l,i)=>{ s+=bnT(105,66+i*fs*1.12,l,fs,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?"#1A2744":"#fff",st:BN.color?"":"#000",sw:0.55}); });
+  const yN=66+(L.length-1)*fs*1.12+11; s+=bnT(105,yN,BN.nivel||"",4.6,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?ac3:"#000"});
+  const D=(BN.dib||[]).slice(0,3), dibs=D.length?D:["estrella","libro","lapiz"].filter(k=>typeof BN_IC!=="undefined"&&BN_IC[k]).map(bnIc);
+  const yD=yN+8, hD=Math.min(120,216-yD-40); if(dibs.length===1) s+=bnDibujo(dibs[0],55,yD,100,hD,{pad:2});
+  else if(dibs.length===2){ s+=bnDibujo(dibs[0],22,yD+10,82,hD-10,{pad:2})+bnDibujo(dibs[1],106,yD+10,82,hD-10,{pad:2}); }
+  else if(dibs.length>=3){ s+=bnDibujo(dibs[0],62,yD,86,hD*0.72,{pad:2})+bnDibujo(dibs[1],18,yD+hD*0.42,58,hD*0.58,{pad:2})+bnDibujo(dibs[2],134,yD+hD*0.42,58,hD*0.58,{pad:2}); }
+  const yC=yD+hD+10; s+=`<rect x="22" y="${bn2(yC)}" width="166" height="48" rx="8" fill="none" stroke="${ac}" stroke-width="0.7"/>`+bnT(30,yC+12,"Este cuadernillo es de:",5,{w:700,f:"Fredoka, Nunito, Arial, sans-serif"})+`<line x1="30" y1="${bn2(yC+24)}" x2="180" y2="${bn2(yC+24)}" stroke="#000" stroke-width="0.35"/>`+bnT(30,yC+37,"Grado:",4.2,{w:700})+`<line x1="48" y1="${bn2(yC+37.6)}" x2="88" y2="${bn2(yC+37.6)}" stroke="#000" stroke-width="0.3"/>`+bnT(94,yC+37,"Escuela:",4.2,{w:700})+`<line x1="115" y1="${bn2(yC+37.6)}" x2="180" y2="${bn2(yC+37.6)}" stroke="#000" stroke-width="0.3"/>`;
+  s+=bnT(105,282,"Cofre Didáctico",4.2,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?ac:"#000"})+"</svg>"; return s; }
+// índice con íconos y número de página
+function bnIndice(){ const ac=bnAc(0); let s=`<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297"><rect width="210" height="297" fill="#fff"/><rect x="5" y="4.5" width="200" height="288" rx="6" fill="none" stroke="${ac}" stroke-width="0.6"/>`;
+  s+=`<path d="M60 16 H150 L146 23.5 L150 31 H60 L64 23.5 Z" fill="${BN.color?"#FFF1DC":"none"}" stroke="${ac}" stroke-width="0.7" stroke-linejoin="round"/>`+bnT(105,26.8,"Índice",8,{a:"middle",w:700,f:"Fredoka, Nunito, Arial, sans-serif",fill:BN.color?"#1A2744":"#000"});
+  const n=BN.pags.length, gap=Math.min(14,240/Math.max(1,n)), r=Math.min(4.2,gap*0.32);
+  BN.pags.forEach((pg,i)=>{ const y=44+i*gap, kind=(BN_INFO[pg.id]||[])[0]; s+=`<circle cx="22" cy="${bn2(y)}" r="${bn2(r+0.6)}" fill="${BN.color?bnAc(i):"none"}" stroke="${bnAc(i)}" stroke-width="0.45"/>`+bnIcono(kind,22,y,r,BN.color?"#fff":"#000")+bnT(31,y+1.4,pg.p.t,Math.min(4.4,gap*0.36),{w:700,f:"Fredoka, Nunito, Arial, sans-serif"})+`<line x1="${bn2(Math.min(150,33+pg.p.t.length*2.1))}" y1="${bn2(y+1.4)}" x2="184" y2="${bn2(y+1.4)}" stroke="#000" stroke-width="0.35" stroke-dasharray="0.3 1.6" stroke-linecap="round"/>`+bnT(192,y+1.5,String(i+1+bnOffset()),Math.min(4.4,gap*0.36),{a:"middle",w:700,f:"Fredoka, Nunito, Arial"}); });
+  const kinds=[...new Set(BN.pags.map(pg=>(BN_INFO[pg.id]||[])[0]).filter(Boolean))]; if(kinds.length){ const y=Math.min(276,44+n*gap+8); s+=bnT(14,y,"Referencias:",3.2,{w:700})+kinds.map((k,j)=>bnIcono(k,40+j*21,y-1.1,2.4)+bnT(44+j*21,y,BN_ICONO_NOM[k],2.9,{})).join(""); }
+  s+=bnT(105,289.6,`Cofre Didáctico${BN.tema?" · "+BN.tema:""}`,2.6,{a:"middle",fill:"#666",f:"Fredoka, Nunito, Arial"})+"</svg>"; return s; }
+function bnPaginasSvg(){ const L=[], nn=()=>String(L.length+1).padStart(2,"0");
+  if(BN.tapa&&BN.pags.length){ L.push({svg:bnTapa(),n:`${nn()} - Tapa`}); L.push({svg:bnIndice(),n:`${nn()} - Índice`}); }
+  BN.pags.forEach((pg,i)=>{ L.push({svg:bnPagina(pg.p,i,BN.pags.length,false,pg.id),n:`${nn()} - ${pg.p.t}`}); });
+  if(BN.sol) BN.pags.forEach((pg,i)=>{ if(pg.p.s) L.push({svg:bnPagina(pg.p,i,BN.pags.length,true,pg.id),n:`${nn()} - Solución - ${pg.p.t}`}); }); return L; }
 // arma todas las páginas elegidas
 function bnArmar(){ const out=[], err=[]; let seed=BN.seed; const ids=BN_GRUPOS.flatMap(g=>g[1].map(x=>x[0])).filter(id=>BN.sel.has(id));
   ids.forEach(id=>{ const rnd=mulberry(seed+=101); try{ let r=BN_GEN[id](rnd); (Array.isArray(r)?r:[r]).forEach(p=>out.push({id,p,seed})); }catch(e){ err.push(`${BN_NOM[id]}: ${e.message||e}`); } });
@@ -13032,7 +13164,6 @@ async function bnFuentes(){ if(bnFontCss!==null) return bnFontCss; let css="";
   bnFontCss=css; return css; }
 async function bnRaster(svg,px){ const css=await bnFuentes(), full=css?svg.replace(/(<svg[^>]*>)/,`$1<style>${css}</style>`):svg, url=URL.createObjectURL(new Blob([full],{type:"image/svg+xml"}));
   try{ const im=new Image(); await new Promise((ok,ko)=>{ im.onload=ok; im.onerror=()=>ko(new Error("No se pudo dibujar la ficha.")); im.src=url; }); const c=document.createElement("canvas"); c.width=px; c.height=Math.round(px*297/210); const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c.width,c.height); g.drawImage(im,0,0,c.width,c.height); return c; } finally{ URL.revokeObjectURL(url); } }
-function bnPaginasSvg(){ const L=[]; BN.pags.forEach((pg,i)=>{ L.push({svg:bnPagina(pg.p,i,BN.pags.length,false),n:`${String(L.length+1).padStart(2,"0")} - ${pg.p.t}`}); }); if(BN.sol) BN.pags.forEach((pg,i)=>{ if(pg.p.s) L.push({svg:bnPagina(pg.p,i,BN.pags.length,true),n:`${String(L.length+1).padStart(2,"0")} - Solución - ${pg.p.t}`}); }); return L; }
 async function bnPdf(){ if(!BN.pags.length) return; const m=$("#bnMsg"), btn=$("#bnPdf"); btn.disabled=true; try{ await poLibs(); const {PDFDocument}=PDFLib, doc=await PDFDocument.create(), L=bnPaginasSvg();
     const A4=[595.28,841.89]; for(let i=0;i<L.length;i++){ m.textContent=`Armando el PDF… ${i+1} de ${L.length}`; const c=await bnRaster(L[i].svg,2480), png=await new Promise(ok=>c.toBlob(ok,"image/png")), img=await doc.embedPng(await png.arrayBuffer());
       if(BN.a5){ if(i%2===0) doc.addPage([A4[1],A4[0]]); const pg=doc.getPage(doc.getPageCount()-1), w=A4[1]/2, h=A4[0]; pg.drawImage(img,{x:(i%2)*w+4,y:4,width:w-8,height:h-8}); if(i%2===0) pg.drawLine({start:{x:w,y:10},end:{x:w,y:h-10},thickness:0.4,dashArray:[3,3]}); }
@@ -13081,32 +13212,80 @@ function bnFormLlenar(){ const C=BN.C||{}, set=(id,v)=>{ const e=$("#"+id); if(e
 function bnFormLeer(){ const v=id=>($("#"+id)||{}).value||"", lines=id=>v(id).split("\n").map(s=>s.trim()).filter(Boolean);
   BN.C={...(BN.C||{}),titulo:v("bnTit").trim(),palabras:v("bnPal").split(/[,\n]/).map(s=>s.trim()).filter(Boolean),texto:v("bnTexto").trim(),preguntas:lines("bnPreg"),vf:lines("bnVF").map(l=>({v:!/^f\s*[:.-]/i.test(l),t:l.replace(/^[vf]\s*[:.-]\s*/i,"")})),secuencia:lines("bnSec"),problemas:lines("bnProb"),pistas:lines("bnPis").map(l=>{ const [p,...r]=l.split(":"); return {palabra:p.trim(),pista:r.join(":").trim()}; }).filter(p=>p.palabra&&p.pista),acrostico:v("bnAcr").trim(),frase:v("bnFrase").trim(),inicioCuento:v("bnCuento").trim(),dibujos:v("bnDibLista").split(/[,\n]/).map(s=>s.trim()).filter(Boolean)}; }
 function bnDibPintar(){ const b=$("#bnDibs"); if(!b) return; b.innerHTML=BN.dib.length?BN.dib.map((d,i)=>`<figure class="bn-dib"><div class="bn-dimg">${d.img?`<img src="${d.img}" alt="">`:`<svg viewBox="${d.vb||"0 0 200 200"}">${d.svg}</svg>`}</div><figcaption>${bx(d.n)}</figcaption><button type="button" class="btn small ghost" data-bndel="${i}" title="Quitar">✕</button></figure>`).join(""):`<span class="muted" style="font-size:12.5px">Sin dibujos del tema todavía: las fichas usan dibujos genéricos (estrella, flor, casa…).</span>`; }
-function bnSelPintar(){ const b=$("#bnTipos"); if(!b) return; b.innerHTML=BN_GRUPOS.map(([g,L],gi)=>`<div class="bn-grupo"><b>${g}</b><div class="bn-chks">${L.map(([id,n])=>`<label class="check"><input type="checkbox" data-bnsel="${id}" ${BN.sel.has(id)?"checked":""}> ${n}</label>`).join("")}</div></div>`).join(""); }
-function bnVista(){ const g=$("#bnPags"), n=$("#bnN"); if(!g) return; if(!BN.pags.length){ g.innerHTML=`<div class="vs-vacio"><b>Todavía no armaste las fichas</b><span class="muted">Elegí la temática y las actividades, y tocá “Armar las fichas”.</span></div>`; if(n) n.textContent=""; return; }
-  g.innerHTML=BN.pags.map((pg,i)=>`<figure class="bn-pag"><div class="bn-hoja">${bnPagina(pg.p,i,BN.pags.length,false).replace('width="210mm" height="297mm"','width="100%"')}</div><figcaption><b>${i+1}.</b> ${bx(pg.p.t)}<span class="bn-acc"><button type="button" class="btn small ghost" data-bnotra="${i}" title="Otra versión">🔄</button><button type="button" class="btn small ghost" data-bnver="${i}" title="Ver grande">🔍</button><button type="button" class="btn small ghost" data-bnquitar="${i}" title="Quitar">✕</button></span></figcaption></figure>`).join("");
-  if(n) n.textContent=`${BN.pags.length} ${BN.pags.length===1?"hoja":"hojas"}${BN.sol?` + ${BN.pags.filter(p=>p.p.s).length} soluciones`:""}`; ["#bnPdf","#bnZip"].forEach(id=>{ const e=$(id); if(e) e.disabled=false; }); }
-async function bnInit(){ const v=$("#view-fichas"); if(!v||v.dataset.ok) return; v.dataset.ok="1";
-  if(!document.getElementById("bnFontLink")){ const l=document.createElement("link"); l.id="bnFontLink"; l.rel="stylesheet"; l.href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap"; document.head.appendChild(l); }
+// ---------- interfaz: pasos, tarjetas de actividades, presets, vista previa con orden y visor ----------
+const BN_PRESETS=[["recom","⭐ Recomendadas",["sopa","cruci","trazos","puntos","pixel","lectura","vf","difer","sombras","tarjetas","acrostico","pintar"]],["inicial","🧸 Nivel inicial",["trazos","caminos","puntos","conteo","sombras","espejo","laberinto","buscar","memo","puzzle","pintar"]],["leer","📖 Lectura y escritura",["lectura","vf","completar","secuencia","cruci","anag","acrostico","final","quepasa"]],["mate","🔢 Matemática",["puntos","pixel","piramide","problemas","conteo"]],["recortar","✂️ Para recortar",["tarjetas","memo","domino","puzzle","banderines","titeres","secuencia"]],["azar","🎲 Sorpresa",null],["todas","Todas",null],["ninguna","Ninguna",null]];
+const BN_ESTILOS=[["escolar","Escolar","Marco doble y título en cinta"],["festivo","Festivo","Con banderines arriba"],["clasico","Clásico","Simple, sin marco"]];
+const BN_OPTS_K="bn-opts";
+function bnOptsCargar(){ let o={}; try{ o=JSON.parse(localStorage.getItem(BN_OPTS_K)||"{}")||{}; }catch{} BN.estilo=o.estilo||"escolar"; ["tapa","auto","enc","sol","color","a5"].forEach(k=>{ if(typeof o[k]==="boolean") BN[k]=o[k]; else if(k==="tapa") BN.tapa=true; else if(k==="auto") BN.auto=false; }); }
+function bnOptsGuardar(){ try{ localStorage.setItem(BN_OPTS_K,JSON.stringify({estilo:BN.estilo,tapa:BN.tapa,auto:BN.auto,enc:BN.enc,sol:BN.sol,color:BN.color,a5:BN.a5})); }catch{} }
+const bnMini=(svg)=>svg.replace('width="210mm" height="297mm"','width="100%"');
+function bnContResumen(){ const v=id=>(($("#"+id)||{}).value||"").trim(), n=id=>v(id).split("\n").filter(s=>s.trim()).length;
+  const pal=v("bnPal").split(/[,\n]/).filter(s=>s.trim()).length, txt=v("bnTexto").split(/\s+/).filter(Boolean).length;
+  const it=[[pal,"palabras"],[txt,"palabras de lectura"],[n("bnPreg"),"preguntas"],[n("bnVF"),"V o F"],[n("bnSec"),"pasos"],[n("bnProb"),"problemas"],[n("bnPis"),"pistas"]];
+  const b=$("#bnCont"); if(b) b.innerHTML=it.some(x=>x[0])?it.map(([k,t])=>`<span class="${k?"ok":"no"}">${k?"✓":"·"} ${k||""} ${t}</span>`).join(""):`<span class="no">Todavía no hay contenido: prepararlo con Claude o completalo a mano.</span>`; return pal; }
+function bnPasos(){ const b=$("#bnPasos"); if(!b) return; const pal=bnContResumen();
+  const P=[["#bnS1","Tema",BN.tema.trim()?bx(BN.tema.trim().slice(0,26)):"Elegí un tema",!!BN.tema.trim()],["#bnS1","Contenido",pal?`${pal} palabras`:"Sin contenido",pal>0],["#bnS2","Dibujos",BN.dib.length?`${BN.dib.length} del tema`:"Genéricos",BN.dib.length>0],["#bnS3","Actividades",`${BN.sel.size} elegidas`,BN.sel.size>0],["#bnS4","Cuadernillo",BN.pags.length?`${BN.pags.length+(BN.tapa?2:0)} hojas`:"Sin armar",BN.pags.length>0]];
+  b.innerHTML=P.map(([to,t,s,ok],i)=>`<button type="button" class="bn-paso${ok?" ok":""}" data-bnir="${to}"><i>${ok?"✓":i+1}</i><span><b>${t}</b><small>${s}</small></span></button>`).join('<span class="bn-flecha" aria-hidden="true"></span>'); }
+function bnSelPintar(){ const b=$("#bnTipos"); if(!b) return;
+  $("#bnPresets").innerHTML=BN_PRESETS.map(([k,t])=>`<button type="button" class="bn-chip" data-bnpre="${k}">${t}</button>`).join("");
+  b.innerHTML=BN_GRUPOS.map(([g,L])=>{ const n=L.filter(([id])=>BN.sel.has(id)).length; return `<div class="bn-grupo"><div class="bn-gh"><b>${g}</b><button type="button" class="bn-gall" data-bngrp="${L.map(x=>x[0]).join(",")}">${n===L.length?"Quitar todas":"Todas"}</button></div>
+    <div class="bn-acts">${L.map(([id,nm])=>{ const [k,d]=BN_INFO[id]||["",""], on=BN.sel.has(id); return `<div class="bn-act${on?" on":""}" role="checkbox" aria-checked="${on}" tabindex="0" data-bnact="${id}"><span class="bn-aic"><svg viewBox="0 0 12 12" aria-hidden="true">${bnIcono(k,6,6,5)}</svg></span><span class="bn-atx"><b>${bx(nm)}</b><small>${bx(d)}</small></span><button type="button" class="bn-ej" data-bnej="${id}" title="Ver un ejemplo" aria-label="Ver un ejemplo de ${bx(nm)}">👁</button><i class="bn-tick" aria-hidden="true">✓</i></div>`; }).join("")}</div></div>`; }).join("");
+  const c=$("#bnSelN"); if(c) c.textContent=BN.sel.size?`${BN.sel.size} elegidas`:""; bnPasos(); }
+function bnEstilosPintar(){ const b=$("#bnEstilos"); if(!b) return; b.innerHTML=BN_ESTILOS.map(([k,t,d])=>`<button type="button" role="radio" aria-checked="${BN.estilo===k}" class="bn-est${BN.estilo===k?" on":""}" data-bnest="${k}"><span class="bn-est-m ${k}"><i></i><i></i><i></i></span><b>${t}</b><small>${d}</small></button>`).join("");
+  [["bnTapa","tapa"],["bnAuto","auto"],["bnEnc","enc"],["bnSol","sol"],["bnColor","color"],["bnA5","a5"]].forEach(([id,k])=>{ const e=$("#"+id); if(e) e.checked=!!BN[k]; }); }
+function bnItemsVista(){ const L=[]; if(BN.tapa&&BN.pags.length){ L.push({k:"tapa",t:"Tapa",svg:bnTapa()}); L.push({k:"indice",t:"Índice",svg:bnIndice()}); } BN.pags.forEach((pg,i)=>L.push({k:i,t:pg.p.t,svg:bnPagina(pg.p,i,BN.pags.length,false,pg.id),sol:pg.p.s&&BN.sol?bnPagina(pg.p,i,BN.pags.length,true,pg.id):""})); return L; }
+function bnVista(){ const g=$("#bnPags"), n=$("#bnN"); if(!g) return; bnPasos();
+  if(!BN.pags.length){ g.innerHTML=`<div class="vs-vacio bn-vacio"><span class="bn-vac-ic">📚</span><b>Todavía no armaste el cuadernillo</b><span class="muted">Elegí el tema y las actividades, y tocá “Armar el cuadernillo”.</span></div>`; if(n) n.textContent=""; ["#bnPdf","#bnZip"].forEach(id=>{ const e=$(id); if(e) e.disabled=true; }); return; }
+  const L=bnItemsVista(); g.innerHTML=L.map((it,j)=>{ const act=typeof it.k==="number"; return `<figure class="bn-pag${act?"":" esp"}" ${act?`draggable="true" data-bnarr="${it.k}"`:""} data-bnj="${j}"><div class="bn-hoja" data-bnver="${j}" title="Ver grande">${bnMini(it.svg)}<span class="bn-nro">${act?it.k+1+bnOffset():it.k==="tapa"?"Tapa":"Índice"}</span></div><figcaption><span class="bn-ft">${bx(it.t)}</span>${act?`<span class="bn-acc"><button type="button" class="bn-ib" data-bnotra="${it.k}" title="Otra versión">🔄</button><button type="button" class="bn-ib" data-bnquitar="${it.k}" title="Quitar">✕</button></span>`:""}</figcaption></figure>`; }).join("");
+  const sol=BN.sol?BN.pags.filter(p=>p.p.s).length:0; if(n) n.textContent=`${L.length} ${L.length===1?"hoja":"hojas"}${sol?` + ${sol} soluciones`:""}`; ["#bnPdf","#bnZip"].forEach(id=>{ const e=$(id); if(e) e.disabled=false; }); }
+let bnVisor={L:[],j:0};
+function bnVer(L,j){ bnVisor={L,j:Math.max(0,Math.min(L.length-1,j))}; const it=L[bnVisor.j], w=$("#bnGrande"), act=typeof it.k==="number";
+  w.innerHTML=`<div class="bn-grande-in"><div class="bn-vh"><b>${bx(it.t)}</b><span class="muted">${bnVisor.j+1} de ${L.length}</span><span class="bn-vacc">${act&&!it.ej?`<button type="button" class="btn small" data-bnmov="-1" title="Mover antes">◀ Mover</button><button type="button" class="btn small" data-bnmov="1" title="Mover después">Mover ▶</button><button type="button" class="btn small" data-bnotra="${it.k}">🔄 Otra versión</button>`:""}<button type="button" class="btn small" id="bnCerrar">✕ Cerrar</button></span></div>
+    <div class="bn-vbody"><button type="button" class="bn-nav" data-bnnav="-1" ${bnVisor.j?"":"disabled"} aria-label="Anterior">‹</button><div class="bn-vhojas">${bnMini(it.svg)}${it.sol?bnMini(it.sol):""}</div><button type="button" class="bn-nav" data-bnnav="1" ${bnVisor.j<L.length-1?"":"disabled"} aria-label="Siguiente">›</button></div></div>`; w.hidden=false; }
+function bnMarcarCambio(){ const a=$("#bnAviso"); if(a) a.hidden=!BN.pags.length; }
+async function bnInit(){ const v=$("#view-fichas"); if(!v||v.dataset.ok) return; v.dataset.ok="1"; bnOptsCargar();
+  if(!document.getElementById("bnFontLink")){ const l=document.createElement("link"); l.id="bnFontLink"; l.rel="stylesheet"; l.href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Fredoka:wght@700&display=swap"; document.head.appendChild(l); }
   $("#bnNivel").innerHTML=["Nivel Inicial","Primer ciclo","Segundo ciclo"].map(n=>`<button type="button" class="${BN.nivel===n?"on":""}" data-bnniv="${n}">${n}</button>`).join("");
-  bnSelPintar(); bnDibPintar(); bnVista(); if(!MODE.cloud){ $("#bnIA").title="Funciona en el panel dentro de Claude"; $("#bnDibIA").title="Funciona en el panel dentro de Claude"; }
+  bnSelPintar(); bnEstilosPintar(); bnDibPintar(); bnVista(); if(!MODE.cloud){ $("#bnIA").title="Funciona en el panel dentro de Claude"; $("#bnDibIA").title="Funciona en el panel dentro de Claude"; }
   bnTemasGuardados().then(L=>{ const dl=$("#bnTemas"); if(dl) dl.innerHTML=L.map(([,t])=>`<option value="${bx(t)}">`).join(""); });
-  $("#bnTema").addEventListener("change",async e=>{ BN.tema=e.target.value.trim(); if(await bnCargarTema()){ bnFormLlenar(); bnDibPintar(); $("#bnMsg").textContent=`Recuperé el contenido y los dibujos que ya tenías de “${BN.tema}”.`; } });
-  $("#bnTema").addEventListener("input",e=>{ BN.tema=e.target.value; });
-  v.addEventListener("click",async e=>{ const t=e.target.closest("button,[data-bnniv]"); if(!t) return;
-    if(t.dataset.bnniv){ BN.nivel=t.dataset.bnniv; t.parentElement.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===t)); return; }
-    if(t.id==="bnIA") return bnContenidoIA(); if(t.id==="bnDibIA") return bnDibujosIA();
-    if(t.dataset.bndel!=null){ BN.dib.splice(+t.dataset.bndel,1); bnDibPintar(); bnGuardar(); return; }
-    if(t.id==="bnTodas"||t.id==="bnNinguna"){ BN.sel=t.id==="bnTodas"?new Set(Object.keys(BN_GEN)):new Set(); bnSelPintar(); return; }
-    if(t.id==="bnGo"){ bnFormLeer(); const err=bnArmar(); bnVista(); $("#bnMsg").textContent=err.length?`Armé ${BN.pags.length} hojas. No pude armar: ${err.join(" · ")}`:`Listas ${BN.pags.length} hojas. Revisalas y descargalas en PDF.`; bnGuardar(); return; }
-    if(t.dataset.bnotra!=null){ const i=+t.dataset.bnotra, pg=BN.pags[i]; try{ const r=BN_GEN[pg.id](mulberry(pg.seed+=7919)); const L=Array.isArray(r)?r:[r]; pg.p=L[Math.min(L.length-1,BN.pags.filter((x,j)=>x.id===pg.id&&j<i).length)]; bnVista(); }catch(er){ $("#bnMsg").textContent=er.message; } return; }
+  $("#bnTema").addEventListener("change",async e=>{ BN.tema=e.target.value.trim(); bnPasos(); if(await bnCargarTema()){ bnFormLlenar(); bnDibPintar(); bnPasos(); $("#bnMsg").textContent=`Recuperé el contenido y los dibujos que ya tenías de “${BN.tema}”.`; } });
+  $("#bnTema").addEventListener("input",e=>{ BN.tema=e.target.value; clearTimeout(bnInit.t); bnInit.t=setTimeout(bnPasos,250); });
+  const armar=()=>{ bnFormLeer(); const err=bnArmar(); bnVista(); $("#bnAviso").hidden=true; $("#bnMsg").textContent=err.length?`Armé ${BN.pags.length} hojas. No pude armar: ${err.join(" · ")}`:`¡Listo! ${BN.pags.length+(BN.tapa?2:0)} hojas. Arrastralas para cambiar el orden y descargá el PDF.`; bnGuardar(); };
+  const toggleAct=id=>{ BN.sel.has(id)?BN.sel.delete(id):BN.sel.add(id); bnSelPintar(); bnMarcarCambio(); };
+  v.addEventListener("click",async e=>{ const t=e.target.closest("button,[data-bnniv],[data-bnact],[data-bnver]"); if(!t) return;
+    if(t.dataset.bnir){ const el=$(t.dataset.bnir); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); return; }
+    if(t.dataset.bnniv){ BN.nivel=t.dataset.bnniv; t.parentElement.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===t)); bnMarcarCambio(); return; }
+    if(t.id==="bnIA") return bnContenidoIA().then(bnPasos); if(t.id==="bnDibIA") return bnDibujosIA().then(bnPasos);
+    if(t.dataset.bndel!=null){ BN.dib.splice(+t.dataset.bndel,1); bnDibPintar(); bnGuardar(); bnPasos(); bnMarcarCambio(); return; }
+    if(t.dataset.bnej){ e.stopPropagation(); bnFormLeer(); try{ const r=BN_GEN[t.dataset.bnej](mulberry(BN.seed+3)), p=Array.isArray(r)?r[0]:r; bnVer([{k:-1,ej:true,t:"Ejemplo · "+p.t,svg:bnPagina(p,-1,1,false,t.dataset.bnej)}],0); }catch(er){ $("#bnMsg").textContent=`Para ver el ejemplo de “${BN_NOM[t.dataset.bnej]}”, primero completá el contenido del tema.`; $("#bnMsg").scrollIntoView({behavior:"smooth",block:"center"}); } return; }
+    if(t.dataset.bnact){ return toggleAct(t.dataset.bnact); }
+    if(t.dataset.bngrp){ const L=t.dataset.bngrp.split(","), todas=L.every(id=>BN.sel.has(id)); L.forEach(id=>todas?BN.sel.delete(id):BN.sel.add(id)); bnSelPintar(); bnMarcarCambio(); return; }
+    if(t.dataset.bnpre){ const P=BN_PRESETS.find(x=>x[0]===t.dataset.bnpre), all=Object.keys(BN_GEN);
+      BN.sel=new Set(P[0]==="todas"?all:P[0]==="ninguna"?[]:P[0]==="azar"?bnShuffle(all,Math.random).slice(0,8):P[2].filter(id=>BN_GEN[id])); bnSelPintar(); bnMarcarCambio(); return; }
+    if(t.dataset.bnest){ BN.estilo=t.dataset.bnest; bnOptsGuardar(); bnEstilosPintar(); bnVista(); return; }
+    if(t.id==="bnGo") return armar();
+    if(t.dataset.bnotra!=null){ const i=+t.dataset.bnotra, pg=BN.pags[i]; try{ const r=BN_GEN[pg.id](mulberry(pg.seed+=7919)); const L=Array.isArray(r)?r:[r]; pg.p=L[Math.min(L.length-1,BN.pags.filter((x,j)=>x.id===pg.id&&j<i).length)]; bnVista(); if(!$("#bnGrande").hidden){ const L2=bnItemsVista(); bnVer(L2,L2.findIndex(x=>x.k===i)); } }catch(er){ $("#bnMsg").textContent=er.message; } return; }
     if(t.dataset.bnquitar!=null){ BN.pags.splice(+t.dataset.bnquitar,1); bnVista(); return; }
-    if(t.dataset.bnver!=null){ const pg=BN.pags[+t.dataset.bnver], w=$("#bnGrande"); w.innerHTML=`<div class="bn-grande-in"><button type="button" class="btn small" id="bnCerrar">✕ Cerrar</button>${bnPagina(pg.p,0,1,false).replace('width="210mm" height="297mm"','width="100%"')}${pg.p.s&&BN.sol?bnPagina(pg.p,0,1,true).replace('width="210mm" height="297mm"','width="100%"'):""}</div>`; w.hidden=false; return; }
-    if(t.id==="bnCerrar"){ $("#bnGrande").hidden=true; return; }
+    if(t.dataset.bnver!=null){ return bnVer(bnItemsVista(),+t.dataset.bnver); }
     if(t.id==="bnPdf") return bnPdf(); if(t.id==="bnZip") return bnZip(); });
-  v.addEventListener("change",e=>{ const t=e.target; if(t.dataset.bnsel){ t.checked?BN.sel.add(t.dataset.bnsel):BN.sel.delete(t.dataset.bnsel); return; }
-    if(t.id==="bnColor"||t.id==="bnA5"||t.id==="bnEnc"||t.id==="bnSol"){ BN[{bnColor:"color",bnA5:"a5",bnEnc:"enc",bnSol:"sol"}[t.id]]=t.checked; bnVista(); return; }
-    if(t.id==="bnImg"&&t.files[0]){ bnSubirImg(t.files[0]); t.value=""; } });
-  $("#bnGrande").addEventListener("click",e=>{ if(e.target.id==="bnGrande") e.currentTarget.hidden=true; }); }
+  v.addEventListener("keydown",e=>{ const a=e.target.closest("[data-bnact]"); if(a&&(e.key===" "||e.key==="Enter")&&!e.target.closest(".bn-ej")){ e.preventDefault(); toggleAct(a.dataset.bnact); requestAnimationFrame(()=>{ const n=document.querySelector(`[data-bnact="${a.dataset.bnact}"]`); if(n) n.focus(); }); } });
+  v.addEventListener("change",e=>{ const t=e.target; const M={bnColor:"color",bnA5:"a5",bnEnc:"enc",bnSol:"sol",bnTapa:"tapa",bnAuto:"auto"};
+    if(M[t.id]){ BN[M[t.id]]=t.checked; bnOptsGuardar(); bnVista(); return; }
+    if(t.id==="bnImg"&&t.files[0]){ bnSubirImg(t.files[0]).then(bnPasos); t.value=""; } });
+  v.addEventListener("input",e=>{ if(e.target.closest(".bn-form")){ clearTimeout(bnInit.c); bnInit.c=setTimeout(()=>{ bnPasos(); bnMarcarCambio(); },300); } });
+  // ordenar arrastrando
+  let arr=null; const G=$("#bnPags");
+  G.addEventListener("dragstart",e=>{ const f=e.target.closest("[data-bnarr]"); if(!f) return; arr=+f.dataset.bnarr; f.classList.add("arr"); e.dataTransfer.effectAllowed="move"; try{ e.dataTransfer.setData("text/plain",String(arr)); }catch{} });
+  G.addEventListener("dragover",e=>{ const f=e.target.closest("[data-bnarr]"); if(arr==null||!f) return; e.preventDefault(); G.querySelectorAll(".sobre").forEach(x=>x!==f&&x.classList.remove("sobre")); f.classList.add("sobre"); });
+  G.addEventListener("dragend",()=>{ arr=null; G.querySelectorAll(".arr,.sobre").forEach(x=>x.classList.remove("arr","sobre")); });
+  G.addEventListener("drop",e=>{ const f=e.target.closest("[data-bnarr]"); if(arr==null||!f) return; e.preventDefault(); const to=+f.dataset.bnarr; if(to!==arr){ const [m]=BN.pags.splice(arr,1); BN.pags.splice(to,0,m); bnVista(); $("#bnMsg").textContent="Orden cambiado ✓"; } arr=null; });
+  // visor
+  const W=$("#bnGrande");
+  W.addEventListener("click",e=>{ if(e.target.id==="bnGrande"||e.target.closest("#bnCerrar")){ W.hidden=true; return; }
+    const nv=e.target.closest("[data-bnnav]"); if(nv){ bnVer(bnVisor.L,bnVisor.j+ +nv.dataset.bnnav); return; }
+    const mv=e.target.closest("[data-bnmov]"); if(mv){ const it=bnVisor.L[bnVisor.j], i=it.k, to=i+ +mv.dataset.bnmov; if(to<0||to>=BN.pags.length) return; const [m]=BN.pags.splice(i,1); BN.pags.splice(to,0,m); bnVista(); const L=bnItemsVista(); bnVer(L,L.findIndex(x=>x.k===to)); return; }
+    });
+  document.addEventListener("keydown",e=>{ if(W.hidden) return; if(e.key==="Escape") W.hidden=true; else if(e.key==="ArrowRight") bnVer(bnVisor.L,bnVisor.j+1); else if(e.key==="ArrowLeft") bnVer(bnVisor.L,bnVisor.j-1); }); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
