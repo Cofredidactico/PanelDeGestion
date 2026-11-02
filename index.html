@@ -614,6 +614,12 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .ml-sals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.ml-sal{display:grid;gap:2px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2)}.ml-sal b{font-size:24px;font-family:var(--f-brand)}.ml-sal span{font-weight:700;font-size:13px}.ml-sal em{font-style:normal;font-size:12.5px;font-weight:700}.ml-sal small{color:var(--muted);font-size:11.5px;line-height:1.35}.ml-sal.ok em{color:#1F9D55}.ml-sal.warn em{color:#B7791F}.ml-sal.bad em{color:#C2410C}.ml-sal.bad{border-color:#C2410C}
 .ml-sts{display:grid;gap:4px;max-width:420px}.ml-st{display:grid;grid-template-columns:100px 1fr 44px;gap:8px;align-items:center;font-size:12.5px}.ml-st i{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.ml-st i b{display:block;height:100%}.ml-st em{font-style:normal;font-weight:800;text-align:right}
 .tp-card{border-color:color-mix(in srgb,var(--star) 45%,var(--line))}.tp-n{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--star);color:#1a1a1a;font-size:12px;margin-left:6px;vertical-align:3px}.tp-list{display:grid;gap:8px}.tp-it{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}.tp-i{display:grid;gap:2px;min-width:0}.tp-i span{font-size:12.5px}.tp-tot{font-size:15px}.tp-acc{display:flex;gap:6px;flex-wrap:wrap}@media (max-width:640px){.tp-it{grid-template-columns:1fr}}
+.pkf{margin:0 0 12px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2)}.pkf>summary{display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 12px;font-weight:700;font-size:13.5px}.pkf>summary b{margin-left:auto;font-size:11.5px;padding:3px 9px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}.pkf>summary b.w{color:#b7791f;border-color:color-mix(in srgb,#d69e2e 50%,var(--line))}.pkf>summary b.ok{color:var(--ok)}
+.pkf-in{padding:0 12px 12px;display:grid;gap:8px}.pkf-help{font-size:12px;margin:0;line-height:1.45}.pkf-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.pkf-chk{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;margin-left:auto;cursor:pointer}.pkf-chk input{margin:0;accent-color:var(--blue)}
+.pkf-l{display:grid;gap:5px;max-height:360px;overflow:auto}.pkf-r{display:grid;grid-template-columns:34px minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:7px 8px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}.pkf-r.nec{border-left:3px solid #d69e2e}
+.pkf-em{font-size:22px;text-align:center}.pkf-t{min-width:0;display:grid;gap:2px}.pkf-t b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pkf-t small{font-size:11.5px;color:var(--muted);line-height:1.35}.pkf-t code{font-size:11px;color:var(--faint);user-select:all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pkf-r em{font-style:normal;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:999px;background:color-mix(in srgb,#d69e2e 18%,transparent);color:#b7791f}.pkf-r em.s{background:var(--surface-2);color:var(--muted)}
+@media (max-width:560px){.pkf-r{grid-template-columns:28px minmax(0,1fr) auto}.pkf-r em{display:none}.pkf-chk{margin-left:0}}
 .mp-soltar{outline:2px dashed var(--blue);outline-offset:-6px;background:color-mix(in srgb,var(--blue) 7%,var(--surface))}
 .pk{margin:0 0 12px}.pk.on .pk-in{outline:2px dashed var(--blue);outline-offset:4px;border-radius:12px}.pk-drop{padding:20px 14px}
 .pk-in{display:grid;gap:10px}.pk-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pk-h b{font-size:14px}.pk-h .muted{font-size:12px}.pk-ha{margin-left:auto;display:flex;gap:4px}
@@ -2812,6 +2818,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
             <div class="pk-res" id="pkRes"></div>
           </div>
         </div>
+        <details class="pkf" id="pkFalta" hidden><summary><span>🔍 Imágenes que faltan</span><b id="pkFaltaN"></b></summary><div class="pkf-in"><p class="muted pkf-help">Elementos de los juegos que hoy se ven con emoji. Las <b>necesarias</b> hacen falta para que el juego quede perfecto (unir, memotest, V o F con imágenes, guías…). Subila acá mismo con <b>Subir</b>, o guardala con el nombre sugerido y sumala al pack: se ubica sola.</p><div class="pkf-acts"><button type="button" class="btn small" id="pkfIA">✨ Que Claude me diga qué buscar</button><button type="button" class="btn small ghost" id="pkfCopiar">📋 Copiar la lista</button><label class="pkf-chk"><input type="checkbox" id="pkfSolo" checked> Solo las necesarias</label></div><div class="pkf-l" id="pkfL"></div></div></details>
         <details class="mp-imgsd" open><summary>Portada, guías y dibujo para pintar</summary><div class="mp-imgs" id="mpImgs"></div></details></section>
       <section class="card mp-sec"><div class="bn-sh"><span class="bn-num">4</span><div><h2>Revisión <span class="bn-cnt" id="mpRevN"></span></h2><p class="muted">Cada parte de la plataforma, con lo que tiene. Tocá ✏️ para editar.</p></div></div>
         <div class="mp-rev" id="mpRev"></div>
@@ -14060,6 +14067,45 @@ async function mpImportar(f){ const m=$("#mpMsg"); if(!f) return; m.textContent=
   const card=$("#mpProy").closest("section"); ["dragenter","dragover"].forEach(t=>card.addEventListener(t,e=>{ if([...(e.dataTransfer.items||[])].some(x=>x.kind==="file")){ e.preventDefault(); card.classList.add("mp-soltar"); } }));
   ["dragleave","drop"].forEach(t=>card.addEventListener(t,e=>{ if(t==="dragleave"&&card.contains(e.relatedTarget)) return; card.classList.remove("mp-soltar"); }));
   card.addEventListener("drop",e=>{ const f=e.dataTransfer.files[0]; if(!f) return; e.preventDefault(); mpImportar(f); }); }; })();
+
+// ---------- Plataformas · qué imágenes faltan para que cada juego quede perfecto ----------
+const PKF_NEC=new Set(["portada","guias","unir","unir_facil","memotest","anagrama","vf_facil"]);
+const PKF_JUEGO={glosario:["glosario"],unir:["unir"],unir_facil:["unir_facil"],memotest:["memotest","memo_facil"],anagrama:["anagrama"],vf_facil:["vf_facil"],mirar:["mirar"],secuencia:["secuencia"],sec_facil:["sec_facil"],quien_soy:["quien_soy"]};
+function pkfActivos(D){ const s=new Set(); Object.values(D.menus||{}).forEach(m=>(m.juegos||[]).forEach(j=>{ if(!j.off) s.add(j.id); })); return s; }
+function pkFaltantes(D){ const act=pkfActivos(D), G=new Map(), memoSrc=D.memotest&&D.memotest.length?"memotest":"unir";
+  const usa=sec=>{ if(sec==="unir"&&!(D.memotest||[]).length&&(act.has("memotest")||act.has("memo_facil"))) return true; const js=PKF_JUEGO[sec]; return !js||js.some(j=>act.has(j)); };
+  pkLugares(D).forEach(x=>{ const [sec]=x.l.split("."); if(/^(info_pc|info_sc|timeline|rompecabezas)$/.test(sec)) return; if(!usa(sec)) return; if(pkGetSrc(D,x.l)) return;
+    const o=pkObj(D,x.l); let nom, em="", key;
+    if(x.l==="portada"){ nom="Ilustración principal de "+(D.meta.nombreCorto||D.meta.nombreCompleto); key="portada"; em=D.meta.icono||"🖼️"; }
+    else if(x.l==="pintar"){ nom="Dibujo de línea para pintar"; key="pintar"; em="🎨"; }
+    else if(sec==="guias"){ nom=o.nombre||"Guía"; key="guia:"+pkNorm(nom); em=o.em||"🧑"; }
+    else if(sec==="capitulos"){ nom=`Escena: ${o.tit||"misión "+(+x.l.split(".")[1]+1)}`; key=x.l; em="📖"; }
+    else if(sec==="quien_soy"){ nom=o.r; key="p:"+pkNorm(o.r); em="🕵️"; }
+    else { nom=String(o.w||o.p||o.t||"").trim(); key="p:"+pkNorm(nom); em=/^img:/.test(String(o.em||""))?"":o.em||""; }
+    if(!nom) return; const g=G.get(key)||{key,nom,em,lugares:[],secs:new Set(),nec:false}; g.lugares.push(x.l); g.secs.add(sec==="unir"&&!(D.memotest||[]).length&&(act.has("memotest")||act.has("memo_facil"))?"unir+memo":sec); if(PKF_NEC.has(sec)) g.nec=true; if(!g.em&&em) g.em=em; G.set(key,g); });
+  const nomSec=s=>s==="unir+memo"?"🔗 Unir · 🃏 Memotest":(PK_SECN[s]||s).replace(/\s*\(.*\)$/,"");
+  return [...G.values()].map(g=>({...g,secs:[...g.secs].map(nomSec),archivo:pkNorm(g.nom).split(" ").slice(0,5).join("-")+".png",buscar:((MP.D.faltaInfo||{})[g.key]||"")})).sort((a,b)=>b.nec-a.nec||b.lugares.length-a.lugares.length); }
+function pkfPintar(){ const box=$("#pkFalta"), D=MP.D; if(!box) return; if(!D||!(D.glosario||D.unir||[]).length){ box.hidden=true; return; }
+  const F=pkFaltantes(D), nec=F.filter(f=>f.nec).length, solo=$("#pkfSolo").checked, V=solo?F.filter(f=>f.nec):F; box.hidden=false;
+  $("#pkFaltaN").textContent=F.length?`${nec} necesaria${nec===1?"":"s"} · ${F.length} en total`:"✓ ¡No falta ninguna!"; $("#pkFaltaN").className=F.length?(nec?"w":""):"ok";
+  $("#pkfL").innerHTML=V.length?V.map(f=>`<div class="pkf-r${f.nec?" nec":""}"><span class="pkf-em">${esc(f.em||"🖼️")}</span><span class="pkf-t"><b>${esc(f.nom)}</b><small>${f.buscar?`🔎 ${esc(f.buscar)} · `:""}${esc(f.secs.join(" · "))}</small><code title="Guardala con este nombre y sumala al pack: se ubica sola">${esc(f.archivo)}</code></span>${f.nec?`<em>Necesaria</em>`:`<em class="s">Suma</em>`}<label class="btn small"><input type="file" accept="image/*" data-pkf="${esc(f.key)}" hidden>Subir</label></div>`).join(""):`<p class="muted" style="margin:6px 0;font-size:12.5px">${F.length?"Las necesarias ya están. Destildá “Solo las necesarias” para ver las que suman.":"Todos los juegos tienen su imagen 🎉"}</p>`; }
+async function pkfSubir(file,key){ const D=MP.D, f=pkFaltantes(D).find(x=>x.key===key); if(!file||!f) return;
+  try{ D.fotos=D.fotos||{}; D.pack=D.pack||[]; const id=Math.random().toString(36).slice(2,8); D.fotos[pkKey(id)]=await pkAchicar(file); D.pack.push({id,n:f.archivo.replace(/\.png$/,""),que:f.nom,tipo:/^Escena/.test(f.nom)?"escena":/^(guia:|p:)/.test(key)&&f.secs.some(s=>/Guías|Quién/.test(s))?"personaje":"objeto"});
+    f.lugares.forEach(l=>pkPoner(D,l,id)); mpPintar(); mpVista(); mpGuardarPronto(); toast(`✓ ${f.nom}: puesta en ${f.lugares.length} lugar${f.lugares.length>1?"es":""}`,"ok"); }
+  catch(e){ $("#mpMsg").textContent="No se pudo usar esa imagen."; } }
+async function pkfIA(){ const D=MP.D, m=$("#mpMsg"), b=$("#pkfIA"), F=pkFaltantes(D); if(!F.length) return; const sf=await getSample(); if(!sf){ m.textContent="Esto funciona en el panel dentro de Claude. La lista de abajo ya te dice qué falta."; return; }
+  b.disabled=true; b.textContent="✨ Pensando…";
+  try{ const r=await sf.json(`Para la plataforma educativa "${D.meta.nombreCompleto||D.meta.nombreCorto}" (primaria, Argentina) faltan estas ilustraciones. Para cada una decí en pocas palabras QUÉ imagen conviene buscar o dibujar para que un chico la reconozca al instante en el juego (estilo ilustración infantil, fondo transparente o blanco).\n${F.map((f,i)=>`${i+1}. ${f.nom} (juegos: ${f.secs.join(", ")})`).join("\n")}\nDevolvé SOLO JSON {"items":[{"n":1,"buscar":"ej.: mate de calabaza con bombilla, visto de costado"}]}.`,{modelTier:"quick",cache:false});
+    D.faltaInfo=D.faltaInfo||{}; pkLista(r,["items"]).forEach((x,j)=>{ const f=F[(Number(x.n)||j+1)-1]; if(f&&x.buscar) D.faltaInfo[f.key]=String(x.buscar).slice(0,140); }); pkfPintar(); mpGuardarPronto(); m.textContent="Listo: cada imagen que falta tiene su 🔎 con qué buscar."; }
+  catch(e){ m.textContent="No se pudo: "+pkErrTxt(e)+"."; } finally{ b.disabled=false; b.textContent="✨ Que Claude me diga qué buscar"; } }
+(function(){ const _p=mpPintar; mpPintar=function(){ _p(); try{ pkfPintar(); }catch(e){ console.warn(e); } };
+  const _i=plInit; plInit=async function(){ const v=$("#view-plataformas"), primera=v&&!v.dataset.pkf; await _i(); if(!primera) return; v.dataset.pkf="1";
+    v.addEventListener("change",e=>{ const t=e.target; if(t.dataset.pkf&&t.files[0]){ pkfSubir(t.files[0],t.dataset.pkf); t.value=""; return; } if(t.id==="pkfSolo") pkfPintar(); if(t.dataset.mpjon!=null) pkfPintar(); });
+    v.addEventListener("click",async e=>{ const t=e.target.closest("button"); if(!t) return;
+      if(t.id==="pkfIA") return pkfIA();
+      if(t.id==="pkfCopiar"){ const F=pkFaltantes(MP.D).filter(f=>!$("#pkfSolo").checked||f.nec); const txt=`Imágenes que faltan · ${MP.D.meta.nombreCompleto||""}\n\n`+F.map(f=>`${f.nec?"[Necesaria] ":""}${f.nom}${f.buscar?" — "+f.buscar:""} (${f.secs.join(", ")}) → ${f.archivo}`).join("\n"); try{ await navigator.clipboard.writeText(txt); toast("Lista copiada ✓","ok"); }catch{ $("#mpMsg").textContent=txt; } return; }
+      if(t.dataset.mpjup!=null||t.dataset.mpjdn!=null||t.dataset.mpjx!=null||t.id==="mpJAddGo") setTimeout(pkfPintar,0); }); };
+})();
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
