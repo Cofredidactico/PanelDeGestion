@@ -614,6 +614,7 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .ml-sals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.ml-sal{display:grid;gap:2px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2)}.ml-sal b{font-size:24px;font-family:var(--f-brand)}.ml-sal span{font-weight:700;font-size:13px}.ml-sal em{font-style:normal;font-size:12.5px;font-weight:700}.ml-sal small{color:var(--muted);font-size:11.5px;line-height:1.35}.ml-sal.ok em{color:#1F9D55}.ml-sal.warn em{color:#B7791F}.ml-sal.bad em{color:#C2410C}.ml-sal.bad{border-color:#C2410C}
 .ml-sts{display:grid;gap:4px;max-width:420px}.ml-st{display:grid;grid-template-columns:100px 1fr 44px;gap:8px;align-items:center;font-size:12.5px}.ml-st i{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.ml-st i b{display:block;height:100%}.ml-st em{font-style:normal;font-weight:800;text-align:right}
 .tp-card{border-color:color-mix(in srgb,var(--star) 45%,var(--line))}.tp-n{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--star);color:#1a1a1a;font-size:12px;margin-left:6px;vertical-align:3px}.tp-list{display:grid;gap:8px}.tp-it{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}.tp-i{display:grid;gap:2px;min-width:0}.tp-i span{font-size:12.5px}.tp-tot{font-size:15px}.tp-acc{display:flex;gap:6px;flex-wrap:wrap}@media (max-width:640px){.tp-it{grid-template-columns:1fr}}
+.mp-soltar{outline:2px dashed var(--blue);outline-offset:-6px;background:color-mix(in srgb,var(--blue) 7%,var(--surface))}
 .pk{margin:0 0 12px}.pk.on .pk-in{outline:2px dashed var(--blue);outline-offset:4px;border-radius:12px}.pk-drop{padding:20px 14px}
 .pk-in{display:grid;gap:10px}.pk-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pk-h b{font-size:14px}.pk-h .muted{font-size:12px}.pk-ha{margin-left:auto;display:flex;gap:4px}
 .pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;max-height:330px;overflow:auto;padding:4px}
@@ -2774,7 +2775,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
   <div class="mp-grid">
     <div class="vs-col">
       <section class="card mp-sec"><div class="bn-sh"><span class="bn-num">1</span><div><h2>Tema</h2><p class="muted">De qué trata la plataforma y con qué colores.</p></div></div>
-        <div class="mp-proy"><select id="mpProy" aria-label="Plataformas guardadas"></select><button class="btn small" type="button" id="mpNuevo">＋ Nueva</button><button class="btn small ghost" type="button" id="mpEjemplo" title="Cargar la plataforma de Güemes como ejemplo">Ejemplo: Güemes</button><label class="btn small ghost" title="Abrir un archivo de datos (.json)"><input type="file" id="mpImport" accept=".json,application/json" hidden>Abrir datos…</label></div>
+        <div class="mp-proy"><select id="mpProy" aria-label="Plataformas guardadas"></select><button class="btn small" type="button" id="mpNuevo">＋ Nueva</button><button class="btn small ghost" type="button" id="mpEjemplo" title="Cargar la plataforma de Güemes como ejemplo">Ejemplo: Güemes</button><label class="btn small" title="Abrir una plataforma que ya hiciste: el ZIP descargado, el HTML o el archivo de datos"><input type="file" id="mpImport" accept=".zip,.json,.html,.htm,application/zip,application/json,text/html" hidden>📦 Abrir ZIP…</label></div>
         <div class="mp-2"><div class="field"><label for="mpTema">Tema o personaje</label><input id="mpTema" maxlength="80" placeholder="Ej.: Día de la Tradición, Manuel Belgrano, El agua"></div>
           <div class="field"><label for="mpCorto">Nombre corto</label><input id="mpCorto" maxlength="30" placeholder="Ej.: Belgrano, la Tradición"></div></div>
         <div class="mp-2"><div class="field"><label for="mpFecha">Fecha o efeméride</label><input id="mpFecha" maxlength="60" placeholder="Ej.: 10 de Noviembre"></div>
@@ -2830,7 +2831,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
         <div class="mp-vtabs" role="group" aria-label="Qué versión ver"><button type="button" class="on" data-mpver="full">Completa</button><button type="button" data-mpver="demo">Demo</button><button type="button" data-mpver="acceso">Pantalla de acceso</button></div>
         <div class="mp-pub" id="mpPub"></div>
         <div class="mp-bar"><button class="btn" type="button" id="mpZip">⬇ ZIP</button><button class="btn" type="button" id="mpHtml">⬇ Un solo archivo</button><button class="btn" type="button" id="mpHtmlDemo">⬇ Demo</button><button class="btn" type="button" id="mpGuardar">💾 Guardar</button></div>
-        <p class="muted" id="mpMsg" style="margin:8px 0 0;font-size:13px">Empezá por el tema, o cargá el ejemplo de Güemes para ver cómo funciona.</p></section>
+        <p class="muted" id="mpMsg" style="margin:8px 0 0;font-size:13px">Empezá por el tema, abrí el ZIP de una plataforma que ya hiciste (📦 Abrir ZIP…) o cargá el ejemplo de Güemes.</p></section>
     </div>
   </div>
   <dialog id="mpDlg" class="mp-dlg"><form method="dialog" class="dlg"><h3 id="mpDlgT">Editar</h3><p class="muted" id="mpDlgAyuda" style="font-size:12.5px;margin:0 0 6px"></p><textarea id="mpDlgTxt" rows="18" spellcheck="false"></textarea><p class="err" id="mpDlgErr"></p><div class="dlg-actions"><button class="btn ghost" value="cancel">Cancelar</button><button class="btn primary" id="mpDlgOk" value="ok">Guardar cambios</button></div></form></dialog>
@@ -13629,7 +13630,7 @@ async function plInit(){ const v=$("#view-plataformas"); if(!v||v.dataset.ok) re
   v.addEventListener("change",async e=>{ const t=e.target;
     if(t.dataset.mpimg&&t.files[0]){ const k=t.dataset.mpimg; try{ mpSetImg(k,await mpImg(t.files[0],k==="portada"?900:k==="pintar"?1040:k.startsWith("cap")?1000:520,k==="pintar"?"png":"webp")); }catch(er){ $("#mpMsg").textContent=er.message; } t.value=""; return; }
     if(t.id==="mpProy"&&t.value) return mpAbrir(t.value);
-    if(t.id==="mpImport"&&t.files[0]){ try{ const D=JSON.parse(await t.files[0].text()); if(!D.meta) throw 0; MP.D=D; MP.id=D.meta.id||mpSlug(D.meta.nombreCompleto); mpFormLlenar(); mpPintar(); $("#mpMsg").textContent="Datos abiertos ✓"; }catch{ $("#mpMsg").textContent="Ese archivo no es de datos de una plataforma."; } t.value=""; return; }
+    if(t.id==="mpImport"&&t.files[0]){ const f=t.files[0]; t.value=""; return mpImportar(f); }
     if(t.id==="mpPdf"&&t.files[0]){ const msg=$("#mpPdfMsg"); msg.textContent="Leyendo el PDF…"; try{ const lib=await lzPdfjs(), pdf=await lib.getDocument({data:new Uint8Array(await t.files[0].arrayBuffer())}).promise; let out=[]; for(let i=1;i<=Math.min(pdf.numPages,60);i++){ const pg=await pdf.getPage(i), tc=await pg.getTextContent(); out.push(tc.items.map(x=>x.str).join(" ")); msg.textContent=`Leyendo… página ${i} de ${pdf.numPages}`; } const txt=out.map(lzLimpia).filter(Boolean).join("\n"); $("#mpTexto").value=txt.slice(0,20000); msg.textContent=`Listo: ${pdf.numPages} páginas, ${txt.split(/\s+/).length} palabras.`; if(!$("#mpTema").value) $("#mpTema").value=t.files[0].name.replace(/\.pdf$/i,"").replace(/[-_]+/g," ").slice(0,60); }catch(er){ msg.textContent=(er&&er.message)||"No pude leer el PDF."; } t.value=""; return; }
     if(["mpTema","mpCorto","mpFecha","mpIcono"].includes(t.id)) return mpDesdeForm(); });
   v.addEventListener("input",e=>{ const t=e.target; if(t.dataset.mpgn!=null&&MP.D){ MP.D.guias[+t.dataset.mpgn].nombre=t.value; mpVista(); mpGuardarPronto(); } });
@@ -13653,7 +13654,7 @@ function mpJuegosPintar(){ const D=MP.D, b=$("#mpJuegos"); if(!b) return; if(!D)
 // ---- acceso ----
 async function mpSha(s){ const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
 const mpCod=c=>String(c||"").trim().toUpperCase().replace(/\s+/g,"");
-async function mpHashes(D){ const A=D.acceso||{}; A.hashes=await Promise.all((A.codigos||[]).map(mpCod).filter(Boolean).map(c=>mpSha(c+"|"+D.meta.id))); return A.hashes; }
+async function mpHashes(D){ const A=D.acceso||{}; A.hashes=[...new Set([...(await Promise.all((A.codigos||[]).map(mpCod).filter(Boolean).map(c=>mpSha(c+"|"+D.meta.id)))),...(A.hashesPrev||[])])]; return A.hashes; }
 function mpNuevoCodigo(){ const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789", r=crypto.getRandomValues(new Uint8Array(6)); return "CD"+[...r].map(x=>A[x%A.length]).join(""); }
 let mpMats=null;
 async function mpMaterialesBib(){ if(mpMats) return mpMats; try{ if(MODE.supa&&db&&db._api) mpMats=await db._api("cofre_materiales?select=id,nombre,tipo&order=orden.asc")||[]; }catch{ mpMats=[]; } return mpMats||[]; }
@@ -13792,7 +13793,7 @@ function cqTexto(){ return CQ.pags.filter(p=>p.on&&p.txt).map(p=>`[Página ${p.n
 function cqSync(){ const t=cqTexto(); $("#mpTexto").value=t; const c=t.length; $("#cqTxtN").textContent=c?`· ${t.split(/\s+/).length.toLocaleString("es-AR")} palabras${c>18000?" · Claude usa las primeras ~18.000 letras: destildá páginas que no aporten":""}`:"";
   const on=CQ.pags.filter(p=>p.on).length; $("#cqSel").textContent=CQ.pags.length?`${on} de ${CQ.pags.length} para Claude`:""; cqStepsPintar(); }
 function cqStepsPintar(){ const P=CQ.pags, esc0=P.filter(p=>p.on&&p.tipo==="imagen").length, F=MP.fuente;
-  $("#cqSteps").innerHTML=[[P.length&&!CQ.busy,"📖",P.length?`${P.length} páginas leídas`:"Leyendo…"],[!!F,"✨",F?"Analizado con Claude":"Falta analizar"],[CQ.recortes>0,"✂️",CQ.recortes?`${CQ.recortes} ilustración${CQ.recortes>1?"es":""} del cuadernillo`:"Ilustraciones: opcional"]].map(([ok,ic,t])=>`<span class="cq-st${ok?" ok":""}"><i>${ok?"✓":ic}</i>${esc(t)}</span>`).join("");
+  $("#cqSteps").innerHTML=[[P.length&&!CQ.busy,"📖",P.length?`${P.length} páginas leídas`:"Leyendo…"],[!!F,"✨",F?"Analizado con Claude":"Falta analizar"],[CQ.recortes>0,"✂️",CQ.recortes?`${CQ.recortes} ${CQ.recortes>1?"ilustraciones":"ilustración"} del cuadernillo`:"Ilustraciones: opcional"]].map(([ok,ic,t])=>`<span class="cq-st${ok?" ok":""}"><i>${ok?"✓":ic}</i>${esc(t)}</span>`).join("");
   $("#cqOcr").hidden=!esc0; if(esc0) $("#cqOcr").textContent=`🔍 Leer con Claude ${esc0===1?"la página escaneada":"las "+esc0+" páginas escaneadas"}`; }
 const CQ_TIPO={tapa:["Tapa","t"],imagen:["Sin texto","w"],respuestas:["Respuestas","w"],creditos:["Créditos","w"],ocr:["Leída por Claude","ok"]};
 function cqPagsPintar(){ $("#cqPags").innerHTML=CQ.pags.map(p=>{ const t=CQ_TIPO[p.tipo]; return `<figure class="cq-p${p.on?" on":""}" data-cqp="${p.n}"><button type="button" class="cq-th" data-cqver="${p.n}" title="Ver la página ${p.n} y recortar">${p.thumb?`<img src="${p.thumb}" alt="Página ${p.n}" loading="lazy">`:`<span class="cq-sk"></span>`}${t?`<em class="cq-tg ${t[1]}">${t[0]}</em>`:""}</button><figcaption><label><input type="checkbox" data-cqon="${p.n}" ${p.on?"checked":""}> ${p.n}</label><small>${p.len?p.len>999?(p.len/1000).toFixed(1).replace(".",",")+"k":p.len:"—"}</small></figcaption></figure>`; }).join(""); }
@@ -13934,7 +13935,7 @@ async function pkSubir(files){ files=[...(files||[])]; if(!files.length) return;
   const yaN=new Set(D.pack.map(p=>p.n)), nuevas=lista.filter(x=>!yaN.has(x.n.replace(/\.\w+$/,""))).slice(0,Math.max(0,120-D.pack.length));
   if(!nuevas.length){ pkBar(null); $("#mpMsg").textContent=lista.length?"Esas imágenes ya estaban en el pack.":"No encontré imágenes (PNG, JPG, WEBP o SVG)."; return; }
   for(const [i,x] of nuevas.entries()){ pkBar(`Preparando imagen ${i+1} de ${nuevas.length}…`,(i+1)/nuevas.length); try{ const id=Math.random().toString(36).slice(2,8); D.fotos[pkKey(id)]=await pkAchicar(x.blob); D.pack.push({id,n:x.n.replace(/\.\w+$/,"")}); }catch{} }
-  pkBar(null); pkPintar(); mpGuardarPronto(); $("#mpMsg").textContent=`Sumé ${nuevas.length} imagen${nuevas.length>1?"es":""} al pack. Tocá “Ubicar las imágenes con Claude”.`;
+  pkBar(null); pkPintar(); mpGuardarPronto(); $("#mpMsg").textContent=`Sumé ${nuevas.length} ${nuevas.length>1?"imágenes":"imagen"} al pack. Tocá “Ubicar las imágenes con Claude”.`;
   if(window.matchMedia("(prefers-reduced-motion: no-preference)").matches) $("#pkUbicar").classList.add("cq-pulse"); }
 // ---- vista ----
 function pkPintar(){ const D=MP.D, P=(D&&D.pack)||[]; $("#pkDrop").hidden=!!P.length; $("#pkIn").hidden=!P.length; if(!P.length){ $("#pkGrid").innerHTML=""; $("#pkRes").innerHTML=""; $("#pkSheet").hidden=true; return; }
@@ -13967,7 +13968,7 @@ async function pkUbicar(silencio){ const D=MP.D, m=$("#mpMsg"), b=$("#pkUbicar")
     const val=new Set(L.map(x=>x.l)); let n=0, usadas=new Set();
     (r&&r.asig||[]).forEach(a=>{ const p=cat[a.i-1]; if(!p||!val.has(a.l)) return; if(a.l==="pintar"&&p.tipo&&p.tipo!=="lineal") return; if(pkPoner(D,a.l,p.id)){ n++; usadas.add(p.id); } });
     pkBar(null); mpPintar(); mpVista(); mpGuardarPronto();
-    m.textContent=n?`✨ ¡Listo! Claude ubicó ${usadas.size} imagen${usadas.size>1?"es":""} en ${n} lugar${n>1?"es":""} de la plataforma. Mirá la vista previa; para cambiar una, tocala en el pack.`:"Claude no encontró lugares que correspondan a estas imágenes. Podés ubicarlas a mano tocando cada una.";
+    m.textContent=n?`✨ ¡Listo! Claude ubicó ${usadas.size} ${usadas.size>1?"imágenes":"imagen"} en ${n} lugar${n>1?"es":""} de la plataforma. Mirá la vista previa; para cambiar una, tocala en el pack.`:"Claude no encontró lugares que correspondan a estas imágenes. Podés ubicarlas a mano tocando cada una.";
     if(n&&!silencio) toast(`✨ ${n} imágenes ubicadas`,"ok"); }
   catch(e){ pkBar(null); m.textContent=e&&e.message&&!e.code?e.message:(typeof sampleErr==="function"?sampleErr(e):"No se pudo ubicar."); }
   finally{ PK.busy=false; b.disabled=false; b.textContent="✨ Ubicar las imágenes con Claude"; } }
@@ -13984,7 +13985,7 @@ mpGuardar=async function(sil){ if(!MP.D||!db) return; const m=$("#mpMsg"), id=MP
   catch(e){ try{ const {X,map}=pkSeparar(MP.D); let local=false; try{ await PK_IDB.put(id,map); local=true; }catch{} await db.doc("plataformas/"+id).set({D:X,actualizado:now,imagenesLocales:local}); if(!sil||!MP.avisoLocal){ m.textContent=local?"Guardado ✓ · las imágenes quedan guardadas en esta compu (pesan mucho para la nube). Para llevarla a otra compu, usá el ZIP.":"Guardado, pero sin las imágenes (pesaban mucho). Descargá el ZIP para conservarlas."; MP.avisoLocal=true; } }
     catch(e2){ m.textContent="No se pudo guardar: "+(e2.message||e2); } }
   mpListar(); };
-(function(){ const _ab=mpAbrir; mpAbrir=async function(id){ await _ab(id); if(!MP.D) return; if(JSON.stringify(MP.D).includes('"idb:')){ let map=null; try{ map=await PK_IDB.get(id); }catch{} const f=pkUnir(MP.D,map); if(f) $("#mpMsg").textContent=`Abrí la plataforma, pero ${f} imagen${f>1?"es están":" está"} guardada${f>1?"s":""} en otra compu. Subilas de nuevo o abrí el ZIP.`; } PK.sel=""; mpPintar(); mpVista(); };
+(function(){ const _ab=mpAbrir; mpAbrir=async function(id){ await _ab(id); if(!MP.D) return; if(JSON.stringify(MP.D).includes('"idb:')){ let map=null; try{ map=await PK_IDB.get(id); }catch{} const f=pkUnir(MP.D,map); if(f) $("#mpMsg").textContent=`Abrí la plataforma, pero ${f} ${f>1?"imágenes están":"imagen está"} guardada${f>1?"s":""} en otra compu. Subilas de nuevo o abrí el ZIP.`; } PK.sel=""; mpPintar(); mpVista(); };
   const _cl=mpConLogo; mpConLogo=function(D){ const X=_cl(D); return pkPodar(X); };
   const _p=mpPintar; mpPintar=function(){ _p(); try{ pkPintar(); }catch(e){ console.warn(e); } };
   const _ia=mpIA; mpIA=async function(){ await _ia(); if(MP.D&&(MP.D.pack||[]).length&&!MP.busy){ $("#mpMsg").textContent="Ubicando también las imágenes de tu pack…"; await pkUbicar(true); } };
@@ -14004,6 +14005,39 @@ mpGuardar=async function(sil){ if(!MP.D||!db) return; const m=$("#mpMsg"), id=MP
 })();
 // para la plataforma publicada: solo las imágenes que se usan
 function pkPodar(X){ if(!X||!X.fotos) return X; const s=JSON.stringify({...X,fotos:null}); Object.keys(X.fotos).forEach(k=>{ if(/^img:/.test(k)&&!s.includes('"'+k+'"')) delete X.fotos[k]; }); delete X.pack; return X; }
+
+// ---------- Plataformas · abrir una plataforma ya hecha (ZIP, HTML o datos) sin volver a usar Claude ----------
+function mpDatosDeHtml(html){ const m=String(html).match(/<script id="datos" type="application\/json">([\s\S]*?)<\/script>/); if(!m) return null; try{ return JSON.parse(m[1]); }catch{ return null; } }
+async function mpImportar(f){ const m=$("#mpMsg"); if(!f) return; m.textContent="Abriendo “"+f.name+"”…";
+  try{ let D=null, Z=null, base="", origen="";
+    if(/\.zip$/i.test(f.name)||/zip/.test(f.type)){ Z=await (await loadJSZip()).loadAsync(f); const F=Object.values(Z.files).filter(e=>!e.dir&&!/(^|\/)(__MACOSX|\.)/.test(e.name));
+      const prof=e=>e.name.split("/").length, prim=(re)=>F.filter(e=>re.test(e.name)&&!/(^|\/)demo\//.test(e.name)).sort((a,b)=>prof(a)-prof(b))[0];
+      const dj=prim(/(^|\/)datos\.json$/i), ix=prim(/(^|\/)index\.html?$/i);
+      if(dj){ try{ D=JSON.parse(await dj.async("string")); base=dj.name.replace(/[^/]*$/,""); origen="datos"; }catch{} }
+      if((!D||!D.meta)&&ix){ D=mpDatosDeHtml(await ix.async("string")); base=ix.name.replace(/[^/]*$/,""); origen="html"; }
+      if(!D||!D.meta){ const dm=F.find(e=>/(^|\/)demo\/index\.html?$/i.test(e.name)); if(dm){ D=mpDatosDeHtml(await dm.async("string")); base=dm.name.replace(/demo\/[^/]*$/,""); origen="demo"; } } }
+    else if(/\.html?$/i.test(f.name)||/html/.test(f.type)){ D=mpDatosDeHtml(await f.text()); origen="html"; }
+    else { D=JSON.parse(await f.text()); origen="datos"; }
+    if(!D||!D.meta) throw new Error("Ese archivo no es de una plataforma hecha con el motor. Abrí el ZIP que descargaste desde Plataformas (o su index.html / datos.json).");
+    // imágenes del ZIP → dentro de los datos
+    let n=0, falta=0; const tipos={png:"image/png",jpg:"image/jpeg",jpeg:"image/jpeg",webp:"image/webp",gif:"image/gif",svg:"image/svg+xml"};
+    const cache={}; const leer=async rel=>{ const r=String(rel).replace(/^(\.\.\/)+|^\.\//g,""); if(cache[r]!==undefined) return cache[r]; const e=Z&&(Z.file(base+r)||Z.file(r)); if(!e){ cache[r]=null; return null; } const ext=r.split(".").pop().toLowerCase(); const b64=await e.async("base64"); return cache[r]=`data:${tipos[ext]||"image/png"};base64,${b64}`; };
+    const walk=async o=>{ for(const k of Object.keys(o)){ const v=o[k]; if(typeof v==="string"&&/^(\.\.\/|\.\/)?(img\/[^"'<>]+\.(png|jpe?g|webp|gif|svg)|logo-cofre\.png)$/i.test(v)){ if(/logo-cofre/.test(v)){ o[k]=""; continue; } const d=await leer(v); if(d){ o[k]=d; n++; } else { o[k]=""; falta++; } } else if(v&&typeof v==="object") await walk(v); } };
+    await walk(D);
+    // poner al día los datos de versiones anteriores del panel
+    const avisos=[]; if(D.demo){ delete D.demo; if(origen==="demo") avisos.push("venía de la demo: revisá en “Juegos por sección” que estén todos prendidos"); }
+    D.img=D.img||{}; D.img.logo=""; D.meta.id=D.meta.id||mpSlug(D.meta.nombreCompleto||D.meta.nombreCorto||"plataforma"); D.tema=D.tema||"patria"; D.menus=D.menus||mpMenus(D.meta.nombreCorto||D.meta.nombreCompleto);
+    if(D.acceso&&(D.acceso.hashes||[]).length&&!(D.acceso.codigos||[]).length){ D.acceso.hashesPrev=D.acceso.hashes; avisos.push("los códigos de acceso anteriores siguen andando (no se ven porque se guardan cifrados)"); }
+    if(D.acceso){ delete D.acceso.fn; delete D.acceso.key; }
+    if(D.fuente) MP.fuente=D.fuente;
+    MP.D=D; MP.id=D.meta.id; if(typeof PK!=="undefined") PK.sel=""; mpFormLlenar(); mpPals(); mpPintar(); mpVista(); await mpGuardar(true);
+    m.textContent=`📦 Abrí “${D.meta.nombreCompleto||D.meta.nombreCorto}” ${Z?"desde el ZIP":"desde el archivo"}${n?` con ${n} ${n>1?"imágenes":"imagen"}`:""} ✓ Ya quedó en 📂 Mis plataformas. Ya podés seguir mejorándola, sin volver a usar Claude.${falta?` (Faltaron ${falta} ${falta>1?"imágenes":"imagen"} que no estaban en el ZIP.)`:""}${avisos.length?" · "+avisos.join(" · "):""}`;
+    toast("📦 Plataforma abierta","ok"); }
+  catch(e){ m.textContent=e&&e.message?e.message:"No se pudo abrir el archivo."; } }
+(function(){ const _i=plInit; plInit=async function(){ const v=$("#view-plataformas"), primera=v&&!v.dataset.imp; await _i(); if(!primera) return; v.dataset.imp="1";
+  const card=$("#mpProy").closest("section"); ["dragenter","dragover"].forEach(t=>card.addEventListener(t,e=>{ if([...(e.dataTransfer.items||[])].some(x=>x.kind==="file")){ e.preventDefault(); card.classList.add("mp-soltar"); } }));
+  ["dragleave","drop"].forEach(t=>card.addEventListener(t,e=>{ if(t==="dragleave"&&card.contains(e.relatedTarget)) return; card.classList.remove("mp-soltar"); }));
+  card.addEventListener("drop",e=>{ const f=e.dataTransfer.files[0]; if(!f) return; e.preventDefault(); mpImportar(f); }); }; })();
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
