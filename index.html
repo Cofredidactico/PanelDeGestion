@@ -614,6 +614,8 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .ml-sals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.ml-sal{display:grid;gap:2px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2)}.ml-sal b{font-size:24px;font-family:var(--f-brand)}.ml-sal span{font-weight:700;font-size:13px}.ml-sal em{font-style:normal;font-size:12.5px;font-weight:700}.ml-sal small{color:var(--muted);font-size:11.5px;line-height:1.35}.ml-sal.ok em{color:#1F9D55}.ml-sal.warn em{color:#B7791F}.ml-sal.bad em{color:#C2410C}.ml-sal.bad{border-color:#C2410C}
 .ml-sts{display:grid;gap:4px;max-width:420px}.ml-st{display:grid;grid-template-columns:100px 1fr 44px;gap:8px;align-items:center;font-size:12.5px}.ml-st i{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.ml-st i b{display:block;height:100%}.ml-st em{font-style:normal;font-weight:800;text-align:right}
 .tp-card{border-color:color-mix(in srgb,var(--star) 45%,var(--line))}.tp-n{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--star);color:#1a1a1a;font-size:12px;margin-left:6px;vertical-align:3px}.tp-list{display:grid;gap:8px}.tp-it{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}.tp-i{display:grid;gap:2px;min-width:0}.tp-i span{font-size:12.5px}.tp-tot{font-size:15px}.tp-acc{display:flex;gap:6px;flex-wrap:wrap}@media (max-width:640px){.tp-it{grid-template-columns:1fr}}
+.lz-car{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:0;border-radius:16px;padding:14px 16px;margin:4px 0 12px;cursor:pointer;color:#fff;font:inherit;background:linear-gradient(120deg,#C13584,#E1306C 45%,#F77737);box-shadow:0 10px 24px -12px rgba(193,53,132,.7);transition:transform .15s}.lz-car:hover{transform:translateY(-2px)}.lz-car>span:first-child{font-size:30px}.lz-car b{display:block;font-size:15px}.lz-car small{display:block;opacity:.92;font-size:12px}.lz-car em{margin-left:auto;font-style:normal;font-weight:800;background:rgba(255,255,255,.22);padding:6px 12px;border-radius:999px;font-size:13px}
+.lzc-help{margin:0;color:#cbd5e1;font-size:13px}.lzc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.lzc-it{position:relative;margin:0;background:#111827;border-radius:12px;overflow:hidden;cursor:pointer;opacity:.38;outline:3px solid transparent;transition:opacity .15s,outline-color .15s}.lzc-it.on{opacity:1;outline-color:#E1306C}.lzc-it img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}.lzc-it figcaption{font-size:12px;padding:6px 8px;color:#e5e7eb}.lzc-av{display:block;color:#fbbf24;font-weight:700}.lzc-dl{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;cursor:pointer}.lzc-acc{display:flex;gap:10px;flex-wrap:wrap}
 .rs-hk{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}.rs-hk button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;cursor:pointer}.rs-hk button:hover{border-color:var(--blue);color:var(--blue)}
 .mp-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}.mp-tabs button{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}.mp-tabs button span{grid-row:1/3;font-size:24px;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2)}.mp-tabs button b{font-size:15px}.mp-tabs button small{font-size:12px;color:var(--muted)}.mp-tabs button:hover{transform:translateY(-2px)}.mp-tabs button.on{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 22%,transparent),0 10px 24px rgba(0,0,0,.12);background:linear-gradient(120deg,color-mix(in srgb,var(--blue) 12%,var(--surface)),var(--surface))}.mp-tabs button.on span{background:linear-gradient(135deg,var(--blue),var(--orange))}
 .mp-lz{animation:lzIn .35s ease}@keyframes lzIn{from{opacity:0;transform:translateY(10px)}}
@@ -14092,7 +14094,7 @@ mpGuardar=async function(sil){ if(!MP.D||!db) return; const m=$("#mpMsg"), id=MP
   catch(e){ try{ const {X,map}=pkSeparar(MP.D); let local=false; try{ await PK_IDB.put(id,map); local=true; }catch{} await db.doc("plataformas/"+id).set({D:X,actualizado:now,imagenesLocales:local}); if(!sil||!MP.avisoLocal){ m.textContent=local?"Guardado ✓ · las imágenes quedan guardadas en esta compu (pesan mucho para la nube). Para llevarla a otra compu, usá el ZIP.":"Guardado, pero sin las imágenes (pesaban mucho). Descargá el ZIP para conservarlas."; MP.avisoLocal=true; } }
     catch(e2){ m.textContent="No se pudo guardar: "+(e2.message||e2); } }
   mpListar(); };
-(function(){ const _ab=mpAbrir; mpAbrir=async function(id){ await _ab(id); if(!MP.D) return; if(JSON.stringify(MP.D).includes('"idb:')){ let map=null; try{ map=await PK_IDB.get(id); }catch{} const f=pkUnir(MP.D,map); if(f) $("#mpMsg").textContent=`Abrí la plataforma, pero ${f} ${f>1?"imágenes están":"imagen está"} guardada${f>1?"s":""} en otra compu. Subilas de nuevo o abrí el ZIP.`; } PK.sel=""; mpPintar(); mpVista(); };
+(function(){ const _ab=mpAbrir; mpAbrir=async function(id){ await _ab(id); if(!MP.D) return; if(JSON.stringify(MP.D).includes('"idb:')){ let map=null; try{ map=await PK_IDB.get(id); }catch{} MP.faltan=[]; const f=await mpAsegurarImgs(MP.D,map); if(f) $("#mpMsg").textContent=`Abrí la plataforma, pero ${f} ${f>1?"imágenes están":"imagen está"} guardada${f>1?"s":""} en otra compu y no ${f>1?"están":"está"} en la versión publicada. Subilas de nuevo o abrí el ZIP.`; } PK.sel=""; mpPintar(); mpVista(); };
   const _cl=mpConLogo; mpConLogo=function(D){ const X=_cl(D); return pkPodar(X); };
   const _p=mpPintar; mpPintar=function(){ _p(); try{ pkPintar(); }catch(e){ console.warn(e); } };
   const _ia=mpIA; mpIA=async function(){ await _ia(); if(MP.D&&(MP.D.pack||[]).length&&!MP.busy){ $("#mpMsg").textContent="Ubicando también las imágenes de tu pack…"; await pkUbicar(true); } };
@@ -14812,7 +14814,7 @@ async function lzDesdeLink(url){ const m=$("#mpMsg"); url=String(url||"").trim()
     const base=url.replace(/[^/]*$/,""); const abs=o=>{ Object.keys(o).forEach(k=>{ const v=o[k]; if(typeof v==="string"&&/^(img\/|logo-cofre\.png)/.test(v)) o[k]=base+v; else if(v&&typeof v==="object") abs(v); }); }; abs(D); delete D.demo;
     const slug=(url.match(/plataformas\/([^/]+)\//)||[])[1]; D.pub=Object.assign({},D.pub||{},{slug:slug||mpSlug(D.meta.nombreCompleto),url:base,demo:base+"demo/"}); D.img=D.img||{}; D.img.logo="";
     let previo=null; try{ const s=await db.doc("plataformas/"+D.meta.id).get(); if(s.exists) previo=s.data().D; }catch{}
-    if(previo){ MP.D=previo; MP.D.pub=Object.assign({},previo.pub||{},D.pub); } else { MP.D=D; } MP.id=MP.D.meta.id; mpFormLlenar(); mpPintar(); await mpGuardar(true); lzPintar(); m.textContent=previo?"Encontré esta plataforma en Mis plataformas: abrí tu versión guardada ✓":"Abrí la plataforma publicada ✓ Ya quedó en Mis plataformas."; }
+    if(previo){ MP.D=previo; MP.D.pub=Object.assign({},previo.pub||{},D.pub); MP.faltan=[]; try{ await mpAsegurarImgs(MP.D); }catch{} } else { MP.D=D; } MP.id=MP.D.meta.id; mpFormLlenar(); mpPintar(); await mpGuardar(true); lzPintar(); m.textContent=previo?"Encontré esta plataforma en Mis plataformas: abrí tu versión guardada ✓":"Abrí la plataforma publicada ✓ Ya quedó en Mis plataformas."; }
   catch(e){ m.textContent=(e&&e.message&&!/Failed to fetch/i.test(e.message)?e.message:"No pude abrir ese enlace desde acá. Probá en el panel web o abrí su ZIP con 📦 Abrir ZIP…"); } }
 // ---- vista "Lanzar" ----
 function lzPasos(D){ const A=D.acceso||{}, p=D.pub||{}, lz=D.lanz||{};
@@ -14909,6 +14911,100 @@ async function rcRender(D,R,{fps=60,onProg}={}){ const [W,H]=RF[RC.fmt], codec=a
     for(let i=0;i<n;i+=F){ const m=Math.min(F,n-i), buf=new Float32Array(m*2); buf.set(L0.subarray(i,i+m),0); buf.set(L1.subarray(i,i+m),m); const ad=new AudioData({format:"f32-planar",sampleRate:sr,numberOfFrames:m,numberOfChannels:2,timestamp:Math.round(i/sr*1e6),data:buf}); aenc.encode(ad); ad.close(); }
     await aenc.flush(); aenc.close(); }
   mux.finalize(); onProg&&onProg(1); return {blob:new Blob([target.buffer],{type:"video/mp4"}),fps,audio:aCodec?aCodec[1]:null,video:/^avc/.test(codec)?"h264":"vp9"}; }
+
+// ---------- Plataformas · rescate de imágenes (reels y publicaciones siempre con las imágenes reales) + carrusel de Instagram con capturas de las actividades ----------
+function mpRutasIdb(o,p=[],out=[]){ if(o&&typeof o==="object") for(const k of Object.keys(o)){ const v=o[k]; if(typeof v==="string"&&/^idb:\d+$/.test(v)) out.push([...p,k]); else if(v&&typeof v==="object") mpRutasIdb(v,[...p,k],out); } return out; }
+function mpEn(o,p){ return p.reduce((a,k)=>a==null?a:a[k],o); }
+function mpPon(o,p,v){ const q=p.slice(0,-1).reduce((a,k)=>a==null?a:a[k],o); if(q&&typeof q==="object") q[p[p.length-1]]=v; }
+async function mpAUrl(u){ try{ const r=await fetch(u); if(!r.ok) return ""; const b=await r.blob(); if(!/^image\//.test(b.type)&&!/\.(webp|png|jpe?g|gif|svg)(\?|$)/i.test(u)) return ""; return await new Promise(ok=>{ const f=new FileReader(); f.onload=()=>ok(String(f.result).replace(/^data:application\/octet-stream/,"data:image/"+((u.match(/\.(webp|png|jpe?g|gif)/i)||[])[1]||"webp").replace("jpg","jpeg"))); f.onerror=()=>ok(""); f.readAsDataURL(b); }); }catch{ return ""; } }
+function mpUrlsPublicada(D){ const s=new Set(); if(D.pub&&D.pub.url) s.add(D.pub.url.replace(/\/?$/,"/")); const base=(typeof MP_GH!=="undefined"&&MP_GH.web)||"https://cofredidactico.com.ar/"; [D.pub&&D.pub.slug,D.meta&&D.meta.id,mpSlug(D.meta.nombreCompleto||D.meta.nombreCorto||"")].filter(Boolean).forEach(x=>s.add(base.replace(/\/?$/,"/")+"plataformas/"+x+"/")); return [...s]; }
+// trae de la versión publicada las imágenes que no están en esta compu
+async function mpDesdePublicada(D,rutas){ if(!rutas.length) return 0; let R=null, base="";
+  for(const u of mpUrlsPublicada(D)){ try{ const r=await fetch(u+"index.html",{cache:"no-store"}); if(!r.ok) continue; const X=mpDatosDeHtml(await r.text()); if(X&&X.meta){ R=X; base=u; break; } }catch{} }
+  if(!R) return 0; let n=0;
+  for(const p of rutas){ let v=mpEn(R,p); if(typeof v!=="string"||!v||/^idb:/.test(v)) continue; if(!/^(data:|https?:)/.test(v)) v=base+v.replace(/^\.\//,""); if(/^https?:/.test(v)){ const d=await mpAUrl(v); if(!d) continue; v=d; } if(/^data:image/.test(v)){ mpPon(D,p,v); n++; } }
+  return n; }
+// devuelve cuántas imágenes siguen faltando
+async function mpAsegurarImgs(D,map){ if(!D) return 0; const rutas=mpRutasIdb(D); if(!rutas.length&&!(MP.faltan&&MP.faltan.length)) return 0;
+  if(rutas.length){ if(map===undefined){ try{ map=await PK_IDB.get(MP.id||D.meta.id); }catch{ map=null; } } pkUnir(D,map); }
+  const todas=[...rutas,...(MP.faltan||[])].filter((p,i,a)=>{ const v=mpEn(D,p); return (!v||/^idb:/.test(v))&&a.findIndex(q=>q.join("/")===p.join("/"))===i; });
+  let n=0; if(todas.length) n=await mpDesdePublicada(D,todas);
+  MP.faltan=todas.filter(p=>!mpEn(D,p)); if(n){ try{ mpGuardarPronto(); }catch{} } return MP.faltan.length; }
+function mpAvisoFaltan(){ const f=(MP.faltan||[]).length; if(f) $("#mpMsg").textContent=`⚠️ ${f} ${f>1?"imágenes no están":"imagen no está"} en esta compu ni en la versión publicada. Volvé a ubicarlas desde el pack o abrí el ZIP de la plataforma.`; return f; }
+(function(){
+  const _r=mpReel; mpReel=async function(){ if(MP.D){ const m=$("#mpMsg"), t=m.textContent; m.textContent="Buscando las imágenes de la plataforma…"; await mpAsegurarImgs(MP.D); if(!mpAvisoFaltan()) m.textContent=t; } return _r.apply(this,arguments); };
+  const _l=lzImagen; lzImagen=async function(){ if(MP.D){ await mpAsegurarImgs(MP.D); mpAvisoFaltan(); } return _l.apply(this,arguments); };
+  const _a=mpAbrir; mpAbrir=async function(){ MP.faltan=[]; return _a.apply(this,arguments); };
+})();
+
+// ===== Carrusel para Instagram: portada + capturas reales de las actividades + cierre =====
+let lzH2Clib=null; function lzH2C(){ return lzH2Clib||(lzH2Clib=new Promise((ok,ko)=>{ if(window.html2canvas) return ok(window.html2canvas); const s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"; s.onload=()=>ok(window.html2canvas); s.onerror=()=>{ lzH2Clib=null; ko(new Error("No se pudo cargar la herramienta de capturas")); }; document.head.appendChild(s); })); }
+const LZC_JUEGOS=[["unir","Uní cada imagen con su palabra"],["secuencia","Ordená la secuencia"],["sopa_pc","Sopa de letras con imágenes"],["glosario","Glosario ilustrado con audio"],["anagrama","Ordená las letras"],["quien_soy","¿Quién soy? Pistas que se revelan"],["memotest","Memotest de imágenes"],["vf_facil","¿Sí o No? Con pictogramas"],["mirar","Mirá y escuchá, paso a paso"],["info_pc","Infografía interactiva"],["rompecabezas","Rompecabezas"],["cruci","Crucigrama con pistas"],["pintar","Para pintar"],["mapa","Mapa de la Argentina"]];
+function lzcDisponibles(D){ const L=x=>(D[x]||[]).length; const ok={unir:L("unir")>=3,secuencia:L("secuencia")>=3,sopa_pc:L("sopa_pc")>=3,glosario:L("glosario")>=3,anagrama:L("anagrama")>=1,quien_soy:L("quien_soy")>=1,memotest:L("memotest")>=3,vf_facil:L("vf_facil")>=2,mirar:L("mirar")>=2,info_pc:L("info_pc")>=2,rompecabezas:!!(D.rompecabezas&&D.rompecabezas.img),cruci:!!(D.cruci&&(D.cruci.filas||[]).length),pintar:!!(D.img&&D.img.pintar),mapa:L("mapa")>=1};
+  const fotos=k=>{ const s=JSON.stringify(D[k]||""); return (s.match(/img:/g)||[]).length; };
+  return LZC_JUEGOS.filter(([id])=>ok[id]).map(([id,t])=>{ const menu=Object.entries(D.menus||{}).find(([c,m])=>(m.juegos||[]).some(j=>j.id===id)), j=menu&&menu[1].juegos.find(j=>j.id===id); return {id,t:(j&&j.t)||t,ic:(j&&j.ic)||"⭐",s:t,ciclo:menu?menu[0]:"pc",peso:fotos(id)}; })
+    .sort((a,b)=>(b.peso>0)-(a.peso>0)); }
+async function lzcFrame(D,w,h){ const X=JSON.parse(JSON.stringify(D)); X.acceso={modo:"libre"}; delete X.demo; const f=document.createElement("iframe"); f.setAttribute("aria-hidden","true"); f.style.cssText=`position:fixed;left:-20000px;top:0;width:${w}px;height:${h}px;border:0;opacity:1;pointer-events:none`;
+  const listo=new Promise(r=>f.onload=r); f.srcdoc=mpHtml(mpConLogo(X)); document.body.appendChild(f); await listo; const W=f.contentWindow; try{ await W.document.fonts.ready; }catch{} W.sobreFigurita=()=>{}; try{ W.speechSynthesis&&(W.speechSynthesis.speak=()=>{}); }catch{} await new Promise(r=>setTimeout(r,500)); return f; }
+async function lzcEsperarImgs(doc){ const im=[...doc.querySelectorAll("#vista-juego img")]; await Promise.all(im.map(i=>i.complete?0:new Promise(r=>{ i.onload=i.onerror=r; setTimeout(r,2500); }))); return im.filter(i=>!i.naturalWidth).length; }
+// ajustes para que cada actividad se vea "en acción"
+function lzcPreparar(W,id){ const d=W.document;
+  try{ if(id==="memotest"){ d.querySelectorAll("#zona-juego .memo-carta").forEach((c,i)=>{ if(i%3!==2) c.classList.add("vuelta"); }); }
+    if(id==="quien_soy"){ for(let i=0;i<2;i++){ const b=[...d.querySelectorAll("#zona-juego button")].find(b=>/pista/i.test(b.textContent)); b&&b.click(); } }
+  }catch{} }
+async function lzcCapturar(f,j,w,hh){ const W=f.contentWindow, d=W.document; try{ if(W.abrirCiclo) W.abrirCiclo(j.ciclo); }catch{} W.abrirJuego(j.id); await new Promise(r=>setTimeout(r,650)); lzcPreparar(W,j.id); await new Promise(r=>setTimeout(r,350));
+  const rotas=await lzcEsperarImgs(d); d.querySelectorAll(".xp-toast,.toast,#sobreFig,.sobre-fig,.xp-fx").forEach(x=>x.remove());
+  const fin=()=>{ try{ d.getAnimations().forEach(an=>{ try{ const t=an.effect&&an.effect.getTiming&&an.effect.getTiming(); if(t&&t.iterations===Infinity) an.cancel(); else an.finish(); }catch{ try{ an.cancel(); }catch{} } }); }catch{} }; fin();
+  d.querySelectorAll("body *").forEach(el=>{ const cs=W.getComputedStyle(el); if(cs.position==="fixed"&&!el.closest("#vista-juego")) el.style.visibility="hidden"; });
+  const z=d.querySelector("#zona-juego"), h=z&&z.querySelector("h2"), y=Math.max(0,h?h.getBoundingClientRect().bottom+W.scrollY+4:(z?z.getBoundingClientRect().top+W.scrollY:0)-14); W.scrollTo(0,0); await new Promise(r=>setTimeout(r,120)); fin();
+  const h2c=await lzH2C(); const cv=await h2c(d.documentElement,{x:0,y,width:w,height:hh,windowWidth:w,windowHeight:Math.max(hh,d.documentElement.scrollHeight),scrollX:0,scrollY:0,scale:2,useCORS:true,logging:false,onclone:cd=>{ const st=cd.createElement("style"); st.textContent="*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}.memo-carta>span{transform:none!important}.memo-carta.vuelta .memo-dorso,.memo-carta:not(.vuelta) .memo-cara{visibility:hidden!important}"; cd.head.appendChild(st); },backgroundColor:getComputedStyle(d.body).backgroundColor||"#fff"});
+  // control: que no salga en blanco
+  const g=cv.getContext("2d"), px=g.getImageData(0,0,cv.width,cv.height).data; let s=0,s2=0,n=0; for(let i=0;i<px.length;i+=4*97){ const v=px[i]+px[i+1]+px[i+2]; s+=v; s2+=v*v; n++; } const vari=s2/n-(s/n)**2;
+  const imgs=d.querySelectorAll("#zona-juego img").length; return {cv,rotas,vacia:vari<200,imgs}; }
+function lzcLamina(D,j,shot,i,n){ const W=1080,H=1350, c=document.createElement("canvas"); c.width=W; c.height=H; const g=c.getContext("2d"), [c1,c2,c3]=mpPal(D), F=(s,w=800)=>`${w} ${s}px "Fredoka","Nunito",system-ui,sans-serif`, EMO='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+  const rr=(x,y,w,h,r)=>{ g.beginPath(); g.roundRect?g.roundRect(x,y,w,h,r):g.rect(x,y,w,h); };
+  const gr=g.createLinearGradient(0,0,0,H); gr.addColorStop(0,"#FFF8EC"); gr.addColorStop(1,"#FDEFD9"); g.fillStyle=gr; g.fillRect(0,0,W,H);
+  g.globalAlpha=.16; g.fillStyle=c2; g.beginPath(); g.arc(W-60,120,190,0,7); g.fill(); g.fillStyle=c1; g.beginPath(); g.arc(40,H-150,170,0,7); g.fill(); g.globalAlpha=1;
+  // encabezado
+  g.textAlign="left"; g.textBaseline="middle"; const tag=`ACTIVIDAD ${i}`; g.font=F(30,900); const tw=g.measureText(tag).width+44; rr(70,58,tw,54,27); g.fillStyle=c1; g.fill(); g.fillStyle="#fff"; g.fillText(tag,92,86);
+  g.font=F(30,800); g.fillStyle="#6B7280"; g.textAlign="right"; g.fillText(`${i+1}/${n}`,W-70,86); g.textAlign="left";
+  g.font=`72px ${EMO}`; g.fillStyle="#000"; g.fillText(j.ic,70,190);
+  let fs=66; g.font=F(fs,900); while(g.measureText(j.t).width>W-260&&fs>40){ fs-=2; g.font=F(fs,900); } g.fillStyle="#1F2A3A"; g.fillText(j.t,170,190);
+  g.font=F(34,700); g.fillStyle="#4B5563"; g.fillText(j.s===j.t?"Así se ve en la plataforma 👇":j.s,72,262);
+  // pantalla (tablet)
+  const X=60,Y=310,Wd=W-120,Hd=890; g.save(); g.shadowColor="rgba(31,42,58,.28)"; g.shadowBlur=50; g.shadowOffsetY=18; rr(X,Y,Wd,Hd,44); g.fillStyle="#1F2A3A"; g.fill(); g.restore();
+  const bz=16, sx=X+bz, sy=Y+bz, sw=Wd-bz*2, sh=Hd-bz*2; g.save(); rr(sx,sy,sw,sh,30); g.clip(); g.fillStyle="#fff"; g.fillRect(sx,sy,sw,sh);
+  const k=Math.max(sw/shot.width,sh/shot.height), dw=shot.width*k, dh=shot.height*k; g.drawImage(shot,sx+(sw-dw)/2,sy,dw,dh); g.restore();
+  // pie
+  g.textAlign="center"; g.font=F(34,800); g.fillStyle=c1; g.fillText(`🎮 Plataforma interactiva · ${D.meta.nombreCompleto||D.meta.nombreCorto}`,W/2,H-92);
+  g.font=F(28,700); g.fillStyle="#6B7280"; g.fillText("cofredidactico.com.ar · Deslizá 👉",W/2,H-46);
+  // puntitos del carrusel
+  for(let q=0;q<n;q++){ g.beginPath(); g.arc(W/2-(n-1)*13+q*26,Y+Hd+38,q===i?8:5,0,7); g.fillStyle=q===i?c1:"rgba(31,42,58,.22)"; g.fill(); }
+  return c; }
+function lzcEscena(D,R,esc){ rcCargar(D); const bk=JSON.parse(JSON.stringify(RC)); try{ RC.esc=Object.fromEntries(Object.keys(RC.esc).map(k=>[k,k===esc?1:0])); RC.dur=2; RC.barra=0; RC.marca=1; RC.trans="mezcla"; RC.dm=0; const c=document.createElement("canvas"); c.width=1080; c.height=1350; rcFrame(c.getContext("2d"),1.9,D,R,1080,1350); return c; } finally{ Object.assign(RC,bk); } }
+async function lzCarrusel(){ const D=MP.D; if(!D) return; let o=document.getElementById("lzCarDlg"); if(o) o.remove(); o=document.createElement("div"); o.id="lzCarDlg"; o.className="cq-ver";
+  o.innerHTML=`<div class="rs-in lzc-in"><div class="cq-vh"><b>📸 Carrusel para Instagram</b><span class="muted" id="lzcEst">Preparando…</span><button type="button" class="cq-vx" id="lzcX" aria-label="Cerrar">✕</button></div>
+    <p class="lzc-help">Portada + capturas reales de las actividades (con tus imágenes) + cierre. Formato 4:5 (1080×1350), el que más ocupa en el feed. Tocá una lámina para sacarla o ponerla.</p>
+    <div class="lzc-grid" id="lzcGrid"></div>
+    <div class="lzc-acc"><button type="button" class="btn primary" id="lzcZip" disabled>⬇ Descargar las elegidas (ZIP)</button><button type="button" class="btn" id="lzcTxt">📋 Copiar texto para el posteo</button></div></div>`;
+  document.body.appendChild(o); const est=o.querySelector("#lzcEst"), grid=o.querySelector("#lzcGrid"), L=[]; let cerrado=false; const cerrar=()=>{ cerrado=true; o.remove(); };
+  o.querySelector("#lzcX").onclick=cerrar; o.addEventListener("click",e=>{ if(e.target===o) cerrar(); });
+  const agregar=(nom,c,av)=>{ const it={nom,c,on:true,av}; L.push(it); const fig=document.createElement("figure"); fig.className="lzc-it on"; fig.innerHTML=`<img alt="${esc(nom)}" src="${c.toDataURL("image/jpeg",.7)}"><figcaption><b>${L.length}.</b> ${esc(nom)}${av?`<span class="lzc-av">⚠️ ${esc(av)}</span>`:""}</figcaption><button type="button" class="lzc-dl" title="Descargar esta">⬇</button>`;
+    fig.onclick=e=>{ if(e.target.closest(".lzc-dl")){ c.toBlob(b=>saveFile(`${String(L.indexOf(it)+1).padStart(2,"0")}-${mpSlug(nom)}.jpg`,b,"image/jpeg"),"image/jpeg",.93); return; } it.on=!it.on; fig.classList.toggle("on",it.on); }; grid.appendChild(fig); };
+  o.querySelector("#lzcTxt").onclick=async()=>{ rcCargar(D); const t=`Deslizá para ver la plataforma por dentro 👉\n\n`+rcCaption(D); try{ await navigator.clipboard.writeText(t); toast("Texto copiado ✓","ok"); }catch{ toast("No se pudo copiar","err"); } };
+  o.querySelector("#lzcZip").onclick=async()=>{ const sel=L.filter(x=>x.on); if(!sel.length) return; const Z=new (await loadJSZip())(); for(const [i,x] of sel.entries()){ const b=await new Promise(r=>x.c.toBlob(r,"image/jpeg",.93)); Z.file(`${String(i+1).padStart(2,"0")}-${mpSlug(x.nom)}.jpg`,b); } const z=await Z.generateAsync({type:"blob"}); await saveFile(`carrusel-${mpSlug(D.meta.nombreCompleto||D.meta.nombreCorto)}.zip`,z,"application/zip"); };
+  let f=null; const fallas=[];
+  try{ est.textContent="Buscando las imágenes de la plataforma…"; await mpAsegurarImgs(D); const falt=(MP.faltan||[]).length;
+    const R=await rcRecursos(D); const J=lzcDisponibles(D).slice(0,8), n=J.length+2;
+    agregar("Portada",lzcEscena(D,R,"portada"),falt?`faltan ${falt} imágenes en esta compu`:"");
+    est.textContent="Abriendo la plataforma para sacar las capturas…"; f=await lzcFrame(D,560,518);
+    for(const [i,j] of J.entries()){ if(cerrado) break; est.textContent=`📸 Capturando ${i+1} de ${J.length}: ${j.t}…`; try{ const r=await lzcCapturar(f,j,560,518); let av=""; if(r.vacia) av="la captura salió vacía"; else if(r.rotas) av=`${r.rotas} ${r.rotas>1?"imágenes no cargaron":"imagen no cargó"}`; if(av) fallas.push(j.t+": "+av); agregar(j.t,lzcLamina(D,j,r.cv,i+1,n),av); }catch(er){ console.warn(er); fallas.push(j.t+": no se pudo capturar"); } }
+    if(!cerrado) agregar("Cierre",lzcEscena(D,R,"cta"),"");
+    est.textContent=fallas.length?`Listo, revisá: ${fallas.join(" · ")}`:`¡Listo! ${L.length} láminas, sin errores ✓`; o.querySelector("#lzcZip").disabled=false;
+  }catch(e){ console.warn(e); est.textContent="No se pudo armar el carrusel: "+(e.message||e); }
+  finally{ if(f) f.remove(); } }
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("#lzCarBtn"); if(b){ e.preventDefault(); lzCarrusel(); } });
+(function(){ const _p=lzPintar; lzPintar=function(){ _p.apply(this,arguments); try{ const s=document.querySelector("#mpLz .lz-imgs"); if(s&&!document.getElementById("lzCarBtn")) s.insertAdjacentHTML("beforebegin",`<button type="button" class="lz-car" id="lzCarBtn"><span>📸</span><span><b>Carrusel para Instagram</b><small>Portada + capturas reales de 6 a 8 actividades con tus imágenes + cierre · 4:5</small></span><em>Crear</em></button>`); }catch(er){ console.warn(er); } }; })();
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
