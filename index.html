@@ -594,6 +594,74 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+#view-igbot{--igg:linear-gradient(120deg,#F58529,#DD2A7B 45%,#8134AF 75%,#515BD4)}
+.ig-solo-web{border:1px solid var(--line);background:var(--surface-2);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:14px}
+.ig-hero{display:grid;grid-template-columns:minmax(0,1.2fr) auto minmax(0,1.4fr);gap:18px;align-items:center;padding:18px 20px;border-radius:22px;background:var(--igg);color:#fff;box-shadow:0 18px 40px -22px rgba(129,52,175,.75);margin-bottom:14px;position:relative;overflow:hidden}
+.ig-hero::after{content:"";position:absolute;inset:auto -60px -90px auto;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.12)}
+.ig-hero-cta{display:flex;gap:14px;align-items:center;min-width:0}.ig-hero-cta b{display:block;font-size:19px}.ig-hero-cta small{display:block;opacity:.9;font-size:12.5px}
+.ig-hero-av{width:58px;height:58px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.85);flex:0 0 auto}.ig-hero-av0{display:grid;place-items:center;font-size:26px;background:rgba(255,255,255,.18)}
+.ig-hero .ig-av{width:58px;height:58px;font-size:24px;border:3px solid rgba(255,255,255,.85)}
+.ig-power{position:relative;z-index:1;display:grid;justify-items:center;gap:2px;border:0;cursor:pointer;background:rgba(255,255,255,.16);color:#fff;border-radius:20px;padding:12px 20px;font:inherit;transition:background .2s,transform .15s}.ig-power:hover{transform:translateY(-1px);background:rgba(255,255,255,.24)}
+.ig-pw-k{width:64px;height:34px;border-radius:99px;background:rgba(0,0,0,.28);position:relative;transition:background .25s}.ig-pw-k::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.3);transition:left .25s cubic-bezier(.34,1.5,.64,1)}
+.ig-power.on .ig-pw-k{background:#22C55E}.ig-power.on .ig-pw-k::after{left:34px}.ig-power.on .ig-pw-k{box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:igLatido 2s infinite}
+@keyframes igLatido{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}70%{box-shadow:0 0 0 12px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.ig-pw-t{font-weight:900;font-size:15px}.ig-power small{opacity:.85;font-size:11px}
+.ig-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;position:relative;z-index:1}
+.ig-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.17);border-radius:99px;padding:5px 11px;font-size:12.5px;font-weight:800}.ig-chip small{font-weight:600;opacity:.85}
+.ig-chip i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.6)}.ig-chip.ok i{background:#4ADE80;box-shadow:0 0 0 3px rgba(74,222,128,.3)}.ig-chip.err i{background:#FCA5A5;box-shadow:0 0 0 3px rgba(252,165,165,.35)}
+.ig-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.ig-kpi{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px;position:relative;min-width:0}
+.ig-kpi-ic{font-size:22px;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--surface-2);flex:0 0 auto}
+.ig-kpi b{display:block;font-size:22px;line-height:1.05}.ig-kpi>div>span{display:block;font-size:12.5px;font-weight:800}.ig-kpi>div>small{display:block;color:var(--muted);font-size:11.5px}
+.ig-spark{position:absolute;right:10px;top:10px;width:58px;height:20px}.ig-spark rect{fill:#DD2A7B;opacity:.75}
+.ig-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;align-items:start}.ig-col{display:grid;gap:14px;min-width:0}
+.ig-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}.ig-h h2{margin:0;font-size:17px}
+.ig-sim-in{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:14px;align-items:start}.ig-sim-form{display:grid;gap:8px}
+.ig-sim-form .field span{font-size:12px;font-weight:700;color:var(--muted)}.ig-sim-form input,.ig-sim-form select,.ig-sim-form textarea,.ig-prot input,.ig-prot select,.ig-gen textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface-2);color:var(--ink);font:inherit;font-size:13.5px}
+.ig-sim-ej{display:flex;flex-wrap:wrap;gap:5px}.ig-sim-res{margin:0;font-size:13px;min-height:18px}
+.ig-phone{border-radius:30px;border:8px solid #111827;background:#fff;color:#111;height:430px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 40px -24px rgba(0,0,0,.6)}
+.ig-ph-top{text-align:center;padding:10px;border-bottom:1px solid #eee;font-size:13px}.ig-ph-body{flex:1;overflow:auto;padding:10px;display:flex;flex-direction:column;gap:10px;background:#fff}
+.ig-ph-vacio{color:#888;font-size:12.5px;text-align:center;margin:auto 0}
+.ig-c{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.35}.ig-c small{display:block;color:#8e8e8e;font-size:11px;margin-top:2px}.ig-rep{margin-left:30px}
+.ig-av{--c:#DD2A7B;width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;background:var(--c);color:#fff;font-weight:900;font-size:12px;flex:0 0 auto}.ig-av-yo{background:var(--igg);font-size:9px}
+.ig-typing{display:inline-flex;gap:3px;margin-left:36px;padding:8px 10px;background:#efefef;border-radius:14px}.ig-typing i{width:6px;height:6px;border-radius:50%;background:#999;animation:igTy 1s infinite}.ig-typing i:nth-child(2){animation-delay:.15s}.ig-typing i:nth-child(3){animation-delay:.3s}
+@keyframes igTy{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-3px);opacity:1}}
+.ig-dm{margin-top:4px;border-top:1px dashed #ddd;padding-top:8px}.ig-dm-h{font-size:11px;font-weight:800;color:#8134AF;margin-bottom:6px}.ig-dm-b{background:linear-gradient(135deg,#8134AF,#515BD4);color:#fff;border-radius:18px 18px 4px 18px;padding:9px 12px;font-size:12px;line-height:1.4;margin-left:24px}
+.ig-in{animation:igIn .35s cubic-bezier(.34,1.4,.64,1) both}@keyframes igIn{from{opacity:0;transform:translateY(8px) scale(.97)}}
+.ig-reglas{display:grid;gap:8px;margin:8px 0}
+.ig-regla{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--surface-2);display:grid;gap:7px;transition:opacity .2s}.ig-regla.off{opacity:.55}
+.ig-r-h{display:flex;align-items:center;gap:10px}.ig-r-h b{flex:1;min-width:0;font-size:14px}.ig-r-uso{font-size:11.5px;font-weight:800;color:#1F9D55}
+.ig-kw{display:flex;flex-wrap:wrap;gap:5px}.ig-kw span{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:800}
+.ig-r-m{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted)}.ig-r-posts{display:inline-flex;gap:4px;align-items:center;margin-left:auto}
+.ig-mal{color:#DC2626!important;font-weight:800}
+.ig-pmini{width:28px;height:28px;border-radius:7px;overflow:hidden;display:inline-grid;place-items:center;background:var(--surface);border:1px solid var(--line);flex:0 0 auto;font-size:13px}.ig-pmini img{width:100%;height:100%;object-fit:cover}
+.ig-sw{position:relative;display:inline-block;width:40px;height:23px;flex:0 0 auto;cursor:pointer}.ig-sw input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}.ig-sw i{position:absolute;inset:0;border-radius:99px;background:var(--line);transition:background .2s}.ig-sw i::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .2s}.ig-sw input:checked+i{background:#DD2A7B}.ig-sw input:checked+i::after{left:20px}.ig-sw input:focus-visible+i{outline:2px solid var(--blue);outline-offset:2px}
+.ig-gen{border:1px dashed var(--line);border-radius:14px;padding:10px 12px;display:grid;gap:8px}.ig-gen-h{display:flex;gap:10px;align-items:center}.ig-gen-h b{display:block}.ig-gen-h small{display:block;color:var(--muted);font-size:12px}.ig-gen .field span{font-size:12px;font-weight:700;color:var(--muted)}.ig-gen-b{display:grid;gap:8px}
+.ig-sug{margin-top:10px;border-radius:14px;padding:10px 12px;background:linear-gradient(120deg,rgba(245,133,41,.12),rgba(221,42,123,.12))}.ig-sug b{display:block;font-size:13px;margin-bottom:6px}.ig-sug div{display:flex;flex-wrap:wrap;gap:5px}
+.ig-fil{display:flex;flex-wrap:wrap;gap:5px}.chipb.on{border-color:#DD2A7B;color:#DD2A7B}
+.ig-feed{display:grid;gap:8px;max-height:640px;overflow:auto;padding-right:2px}
+.ig-it{display:flex;gap:10px;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:12px;padding:10px;background:var(--surface-2)}.ig-it.ig-ok{border-left-color:#22C55E}.ig-it.ig-err{border-left-color:#EF4444}.ig-it.ig-warn{border-left-color:#F59E0B}
+.ig-it-b{flex:1;min-width:0;display:grid;gap:4px}.ig-it-h{display:flex;gap:8px;align-items:center;font-size:13px}.ig-it-h .ig-pmini{margin-left:auto}
+.ig-it-c{margin:0;font-size:13.5px}.ig-it-r{margin:0;font-size:12.5px;color:var(--muted)}.ig-it-e{margin:0;font-size:12px;color:#DC2626}
+.ig-it-s{display:flex;flex-wrap:wrap;gap:4px}.ig-tag{font-size:11px;font-weight:800;border-radius:99px;padding:2px 8px;background:var(--surface);border:1px solid var(--line)}.ig-tag.ok{color:#15803D}.ig-tag.err{color:#DC2626}.ig-tag.ig-warn{color:#B45309}
+.ig-vacio{display:grid;justify-items:center;gap:4px;text-align:center;padding:26px 10px}.ig-vacio span{font-size:34px}.ig-vacio small{color:var(--muted)}
+.ig-prot{display:grid;gap:10px}.ig-prot .ig-ck{display:flex!important;flex-direction:row!important;gap:10px;align-items:flex-start;font-size:13px;text-align:left;justify-content:flex-start}.ig-prot .ig-ck input{width:auto!important;flex:0 0 auto;margin-top:3px;accent-color:#DD2A7B}.ig-ck>span{flex:1;min-width:0}.ig-ck b{display:block}.ig-ck small{display:block;color:var(--muted);font-size:12px}
+.ig-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}.ig-prot .field span{font-size:12px;font-weight:700;color:var(--muted)}.ig-2{display:flex;gap:6px;align-items:center}.ig-2 input{width:70px}
+.ig-con summary{list-style:none;cursor:pointer}.ig-con summary::-webkit-details-marker{display:none}.ig-pct{background:var(--surface-2);border-radius:99px;padding:3px 10px;font-size:13px}
+.ig-pasos{list-style:none;padding:0;margin:8px 0;display:grid;gap:8px}.ig-pasos li{display:flex;gap:10px;align-items:flex-start}.ig-pasos i{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-style:normal;font-weight:900;font-size:12px;flex:0 0 auto}.ig-pasos li.ok i{background:#22C55E;border-color:#22C55E;color:#fff}
+.ig-pasos b{display:block;font-size:13.5px}.ig-pasos small{display:block;color:var(--muted);font-size:12px}.ig-pasos code{font-size:11.5px}
+.ig-copy{display:grid;gap:4px;margin:8px 0}.ig-copy label{font-size:12px;font-weight:700;color:var(--muted)}.ig-copy div{display:flex;gap:6px;align-items:center}.ig-copy code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:6px 9px;font-size:12px}
+.ig-acc{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.ig-nota{font-size:12.5px;border-radius:12px;padding:9px 11px;background:rgba(245,158,11,.12);margin:10px 0 0}.ig-est{margin:6px 0 0;font-size:12.5px}
+.ig-dlg{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--surface);color:var(--ink);border-radius:18px;padding:18px;display:grid;gap:10px}.ig-dlg .cq-vx{background:var(--surface-2);color:var(--ink)}
+.ig-pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}.ig-pc{position:relative;border:2px solid transparent;border-radius:12px;overflow:hidden;padding:0;background:var(--surface-2);cursor:pointer;display:grid;color:var(--ink);font:inherit}.ig-pc img{width:100%;aspect-ratio:1;object-fit:cover;display:block}.ig-pc span{font-size:11px;padding:4px 6px;text-align:left}.ig-pc i{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;background:#fff;color:#DD2A7B;display:none;place-items:center;font-style:normal;font-weight:900}.ig-pc.on{border-color:#DD2A7B}.ig-pc.on i{display:grid}
+@media (max-width:1150px){.ig-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.ig-hero{grid-template-columns:1fr auto}.ig-chips{grid-column:1/-1;justify-content:flex-start}}
+@media (max-width:1000px){.ig-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.ig-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ig-hero{grid-template-columns:1fr}.ig-power{justify-self:start}.ig-sim-in{grid-template-columns:1fr}.ig-phone{height:380px}.ig-row{grid-template-columns:1fr}}
+
+#view-igbot .ig-h .muted{text-transform:none;letter-spacing:0;font-size:12.5px}
+.ig-con,.ig-con details,.ig-copy,.ig-copy>div{min-width:0;max-width:100%}.ig-copy{grid-template-columns:minmax(0,1fr)}
+.ig-dm-b{overflow-wrap:anywhere}
+
 .ml2-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1.05fr);gap:16px;align-items:start;margin-bottom:16px}.ml2-col{display:grid;gap:16px;min-width:0}.ml2-der{position:sticky;top:12px}
 @media (max-width:1050px){.ml2-grid{grid-template-columns:minmax(0,1fr)}.ml2-der{position:static}}
 .ml2{display:grid;gap:10px}.ml2 h3{margin:0}.ml2-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media (max-width:620px){.ml2-row{grid-template-columns:1fr}}
@@ -2186,6 +2254,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     <button class="tab" role="tab" data-view="motor" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg><span>Motor creador</span></button>
     <button class="tab" role="tab" data-view="lanzamientos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.5-2 4.5-2 6 1.5 0 4.5-.5 6-2"/><path d="M9 15l-3-3c1-4 4.5-8 12-9-1 7.5-5 11-9 12z"/><circle cx="14.5" cy="9.5" r="1.5"/></svg><span>Lanzamientos</span><span class="n" id="nLanz">—</span></button>
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Mensajes</span></button>
+    <button class="tab" role="tab" data-view="igbot" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Respuestas IG</span></button>
     <button class="tab" role="tab" data-view="video" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg><span>Estudio de video</span></button>
     <button class="tab" role="tab" data-view="pdf" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 13 3 3 3-3"/><path d="M12 9v7"/></svg><span>Optimizar PDF</span></button>
     <button class="tab" role="tab" data-view="fichas" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span>Fichas B/N</span></button>
@@ -2919,6 +2988,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
   <dialog id="mpDlg" class="mp-dlg"><form method="dialog" class="dlg"><h3 id="mpDlgT">Editar</h3><p class="muted" id="mpDlgAyuda" style="font-size:12.5px;margin:0 0 6px"></p><textarea id="mpDlgTxt" rows="18" spellcheck="false"></textarea><p class="err" id="mpDlgErr"></p><div class="dlg-actions"><button class="btn ghost" value="cancel">Cancelar</button><button class="btn primary" id="mpDlgOk" value="ok">Guardar cambios</button></div></form></dialog>
 </main>
 
+<main class="wrap view" id="view-igbot" hidden></main>
 <main class="wrap view" id="view-datos" hidden>
   <div class="view-h"><div><h1>Datos</h1><p class="lead" id="dMode"></p></div><button class="btn small" type="button" id="supaOut2" hidden>Cerrar sesión</button></div>
   <section class="card">
@@ -4073,7 +4143,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","video","pdf","fichas","plataformas","correos","datos"];
+  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","video","pdf","fichas","plataformas","correos","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -4089,6 +4159,7 @@ function renderView(v){
   if(v==="pdf") poInit();
   if(v==="fichas") bnInit();
   if(v==="plataformas") plInit();
+  if(v==="igbot") igInit();
   if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
   if(v==="stats") renderStats();
@@ -15110,6 +15181,192 @@ lzDesdeLink=async function(url){ try{ await mpTraerPublicada(url); }catch(e){ $(
   const _i=plInit; plInit=async function(){ await _i.apply(this,arguments); poner(); };
   document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest(".mpt-btn"); if(b){ e.preventDefault(); mpTraerDlg(); } }); })();
 
+// ---------- RESPUESTAS AUTOMÁTICAS DE INSTAGRAM (función "instagram-respuestas" en tu Supabase) ----------
+const IG_FN="instagram-respuestas";
+const IG={init:false, cfg:null, estado:null, filas:[], posts:null, filtro:"todos", cargando:false, t:null, ultimo:0};
+const IG_CFG0={activo:false,desde:"",hilos:false,postCualquiera:true,mdHoras:24,maxHora:60,demoraMin:4,demoraMax:12,evitar:[],siFallaMD:"¡Hola {usuario}! 😊 Escribime por mensaje directo y te paso toda la información 💙",general:{activo:false,respuestas:["¡Gracias {usuario}! 💙"],dm:""}};
+const IG_EST={respondido:["✅","Respondido","ok"],"sin-regla":["💬","Sin palabra clave","warn"],error:["⚠️","Error","err"],pausado:["⏸️","En pausa","muted"],filtrado:["🚫","Bloqueado","muted"],"en-hilo":["↪️","En conversación","muted"],propio:["🙋","Tuyo","muted"],limite:["⏳","Límite por hora","warn"],anterior:["🕰️","Anterior a la activación","muted"],nuevo:["⏳","Procesando","muted"]};
+// ---- coincidencias (igual que en la función) ----
+function igFold(s){ return String(s??"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,""); }
+function igCoincide(texto,palabra){ const p=igFold(palabra).trim(); if(!p) return false; if(!/^[a-z0-9ñ ]+$/.test(p)) return igFold(texto).includes(p);
+  const t=" "+igFold(texto).replace(/[^a-z0-9ñ]+/g," ").trim()+" ", q=p.replace(/\s+/g," "); return t.includes(" "+q+" ")||t.includes(" "+q+"s ")||t.includes(" "+q+"es ")||(q.length>3&&q.endsWith("s")&&t.includes(" "+q.slice(0,-1)+" ")); }
+function igPostsDe(r){ const s=new Set((r.posts||[]).map(String)); const m=!r.postsManual&&String(r.url||"").match(/manage-post\/(\d+)/); if(m) s.add(m[1]); return [...s]; }
+function igElegir(reglas,cfg,texto,mediaId){ const act=reglas.filter(r=>r.activa!==false&&r.bot!==false&&((r.palabras||[]).length||(r.respuestas||[]).length||r.dm)).sort((a,b)=>(a.orden??999)-(b.orden??999));
+  const delPost=act.filter(r=>igPostsDe(r).includes(String(mediaId||""))), glob=act.filter(r=>!igPostsDe(r).length);
+  for(const L of [delPost,glob]){ const r=L.find(x=>(x.palabras||[]).some(p=>igCoincide(texto,p))); if(r) return {regla:r,por:"palabra",palabra:(r.palabras||[]).find(p=>igCoincide(texto,p))}; }
+  if(cfg.postCualquiera&&delPost.length) return {regla:delPost[0],por:"publicacion"};
+  if(cfg.general&&cfg.general.activo&&((cfg.general.respuestas||[]).length||cfg.general.dm)) return {regla:{id:"general",titulo:"Respuesta general",...cfg.general},por:"general"};
+  return null; }
+const igCompletar=(t,u)=>String(t||"").replace(/\{(usuario|nombre)\}/gi,u?"@"+u:"").replace(/\s+([!?,.])/g,"$1").trim();
+// ---- servidor ----
+async function igCall(body){ const cfg=supaCfg(); if(!MODE.supa||!cfg){ const e=new Error("Esto funciona desde el panel web."); e.code="solo-web"; throw e; }
+  const tok=await supaToken(cfg); if(!tok){ supaExpired(); throw new Error("Tu sesión se cerró. Volvé a entrar."); }
+  let r; try{ r=await fetch(`${cfg.url}/functions/v1/${IG_FN}`,{method:"POST",headers:{apikey:cfg.key,Authorization:"Bearer "+tok,"Content-Type":"application/json"},body:JSON.stringify(body)}); }
+  catch{ const e=new Error("No encontré la función “instagram-respuestas” en tu Supabase (paso 5 de la conexión)."); e.code="sin-funcion"; throw e; }
+  const j=await r.json().catch(()=>({})); if(!r.ok){ const e=new Error(r.status===404?"Todavía no creaste la función “instagram-respuestas” en Supabase (paso 5).":(j.error||`Error ${r.status}`)); e.status=r.status; throw e; } return j; }
+async function igCfgCargar(){ try{ const s=await db.doc("panel/igbot").get(); IG.cfg={...IG_CFG0,...(s.exists?s.data():{})}; IG.cfg.general={...IG_CFG0.general,...(IG.cfg.general||{})}; }catch{ IG.cfg={...IG_CFG0}; } return IG.cfg; }
+let igGuardarT=null; function igGuardar(inmediato){ clearTimeout(igGuardarT); const go=async()=>{ if(!needDb()) return; try{ await db.doc("panel/igbot").set({...IG.cfg,actualizado:new Date().toISOString()}); const m=$("#igGuard"); if(m){ m.textContent="Guardado ✓"; setTimeout(()=>{ if(m.textContent==="Guardado ✓") m.textContent=""; },1600); } }catch(e){ toast("No se pudo guardar","err"); } }; if(inmediato) return go(); igGuardarT=setTimeout(go,600); }
+// ---- utilidades visuales ----
+function igHace(iso){ if(!iso) return "—"; const s=(Date.now()-new Date(iso).getTime())/1000; if(s<60) return "recién"; if(s<3600) return `hace ${Math.round(s/60)} min`; if(s<86400) return `hace ${Math.round(s/3600)} h`; const d=Math.round(s/86400); return d===1?"ayer":`hace ${d} días`; }
+const igN=n=>Number(n||0).toLocaleString("es-AR");
+function igAvatar(u){ const c=["#DD2A7B","#8134AF","#515BD4","#F58529","#1F9D55","#0EA5E9"]; let h=0; for(const ch of String(u||"?")) h=(h*31+ch.charCodeAt(0))>>>0; return `<span class="ig-av" style="--c:${c[h%c.length]}">${esc(String(u||"?").charAt(0).toUpperCase())}</span>`; }
+function igPostMini(id){ const p=(IG.posts||[]).find(x=>String(x.id)===String(id)); if(!p) return ""; const src=p.thumbnail_url||p.media_url; return src?`<a class="ig-pmini" href="${esc(p.permalink||"#")}" target="_blank" rel="noopener" title="${esc((p.caption||"").slice(0,80))}"><img src="${esc(src)}" alt="" loading="lazy" referrerpolicy="no-referrer"></a>`:""; }
+// ---- estructura ----
+function igEsqueleto(){ const v=$("#view-igbot"); v.innerHTML=`
+  <div class="view-h"><div><h1>Respuestas automáticas de Instagram</h1><p class="lead">Tu propio asistente: responde cada comentario en público y le manda el mensaje directo con el precio, el alias y el link. Sin límites de plan.</p></div><span class="muted" id="igGuard"></span></div>
+  <div class="ig-solo-web" id="igSoloWeb" hidden>🌐 El asistente trabaja desde tu <b>panel web</b> (ahí está conectado con Supabase e Instagram). Acá podés probar el simulador y ver cómo responderían tus reglas.</div>
+  <section class="ig-hero" id="igHero"></section>
+  <section class="ig-kpis" id="igKpis"></section>
+  <div class="ig-grid">
+    <div class="ig-col">
+      <section class="card ig-sim"><div class="ig-h"><h2>🧪 Simulador</h2><span class="muted">Probá cualquier comentario sin publicar nada</span></div>
+        <div class="ig-sim-in"><div class="ig-sim-form">
+          <label class="field"><span>Publicación</span><select id="igSimPost"><option value="">Cualquier publicación</option></select></label>
+          <label class="field"><span>Usuario</span><input id="igSimUser" value="maestra.lucia" maxlength="30"></label>
+          <label class="field"><span>Comentario</span><textarea id="igSimTxt" rows="2" maxlength="300">¡Quiero info! 😍</textarea></label>
+          <div class="ig-sim-ej">${["Info","Precio?","Quiero la plataforma","Me encanta 😍","¿Sirve para 2° grado?"].map(t=>`<button type="button" class="chipb" data-igej="${esc(t)}">${esc(t)}</button>`).join("")}</div>
+          <button type="button" class="btn primary" id="igSimGo">▶ Simular respuesta</button><p class="ig-sim-res" id="igSimRes"></p></div>
+          <div class="ig-phone" id="igPhone"><div class="ig-ph-top"><b>Comentarios</b></div><div class="ig-ph-body" id="igPhBody"><p class="ig-ph-vacio">Escribí un comentario y tocá “Simular”.</p></div></div></div></section>
+      <section class="card"><div class="ig-h"><h2>📋 Reglas</h2><button type="button" class="btn small" id="igIrMens">✏️ Editar textos en Mensajes</button></div>
+        <p class="sub">Son tus automatizaciones de <b>Mensajes</b>. Cada una puede ir atada a publicaciones: así “Info” en el posteo del Sapo responde con el Sapo y en el de la plataforma, con la plataforma.</p>
+        <div class="ig-reglas" id="igReglas"></div>
+        <div class="ig-gen" id="igGen"></div>
+        <div id="igSug"></div></section>
+    </div>
+    <div class="ig-col">
+      <section class="card"><div class="ig-h"><h2>⚡ Actividad</h2><div class="ig-fil" id="igFil">${[["todos","Todos"],["respondido","Respondidos"],["sin-regla","Sin palabra clave"],["error","Errores"]].map(([k,t])=>`<button type="button" class="chipb${k==="todos"?" on":""}" data-igf="${k}">${t}</button>`).join("")}</div></div>
+        <div class="ig-feed" id="igFeed"><p class="muted">Cargando…</p></div></section>
+      <section class="card"><div class="ig-h"><h2>🛡️ Protecciones y ritmo</h2></div><div class="ig-prot" id="igProt"></div></section>
+      <section class="card ig-con" id="igCon"></section>
+    </div>
+  </div>`; }
+// ---- hero ----
+function igHero(){ const h=$("#igHero"); if(!h) return; const E=IG.estado||{}, c=E.cuenta, on=!!IG.cfg.activo, dias=E.vence?Math.round((new Date(E.vence)-Date.now())/864e5):null;
+  const chip=(ok,t,s)=>`<span class="ig-chip ${ok===true?"ok":ok===false?"err":"muted"}"><i></i>${t}${s?` <small>${s}</small>`:""}</span>`;
+  h.innerHTML=`<div class="ig-hero-cta">${c?(c.profile_picture_url?`<img class="ig-hero-av" src="${esc(c.profile_picture_url)}" alt="" referrerpolicy="no-referrer">`:igAvatar(c.username)):`<span class="ig-hero-av ig-hero-av0">📷</span>`}
+      <div><b>${c?"@"+esc(c.username):"Instagram sin conectar"}</b><small>${c?`${igN(c.followers_count)} seguidores · ${igN(c.media_count)} publicaciones`:MODE.supa?"Seguí los pasos de “Conexión” (abajo a la derecha)":"Se conecta desde el panel web"}</small></div></div>
+    <button type="button" class="ig-power ${on?"on":""}" id="igPower" role="switch" aria-checked="${on}"><span class="ig-pw-k"></span><span class="ig-pw-t">${on?"Respondiendo":"En pausa"}</span><small>${on?"Tocá para pausar":"Tocá para activar"}</small></button>
+    <div class="ig-chips">${chip(c?true:(E.errorCuenta?false:null),"Conexión",E.errorCuenta?"revisar":c?"ok":"")}${chip(E.suscripto===true?true:E.suscripto===false?false:null,"Avisos de Meta",E.ultimo_aviso?igHace(E.ultimo_aviso):"")}${chip(E.ultima_revision&&Date.now()-new Date(E.ultima_revision)<15*60e3?true:null,"Revisión cada 5 min",E.ultima_revision?igHace(E.ultima_revision):"opcional")}${chip(dias==null?null:dias>10,"Llave",dias==null?"":`renueva sola · ${dias} días`)}</div>`; }
+// ---- números ----
+function igKpis(){ const k=$("#igKpis"); if(!k) return; const F=IG.filas.filter(f=>Date.now()-new Date(f.creado)<7*864e5&&!["propio","en-hilo"].includes(f.estado)), resp=F.filter(f=>f.estado==="respondido"), dm=F.filter(f=>f.ok_dm), sr=F.filter(f=>f.estado==="sin-regla");
+  const t=resp.map(f=>(new Date(f.creado)-new Date(f.comentado||f.creado))/1000).filter(x=>x>=0&&x<86400); const prom=t.length?t.reduce((a,b)=>a+b,0)/t.length:null;
+  const dias=[...Array(7)].map((_,i)=>{ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-6+i); return d; }), porDia=dias.map(d=>F.filter(f=>{ const x=new Date(f.creado); return x>=d&&x<new Date(d.getTime()+864e5); }).length), mx=Math.max(1,...porDia);
+  const bars=`<svg class="ig-spark" viewBox="0 0 70 22" aria-hidden="true">${porDia.map((v,i)=>`<rect x="${i*10+1}" y="${22-Math.max(2,v/mx*20)}" width="8" height="${Math.max(2,v/mx*20)}" rx="2"/>`).join("")}</svg>`;
+  const tile=(ic,n,t,s,extra)=>`<div class="ig-kpi"><span class="ig-kpi-ic">${ic}</span><div><b>${n}</b><span>${t}</span>${s?`<small>${s}</small>`:""}</div>${extra||""}</div>`;
+  k.innerHTML=tile("💬",igN(F.length),"Comentarios","últimos 7 días",bars)+tile("✅",igN(resp.length),"Respondidos",F.length?Math.round(resp.length/F.length*100)+"% del total":"")+tile("📩",igN(dm.length),"MD enviados",resp.length?"con precio y link":"")+tile("⚡",prom==null?"—":prom<60?Math.round(prom)+" s":Math.round(prom/60)+" min","Tiempo de respuesta","promedio")+tile("💡",igN(sr.length),"Sin palabra clave",sr.length?"mirá las sugerencias":"¡todo cubierto!"); }
+// ---- reglas ----
+function igReglas(){ const box=$("#igReglas"); if(!box) return; const L=(autodm||[]).slice().sort((a,b)=>(a.orden??999)-(b.orden??999)||String(a.titulo).localeCompare(String(b.titulo)));
+  const uso=id=>IG.filas.filter(f=>f.regla_id===id&&f.estado==="respondido").length;
+  if(!L.length){ box.innerHTML=`<div class="empty-box">Todavía no hay automatizaciones. Creálas en <b>Mensajes</b> o desde “Lanzar un material nuevo”.</div>`; return; }
+  box.innerHTML=L.map(a=>{ const on=a.activa!==false&&a.bot!==false, ps=igPostsDe(a), dl=(a.dm||"").length;
+    return `<article class="ig-regla${on?"":" off"}" data-igr="${esc(a.id)}"><div class="ig-r-h"><label class="ig-sw"><input type="checkbox" data-igbot="${esc(a.id)}" ${on?"checked":""}><i></i></label><b>${esc(a.titulo||"Automatización")}</b><span class="ig-r-uso">${uso(a.id)?`✅ ${uso(a.id)} esta semana`:""}</span></div>
+      <div class="ig-kw">${(a.palabras||[]).map(p=>`<span>${esc(p)}</span>`).join("")||`<em class="muted">sin palabras clave</em>`}</div>
+      <div class="ig-r-m"><span title="Respuestas públicas que se van rotando">💬 ${(a.respuestas||[]).length} ${(a.respuestas||[]).length===1?"respuesta":"respuestas"}</span><span class="${dl>1000?"ig-mal":""}" title="Instagram acepta hasta 1000 caracteres">📩 MD ${dl}/1000</span>
+        <span class="ig-r-posts">${ps.length?ps.slice(0,4).map(id=>igPostMini(id)||`<span class="ig-pmini ig-pmini0" title="Publicación ${esc(id)}">📷</span>`).join("")+(ps.length>4?`<small>+${ps.length-4}</small>`:""):`<small class="muted">todas las publicaciones</small>`}</span>
+        <button type="button" class="btn small ghost" data-igposts="${esc(a.id)}">📌 Publicaciones</button></div></article>`; }).join(""); }
+function igGeneral(){ const g=$("#igGen"); if(!g) return; const G=IG.cfg.general||{};
+  g.innerHTML=`<div class="ig-gen-h"><label class="ig-sw"><input type="checkbox" id="igGenOn" ${G.activo?"checked":""}><i></i></label><div><b>Respuesta general</b><small>Para comentarios sin palabra clave en publicaciones sin regla (por ej. “¡Qué lindo!”).</small></div></div>
+    <div class="ig-gen-b"${G.activo?"":" hidden"}><label class="field"><span>Respuestas públicas (una por línea, se rotan) · podés usar {usuario}</span><textarea id="igGenR" rows="3">${esc((G.respuestas||[]).join("\n"))}</textarea></label>
+    <label class="field"><span>Mensaje directo (opcional)</span><textarea id="igGenD" rows="3" placeholder="Vacío = solo responde en público">${esc(G.dm||"")}</textarea></label></div>`; }
+function igSugerencias(){ const s=$("#igSug"); if(!s) return; const F=IG.filas.filter(f=>f.estado==="sin-regla"&&f.texto); if(F.length<2){ s.innerHTML=""; return; }
+  const STOP=new Set("de la el los las un una y o que me te se lo le por para con en mi tu es muy mas hola que q x ya si no al del sus su gracias hermoso hermosa lindo linda bello bella genial".split(" ")); const c={};
+  F.forEach(f=>new Set(igFold(f.texto).replace(/[^a-z0-9ñ]+/g," ").split(" ").filter(w=>w.length>2&&!STOP.has(w))).forEach(w=>c[w]=(c[w]||0)+1));
+  const top=Object.entries(c).filter(([,n])=>n>=2).sort((a,b)=>b[1]-a[1]).slice(0,8); if(!top.length){ s.innerHTML=""; return; }
+  s.innerHTML=`<div class="ig-sug"><b>💡 Palabras que comentan y no tienen regla</b><div>${top.map(([w,n])=>`<button type="button" class="chipb" data-igsug="${esc(w)}" title="Crear una regla con esta palabra">${esc(w)} <small>×${n}</small></button>`).join("")}</div></div>`; }
+// ---- actividad ----
+function igFeed(){ const f=$("#igFeed"); if(!f) return; if(!MODE.supa){ f.innerHTML=`<p class="muted">La actividad aparece en el panel web.</p>`; return; }
+  const L=IG.filas.filter(x=>IG.filtro==="todos"?!["propio"].includes(x.estado):x.estado===IG.filtro).slice(0,80);
+  if(!L.length){ f.innerHTML=`<div class="ig-vacio"><span>🌱</span><b>${IG.filas.length?"Nada con este filtro":"Todavía no llegó ningún comentario"}</b><small>${IG.filas.length?"Probá con “Todos”.":"Cuando alguien comente una publicación, lo vas a ver acá en segundos."}</small></div>`; return; }
+  f.innerHTML=L.map(x=>{ const [ic,t,k]=IG_EST[x.estado]||["•",x.estado,"muted"];
+    return `<article class="ig-it ig-${k}">${igAvatar(x.usuario)}<div class="ig-it-b"><div class="ig-it-h"><b>@${esc(x.usuario||"alguien")}</b><span class="muted">${igHace(x.creado)}</span>${igPostMini(x.media_id)}</div>
+      <p class="ig-it-c">“${esc(x.texto||"")}”</p>
+      <div class="ig-it-s"><span class="ig-tag ig-${k}">${ic} ${t}</span>${x.regla?`<span class="ig-tag">📋 ${esc(x.regla)}</span>`:""}${x.ok_publica===true?`<span class="ig-tag ok">💬 público</span>`:x.ok_publica===false?`<span class="ig-tag err">💬 no se publicó</span>`:""}${x.ok_dm===true?`<span class="ig-tag ok">📩 MD</span>`:x.ok_dm===false?`<span class="ig-tag err">📩 MD falló</span>`:""}</div>
+      ${x.respuesta?`<p class="ig-it-r">↳ ${esc(x.respuesta)}</p>`:""}${x.error?`<p class="ig-it-e">${esc(x.error)}</p>`:""}
+      ${["error","sin-regla","limite"].includes(x.estado)?`<button type="button" class="btn small ghost" data-igre="${esc(x.id)}">↻ Responder de nuevo</button>`:""}</div></article>`; }).join(""); }
+// ---- protecciones ----
+function igProt(){ const p=$("#igProt"); if(!p) return; const C=IG.cfg;
+  p.innerHTML=`<label class="ig-ck"><input type="checkbox" id="igPostAny" ${C.postCualquiera?"checked":""}> <span><b>En publicaciones con regla, responder cualquier comentario</b><small>Aunque no escriban la palabra clave (“¡Me encanta!” también recibe el MD).</small></span></label>
+    <label class="ig-ck"><input type="checkbox" id="igHilos" ${C.hilos?"checked":""}> <span><b>Responder también dentro de conversaciones</b><small>Recomendado: apagado, así no se mete en charlas entre personas.</small></span></label>
+    <div class="ig-row"><label class="field"><span>Esperar antes de responder (seg.)</span><div class="ig-2"><input type="number" id="igDmin" min="0" max="25" value="${C.demoraMin}"><span>a</span><input type="number" id="igDmax" min="0" max="25" value="${C.demoraMax}"></div><small class="muted">Al azar: parece una persona, no un robot.</small></label>
+      <label class="field"><span>MD a la misma persona</span><select id="igMdH">${[[0,"Siempre"],[12,"Cada 12 h"],[24,"Cada 24 h"],[72,"Cada 3 días"],[168,"Cada semana"]].map(([v,t])=>`<option value="${v}" ${+C.mdHoras===v?"selected":""}>${t}</option>`).join("")}</select></label>
+      <label class="field"><span>Máximo por hora</span><input type="number" id="igMax" min="5" max="500" value="${C.maxHora}"></label></div>
+    <label class="field"><span>No responder si el comentario dice… (separá con comas)</span><input id="igEvitar" value="${esc((C.evitar||[]).join(", "))}" placeholder="Ej.: estafa, spam, sorteo"></label>
+    <label class="field"><span>Respuesta pública si el MD no se puede enviar</span><input id="igFalla" value="${esc(C.siFallaMD||"")}" maxlength="300"></label>`; }
+// ---- conexión (paso a paso) ----
+function igConexion(){ const b=$("#igCon"); if(!b) return; const E=IG.estado||{}, sec=E.sec||{}, web=E.webhook||`${(supaCfg()||{}).url||"https://TU-PROYECTO.supabase.co"}/functions/v1/${IG_FN}`;
+  const P=[[!!E.tablas,"Crear las tablas en Supabase","Supabase → SQL Editor → pegá el archivo <b>9 - respuestas-instagram.sql</b> → Run."],
+    [sec.token&&sec.appSecret&&sec.verify,"Cargar los 3 secretos","Supabase → Edge Functions → Secrets: <code>IG_TOKEN</code>, <code>IG_APP_SECRET</code> y <code>IG_VERIFY_TOKEN</code>."],
+    [!!E.cuenta,"Instagram conectado",E.errorCuenta?`<span class="ig-mal">${esc(E.errorCuenta)}</span>`:"Se completa solo cuando el token es válido."],
+    [E.suscripto===true,"Avisos de comentarios activados","Meta → Webhooks con la dirección y la clave de abajo, y después tocá <b>Activar avisos</b>."],
+    [!!E.ultimo_aviso,"Llegó el primer aviso","Comentá una publicación desde otra cuenta y mirá la Actividad."]];
+  const ok=P.filter(x=>x[0]).length, abierto=IG.conAbierto??(ok<P.length);
+  b.innerHTML=`<details ${abierto?"open":""}><summary><div class="ig-h"><h2>🔌 Conexión</h2><span class="ig-pct"><b>${ok}</b>/${P.length}</span></div></summary>
+    <ol class="ig-pasos">${P.map(([o,t,d])=>`<li class="${o?"ok":""}"><i>${o?"✓":""}</i><div><b>${t}</b><small>${d}</small></div></li>`).join("")}</ol>
+    <div class="ig-copy"><label>Dirección del webhook (Callback URL)</label><div><code id="igWeb">${esc(web)}</code><button type="button" class="bn-ib" data-igcopy="igWeb" title="Copiar">📋</button></div></div>
+    <div class="ig-copy"><label>Clave de verificación (Verify token) · la misma en Meta y en el secreto IG_VERIFY_TOKEN</label><div><code id="igVer">${esc(IG.verif||"Tocá “Generar”")}</code><button type="button" class="bn-ib" id="igVerGen" title="Generar una clave">🎲</button><button type="button" class="bn-ib" data-igcopy="igVer" title="Copiar">📋</button></div></div>
+    <div class="ig-acc"><button type="button" class="btn small" data-igacc="estado">🔄 Probar conexión</button><button type="button" class="btn small" data-igacc="suscribir">🔔 Activar avisos</button><button type="button" class="btn small" data-igacc="revisar">🔍 Revisar comentarios ahora</button><button type="button" class="btn small ghost" data-igacc="renovar">🔑 Renovar llave</button></div>
+    <p class="ig-nota">⚠️ <b>Importante:</b> apagá en InstantDM las automatizaciones de las publicaciones que responda el panel, así nadie recibe dos respuestas. En el panel podés apagar cada regla con su interruptor.</p>
+    <p class="muted ig-est" id="igConEst">${esc(IG.conMsg||"")}</p></details>`; b.querySelector("details").addEventListener("toggle",e=>{ IG.conAbierto=e.target.open; }); }
+// ---- simulador ----
+async function igSimular(){ const txt=$("#igSimTxt").value.trim(), u=($("#igSimUser").value.trim()||"maestra.lucia").replace(/^@/,""), media=$("#igSimPost").value; if(!txt) return;
+  let e=igElegir(autodm||[],{...IG.cfg,activo:true},txt,media), nota=""; const res=$("#igSimRes"), body=$("#igPhBody");
+  if(!e&&!media){ const L=(autodm||[]).filter(r=>r.activa!==false&&r.bot!==false&&igPostsDe(r).length); const frec=w=>L.filter(r=>(r.palabras||[]).some(p=>igFold(p)===igFold(w))).length; let mejor=null; for(const r of L){ const x=igElegir([{...r,posts:[],postsManual:true}],{...IG.cfg,activo:true,general:{activo:false},postCualquiera:false},txt,""); if(x){ const pal=(r.palabras||[]).filter(p=>igCoincide(txt,p)), f=Math.min(...pal.map(frec)); if(!mejor||f<mejor.f) mejor={x,f}; } } if(mejor){ e=mejor.x; nota=" · si comentan en su publicación"; } }
+  const pick=L=>{ const M=(L||[]).filter(Boolean); return M[Math.floor(Math.random()*M.length)]||""; };
+  res.innerHTML=e?`✅ Responde la regla <b>${esc(e.regla.titulo||"")}</b> ${e.por==="palabra"?`(palabra “${esc(e.palabra)}”)`:e.por==="publicacion"?"(comentario en su publicación)":"(respuesta general)"}${nota}`:`💬 Ninguna regla coincide${IG.cfg.general&&IG.cfg.general.activo?"":" — podés activar la “Respuesta general”"}.`;
+  const pub=e?igCompletar(pick(e.regla.respuestas),u):"", dm=e&&e.regla.dm?igCompletar(e.regla.dm,u):"";
+  const yo=(IG.estado&&IG.estado.cuenta&&IG.estado.cuenta.username)||"cofredidactico";
+  body.innerHTML=`<div class="ig-c ig-in">${igAvatar(u)}<div><b>${esc(u)}</b> ${esc(txt)}<small>ahora · Responder</small></div></div>`;
+  if(!e) return; const typing=`<div class="ig-typing"><i></i><i></i><i></i></div>`;
+  await new Promise(r=>setTimeout(r,450)); body.insertAdjacentHTML("beforeend",`<div class="ig-pend">${typing}</div>`);
+  await new Promise(r=>setTimeout(r,900)); body.querySelector(".ig-pend")?.remove();
+  if(pub) body.insertAdjacentHTML("beforeend",`<div class="ig-c ig-rep ig-in"><span class="ig-av ig-av-yo">CD</span><div><b>${esc(yo)}</b> ${esc(pub)}<small>ahora · respuesta automática</small></div></div>`);
+  if(dm){ await new Promise(r=>setTimeout(r,650)); body.insertAdjacentHTML("beforeend",`<div class="ig-dm ig-in"><div class="ig-dm-h">📩 Mensaje directo a @${esc(u)}</div><div class="ig-dm-b">${esc(dm).replace(/\n/g,"<br>").replace(/(https?:\/\/[^\s<]+)/g,'<u>$1</u>')}</div>${dm.length>1000?`<small class="ig-mal">Supera los 1000 caracteres: Instagram lo va a cortar.</small>`:""}</div>`); }
+  body.scrollTop=body.scrollHeight; }
+// ---- datos del servidor ----
+async function igEstado(silencioso){ if(!MODE.supa) return; const m=$("#igConEst"); try{ if(!silencioso&&m) m.textContent="Probando…"; IG.estado=await igCall({accion:"estado"}); if(!silencioso) IG.conMsg=IG.estado.cuenta?"Conexión ok ✓":(IG.estado.errorCuenta||"Faltan pasos de la conexión."); }
+  catch(e){ IG.estado={...(IG.estado||{}),error:e.message}; IG.conMsg=e.message; } igHero(); igConexion(); }
+async function igActividad(){ if(!MODE.supa||IG.cargando) return; IG.cargando=true; try{ const j=await igCall({accion:"actividad",dias:14}); IG.filas=j.filas||[]; IG.ultimo=Date.now(); }catch(e){ const f=$("#igFeed"); if(f&&!IG.filas.length) f.innerHTML=`<p class="muted">${esc(e.message)}</p>`; } finally{ IG.cargando=false; } igKpis(); igFeed(); igReglas(); igSugerencias(); }
+async function igPosts(){ if(!MODE.supa||IG.posts) return IG.posts; try{ const j=await igCall({accion:"posts",limite:30}); IG.posts=j.posts||[]; }catch{ IG.posts=[]; } const s=$("#igSimPost"); if(s&&IG.posts.length){ const v=s.value; s.innerHTML=`<option value="">Cualquier publicación</option>`+IG.posts.map(p=>`<option value="${esc(p.id)}">${esc(new Date(p.timestamp).toLocaleDateString("es-AR",{day:"numeric",month:"short"}))} · ${esc((p.caption||"(sin texto)").replace(/\s+/g," ").slice(0,48))}</option>`).join(""); s.value=v; } igReglas(); igFeed(); return IG.posts; }
+// ---- elegir publicaciones de una regla ----
+async function igElegirPosts(id){ const a=(autodm||[]).find(x=>x.id===id); if(!a) return; let o=document.getElementById("igPostsDlg"); if(o) o.remove(); o=document.createElement("div"); o.id="igPostsDlg"; o.className="cq-ver";
+  o.innerHTML=`<div class="ig-dlg"><div class="cq-vh"><b>📌 ¿En qué publicaciones responde “${esc(a.titulo||"")}”?</b><button type="button" class="cq-vx" aria-label="Cerrar">✕</button></div><p class="muted">Sin ninguna marcada, responde en todas las publicaciones (solo con sus palabras clave).</p><div class="ig-pgrid" id="igPg"><p class="muted">Cargando tus publicaciones…</p></div><div class="ig-acc"><button type="button" class="btn primary" id="igPgOk">Guardar</button><button type="button" class="btn ghost" id="igPgNada">Todas las publicaciones</button></div></div>`;
+  document.body.appendChild(o); const cerrar=()=>o.remove(); o.querySelector(".cq-vx").onclick=cerrar; o.addEventListener("click",e=>{ if(e.target===o) cerrar(); });
+  const sel=new Set(igPostsDe(a)); const P=await igPosts(); const g=o.querySelector("#igPg");
+  if(!P||!P.length){ g.innerHTML=`<p class="muted">${MODE.supa?"No pude traer tus publicaciones (revisá la conexión).":"Se eligen desde el panel web."}</p>`; }
+  else{ g.innerHTML=P.map(p=>`<button type="button" class="ig-pc${sel.has(String(p.id))?" on":""}" data-pid="${esc(p.id)}"><img src="${esc(p.thumbnail_url||p.media_url||"")}" alt="" loading="lazy" referrerpolicy="no-referrer"><span>${esc(new Date(p.timestamp).toLocaleDateString("es-AR",{day:"numeric",month:"short"}))} · 💬 ${igN(p.comments_count)}</span><i>✓</i></button>`).join("");
+    g.onclick=e=>{ const b=e.target.closest("[data-pid]"); if(!b) return; const k=b.dataset.pid; sel.has(k)?sel.delete(k):sel.add(k); b.classList.toggle("on",sel.has(k)); }; }
+  const guardar=async L=>{ if(!needDb()) return; const {id:_i,...rest}=a; try{ await db.collection("autodm").doc(id).set({...rest,posts:L,postsManual:true,actualizado:new Date().toISOString()}); toast("Publicaciones guardadas ✓","ok"); cerrar(); }catch{ toast("No se pudo guardar","err"); } };
+  o.querySelector("#igPgOk").onclick=()=>guardar([...sel]); o.querySelector("#igPgNada").onclick=()=>guardar([]); }
+// ---- inicio y eventos ----
+function igPintarTodo(){ $("#igSoloWeb").hidden=!!MODE.supa; igHero(); igKpis(); igReglas(); igGeneral(); igSugerencias(); igFeed(); igProt(); igConexion(); }
+async function igInit(){ const v=$("#view-igbot"); if(!v) return;
+  if(!IG.init){ IG.init=true; igEsqueleto(); if(!v.dataset.igev){ v.dataset.igev="1"; igEventos(v); } else $("#igSimTxt").addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); igSimular(); } }); }
+  await igCfgCargar(); igPintarTodo();
+  if(MODE.supa){ igEstado(true); igActividad(); igPosts(); clearInterval(IG.t); IG.t=setInterval(()=>{ if(currentView==="igbot"&&!document.hidden) igActividad(); },30000); } }
+function igEventos(v){
+  v.addEventListener("click",async e=>{ const t=e.target.closest("button,[data-igcopy]"); if(!t) return;
+    if(t.id==="igPower"){ IG.cfg.activo=!IG.cfg.activo; if(IG.cfg.activo&&!IG.cfg.desde) IG.cfg.desde=new Date().toISOString(); await igGuardar(true); igHero(); toast(IG.cfg.activo?"🤖 Respondiendo comentarios":"⏸️ En pausa","ok"); return; }
+    if(t.id==="igSimGo") return igSimular();
+    if(t.dataset.igej){ $("#igSimTxt").value=t.dataset.igej; return igSimular(); }
+    if(t.id==="igIrMens"){ showView("mensajes"); return; }
+    if(t.dataset.igposts) return igElegirPosts(t.dataset.igposts);
+    if(t.dataset.igf){ IG.filtro=t.dataset.igf; v.querySelectorAll("[data-igf]").forEach(b=>b.classList.toggle("on",b===t)); return igFeed(); }
+    if(t.dataset.igsug){ if(!needDb()) return; const w=t.dataset.igsug, W=w.charAt(0).toUpperCase()+w.slice(1); try{ await db.collection("autodm").add({titulo:`Nueva regla · ${W}`,palabras:[W],respuestas:["¡Hola {usuario}! Te envié toda la información por MD 💙"],dm:"¡Hola! 😊 Gracias por tu mensaje…",activa:true,bot:true,orden:999,actualizado:new Date().toISOString(),fuente:"Sugerida por Respuestas IG"}); toast(`Regla “${W}” creada: completá sus textos en Mensajes`,"ok"); }catch{ toast("No se pudo crear","err"); } return; }
+    if(t.dataset.igcopy){ const el=$("#"+t.dataset.igcopy); try{ await navigator.clipboard.writeText(el.textContent.trim()); toast("Copiado ✓","ok"); }catch{} return; }
+    if(t.id==="igVerGen"){ const a=new Uint8Array(12); crypto.getRandomValues(a); IG.verif="cofre-"+[...a].map(x=>x.toString(36).padStart(2,"0")).join("").slice(0,18); $("#igVer").textContent=IG.verif; return; }
+    if(t.dataset.igre){ t.disabled=true; t.textContent="Respondiendo…"; try{ const r=await igCall({accion:"reintentar",id:t.dataset.igre}); toast(r.resultado&&r.resultado.estado==="respondido"?"Respondido ✓":"Listo: "+(r.resultado&&r.resultado.estado||""),"ok"); }catch(er){ toast(er.message,"err"); } igActividad(); return; }
+    if(t.dataset.igacc){ const a=t.dataset.igacc, say=x=>{ IG.conMsg=x; const m=$("#igConEst"); if(m) m.textContent=x; }; t.disabled=true; try{ if(a==="estado") await igEstado(); else { say("Un momento…"); const r=await igCall({accion:a}); say(a==="revisar"?(r.pausado?"Está en pausa: activalo arriba.":`Revisé ${r.revisados} comentarios · respondí ${r.nuevos} nuevos ✓`):a==="suscribir"?"Avisos de comentarios activados ✓":"Llave renovada ✓"); await igEstado(true); if(a==="revisar") igActividad(); } }catch(er){ say("⚠️ "+er.message); } finally{ t.disabled=false; } return; } });
+  v.addEventListener("change",async e=>{ const t=e.target;
+    if(t.dataset.igbot){ if(!needDb()) return; const a=(autodm||[]).find(x=>x.id===t.dataset.igbot); if(!a) return; const {id,...rest}=a; try{ await db.collection("autodm").doc(id).set({...rest,bot:t.checked,activa:t.checked?true:rest.activa}); }catch{ toast("No se pudo guardar","err"); } return; }
+    if(t.id==="igGenOn"){ IG.cfg.general={...IG.cfg.general,activo:t.checked}; igGeneral(); return igGuardar(); }
+    const C=IG.cfg; if(t.id==="igPostAny") C.postCualquiera=t.checked; else if(t.id==="igHilos") C.hilos=t.checked; else if(t.id==="igMdH") C.mdHoras=+t.value; else return; igGuardar(); });
+  v.addEventListener("input",e=>{ const t=e.target, C=IG.cfg;
+    if(t.id==="igGenR") C.general={...C.general,respuestas:t.value.split("\n").map(x=>x.trim()).filter(Boolean)}; else if(t.id==="igGenD") C.general={...C.general,dm:t.value};
+    else if(t.id==="igDmin") C.demoraMin=Math.max(0,Math.min(25,+t.value||0)); else if(t.id==="igDmax") C.demoraMax=Math.max(0,Math.min(25,+t.value||0)); else if(t.id==="igMax") C.maxHora=Math.max(5,+t.value||60);
+    else if(t.id==="igEvitar") C.evitar=t.value.split(",").map(x=>x.trim()).filter(Boolean); else if(t.id==="igFalla") C.siFallaMD=t.value; else return; igGuardar(); });
+  $("#igSimTxt").addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); igSimular(); } });
+}
+
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
 function adForMat(m){ return autodm.find(a=>{ const x=matForAd(a); return x&&x.k===m.k; })||null; }
@@ -17231,7 +17488,7 @@ setStatus("Cargando…");
   db.collection("fichas").onSnapshot(snap=>{ fichas={}; snap.docs.forEach(d=>{ fichas[d.id]=d.data(); }); if(currentView==="motor"){ renderFichaLine(); if(motorCur) renderQA(); } },()=>{});
   db.doc("panel/motorAprendizaje").onSnapshot(s=>{ motorLearn=s.exists?s.data():null; renderLearn(); },()=>{});
   db.doc("panel/motorPerfil").onSnapshot(s=>{ motorPerfilDoc=s.exists?s.data():null; if(currentView==="motor"&&document.activeElement!==$("#moPerfil")){ $("#moPerfil").value=motorPerfil(); $("#moPerfilSave").disabled=true; } },()=>{});
-  db.collection("autodm").onSnapshot(snap=>{ autodm=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="mensajes"&&!$("#ads").contains(document.activeElement)) renderAds(); if(currentView==="materiales") renderAudit(); if(currentView==="inicio") renderHoy(); },()=>{});
+  db.collection("autodm").onSnapshot(snap=>{ autodm=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="mensajes"&&!$("#ads").contains(document.activeElement)) renderAds(); if(currentView==="igbot"&&typeof igReglas==="function") igReglas(); if(currentView==="materiales") renderAudit(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("plantillas").onSnapshot(snap=>{ tplDocs={}; snap.docs.forEach(d=>{ tplDocs[d.id]=d.data(); }); if(currentView==="mensajes") renderTpls(); },()=>{});
 })();
 </script>
