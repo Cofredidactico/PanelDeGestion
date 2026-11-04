@@ -14947,39 +14947,70 @@ function lzcDisponibles(D){ const L=x=>(D[x]||[]).length; const ok={unir:L("unir
 async function lzcFrame(D,w,h){ const X=JSON.parse(JSON.stringify(D)); X.acceso={modo:"libre"}; delete X.demo; const f=document.createElement("iframe"); f.setAttribute("aria-hidden","true"); f.style.cssText=`position:fixed;left:-20000px;top:0;width:${w}px;height:${h}px;border:0;opacity:1;pointer-events:none`;
   const listo=new Promise(r=>f.onload=r); f.srcdoc=mpHtml(mpConLogo(X)); document.body.appendChild(f); await listo; const W=f.contentWindow; try{ await W.document.fonts.ready; }catch{} W.sobreFigurita=()=>{}; try{ W.speechSynthesis&&(W.speechSynthesis.speak=()=>{}); }catch{} await new Promise(r=>setTimeout(r,500)); return f; }
 async function lzcEsperarImgs(doc){ const im=[...doc.querySelectorAll("#vista-juego img")]; await Promise.all(im.map(i=>i.complete?0:new Promise(r=>{ i.onload=i.onerror=r; setTimeout(r,2500); }))); return im.filter(i=>!i.naturalWidth).length; }
-// ajustes para que cada actividad se vea "en acción"
-function lzcPreparar(W,id){ const d=W.document;
-  try{ if(id==="memotest"){ d.querySelectorAll("#zona-juego .memo-carta").forEach((c,i)=>{ if(i%3!==2) c.classList.add("vuelta"); }); }
-    if(id==="quien_soy"){ for(let i=0;i<2;i++){ const b=[...d.querySelectorAll("#zona-juego button")].find(b=>/pista/i.test(b.textContent)); b&&b.click(); } }
-  }catch{} }
-async function lzcCapturar(f,j,w,hh){ const W=f.contentWindow, d=W.document; try{ if(W.abrirCiclo) W.abrirCiclo(j.ciclo); }catch{} W.abrirJuego(j.id); await new Promise(r=>setTimeout(r,650)); lzcPreparar(W,j.id); await new Promise(r=>setTimeout(r,350));
-  const rotas=await lzcEsperarImgs(d); d.querySelectorAll(".xp-toast,.toast,#sobreFig,.sobre-fig,.xp-fx").forEach(x=>x.remove());
-  const fin=()=>{ try{ d.getAnimations().forEach(an=>{ try{ const t=an.effect&&an.effect.getTiming&&an.effect.getTiming(); if(t&&t.iterations===Infinity) an.cancel(); else an.finish(); }catch{ try{ an.cancel(); }catch{} } }); }catch{} }; fin();
+// ===== capturas "en acción", con el tamaño justo y sin recortes =====
+const LZC_BEN={unir:"Asocian cada imagen con su palabra",secuencia:"Ordenan los pasos y comprenden el proceso",sopa_pc:"Buscan palabras con apoyo de imágenes",glosario:"Aprenden vocabulario con imagen y audio",anagrama:"Descubren la palabra ordenando letras",quien_soy:"Adivinan con pistas que se van revelando",memotest:"Ejercitan la memoria con imágenes del tema",vf_facil:"Responden Sí o No con apoyo visual",mirar:"Miran y escuchan la historia paso a paso",info_pc:"Exploran la información de forma interactiva",rompecabezas:"Arman la imagen pieza por pieza",cruci:"Resuelven el crucigrama con pistas",pintar:"Pintan en la pantalla o imprimen",mapa:"Ubican cada lugar en el mapa"};
+const LZC_CIC={pc:"1.er ciclo",sc:"2.º ciclo",di:"Aula para todos",av:"Escuchar y tocar"};
+const lzcF=(s,w=800)=>`${w} ${s}px "Fredoka","Nunito",system-ui,sans-serif`, LZC_EMO='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+function lzcLineas(g,t,max){ const ws=String(t).split(/\s+/), L=[]; let cur=""; for(const w of ws){ const x=cur?cur+" "+w:w; if(g.measureText(x).width>max&&cur){ L.push(cur); cur=w; } else cur=x; } if(cur) L.push(cur); return L; }
+// medidas de la lámina (se calculan antes de capturar para sacar la captura con la proporción exacta de la pantalla)
+function lzcLayout(j){ const g=document.createElement("canvas").getContext("2d"), tit=LZC_BEN[j.id]||j.t; let fs=68, L; do{ g.font=lzcF(fs,900); L=lzcLineas(g,tit,940); fs-=2; }while(L.length>2&&fs>46); fs+=2;
+  const yT=150, lh=fs*1.12, ySub=yT+lh*(L.length-1)+fs*.5+44, Y=ySub+46, Hd=1150-Y, X=50, Wd=980, bz=18; return {L,fs,yT,lh,ySub,Y,Hd,X,Wd,bz,sw:Wd-bz*2,sh:Hd-bz*2}; }
+function lzcBuscarSopa(d,w){ const cs=[...d.querySelectorAll("#sg .celda")]; if(!cs.length) return null; const N=Math.round(Math.sqrt(cs.length)), at=(r,c)=>cs[r*N+c];
+  for(const [dr,dc] of [[0,1],[1,0],[1,1],[-1,1],[0,-1],[-1,0],[-1,-1],[1,-1]]) for(let r=0;r<N;r++) for(let c=0;c<N;c++){ const L=[]; for(let k=0;k<w.length;k++){ const rr=r+dr*k, cc=c+dc*k; if(rr<0||cc<0||rr>=N||cc>=N) break; const e=at(rr,cc); if(!e||e.textContent!==w[k]) break; L.push(e); } if(L.length===w.length) return L; } return null; }
+// deja cada actividad "jugándose" y devuelve dónde va la mano
+function lzcAccion(W,id){ const d=W.document, Q=s=>[...d.querySelectorAll("#zona-juego "+s)]; let t=null; const DD=(()=>{ try{ return W.eval("typeof D!=='undefined'?D:null")||{}; }catch{ return {}; } })();
+  try{
+    if(id==="unir"){ const im=Q(".item-unir.imagen"), pa=Q(".item-unir.palabra"); if(im[0]){ im[0].click(); const m=pa.find(p=>p.dataset.k===im[0].dataset.k); m&&m.click(); } if(im[1]){ im[1].click(); t=pa.find(p=>p.dataset.k===im[1].dataset.k); } }
+    else if(id==="memotest"||id==="memo_facil"){ const cs=Q(".memo-carta"); cs.forEach((c,i)=>{ if(i%3!==2) c.classList.add("vuelta"); }); t=cs.find((c,i)=>i%3===2); }
+    else if(id==="sopa_pc"||id==="sopa_sc"){ const ws=Q(".palabra-buscar"); ws.slice(0,2).forEach(x=>{ const L=lzcBuscarSopa(d,x.dataset.w); if(L){ L.forEach(e=>e.classList.add("found")); x.classList.add("tachada"); } }); const w3=ws[2]&&lzcBuscarSopa(d,ws[2].dataset.w); if(w3){ w3[0].classList.add("sel"); t=w3[0]; } }
+    else if(id==="anagrama"){ const p=String((DD.anagrama||[])[0]?.p||"").toUpperCase().trim(); const n=Math.ceil(p.length/2); for(let k=0;k<n;k++){ const f=Q(".ficha:not(.usada)").find(f=>f.dataset.l===p[k]); f&&f.click(); } t=Q(".ficha:not(.usada)").find(f=>f.dataset.l===p[n]); }
+    else if(id==="vf_facil"){ const p=(DD.vf_facil||[])[0]; t=Q(p&&p.r===false?".btn-vf.f":".btn-vf.v")[0]; }
+    else if(id==="quien_soy"){ for(let k=0;k<2;k++){ const b=d.querySelector("#zona-juego #otra"); b&&!b.disabled&&b.click(); } t=Q(".btn-mc")[0]; }
+    else if(id==="secuencia"){ t=Q("#cuerpo button")[1]||Q("#cuerpo button")[0]; }
+    else if(id==="glosario"){ t=Q("#cuerpo button, #cuerpo .glosa, #cuerpo [data-leer]")[0]; }
+    else t=Q("#cuerpo button")[0]||null;
+  }catch(e){ console.warn(e); }
+  d.querySelectorAll("#confeti .conf,.xp-toast,.toast,#sobreFig,.sobre-fig,.xp-fx,.xp-flota,.xp-acc").forEach(x=>x.remove()); return t; }
+async function lzcAbrir(f,j,w){ const W=f.contentWindow; f.style.width=w+"px"; f.style.height="1600px"; await new Promise(r=>setTimeout(r,60)); try{ if(W.abrirCiclo) W.abrirCiclo(j.ciclo); }catch{} W.abrirJuego(j.id); W.scrollTo(0,0); await new Promise(r=>setTimeout(r,420));
+  const c=W.document.querySelector("#zona-juego #cuerpo")||W.document.querySelector("#zona-juego"); return c; }
+async function lzcCapturar(f,j,A){ const W=f.contentWindow, d=W.document;
+  // 1) ancho de pantalla con el que la actividad entra entera y se lee grande
+  let best=null; for(const w of [500,580,680,800,920]){ const c=await lzcAbrir(f,j,w); if(!c) continue; const h=c.getBoundingClientRect().height+28, sobra=h/(w/A); if(!best||sobra<best.sobra) best={w,sobra}; if(sobra<=1.02){ best={w,sobra}; break; } }
+  const w=best?best.w:560; const cuerpo=await lzcAbrir(f,j,w); await new Promise(r=>setTimeout(r,200)); const tgt=lzcAccion(W,j.id); await new Promise(r=>setTimeout(r,260));
+  const rotas=await lzcEsperarImgs(d); try{ d.getAnimations().forEach(an=>{ try{ const t=an.effect&&an.effect.getTiming&&an.effect.getTiming(); if(t&&t.iterations===Infinity) an.cancel(); else an.finish(); }catch{} }); }catch{}
   d.querySelectorAll("body *").forEach(el=>{ const cs=W.getComputedStyle(el); if(cs.position==="fixed"&&!el.closest("#vista-juego")) el.style.visibility="hidden"; });
-  const z=d.querySelector("#zona-juego"), h=z&&z.querySelector("h2"), y=Math.max(0,h?h.getBoundingClientRect().bottom+W.scrollY+4:(z?z.getBoundingClientRect().top+W.scrollY:0)-14); W.scrollTo(0,0); await new Promise(r=>setTimeout(r,120)); fin();
-  const h2c=await lzH2C(); const cv=await h2c(d.documentElement,{x:0,y,width:w,height:hh,windowWidth:w,windowHeight:Math.max(hh,d.documentElement.scrollHeight),scrollX:0,scrollY:0,scale:2,useCORS:true,logging:false,onclone:cd=>{ const st=cd.createElement("style"); st.textContent="*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}.memo-carta>span{transform:none!important}.memo-carta.vuelta .memo-dorso,.memo-carta:not(.vuelta) .memo-cara{visibility:hidden!important}"; cd.head.appendChild(st); },backgroundColor:getComputedStyle(d.body).backgroundColor||"#fff"});
-  // control: que no salga en blanco
+  const ex=[cuerpo,...d.querySelectorAll("#zona-juego .feedback,#zona-juego .btn-grande")].filter(Boolean).map(e=>e.getBoundingClientRect()).filter(r=>r.height>0);
+  const top=Math.min(...ex.map(r=>r.top))+W.scrollY, bot=Math.max(...ex.map(r=>r.bottom))+W.scrollY, hc=bot-top+32, ch=hc, cw=w, x0=0, y0=Math.max(0,top-16);
+  const esc2=Math.min(3,Math.max(2,1100/cw)), h2c=await lzH2C(), bg=W.getComputedStyle(d.body).backgroundColor;
+  const cv=await h2c(d.documentElement,{x:x0,y:y0,width:Math.min(cw,w),height:ch,windowWidth:w,windowHeight:Math.max(1600,d.documentElement.scrollHeight),scrollX:0,scrollY:0,scale:esc2,useCORS:true,logging:false,backgroundColor:bg&&bg!=="rgba(0, 0, 0, 0)"?bg:"#ffffff",
+    onclone:cd=>{ const st=cd.createElement("style"); st.textContent="*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}.memo-carta>span{transform:none!important}.memo-carta.vuelta .memo-dorso,.memo-carta:not(.vuelta) .memo-cara{visibility:hidden!important}.memo-cara.txt{word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important}.xp-flota,.xp-acc{display:none!important}#confeti,.conf{display:none!important}"; cd.head.appendChild(st); }});
+  let mano=null; if(tgt){ const r=tgt.getBoundingClientRect(); if(r.width) mano={x:(r.right-Math.min(r.width*.2,40)-x0)/Math.min(cw,w),y:(r.bottom+W.scrollY-Math.min(r.height*.22,18)-y0)/ch}; if(mano&&(mano.x<0||mano.x>1||mano.y<0||mano.y>1)) mano=null; }
   const g=cv.getContext("2d"), px=g.getImageData(0,0,cv.width,cv.height).data; let s=0,s2=0,n=0; for(let i=0;i<px.length;i+=4*97){ const v=px[i]+px[i+1]+px[i+2]; s+=v; s2+=v*v; n++; } const vari=s2/n-(s/n)**2;
-  const imgs=d.querySelectorAll("#zona-juego img").length; return {cv,rotas,vacia:vari<200,imgs}; }
-function lzcLamina(D,j,shot,i,n){ const W=1080,H=1350, c=document.createElement("canvas"); c.width=W; c.height=H; const g=c.getContext("2d"), [c1,c2,c3]=mpPal(D), F=(s,w=800)=>`${w} ${s}px "Fredoka","Nunito",system-ui,sans-serif`, EMO='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
-  const rr=(x,y,w,h,r)=>{ g.beginPath(); g.roundRect?g.roundRect(x,y,w,h,r):g.rect(x,y,w,h); };
-  const gr=g.createLinearGradient(0,0,0,H); gr.addColorStop(0,"#FFF8EC"); gr.addColorStop(1,"#FDEFD9"); g.fillStyle=gr; g.fillRect(0,0,W,H);
-  g.globalAlpha=.16; g.fillStyle=c2; g.beginPath(); g.arc(W-60,120,190,0,7); g.fill(); g.fillStyle=c1; g.beginPath(); g.arc(40,H-150,170,0,7); g.fill(); g.globalAlpha=1;
-  // encabezado
-  g.textAlign="left"; g.textBaseline="middle"; const tag=`ACTIVIDAD ${i}`; g.font=F(30,900); const tw=g.measureText(tag).width+44; rr(70,58,tw,54,27); g.fillStyle=c1; g.fill(); g.fillStyle="#fff"; g.fillText(tag,92,86);
-  g.font=F(30,800); g.fillStyle="#6B7280"; g.textAlign="right"; g.fillText(`${i+1}/${n}`,W-70,86); g.textAlign="left";
-  g.font=`72px ${EMO}`; g.fillStyle="#000"; g.fillText(j.ic,70,190);
-  let fs=66; g.font=F(fs,900); while(g.measureText(j.t).width>W-260&&fs>40){ fs-=2; g.font=F(fs,900); } g.fillStyle="#1F2A3A"; g.fillText(j.t,170,190);
-  g.font=F(34,700); g.fillStyle="#4B5563"; g.fillText(j.s===j.t?"Así se ve en la plataforma 👇":j.s,72,262);
-  // pantalla (tablet)
-  const X=60,Y=310,Wd=W-120,Hd=890; g.save(); g.shadowColor="rgba(31,42,58,.28)"; g.shadowBlur=50; g.shadowOffsetY=18; rr(X,Y,Wd,Hd,44); g.fillStyle="#1F2A3A"; g.fill(); g.restore();
-  const bz=16, sx=X+bz, sy=Y+bz, sw=Wd-bz*2, sh=Hd-bz*2; g.save(); rr(sx,sy,sw,sh,30); g.clip(); g.fillStyle="#fff"; g.fillRect(sx,sy,sw,sh);
-  const k=Math.max(sw/shot.width,sh/shot.height), dw=shot.width*k, dh=shot.height*k; g.drawImage(shot,sx+(sw-dw)/2,sy,dw,dh); g.restore();
+  const cons=(d.querySelector("#zona-juego .consigna")||{}).textContent||""; return {cv,rotas,vacia:vari<200,mano,cons:cons.replace(/🔊.*$/,"").trim(),conAudio:!!d.querySelector("#zona-juego .consigna button"),imgs:d.querySelectorAll("#zona-juego img").length,bg}; }
+function lzcLamina(D,j,r,i,n,m){ const W=1080,H=1350, c=document.createElement("canvas"); c.width=W; c.height=H; const g=c.getContext("2d"), [c1,c2,c3]=mpPal(D), F=lzcF, LY=lzcLayout(j);
+  const rr=(x,y,w,h,rad)=>{ g.beginPath(); g.roundRect?g.roundRect(x,y,w,h,rad):g.rect(x,y,w,h); };
+  const gr=g.createLinearGradient(0,0,W,H); gr.addColorStop(0,"#FFF9EF"); gr.addColorStop(1,"#FBEBD3"); g.fillStyle=gr; g.fillRect(0,0,W,H);
+  g.save(); g.globalAlpha=.14; g.fillStyle=c2; g.beginPath(); g.arc(W-40,60,230,0,7); g.fill(); g.fillStyle=c1; g.beginPath(); g.arc(-30,H-120,220,0,7); g.fill(); g.fillStyle=c3||c2; g.beginPath(); g.arc(W+20,H*.62,130,0,7); g.fill(); g.restore();
+  // fila superior: actividad y ciclo
+  g.textBaseline="middle"; g.textAlign="left"; const tag=`ACTIVIDAD ${i} DE ${m}`; g.font=F(28,900); const tw=g.measureText(tag).width+48; rr(64,48,tw,56,28); g.fillStyle=c1; g.fill(); g.fillStyle="#fff"; g.fillText(tag,88,77);
+  const cic=LZC_CIC[j.ciclo]||""; if(cic){ g.font=F(28,800); const cw=g.measureText(cic).width+44; rr(W-64-cw,48,cw,56,28); g.fillStyle="#fff"; g.fill(); g.lineWidth=3; g.strokeStyle=c1; g.stroke(); g.fillStyle=c1; g.textAlign="center"; g.fillText(cic,W-64-cw/2,77); g.textAlign="left"; }
+  // titular de beneficio + nombre del juego
+  g.font=F(LY.fs,900); g.fillStyle="#1F2A3A"; LY.L.forEach((l,k)=>g.fillText(l,66,LY.yT+k*LY.lh));
+  g.font=`40px ${LZC_EMO}`; g.fillText(j.ic,66,LY.ySub); g.font=F(36,800); g.fillStyle=c1; g.fillText(j.t,122,LY.ySub+2);
+  // tablet
+  const {X,Y,Wd,Hd,bz,sw,sh}=LY; g.save(); g.shadowColor="rgba(31,42,58,.32)"; g.shadowBlur=60; g.shadowOffsetY=22; rr(X,Y,Wd,Hd,48); g.fillStyle="#1B2433"; g.fill(); g.restore();
+  g.beginPath(); g.arc(X+Wd/2,Y+bz/2+1,4,0,7); g.fillStyle="#3B4659"; g.fill();
+  const sx=X+bz, sy=Y+bz; g.save(); rr(sx,sy,sw,sh,32); g.clip(); g.fillStyle=r.bg&&r.bg!=="rgba(0, 0, 0, 0)"?r.bg:"#fff"; g.fillRect(sx,sy,sw,sh); const sh0=r.cv, k=Math.min(sw/sh0.width,sh/sh0.height), dw=sh0.width*k, dh=sh0.height*k, ox=sx+(sw-dw)/2, oy=sy+(sh-dh)/2; g.imageSmoothingQuality="high"; g.drawImage(sh0,ox,oy,dw,dh);
+  // mano que toca
+  if(r.mano){ const hx=ox+r.mano.x*dw, hy=oy+r.mano.y*dh; for(const [rad,a] of [[46,.14],[30,.22],[16,.36]]){ g.beginPath(); g.arc(hx,hy,rad,0,7); g.fillStyle=`rgba(255,255,255,${a+.2})`; g.fill(); g.lineWidth=3; g.strokeStyle=`rgba(31,42,58,${a})`; g.stroke(); }
+    g.save(); g.shadowColor="rgba(0,0,0,.35)"; g.shadowBlur=14; g.shadowOffsetY=6; g.font=`84px ${LZC_EMO}`; g.textAlign="center"; g.textBaseline="top"; g.fillStyle="#000"; g.fillText("👆",hx+12,hy-6); g.restore(); }
+  g.restore();
+  // fortalezas
+  const ch=[r.conAudio&&"🔊 Con audio",r.imgs&&"🖼️ Con imágenes",j.ciclo==="di"?"♿ Accesible":"⭐ Suma estrellas","📱 Celu · compu · pizarra"].filter(Boolean).slice(0,3); g.font=F(28,800); const ws=ch.map(t=>g.measureText(t).width+40), tot=ws.reduce((a,b)=>a+b,0)+(ch.length-1)*14; let cx=(W-tot)/2; const cy=Y+Hd+50;
+  ch.forEach((t,q)=>{ rr(cx,cy-27,ws[q],54,27); g.fillStyle="#fff"; g.fill(); g.lineWidth=2; g.strokeStyle="rgba(31,42,58,.12)"; g.stroke(); g.fillStyle="#1F2A3A"; g.textAlign="center"; g.fillText(t,cx+ws[q]/2,cy+1); cx+=ws[q]+14; });
   // pie
-  g.textAlign="center"; g.font=F(34,800); g.fillStyle=c1; g.fillText(`🎮 Plataforma interactiva · ${D.meta.nombreCompleto||D.meta.nombreCorto}`,W/2,H-92);
-  g.font=F(28,700); g.fillStyle="#6B7280"; g.fillText("cofredidactico.com.ar · Deslizá 👉",W/2,H-46);
-  // puntitos del carrusel
-  for(let q=0;q<n;q++){ g.beginPath(); g.arc(W/2-(n-1)*13+q*26,Y+Hd+38,q===i?8:5,0,7); g.fillStyle=q===i?c1:"rgba(31,42,58,.22)"; g.fill(); }
+  for(let q=0;q<n;q++){ g.beginPath(); g.arc(W/2-(n-1)*12+q*24,H-82,q===i?8:5,0,7); g.fillStyle=q===i?c1:"rgba(31,42,58,.2)"; g.fill(); }
+  g.textAlign="left"; g.font=F(28,800); g.fillStyle="#6B7280"; g.fillText(`🎮 ${D.meta.nombreCompleto||D.meta.nombreCorto} · cofredidactico.com.ar`,64,H-36); g.textAlign="right"; g.fillStyle=c1; g.font=F(30,900); g.fillText("Deslizá 👉",W-64,H-36);
   return c; }
 function lzcEscena(D,R,esc){ rcCargar(D); const bk=JSON.parse(JSON.stringify(RC)); try{ RC.esc=Object.fromEntries(Object.keys(RC.esc).map(k=>[k,k===esc?1:0])); RC.dur=2; RC.barra=0; RC.marca=1; RC.trans="mezcla"; RC.dm=0; const c=document.createElement("canvas"); c.width=1080; c.height=1350; rcFrame(c.getContext("2d"),1.9,D,R,1080,1350); return c; } finally{ Object.assign(RC,bk); } }
 async function lzCarrusel(){ const D=MP.D; if(!D) return; let o=document.getElementById("lzCarDlg"); if(o) o.remove(); o=document.createElement("div"); o.id="lzCarDlg"; o.className="cq-ver";
@@ -14997,8 +15028,8 @@ async function lzCarrusel(){ const D=MP.D; if(!D) return; let o=document.getElem
   try{ est.textContent="Buscando las imágenes de la plataforma…"; await mpAsegurarImgs(D); const falt=(MP.faltan||[]).length;
     const R=await rcRecursos(D); const J=lzcDisponibles(D).slice(0,8), n=J.length+2;
     agregar("Portada",lzcEscena(D,R,"portada"),falt?`faltan ${falt} imágenes en esta compu`:"");
-    est.textContent="Abriendo la plataforma para sacar las capturas…"; f=await lzcFrame(D,560,518);
-    for(const [i,j] of J.entries()){ if(cerrado) break; est.textContent=`📸 Capturando ${i+1} de ${J.length}: ${j.t}…`; try{ const r=await lzcCapturar(f,j,560,518); let av=""; if(r.vacia) av="la captura salió vacía"; else if(r.rotas) av=`${r.rotas} ${r.rotas>1?"imágenes no cargaron":"imagen no cargó"}`; if(av) fallas.push(j.t+": "+av); agregar(j.t,lzcLamina(D,j,r.cv,i+1,n),av); }catch(er){ console.warn(er); fallas.push(j.t+": no se pudo capturar"); } }
+    est.textContent="Abriendo la plataforma para sacar las capturas…"; f=await lzcFrame(D,560,1600);
+    for(const [i,j] of J.entries()){ if(cerrado) break; est.textContent=`📸 Capturando ${i+1} de ${J.length}: ${j.t}…`; try{ const LY=lzcLayout(j), r=await lzcCapturar(f,j,LY.sw/LY.sh); let av=""; if(r.vacia) av="la captura salió vacía"; else if(r.rotas) av=`${r.rotas} ${r.rotas>1?"imágenes no cargaron":"imagen no cargó"}`; if(av) fallas.push(j.t+": "+av); agregar(j.t,lzcLamina(D,j,r,i+1,n,J.length),av); }catch(er){ console.warn(er); fallas.push(j.t+": no se pudo capturar"); } }
     if(!cerrado) agregar("Cierre",lzcEscena(D,R,"cta"),"");
     est.textContent=fallas.length?`Listo, revisá: ${fallas.join(" · ")}`:`¡Listo! ${L.length} láminas, sin errores ✓`; o.querySelector("#lzcZip").disabled=false;
   }catch(e){ console.warn(e); est.textContent="No se pudo armar el carrusel: "+(e.message||e); }
