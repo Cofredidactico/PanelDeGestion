@@ -594,6 +594,28 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.lit-modo{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);margin:2px 0 12px}
+.lit-modo button{border:0;border-radius:9px;padding:8px;font:inherit;font-weight:800;font-size:13.5px;background:transparent;color:var(--muted);cursor:pointer;transition:background .15s,color .15s}
+.lit-modo button.on{background:var(--surface);color:var(--ink);box-shadow:0 2px 8px -4px rgba(0,0,0,.35)}
+.lit-box{display:grid;gap:10px;margin-bottom:10px;padding:12px;border-radius:16px;border:1px solid color-mix(in srgb,#8B5CF6 35%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#8B5CF6 9%,var(--surface)),var(--surface) 60%)}
+.lit-box[hidden]{display:none}
+.lit-h{display:flex;gap:10px;align-items:flex-start}.lit-h>span{font-size:26px}.lit-h b{display:block}.lit-h small{display:block;color:var(--muted);font-size:12px}
+.lit-dp{font-size:12.5px;border-radius:10px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}.lit-dp.ok{background:color-mix(in srgb,#16A34A 12%,transparent)}.lit-dp.warn{background:color-mix(in srgb,#F59E0B 15%,transparent)}.lit-dp label{display:inline-flex;gap:5px;align-items:center;font-weight:700;margin-left:auto}.lit-dp input{width:auto}
+.lit-seg,.lit-chips{display:flex;flex-wrap:wrap;gap:5px}
+.lit-seg button,.lit-chips button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:999px;cursor:pointer}
+.lit-seg button.on,.lit-chips button.on{border-color:#8B5CF6;background:color-mix(in srgb,#8B5CF6 16%,var(--surface-2));color:var(--ink)}
+.lit-ah{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}.lit-ah label{margin:0}
+.lit-acts{display:grid;gap:8px;max-height:420px;overflow:auto;padding-right:2px}
+.lit-g>b{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:2px 0 4px}.lit-g>div{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:5px}
+.lit-a{position:relative;display:flex;gap:7px;align-items:flex-start;text-align:left;padding:7px 9px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer;transition:border-color .15s,transform .12s}
+.lit-a:hover{transform:translateY(-1px)}.lit-a>span:first-child{font-size:18px}.lit-a b{display:block;font-size:12.5px}.lit-a small{display:block;color:var(--muted);font-size:11px;line-height:1.3}
+.lit-a i{position:absolute;top:6px;right:7px;width:16px;height:16px;border-radius:50%;display:none;place-items:center;background:#8B5CF6;color:#fff;font-style:normal;font-size:10px;font-weight:900}
+.lit-a.on{border-color:#8B5CF6;background:color-mix(in srgb,#8B5CF6 10%,var(--surface-2))}.lit-a.on i{display:grid}
+.lit-ideas{border-radius:12px;padding:9px 10px;background:color-mix(in srgb,#F59E0B 11%,transparent)}.lit-ideas small{color:var(--muted)}.lit-ideas>div{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.lit-ideas .chipb.on{opacity:.55}
+.lit-nuevo{margin-top:8px;background:linear-gradient(120deg,#8B5CF6,#EC4899)!important;color:#fff!important;border:0!important}
+.lit-g>div{grid-template-columns:repeat(auto-fill,minmax(128px,1fr))!important}.lit-a{padding:6px 8px;align-items:center}.lit-a small{display:none}.lit-a b{font-size:12px;line-height:1.2;padding-right:12px}
+@media (min-width:1500px){.lit-a small{display:block}}
+
 #view-igbot{--igg:linear-gradient(120deg,#F58529,#DD2A7B 45%,#8134AF 75%,#515BD4)}
 .ig-solo-web{border:1px solid var(--line);background:var(--surface-2);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:14px}
 .ig-hero{display:grid;grid-template-columns:minmax(0,1.2fr) auto minmax(0,1.4fr);gap:18px;align-items:center;padding:18px 20px;border-radius:22px;background:var(--igg);color:#fff;box-shadow:0 18px 40px -22px rgba(129,52,175,.75);margin-bottom:14px;position:relative;overflow:hidden}
@@ -15522,6 +15544,115 @@ function igEventos(v){
     else if(t.id==="igEvitar") C.evitar=t.value.split(",").map(x=>x.trim()).filter(Boolean); else if(t.id==="igFalla") C.siFallaMD=t.value; else return; igGuardar(); });
   $("#igSimTxt").addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); igSimular(); } });
 }
+
+// ---------- MOTOR CREADOR · modo LITERATURA (cuadernillos a partir de una obra) ----------
+const LIT_OBRAS=[
+  ["Hansel y Gretel","Hermanos Grimm","Cuento tradicional",1],["Caperucita Roja","Charles Perrault y Hermanos Grimm","Cuento tradicional",1],["Los tres chanchitos","Tradicional (versión de Joseph Jacobs)","Cuento tradicional",1],
+  ["Ricitos de Oro y los tres osos","Tradicional (Robert Southey)","Cuento tradicional",1],["El patito feo","Hans Christian Andersen","Cuento clásico",1],["Pinocho","Carlo Collodi","Novela clásica",1],
+  ["El gato con botas","Charles Perrault","Cuento tradicional",1],["Blancanieves","Hermanos Grimm","Cuento tradicional",1],["Cenicienta","Charles Perrault","Cuento tradicional",1],
+  ["Jack y las habichuelas mágicas","Tradicional inglés","Cuento tradicional",1],["Rapunzel","Hermanos Grimm","Cuento tradicional",1],["El flautista de Hamelín","Tradicional (Hermanos Grimm)","Leyenda",1],
+  ["El soldadito de plomo","Hans Christian Andersen","Cuento clásico",1],["La liebre y la tortuga","Esopo","Fábula",1],["La cigarra y la hormiga","Esopo / La Fontaine","Fábula",1],
+  ["El león y el ratón","Esopo","Fábula",1],["La tortuga gigante","Horacio Quiroga (Cuentos de la selva)","Cuento de autor",1],["Leyenda del ceibo","Leyenda guaraní","Leyenda",1],["Leyenda de la yerba mate","Leyenda guaraní","Leyenda",1],
+  ["Los sueños del sapo","Javier Villafañe","Cuento de autor",0],["Manuelita la tortuga","María Elena Walsh","Poesía / canción",0],["La planta de Bartolo","Laura Devetach","Cuento de autor",0],
+  ["El monstruo de los colores","Anna Llenas","Álbum ilustrado",0],["Choco encuentra una mamá","Keiko Kasza","Álbum ilustrado",0],["Donde viven los monstruos","Maurice Sendak","Álbum ilustrado",0]];
+const LIT_GEN=["Cuento tradicional","Cuento clásico","Cuento de autor","Fábula","Leyenda","Poesía / canción","Novela clásica","Álbum ilustrado","Obra de teatro"];
+const LIT_ENF=[["comprension","🧠 Comprensión lectora"],["alfa","🔤 Alfabetización inicial"],["escritura","✍️ Escritura creativa"],["vocab","📖 Vocabulario"],["oralidad","🎭 Oralidad y teatro"],["valores","💛 Valores y ESI"],["arte","🎨 Arte"],["areas","🔗 Integración con otras áreas"]];
+const LIT_PROY=["Que lo proponga el motor","Mi propio libro del cuento","Teatro de títeres","Lapbook del cuento","Diario del personaje","Cuento colectivo del grado","Sin proyecto final"];
+const LIT_ACTS=[
+  ["Antes de leer",[["tapa","🔮","Anticipo por la tapa","Hipótesis a partir de la tapa, el título y las ilustraciones; se vuelve a ellas al final."],["ficha","📇","Ficha del libro","Título, autor, ilustrador, editorial y género: primer acercamiento a los paratextos."],["previos","💭","¿Qué sabemos?","Saberes previos: otros cuentos con bosques, brujas o hermanos; ronda de conversación."]]],
+  ["Comprensión",[["vf","✅","Verdadero o falso","Afirmaciones sobre el cuento para marcar V o F (y corregir las falsas en 2.º ciclo)."],["tres","🧠","Comprensión en 3 niveles","Preguntas literales (qué pasó), inferenciales (por qué) y críticas (qué opinás)."],["secuencia","🎞️","Secuencia recortable","Escenas del inicio, el conflicto y el desenlace para recortar y pegar en orden."],["quien","🗣️","¿Quién lo dijo?","Frases del cuento para unir con cada personaje."],["mapa","🗺️","Mapa del recorrido","Los lugares del cuento en orden: un mapa ilustrado para completar."]]],
+  ["Personajes y vocabulario",[["fichapj","🧒","Ficha de personaje","Cómo es por fuera y por dentro, qué quiere y qué hace."],["sebusca","📜","Cartel “SE BUSCA”","Descripción del villano o de un personaje con dibujo y recompensa."],["glosario","📚","Glosario ilustrado","Palabras nuevas del cuento con imagen y una oración propia."],["adjetivos","🎨","Adjetivos del cuento","Elegir y clasificar cualidades de personajes y lugares."]]],
+  ["Alfabetización",[["vocales","🔤","Completar con vocales","Palabras clave del cuento con las vocales que faltan."],["silabas","👏","Conciencia fonológica","Contar sílabas, palmadas, sílaba inicial (SA–SE–SI–SO–SU)."],["inicial","🅰️","Sonido inicial","Unir dibujos con la letra con la que empiezan."],["ordenar","🔀","Ordenar letras","Anagramas con palabras del cuento."],["unir","🔗","Unir imagen y palabra","Dibujos del cuento con su nombre."],["oraciones","📝","Completar oraciones","Oraciones del cuento con un banco de palabras."]]],
+  ["Escritura",[["final","✍️","Otro final","Reescribir el final o cambiar un momento del cuento."],["carta","💌","Carta a un personaje","Escribirle a un personaje para aconsejarlo o preguntarle algo."],["punto","👀","Contalo desde otro personaje","Narrar un momento desde la mirada de otro personaje."],["instructivo","🍬","Texto instructivo","Receta o instrucciones ligadas al cuento (integra Prácticas del Lenguaje)."],["noticia","📰","La noticia del cuento","Escribir el hecho como una noticia con titular y copete."]]],
+  ["Juegos",[["laberinto","🌀","Laberinto del personaje","Ayudar al personaje a llegar a su meta."],["diferencias","🔍","Encontrá las 5 diferencias","Dos escenas del cuento casi iguales."],["busca","👁️","Busca y encontrá","Una escena llena de detalles para encontrar objetos del cuento."],["sopa","🔠","Sopa de letras","Palabras del cuento."],["cruci","🧩","Crucigrama","Con pistas del cuento (con palabra clave vertical si sirve)."],["codigo","🗝️","Mensaje secreto","Descifrar el mensaje del cuento con un código."]]],
+  ["Arte, oralidad y proyecto",[["titeres","🎭","Títeres y guion","Títeres recortables y un guion breve para dramatizar."],["diorama","🏠","Escenario recortable","Maqueta o escenario 3D del lugar principal del cuento."],["dibujo","🖍️","Producción artística","Dibujar o crear a partir del cuento (con técnica sugerida)."],["mates","➕","Matemática en el cuento","Contar, repartir o resolver problemas con elementos del cuento."]]],
+  ["Cierre",[["valores","💬","El mensaje del cuento","Reflexión final: qué nos enseña, qué haríamos nosotros."],["resena","⭐","Mi opinión","Reseña con caritas y estrellas para recomendar (o no) el cuento."],["auto","🙋","Autoevaluación","Qué aprendí, qué me costó, qué me gustó más."]]]];
+const LIT_REC={ini:["tapa","previos","vf","secuencia","quien","vocales","silabas","inicial","unir","laberinto","diferencias","busca","dibujo","valores","resena"],
+  pc:["tapa","vf","tres","secuencia","quien","fichapj","vocales","silabas","ordenar","oraciones","final","laberinto","diferencias","sopa","dibujo","valores","resena"],
+  sc:["tapa","ficha","tres","secuencia","mapa","fichapj","sebusca","glosario","adjetivos","punto","noticia","instructivo","cruci","codigo","titeres","valores","resena","auto"]};
+const LIT_IDEAS={"hansel y gretel":["Laberinto: seguí las miguitas de pan hasta casa","Receta de la casita de golosinas (texto instructivo)","Cartel SE BUSCA: la bruja del bosque","Matemática: contamos y repartimos golosinas","Noticia: ¡Dos hermanos vuelven a casa sanos y salvos!","Ciencias: ¿por qué los pájaros se comieron las migas?","Contalo desde la bruja (o desde el pato que los cruza)"],
+  "caperucita roja":["Mapa: el camino del bosque a la casa de la abuela","Lista de la canasta (texto instructivo)","¿Quién lo dijo? Diálogos del lobo","Cartel SE BUSCA: el lobo","Comparar la versión de Perrault y la de Grimm"],
+  "los tres chanchitos":["Matemática: materiales y cantidades de cada casa","Ciencias: ¿qué material resiste el soplido?","Noticia: ¡El lobo no pudo con la casa de ladrillos!","Contalo desde el lobo"],
+  "ricitos de oro y los tres osos":["Seriación: grande, mediano y pequeño","Carta de disculpas de Ricitos a los osos","Receta de la avena de los osos"],
+  "el patito feo":["Ciencias: el ciclo de vida del cisne","Valores: aceptar las diferencias","Diario del patito: lo que sintió en cada estación"],
+  "pinocho":["La nariz de las mentiras: decir la verdad","Ficha de personaje: Geppetto y Pinocho","Títeres de Pinocho para dramatizar"],
+  "la liebre y la tortuga":["Moraleja: escribir la propia","Carrera de problemas: matemática","Noticia deportiva de la carrera"]};
+const LIT={on:false,obra:"",autor:"",genero:"Cuento tradicional",dp:true,texto:true,letra:"may",enf:["comprension","escritura","valores"],proy:"Que lo proponga el motor",acts:null};
+function litCargar(){ try{ Object.assign(LIT,JSON.parse(localStorage.getItem("cofre-lit")||"{}")); }catch{} }
+function litGuardar(){ try{ localStorage.setItem("cofre-lit",JSON.stringify(LIT)); }catch{} }
+function litNivel(){ const n=(document.querySelector('input[name="moNivel"]:checked')||{}).value||""; return /Inicial/.test(n)?"ini":/Segundo|Secundaria/.test(n)?"sc":"pc"; }
+function litActs(){ if(!LIT.acts||!LIT.acts.length) LIT.acts=LIT_REC[litNivel()].slice(); return LIT.acts; }
+function litObra(n){ const k=normTxt(n||""); return LIT_OBRAS.find(o=>normTxt(o[0])===k)||null; }
+function litBox(){ const acts=new Set(litActs()), o=litObra(LIT.obra), ideas=LIT_IDEAS[normTxt(LIT.obra)]||[];
+  return `<div class="lit-h"><span>📚</span><div><b>Cuadernillo de literatura</b><small>Elegí la obra, el enfoque y las actividades. Se arma con el estilo de tus cuadernillos de “Los sueños del sapo” y “Caperucita Roja”.</small></div></div>
+  <div class="field"><label for="litObra">Obra</label><input id="litObra" list="litObrasL" maxlength="100" placeholder="Ej.: Hansel y Gretel" value="${esc(LIT.obra)}"><datalist id="litObrasL">${LIT_OBRAS.map(x=>`<option value="${esc(x[0])}">${esc(x[1])}</option>`).join("")}</datalist></div>
+  <div class="row2"><div class="field"><label for="litAutor">Autor</label><input id="litAutor" maxlength="80" value="${esc(LIT.autor)}" placeholder="Ej.: Hermanos Grimm"></div><div class="field"><label for="litGen">Género</label><select id="litGen">${LIT_GEN.map(g=>`<option ${g===LIT.genero?"selected":""}>${g}</option>`).join("")}</select></div></div>
+  <div class="lit-dp ${LIT.dp?"ok":"warn"}">${LIT.dp?"✅ Obra de dominio público: el cuadernillo puede traer el cuento adaptado.":"⚠️ Obra con derechos de autor: el cuadernillo trabaja con el libro (sin transcribir el texto)."} <label><input type="checkbox" id="litDp" ${LIT.dp?"checked":""}> Es de dominio público</label></div>
+  ${LIT.dp?`<label class="check"><input type="checkbox" id="litTexto" ${LIT.texto?"checked":""}> Incluir el cuento adaptado al nivel</label>`:""}
+  ${LIT.dp&&LIT.texto?`<div class="field"><label>Letra del cuento</label><div class="lit-seg">${[["may","IMPRENTA MAYÚSCULA + pictogramas"],["min","Imprenta minúscula"],["cur","Cursiva"]].map(([k,t])=>`<button type="button" data-litletra="${k}" class="${LIT.letra===k?"on":""}">${t}</button>`).join("")}</div></div>`:""}
+  <div class="field"><label>Enfoques</label><div class="lit-chips">${LIT_ENF.map(([k,t])=>`<button type="button" data-litenf="${k}" class="${LIT.enf.includes(k)?"on":""}">${t}</button>`).join("")}</div></div>
+  <div class="field"><label for="litProy">Proyecto final</label><select id="litProy">${LIT_PROY.map(p=>`<option ${p===LIT.proy?"selected":""}>${p}</option>`).join("")}</select></div>
+  <div class="field"><div class="lit-ah"><label>Actividades <span class="muted">(${acts.size} elegidas)</span></label><span><button type="button" class="btn small ghost" data-litrec>⭐ Recomendadas para el nivel</button><button type="button" class="btn small ghost" data-litnada>Ninguna</button></span></div>
+    <div class="lit-acts">${LIT_ACTS.map(([g,L])=>`<div class="lit-g"><b>${g}</b><div>${L.map(([k,ic,t,d])=>`<button type="button" class="lit-a${acts.has(k)?" on":""}" data-lita="${k}" title="${esc(d)}"><span>${ic}</span><span><b>${t}</b><small>${esc(d)}</small></span><i>✓</i></button>`).join("")}</div></div>`).join("")}</div></div>
+  ${ideas.length?`<div class="lit-ideas"><b>💡 Ideas para “${esc(o?o[0]:LIT.obra)}”</b> <small>tocá para sumarlas a tus pedidos</small><div>${ideas.map(t=>`<button type="button" class="chipb" data-litidea="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>`:""}`; }
+function litPintar(){ const b=$("#litBox"); if(!b) return; b.innerHTML=litBox(); }
+function litModo(on){ LIT.on=!!on; litGuardar(); const f=document.querySelector(".motor-form"); if(!f) return;
+  f.querySelectorAll("[data-litm]").forEach(x=>x.classList.toggle("on",(x.dataset.litm==="lit")===LIT.on));
+  const efe=$("#moEfe")&&$("#moEfe").closest(".field"); if(efe) efe.hidden=LIT.on; const ow=$("#moOtraWrap"); if(ow&&LIT.on) ow.hidden=true; else if(ow) ow.hidden=$("#moEfe").value!=="otra";
+  const lb=$("#litBox"); if(lb){ lb.hidden=!LIT.on; if(LIT.on) litPintar(); }
+  const go=$("#moGo"); if(go) go.textContent=LIT.on?"📚 Planificar el cuadernillo de literatura":"Planificar el material";
+  const t=$("#mfTitle"); if(t&&t.firstChild) t.firstChild.textContent=LIT.on?"Cuadernillo de literatura ":"Ajustes rápidos ";
+  try{ renderFichaLine(); }catch{} }
+function litBloque(r){ const L=r.lit, A=new Map(LIT_ACTS.flatMap(([g,x])=>x.map(a=>[a[0],[g,...a]]))), letra={may:"IMPRENTA MAYÚSCULA, con frases cortas y las palabras clave marcadas entre [corchetes] para que el autor las reemplace por pictogramas",min:"imprenta minúscula, con frases cortas",cur:"letra cursiva"}[L.letra];
+  return `
+MATERIAL DE LITERATURA (cuadernillo a partir de una obra, NO es una efeméride):
+- Obra: "${L.obra}"${L.autor?` · Autor: ${L.autor}`:""} · Género: ${L.genero}
+- ${L.dp?(L.texto?`Es de dominio público: incluí el CUENTO ADAPTADO para ${r.grado||r.nivel} en ${letra}, repartido en 2 a 4 páginas (sección "Cuento"). Es una adaptación propia y respetuosa del original, con lenguaje cuidado y sin escenas crueles ni violencia explícita (resolvé los momentos duros con delicadeza).`:"Es de dominio público, pero el autor NO quiere el texto completo: trabajá con un resumen breve y con fragmentos clave.")
+      :"Tiene derechos de autor: NO transcribas el texto. Las actividades trabajan con el libro que tiene la docente; podés usar un resumen breve con tus palabras y citas de menos de dos líneas."}
+- No inventes datos de la obra: personajes, lugares, hechos y nombres tienen que ser los del cuento${L.dp?"":" original"}. Si dudás de un detalle de una versión, elegí el de la versión más conocida y agregá [verificar].
+- Enfoques pedidos: ${L.enf.map(k=>(LIT_ENF.find(x=>x[0]===k)||["",k])[1].replace(/^\S+\s/,"")).join(", ")||"comprensión lectora"}.
+- Proyecto final: ${L.proy==="Que lo proponga el motor"?"proponé un proyecto con producto final como en sus cuadernillos (ej.: “Libro de las Vocales del Bosque”)":L.proy==="Sin proyecto final"?"no hace falta":L.proy}.
+- Actividades elegidas por el autor (incluilas TODAS, adaptadas a esta obra y al nivel; si sobran páginas, sumá otras de su repertorio):
+${L.acts.map(k=>A.get(k)).filter(Boolean).map(([g,,ic,t,d])=>`  · ${t} (${g}): ${d}`).join("\n")}
+- Comprensión en tres niveles cuando corresponda: literal (qué pasó), inferencial (por qué pasó) y crítica (qué opinás, qué harías vos).
+- Su estilo en literatura (“Los sueños del sapo”, “Caperucita Roja – Libro de las Vocales del Bosque”): cuento ilustrado con pictogramas, comprensión, V/F, completar palabras y oraciones, ordenar la secuencia, ordenar letras, unir imagen y palabra, laberinto del personaje, 5 diferencias, busca y encontrá, sopa de letras, conciencia fonológica, producción artística, reflexión final sobre el mensaje y un proyecto con producto final.
+- En el JSON del plan, "efemeride" lleva el título de la obra y su autor, y "fecha" queda vacío. El área principal es Prácticas del Lenguaje / Lengua y Literatura.
+`; }
+(function(){
+  litCargar();
+  // pedido: en modo literatura el "tema" es la obra
+  const _mr=motorRequest; motorRequest=function(){ const r=_mr.apply(this,arguments); if(!LIT.on) return r; const obra=(LIT.obra||"").trim();
+    return {...r,efe:obra?`Cuento "${obra}"${LIT.autor?` (${LIT.autor})`:""} – literatura`:"",fecha:"",efeKey:"otra",lit:{obra,autor:LIT.autor,genero:LIT.genero,dp:LIT.dp,texto:LIT.dp&&LIT.texto,letra:LIT.letra,enf:LIT.enf.slice(),proy:LIT.proy,acts:litActs().slice()}}; };
+  const _pp=promptPlan; promptPlan=function(r){ let p=_pp.apply(this,arguments); if(!r||!r.lit) return p;
+    return p.replace("PEDIDO:",litBloque(r)+"\nPEDIDO:").replace("- Efeméride o tema:","- Obra literaria:").replace("Datos históricos correctos; si algo es dudoso, agregá [verificar].","Respetá la obra: personajes y hechos fieles a la versión elegida; si algo es dudoso, agregá [verificar]."); };
+  const _pg=promptPages; promptPages=function(r,plan){ let p=_pg.apply(this,arguments); if(!r||!r.lit) return p;
+    const orden=`- Exactamente ${r.pags} páginas, en este orden: portada, secuencia didáctica (1 página que la menciona), ${r.lit.texto?"el cuento adaptado (2 a 4 páginas, sección \"Cuento\"), ":""}antes de leer, comprensión, personajes y vocabulario, alfabetización o escritura según el nivel, secuencia narrativa recortable, juegos, producción artística${r.lit.proy!=="Sin proyecto final"?", proyecto final":""} y reflexión de cierre con autoevaluación.`;
+    p=p.replace(/- Exactamente \d+ páginas, en el orden habitual del autor:[^\n]*/,orden).replace('"seccion":"Portada|Secuencia|Infografía|','"seccion":"Portada|Secuencia|Cuento|Antes de leer|Personajes|Vocabulario|Alfabetización|Reflexión|Infografía|').replace(/el texto de la infografía en bloques breves;/,"el texto del cuento adaptado completo (si va), dividido por página; ");
+    return litBloque(r)+"\n"+p; };
+  // interfaz
+  const f=document.querySelector(".motor-form"); if(!f) return;
+  const h=$("#mfTitle"); h.insertAdjacentHTML("afterend",`<div class="lit-modo" role="tablist"><button type="button" data-litm="efe" class="on">📅 Efemérides</button><button type="button" data-litm="lit">📚 Literatura</button></div><div id="litBox" class="lit-box" hidden></div>`);
+  const emp=$("#moEmpty"); if(emp&&!emp.querySelector("[data-litnuevo]")){ const b=emp.querySelector("[data-mzwiz]"); if(b) b.insertAdjacentHTML("afterend",`<button class="btn mz-big lit-nuevo" type="button" data-litnuevo>📚 Crear un cuadernillo de literatura</button>`); }
+  f.addEventListener("click",e=>{ const t=e.target.closest("button"); if(!t) return;
+    if(t.dataset.litm){ litModo(t.dataset.litm==="lit"); return; }
+    if(t.dataset.litletra){ LIT.letra=t.dataset.litletra; litGuardar(); litPintar(); return; }
+    if(t.dataset.litenf){ const k=t.dataset.litenf; LIT.enf=LIT.enf.includes(k)?LIT.enf.filter(x=>x!==k):[...LIT.enf,k]; litGuardar(); t.classList.toggle("on"); return; }
+    if(t.dataset.lita){ const k=t.dataset.lita, A=litActs(); LIT.acts=A.includes(k)?A.filter(x=>x!==k):[...A,k]; if(!LIT.acts.length) LIT.acts=["vf"]; litGuardar(); litPintar(); return; }
+    if(t.hasAttribute("data-litrec")){ LIT.acts=LIT_REC[litNivel()].slice(); litGuardar(); litPintar(); return; }
+    if(t.hasAttribute("data-litnada")){ LIT.acts=["vf"]; litGuardar(); litPintar(); return; }
+    if(t.dataset.litidea){ const i=$("#moIdeas"), v=i.value.trim(); if(!v.includes(t.dataset.litidea)){ i.value=(v?v+"\n":"")+t.dataset.litidea; i.dispatchEvent(new Event("input")); } t.classList.add("on"); return; } });
+  f.addEventListener("input",e=>{ const t=e.target;
+    if(t.id==="litObra"){ LIT.obra=t.value; const o=litObra(t.value); if(o){ LIT.autor=o[1]; LIT.genero=o[2]; LIT.dp=!!o[3]; if(!LIT.dp) LIT.texto=false; else LIT.texto=true; litGuardar(); const pos=t.selectionStart; litPintar(); const n=$("#litObra"); n.focus(); try{ n.setSelectionRange(pos,pos); }catch{} } else litGuardar(); try{ renderFichaLine(); }catch{} return; }
+    if(t.id==="litAutor"){ LIT.autor=t.value; litGuardar(); } });
+  f.addEventListener("change",e=>{ const t=e.target;
+    if(t.id==="litGen"){ LIT.genero=t.value; litGuardar(); } else if(t.id==="litProy"){ LIT.proy=t.value; litGuardar(); }
+    else if(t.id==="litDp"){ LIT.dp=t.checked; LIT.texto=t.checked; litGuardar(); litPintar(); } else if(t.id==="litTexto"){ LIT.texto=t.checked; litGuardar(); litPintar(); }
+    else if(t.name==="moNivel"&&LIT.on){ LIT.acts=LIT_REC[litNivel()].slice(); litGuardar(); litPintar(); } });
+  document.addEventListener("click",e=>{ const t=e.target.closest&&e.target.closest("[data-mzwiz],[data-litnuevo]"); if(!t) return;
+    if(t.hasAttribute("data-litnuevo")){ e.preventDefault(); litModo(true); f.scrollIntoView({behavior:"smooth",block:"start"}); setTimeout(()=>$("#litObra")&&$("#litObra").focus(),300); return; }
+    if(LIT.on) litModo(false); },true);
+  litModo(LIT.on);
+})();
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
