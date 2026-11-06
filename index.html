@@ -15036,11 +15036,11 @@ const LZ_TXT=[["emp_titulo","tienda","Título del producto en Empretienda",1],["
   ["wa_difusion","wa","Mensaje de difusión",8],["wa_estado","wa","Estado",3],["mail_asunto","mail","Asunto",1],["mail_cuerpo","mail","Cuerpo del correo",12]];
 const LZ={tab:"crear",grupo:"tienda",busy:false};
 function lzLinks(D){ const p=D.pub||{}; const u=p.url||""; return {completa:u,demo:p.demo||(u?u+"demo/":""),venta:u?u+"conocela/":"",tienda:D.meta.tiendaUrl||"",biblio:MP_WEB+"/biblioteca.html"}; }
-function lzDatos(D){ const S=mpJuegosDe(D), J=[...new Map(S.flatMap(s=>s.J).map(j=>[j.id,j])).values()], A=D.acceso||{}, L=lzLinks(D), lz=D.lanz||{};
+function mpLzDatos(D){ const S=mpJuegosDe(D), J=[...new Map(S.flatMap(s=>s.J).map(j=>[j.id,j])).values()], A=D.acceso||{}, L=lzLinks(D), lz=D.lanz||{};
   return {tema:D.meta.nombreCompleto||D.meta.nombreCorto, titulo:D.meta.titulo, fecha:(D.meta.efemeride||"").split(" – ")[0], juegos:J.map(j=>j.t), nJ:J.length, misiones:(D.capitulos||[]).map(c=>c.tit), guias:(D.guias||[]).map(g=>g.nombre), secciones:S.map(s=>s.t.replace(/^\S+\s/,"")),
     acceso:A.modo==="biblioteca"?"desde Mi biblioteca (cofredidactico.com.ar/biblioteca.html) con un toque":A.modo==="codigo"?"con el código de acceso que se envía por mensaje":"con el link", links:L, precio:lz.precio||"", oferta:lz.oferta||"", palabra:lz.palabra||"PLATAFORMA"}; }
 // textos sin Claude (base), con el tono de Cofre Didáctico
-function lzPlantillas(D){ const d=lzDatos(D), L=d.links, pr=d.precio?`$${d.precio}`:"", top=d.juegos.slice(0,8).map(j=>"🎮 "+j).join("\n");
+function lzPlantillas(D){ const d=mpLzDatos(D), L=d.links, pr=d.precio?`$${d.precio}`:"", top=d.juegos.slice(0,8).map(j=>"🎮 "+j).join("\n");
   const incluye=`📦 ¿Qué incluye?\n✨ ${d.nJ} juegos interactivos para 1.º a 6.º grado\n📖 Modo Historia con ${d.misiones.length} misiones${d.guias.length?` guiadas por ${d.guias.join(" y ")}`:""}\n📒 Álbum de figuritas, medallas y diploma para imprimir\n♿ Lectura en voz alta, texto grande, alto contraste y sección "Aula para todos"\n📲 Funciona en celular, tablet, compu y pizarra digital (¡y se instala para usar sin internet!)\n🧑‍🏫 Herramientas para la docente: temporizador, marcador y reiniciar`;
   return {
     emp_titulo:`Plataforma Interactiva - ${d.tema}`,
@@ -15059,7 +15059,7 @@ function lzPlantillas(D){ const d=lzDatos(D), L=d.links, pr=d.precio?`$${d.preci
 async function lzMejorarIA(){ const D=MP.D, m=$("#mpMsg"), b=$("#lzIA"); const sf=await getSample(); if(!sf){ m.textContent="Los textos con Claude se hacen en el panel dentro de Claude. Ya tenés los textos base listos para usar."; return; }
   let estilo=""; try{ const j=await (await fetch(MP_WEB+"/productos.json?t="+Date.now())).json(); const P=(j.productos||[]).find(p=>/plataforma/i.test(p.id)&&p.descripcionLarga); if(P) estilo=P.descripcionLarga.slice(0,1200); }catch{}
   b.disabled=true; b.textContent="✨ Claude está escribiendo…"; LZ.busy=true;
-  try{ const d=lzDatos(D), base=lzPlantillas(D); const r=await sf.json(`Sos community manager y redactora de Cofre Didáctico (materiales didácticos argentinos para docentes de primaria, marca cálida, cercana, con voseo y emojis con medida). Escribí el kit de lanzamiento de esta plataforma interactiva.\nDatos (no inventes otros datos, links ni precios): ${JSON.stringify(d)}\n${estilo?`Así suenan las descripciones de la tienda (respetá este estilo y formato con emojis):\n"""${estilo}"""\n`:""}Partí de estos borradores y mejoralos (más persuasivos, beneficios concretos para la docente, ganchos fuertes en la primera línea, llamados a la acción claros); mantené los links tal cual:\n${JSON.stringify(base)}\nDevolvé SOLO JSON con las mismas claves: ${Object.keys(base).join(", ")}.`,{modelTier:"complex",cache:false});
+  try{ const d=mpLzDatos(D), base=lzPlantillas(D); const r=await sf.json(`Sos community manager y redactora de Cofre Didáctico (materiales didácticos argentinos para docentes de primaria, marca cálida, cercana, con voseo y emojis con medida). Escribí el kit de lanzamiento de esta plataforma interactiva.\nDatos (no inventes otros datos, links ni precios): ${JSON.stringify(d)}\n${estilo?`Así suenan las descripciones de la tienda (respetá este estilo y formato con emojis):\n"""${estilo}"""\n`:""}Partí de estos borradores y mejoralos (más persuasivos, beneficios concretos para la docente, ganchos fuertes en la primera línea, llamados a la acción claros); mantené los links tal cual:\n${JSON.stringify(base)}\nDevolvé SOLO JSON con las mismas claves: ${Object.keys(base).join(", ")}.`,{modelTier:"complex",cache:false});
     if(!r||!r.emp_desc) throw {code:"invalid_json"}; D.lanz=D.lanz||{}; D.lanz.textos={...base,...Object.fromEntries(Object.entries(r).filter(([k,v])=>base[k]!=null&&typeof v==="string"&&v.trim()))}; D.lanz.ia=new Date().toISOString(); mpGuardarPronto(); lzPintar(); m.textContent="✨ Listo el kit de textos con Claude. Revisalos y copiá cada uno."; }
   catch(e){ m.textContent="No se pudo: "+pkErrTxt(e); } finally{ LZ.busy=false; const bb=$("#lzIA"); if(bb){ bb.disabled=false; bb.textContent="✨ Escribir todo con Claude"; } } }
 // imágenes para publicar (con el mismo motor del reel)
@@ -15277,7 +15277,7 @@ function lzcLamina(D,j,r,i,n,m){ const W=1080,H=1350, c=document.createElement("
   g.textAlign="left"; g.font=F(28,800); g.fillStyle="#6B7280"; g.fillText(`🎮 ${D.meta.nombreCompleto||D.meta.nombreCorto} · cofredidactico.com.ar`,64,H-36); g.textAlign="right"; g.fillStyle=c1; g.font=F(30,900); g.fillText("Deslizá 👉",W-64,H-36);
   return c; }
 function lzcEscena(D,R,esc){ rcCargar(D); const bk=JSON.parse(JSON.stringify(RC)); try{ RC.esc=Object.fromEntries(Object.keys(RC.esc).map(k=>[k,k===esc?1:0])); RC.dur=2; RC.barra=0; RC.marca=1; RC.trans="mezcla"; RC.dm=0; const c=document.createElement("canvas"); c.width=1080; c.height=1350; rcFrame(c.getContext("2d"),1.9,D,R,1080,1350); return c; } finally{ Object.assign(RC,bk); } }
-async function lzCarrusel(){ const D=MP.D; if(!D) return; let o=document.getElementById("lzCarDlg"); if(o) o.remove(); o=document.createElement("div"); o.id="lzCarDlg"; o.className="cq-ver";
+async function mpLzCarrusel(){ const D=MP.D; if(!D) return; let o=document.getElementById("lzCarDlg"); if(o) o.remove(); o=document.createElement("div"); o.id="lzCarDlg"; o.className="cq-ver";
   o.innerHTML=`<div class="rs-in lzc-in"><div class="cq-vh"><b>📸 Carrusel para Instagram</b><span class="muted" id="lzcEst">Preparando…</span><button type="button" class="cq-vx" id="lzcX" aria-label="Cerrar">✕</button></div>
     <p class="lzc-help">Portada + capturas reales de las actividades (con tus imágenes) + cierre. Formato 4:5 (1080×1350), el que más ocupa en el feed. Tocá una lámina para sacarla o ponerla.</p>
     <div class="lzc-grid" id="lzcGrid"></div>
@@ -15298,7 +15298,7 @@ async function lzCarrusel(){ const D=MP.D; if(!D) return; let o=document.getElem
     est.textContent=fallas.length?`Listo, revisá: ${fallas.join(" · ")}`:`¡Listo! ${L.length} láminas, sin errores ✓`; o.querySelector("#lzcZip").disabled=false;
   }catch(e){ console.warn(e); est.textContent="No se pudo armar el carrusel: "+(e.message||e); }
   finally{ if(f) f.remove(); } }
-document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("#lzCarBtn"); if(b){ e.preventDefault(); lzCarrusel(); } });
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("#lzCarBtn"); if(b){ e.preventDefault(); mpLzCarrusel(); } });
 (function(){ const _p=lzPintar; lzPintar=function(){ _p.apply(this,arguments); try{ const s=document.querySelector("#mpLz .lz-imgs"); if(s&&!document.getElementById("lzCarBtn")) s.insertAdjacentHTML("beforebegin",`<button type="button" class="lz-car" id="lzCarBtn"><span>📸</span><span><b>Carrusel para Instagram</b><small>Portada + capturas reales de 6 a 8 actividades con tus imágenes + cierre · 4:5</small></span><em>Crear</em></button>`); }catch(er){ console.warn(er); } }; })();
 
 // ===== "Actualizar todas las publicadas": visible en Lanzar y encuentra también las publicadas desde paneles anteriores =====
@@ -15382,7 +15382,7 @@ const LZ_TXT2=[
 const LZ_ENF=[["beneficio","🎯","Directo al beneficio","Claro y concreto: qué gana la docente"],["emocion","❤️","Emocional","Pinta la escena del aula feliz"],["urgencia","⏰","Urgencia real","Fecha que se acerca y oferta (sin inventar)"]];
 const LZ_LIMC={emp_titulo:[25,90],emp_corta:[80,300],emp_desc:[600,5000],faq:[200,2500],entrega:[200,1500],entrega_wa:[60,500],ig_post:[300,2200],ig_carrusel:[200,2200],ig_reel:[80,700],ig_historias:[80,800],dm_auto:[150,1000],dm_seguimiento:[60,500],wa_difusion:[200,1200],wa_grupo:[120,800],wa_estado:[20,700],mail_asunto:[20,60],mail_pre:[35,110],mail_cuerpo:[300,3000]};
 const LZ_NECESITA_LINK=new Set(["emp_desc","entrega","entrega_wa","dm_auto","wa_difusion","wa_grupo","wa_estado","mail_cuerpo","ig_historias"]);
-function lzDatos2(D){ const d=lzDatos(D), dias=typeof rcDias==="function"?rcDias(D):0, f=typeof rcFechaTxt==="function"?rcFechaTxt(D):"";
+function lzDatos2(D){ const d=mpLzDatos(D), dias=typeof rcDias==="function"?rcDias(D):0, f=typeof rcFechaTxt==="function"?rcFechaTxt(D):"";
   const nombres=d.juegos.filter(t=>!/conocé|glosario|en detalle|infograf/i.test(t)).slice(0,6);
   return {...d, dias, fechaTxt:f, ic:D.meta.icono||"✨", nombres, nM:d.misiones.length, pr:d.precio?"$"+Number(String(d.precio).replace(/\D/g,"")||0).toLocaleString("es-AR"):"", compra:d.links.tienda||d.links.venta||"", demo:d.links.demo||"", elT:(/^d[ií]a\b/i.test(d.tema)?"el ":"")+d.tema, delT:(/^d[ií]a\b/i.test(d.tema)?"del ":"de ")+d.tema, tag:"#"+pkNorm(D.meta.nombreCorto||D.meta.nombreCompleto||"").replace(/\s+/g,"")}; }
 // textos base, con 3 enfoques de venta y el tono de Cofre Didáctico (sin inventar testimonios ni cifras)
@@ -16722,6 +16722,9 @@ document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closes
     const dr=$("#vsDrop"); if(dr) dr.addEventListener("drop",e=>{ const f=[...(e.dataTransfer&&e.dataTransfer.files||[])].find(x=>/pdf$/i.test(x.type)||/\.pdf$/i.test(x.name)); if(f){ e.preventDefault(); e.stopImmediatePropagation(); vpAbrirPdf(f); } },true);
     const sp=dr&&dr.querySelector("span"); if(sp) sp.textContent="JPG, PNG o WEBP. También podés soltar acá un PDF para elegir sus hojas."; };
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",ini); else ini(); })();
+// las imágenes traídas de Lanzar también se guardan livianas (JPEG nítido en vez de canvas pesado)
+async function vsAliviar(){ for(const f of VS.fotos){ const c=f.img; if(c&&typeof HTMLCanvasElement!=="undefined"&&c instanceof HTMLCanvasElement&&c.width*c.height>600000){ try{ const bl=await new Promise(r=>c.toBlob(r,"image/jpeg",.92)); if(!bl) continue; const im=new Image(); im.src=URL.createObjectURL(bl); await im.decode(); f.img=im; }catch{} } } }
+(function(){ const _imp=vsImportar; vsImportar=async function(){ const r=await _imp.apply(this,arguments); try{ await vsAliviar(); }catch{} return r; }; })();
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
