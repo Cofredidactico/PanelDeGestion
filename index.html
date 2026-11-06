@@ -594,6 +594,52 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+:root{--rs2-pin:#E60023;--rs2-yt:#FF3355;--rs2-s1:#3987e5;--rs2-s2:#d95926;--rs2-s3:#199e70;--rs2-s4:#c98500}
+:root[data-theme="light"]{--rs2-pin:#C8001E;--rs2-yt:#E0002A;--rs2-s1:#2a78d6;--rs2-s2:#eb6834;--rs2-s3:#1baf7a;--rs2-s4:#eda100}
+.rs2-per button{min-width:70px}
+.rs2-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 14px}
+.rs2-tabs button{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:12px;align-items:center;text-align:left;padding:12px 16px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer}
+.rs2-tabs button span{grid-row:1/3;font-size:26px}.rs2-tabs button b{font-size:16px}.rs2-tabs button small{color:var(--muted);font-size:12.5px}
+.rs2-tabs .rs2-tp[aria-selected="true"]{border-color:var(--rs2-pin);box-shadow:0 0 0 3px color-mix(in srgb,var(--rs2-pin) 18%,transparent);background:color-mix(in srgb,var(--rs2-pin) 9%,var(--surface-2))}
+.rs2-tabs .rs2-ty[aria-selected="true"]{border-color:var(--rs2-yt);box-shadow:0 0 0 3px color-mix(in srgb,var(--rs2-yt) 18%,transparent);background:color-mix(in srgb,var(--rs2-yt) 9%,var(--surface-2))}
+.rs2-body{display:grid;gap:14px}
+.rs2-kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.rs2-kpi{position:relative;display:grid;gap:3px;padding:12px 14px 10px;border-radius:14px;border:1px solid var(--line);background:var(--surface);overflow:hidden;min-height:118px}
+.rs2-kt{font-size:12px;font-weight:700;color:var(--muted)}.rs2-kv{font-size:26px;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums}
+.rs2-kd{font-size:12px;font-weight:700;color:var(--muted)}.rs2-kd small{font-weight:500}.rs2-kd.up{color:#22A35A}.rs2-kd.down{color:#E05A47}
+.rs2-spark{width:100%;height:28px;margin-top:auto;color:var(--muted);opacity:.8}
+#view-redstats .rs2-body:has(.rs2-tp) .rs2-spark{color:var(--rs2-pin)}
+.rs2-card{padding:14px 16px;display:grid;gap:8px;min-width:0}.rs2-card h3{margin:0;font-size:15px}
+.rs2-ch{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.rs2-chips{display:flex;flex-wrap:wrap;gap:6px}.rs2-chips button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer}.rs2-chips button.on{border-color:var(--ink);font-weight:700}
+.rs2-leg{display:flex;gap:16px;font-size:12px;color:var(--muted)}.rs2-leg span{display:flex;align-items:center;gap:6px}.rs2-leg i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.rs2-ant-i{width:14px;height:0;border-top:2px dashed var(--muted);display:inline-block}
+.rs2-plot{position:relative;min-height:260px}.rs2-area .rs2-grid{stroke:var(--line);stroke-width:1}.rs2-area .rs2-ax{fill:var(--muted);font-size:11px}
+.rs2-area .rs2-ant{stroke:var(--muted);stroke-width:1.6;stroke-dasharray:5 5;opacity:.75}.rs2-area .rs2-cross{stroke:var(--muted);stroke-width:1}.rs2-hit{cursor:crosshair}
+.rs2-tip{position:absolute;z-index:2;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;box-shadow:0 10px 26px rgba(0,0,0,.25);display:grid;gap:3px;font-size:12.5px;min-width:170px;color:var(--ink)}
+.rs2-tip span{display:flex;align-items:center;gap:6px;color:var(--muted)}.rs2-tip span b{color:var(--ink)}.rs2-tip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.rs2-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rs2-bars{display:grid;gap:7px}.rs2-bar{display:grid;grid-template-columns:minmax(90px,38%) minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:13px}
+.rs2-bl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}.rs2-bl em{font-style:normal;margin-right:6px}
+.rs2-bt{height:12px;background:var(--surface-2);border-radius:4px;overflow:hidden}.rs2-bt i{display:block;height:100%;border-radius:0 4px 4px 0;min-width:3px;transition:width .4s}
+.rs2-bar b{text-align:right;font-variant-numeric:tabular-nums}.rs2-bar:hover .rs2-bt i{filter:brightness(1.15)}
+.rs2-fun{display:grid;gap:10px}.rs2-fs{display:grid;grid-template-columns:minmax(120px,40%) minmax(0,1fr) 64px;grid-template-rows:auto auto;column-gap:10px;align-items:center;font-size:13px}
+.rs2-ft{height:16px;background:var(--surface-2);border-radius:4px;overflow:hidden}.rs2-ft i{display:block;height:100%;background:var(--rs2-pin);border-radius:0 4px 4px 0}
+.rs2-fs b{text-align:right;font-variant-numeric:tabular-nums}.rs2-fs small{grid-column:2/4;color:var(--muted);font-size:11.5px}.rs2-er{margin:4px 0 0;font-size:13px}
+.rs2-ins ul{margin:0;padding-left:4px;list-style:none;display:grid;gap:7px;font-size:13.5px}
+.rs2-ia{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:8px;font-size:13.5px}.rs2-ia p{margin:0}.rs2-ia ul,.rs2-ia ol{margin:4px 0 0;padding-left:20px;display:grid;gap:4px}
+.rs2-tab-w{overflow-x:auto}.rs2-t{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}.rs2-t th{text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}.rs2-t th:first-child,.rs2-t td:first-child{text-align:left}
+.rs2-t th button{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;cursor:pointer;padding:0}.rs2-t th button.on{color:var(--ink)}
+.rs2-t td{text-align:right;padding:7px 8px;border-bottom:1px solid var(--line)}.rs2-t tbody tr:hover{background:var(--surface-2)}
+.rs2-it{display:flex;gap:10px;align-items:center;color:var(--ink);text-decoration:none;min-width:220px}.rs2-it img,.rs2-it .pn-ph{width:36px;height:54px;object-fit:cover;border-radius:6px;flex:none}.rs2-itv img,.rs2-itv .pn-ph{width:72px;height:40px}
+.rs2-it span{display:grid;min-width:0}.rs2-it b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:340px}.rs2-it small{color:var(--muted)}
+.rs2-loc p{margin:0;font-size:13.5px}
+.rs2-vacio{padding:28px;text-align:center;display:grid;gap:8px;justify-items:center}.rs2-vacio>span{font-size:40px}.rs2-vacio h3{margin:0}.rs2-vacio p{margin:0;max-width:620px;color:var(--muted)}
+.rs2-prev{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}.rs2-prev span{border:1px dashed var(--line);border-radius:99px;padding:5px 12px;font-size:12.5px;color:var(--muted)}
+.rs2-sk{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.rs2-sk i{height:110px;border-radius:14px;background:var(--surface-2);animation:vpPulso 1.2s ease-in-out infinite}
+@media (max-width:1100px){.rs2-kpis,.rs2-sk{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.rs2-kpis,.rs2-sk{grid-template-columns:repeat(2,minmax(0,1fr))}.rs2-g2{grid-template-columns:minmax(0,1fr)}.rs2-kv{font-size:22px}.rs2-bar{grid-template-columns:minmax(80px,40%) minmax(0,1fr) 46px}}
+
 .vp-in{width:min(1100px,100%);max-height:92vh;display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto;background:var(--surface);color:var(--ink);border-radius:18px;overflow:hidden}
 .vp-in .cq-vh{padding:14px 16px 8px}.vp-in .cq-vx{background:var(--surface-2);color:var(--ink)}
 .vp-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:0 16px 10px;border-bottom:1px solid var(--line)}.vp-acc{display:flex;flex-wrap:wrap;gap:6px}.vp-rango{display:flex;gap:6px}.vp-rango input{width:170px}
@@ -2435,6 +2481,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     <button class="tab" role="tab" data-view="lanzamientos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.5-2 4.5-2 6 1.5 0 4.5-.5 6-2"/><path d="M9 15l-3-3c1-4 4.5-8 12-9-1 7.5-5 11-9 12z"/><circle cx="14.5" cy="9.5" r="1.5"/></svg><span>Lanzamientos</span><span class="n" id="nLanz">—</span></button>
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Mensajes</span></button>
     <button class="tab" role="tab" data-view="igbot" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Respuestas IG</span></button>
+    <button class="tab" role="tab" data-view="redstats" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span>Pinterest y YouTube</span></button>
     <button class="tab" role="tab" data-view="pinterest" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M11 8.5c3-1 5 .8 4.6 3.3-.3 2-1.9 3.2-3.4 2.6M11.2 9.5 9.5 20"/></svg><span>Pinterest</span></button>
     <button class="tab" role="tab" data-view="youtube" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/></svg><span>YouTube</span></button>
     <button class="tab" role="tab" data-view="video" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg><span>Estudio de video</span></button>
@@ -3173,6 +3220,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 <main class="wrap view" id="view-igbot" hidden></main>
 <main class="wrap view" id="view-pinterest" hidden></main>
 <main class="wrap view" id="view-youtube" hidden></main>
+<main class="wrap view" id="view-redstats" hidden></main>
 <main class="wrap view" id="view-datos" hidden>
   <div class="view-h"><div><h1>Datos</h1><p class="lead" id="dMode"></p></div><button class="btn small" type="button" id="supaOut2" hidden>Cerrar sesión</button></div>
   <section class="card">
@@ -4327,7 +4375,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","pinterest","youtube","video","pdf","fichas","plataformas","correos","datos"];
+  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","redstats","pinterest","youtube","video","pdf","fichas","plataformas","correos","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -4346,6 +4394,7 @@ function renderView(v){
   if(v==="igbot") igInit();
   if(v==="pinterest") pnInit();
   if(v==="youtube") ytInit();
+  if(v==="redstats") rs2Init();
   if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
   if(v==="stats") renderStats();
@@ -16626,7 +16675,7 @@ function ytEnlazar(v){
     if(!map[t.id]) return; map[t.id](); clearTimeout(YT.tm); YT.tm=setTimeout(()=>{ const c=(id,n,max)=>{ const k=$(`[data-cnt="${id}"]`); if(k){ k.textContent=`${n}/${max}`; k.classList.toggle("over",n>max); } }; c("ytTit",YT.tit.length,100); c("ytDesc",YT.desc.length,5000); if(/^yt(Tit|Desc|Mini)/.test(t.id)) ytPrev(); ytPintarSeo(); },150); }); }
 
 // ---------- Menú lateral agrupado por utilidad ----------
-const NAV_GRUPOS=[["principal","",["inicio","calendario"]],["ventas","💰 Ventas y clientes",["ventas","stats","clientes","materiales","correos"]],["redes","📣 Redes sociales",["instagram","igbot","pinterest","youtube","mensajes","lanzamientos"]],["crear","🎨 Crear y diseñar",["motor","plataformas","video","fichas","pdf"]],["sistema","⚙️ Sistema",["datos"]]];
+const NAV_GRUPOS=[["principal","",["inicio","calendario"]],["ventas","💰 Ventas y clientes",["ventas","stats","clientes","materiales","correos"]],["redes","📣 Redes sociales",["instagram","redstats","igbot","pinterest","youtube","mensajes","lanzamientos"]],["crear","🎨 Crear y diseñar",["motor","plataformas","video","fichas","pdf"]],["sistema","⚙️ Sistema",["datos"]]];
 function navCerrados(){ try{ return JSON.parse(localStorage.getItem("cofre-navg")||"[]"); }catch{ return []; } }
 function navGuardar(){ try{ localStorage.setItem("cofre-navg",JSON.stringify([...document.querySelectorAll(".nav-g.cerrado")].map(g=>g.dataset.g))); }catch{} }
 function navGrupoDe(v){ const g=NAV_GRUPOS.find(x=>x[2].includes(v)); return g?g[0]:"sistema"; }
@@ -16725,6 +16774,132 @@ document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closes
 // las imágenes traídas de Lanzar también se guardan livianas (JPEG nítido en vez de canvas pesado)
 async function vsAliviar(){ for(const f of VS.fotos){ const c=f.img; if(c&&typeof HTMLCanvasElement!=="undefined"&&c instanceof HTMLCanvasElement&&c.width*c.height>600000){ try{ const bl=await new Promise(r=>c.toBlob(r,"image/jpeg",.92)); if(!bl) continue; const im=new Image(); im.src=URL.createObjectURL(bl); await im.decode(); f.img=im; }catch{} } } }
 (function(){ const _imp=vsImportar; vsImportar=async function(){ const r=await _imp.apply(this,arguments); try{ await vsAliviar(); }catch{} return r; }; })();
+
+// =====================================================================
+// ESTADÍSTICAS DE PINTEREST Y YOUTUBE (Metricool)
+// =====================================================================
+const RS2={on:false,red:"pin",dias:30,met:{pin:"imp",yt:"views"},data:null,gen:null,cargando:false,msg:"",orden:{pin:"imp",yt:"views"},ia:null};
+const RS2_PIN_EV=["PIEV01","PIEV04","PIEV05","PIEV06","PIEV07","PIEV09","PIEV10"], RS2_PIN_PO=["PIPO02","PIPO03","PIPO06","PIPO07","PIPO08","PIPO09","PIPO10","PIPO11","PIPO12"];
+const RS2_YT_EV=["YTEV01","YTEV02","YTEV05","YTEV06","YTEV13","YTEV10","YTEV12","YTEV19"], RS2_YT_VV=["YTVV02","YTVV03","YTVV05","YTVV17","YTVV06","YTVV07","YTVV08","YTVV09","YTVV11","YTVV12"];
+const RS2_TRAF={YT_SEARCH:"Búsqueda de YouTube",SHORTS:"Feed de Shorts",RELATED_VIDEO:"Videos sugeridos",SUBSCRIBER:"Inicio y suscripciones",EXT_URL:"Enlaces externos (tu web, WhatsApp…)",NO_LINK_OTHER:"Directo o desconocido",NO_LINK_EMBEDDED:"Video insertado en otra web",YT_CHANNEL:"Tu canal",YT_OTHER_PAGE:"Otras páginas de YouTube",PLAYLIST:"Listas de reproducción",YT_PLAYLIST_PAGE:"Página de listas",NOTIFICATION:"Notificaciones",END_SCREEN:"Pantallas finales",ADVERTISING:"Publicidad",HASHTAGS:"Hashtags",SOUND_PAGE:"Página de audio",CAMPAIGN_CARD:"Tarjetas",ANNOTATION:"Anotaciones",PROMOTED:"Promocionado",PRODUCT_PAGE:"Página de producto",IMMERSIVE_LIVE:"En vivo"};
+const RS2_PAIS={argentina:"AR",mexico:"MX","méxico":"MX",chile:"CL",uruguay:"UY",paraguay:"PY",bolivia:"BO",peru:"PE","perú":"PE",colombia:"CO",ecuador:"EC",venezuela:"VE",spain:"ES","españa":"ES","united states":"US","estados unidos":"US",brazil:"BR",brasil:"BR",guatemala:"GT","costa rica":"CR",panama:"PA","panamá":"PA","dominican republic":"DO","república dominicana":"DO",honduras:"HN","el salvador":"SV",nicaragua:"NI",cuba:"CU","puerto rico":"PR",italy:"IT",italia:"IT",france:"FR",francia:"FR",germany:"DE",alemania:"DE",canada:"CA","canadá":"CA","united kingdom":"GB","reino unido":"GB"};
+const RS2_PNOM={AR:"Argentina",MX:"México",CL:"Chile",UY:"Uruguay",PY:"Paraguay",BO:"Bolivia",PE:"Perú",CO:"Colombia",EC:"Ecuador",VE:"Venezuela",ES:"España",US:"Estados Unidos",BR:"Brasil",GT:"Guatemala",CR:"Costa Rica",PA:"Panamá",DO:"Rep. Dominicana",HN:"Honduras",SV:"El Salvador",NI:"Nicaragua",CU:"Cuba",PR:"Puerto Rico",IT:"Italia",FR:"Francia",DE:"Alemania",CA:"Canadá",GB:"Reino Unido"};
+const rs2Num=v=>v==null||v===""?null:(isFinite(+v)?+v:null);
+const rs2Fmt=n=>n==null?"—":Math.abs(n)>=1e6?(n/1e6).toFixed(1).replace(".",",")+" M":Math.abs(n)>=1e4?(n/1e3).toFixed(1).replace(".",",")+" k":Math.round(n).toLocaleString("es-AR");
+const rs2Ymd=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
+function rs2Flag(c){ const k=/^[A-Za-z]{2}$/.test(c||"")?c.toUpperCase():RS2_PAIS[String(c||"").toLowerCase().trim()]; return k?{k,f:String.fromCodePoint(...[...k].map(x=>127397+x.charCodeAt(0))),n:RS2_PNOM[k]||c}:{k:"",f:"🌎",n:String(c||"Otro")}; }
+
+// ---------- traer de Metricool ----------
+async function rs2Pedir(M,metrics,desde,hasta){ const r=await M.callTool(MC,"getAnalyticsDataByMetrics",{brandId:MC_BRAND,from:tzIso(desde),to:tzIso(hasta,true),metrics}); const p=payloadOf(r); return (p&&p.rows)||[]; }
+async function rs2Cargar(force){ if(RS2.cargando) return; const M=await pnMcp(); RS2.cargando=true; RS2.msg=""; rs2Pintar();
+  try{ if(!M){ const sn=db&&await db.doc("panel/redes").get(); const d=sn&&sn.exists?sn.data():null; if(d&&d.pin){ RS2.data=d; RS2.gen=d.gen?new Date(d.gen):null; } else RS2.msg="Todavía no hay estadísticas guardadas. Se cargan al abrir esta sección en el panel dentro de Claude."; return; }
+    const hoy=new Date(), d0=new Date(+hoy-(180-1)*864e5), d1y=new Date(+hoy-365*864e5), d90=new Date(+hoy-89*864e5), d30=new Date(+hoy-29*864e5), out={gen:hoy.toISOString()}, errs=[];
+    const pide=async(k,met,desde)=>{ try{ return await rs2Pedir(M,met,desde,hoy); }catch(e){ errs.push(e); return null; } };
+    const [pe,pp,ye,yv,yc,yt,ya,yg]=await Promise.all([pide("pe",RS2_PIN_EV,d0),pide("pp",RS2_PIN_PO,d90),pide("ye",RS2_YT_EV,d0),pide("yv",RS2_YT_VV,d1y),pide("yc",["YTDP01","YTDP02"],d90),pide("yt",["YTTS01","YTTS02"],d30),pide("ya",["YTDA01","YTDA02"],d90),pide("yg",["YTDG01","YTDG02"],d90)]);
+    if(errs.length&&!pe&&!ye) throw errs[0];
+    out.pin={ev:(pe||[]).map(r=>[String(r[r.length-1]),...RS2_PIN_EV.map((_,i)=>rs2Num(r[i]))]),pins:(pp||[]).map(r=>({f:r[0],t:r[1]||"",img:r[2]||"",url:r[3]||"",imp:rs2Num(r[4])||0,sav:rs2Num(r[5])||0,clk:rs2Num(r[6])||0,web:rs2Num(r[7])||0,vid:rs2Num(r[8])||0}))};
+    out.yt={ev:(ye||[]).map(r=>[String(r[r.length-1]),...RS2_YT_EV.map((_,i)=>rs2Num(r[i]))]),vids:(yv||[]).map(r=>({f:r[0],img:r[1]||"",url:r[2]||"",t:r[3]||"",views:rs2Num(r[4])||0,min:rs2Num(r[5])||0,avg:rs2Num(r[6])||0,likes:rs2Num(r[7])||0,com:rs2Num(r[8])||0,sh:rs2Num(r[9])||0})),
+      pais:(yc||[]).map(r=>({c:r[0],v:rs2Num(r[1])||0})).filter(x=>x.v>0),traf:(yt||[]).map(r=>({c:r[0],v:rs2Num(r[1])||0})).filter(x=>x.v>0),edad:(ya||[]).map(r=>({c:r[0],v:rs2Num(r[1])||0})).filter(x=>x.v>0),gen:(yg||[]).map(r=>({c:r[0],v:rs2Num(r[1])||0})).filter(x=>x.v>0)};
+    RS2.data=out; RS2.gen=hoy; if(db) db.doc("panel/redes").set(out).catch(()=>{});
+  }catch(e){ RS2.msg=typeof pnErr==="function"?pnErr(e,"Metricool"):"No se pudieron traer los datos."; }
+  finally{ RS2.cargando=false; rs2Pintar(); } }
+
+// ---------- cálculos ----------
+function rs2Serie(ev,col,dias,offset){ const m=new Map(ev.map(r=>[r[0],r])), out=[]; const hoy=new Date(); for(let i=dias-1;i>=0;i--){ const d=new Date(+hoy-(i+offset)*864e5), k=rs2Ymd(d), r=m.get(k); out.push({d,k,v:r?r[col]:null}); } return out; }
+const rs2Suma=s=>s.reduce((a,x)=>a+(x.v||0),0), rs2Ult=s=>{ for(let i=s.length-1;i>=0;i--) if(s[i].v!=null) return s[i].v; return null; };
+function rs2Completo(s){ return s.filter(x=>x.v!=null).length>=s.length*.8; }
+function rs2Delta(a,b){ if(a==null||b==null) return null; if(!b) return a?100:0; return (a-b)/Math.abs(b)*100; }
+
+// ---------- gráficos (SVG propio, con tooltip) ----------
+function rs2Spark(vals){ const v=vals.map(x=>x||0), mx=Math.max(1,...v), W=120, H=32; const pts=v.map((x,i)=>`${(i/(Math.max(1,v.length-1))*W).toFixed(1)},${(H-2-(x/mx)*(H-6)).toFixed(1)}`).join(" "); return `<svg class="rs2-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/></svg>`; }
+function rs2Area(el,act,ant,lab,color){ const W=Math.max(320,el.clientWidth||700), H=260, P={l:44,r:14,t:14,b:30}, n=act.length, all=[...act,...ant].map(x=>x.v||0), mx=Math.max(1,...all), nice=Math.pow(10,Math.floor(Math.log10(mx))), top=Math.ceil(mx/nice)*nice;
+  const X=i=>P.l+(n<=1?0:i/(n-1))*(W-P.l-P.r), Y=v=>P.t+(1-(v||0)/top)*(H-P.t-P.b), path=s=>s.map((x,i)=>`${i?"L":"M"}${X(i).toFixed(1)},${Y(x.v).toFixed(1)}`).join("");
+  const ticks=[0,.25,.5,.75,1].map(f=>top*f), lbl=[0,Math.floor(n/3),Math.floor(2*n/3),n-1].filter((x,i,a)=>a.indexOf(x)===i);
+  el.innerHTML=`<svg class="rs2-area" viewBox="0 0 ${W} ${H}" width="100%" height="${H}" role="img" aria-label="${esc(lab)} por día">
+    ${ticks.map(t=>`<line x1="${P.l}" x2="${W-P.r}" y1="${Y(t)}" y2="${Y(t)}" class="rs2-grid"/><text x="${P.l-8}" y="${Y(t)+4}" class="rs2-ax" text-anchor="end">${rs2Fmt(t)}</text>`).join("")}
+    ${lbl.map(i=>`<text x="${X(i)}" y="${H-8}" class="rs2-ax" text-anchor="${i===0?"start":i===n-1?"end":"middle"}">${act[i].d.toLocaleDateString("es-AR",{day:"numeric",month:"short"})}</text>`).join("")}
+    <defs><linearGradient id="rs2g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".28"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+    ${ant.some(x=>x.v)?`<path d="${path(ant)}" fill="none" class="rs2-ant"/>`:""}
+    <path d="${path(act)}L${X(n-1)},${Y(0)}L${X(0)},${Y(0)}Z" fill="url(#rs2g)"/><path d="${path(act)}" fill="none" stroke="${color}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+    <g class="rs2-hov" style="display:none"><line class="rs2-cross" y1="${P.t}" y2="${H-P.b}"/><circle r="5" fill="${color}" stroke="var(--surface)" stroke-width="2"/></g><rect x="${P.l}" y="${P.t}" width="${W-P.l-P.r}" height="${H-P.t-P.b}" fill="transparent" class="rs2-hit"/></svg><div class="rs2-tip" hidden></div>`;
+  const svg=el.querySelector("svg"), g=el.querySelector(".rs2-hov"), tip=el.querySelector(".rs2-tip"), hit=el.querySelector(".rs2-hit");
+  const mover=ev=>{ const r=svg.getBoundingClientRect(), x=(ev.clientX-r.left)*(W/r.width), i=Math.max(0,Math.min(n-1,Math.round((x-P.l)/((W-P.l-P.r)/Math.max(1,n-1))))); const a=act[i], b=ant[i];
+    g.style.display=""; g.querySelector("line").setAttribute("x1",X(i)); g.querySelector("line").setAttribute("x2",X(i)); g.querySelector("circle").setAttribute("cx",X(i)); g.querySelector("circle").setAttribute("cy",Y(a.v));
+    tip.hidden=false; tip.innerHTML=`<b>${a.d.toLocaleDateString("es-AR",{weekday:"short",day:"numeric",month:"short"})}</b><span><i style="background:${color}"></i>${esc(lab)}: <b>${rs2Fmt(a.v||0)}</b></span>${b&&ant.some(x=>x.v)?`<span><i class="rs2-ant-i"></i>Mismo día del período anterior: ${rs2Fmt(b.v||0)}</span>`:""}`;
+    const px=X(i)/W*r.width; tip.style.left=Math.min(r.width-190,Math.max(0,px+12))+"px"; tip.style.top="8px"; };
+  hit.addEventListener("pointermove",mover); hit.addEventListener("pointerleave",()=>{ g.style.display="none"; tip.hidden=true; }); }
+function rs2Barras(L,tot,colorVar,fmt){ const mx=Math.max(1,...L.map(x=>x.v)); return `<div class="rs2-bars">${L.map(x=>`<div class="rs2-bar" title="${esc(x.n)}: ${esc(fmt?fmt(x.v):rs2Fmt(x.v))}${tot?` (${Math.round(x.v/tot*100)} %)`:""}"><span class="rs2-bl">${x.f?`<em>${x.f}</em>`:""}${esc(x.n)}</span><span class="rs2-bt"><i style="width:${(x.v/mx*100).toFixed(1)}%;background:var(${colorVar})"></i></span><b>${tot?Math.round(x.v/tot*100)+" %":esc(fmt?fmt(x.v):rs2Fmt(x.v))}</b></div>`).join("")}</div>`; }
+
+// ---------- vista ----------
+function rs2Kpi(t,v,d,spark,sub,ic){ const dc=d==null||!isFinite(d)?"":d>0.5?"up":d<-0.5?"down":"eq"; return `<div class="rs2-kpi"><span class="rs2-kt">${ic} ${esc(t)}</span><b class="rs2-kv">${rs2Fmt(v)}</b><span class="rs2-kd ${dc}">${d==null||!isFinite(d)?esc(sub||"Sin período anterior para comparar"):`${d>0.5?"▲":d<-0.5?"▼":"="} ${Math.abs(d).toFixed(0)} % <small>vs. período anterior</small>`}</span>${spark||""}</div>`; }
+function rs2Pin(){ const D=RS2.data.pin, n=RS2.dias, ev=D.ev||[]; if(!ev.some(r=>r.slice(1).some(v=>v))) return rs2Vacio("pin");
+  const S=c=>rs2Serie(ev,c,n,0), A=c=>rs2Serie(ev,c,n,n), col={imp:1,int:2,clk:3,web:4,sav:5,fol:6};
+  const imp=S(1), int=S(2), clk=S(3), web=S(4), sav=S(5), fol=rs2Ult(rs2Serie(ev,6,180,0)), dfol=rs2Suma(S(7));
+  const okP=rs2Completo(A(1)), tot={imp:rs2Suma(imp),int:rs2Suma(int),clk:rs2Suma(clk),web:rs2Suma(web),sav:rs2Suma(sav)}, prev=okP?{imp:rs2Suma(A(1)),int:rs2Suma(A(2)),clk:rs2Suma(A(3)),web:rs2Suma(A(4)),sav:rs2Suma(A(5))}:{imp:null,int:null,clk:null,web:null,sav:null};
+  const er=tot.imp?tot.int/tot.imp*100:0, dias=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"], porDia=dias.map((nm,i)=>{ const v=imp.filter(x=>((x.d.getDay()+6)%7)===i&&x.v!=null).map(x=>x.v); return {n:nm,v:v.length?v.reduce((a,b)=>a+b,0)/v.length:0}; });
+  const best=imp.reduce((a,x)=>(x.v||0)>(a.v||0)?x:a,imp[0]), bdia=porDia.reduce((a,x)=>x.v>a.v?x:a,porDia[0]);
+  const ins=[`📈 En los últimos ${n} días tus pines se vieron <b>${rs2Fmt(tot.imp)}</b> veces${prev.imp?` (${rs2Delta(tot.imp,prev.imp)>=0?"+":""}${rs2Delta(tot.imp,prev.imp).toFixed(0)} % que el período anterior)`:""}.`,
+    best&&best.v?`🏆 Tu mejor día fue el <b>${best.d.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"})}</b> con ${rs2Fmt(best.v)} impresiones.`:"",
+    bdia.v?`📅 Los <b>${({Lun:"lunes",Mar:"martes","Mié":"miércoles",Jue:"jueves",Vie:"viernes","Sáb":"sábados",Dom:"domingos"})[bdia.n]}</b> son tu mejor día en promedio: conviene programar pines para ese día.`:"",
+    tot.imp?`👆 De cada 1000 personas que ven un pin, <b>${(tot.clk/tot.imp*1000).toFixed(1).replace(".",",")}</b> lo abren y <b>${(tot.web/tot.imp*1000).toFixed(1).replace(".",",")}</b> van a tu web.`:"",
+    tot.web<Math.max(1,tot.clk*.05)?`💡 Pocas visitas a la web: revisá que cada pin tenga el <b>enlace directo al producto</b> y un texto con llamado a la acción.`:""].filter(Boolean);
+  const met=RS2.met.pin, MET={imp:["Impresiones",1],int:["Interacciones",2],clk:["Clics al pin",3],web:["Visitas a tu web",4],sav:["Guardados",5]};
+  const pins=(D.pins||[]).slice().sort((a,b)=>(b[RS2.orden.pin]||0)-(a[RS2.orden.pin]||0));
+  return `<div class="rs2-kpis">${rs2Kpi("Impresiones",tot.imp,rs2Delta(tot.imp,prev.imp),rs2Spark(imp.map(x=>x.v)),"","👀")}${rs2Kpi("Interacciones",tot.int,rs2Delta(tot.int,prev.int),rs2Spark(int.map(x=>x.v)),"","💬")}${rs2Kpi("Clics al pin",tot.clk,rs2Delta(tot.clk,prev.clk),rs2Spark(clk.map(x=>x.v)),"","👆")}${rs2Kpi("Visitas a tu web",tot.web,rs2Delta(tot.web,prev.web),rs2Spark(web.map(x=>x.v)),"","🔗")}${rs2Kpi("Guardados",tot.sav,rs2Delta(tot.sav,prev.sav),rs2Spark(sav.map(x=>x.v)),"","📌")}${rs2Kpi("Seguidores",fol,null,"",dfol?`${dfol>0?"+":""}${dfol} en el período`:"Total actual","❤️")}</div>
+    <section class="card rs2-card"><div class="rs2-ch"><h3>Evolución por día</h3><div class="rs2-chips">${Object.entries(MET).map(([k,[t]])=>`<button type="button" data-rs2met="${k}" class="${met===k?"on":""}">${t}</button>`).join("")}</div></div><div class="rs2-leg"><span><i style="background:var(--rs2-pin)"></i>Últimos ${n} días</span><span><i class="rs2-ant-i"></i>Período anterior</span></div><div class="rs2-plot" id="rs2Plot" data-c="${MET[met][1]}" data-l="${MET[met][0]}"></div></section>
+    <div class="rs2-g2"><section class="card rs2-card"><h3>Del pin a tu web</h3><p class="muted small">Cuántas personas avanzan en cada paso.</p>${rs2Embudo([["👀 Vieron tus pines",tot.imp],["👆 Abrieron el pin",tot.clk],["🔗 Fueron a tu web",tot.web]])}<p class="rs2-er">Tasa de interacción: <b>${er.toFixed(1).replace(".",",")} %</b> <small class="muted">(interacciones cada 100 impresiones)</small></p></section>
+      <section class="card rs2-card"><h3>Mejores días de la semana</h3><p class="muted small">Promedio de impresiones por día.</p>${rs2Barras(porDia.map(x=>({n:x.n,v:Math.round(x.v)})),0,"--rs2-pin")}</section></div>
+    <section class="card rs2-card rs2-ins"><div class="rs2-ch"><h3>Lo que dicen tus números</h3><button type="button" class="btn small primary" data-rs2ia="pin">✨ Qué hacer con estos números</button></div><ul>${ins.map(x=>`<li>${x}</li>`).join("")}</ul>${RS2.ia&&RS2.ia.red==="pin"?rs2IaHtml():""}</section>
+    <section class="card rs2-card"><div class="rs2-ch"><h3>Tus pines con más alcance <small class="muted">(últimos 90 días)</small></h3></div>${pins.length?`<div class="rs2-tab-w"><table class="rs2-t"><thead><tr><th>Pin</th>${[["imp","Impresiones"],["sav","Guardados"],["clk","Clics"],["web","A tu web"]].map(([k,t])=>`<th><button type="button" data-rs2ord="pin:${k}" class="${RS2.orden.pin===k?"on":""}">${t}${RS2.orden.pin===k?" ▼":""}</button></th>`).join("")}</tr></thead><tbody>${pins.slice(0,15).map(p=>`<tr><td><a href="${esc(p.url)}" target="_blank" rel="noopener" class="rs2-it">${p.img?`<img src="${esc(p.img)}" alt="" loading="lazy">`:"<span class=pn-ph>📌</span>"}<span><b>${esc(p.t||"Pin sin título")}</b><small>${esc(String(p.f||"").slice(0,10))}</small></span></a></td><td>${rs2Fmt(p.imp)}</td><td>${rs2Fmt(p.sav)}</td><td>${rs2Fmt(p.clk)}</td><td>${rs2Fmt(p.web)}</td></tr>`).join("")}</tbody></table></div>`:`<p class="muted">Metricool todavía no tiene el detalle por pin. Aparece para los pines publicados desde que conectaste Pinterest (por ejemplo, los que mandás desde la sección Pinterest del panel).</p>`}</section>
+    <section class="card rs2-card rs2-loc"><h3>📍 ¿Desde dónde te ven?</h3><p>Pinterest no comparte la ubicación de tu audiencia con Metricool. La ves en <a href="https://analytics.pinterest.com/" target="_blank" rel="noopener">Pinterest Analytics → Estadísticas de la audiencia</a>, con país y ciudades. En <b>YouTube</b> sí la mostramos acá, por país.</p></section>`; }
+function rs2Embudo(L){ const mx=Math.max(1,L[0][1]); return `<div class="rs2-fun">${L.map(([t,v],i)=>`<div class="rs2-fs"><span>${t}</span><span class="rs2-ft"><i style="width:${Math.max(2,v/mx*100).toFixed(1)}%"></i></span><b>${rs2Fmt(v)}</b>${i?`<small>${L[i-1][1]?(v/L[i-1][1]*100).toFixed(1).replace(".",","):"0"} % del paso anterior</small>`:"<small>&nbsp;</small>"}</div>`).join("")}</div>`; }
+function rs2Yt(){ const D=RS2.data.yt, n=RS2.dias, ev=D.ev||[], hay=ev.some(r=>r.slice(1).some(v=>v))||(D.vids||[]).length; if(!hay) return rs2Vacio("yt");
+  const S=c=>rs2Serie(ev,c,n,0), A=c=>rs2Serie(ev,c,n,n), views=S(2), subs=rs2Ult(rs2Serie(ev,1,180,0));
+  const okP=rs2Completo(A(2)), tot={views:rs2Suma(views),gan:rs2Suma(S(3)),per:rs2Suma(S(4)),likes:rs2Suma(S(6)),com:rs2Suma(S(7)),sh:rs2Suma(S(8))}, prev=okP?{views:rs2Suma(A(2)),gan:rs2Suma(A(3))}:{views:null,gan:null};
+  const V=(D.vids||[]).slice(), min=V.reduce((a,v)=>a+v.min,0), tP=D.pais.reduce((a,x)=>a+x.v,0), tT=D.traf.reduce((a,x)=>a+x.v,0), tE=D.edad.reduce((a,x)=>a+x.v,0), tG=D.gen.reduce((a,x)=>a+x.v,0);
+  const vids=V.sort((a,b)=>(b[RS2.orden.yt]||0)-(a[RS2.orden.yt]||0)), met=RS2.met.yt, MET={views:["Vistas",2],gan:["Suscriptores ganados",3]};
+  const top=V.slice().sort((a,b)=>b.views-a.views)[0], ins=[tot.views?`▶ Tus videos se vieron <b>${rs2Fmt(tot.views)}</b> veces en ${n} días${prev.views?` (${rs2Delta(tot.views,prev.views)>=0?"+":""}${rs2Delta(tot.views,prev.views).toFixed(0)} %)`:""}.`:"",
+    top?`🏆 Tu video más visto es <b>“${esc(top.t)}”</b> con ${rs2Fmt(top.views)} vistas.`:"",
+    tP?`🌎 El ${Math.round(D.pais[0].v/tP*100)} % de tus suscriptores es de <b>${esc(rs2Flag(D.pais[0].c).n)}</b>.`:"",
+    tT?`🔎 Tu principal fuente de vistas es <b>${esc(RS2_TRAF[D.traf.slice().sort((a,b)=>b.v-a.v)[0].c]||D.traf[0].c)}</b>.`:""].filter(Boolean);
+  const pais=D.pais.slice().sort((a,b)=>b.v-a.v).slice(0,8).map(x=>{ const f=rs2Flag(x.c); return {n:f.n,f:f.f,v:x.v}; });
+  const traf=D.traf.slice().sort((a,b)=>b.v-a.v).slice(0,7).map(x=>({n:RS2_TRAF[x.c]||String(x.c).replace(/_/g," ").toLowerCase(),v:x.v}));
+  const edad=D.edad.slice().sort((a,b)=>String(a.c).localeCompare(String(b.c))).map(x=>({n:String(x.c).replace(/^age/i,"").replace("-"," a ")+" años",v:x.v}));
+  const gen=D.gen.map(x=>({n:/fem|mujer|female/i.test(x.c)?"Mujeres":/masc|hombre|male/i.test(x.c)?"Hombres":"Otro",v:x.v}));
+  return `<div class="rs2-kpis">${rs2Kpi("Vistas",tot.views,rs2Delta(tot.views,prev.views),rs2Spark(views.map(x=>x.v)),"","▶")}${rs2Kpi("Suscriptores",subs,null,"","Total actual","🔔")}${rs2Kpi("Ganados",tot.gan,rs2Delta(tot.gan,prev.gan),rs2Spark(S(3).map(x=>x.v)),"","➕")}${rs2Kpi("Perdidos",tot.per,null,"","En el período","➖")}${rs2Kpi("Minutos vistos",min,null,"","Total de tus videos","⏱️")}${rs2Kpi("Me gusta",tot.likes,null,"",`${rs2Fmt(tot.com)} comentarios · ${rs2Fmt(tot.sh)} compartidos`,"👍")}</div>
+    <section class="card rs2-card"><div class="rs2-ch"><h3>Evolución por día</h3><div class="rs2-chips">${Object.entries(MET).map(([k,[t]])=>`<button type="button" data-rs2met="${k}" class="${met===k?"on":""}">${t}</button>`).join("")}</div></div><div class="rs2-leg"><span><i style="background:var(--rs2-yt)"></i>Últimos ${n} días</span><span><i class="rs2-ant-i"></i>Período anterior</span></div><div class="rs2-plot" id="rs2Plot" data-c="${MET[met][1]}" data-l="${MET[met][0]}"></div></section>
+    <div class="rs2-g2"><section class="card rs2-card"><h3>📍 ¿Desde dónde te ven?</h3><p class="muted small">Suscriptores por país.</p>${pais.length?rs2Barras(pais,tP,"--rs2-s1"):`<p class="muted">YouTube muestra los países cuando el canal junta más suscriptores.</p>`}</section>
+      <section class="card rs2-card"><h3>🔎 ¿Cómo llegan a tus videos?</h3><p class="muted small">Fuentes de tráfico (últimos 30 días).</p>${traf.length?rs2Barras(traf,tT,"--rs2-s2"):`<p class="muted">Aparece cuando tus videos tengan más vistas.</p>`}</section></div>
+    <div class="rs2-g2"><section class="card rs2-card"><h3>Edad</h3>${edad.length?rs2Barras(edad,tE,"--rs2-s3"):`<p class="muted">Sin datos todavía.</p>`}</section><section class="card rs2-card"><h3>Género</h3>${gen.length?rs2Barras(gen,tG,"--rs2-s4"):`<p class="muted">Sin datos todavía.</p>`}</section></div>
+    <section class="card rs2-card rs2-ins"><div class="rs2-ch"><h3>Lo que dicen tus números</h3><button type="button" class="btn small primary" data-rs2ia="yt">✨ Qué hacer con estos números</button></div><ul>${ins.map(x=>`<li>${x}</li>`).join("")||"<li>Todavía hay pocos datos.</li>"}</ul>${RS2.ia&&RS2.ia.red==="yt"?rs2IaHtml():""}</section>
+    <section class="card rs2-card"><h3>Tus videos</h3>${vids.length?`<div class="rs2-tab-w"><table class="rs2-t"><thead><tr><th>Video</th>${[["views","Vistas"],["min","Minutos"],["avg","Duración media"],["likes","Me gusta"],["com","Coment."]].map(([k,t])=>`<th><button type="button" data-rs2ord="yt:${k}" class="${RS2.orden.yt===k?"on":""}">${t}${RS2.orden.yt===k?" ▼":""}</button></th>`).join("")}</tr></thead><tbody>${vids.slice(0,15).map(v=>`<tr><td><a href="${esc(v.url)}" target="_blank" rel="noopener" class="rs2-it rs2-itv">${v.img?`<img src="${esc(v.img)}" alt="" loading="lazy">`:"<span class=pn-ph>▶</span>"}<span><b>${esc(v.t||"Video")}</b><small>${esc(String(v.f||"").slice(0,10))}</small></span></a></td><td>${rs2Fmt(v.views)}</td><td>${rs2Fmt(v.min)}</td><td>${v.avg?`${Math.floor(v.avg/60)}:${String(Math.round(v.avg%60)).padStart(2,"0")}`:"—"}</td><td>${rs2Fmt(v.likes)}</td><td>${rs2Fmt(v.com)}</td></tr>`).join("")}</tbody></table></div>`:`<p class="muted">Tus videos aparecen acá unas horas después de que Metricool los lee.</p>`}</section>`; }
+function rs2Vacio(red){ return red==="yt"?`<section class="card rs2-vacio"><span>▶</span><h3>Tu canal se conectó hace poco</h3><p>Metricool empieza a guardar las estadísticas de YouTube desde el día en que conectaste el canal. En 2 o 3 días vas a ver acá las vistas, los suscriptores ganados y tus videos más vistos. Los países, la edad y las fuentes de tráfico aparecen cuando el canal junta más vistas (YouTube los muestra a partir de cierta cantidad).</p><div class="rs2-prev"><span>👀 Vistas por día</span><span>🔔 Suscriptores</span><span>🌎 Países</span><span>🔎 Cómo te encuentran</span><span>🏆 Videos más vistos</span></div></section>`
+  :`<section class="card rs2-vacio"><span>📌</span><h3>Todavía no hay datos de Pinterest</h3><p>Conectá Pinterest en Metricool y en uno o dos días vas a ver acá impresiones, clics, guardados y visitas a tu web.</p></section>`; }
+async function rs2IA(red,btn){ const sf=await getSample(); if(!sf){ toast("El análisis con Claude se hace en el panel dentro de Claude","err"); return; } const v=$("#view-redstats"), txt=(v.querySelector(".rs2-kpis")||{}).innerText||"", ins=(v.querySelector(".rs2-ins ul")||{}).innerText||"", tabla=(v.querySelector(".rs2-t tbody")||{}).innerText||"";
+  const t0=btn.textContent; btn.disabled=true; btn.textContent="✨ Analizando…";
+  try{ const r=await sf.json(`Sos estratega de redes para Cofre Didáctico (materiales didácticos y plataformas interactivas para docentes de primaria, Argentina). Analizá estas estadísticas de ${red==="pin"?"Pinterest":"YouTube"} de los últimos ${RS2.dias} días y decí qué hacer. Sé concreto y honesto; no inventes números que no estén acá.
+INDICADORES:\n${txt.slice(0,1500)}\nOBSERVACIONES:\n${ins.slice(0,1200)}\n${tabla?"TOP DE CONTENIDOS:\n"+tabla.slice(0,1500):""}
+Respondé SOLO JSON: {"resumen":"2 frases","bien":["2 a 3 cosas que funcionan"],"mejorar":["2 a 3 problemas"],"acciones":[{"accion":"qué hacer esta semana","porque":""}]}`,{modelTier:"default",cache:false});
+    if(!r||!r.resumen) throw {code:"invalid_json"}; RS2.ia={red,...r}; rs2Pintar(); }
+  catch(e){ toast(sampleErr(e),"err"); } finally{ btn.disabled=false; btn.textContent=t0; } }
+function rs2IaHtml(){ const a=RS2.ia; return `<div class="rs2-ia"><p>${esc(a.resumen)}</p><div class="rs2-g2"><div><b>✅ Lo que funciona</b><ul>${(a.bien||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div><div><b>⚠️ Para mejorar</b><ul>${(a.mejorar||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div></div><b>🚀 Para esta semana</b><ol>${(a.acciones||[]).map(x=>`<li><b>${esc(x.accion)}</b> <span class="muted">${esc(x.porque||"")}</span></li>`).join("")}</ol></div>`; }
+function rs2Pintar(){ const v=$("#view-redstats"); if(!v||!RS2.on) return; const b=$("#rs2Body"), D=RS2.data;
+  v.querySelectorAll("[data-rs2red]").forEach(x=>x.setAttribute("aria-selected",String(x.dataset.rs2red===RS2.red))); v.querySelectorAll("[data-rs2dias]").forEach(x=>x.classList.toggle("on",+x.dataset.rs2dias===RS2.dias));
+  const m=$("#rs2Meta"); if(m) m.textContent=RS2.cargando?"Trayendo datos de Metricool…":RS2.gen?`Datos de Metricool · actualizado ${RS2.gen.toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}`:"";
+  if(D){ const tp=$("#rs2TotPin"), ty=$("#rs2TotYt"); if(tp) tp.textContent=rs2Fmt(rs2Suma(rs2Serie(D.pin.ev||[],1,RS2.dias,0)))+" impresiones"; if(ty) ty.textContent=rs2Fmt(rs2Suma(rs2Serie(D.yt.ev||[],2,RS2.dias,0)))+" vistas"; }
+  if(!D){ b.innerHTML=RS2.cargando?`<div class="rs2-sk"><i></i><i></i><i></i><i></i><i></i><i></i></div>`:`<p class="banner">${esc(RS2.msg||"Sin datos.")}</p>`; return; }
+  b.innerHTML=(RS2.msg?`<p class="banner">${esc(RS2.msg)}</p>`:"")+(RS2.red==="pin"?rs2Pin():rs2Yt());
+  const pl=$("#rs2Plot"); if(pl){ const c=+pl.dataset.c, ev=RS2.red==="pin"?D.pin.ev:D.yt.ev; const an=rs2Serie(ev,c,RS2.dias,RS2.dias); rs2Area(pl,rs2Serie(ev,c,RS2.dias,0),rs2Completo(an)?an:an.map(x=>({...x,v:null})),pl.dataset.l,getComputedStyle(v).getPropertyValue(RS2.red==="pin"?"--rs2-pin":"--rs2-yt").trim()||"#E60023"); } }
+async function rs2Init(){ const v=$("#view-redstats"); if(!v) return; if(RS2.on){ rs2Pintar(); if(MODE.cloud&&(!RS2.gen||Date.now()-RS2.gen>30*60000)) rs2Cargar(); return; } RS2.on=true;
+  v.innerHTML=`<div class="view-h"><div><h1>Pinterest y YouTube</h1><p class="lead">Cuánta gente ve tu contenido, qué funciona y desde dónde te miran. Datos de Metricool.</p><p class="muted small" id="rs2Meta"></p></div><div class="actions"><div class="rs-seg rs2-per">${[7,30,90].map(d=>`<button type="button" data-rs2dias="${d}"><b>${d} días</b></button>`).join("")}</div><button class="btn small" type="button" id="rs2Act">Actualizar</button></div></div>
+    <div class="rs2-tabs" role="tablist"><button type="button" role="tab" data-rs2red="pin" class="rs2-tp"><span>📌</span><b>Pinterest</b><small id="rs2TotPin"></small></button><button type="button" role="tab" data-rs2red="yt" class="rs2-ty"><span>▶</span><b>YouTube</b><small id="rs2TotYt"></small></button></div>
+    <div id="rs2Body" class="rs2-body"></div>`;
+  v.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return;
+    if(b.dataset.rs2red){ RS2.red=b.dataset.rs2red; return rs2Pintar(); } if(b.dataset.rs2dias){ RS2.dias=+b.dataset.rs2dias; return rs2Pintar(); }
+    if(b.dataset.rs2met){ RS2.met[RS2.red]=b.dataset.rs2met; return rs2Pintar(); } if(b.dataset.rs2ord){ const [r,k]=b.dataset.rs2ord.split(":"); RS2.orden[r]=k; return rs2Pintar(); }
+    if(b.dataset.rs2ia) return rs2IA(b.dataset.rs2ia,b); if(b.id==="rs2Act") return rs2Cargar(true); });
+  let rz=null; window.addEventListener("resize",()=>{ clearTimeout(rz); rz=setTimeout(()=>{ if(currentView==="redstats") rs2Pintar(); },200); });
+  rs2Pintar(); rs2Cargar(); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
