@@ -608,6 +608,10 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .vp-seg{display:flex;flex-wrap:wrap;gap:4px}.vp-seg button{border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}.vp-seg button.on{border-color:#F97316;background:color-mix(in srgb,#F97316 14%,var(--surface-2))}
 .vp-fin{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}.vp-fin #vpCuenta{margin-right:auto;font-size:13.5px}.vp-av{color:#F59E0B}
 @media (max-width:700px){.vp-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:10px}.vp-in{max-height:100dvh;border-radius:0}.vp-rango input{width:120px}}
+.vp-in{position:relative}.vp-prog{position:absolute;inset:0;background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(3px);display:grid;place-items:center;z-index:3}
+.vp-prog-c{width:min(420px,88%);display:grid;gap:10px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 18px 40px rgba(0,0,0,.3)}.vp-prog-c small{color:var(--muted)}
+.vp-bar2{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}.vp-bar2 i{display:block;height:100%;width:0;background:linear-gradient(90deg,#F97316,#FACC15);border-radius:99px;transition:width .25s}
+#vsFotos.vp-flash{animation:vpFlash 1.6s ease}@keyframes vpFlash{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 4px color-mix(in srgb,#F97316 55%,transparent);border-radius:14px}}
 
 .yt-src{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.yt-src button{display:grid;gap:2px;text-align:left;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer;min-width:0}.yt-src small{color:var(--muted);font-size:11.5px;overflow-wrap:anywhere}.yt-src button.on{border-color:#FF0033;box-shadow:0 0 0 3px color-mix(in srgb,#FF0033 16%,transparent)}
 #view-youtube .pn-sec h3>span{background:#FF0033}#view-youtube .pn-tpl button.on{border-color:#FF0033;box-shadow:0 0 0 3px color-mix(in srgb,#FF0033 16%,transparent)}
@@ -16654,7 +16658,7 @@ async function vpProteger(src,lvl){ const P=LZ_PROT[lvl]||LZ_PROT.no; if(!P.lo) 
   const c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d"); x.imageSmoothingQuality="high"; x.drawImage(lo,0,0,W,H);
   if(P.band||P.half){ const y0=Math.round(H*(P.half?0.5:0.56)), y1=Math.round(H*(P.half?0.97:0.84)); x.save(); x.beginPath(); x.rect(0,y0,W,y1-y0); x.clip(); x.filter="blur(18px)"; x.drawImage(lo,0,0,W,H); x.filter="none"; x.fillStyle="rgba(255,255,255,.38)"; x.fillRect(0,y0,W,y1-y0); x.restore();
     const t="🔒 Completo en el cuadernillo", fs=Math.round(W*0.04); x.font=`800 ${fs}px Nunito, Arial, sans-serif`; const tw=x.measureText(t).width+fs*1.6, th=fs*2, cy=(y0+y1)/2; x.fillStyle="rgba(26,39,68,.92)"; lzRR(x,W/2-tw/2,cy-th/2,tw,th,th/2); x.fill(); x.fillStyle="#fff"; x.textAlign="center"; x.textBaseline="middle"; x.fillText(t,W/2,cy+fs*0.05); x.textBaseline="alphabetic"; }
-  try{ await lzwCargar(); lzwDibujar(x,W,H,0,false,P.wm/0.16); }catch{}
+  try{ await Promise.race([lzwCargar(),new Promise(r=>setTimeout(r,3000))]); if(typeof lzwImgs!=="undefined"&&lzwImgs) lzwDibujar(x,W,H,0,false,P.wm/0.16); }catch{}
   if(lvl==="fuerte"){ x.save(); x.strokeStyle="rgba(26,39,68,.07)"; x.lineWidth=2; for(let k=0;k<W+H;k+=44){ x.beginPath(); x.moveTo(k,0); x.lineTo(k-H,H); x.stroke(); } x.restore(); }
   return c; }
 function vpOrden(){ return VP.orden==="pdf"?VP.sel.slice().sort((a,b)=>a-b):VP.sel.slice(); }
@@ -16671,7 +16675,7 @@ function vpDialogo(){ let o=$("#vpDlg"); if(o) o.remove(); o=document.createElem
     <div class="vp-pie"><div class="vp-opc"><div><small>Protección contra capturas</small><div class="vp-seg">${VP_PROT.map(([k,t,d])=>`<button type="button" data-vpprot="${k}" title="${esc(d)}">${t}</button>`).join("")}</div></div><div><small>Orden en el video</small><div class="vp-seg"><button type="button" data-vporden="pdf">Como en el PDF</button><button type="button" data-vporden="click">Como las elijo</button></div></div></div>
       <div class="vp-fin"><span id="vpCuenta"></span><button type="button" class="btn" id="vpRep">Reemplazar las fotos</button><button type="button" class="btn primary" id="vpAdd">🎬 Agregar al video</button></div></div></div>`;
   document.body.appendChild(o); o.querySelectorAll(".vp-h").forEach((b,i)=>{ if(VP.thumbs[i]) b.classList.remove("cargando"); });
-  const cerrar=()=>o.remove(); o.querySelector("#vpX").onclick=cerrar; o.addEventListener("click",e=>{ if(e.target===o) cerrar(); }); o.addEventListener("keydown",e=>{ if(e.key==="Escape") cerrar(); });
+  const cerrar=()=>{ if(VP.busy){ toast("Esperá a que terminen de prepararse las hojas","err"); return; } o.remove(); }; o.querySelector("#vpX").onclick=cerrar; o.addEventListener("click",e=>{ if(e.target===o) cerrar(); }); o.addEventListener("keydown",e=>{ if(e.key==="Escape") cerrar(); });
   o.addEventListener("click",async e=>{ const b=e.target.closest("button"); if(!b) return;
     if(b.dataset.vp!=null){ const i=+b.dataset.vp; if(e.shiftKey&&VP.ult>=0){ const [a,z]=[Math.min(VP.ult,i),Math.max(VP.ult,i)]; for(let k=a;k<=z;k++) if(!VP.sel.includes(k)) VP.sel.push(k); } else { const k=VP.sel.indexOf(i); if(k>=0) VP.sel.splice(k,1); else VP.sel.push(i); } VP.ult=i; return vpPintarSel(); }
     if(b.dataset.vpsel){ const t=b.dataset.vpsel; VP.sel=t==="todas"?Array.from({length:VP.n},(_,i)=>i):t==="ninguna"?[]:(()=>{ const out=[0], resto=VP.n-1, k=Math.min(6,resto); for(let j=1;j<=k;j++) out.push(Math.round(j*resto/(k+1))); return [...new Set(out)]; })(); return vpPintarSel(); }
@@ -16694,12 +16698,27 @@ Respondé SOLO JSON: {"hojas":[números de hoja del PDF],"porque":"una frase"}`,
     const H=(r&&Array.isArray(r.hojas)?r.hojas:[]).map(x=>+x-1).filter(i=>i>=0&&i<VP.n); if(!H.length) throw {code:"invalid_json"};
     VP.sel=[...new Set(H)]; VP.orden="click"; const it=$("#vpIaTxt"); if(it){ it.hidden=false; it.textContent="✨ "+(r.porque||"Estas son las hojas más vistosas para el video.")+(VP.n>cand.length?` (miró ${cand.length} de las ${VP.n} hojas)`:""); } vpPintarSel(); }
   catch(e){ toast(sampleErr(e),"err"); } finally{ btn.disabled=false; btn.textContent=t0; } }
-async function vpAgregar(reemplazar,btn){ if(VP.busy||!VP.sel.length) return; VP.busy=true; const L=vpOrden(), t0=btn.textContent; document.querySelectorAll("#vpAdd,#vpRep").forEach(b=>b.disabled=true);
-  try{ if(reemplazar) VS.fotos=[]; for(const [k,i] of L.entries()){ btn.textContent=`Preparando ${k+1} de ${L.length}…`; const c=await vpPagina(i,1150); vsAgregar(await vpProteger(c,VP.prot),`hoja ${i+1}`); }
-    if(!VS.titulo) VS.titulo=VP.nom; VS.enc="desenfocado"; if(VS.mont==="no") VS.mont="muro"; vsSync(); vsTodo(); const m=$("#vsMsg"); if(m) m.textContent=`Listo: ${L.length} hoja${L.length>1?"s":""} de “${VP.nom}”${VP.prot!=="no"?" con protección contra capturas":""}.`; toast(`${L.length} hojas agregadas al video ✓`,"ok"); const d=$("#vpDlg"); if(d) d.remove();
-  }catch(e){ console.warn(e); toast("No se pudieron preparar las hojas","err"); btn.textContent=t0; document.querySelectorAll("#vpAdd,#vpRep").forEach(b=>b.disabled=false); } finally{ VP.busy=false; } }
+// convierte la hoja a JPEG nítido y libera el canvas grande (evita el límite de memoria de canvas de Safari/Chrome)
+async function vpLiviana(c){ const bl=await new Promise(r=>c.toBlob(r,"image/jpeg",.92)); c.width=c.height=0; if(!bl) throw new Error("sin memoria para la hoja");
+  const im=new Image(); im.decoding="async"; im.src=URL.createObjectURL(bl); try{ await im.decode(); }catch{ await new Promise((ok,no)=>{ im.onload=ok; im.onerror=no; }); } return im; }
+function vpProgreso(k,n,txt){ const d=$("#vpDlg"); if(!d) return; let p=d.querySelector(".vp-prog"); if(!p){ d.querySelector(".vp-in").insertAdjacentHTML("beforeend",`<div class="vp-prog" role="status" aria-live="polite"><div class="vp-prog-c"><b></b><div class="vp-bar2"><i></i></div><small>No cierres esta ventana: estamos preparando las hojas en alta calidad.</small></div></div>`); p=d.querySelector(".vp-prog"); }
+  p.querySelector("b").textContent=txt||`Preparando la hoja ${k} de ${n}…`; p.querySelector("i").style.width=Math.round(k/n*100)+"%"; }
+async function vpAgregar(reemplazar,btn){ if(VP.busy||!VP.sel.length) return; VP.busy=true; const L=vpOrden(), ok=[], fallas=[];
+  try{ for(const [k,i] of L.entries()){ vpProgreso(k+1,L.length); try{ const c=await vpPagina(i,1150), pr=await vpProteger(c,VP.prot); if(pr!==c) c.width=c.height=0; ok.push({im:await vpLiviana(pr),n:`hoja ${i+1}`}); }catch(e){ console.warn(e); fallas.push(i+1); } await new Promise(r=>setTimeout(r,0)); }
+    if(!ok.length) throw new Error("No se pudo preparar ninguna hoja.");
+    if(reemplazar) VS.fotos=[]; ok.forEach(x=>vsAgregar(x.im,x.n)); VP.ultimas=L.slice();
+    if(!VS.titulo) VS.titulo=VP.nom; VS.enc="desenfocado"; if(VS.mont==="no") VS.mont="muro"; vsSync(); vsTodo();
+    const m=$("#vsMsg"); if(m) m.innerHTML=`✅ ${ok.length} hoja${ok.length>1?"s":""} de “${esc(VP.nom)}” cargada${ok.length>1?"s":""}${VP.prot!=="no"?" con protección contra capturas":""}. Ya podés elegir el diseño, los efectos y la música.${fallas.length?` <b>No se pudieron cargar: ${fallas.join(", ")}.</b>`:""} <button type="button" class="linkish" id="vpReabrir">Cambiar hojas</button>`;
+    toast(`${ok.length} hojas listas para el video ✓`,"ok"); const d=$("#vpDlg"); if(d) d.remove();
+    const g=$("#vsFotos"); if(g){ g.scrollIntoView({behavior:"smooth",block:"start"}); g.classList.add("vp-flash"); setTimeout(()=>g.classList.remove("vp-flash"),1600); }
+  }catch(e){ console.warn(e); const p=document.querySelector("#vpDlg .vp-prog"); if(p) p.remove(); toast((e&&e.message)||"No se pudieron preparar las hojas","err"); }
+  finally{ VP.busy=false; } }
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("#vpReabrir"); if(b&&VP.doc){ VP.sel=(VP.ultimas||VP.sel).slice(); vpDialogo(); vpMiniaturas(); } });
 (function(){ const ini=()=>{ const h=$("#vsImpHojas"); if(!h||$("#vpFile")) return; h.insertAdjacentHTML("beforebegin",`<label class="btn small primary vp-sub"><input type="file" id="vpFile" accept="application/pdf,.pdf" hidden>📄 Subir un PDF y elegir hojas</label>`); h.classList.remove("primary"); h.textContent="📄 Hojas elegidas en Lanzar"; const t=$("#vsImpTodas"); if(t) t.textContent="📚 Todas las hojas de Lanzar";
     $("#vpFile").addEventListener("change",e=>{ const f=e.target.files[0]; if(f) vpAbrirPdf(f); e.target.value=""; });
+    // los botones de Lanzar: si no hay PDF cargado allá, abren el selector nuevo
+    ["vsImpHojas","vsImpTodas"].forEach(id=>{ const b=$("#"+id); if(b) b.addEventListener("click",e=>{ if(typeof lzDoc==="undefined"||!lzDoc){ e.stopImmediatePropagation(); if(VP.doc){ if(id==="vsImpTodas") VP.sel=Array.from({length:VP.n},(_,i)=>i); vpDialogo(); vpMiniaturas(); } else $("#vpFile").click(); } },true); });
+    const vf=$("#vsFile"); if(vf){ vf.setAttribute("accept","image/*,application/pdf,.pdf"); vf.addEventListener("change",e=>{ const f=[...vf.files].find(x=>/pdf$/i.test(x.type)||/\.pdf$/i.test(x.name)); if(f){ e.stopImmediatePropagation(); vpAbrirPdf(f); vf.value=""; } },true); }
     const dr=$("#vsDrop"); if(dr) dr.addEventListener("drop",e=>{ const f=[...(e.dataTransfer&&e.dataTransfer.files||[])].find(x=>/pdf$/i.test(x.type)||/\.pdf$/i.test(x.name)); if(f){ e.preventDefault(); e.stopImmediatePropagation(); vpAbrirPdf(f); } },true);
     const sp=dr&&dr.querySelector("span"); if(sp) sp.textContent="JPG, PNG o WEBP. También podés soltar acá un PDF para elegir sus hojas."; };
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",ini); else ini(); })();
