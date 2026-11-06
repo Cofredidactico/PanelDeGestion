@@ -594,6 +594,21 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.vp-in{width:min(1100px,100%);max-height:92vh;display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto;background:var(--surface);color:var(--ink);border-radius:18px;overflow:hidden}
+.vp-in .cq-vh{padding:14px 16px 8px}.vp-in .cq-vx{background:var(--surface-2);color:var(--ink)}
+.vp-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:0 16px 10px;border-bottom:1px solid var(--line)}.vp-acc{display:flex;flex-wrap:wrap;gap:6px}.vp-rango{display:flex;gap:6px}.vp-rango input{width:170px}
+.vp-ia{margin:8px 16px 0;padding:8px 12px;border-radius:10px;background:color-mix(in srgb,#8B5CF6 12%,var(--surface-2));font-size:13px}
+.vp-grid{overflow:auto;padding:14px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;align-content:start}
+.vp-h{position:relative;border:2.5px solid transparent;border-radius:12px;background:var(--surface-2);padding:6px 6px 22px;cursor:pointer;transition:transform .15s,border-color .15s}.vp-h:hover{transform:translateY(-2px)}
+.vp-h img{width:100%;aspect-ratio:1/1.414;object-fit:contain;background:#fff;border-radius:6px;display:block;box-shadow:0 2px 8px rgba(0,0,0,.15)}.vp-h.cargando img{opacity:.25;animation:vpPulso 1.2s ease-in-out infinite}
+@keyframes vpPulso{50%{opacity:.5}}
+.vp-h small{position:absolute;left:0;right:0;bottom:4px;text-align:center;font-size:11.5px;font-weight:700;color:var(--muted)}
+.vp-h.on{border-color:#F97316;background:color-mix(in srgb,#F97316 12%,var(--surface-2))}.vp-n{position:absolute;top:-8px;right:-8px;min-width:28px;height:28px;border-radius:14px;background:#F97316;color:#fff;font-weight:800;font-size:13px;display:none;place-items:center;padding:0 6px;box-shadow:0 2px 6px rgba(0,0,0,.25)}.vp-h.on .vp-n{display:grid}
+.vp-pie{border-top:1px solid var(--line);padding:10px 16px 14px;display:grid;gap:10px}.vp-opc{display:flex;flex-wrap:wrap;gap:14px}.vp-opc small{display:block;font-weight:700;color:var(--muted);margin-bottom:4px;font-size:11.5px}
+.vp-seg{display:flex;flex-wrap:wrap;gap:4px}.vp-seg button{border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}.vp-seg button.on{border-color:#F97316;background:color-mix(in srgb,#F97316 14%,var(--surface-2))}
+.vp-fin{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}.vp-fin #vpCuenta{margin-right:auto;font-size:13.5px}.vp-av{color:#F59E0B}
+@media (max-width:700px){.vp-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:10px}.vp-in{max-height:100dvh;border-radius:0}.vp-rango input{width:120px}}
+
 .yt-src{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.yt-src button{display:grid;gap:2px;text-align:left;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer;min-width:0}.yt-src small{color:var(--muted);font-size:11.5px;overflow-wrap:anywhere}.yt-src button.on{border-color:#FF0033;box-shadow:0 0 0 3px color-mix(in srgb,#FF0033 16%,transparent)}
 #view-youtube .pn-sec h3>span{background:#FF0033}#view-youtube .pn-tpl button.on{border-color:#FF0033;box-shadow:0 0 0 3px color-mix(in srgb,#FF0033 16%,transparent)}
 .yt-go{background:#FF0033!important;border-color:#FF0033!important;color:#fff!important}
@@ -16625,6 +16640,69 @@ function navAgrupar(){ const tl=document.querySelector('.side-nav [role="tablist
   const more=document.querySelector(".tab-more"), grid=document.getElementById("moreGrid");
   if(more&&grid) more.addEventListener("click",()=>setTimeout(()=>{ const lab={}; document.querySelectorAll(".tab[data-view]").forEach(t=>{ const s=t.querySelector("span"); if(s) lab[s.textContent.trim()]=navGrupoDe(t.dataset.view); }); let prev=""; [...grid.querySelectorAll(".more-i")].forEach(b=>{ const s=b.querySelector("span"), g=s?lab[s.textContent.trim()]:""; if(g&&g!==prev){ const gr=NAV_GRUPOS.find(x=>x[0]===g); if(gr&&gr[1]){ const h=document.createElement("p"); h.className="more-h"; h.textContent=gr[1]; b.before(h); } prev=g; } }); },0)); }
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",()=>setTimeout(navAgrupar,0)); else setTimeout(navAgrupar,0);
+
+// ===== Estudio de video: subir un PDF, ver todas las hojas y elegir cuáles van al video =====
+const VP={doc:null,nom:"",n:0,thumbs:[],sel:[],prot:"suave",orden:"pdf",ult:-1,busy:false,ia:null};
+const VP_PROT=[["no","Sin protección","Hojas nítidas"],["suave","Suave","Marca de agua y menos resolución"],["media","Media","Además, una franja borrosa"],["fuerte","Fuerte","Media hoja borrosa"]];
+async function vpAbrirPdf(file){ const m=$("#vsMsg"); if(m) m.textContent="Abriendo el PDF…";
+  try{ const lib=await lzPdfjs(); const doc=await lib.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise; VP.doc=doc; VP.nom=file.name.replace(/\.pdf$/i,"").replace(/[_]+/g," ").replace(/\s*[-–(]\s*(optimizad[oa]|final|copia|ok|v\d+|versi[oó]n\s*\d+|comprimid[oa])\b.*$/i,"").replace(/\s+/g," ").trim()||file.name; VP.n=doc.numPages; VP.thumbs=Array(VP.n).fill(null); VP.sel=[]; VP.ult=-1; VP.ia=null; if(m) m.textContent=""; vpDialogo(); vpMiniaturas(); }
+  catch(e){ console.warn(e); if(m) m.textContent="No se pudo abrir el PDF: "+((e&&e.message)||e); } }
+async function vpPagina(i,ancho){ const pg=await VP.doc.getPage(i+1), v=pg.getViewport({scale:1}), vp=pg.getViewport({scale:ancho/v.width}), c=document.createElement("canvas"); c.width=Math.round(vp.width); c.height=Math.round(vp.height); const x=c.getContext("2d"); x.fillStyle="#fff"; x.fillRect(0,0,c.width,c.height); await pg.render({canvasContext:x,viewport:vp}).promise; return c; }
+async function vpMiniaturas(){ const doc=VP.doc; for(let i=0;i<VP.n;i++){ if(VP.doc!==doc||!$("#vpDlg")) return; if(VP.thumbs[i]) continue; try{ const c=await vpPagina(i,220); VP.thumbs[i]=c.toDataURL("image/jpeg",.78); const im=document.querySelector(`#vpDlg [data-vp="${i}"] img`); if(im){ im.src=VP.thumbs[i]; im.parentElement.classList.remove("cargando"); } const p=$("#vpCarga"); if(p) p.textContent=i+1<VP.n?`Leyendo hojas… ${i+1} de ${VP.n}`:""; }catch(e){ console.warn(e); } } }
+// misma protección contra capturas que usa Lanzar, aplicada a cualquier hoja
+async function vpProteger(src,lvl){ const P=LZ_PROT[lvl]||LZ_PROT.no; if(!P.lo) return src; const W=src.width,H=src.height, lo=document.createElement("canvas"); lo.width=P.lo; lo.height=Math.round(P.lo*H/W); const lx=lo.getContext("2d"); lx.imageSmoothingQuality="high"; lx.drawImage(src,0,0,lo.width,lo.height);
+  const c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d"); x.imageSmoothingQuality="high"; x.drawImage(lo,0,0,W,H);
+  if(P.band||P.half){ const y0=Math.round(H*(P.half?0.5:0.56)), y1=Math.round(H*(P.half?0.97:0.84)); x.save(); x.beginPath(); x.rect(0,y0,W,y1-y0); x.clip(); x.filter="blur(18px)"; x.drawImage(lo,0,0,W,H); x.filter="none"; x.fillStyle="rgba(255,255,255,.38)"; x.fillRect(0,y0,W,y1-y0); x.restore();
+    const t="🔒 Completo en el cuadernillo", fs=Math.round(W*0.04); x.font=`800 ${fs}px Nunito, Arial, sans-serif`; const tw=x.measureText(t).width+fs*1.6, th=fs*2, cy=(y0+y1)/2; x.fillStyle="rgba(26,39,68,.92)"; lzRR(x,W/2-tw/2,cy-th/2,tw,th,th/2); x.fill(); x.fillStyle="#fff"; x.textAlign="center"; x.textBaseline="middle"; x.fillText(t,W/2,cy+fs*0.05); x.textBaseline="alphabetic"; }
+  try{ await lzwCargar(); lzwDibujar(x,W,H,0,false,P.wm/0.16); }catch{}
+  if(lvl==="fuerte"){ x.save(); x.strokeStyle="rgba(26,39,68,.07)"; x.lineWidth=2; for(let k=0;k<W+H;k+=44){ x.beginPath(); x.moveTo(k,0); x.lineTo(k-H,H); x.stroke(); } x.restore(); }
+  return c; }
+function vpOrden(){ return VP.orden==="pdf"?VP.sel.slice().sort((a,b)=>a-b):VP.sel.slice(); }
+function vpSeg(){ const n=VP.sel.length, d=(typeof VS!=="undefined"&&VS.dur)||2; return Math.round(n*d+(n?3:0)); }
+function vpPintarSel(){ const o=vpOrden(); document.querySelectorAll("#vpDlg [data-vp]").forEach(el=>{ const i=+el.dataset.vp, k=o.indexOf(i); el.classList.toggle("on",k>=0); el.querySelector(".vp-n").textContent=k>=0?String(k+1):""; el.setAttribute("aria-pressed",String(k>=0)); });
+  const n=VP.sel.length; $("#vpCuenta").innerHTML=n?`<b>${n} hoja${n>1?"s":""}</b> · ≈ ${vpSeg()} s de video${n>15?" · <span class='vp-av'>para un reel conviene de 6 a 12</span>":""}`:"Tocá las hojas que querés en el video";
+  $("#vpAdd").disabled=!n; $("#vpRep").disabled=!n; document.querySelectorAll("#vpDlg [data-vpprot]").forEach(b=>b.classList.toggle("on",b.dataset.vpprot===VP.prot)); document.querySelectorAll("#vpDlg [data-vporden]").forEach(b=>b.classList.toggle("on",b.dataset.vporden===VP.orden)); }
+function vpDialogo(){ let o=$("#vpDlg"); if(o) o.remove(); o=document.createElement("div"); o.id="vpDlg"; o.className="cq-ver";
+  o.innerHTML=`<div class="vp-in" role="dialog" aria-modal="true" aria-labelledby="vpT"><div class="cq-vh"><b id="vpT">📄 Elegí las hojas para el video</b><span class="muted">${esc(VP.nom)} · ${VP.n} hojas <span id="vpCarga"></span></span><button type="button" class="cq-vx" id="vpX" aria-label="Cerrar">✕</button></div>
+    <div class="vp-bar"><div class="vp-acc"><button type="button" class="btn small" data-vpsel="todas">Todas</button><button type="button" class="btn small" data-vpsel="ninguna">Ninguna</button><button type="button" class="btn small" data-vpsel="tapa">Tapa + 6 salteadas</button><button type="button" class="btn small primary" id="vpIA">✨ Que Claude elija las más vistosas</button></div>
+      <div class="vp-rango"><input id="vpRango" placeholder="Hojas: 1-4, 8, 12" aria-label="Rango de hojas"><button type="button" class="btn small" id="vpRangoGo">Elegir</button></div></div>
+    <div class="vp-ia" id="vpIaTxt" hidden></div>
+    <div class="vp-grid" id="vpGrid">${Array.from({length:VP.n},(_,i)=>`<button type="button" class="vp-h cargando" data-vp="${i}" aria-pressed="false" title="Hoja ${i+1}"><img alt="Hoja ${i+1}" src="${VP.thumbs[i]||"data:image/gif;base64,R0lGODlhAQABAAAAACw="}"><span class="vp-n"></span><small>${i+1}</small></button>`).join("")}</div>
+    <div class="vp-pie"><div class="vp-opc"><div><small>Protección contra capturas</small><div class="vp-seg">${VP_PROT.map(([k,t,d])=>`<button type="button" data-vpprot="${k}" title="${esc(d)}">${t}</button>`).join("")}</div></div><div><small>Orden en el video</small><div class="vp-seg"><button type="button" data-vporden="pdf">Como en el PDF</button><button type="button" data-vporden="click">Como las elijo</button></div></div></div>
+      <div class="vp-fin"><span id="vpCuenta"></span><button type="button" class="btn" id="vpRep">Reemplazar las fotos</button><button type="button" class="btn primary" id="vpAdd">🎬 Agregar al video</button></div></div></div>`;
+  document.body.appendChild(o); o.querySelectorAll(".vp-h").forEach((b,i)=>{ if(VP.thumbs[i]) b.classList.remove("cargando"); });
+  const cerrar=()=>o.remove(); o.querySelector("#vpX").onclick=cerrar; o.addEventListener("click",e=>{ if(e.target===o) cerrar(); }); o.addEventListener("keydown",e=>{ if(e.key==="Escape") cerrar(); });
+  o.addEventListener("click",async e=>{ const b=e.target.closest("button"); if(!b) return;
+    if(b.dataset.vp!=null){ const i=+b.dataset.vp; if(e.shiftKey&&VP.ult>=0){ const [a,z]=[Math.min(VP.ult,i),Math.max(VP.ult,i)]; for(let k=a;k<=z;k++) if(!VP.sel.includes(k)) VP.sel.push(k); } else { const k=VP.sel.indexOf(i); if(k>=0) VP.sel.splice(k,1); else VP.sel.push(i); } VP.ult=i; return vpPintarSel(); }
+    if(b.dataset.vpsel){ const t=b.dataset.vpsel; VP.sel=t==="todas"?Array.from({length:VP.n},(_,i)=>i):t==="ninguna"?[]:(()=>{ const out=[0], resto=VP.n-1, k=Math.min(6,resto); for(let j=1;j<=k;j++) out.push(Math.round(j*resto/(k+1))); return [...new Set(out)]; })(); return vpPintarSel(); }
+    if(b.dataset.vpprot){ VP.prot=b.dataset.vpprot; try{ localStorage.setItem("cofre-vpprot",VP.prot); }catch{} return vpPintarSel(); }
+    if(b.dataset.vporden){ VP.orden=b.dataset.vporden; return vpPintarSel(); }
+    if(b.id==="vpRangoGo") return vpRango();
+    if(b.id==="vpIA") return vpClaude(b);
+    if(b.id==="vpAdd"||b.id==="vpRep") return vpAgregar(b.id==="vpRep",b); });
+  o.querySelector("#vpRango").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); vpRango(); } });
+  try{ VP.prot=localStorage.getItem("cofre-vpprot")||VP.prot; }catch{} vpPintarSel(); }
+function vpRango(){ const v=($("#vpRango").value||"").trim(), out=[]; v.split(/[,;\s]+/).filter(Boolean).forEach(t=>{ const m=t.match(/^(\d+)(?:-(\d+))?$/); if(!m) return; let a=+m[1], z=m[2]?+m[2]:a; if(a>z) [a,z]=[z,a]; for(let p=Math.max(1,a);p<=Math.min(VP.n,z);p++) if(!out.includes(p-1)) out.push(p-1); }); if(out.length){ VP.sel=out; vpPintarSel(); } else toast("Escribí hojas como 1-4, 8, 12","err"); }
+async function vpClaude(btn){ const sf=await getSample(); if(!sf){ toast("La elección con Claude funciona en el panel dentro de Claude","err"); return; }
+  let maxI=0; try{ const lm=sf.limits?await sf.limits():null; maxI=lm&&lm.images?(lm.images.maxCount||12):0; }catch{} if(!maxI){ toast("En esta vista Claude no puede mirar imágenes","err"); return; }
+  const t0=btn.textContent; btn.disabled=true; btn.textContent="✨ Mirando las hojas…";
+  try{ const nI=Math.min(maxI,16,VP.n), paso=(VP.n-1)/Math.max(1,nI-1), cand=[...new Set(Array.from({length:nI},(_,k)=>Math.round(k*paso)))], imgs=[];
+    for(const i of cand){ const c=await vpPagina(i,520); imgs.push(await new Promise(r=>c.toBlob(r,"image/jpeg",.8))); }
+    const r=await sf.json(`Sos editora de videos para Instagram de una marca de cuadernillos escolares argentinos (Cofre Didáctico). Te paso ${cand.length} hojas del cuadernillo "${VP.nom}" (en orden, son las hojas ${cand.map(i=>i+1).join(", ")} del PDF).
+Elegí entre 6 y 10 hojas para un reel que haga que una docente quiera comprarlo: la tapa primero, hojas con ilustraciones llamativas y actividades variadas (juegos, recortables, colorear, lectura), evitando índices, hojas casi vacías o muy parecidas. Ordenalas como para el video (gancho visual primero, cierre con la más atractiva).
+Respondé SOLO JSON: {"hojas":[números de hoja del PDF],"porque":"una frase"}`,{modelTier:"default",cache:false,images:imgs});
+    const H=(r&&Array.isArray(r.hojas)?r.hojas:[]).map(x=>+x-1).filter(i=>i>=0&&i<VP.n); if(!H.length) throw {code:"invalid_json"};
+    VP.sel=[...new Set(H)]; VP.orden="click"; const it=$("#vpIaTxt"); if(it){ it.hidden=false; it.textContent="✨ "+(r.porque||"Estas son las hojas más vistosas para el video.")+(VP.n>cand.length?` (miró ${cand.length} de las ${VP.n} hojas)`:""); } vpPintarSel(); }
+  catch(e){ toast(sampleErr(e),"err"); } finally{ btn.disabled=false; btn.textContent=t0; } }
+async function vpAgregar(reemplazar,btn){ if(VP.busy||!VP.sel.length) return; VP.busy=true; const L=vpOrden(), t0=btn.textContent; document.querySelectorAll("#vpAdd,#vpRep").forEach(b=>b.disabled=true);
+  try{ if(reemplazar) VS.fotos=[]; for(const [k,i] of L.entries()){ btn.textContent=`Preparando ${k+1} de ${L.length}…`; const c=await vpPagina(i,1150); vsAgregar(await vpProteger(c,VP.prot),`hoja ${i+1}`); }
+    if(!VS.titulo) VS.titulo=VP.nom; VS.enc="desenfocado"; if(VS.mont==="no") VS.mont="muro"; vsSync(); vsTodo(); const m=$("#vsMsg"); if(m) m.textContent=`Listo: ${L.length} hoja${L.length>1?"s":""} de “${VP.nom}”${VP.prot!=="no"?" con protección contra capturas":""}.`; toast(`${L.length} hojas agregadas al video ✓`,"ok"); const d=$("#vpDlg"); if(d) d.remove();
+  }catch(e){ console.warn(e); toast("No se pudieron preparar las hojas","err"); btn.textContent=t0; document.querySelectorAll("#vpAdd,#vpRep").forEach(b=>b.disabled=false); } finally{ VP.busy=false; } }
+(function(){ const ini=()=>{ const h=$("#vsImpHojas"); if(!h||$("#vpFile")) return; h.insertAdjacentHTML("beforebegin",`<label class="btn small primary vp-sub"><input type="file" id="vpFile" accept="application/pdf,.pdf" hidden>📄 Subir un PDF y elegir hojas</label>`); h.classList.remove("primary"); h.textContent="📄 Hojas elegidas en Lanzar"; const t=$("#vsImpTodas"); if(t) t.textContent="📚 Todas las hojas de Lanzar";
+    $("#vpFile").addEventListener("change",e=>{ const f=e.target.files[0]; if(f) vpAbrirPdf(f); e.target.value=""; });
+    const dr=$("#vsDrop"); if(dr) dr.addEventListener("drop",e=>{ const f=[...(e.dataTransfer&&e.dataTransfer.files||[])].find(x=>/pdf$/i.test(x.type)||/\.pdf$/i.test(x.name)); if(f){ e.preventDefault(); e.stopImmediatePropagation(); vpAbrirPdf(f); } },true);
+    const sp=dr&&dr.querySelector("span"); if(sp) sp.textContent="JPG, PNG o WEBP. También podés soltar acá un PDF para elegir sus hojas."; };
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",ini); else ini(); })();
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
