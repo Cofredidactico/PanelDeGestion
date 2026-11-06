@@ -594,6 +594,27 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.pn-con{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px;background:var(--surface-2);display:grid;gap:6px;font-size:13.5px}
+.pn-con.ok{border-color:color-mix(in srgb,#2e9d5b 55%,var(--line));background:color-mix(in srgb,#2e9d5b 9%,var(--surface))}.pn-con.err{border-color:color-mix(in srgb,#d4553c 55%,var(--line))}
+.pn-con ol{margin:4px 0 0;padding-left:20px;display:grid;gap:5px}.pn-con span{color:var(--muted)}
+.pn-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:16px;align-items:start}
+.pn-op{display:grid;gap:12px}.pn-sec{display:grid;gap:10px;padding:14px 16px}.pn-sec h3{margin:0;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pn-sec h3>span{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#E60023;color:#fff;font-size:12.5px}.pn-sec h3 .btn:first-of-type{margin-left:auto}
+.pn-sec select,.pn-sec input,.pn-sec textarea{width:100%;min-width:0}
+.pn-up{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.pn-up input{flex:1 1 220px}
+.pn-tpl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.pn-tpl button{display:grid;gap:2px;text-align:left;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer}.pn-tpl button small{color:var(--muted);font-size:11.5px}.pn-tpl button.on{border-color:#E60023;box-shadow:0 0 0 3px color-mix(in srgb,#E60023 18%,transparent)}
+.pn-l{font-size:12.5px;font-weight:700}.pn-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:7px;max-height:230px;overflow:auto;padding:2px}
+.pn-imgs button{aspect-ratio:1;border:2px solid var(--line);border-radius:10px;background:#fff;padding:3px;cursor:pointer}.pn-imgs button.on{border-color:#E60023}.pn-imgs img{width:100%;height:100%;object-fit:contain}
+.pn-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pn-row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#pnBenBox{display:grid;gap:6px}.pn-var{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.pn-var:empty{display:none}.pn-v{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+[data-cnt]{font-weight:600;color:var(--muted)}[data-cnt].over{color:#d4553c}
+.pn-plan{border:1px dashed var(--line);border-radius:12px;padding:10px 12px}.pn-plan summary{cursor:pointer}.pn-plan[open]{display:grid;gap:8px}
+.pn-est{border-radius:10px;padding:10px 12px;background:var(--surface-2);font-size:13.5px}
+.pn-side{position:sticky;top:12px;display:grid;gap:8px}.pn-prev{border-radius:18px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.25);background:#fff}.pn-prev canvas{display:block;width:100%;height:auto}
+.pn-prog h4{margin:10px 0 6px;font-size:13.5px}.pn-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}.pn-list li{display:flex;gap:9px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--surface-2)}
+.pn-list img,.pn-ph{width:38px;height:56px;object-fit:cover;border-radius:6px;flex:none;display:grid;place-items:center;background:var(--surface)}.pn-list div{display:grid;min-width:0}.pn-list b{font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pn-list small{color:var(--muted);font-size:11.5px}
+@media (max-width:900px){.pn-g{grid-template-columns:minmax(0,1fr)}.pn-side{position:static;order:-1;max-width:360px;margin:0 auto;width:100%}.pn-row,.pn-row3{grid-template-columns:minmax(0,1fr)}.pn-tpl{grid-template-columns:minmax(0,1fr)}}
+
 .isl-tipos{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important}
 .isl-datos{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:8px 0;background:var(--surface-2)}.isl-datos summary{cursor:pointer;font-weight:800;font-size:13px}.isl-datos textarea{width:100%}
 .isl-prev{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:8px 0}.isl-prev figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.isl-prev img{width:100%;display:block}.isl-prev figcaption{font-size:11.5px;text-align:center;padding:4px;color:#555}
@@ -2357,6 +2378,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     <button class="tab" role="tab" data-view="lanzamientos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.5-2 4.5-2 6 1.5 0 4.5-.5 6-2"/><path d="M9 15l-3-3c1-4 4.5-8 12-9-1 7.5-5 11-9 12z"/><circle cx="14.5" cy="9.5" r="1.5"/></svg><span>Lanzamientos</span><span class="n" id="nLanz">—</span></button>
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Mensajes</span></button>
     <button class="tab" role="tab" data-view="igbot" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Respuestas IG</span></button>
+    <button class="tab" role="tab" data-view="pinterest" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M11 8.5c3-1 5 .8 4.6 3.3-.3 2-1.9 3.2-3.4 2.6M11.2 9.5 9.5 20"/></svg><span>Pinterest</span></button>
     <button class="tab" role="tab" data-view="video" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg><span>Estudio de video</span></button>
     <button class="tab" role="tab" data-view="pdf" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 13 3 3 3-3"/><path d="M12 9v7"/></svg><span>Optimizar PDF</span></button>
     <button class="tab" role="tab" data-view="fichas" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span>Fichas B/N</span></button>
@@ -3091,6 +3113,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 </main>
 
 <main class="wrap view" id="view-igbot" hidden></main>
+<main class="wrap view" id="view-pinterest" hidden></main>
 <main class="wrap view" id="view-datos" hidden>
   <div class="view-h"><div><h1>Datos</h1><p class="lead" id="dMode"></p></div><button class="btn small" type="button" id="supaOut2" hidden>Cerrar sesión</button></div>
   <section class="card">
@@ -4245,7 +4268,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","video","pdf","fichas","plataformas","correos","datos"];
+  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","pinterest","video","pdf","fichas","plataformas","correos","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -4262,6 +4285,7 @@ function renderView(v){
   if(v==="fichas") bnInit();
   if(v==="plataformas") plInit();
   if(v==="igbot") igInit();
+  if(v==="pinterest") pnInit();
   if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
   if(v==="stats") renderStats();
@@ -16126,6 +16150,204 @@ async function islPrev(){ const box=$("#islPrev"); if(!box) return; const P=awai
 })();
 // abrir el estudio en "Cuentos y literatura" con la obra del motor
 function islAbrir(obra){ const k=Object.keys(IS_LIT).find(k=>normTxt(IS_LIT[k].n)===normTxt(obra||"")); if(k){ ISL.tema=k; IS.tema=k; } IS.tab="lit"; isOpen("lit"); }
+
+// =====================================================================
+// PINTEREST: diseñador de pines + publicación a través de Metricool
+// =====================================================================
+const PN_W=1000, PN_H=1500, PN_GD="Google Drive", PN_TZ="America/Buenos_Aires";
+const PN_TPL=[["portada","🖼️","Portada","Imagen grande y título"],["dentro","📸","Por dentro","Collage de actividades"],["lista","✅","Beneficios","Lista de lo que incluye"]];
+const PN_BEN0=["Juegos interactivos con corrección automática","Funciona en celu, compu y pizarra digital","Para el aula y para casa, sin instalar nada","Pensado para primaria, con imágenes propias"];
+const PN={on:false,src:"",D:null,R:null,imgs:[],main:0,tpl:"portada",pal:["#2F6FB0","#F2B33D","#E2563F"],txt:{badge:"PLATAFORMA INTERACTIVA",titulo:"",sub:"",ben:PN_BEN0.slice()},meta:{pinTitle:"",desc:"",alt:"",link:"https://cofredidactico.com.ar",tablero:""},cuando:"ahora",fecha:"",hora:"21:00",var:[],busy:false,est:null,prog:null,log:[]};
+function pnCfg(){ try{ return JSON.parse(localStorage.getItem("cofre-pin")||"{}"); }catch{ return {}; } }
+function pnCfgSet(o){ try{ localStorage.setItem("cofre-pin",JSON.stringify({...pnCfg(),...o})); }catch{} }
+const pnFam=()=>'"Bricolage Grotesque","Fredoka","Nunito",system-ui,sans-serif';
+async function pnMcp(){ if(!MODE.cloud) return null; try{ if(!mcp) mcp=await claude.use("mcp"); }catch{ mcp=null; } return mcp; }
+function pnErr(e,srv){ const c=e&&e.code; const s=srv||"Metricool";
+  if(c==="server_not_connected") return `${s} no está conectado a tu cuenta de Claude. Conectalo en claude.ai → Configuración → Conectores.`;
+  if(c==="needs_reauth") return `La conexión con ${s} venció. Volvé a conectarla en claude.ai → Configuración → Conectores.`;
+  if(c==="not_in_manifest") return `No le diste permiso al panel para usar ${s}. Habilitalo desde el menú de permisos del panel.`;
+  if(c==="approval_required"||c==="cancelled") return "No se aprobó el pedido. Volvé a tocar el botón y aceptá el permiso.";
+  if(c==="tool_error") return `${s} respondió: ${(e.message||"").slice(0,240)}`;
+  if(c==="server_unavailable") return `${s} no responde en este momento. Probá en unos minutos (revisá en Metricool que no se haya programado igual).`;
+  return `No se pudo completar con ${s}${e&&e.message?": "+e.message.slice(0,160):""}.`; }
+
+// ---------- dibujo del pin (1000×1500) ----------
+function pnLineas(g,s,maxW){ const out=[]; let cu=""; String(s||"").split(/\s+/).filter(Boolean).forEach(w=>{ const t=cu?cu+" "+w:w; if(g.measureText(t).width>maxW&&cu){ out.push(cu); cu=w; } else cu=t; }); if(cu) out.push(cu); return out; }
+function pnTexto(g,s,x,y,maxW,size,{peso=800,col="#1d2433",max=3,min=40,lh=1.06,al="center",fam=pnFam()}={}){ let L; do{ g.font=`${peso} ${size}px ${fam}`; L=pnLineas(g,s,maxW); if(L.length<=max) break; size-=4; }while(size>min); g.fillStyle=col; g.textAlign=al; g.textBaseline="top"; L.slice(0,max).forEach((l,i)=>g.fillText(l,x,y+i*size*lh)); return {h:Math.min(L.length,max)*size*lh,size}; }
+function pnRR(g,x,y,w,h,r,fill){ g.beginPath(); g.roundRect(x,y,w,h,r); if(fill){ g.fillStyle=fill; g.fill(); } }
+function pnFit(g,im,x,y,w,h,cover){ const iw=im.width||im.naturalWidth, ih=im.height||im.naturalHeight; if(!iw||!ih) return; const k=cover?Math.max(w/iw,h/ih):Math.min(w/iw,h/ih), dw=iw*k, dh=ih*k; g.drawImage(im,x+(w-dw)/2,y+(h-dh)/2,dw,dh); }
+function pnGlow(g,x,y,r,col,a){ const gr=g.createRadialGradient(x,y,0,x,y,r); gr.addColorStop(0,rcHexA(col,a)); gr.addColorStop(1,rcHexA(col,0)); g.fillStyle=gr; g.fillRect(x-r,y-r,2*r,2*r); }
+function pnTarjeta(g,im,cx,cy,w,h,rot,cover){ g.save(); g.translate(cx,cy); g.rotate(rot); g.shadowColor="rgba(0,0,0,.35)"; g.shadowBlur=50; g.shadowOffsetY=18; pnRR(g,-w/2,-h/2,w,h,30,"#fff"); g.shadowColor="transparent"; g.beginPath(); g.roundRect(-w/2+14,-h/2+14,w-28,h-28,20); g.clip(); g.fillStyle="#F4F1EA"; g.fillRect(-w/2,-h/2,w,h); pnFit(g,im,-w/2+14,-h/2+14,w-28,h-28,cover); g.restore(); }
+function pnPie(g,col,logo){ g.font=`700 30px ${pnFam()}`; g.fillStyle=col; g.textAlign="center"; g.textBaseline="middle"; const t="cofredidactico.com.ar", tw=g.measureText(t).width; if(logo){ g.drawImage(logo,PN_W/2-tw/2-62,1428-26,52,52); g.fillText(t,PN_W/2+31,1428); } else g.fillText(t,PN_W/2,1428); }
+function pnBadge(g,s,x,y,bg,fg){ if(!s) return; g.font=`800 28px ${pnFam()}`; const t=String(s).toUpperCase(), w=g.measureText(t).width+56; pnRR(g,x,y,w,62,31,bg); g.fillStyle=fg; g.textAlign="left"; g.textBaseline="middle"; g.fillText(t,x+28,y+33); }
+function pnDibujar(cv,o){ o=o||{}; const g=cv.getContext("2d"); cv.width=PN_W; cv.height=PN_H; const [c1,c2,c3]=PN.pal, T={...PN.txt,...(o.txt||{})}, tpl=o.tpl||PN.tpl, I=PN.imgs.map(x=>x.im), mi=((o.main??PN.main)%Math.max(1,I.length)+I.length)%Math.max(1,I.length), im=I[mi], logo=PN.R&&PN.R.logo, osc=mpMezcla(c1,"#0b1020",.45);
+  g.clearRect(0,0,PN_W,PN_H);
+  if(tpl==="portada"){ const gr=g.createLinearGradient(0,0,PN_W*.5,930); gr.addColorStop(0,mpMezcla(c1,"#ffffff",.12)); gr.addColorStop(1,osc); g.fillStyle=gr; g.fillRect(0,0,PN_W,930); pnGlow(g,180,160,700,c2,.35); pnGlow(g,900,820,600,c3,.3);
+    if(im){ g.save(); g.shadowColor="rgba(0,0,0,.35)"; g.shadowBlur=60; g.shadowOffsetY=20; pnFit(g,im,90,140,820,760,false); g.restore(); }
+    pnBadge(g,T.badge,60,56,c2,"#2b1d00"); g.fillStyle="#FBF7F0"; g.beginPath(); g.moveTo(0,930); g.quadraticCurveTo(PN_W/2,870,PN_W,930); g.lineTo(PN_W,PN_H); g.lineTo(0,PN_H); g.closePath(); g.fill();
+    const t=pnTexto(g,T.titulo||"Tu título",PN_W/2,960,PN_W-130,96,{max:3,col:"#1d2433"}); pnRR(g,PN_W/2-70,960+t.h+18,140,12,6,c2); if(T.sub) pnTexto(g,T.sub,PN_W/2,960+t.h+56,PN_W-150,42,{peso:700,col:c1,max:2,min:30}); pnPie(g,"#6B6F7A",logo); }
+  else if(tpl==="dentro"){ const gr=g.createLinearGradient(0,0,PN_W*.6,PN_H); gr.addColorStop(0,mpMezcla(c1,"#0b1020",.2)); gr.addColorStop(1,mpMezcla(c1,"#0b1020",.6)); g.fillStyle=gr; g.fillRect(0,0,PN_W,PN_H); pnGlow(g,150,180,800,c2,.28); pnGlow(g,900,1300,800,c3,.3);
+    pnBadge(g,T.badge,60,56,c2,"#2b1d00"); const t=pnTexto(g,T.titulo||"Así se ve por dentro",PN_W/2,150,PN_W-120,86,{max:3,col:"#fff"});
+    const y0=150+t.h+40, y1=1300, ch=y1-y0, n=Math.min(3,I.length), ord=[...Array(n)].map((_,i)=>I[(mi+i)%I.length]);
+    if(n>=3){ pnTarjeta(g,ord[1],250,y0+ch*.42,430,ch*.62,-.12,true); pnTarjeta(g,ord[2],750,y0+ch*.42,430,ch*.62,.12,true); }
+    else if(n===2) pnTarjeta(g,ord[1],690,y0+ch*.4,500,ch*.6,.1,true);
+    if(n) pnTarjeta(g,ord[0],PN_W/2,y0+ch*.56,640,ch*.74,-.02,false);
+    if(T.sub){ g.font=`800 36px ${pnFam()}`; const s=T.sub.length>48?T.sub.slice(0,46)+"…":T.sub, w=Math.min(PN_W-100,g.measureText(s).width+80); pnRR(g,PN_W/2-w/2,1318,w,74,37,c2); g.fillStyle="#2b1d00"; g.textAlign="center"; g.textBaseline="middle"; g.fillText(s,PN_W/2,1357,w-50); } pnPie(g,"rgba(255,255,255,.9)",logo); }
+  else { g.fillStyle="#FBF7F0"; g.fillRect(0,0,PN_W,PN_H); pnGlow(g,PN_W,0,700,c1,.18); pnGlow(g,0,PN_H,700,c2,.24);
+    pnBadge(g,T.badge,60,56,c1,"#fff"); const t=pnTexto(g,T.titulo||"Todo lo que incluye",PN_W/2,150,PN_W-120,84,{max:3}); const iy=150+t.h+30, ih=Math.max(300,560-Math.max(0,t.h-180));
+    if(im){ g.save(); g.shadowColor="rgba(0,0,0,.18)"; g.shadowBlur=40; g.shadowOffsetY=14; pnRR(g,120,iy,PN_W-240,ih,36,"#fff"); g.restore(); g.save(); g.beginPath(); g.roundRect(134,iy+14,PN_W-268,ih-28,26); g.clip(); g.fillStyle=mpMezcla(c1,"#ffffff",.88); g.fillRect(134,iy+14,PN_W-268,ih-28); pnFit(g,im,134,iy+14,PN_W-268,ih-28,false); g.restore(); }
+    const B=(T.ben||[]).filter(Boolean).slice(0,4), by=iy+ih+44, rh=Math.min(112,(1370-by)/Math.max(1,B.length)); B.forEach((b,i)=>{ const y=by+i*rh; g.fillStyle=c1; g.beginPath(); g.arc(112,y+rh/2-6,30,0,7); g.fill(); g.strokeStyle="#fff"; g.lineWidth=7; g.lineCap="round"; g.lineJoin="round"; g.beginPath(); g.moveTo(98,y+rh/2-6); g.lineTo(108,y+rh/2+5); g.lineTo(127,y+rh/2-17); g.stroke(); pnTexto(g,b,166,y+rh/2-6-(rh>90?42:34)*.55,PN_W-230,rh>90?40:34,{peso:700,col:"#1d2433",max:2,min:26,al:"left",lh:1.1}); });
+    pnPie(g,"#6B6F7A",logo); }
+  return cv; }
+
+// ---------- fuentes de imágenes ----------
+async function pnPlataformas(){ const L=[]; try{ const q=await db.collection("plataformas").get(); qDocs(q).forEach(d=>{ const v=d.data(); if(v&&v.D&&v.D.meta) L.push({id:d.id,n:v.D.meta.nombreCompleto||v.D.meta.nombreCorto||d.id,D:v.D}); }); }catch{} return L.sort((a,b)=>a.n.localeCompare(b.n)); }
+async function pnCargarPlat(it){ const D=JSON.parse(JSON.stringify(it.D)); PN.busy=true; pnEstado("🖼️ Buscando las imágenes de la plataforma…");
+  try{ if(typeof mpAsegurarImgs==="function") await mpAsegurarImgs(D); const R=await rcRecursos(D); PN.D=D; PN.R=R; PN.pal=mpPal(D); PN.src="plat:"+it.id; pnArmarImgs();
+    const m=D.meta, fe=m.efemeride?String(m.efemeride).split(" – ")[0].trim():""; PN.txt={badge:"PLATAFORMA INTERACTIVA",titulo:[m.titulo1||m.titulo||m.nombreCompleto,m.titulo2].filter(Boolean).join(" "),sub:fe?`Actividades para el ${fe}`:"Juegos y actividades para primaria",ben:PN_BEN0.slice()};
+    PN.meta={...PN.meta,link:(D.pub&&D.pub.url)||"https://cofredidactico.com.ar",pinTitle:"",desc:"",alt:""}; PN.var=[]; pnEstado(PN.imgs.length?"":"Esta plataforma no tiene imágenes en esta compu. Subí una imagen propia.");
+  }catch(e){ console.warn(e); pnEstado("No se pudieron cargar las imágenes de la plataforma."); } finally{ PN.busy=false; pnPintar(); } }
+function pnArmarImgs(){ const R=PN.R||{}, L=[]; const add=(im,n)=>{ if(im&&(im.width||im.naturalWidth)&&!L.some(x=>x.im===im)) L.push({im,n}); };
+  add(R.portada,"Portada"); (R.guias||[]).forEach(x=>add(x.im,x.n)); (typeof rcShots==="function"&&PN.D?rcShots(PN.D):[]).forEach(x=>add(x.c,x.t)); (R.unir||[]).forEach(x=>add(x.im,x.w)); (R.sec||[]).forEach(x=>add(x.im,x.t)); (R.memo||[]).forEach(x=>add(x.im,x.w)); (R.figus||[]).forEach((x,i)=>add(x,"Figurita "+(i+1)));
+  (PN.propias||[]).forEach(x=>add(x.im,x.n)); PN.imgs=L; if(PN.main>=L.length) PN.main=0; }
+async function pnSubir(files){ PN.propias=PN.propias||[]; for(const f of files){ try{ const u=URL.createObjectURL(f); const im=await new Promise((ok,no)=>{ const i=new Image(); i.onload=()=>ok(i); i.onerror=no; i.src=u; }); PN.propias.push({im,n:f.name.replace(/\.[^.]+$/,"")}); }catch{ toast("No se pudo leer "+f.name,"err"); } }
+  if(!PN.R){ try{ PN.R={logo:await new Promise(r=>{ const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src=MP_SRC.logo; })}; }catch{} } pnArmarImgs(); PN.main=Math.max(0,PN.imgs.length-1); pnPintar(); }
+
+// ---------- textos con Claude ----------
+async function pnClaude(n,btn){ const sf=await getSample(); if(!sf){ toast("Los textos con Claude se escriben en el panel dentro de Claude","err"); return null; } const D=PN.D, m=D&&D.meta;
+  const ctx=D?`Producto: plataforma interactiva "${m.nombreCompleto||m.nombreCorto}"${m.efemeride?` (efeméride: ${m.efemeride})`:""}. Incluye ${new Set(mpJuegosDe(D).flatMap(s=>s.J.map(j=>j.t))).size} juegos: ${[...new Set(mpJuegosDe(D).flatMap(s=>s.J.map(j=>j.t)))].slice(0,10).join(", ")}. ${(D.capitulos||[]).length?`Tiene Modo Historia con ${(D.capitulos||[]).length} misiones. `:""}Funciona en celular, compu y pizarra digital.`:`Producto: ${PN.txt.titulo||"material didáctico"} ${PN.txt.sub?"("+PN.txt.sub+")":""}.`;
+  const t0=btn&&btn.textContent; if(btn){ btn.disabled=true; btn.textContent="✨ Escribiendo…"; }
+  try{ const r=await sf.json(`Sos especialista en Pinterest para marcas educativas argentinas. Marca: Cofre Didáctico (materiales didácticos para docentes de primaria). ${ctx}
+Escribí ${n} ${n>1?"variantes distintas (cambiá el ángulo: beneficio, fecha, ahorro de tiempo, juego estrella, inclusión)":"versión"} de pin. Pinterest es un buscador: usá palabras clave que una docente buscaría (ej.: "actividades", "primaria", "efemérides", la fecha, el tema, "juegos educativos"). Voseo rioplatense, tono cálido, sin inventar precios ni datos.
+- badge: 2 a 3 palabras en mayúsculas para la etiqueta del pin.
+- titulo: texto grande sobre la imagen, máx. 7 palabras.
+- sub: frase corta, máx. 8 palabras.
+- beneficios: 4 frases cortas (máx. 8 palabras c/u).
+- pinTitle: título del pin con palabras clave, máx. 95 caracteres.
+- descripcion: 250 a 450 caracteres, con palabras clave naturales, llamada a la acción y 3 a 5 hashtags al final.
+- alt: descripción de la imagen para accesibilidad, máx. 150 caracteres.
+Respondé SOLO JSON: {"tablero":"nombre de tablero sugerido","pines":[{"badge":"","titulo":"","sub":"","beneficios":["","","",""],"pinTitle":"","descripcion":"","alt":""}]}`,{modelTier:"default",cache:false});
+    if(!r||!Array.isArray(r.pines)||!r.pines.length) throw {code:"invalid_json"}; return r; }
+  catch(e){ toast(sampleErr(e),"err"); return null; } finally{ if(btn){ btn.disabled=false; btn.textContent=t0; } } }
+function pnAplicar(p){ PN.txt={badge:p.badge||PN.txt.badge,titulo:p.titulo||PN.txt.titulo,sub:p.sub||"",ben:(p.beneficios||PN.txt.ben).slice(0,4)}; PN.meta={...PN.meta,pinTitle:(p.pinTitle||"").slice(0,100),desc:(p.descripcion||"").slice(0,500),alt:(p.alt||"").slice(0,500)}; }
+
+// ---------- publicar ----------
+async function pnBlob(cv){ let q=.9, b=null; for(let i=0;i<5;i++){ b=await new Promise(r=>cv.toBlob(r,"image/jpeg",q)); if(b.size<700*1024) break; q-=.1; } return b; }
+const pnB64=b=>new Promise((ok,no)=>{ const fr=new FileReader(); fr.onload=()=>ok(String(fr.result).split(",")[1]); fr.onerror=no; fr.readAsDataURL(b); });
+function pnId(p){ if(!p) return ""; if(typeof p==="object"){ const v=p.id||(p.file&&p.file.id)||(p.data&&p.data.id); if(v) return String(v); } const m=JSON.stringify(p).match(/"id"\s*:\s*"([A-Za-z0-9_-]{15,})"/); return m?m[1]:""; }
+async function pnSubirDrive(M,cv,titulo){ const b=await pnBlob(cv), b64=await pnB64(b), nom=`Pin - ${(titulo||"Cofre Didáctico").replace(/[\\/:*?"<>|]/g,"").slice(0,60)} - ${new Date().toISOString().slice(0,16).replace(/[T:]/g,"-")}.jpg`;
+  let r; try{ r=await M.callTool(PN_GD,"create_file",{title:nom,base64Content:b64,contentMimeType:"image/jpeg",disableConversionToGoogleType:true}); }catch(e){ throw {msg:pnErr(e,"Google Drive")}; }
+  const id=pnId(payloadOf(r)); if(!id) throw {msg:"Google Drive no devolvió el archivo subido."};
+  try{ await M.callTool(PN_GD,"share_file",{fileId:id,role:"reader",permissionId:"anyoneWithLink"}); }catch(e){ throw {msg:pnErr(e,"Google Drive")+" (no se pudo hacer pública la imagen)"}; }
+  return `https://drive.google.com/uc?export=download&id=${id}`; }
+function pnFechaIso(f,h){ return `${f}T${(h||"21:00").slice(0,5)}:00`; }
+async function pnProgramar(M,{url,meta,fecha}){ const info={autoPublish:true,draft:false,descendants:[],firstCommentText:"",hasNotReadNotes:false,media:[url],mediaAltText:meta.alt?[meta.alt]:[],providers:[{network:"pinterest"}],publicationDate:{dateTime:fecha,timezone:PN_TZ},shortener:false,smartLinkData:{ids:[]},text:meta.desc||meta.pinTitle,pinterestData:{boardId:meta.tablero,pinTitle:meta.pinTitle,pinLink:meta.link,pinNewFormat:false}};
+  let r; try{ r=await M.callTool(MC,"createScheduledPost",{blogId:MC_BRAND,date:fecha+"-03:00",info:JSON.stringify(info)}); }catch(e){ throw {msg:pnErr(e,"Metricool")}; } const p=payloadOf(r); const m=JSON.stringify(p||"").match(/https?:\/\/[^"\s]*metricool[^"\s]*/i); return {planner:m?m[0]:"",p}; }
+function pnAhora(min){ const d=new Date(Date.now()+min*60000); const ar=new Date(d.toLocaleString("en-US",{timeZone:PN_TZ})); const z=n=>String(n).padStart(2,"0"); return {f:`${ar.getFullYear()}-${z(ar.getMonth()+1)}-${z(ar.getDate())}`,h:`${z(ar.getHours())}:${z(ar.getMinutes())}`}; }
+function pnValidar(){ const M=PN.meta; if(!PN.imgs.length&&!PN.urlExt) return "Elegí una plataforma o subí una imagen."; if(!M.tablero.trim()) return "Escribí el nombre exacto de tu tablero de Pinterest."; if(!M.pinTitle.trim()) return "Falta el título del pin (tocá “✨ Escribir con Claude”)."; if(!/^https?:\/\//.test(M.link)) return "El enlace del pin tiene que empezar con https://"; return ""; }
+async function pnLog(x){ PN.log=[x,...PN.log].slice(0,60); const tb=[...new Set([PN.meta.tablero,...(PN.tableros||[])].filter(Boolean))].slice(0,20); PN.tableros=tb; pnCfgSet({tableros:tb}); try{ if(db) await db.doc("panel/pinterest").set({log:PN.log,tableros:tb,act:new Date().toISOString()}); }catch{} }
+async function pnPublicar(btn){ const M=await pnMcp(); const v=M?pnValidar():""; if(v){ pnEstado("⚠️ "+v); return; } if(!M){ pnEstado("⚠️ Publicar en Pinterest se hace desde el panel dentro de Claude (usa tu Metricool). Acá podés diseñar y descargar el pin."); return; }
+  let fh; if(PN.cuando==="ahora"){ const a=pnAhora(4); fh=pnFechaIso(a.f,a.h); } else { if(!PN.fecha){ pnEstado("⚠️ Elegí la fecha."); return; } fh=pnFechaIso(PN.fecha,PN.hora); if(new Date(fh+"-03:00")<new Date(Date.now()+60000)){ pnEstado("⚠️ La fecha tiene que ser en el futuro."); return; } }
+  PN.busy=true; btn.disabled=true; const t0=btn.textContent;
+  try{ let url=PN.urlExt||""; if(!url){ btn.textContent="☁️ Subiendo la imagen…"; pnEstado("☁️ Subiendo el pin a tu Google Drive (link público para Pinterest)…"); url=await pnSubirDrive(M,pnDibujar(document.createElement("canvas")),PN.meta.pinTitle); }
+    btn.textContent="📌 Programando…"; pnEstado("📌 Enviando a Metricool…"); const r=await pnProgramar(M,{url,meta:PN.meta,fecha:fh});
+    await pnLog({t:PN.meta.pinTitle,tablero:PN.meta.tablero,fecha:fh,link:PN.meta.link,img:url,planner:r.planner,hecho:new Date().toISOString()});
+    pnEstado(`✅ ¡Listo! ${PN.cuando==="ahora"?"El pin se publica en unos minutos":"Pin programado para el "+new Date(fh+"-03:00").toLocaleString("es-AR",{day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})} en el tablero “${PN.meta.tablero}”.${r.planner?` <a href="${esc(r.planner)}" target="_blank" rel="noopener">Ver en Metricool</a>`:""}`,true); toast("Pin enviado a Pinterest ✓","ok"); pnProgramados(true);
+  }catch(e){ console.warn(e); pnEstado("⚠️ "+(e.msg||pnErr(e))); } finally{ PN.busy=false; btn.disabled=false; btn.textContent=t0; } }
+async function pnPlan(btn){ const n=+($("#pnPlanN")||{}).value||5, cada=+($("#pnPlanCada")||{}).value||1, hora=($("#pnPlanHora")||{}).value||"21:00"; const v=pnValidar(); if(v&&!/título/.test(v)){ pnEstado("⚠️ "+v); return; }
+  const M=await pnMcp(); if(!M){ pnEstado("⚠️ El plan de pines se programa desde el panel dentro de Claude."); return; } if(!PN.imgs.length){ pnEstado("⚠️ Elegí una plataforma o subí imágenes."); return; }
+  if(!confirm(`Se van a programar ${n} pines distintos en “${PN.meta.tablero}”, uno cada ${cada===1?"día":cada+" días"} a las ${hora}, empezando mañana. ¿Seguimos?`)) return;
+  PN.busy=true; btn.disabled=true; const t0=btn.textContent;
+  try{ btn.textContent="✨ Escribiendo variantes…"; const r=await pnClaude(n,null); if(!r) throw {msg:"No se pudieron escribir las variantes con Claude."};
+    const base=pnAhora(0), d0=new Date(base.f+"T12:00:00"); let ok=0, fallas=[];
+    for(let i=0;i<n;i++){ const p=r.pines[i%r.pines.length], tpl=PN_TPL[i%3][0], main=(PN.main+i)%PN.imgs.length; const dd=new Date(+d0+(1+i*cada)*864e5), z=x=>String(x).padStart(2,"0"), f=`${dd.getFullYear()}-${z(dd.getMonth()+1)}-${z(dd.getDate())}`;
+      btn.textContent=`📌 Pin ${i+1} de ${n}…`; pnEstado(`📌 Diseñando y programando el pin ${i+1} de ${n}…`);
+      const txt={badge:p.badge,titulo:p.titulo,sub:p.sub,ben:(p.beneficios||PN_BEN0).slice(0,4)}, meta={...PN.meta,pinTitle:(p.pinTitle||txt.titulo).slice(0,100),desc:(p.descripcion||"").slice(0,500),alt:(p.alt||"").slice(0,500)};
+      try{ const url=await pnSubirDrive(M,pnDibujar(document.createElement("canvas"),{tpl,main,txt}),meta.pinTitle); const fh=pnFechaIso(f,hora); const res=await pnProgramar(M,{url,meta,fecha:fh}); ok++; await pnLog({t:meta.pinTitle,tablero:meta.tablero,fecha:fh,link:meta.link,img:url,planner:res.planner,hecho:new Date().toISOString()}); }
+      catch(e){ fallas.push(`${i+1}: ${e.msg||pnErr(e)}`); if(/no está conectado|permiso|venció/.test(e.msg||"")) break; } }
+    pnEstado(ok?`✅ Programaste ${ok} pin${ok>1?"es":""} en “${PN.meta.tablero}”.${fallas.length?" Fallaron: "+esc(fallas.join(" · ")):""}`:`⚠️ No se pudo programar: ${esc(fallas.join(" · "))}`,true); pnProgramados(true);
+  }catch(e){ pnEstado("⚠️ "+(e.msg||pnErr(e))); } finally{ PN.busy=false; btn.disabled=false; btn.textContent=t0; } }
+
+// ---------- estado de la conexión y programados ----------
+async function pnConexion(){ const M=await pnMcp(); if(!M){ PN.con={web:true}; return pnPintarCon(); } PN.con={cargando:true}; pnPintarCon();
+  try{ const r=await M.callTool(MC,"getBrandSettings",{}); const p=payloadOf(r), L=(p&&p.data)||[], b=L.find(x=>String(x.id)===MC_BRAND)||L[0]; const nd=(b&&b.networksData)||{}; const pin=nd.pinterestData||nd.pinterest||Object.keys(nd).find(k=>/pinterest/i.test(k)); PN.con={ok:!!pin,cuenta:typeof pin==="string"?pin:""}; }
+  catch(e){ PN.con={err:pnErr(e)}; } pnPintarCon(); }
+function pnPintarCon(){ const el=$("#pnCon"); if(!el) return; const c=PN.con||{};
+  el.className="pn-con"+(c.ok?" ok":c.err?" err":"");
+  el.innerHTML=c.web?`<b>💻 Estás en el panel web</b><span>Acá podés diseñar y descargar pines. Para publicarlos directo en Pinterest, abrí el panel dentro de Claude.</span>`
+    :c.cargando?`<b>⏳ Revisando tu Metricool…</b>`
+    :c.ok?`<b>✅ Pinterest conectado en Metricool${c.cuenta?` · ${esc(c.cuenta)}`:""}</b><span>Los pines se publican o programan desde acá.</span>`
+    :c.err?`<b>⚠️ ${esc(c.err)}</b><button type="button" class="btn small" data-pncon>Reintentar</button>`
+    :`<b>🔌 Falta conectar Pinterest en Metricool (una sola vez)</b><ol><li>Entrá a <a href="https://app.metricool.com/" target="_blank" rel="noopener">app.metricool.com</a> con tu cuenta.</li><li>Arriba elegí tu marca <b>cofredidactico</b> → <b>Conectar redes</b> (o Configuración → Conexiones).</li><li>Tocá <b>Pinterest</b>, iniciá sesión con tu cuenta de Pinterest y aceptá.</li><li>Opcional: en Metricool vinculá también <b>Google Drive</b> (ahí se guardan los pines que diseñás).</li><li>Volvé acá y tocá <button type="button" class="btn small" data-pncon>Ya lo conecté</button></li></ol>`; }
+async function pnProgramados(force){ const el=$("#pnProg"); if(!el) return; const M=await pnMcp(); if(!M){ el.innerHTML=pnHist(); return; }
+  if(PN.prog&&!force){ el.innerHTML=PN.prog+pnHist(); return; } el.innerHTML=`<p class="muted">Buscando pines programados…</p>`+pnHist();
+  try{ const a=pnAhora(0), z=new Date(Date.now()+60*864e5), zz=x=>String(x).padStart(2,"0"); const r=await M.callTool(MC,"getScheduledPosts",{brandId:MC_BRAND,fromDate:`${a.f}T00:00:00-03:00`,toDate:`${z.getFullYear()}-${zz(z.getMonth()+1)}-${zz(z.getDate())}T23:59:59-03:00`,timezone:PN_TZ},{cache:false});
+    const p=payloadOf(r), L=(Array.isArray(p)?p:(p&&(p.data||p.posts))||[]).filter(x=>JSON.stringify(x.providers||x.networks||x).toLowerCase().includes("pinterest"));
+    const fd=x=>{ const d=(x.publicationDate&&(x.publicationDate.dateTime||x.publicationDate))||x.date||""; const t=new Date(String(d).length<=19?d+"-03:00":d); return isNaN(t)?String(d):t.toLocaleString("es-AR",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}); };
+    PN.prog=`<h4>📅 Programados en Pinterest (${L.length})</h4>`+(L.length?`<ul class="pn-list">${L.map(x=>{ const pd=x.pinterestData||{}, im=(x.media||[])[0]; return `<li>${im?`<img src="${esc(typeof im==="string"?im:im.url||"")}" alt="" loading="lazy">`:"<span class=pn-ph>📌</span>"}<div><b>${esc(pd.pinTitle||String(x.text||"").slice(0,70)||"Pin")}</b><small>${esc(fd(x))}${pd.boardId?` · ${esc(pd.boardId)}`:""}</small></div></li>`; }).join("")}</ul>`:`<p class="muted">No hay pines programados en los próximos 60 días.</p>`);
+  }catch(e){ PN.prog=`<h4>📅 Programados en Pinterest</h4><p class="muted">${esc(pnErr(e))}</p>`; } el.innerHTML=PN.prog+pnHist(); }
+function pnHist(){ const L=PN.log||[]; if(!L.length) return ""; return `<h4>🗂️ Enviados desde el panel</h4><ul class="pn-list">${L.slice(0,12).map(x=>`<li><span class="pn-ph">📌</span><div><b>${esc(x.t||"Pin")}</b><small>${esc(new Date((x.fecha||"")+"-03:00").toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))} · ${esc(x.tablero||"")}${x.planner?` · <a href="${esc(x.planner)}" target="_blank" rel="noopener">Metricool</a>`:""}</small></div></li>`).join("")}</ul>`; }
+
+// ---------- vista ----------
+function pnEstado(h,html){ PN.est={h,html}; const el=$("#pnEst"); if(el){ el.hidden=!h; if(html) el.innerHTML=h; else el.textContent=h; } }
+function pnPrev(){ const c=$("#pnCan"); if(!c) return; pnDibujar(c); }
+function pnPintar(){ const v=$("#view-pinterest"); if(!v||!PN.on) return; const sel=$("#pnSrc"); if(sel&&PN.lista) sel.innerHTML=`<option value="">— Elegí qué querés promocionar —</option><optgroup label="Mis plataformas">${PN.lista.map(x=>`<option value="plat:${esc(x.id)}" ${PN.src==="plat:"+x.id?"selected":""}>${esc(x.n)}</option>`).join("")}</optgroup><option value="propia" ${PN.src==="propia"?"selected":""}>📁 Otro material (subo mis imágenes)</option>`;
+  $("#pnTpl").innerHTML=PN_TPL.map(([k,e,t,d])=>`<button type="button" data-pntpl="${k}" class="${PN.tpl===k?"on":""}"><b>${e} ${t}</b><small>${d}</small></button>`).join("");
+  $("#pnImgs").innerHTML=PN.imgs.length?PN.imgs.map((x,i)=>{ let src=""; try{ src=x.im.src||(x.im.toDataURL?x.im.toDataURL("image/jpeg",.5):""); }catch{} return `<button type="button" data-pnimg="${i}" class="${i===PN.main?"on":""}" title="${esc(x.n||"")}"><img src="${esc(src)}" alt="${esc(x.n||"")}"></button>`; }).join(""):`<p class="muted">Elegí una plataforma o subí imágenes.</p>`;
+  const sh=$("#pnShots"); if(sh) sh.hidden=!(PN.D&&typeof rcCapturarShots==="function");
+  const T=PN.txt, M=PN.meta; const set=(id,val)=>{ const e=$("#"+id); if(e&&document.activeElement!==e) e.value=val||""; };
+  set("pnBadge",T.badge); set("pnTit",T.titulo); set("pnSub",T.sub); [0,1,2,3].forEach(i=>set("pnBen"+i,T.ben[i])); set("pnPinT",M.pinTitle); set("pnDesc",M.desc); set("pnAlt",M.alt); set("pnLink",M.link); set("pnTab",M.tablero); set("pnFecha",PN.fecha); set("pnHora",PN.hora);
+  const dl=$("#pnTabs"); if(dl) dl.innerHTML=(PN.tableros||[]).map(t=>`<option value="${esc(t)}">`).join("");
+  $("#pnBenBox").hidden=PN.tpl!=="lista"; $("#pnCuando").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.pncuando===PN.cuando)); $("#pnProgBox").hidden=PN.cuando!=="prog";
+  const cnt=(id,max)=>{ const e=$("#"+id), c=$(`[data-cnt="${id}"]`); if(e&&c){ c.textContent=`${e.value.length}/${max}`; c.classList.toggle("over",e.value.length>max); } }; cnt("pnPinT",100); cnt("pnDesc",500);
+  $("#pnVar").innerHTML=PN.var.length?`<small class="muted">Variantes de Claude:</small>${PN.var.map((p,i)=>`<button type="button" class="pn-v" data-pnvar="${i}">${esc(p.titulo||p.pinTitle||"Variante "+(i+1))}</button>`).join("")}`:"";
+  if(PN.est) pnEstado(PN.est.h,PN.est.html); pnPrev(); }
+async function pnInit(){ const v=$("#view-pinterest"); if(!v) return;
+  if(!PN.on){ PN.on=true; const cf=pnCfg(); PN.tableros=cf.tableros||[]; PN.meta.tablero=cf.tablero||PN.tableros[0]||""; const a=pnAhora(60*24); PN.fecha=a.f;
+    v.innerHTML=`<div class="view-h"><div><h1>Pinterest</h1><p class="lead">Diseñá pines profesionales de tus materiales y publicalos o programalos en tu Pinterest, a través de Metricool.</p></div><div class="actions"><a class="btn small" href="https://app.metricool.com/planner" target="_blank" rel="noopener">Abrir Metricool</a></div></div>
+    <div id="pnCon" class="pn-con"></div>
+    <div class="pn-g"><div class="pn-op">
+      <section class="card pn-sec"><h3><span>1</span> ¿Qué querés promocionar?</h3><select id="pnSrc" aria-label="Qué promocionar"><option>Cargando…</option></select>
+        <div class="pn-up"><label class="btn small"><input type="file" id="pnFile" accept="image/*" multiple hidden>⬆ Subir imágenes</label><button type="button" class="btn small" id="pnShots" hidden>📸 Sumar pantallas reales</button><input id="pnUrl" placeholder="…o pegá el enlace público de una imagen (opcional)" aria-label="Enlace público de imagen"></div></section>
+      <section class="card pn-sec"><h3><span>2</span> Diseño</h3><div class="pn-tpl" id="pnTpl"></div><label class="pn-l">Imagen principal <small class="muted">(en “Por dentro” se suman las siguientes)</small></label><div class="pn-imgs" id="pnImgs"></div></section>
+      <section class="card pn-sec"><h3><span>3</span> Textos <button type="button" class="btn small primary" id="pnIA">✨ Escribir con Claude</button><button type="button" class="btn small" id="pnIA3">3 variantes</button></h3><div id="pnVar" class="pn-var"></div>
+        <div class="pn-row"><div class="field"><label for="pnBadge">Etiqueta</label><input id="pnBadge" maxlength="30"></div><div class="field"><label for="pnSub">Frase corta</label><input id="pnSub" maxlength="60"></div></div>
+        <div class="field"><label for="pnTit">Título sobre la imagen</label><input id="pnTit" maxlength="70"></div>
+        <div id="pnBenBox" class="field"><label>Lo que incluye (4 puntos)</label>${[0,1,2,3].map(i=>`<input id="pnBen${i}" maxlength="60" aria-label="Punto ${i+1}">`).join("")}</div>
+        <div class="field"><label for="pnPinT">Título del pin (lo que lee Pinterest) <small data-cnt="pnPinT"></small></label><input id="pnPinT" maxlength="100"></div>
+        <div class="field"><label for="pnDesc">Descripción con palabras clave <small data-cnt="pnDesc"></small></label><textarea id="pnDesc" rows="4" maxlength="500"></textarea></div>
+        <div class="field"><label for="pnAlt">Texto alternativo (accesibilidad)</label><input id="pnAlt" maxlength="500"></div></section>
+      <section class="card pn-sec"><h3><span>4</span> Publicar</h3>
+        <div class="pn-row"><div class="field"><label for="pnTab">Tablero (nombre exacto)</label><input id="pnTab" list="pnTabs" placeholder="Ej.: Efemérides escolares"><datalist id="pnTabs"></datalist></div><div class="field"><label for="pnLink">Enlace al tocar el pin</label><input id="pnLink" type="url"></div></div>
+        <div class="rs-seg" id="pnCuando"><button type="button" data-pncuando="ahora"><b>⚡ Ahora</b><small>En unos minutos</small></button><button type="button" data-pncuando="prog"><b>📅 Programar</b><small>Día y hora</small></button></div>
+        <div class="pn-row" id="pnProgBox" hidden><div class="field"><label for="pnFecha">Día</label><input id="pnFecha" type="date"></div><div class="field"><label for="pnHora">Hora <small class="muted">(en Pinterest rinde mejor de 20 a 23 h)</small></label><input id="pnHora" type="time"></div></div>
+        <div class="actions"><button type="button" class="btn primary" id="pnPub">📌 Publicar en Pinterest</button><button type="button" class="btn" id="pnDl">⬇ Descargar pin</button></div>
+        <details class="pn-plan"><summary><b>🗓️ Plan de pines</b> <small>— varios pines distintos, uno por día, en piloto automático</small></summary><div class="pn-row3"><div class="field"><label for="pnPlanN">Cantidad</label><select id="pnPlanN"><option>3</option><option selected>5</option><option>7</option><option>10</option></select></div><div class="field"><label for="pnPlanCada">Frecuencia</label><select id="pnPlanCada"><option value="1">1 por día</option><option value="2">Día por medio</option><option value="7">1 por semana</option></select></div><div class="field"><label for="pnPlanHora">Hora</label><input id="pnPlanHora" type="time" value="21:00"></div></div><p class="muted small">Claude escribe un ángulo distinto para cada pin y el panel alterna diseños e imágenes. Pinterest premia publicar seguido y con pines nuevos.</p><button type="button" class="btn" id="pnPlanGo">🚀 Programar el plan</button></details>
+        <div class="pn-est" id="pnEst" hidden></div></section>
+    </div><aside class="pn-side"><div class="pn-prev"><canvas id="pnCan" width="1000" height="1500" aria-label="Vista previa del pin"></canvas></div><p class="muted small">Formato 2:3 (1000 × 1500), el recomendado por Pinterest.</p><div id="pnProg" class="pn-prog"></div></aside></div>`;
+    pnEnlazar(v); try{ if(typeof rcLookFuentes==="function") await rcLookFuentes(); }catch{}
+    try{ const sn=db&&await db.doc("panel/pinterest").get(); const d=sn&&sn.exists?sn.data():null; if(d){ PN.log=d.log||[]; PN.tableros=[...new Set([...(PN.tableros||[]),...(d.tableros||[])])]; if(!PN.meta.tablero) PN.meta.tablero=PN.tableros[0]||""; } }catch{}
+    PN.lista=await pnPlataformas(); pnPintar(); pnConexion(); pnProgramados(); return; }
+  pnPintar(); }
+function pnEnlazar(v){
+  v.addEventListener("click",async e=>{ const b=e.target.closest("button"); if(!b) return;
+    if(b.dataset.pntpl){ PN.tpl=b.dataset.pntpl; return pnPintar(); }
+    if(b.dataset.pnimg!=null){ PN.main=+b.dataset.pnimg; return pnPintar(); }
+    if(b.dataset.pncuando){ PN.cuando=b.dataset.pncuando; return pnPintar(); }
+    if(b.dataset.pnvar!=null){ pnAplicar(PN.var[+b.dataset.pnvar]); return pnPintar(); }
+    if(b.hasAttribute("data-pncon")) return pnConexion();
+    if(b.id==="pnIA"||b.id==="pnIA3"){ const r=await pnClaude(b.id==="pnIA"?1:3,b); if(r){ PN.var=r.pines; pnAplicar(r.pines[0]); if(!PN.meta.tablero&&r.tablero){ PN.meta.tablero=r.tablero; } pnPintar(); } return; }
+    if(b.id==="pnShots"&&PN.D){ await rcCapturarShots(PN.D,b); pnArmarImgs(); return pnPintar(); }
+    if(b.id==="pnDl"){ const cv=pnDibujar(document.createElement("canvas")); cv.toBlob(bl=>saveFile(`pin-${mpSlug(PN.txt.titulo||"cofre")}.jpg`,bl,"image/jpeg"),"image/jpeg",.93); return; }
+    if(b.id==="pnPub") return pnPublicar(b);
+    if(b.id==="pnPlanGo") return pnPlan(b); });
+  v.addEventListener("change",async e=>{ const t=e.target;
+    if(t.id==="pnSrc"){ const val=t.value; if(val.startsWith("plat:")){ const it=(PN.lista||[]).find(x=>"plat:"+x.id===val); if(it){ PN.propias=[]; await pnCargarPlat(it); } } else if(val==="propia"){ PN.src="propia"; PN.D=null; PN.R=PN.R&&{logo:PN.R.logo}; PN.propias=PN.propias||[]; pnArmarImgs(); PN.txt={badge:"CUADERNILLO PDF",titulo:"",sub:"",ben:["Listo para imprimir en A4","Actividades variadas y con imágenes","Para primer y segundo ciclo","Descarga inmediata"]}; PN.meta.link="https://cofredidactico.com.ar"; pnPintar(); $("#pnFile").click(); } return; }
+    if(t.id==="pnFile"&&t.files.length){ if(!PN.src) PN.src="propia"; await pnSubir([...t.files]); t.value=""; return; }
+    if(t.id==="pnTab"){ pnCfgSet({tablero:t.value.trim()}); } });
+  v.addEventListener("input",e=>{ const t=e.target, T=PN.txt, M=PN.meta; const map={pnBadge:()=>T.badge=t.value,pnTit:()=>T.titulo=t.value,pnSub:()=>T.sub=t.value,pnPinT:()=>M.pinTitle=t.value,pnDesc:()=>M.desc=t.value,pnAlt:()=>M.alt=t.value,pnLink:()=>M.link=t.value.trim(),pnTab:()=>M.tablero=t.value,pnFecha:()=>PN.fecha=t.value,pnHora:()=>PN.hora=t.value,pnUrl:()=>PN.urlExt=/^https:\/\//.test(t.value.trim())?t.value.trim():""};
+    if(/^pnBen\d$/.test(t.id)){ T.ben[+t.id.slice(5)]=t.value; } else if(map[t.id]) map[t.id](); else return;
+    clearTimeout(PN.tm); PN.tm=setTimeout(()=>{ if(/^pn(Badge|Tit|Sub|Ben\d)$/.test(t.id)) pnPrev(); const c=(id,max)=>{ const x=$("#"+id), k=$(`[data-cnt="${id}"]`); if(x&&k){ k.textContent=`${x.value.length}/${max}`; k.classList.toggle("over",x.value.length>max); } }; c("pnPinT",100); c("pnDesc",500); },120); }); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
