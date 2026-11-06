@@ -594,6 +594,43 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.yt-src{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.yt-src button{display:grid;gap:2px;text-align:left;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer;min-width:0}.yt-src small{color:var(--muted);font-size:11.5px;overflow-wrap:anywhere}.yt-src button.on{border-color:#FF0033;box-shadow:0 0 0 3px color-mix(in srgb,#FF0033 16%,transparent)}
+#view-youtube .pn-sec h3>span{background:#FF0033}#view-youtube .pn-tpl button.on{border-color:#FF0033;box-shadow:0 0 0 3px color-mix(in srgb,#FF0033 16%,transparent)}
+.yt-go{background:#FF0033!important;border-color:#FF0033!important;color:#fff!important}
+.yt-ana{display:grid;gap:8px}.yt-ana>small{font-weight:700;color:var(--muted)}.yt-kw{display:grid;gap:2px}.yt-kw small{color:var(--muted);font-size:11.5px}.yt-kw b{font-size:15px}
+.yt-bus{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.yt-bus small{width:100%;color:var(--muted);font-size:11.5px}.yt-bus button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+.yt-tits{display:grid;gap:6px}.yt-tits button{display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;text-align:left;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);padding:8px 10px;font:inherit;cursor:pointer}.yt-tits button.on{border-color:#FF0033}
+.yt-tits b{font-size:13.5px}.yt-tits small{grid-column:2;color:var(--muted);font-size:11.5px}.yt-pt{grid-row:1/3;align-self:center;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:3px solid var(--c);font-weight:800;font-size:13px;color:var(--c)}
+.yt-tip{font-size:13px;background:var(--surface-2);border-radius:10px;padding:8px 10px}.yt-cons summary{cursor:pointer;font-weight:700;font-size:13px}.yt-cons ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;font-size:13px}
+.yt-tags{display:flex;flex-wrap:wrap;gap:6px;border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--surface-2)}.yt-tag{display:inline-flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px 4px 3px 10px;font-size:12.5px}.yt-tag button{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:15px;line-height:1;padding:0 4px}#ytTagIn{flex:1 1 160px;border:0;background:transparent;min-width:120px;padding:4px;color:var(--ink)}#ytTagIn:focus{outline:none}
+.yt-chk{display:grid;gap:6px;font-size:13px}.yt-chk small{color:var(--muted)}.yt-sw{margin-left:auto;font-size:12.5px;font-weight:600;display:flex;gap:6px;align-items:center}
+.yt-best{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}.yt-best small{width:100%;color:var(--muted);font-size:11.5px}.yt-best button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+.yt-prev{border-radius:18px;overflow:hidden;background:#0f0f0f;color:#f1f1f1;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+.yt-prev.es-short{display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 30% 20%,#2a2a2a,#0f0f0f)}
+.yt-phone{position:relative;width:min(250px,100%);aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:#000;border:6px solid #1f1f1f}.yt-phone video,.yt-phone canvas{width:100%;height:100%;object-fit:cover;display:block}
+.yt-sh-ov{position:absolute;left:0;right:44px;bottom:0;padding:40px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,.75));display:grid;gap:4px}.yt-sh-ov b{font-size:13px;line-height:1.25}.yt-sh-ov span{font-size:11px;opacity:.85}
+.yt-sh-acc{position:absolute;right:8px;bottom:16px;display:grid;gap:12px}.yt-sh-acc i{font-style:normal;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.15);font-size:14px}
+.yt-ph{width:100%;height:100%;min-height:160px;display:grid;place-items:center;align-content:center;gap:6px;font-size:34px;color:#888}.yt-ph small{font-size:12px}
+.yt-thumb{position:relative;aspect-ratio:16/9;background:#222}.yt-thumb video,.yt-thumb canvas{width:100%;height:100%;object-fit:cover;display:block}.yt-dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.8);color:#fff;font-size:11.5px;font-weight:700;border-radius:4px;padding:1px 5px}
+.yt-meta{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;padding:12px}.yt-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2F6FB0,#F2B33D);display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}.yt-meta b{display:block;font-size:14px;line-height:1.3}.yt-meta small{color:#aaa;font-size:12px}.yt-meta p{margin:4px 0 0;color:#aaa;font-size:12px}
+.yt-seo{padding:12px 14px;display:grid;gap:8px}.yt-seo-h{display:flex;gap:12px;align-items:center}.yt-seo-h small{display:block;color:var(--muted);font-size:12px}
+.yt-ring{--p:0;width:58px;height:58px;border-radius:50%;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;flex:none;-webkit-mask:radial-gradient(circle,transparent 21px,#000 22px);mask:radial-gradient(circle,transparent 21px,#000 22px);position:relative}
+.yt-seo-h .yt-ring b{position:absolute}.yt-seo-h{position:relative}.yt-seo-h>.yt-ring+div{min-width:0}
+.yt-seo ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:12.5px;color:var(--muted)}.yt-seo li.ok{color:var(--ink)}
+@media (max-width:900px){.yt-src{grid-template-columns:minmax(0,1fr)}}
+.yt-chk label{display:flex!important;gap:9px;align-items:flex-start;font-weight:600;margin:0}.yt-chk input{width:auto!important;flex:none;margin:2px 0 0}
+.yt-ring-w{position:relative;width:58px;height:58px;flex:none;display:grid;place-items:center}.yt-ring-w .yt-ring{position:absolute;inset:0;width:auto;height:auto;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--line) 0)}.yt-ring-w b{position:relative;font-size:17px;color:var(--c)}
+.yt-sw input{width:auto!important}
+
+.nav-g{display:grid;gap:1px}.nav-g+.nav-g{margin-top:6px}
+.nav-gh{display:flex;align-items:center;gap:8px;width:100%;border:0;background:transparent;color:var(--faint,var(--muted));font:inherit;font-size:10.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;padding:8px 12px 4px;white-space:nowrap;cursor:pointer;border-radius:8px;text-align:left}
+.nav-gh:hover{color:var(--ink)}.nav-gh span{flex:1}.nav-gh i{font-style:normal;font-size:10px;font-weight:800;border:1px solid var(--line);border-radius:99px;padding:0 6px;opacity:0;transition:opacity .2s}
+.nav-gh svg{width:14px;height:14px;transition:transform .22s}.nav-g.cerrado .nav-gh svg{transform:rotate(-90deg)}.nav-g.cerrado .nav-gh i{opacity:1}
+.nav-gb{display:grid;gap:1px;overflow:hidden}.nav-g.cerrado .nav-gb{display:none}
+.nav-g.cerrado:has(.tab[aria-selected="true"]) .nav-gb{display:grid}
+.more-h{grid-column:1/-1;margin:10px 2px 2px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.more-h:first-child{margin-top:0}
+@media (max-width:900px){.nav-g,.nav-gb{display:contents!important}.nav-gh{display:none}}
+
 .pn-con{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px;background:var(--surface-2);display:grid;gap:6px;font-size:13.5px}
 .pn-con.ok{border-color:color-mix(in srgb,#2e9d5b 55%,var(--line));background:color-mix(in srgb,#2e9d5b 9%,var(--surface))}.pn-con.err{border-color:color-mix(in srgb,#d4553c 55%,var(--line))}
 .pn-con ol{margin:4px 0 0;padding-left:20px;display:grid;gap:5px}.pn-con span{color:var(--muted)}
@@ -2380,6 +2417,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Mensajes</span></button>
     <button class="tab" role="tab" data-view="igbot" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Respuestas IG</span></button>
     <button class="tab" role="tab" data-view="pinterest" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M11 8.5c3-1 5 .8 4.6 3.3-.3 2-1.9 3.2-3.4 2.6M11.2 9.5 9.5 20"/></svg><span>Pinterest</span></button>
+    <button class="tab" role="tab" data-view="youtube" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/></svg><span>YouTube</span></button>
     <button class="tab" role="tab" data-view="video" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg><span>Estudio de video</span></button>
     <button class="tab" role="tab" data-view="pdf" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 13 3 3 3-3"/><path d="M12 9v7"/></svg><span>Optimizar PDF</span></button>
     <button class="tab" role="tab" data-view="fichas" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span>Fichas B/N</span></button>
@@ -3115,6 +3153,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 
 <main class="wrap view" id="view-igbot" hidden></main>
 <main class="wrap view" id="view-pinterest" hidden></main>
+<main class="wrap view" id="view-youtube" hidden></main>
 <main class="wrap view" id="view-datos" hidden>
   <div class="view-h"><div><h1>Datos</h1><p class="lead" id="dMode"></p></div><button class="btn small" type="button" id="supaOut2" hidden>Cerrar sesión</button></div>
   <section class="card">
@@ -4269,7 +4308,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","pinterest","video","pdf","fichas","plataformas","correos","datos"];
+  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","pinterest","youtube","video","pdf","fichas","plataformas","correos","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -4287,6 +4326,7 @@ function renderView(v){
   if(v==="plataformas") plInit();
   if(v==="igbot") igInit();
   if(v==="pinterest") pnInit();
+  if(v==="youtube") ytInit();
   if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
   if(v==="stats") renderStats();
@@ -14830,16 +14870,16 @@ async function mpReel(){ const D=MP.D, m=$("#mpMsg"); if(!D) return; rcCargar(D)
     let res=null; try{ $("#rlEst").textContent="🎞️ Preparando el video cuadro por cuadro…"; res=await rcRender(D,R,{fps:RC.fps||60,onProg:f=>{ $("#rlEst").textContent=`🎞️ Creando el video a ${RC.fps||60} fps… ${Math.round(f*100)}%`; const sc=o.querySelector("#rsScrub"); if(sc) sc.value=Math.round(f*1000); }}); }catch(er){ console.warn(er); res=null; }
     if(res){ btns.forEach(x=>x.disabled=false); if(!document.body.contains(o)) return; const blob=res.blob, v=o.querySelector("#rlVid"); c.hidden=true; v.hidden=false; v.src=URL.createObjectURL(blob); v.play().catch(()=>{});
       $("#rlEst").textContent=`¡Listo! ${RF[RC.fmt][2]} · MP4 ${res.fps} fps${res.audio?" con sonido":""}${res.video==="vp9"||res.audio==="opus"?" · formato alternativo: si Instagram no lo toma, generalo desde Chrome en Windows o Mac":""}`;
-      const nom=`reel-${mpSlug(D.meta.nombreCompleto||D.meta.nombreCorto)}-${RC.fmt}.mp4`; o.querySelector("#rlAcc").innerHTML=`<button type="button" class="btn primary" id="rlDesc">⬇ Descargar video</button><button type="button" class="btn" id="rsPortadaPng">🖼️ Portada (PNG)</button><button type="button" class="btn ghost" id="rsOtra">↻ Otra versión</button>`;
-      o.querySelector("#rlDesc").onclick=()=>saveFile(nom,blob,blob.type); o.querySelector("#rsOtra").onclick=()=>{ o.remove(); mpReel(); }; const P=o.querySelector("#rsPost"); P.hidden=false; $("#rsCap").value=rcCaption(D); return; }
+      const nom=`reel-${mpSlug(D.meta.nombreCompleto||D.meta.nombreCorto)}-${RC.fmt}.mp4`; window.RC_ULTIMO={blob,nom,D,fmt:RC.fmt}; o.querySelector("#rlAcc").innerHTML=`<button type="button" class="btn primary" id="rlDesc">⬇ Descargar video</button>${RC.fmt==="9x16"&&typeof ytInit==="function"?`<button type="button" class="btn" id="rlYt">▶ Subir a YouTube</button>`:""}<button type="button" class="btn" id="rsPortadaPng">🖼️ Portada (PNG)</button><button type="button" class="btn ghost" id="rsOtra">↻ Otra versión</button>`;
+      o.querySelector("#rlDesc").onclick=()=>saveFile(nom,blob,blob.type); const yb=o.querySelector("#rlYt"); if(yb) yb.onclick=async()=>{ parar(); o.remove(); showView("youtube"); if(YT.on){ YT.tit=""; YT.desc=""; YT.tags=[]; YT.ana=null; await ytUsarReel(); ytPintar(); } }; o.querySelector("#rsOtra").onclick=()=>{ o.remove(); mpReel(); }; const P=o.querySelector("#rsPost"); P.hidden=false; $("#rsCap").value=rcCaption(D); return; }
     const tipos=["video/mp4;codecs=avc1.42E01E,mp4a.40.2","video/mp4","video/webm;codecs=vp9,opus","video/webm"], tipo=tipos.find(x=>MediaRecorder.isTypeSupported(x))||"";
     const st=c.captureStream(RC.fps||60); let ac=null; if(RC.musica!=="no"||RC.sfx!==0){ try{ ac=new (window.AudioContext||window.webkitAudioContext)(); await ac.resume(); const dst=ac.createMediaStreamDestination(); rcSonido(ac,dst,ac.currentTime+.05,RC.dur,RC.musica,RC.sfx===0?[]:rcEscenas()); dst.stream.getAudioTracks().forEach(tr=>st.addTrack(tr)); }catch{ ac=null; } }
     rec=new MediaRecorder(st,tipo?{mimeType:tipo,videoBitsPerSecond:12e6}:{}); const parts=[]; rec.ondataavailable=e=>e.data.size&&parts.push(e.data); const fin=new Promise(r=>rec.onstop=r); rec.start(250);
     $("#rlEst").textContent=`⏺ Grabando… (${RC.dur} segundos)`; play(false); await new Promise(r=>setTimeout(r,RC.dur*1000+150)); rec.stop(); await fin; parar(); try{ ac&&ac.close(); }catch{} btns.forEach(x=>x.disabled=false);
     if(!document.body.contains(o)) return; const mp4=/mp4/.test(rec.mimeType||tipo), blob=new Blob(parts,{type:mp4?"video/mp4":"video/webm"}), v=o.querySelector("#rlVid"); c.hidden=true; v.hidden=false; v.src=URL.createObjectURL(blob);
     $("#rlEst").textContent=mp4?`¡Listo! ${RF[RC.fmt][2]} en MP4${RC.musica!=="no"?" con música":""}`:"¡Listo! (WebM: si Instagram no lo toma, convertilo a MP4)";
-    const nom=`reel-${mpSlug(D.meta.nombreCompleto||D.meta.nombreCorto)}-${RC.fmt}.${mp4?"mp4":"webm"}`; o.querySelector("#rlAcc").innerHTML=`<button type="button" class="btn primary" id="rlDesc">⬇ Descargar video</button><button type="button" class="btn" id="rsPortadaPng">🖼️ Portada (PNG)</button><button type="button" class="btn ghost" id="rsOtra">↻ Otra versión</button>`;
-    o.querySelector("#rlDesc").onclick=()=>saveFile(nom,blob,blob.type); o.querySelector("#rsOtra").onclick=()=>{ o.remove(); mpReel(); };
+    const nom=`reel-${mpSlug(D.meta.nombreCompleto||D.meta.nombreCorto)}-${RC.fmt}.${mp4?"mp4":"webm"}`; window.RC_ULTIMO={blob,nom,D,fmt:RC.fmt}; o.querySelector("#rlAcc").innerHTML=`<button type="button" class="btn primary" id="rlDesc">⬇ Descargar video</button>${RC.fmt==="9x16"&&typeof ytInit==="function"?`<button type="button" class="btn" id="rlYt">▶ Subir a YouTube</button>`:""}<button type="button" class="btn" id="rsPortadaPng">🖼️ Portada (PNG)</button><button type="button" class="btn ghost" id="rsOtra">↻ Otra versión</button>`;
+    o.querySelector("#rlDesc").onclick=()=>saveFile(nom,blob,blob.type); const yb=o.querySelector("#rlYt"); if(yb) yb.onclick=async()=>{ parar(); o.remove(); showView("youtube"); if(YT.on){ YT.tit=""; YT.desc=""; YT.tags=[]; YT.ana=null; await ytUsarReel(); ytPintar(); } }; o.querySelector("#rsOtra").onclick=()=>{ o.remove(); mpReel(); };
     const P=o.querySelector("#rsPost"); P.hidden=false; $("#rsCap").value=rcCaption(D); }
 }
 // ===== enganche con el módulo =====
@@ -16352,6 +16392,239 @@ function pnEnlazar(v){
   v.addEventListener("input",e=>{ const t=e.target, T=PN.txt, M=PN.meta; const map={pnBadge:()=>T.badge=t.value,pnTit:()=>T.titulo=t.value,pnSub:()=>T.sub=t.value,pnPinT:()=>M.pinTitle=t.value,pnDesc:()=>M.desc=t.value,pnAlt:()=>M.alt=t.value,pnLink:()=>M.link=t.value.trim(),pnTab:()=>M.tablero=t.value,pnFecha:()=>PN.fecha=t.value,pnHora:()=>PN.hora=t.value,pnUrl:()=>PN.urlExt=/^https:\/\//.test(t.value.trim())?t.value.trim():""};
     if(/^pnBen\d$/.test(t.id)){ T.ben[+t.id.slice(5)]=t.value; } else if(map[t.id]) map[t.id](); else return;
     clearTimeout(PN.tm); PN.tm=setTimeout(()=>{ if(/^pn(Badge|Tit|Sub|Ben\d)$/.test(t.id)) pnPrev(); const c=(id,max)=>{ const x=$("#"+id), k=$(`[data-cnt="${id}"]`); if(x&&k){ k.textContent=`${x.value.length}/${max}`; k.classList.toggle("over",x.value.length>max); } }; c("pnPinT",100); c("pnDesc",500); },120); }); }
+
+// =====================================================================
+// YOUTUBE: estudio de publicación (títulos, descripción, etiquetas, miniatura) + publicar por Metricool
+// =====================================================================
+const YT={on:false,tipo:"short",src:"",file:null,blob:null,link:"",vurl:"",dur:0,vw:0,vh:0,mat:"",D:null,R:null,kw:"",tit:"",desc:"",tags:[],priv:"public",kids:false,ia:false,notif:true,mini:false,miniTpl:"impacto",miniTxt:"",miniHi:"",cuando:"ahora",fecha:"",hora:"16:00",ana:null,best:null,prog:null,log:[],est:null,busy:false,subida:null};
+const YT_PRIV=[["public","🌎 Público"],["unlisted","🔗 No listado"],["private","🔒 Privado"]];
+function ytCfg(){ try{ return JSON.parse(localStorage.getItem("cofre-yt")||"{}"); }catch{ return {}; } }
+function ytCfgSet(o){ try{ localStorage.setItem("cofre-yt",JSON.stringify({...ytCfg(),...o})); }catch{} }
+function ytEstado(h,html){ YT.est={h,html}; const el=$("#ytEst"); if(el){ el.hidden=!h; if(html) el.innerHTML=h; else el.textContent=h; } }
+const ytLen=a=>a.reduce((s,t)=>s+t.length+(/\s/.test(t)?2:0)+1,0);
+function ytMateriales(){ try{ return ((typeof D!=="undefined"&&D&&D.matList)||[]).map(x=>x.name).filter(Boolean).sort((a,b)=>a.localeCompare(b)); }catch{ return []; } }
+
+// ---------- puntaje SEO (local, al instante) ----------
+const YT_STOP=new Set(["para","con","los","las","del","una","uno","que","por","como","sobre","the"]);
+function ytKwEn(txt,kw){ const W=normTxt(kw||"").split(/[^a-z0-9ñ]+/).filter(w=>w.length>=2&&!YT_STOP.has(w)); if(!W.length) return false; const T=" "+normTxt(txt||"").replace(/[^a-z0-9ñ]+/g," ")+" "; return W.filter(w=>T.includes(" "+w+" ")).length/W.length>=.7; }
+function ytChecks(){ const t=YT.tit.trim(), d=YT.desc, kw=normTxt(YT.kw||"").trim(), nt=normTxt(t), nd=normTxt(d), short=YT.tipo==="short", tagsL=ytLen(YT.tags), hs=(d.match(/#[\wáéíóúñü]+/gi)||[]).length;
+  const dias=YT.D&&typeof rcDias==="function"?rcDias(YT.D):0, fechaPub=YT.cuando==="prog"&&YT.fecha?new Date(YT.fecha+"T12:00"):new Date();
+  const L=[
+    [!!t&&t.length<=100&&(short?t.length>=25&&t.length<=60:t.length>=40&&t.length<=70),`Título de ${short?"25 a 60":"40 a 70"} caracteres (tiene ${t.length})`,15],
+    [!!kw&&ytKwEn(t.slice(0,50),YT.kw),"La palabra clave aparece al principio del título",15],
+    [d.length>=(short?150:400),`Descripción de ${short?"150":"400"}+ caracteres (tiene ${d.length})`,10],
+    [!!kw&&ytKwEn(d.slice(0,170),YT.kw),"La palabra clave está en las 2 primeras líneas de la descripción",15],
+    [/cofredidactico\.com\.ar/i.test(d),"La descripción tiene el enlace a tu web",10],
+    [hs>=2&&hs<=5&&(!short||/#shorts/i.test(d)),short?"2 a 5 hashtags, incluido #Shorts":"2 a 5 hashtags al final",10],
+    [YT.tags.length>=8&&tagsL<=500,`8 o más etiquetas sin pasar 500 caracteres (${YT.tags.length} · ${tagsL})`,10],
+    short?[YT.vh?YT.vh>YT.vw&&YT.dur<=180:true,YT.vh?`Video vertical de 3 min o menos (${Math.round(YT.dur)} s, ${YT.vw}×${YT.vh})`:"Video vertical de 3 min o menos",15]:[YT.mini,"Miniatura personalizada con texto grande",10],
+  ]; if(!short) L.push([/\b0?0:00\b/.test(d),"Capítulos con tiempos (0:00 …) en la descripción",5]);
+  if(dias>0){ const ant=Math.round((dias*864e5-(fechaPub-new Date()))/864e5); L.push([ant>=10,`Se publica ${ant} días antes de la efeméride (ideal: 2 a 5 semanas)`,10]); }
+  const tot=L.reduce((a,x)=>a+x[2],0), ok=L.reduce((a,x)=>a+(x[0]?x[2]:0),0); return {n:Math.round(ok/tot*100),L}; }
+function ytPintarSeo(){ const el=$("#ytSeo"); if(!el) return; const {n,L}=ytChecks(), c=n>=80?"#16A34A":n>=55?"#F59E0B":"#EF4444";
+  el.innerHTML=`<div class="yt-seo-h"><div class="yt-ring-w" style="--p:${n};--c:${c}"><div class="yt-ring"></div><b>${n}</b></div><div><b>Puntaje para que te encuentren</b><small>${n>=80?"¡Excelente! Listo para publicar.":n>=55?"Bien, con unos ajustes rinde más.":"Faltan cosas importantes."}</small></div></div><ul>${L.map(([ok,t])=>`<li class="${ok?"ok":""}">${ok?"✓":"○"} ${esc(t)}</li>`).join("")}</ul>`; }
+
+// ---------- vista previa estilo YouTube ----------
+function ytPrev(){ const el=$("#ytPrev"); if(!el) return; const short=YT.tipo==="short", t=YT.tit||"Tu título va acá", src=YT.vurl, k=[YT.tipo,src,YT.mini?1:0].join("|");
+  if(el.dataset.k!==k){ el.dataset.k=k; const media=YT.mini&&!short?`<canvas id="ytMiniCan" width="1280" height="720"></canvas>`:src?`<video src="${esc(src)}" muted loop playsinline autoplay></video>`:`<div class="yt-ph">${short?"📱":"▶"}<small>${short?"Short vertical":"Video horizontal"}</small></div>`;
+    el.className="yt-prev "+(short?"es-short":"es-video");
+    el.innerHTML=short?`<div class="yt-phone">${media}<div class="yt-sh-ov"><b class="yt-t"></b><span>@cofredidactico · Suscribirme</span></div><div class="yt-sh-acc"><i>👍</i><i>💬</i><i>↗</i></div></div>`
+      :`<div class="yt-thumb">${media}<span class="yt-dur" hidden></span></div><div class="yt-meta"><span class="yt-av">CD</span><div><b class="yt-t"></b><small class="yt-s"></small><p class="yt-d"></p></div></div>`; }
+  const q=s=>el.querySelector(s); q(".yt-t").textContent=t; if(!short){ q(".yt-s").textContent=`Cofre Didáctico · ${YT.cuando==="prog"&&YT.fecha?"programado":"recién publicado"}`; q(".yt-d").textContent=YT.desc.split("\n").filter(Boolean).slice(0,2).join(" ").slice(0,140); const du=q(".yt-dur"); if(du){ du.hidden=!YT.dur; du.textContent=`${Math.floor(YT.dur/60)}:${String(Math.round(YT.dur%60)).padStart(2,"0")}`; } }
+  const mc=$("#ytMiniCan"); if(mc) ytMini(mc); }
+
+// ---------- miniatura 1280×720 ----------
+function ytMini(cv){ const g=cv.getContext("2d"), W=1280, H=720; cv.width=W; cv.height=H; const pal=YT.D?mpPal(YT.D):["#2F6FB0","#F2B33D","#E2563F"], [c1,c2,c3]=pal, im=YT.R&&YT.R.portada, logo=YT.R&&YT.R.logo, fam=pnFam();
+  const txt=(YT.miniTxt||YT.tit||"Tu título").toUpperCase(), hi=(YT.miniHi||"").toUpperCase();
+  if(YT.miniTpl==="impacto"){ const gr=g.createLinearGradient(0,0,W,H); gr.addColorStop(0,mpMezcla(c1,"#0b1020",.25)); gr.addColorStop(1,mpMezcla(c1,"#0b1020",.65)); g.fillStyle=gr; g.fillRect(0,0,W,H); pnGlow(g,W*.78,H*.45,560,c2,.38); pnGlow(g,0,H,520,c3,.3);
+    if(im){ g.save(); g.shadowColor="rgba(0,0,0,.45)"; g.shadowBlur=50; pnFit(g,im,W*.5,30,W*.5,H-40,false); g.restore(); }
+    let size=118, L; do{ g.font=`800 ${size}px ${fam}`; L=pnLineas(g,txt,W*.56); size-=6; }while(L.length>3&&size>60); size+=6; const lh=size*1.02, y0=(H-L.length*lh)/2+(hi?-34:0);
+    L.forEach((l,i)=>{ g.font=`800 ${size}px ${fam}`; g.textAlign="left"; g.textBaseline="top"; g.lineWidth=14; g.strokeStyle="rgba(0,0,0,.35)"; g.lineJoin="round"; g.strokeText(l,56,y0+i*lh); g.fillStyle="#fff"; g.fillText(l,56,y0+i*lh); });
+    if(hi){ g.font=`800 58px ${fam}`; const w=Math.min(W*.56,g.measureText(hi).width+50), y=y0+L.length*lh+18; pnRR(g,52,y,w,84,18,c2); g.fillStyle="#1d1404"; g.textBaseline="middle"; g.fillText(hi,77,y+44,w-50); } }
+  else { g.fillStyle="#FBF7F0"; g.fillRect(0,0,W,H); pnGlow(g,W,0,700,c1,.2); pnGlow(g,0,H,600,c2,.28);
+    if(im){ g.save(); g.shadowColor="rgba(0,0,0,.2)"; g.shadowBlur=40; g.shadowOffsetY=14; pnRR(g,50,60,560,600,40,"#fff"); g.restore(); g.save(); g.beginPath(); g.roundRect(66,76,528,568,28); g.clip(); g.fillStyle=mpMezcla(c1,"#ffffff",.85); g.fillRect(66,76,528,568); pnFit(g,im,66,76,528,568,false); g.restore(); }
+    let size=96, L; do{ g.font=`800 ${size}px ${fam}`; L=pnLineas(g,txt,600); size-=6; }while(L.length>4&&size>54); size+=6; const lh=size*1.04, y0=(H-L.length*lh)/2+(hi?-40:0);
+    L.forEach((l,i)=>{ g.font=`800 ${size}px ${fam}`; g.fillStyle="#1d2433"; g.textAlign="left"; g.textBaseline="top"; g.fillText(l,650,y0+i*lh); });
+    if(hi){ g.font=`800 52px ${fam}`; const w=Math.min(590,g.measureText(hi).width+50), y=y0+L.length*lh+22; pnRR(g,646,y,w,78,16,c1); g.fillStyle="#fff"; g.textBaseline="middle"; g.fillText(hi,671,y+41,w-50); } }
+  if(logo){ g.save(); g.shadowColor="rgba(0,0,0,.25)"; g.shadowBlur=14; g.fillStyle="#fff"; g.beginPath(); g.arc(W-70,H-70,48,0,7); g.fill(); g.restore(); g.drawImage(logo,W-70-36,H-70-36,72,72); }
+  return cv; }
+
+// ---------- estudio con Claude ----------
+async function ytEstudio(btn){ const sf=await getSample(); if(!sf){ toast("El estudio de títulos se hace en el panel dentro de Claude","err"); return; } const D=YT.D, m=D&&D.meta;
+  const juegos=D?[...new Set(mpJuegosDe(D).flatMap(s=>s.J.map(j=>j.t)))]:[], dias=D&&typeof rcDias==="function"?rcDias(D):0;
+  const ctx=D?`Material: plataforma interactiva "${m.nombreCompleto||m.nombreCorto}"${m.efemeride?`, efeméride ${m.efemeride}${dias>0?` (faltan ${dias} días)`:""}`:""}. Juegos: ${juegos.slice(0,12).join(", ")}. ${(D.capitulos||[]).length?`Modo Historia con ${D.capitulos.length} misiones. `:""}Funciona en celu, compu y pizarra digital. Enlace: ${(D.pub&&D.pub.url)||"https://cofredidactico.com.ar"}`:`Material: ${YT.mat||"material didáctico de Cofre Didáctico"}.`;
+  const t0=btn.textContent; btn.disabled=true; btn.textContent="✨ Analizando…"; ytEstado("✨ Claude está estudiando cómo buscan las docentes este tema…");
+  try{ const r=await sf.json(`Sos estratega de YouTube para marcas educativas de Latinoamérica, experto en SEO de YouTube. Marca: Cofre Didáctico (Argentina): materiales didácticos y plataformas interactivas para docentes de primaria. Sitio: https://cofredidactico.com.ar. Hoy es ${new Date().toLocaleDateString("es-AR",{day:"numeric",month:"long",year:"numeric"})}.
+${ctx}
+Tipo de video: ${YT.tipo==="short"?"YouTube Short vertical (hasta 3 minutos)":"video horizontal largo"}${YT.dur?`, dura ${Math.round(YT.dur)} segundos`:""}.${YT.kw?` Palabra clave elegida: "${YT.kw}".`:""}
+El público son DOCENTES (no niños): buscan actividades listas para el aula. Pensá en cómo escriben en el buscador de YouTube (fecha + tema + "primaria", "actividades", "juegos", "para niños", grado/ciclo) y en qué títulos les hacen clic. Voseo rioplatense en la descripción. No inventes precios, cifras ni datos.
+Devolvé:
+- palabraClave: la búsqueda principal a posicionar.
+- busquedas: 6 búsquedas reales probables de docentes sobre este tema.
+- titulos: 5 títulos distintos (ángulos: búsqueda directa, beneficio, curiosidad, fecha, lista). ${YT.tipo==="short"?"Máx. 60 caracteres, palabra clave al principio.":"Entre 45 y 70 caracteres, palabra clave al principio."} Para cada uno: angulo, porque (1 frase) y puntaje 0-100.
+- descripcion: ${YT.tipo==="short"?"350 a 700":"900 a 1600"} caracteres. Las 2 primeras líneas con la palabra clave y un gancho (es lo que se ve antes de "más"). Después qué incluye (con viñetas •), el enlace https://cofredidactico.com.ar${D&&D.pub&&D.pub.url?" y "+D.pub.url:""}, una invitación a suscribirse${YT.tipo==="short"?"":", capítulos con tiempos aproximados empezando en 0:00"} y al final 3 a 4 hashtags${YT.tipo==="short"?" incluido #Shorts":""}.
+- etiquetas: 12 a 18 etiquetas (sin #), de la más específica a la más general, que no sumen más de 450 caracteres.
+- comentarioFijado: comentario para fijar con pregunta + enlace.
+- miniatura: {"texto":"3 a 5 palabras grandes","resaltado":"2 a 3 palabras para la etiqueta de color"}.
+- lista: nombre de la lista de reproducción donde ubicarlo.
+- cuando: {"cuando":"cuándo conviene publicarlo respecto de la fecha","porque":""}.
+- consejos: 4 consejos concretos para que este video rinda más (gancho de los primeros segundos, etc.).
+Respondé SOLO JSON: {"palabraClave":"","busquedas":[],"titulos":[{"t":"","angulo":"","porque":"","puntaje":0}],"descripcion":"","etiquetas":[],"comentarioFijado":"","miniatura":{"texto":"","resaltado":""},"lista":"","cuando":{"cuando":"","porque":""},"consejos":[]}`,{modelTier:"complex",cache:false});
+    if(!r||!Array.isArray(r.titulos)) throw {code:"invalid_json"}; YT.ana=r; if(!YT.kw) YT.kw=r.palabraClave||""; if(!YT.tit&&r.titulos[0]) YT.tit=r.titulos.slice().sort((a,b)=>(b.puntaje||0)-(a.puntaje||0))[0].t; if(!YT.desc) YT.desc=r.descripcion||""; if(!YT.tags.length) YT.tags=(r.etiquetas||[]).map(String).filter(Boolean);
+    if(r.miniatura){ YT.miniTxt=YT.miniTxt||r.miniatura.texto||""; YT.miniHi=YT.miniHi||r.miniatura.resaltado||""; } ytEstado(""); ytPintar(); }
+  catch(e){ ytEstado(""); toast(sampleErr(e),"err"); } finally{ btn.disabled=false; btn.textContent=t0; } }
+function ytAnaHtml(){ const a=YT.ana; if(!a) return `<p class="muted small">Claude estudia cómo buscan las docentes este tema y te propone títulos, descripción con palabras clave, etiquetas, miniatura y el mejor momento para publicar. Es una orientación según cómo se busca en YouTube, no datos en vivo de la plataforma.</p>`;
+  return `<div class="yt-ana"><div class="yt-kw"><small>Búsqueda principal</small><b>🔎 ${esc(a.palabraClave||"")}</b></div>
+    <div class="yt-bus"><small>Así lo buscan las docentes</small>${(a.busquedas||[]).map(b=>`<button type="button" data-ytkw="${esc(b)}">${esc(b)}</button>`).join("")}</div>
+    <small>Títulos propuestos — tocá uno para usarlo</small><div class="yt-tits">${(a.titulos||[]).map((x,i)=>`<button type="button" data-yttit="${i}" class="${YT.tit===x.t?"on":""}"><span class="yt-pt" style="--c:${(x.puntaje||0)>=80?"#16A34A":(x.puntaje||0)>=60?"#F59E0B":"#EF4444"}">${x.puntaje||"–"}</span><b>${esc(x.t)}</b><small>${esc(x.angulo||"")} · ${esc(x.porque||"")}</small></button>`).join("")}</div>
+    ${a.cuando&&a.cuando.cuando?`<div class="yt-tip">📅 <b>${esc(a.cuando.cuando)}</b> ${esc(a.cuando.porque||"")}</div>`:""}
+    ${a.lista?`<div class="yt-tip">📂 Ubicalo en la lista <b>“${esc(a.lista)}”</b>.</div>`:""}
+    ${a.comentarioFijado?`<div class="yt-tip">📌 Comentario para fijar: <i>${esc(a.comentarioFijado)}</i> <button type="button" class="linkish" data-ytcopy="com">Copiar</button></div>`:""}
+    ${(a.consejos||[]).length?`<details class="yt-cons"><summary>💡 Consejos para que rinda más</summary><ul>${a.consejos.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></details>`:""}</div>`; }
+
+// ---------- mejores horarios (Metricool) ----------
+async function ytMejores(){ const M=await pnMcp(); if(!M) return; try{ const a=pnAhora(0), z=new Date(Date.now()+6*864e5), zz=x=>String(x).padStart(2,"0");
+    const r=await M.callTool(MC,"getBestTimeToPostByNetwork",{brandId:MC_BRAND,fromDate:`${a.f}T00:00:00-03:00`,toDate:`${z.getFullYear()}-${zz(z.getMonth()+1)}-${zz(z.getDate())}T23:59:59-03:00`,timezone:PN_TZ,socialNetwork:"youtube"});
+    const L=[]; ((payloadOf(r)||{}).data||[]).forEach(d=>(d.bestTimesByHour||[]).forEach(h=>L.push({dow:+d.dayOfWeek,h:+h.hourOfDay,v:+h.value||0})));
+    const now=new Date(new Date().toLocaleString("en-US",{timeZone:PN_TZ})), slots=[];
+    for(let i=0;i<7;i++){ const d=new Date(+now+i*864e5), dow=((d.getDay()+6)%7)+1; L.filter(x=>x.dow===dow).forEach(x=>{ const t=new Date(d); t.setHours(x.h,0,0,0); if(t>new Date(+now+30*60000)) slots.push({t,v:x.v}); }); }
+    slots.sort((a,b)=>b.v-a.v); const top=[]; slots.forEach(s=>{ if(top.length<4&&!top.some(x=>x.t.toDateString()===s.t.toDateString())) top.push(s); }); YT.best=top.sort((a,b)=>a.t-b.t); ytPintar(); }catch(e){ YT.best=[]; } }
+
+// ---------- publicar ----------
+async function ytSubirVideo(M){ const f=YT.blob||YT.file; if(!f) return ""; const max=16*1024*1024; if(f.size>max) throw {msg:`El video pesa ${(f.size/1048576).toFixed(1)} MB y desde el panel se pueden subir hasta 16 MB. Subilo a tu Google Drive y pegá el enlace en “Enlace del video”.`};
+  let lt=null; try{ lt=await M.listTools(); }catch{} const nom=(YT.tit||"video").replace(/[\\/:*?"<>|]/g,"").slice(0,60)+".mp4";
+  let input; if(lt&&lt.fileArgs) input={title:nom,base64Content:{$file:{data:f,name:"video.mp4",type:"video/mp4"}},contentMimeType:"video/mp4",disableConversionToGoogleType:true};
+  else if(f.size<700*1024) input={title:nom,base64Content:await pnB64(f),contentMimeType:"video/mp4",disableConversionToGoogleType:true};
+  else throw {msg:"En esta vista no se pueden enviar videos grandes. Subilo a tu Google Drive y pegá el enlace en “Enlace del video”."};
+  let r; try{ r=await M.callTool(PN_GD,"create_file",input); }catch(e){ throw {msg:pnErr(e,"Google Drive")}; } const id=pnId(payloadOf(r)); if(!id) throw {msg:"Google Drive no devolvió el video subido."};
+  try{ await M.callTool(PN_GD,"share_file",{fileId:id,role:"reader",permissionId:"anyoneWithLink"}); }catch(e){ throw {msg:pnErr(e,"Google Drive")}; } return `https://drive.google.com/uc?export=download&id=${id}`; }
+function ytValidar(){ if(!YT.link&&!YT.blob&&!YT.file) return "Elegí el video: el último reel, uno de tu compu o un enlace."; if(!YT.tit.trim()) return "Falta el título."; if(YT.tit.length>100) return "El título no puede pasar los 100 caracteres."; if(!YT.desc.trim()) return "Falta la descripción."; if(ytLen(YT.tags)>500) return "Las etiquetas pasan los 500 caracteres: sacá algunas."; return ""; }
+async function ytPublicar(btn){ const M=await pnMcp(); if(!M){ ytEstado("⚠️ Publicar en YouTube se hace desde el panel dentro de Claude (usa tu Metricool). Acá podés preparar todo y copiar los textos."); return; } const v=ytValidar(); if(v){ ytEstado("⚠️ "+v); return; }
+  let fh; if(YT.cuando==="ahora"){ const a=pnAhora(5); fh=pnFechaIso(a.f,a.h); } else { if(!YT.fecha){ ytEstado("⚠️ Elegí el día."); return; } fh=pnFechaIso(YT.fecha,YT.hora); if(new Date(fh+"-03:00")<new Date(Date.now()+60000)){ ytEstado("⚠️ La fecha tiene que ser en el futuro."); return; } }
+  if(YT.kids&&!confirm("Marcaste el video como “hecho para niños”. YouTube desactiva los comentarios, las notificaciones y la tarjeta de suscripción. Si el video es para docentes, conviene marcarlo como NO. ¿Seguís igual?")) return;
+  YT.busy=true; btn.disabled=true; const t0=btn.textContent;
+  try{ let url=YT.link; const firma=[YT.src,YT.file&&YT.file.name,YT.blob&&YT.blob.size].join("|"); if(!url&&YT.subida&&YT.subida.firma===firma) url=YT.subida.url;
+    if(!url){ btn.textContent="☁️ Subiendo el video…"; ytEstado("☁️ Subiendo el video a tu Google Drive…"); url=await ytSubirVideo(M); YT.subida={firma,url}; }
+    let thumb=""; if(YT.mini&&YT.tipo==="video"){ btn.textContent="🖼️ Subiendo la miniatura…"; thumb=await pnSubirDrive(M,ytMini(document.createElement("canvas")),"Miniatura "+YT.tit); }
+    const info={autoPublish:true,draft:false,descendants:[],firstCommentText:"",hasNotReadNotes:false,media:[url],mediaAltText:[],providers:[{network:"youtube"}],publicationDate:{dateTime:fh,timezone:PN_TZ},shortener:false,smartLinkData:{ids:[]},text:YT.desc,
+      youtubeData:{title:YT.tit.trim(),type:YT.tipo==="short"?"short":"video",privacy:YT.priv,tags:YT.tags,category:"EDUCATION",madeForKids:!!YT.kids,isAiGeneratedContent:!!YT.ia}};
+    if(!YT.notif) info.youtubeData.notifySubscribers=false; if(thumb) info.videoThumbnailUrl=thumb;
+    btn.textContent="▶ Enviando a YouTube…"; ytEstado("▶ Enviando a Metricool…"); let r; try{ r=await M.callTool(MC,"createScheduledPost",{blogId:MC_BRAND,date:fh+"-03:00",info:JSON.stringify(info)}); }catch(e){ throw {msg:pnErr(e,"Metricool")}; }
+    const pl=(JSON.stringify(payloadOf(r)||"").match(/https?:\/\/[^"\s]*metricool[^"\s]*/i)||[""])[0];
+    YT.log=[{t:YT.tit,tipo:YT.tipo,fecha:fh,planner:pl,hecho:new Date().toISOString()},...YT.log].slice(0,60); try{ if(db) await db.doc("panel/youtube").set({log:YT.log,act:new Date().toISOString()}); }catch{}
+    ytEstado(`✅ ¡Listo! ${YT.cuando==="ahora"?"El video se sube a tu canal en unos minutos":"Video programado para el "+new Date(fh+"-03:00").toLocaleString("es-AR",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit",hour12:false})+" h"}.${pl?` <a href="${esc(pl)}" target="_blank" rel="noopener">Ver en Metricool</a>`:""}${YT.ana&&YT.ana.comentarioFijado?" No te olvides de fijar el comentario sugerido.":""}`,true); toast("Video enviado a YouTube ✓","ok"); ytProgramados(true);
+  }catch(e){ console.warn(e); ytEstado("⚠️ "+(e.msg||pnErr(e))); } finally{ YT.busy=false; btn.disabled=false; btn.textContent=t0; } }
+async function ytProgramados(force){ const el=$("#ytProg"); if(!el) return; const M=await pnMcp(); const hist=()=>YT.log.length?`<h4>🗂️ Enviados desde el panel</h4><ul class="pn-list">${YT.log.slice(0,10).map(x=>`<li><span class="pn-ph">${x.tipo==="short"?"📱":"▶"}</span><div><b>${esc(x.t)}</b><small>${esc(new Date((x.fecha||"")+"-03:00").toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))}${x.planner?` · <a href="${esc(x.planner)}" target="_blank" rel="noopener">Metricool</a>`:""}</small></div></li>`).join("")}</ul>`:"";
+  if(!M){ el.innerHTML=hist(); return; } if(YT.prog&&!force){ el.innerHTML=YT.prog+hist(); return; }
+  try{ const a=pnAhora(0), z=new Date(Date.now()+60*864e5), zz=x=>String(x).padStart(2,"0"); const r=await M.callTool(MC,"getScheduledPosts",{brandId:MC_BRAND,fromDate:`${a.f}T00:00:00-03:00`,toDate:`${z.getFullYear()}-${zz(z.getMonth()+1)}-${zz(z.getDate())}T23:59:59-03:00`,timezone:PN_TZ},{cache:false});
+    const p=payloadOf(r), L=(Array.isArray(p)?p:(p&&(p.data||p.posts))||[]).filter(x=>JSON.stringify(x.providers||x.networks||x).toLowerCase().includes("youtube"));
+    YT.prog=`<h4>📅 Programados en YouTube (${L.length})</h4>`+(L.length?`<ul class="pn-list">${L.map(x=>{ const yd=x.youtubeData||{}, d=(x.publicationDate&&(x.publicationDate.dateTime||x.publicationDate))||""; const t=new Date(String(d).length<=19?d+"-03:00":d); return `<li><span class="pn-ph">${yd.type==="short"?"📱":"▶"}</span><div><b>${esc(yd.title||String(x.text||"").slice(0,70))}</b><small>${isNaN(t)?esc(String(d)):esc(t.toLocaleString("es-AR",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))}</small></div></li>`; }).join("")}</ul>`:`<p class="muted">No hay videos programados en los próximos 60 días.</p>`);
+  }catch(e){ YT.prog=`<h4>📅 Programados en YouTube</h4><p class="muted">${esc(pnErr(e))}</p>`; } el.innerHTML=YT.prog+hist(); }
+async function ytConexion(){ const el=$("#ytCon"); if(!el) return; const M=await pnMcp(); if(!M){ el.className="pn-con"; el.innerHTML=`<b>💻 Estás en el panel web</b><span>Podés preparar el video y copiar los textos. Para publicarlo directo en tu canal, abrí el panel dentro de Claude.</span>`; return; }
+  el.className="pn-con"; el.innerHTML="<b>⏳ Revisando tu Metricool…</b>";
+  try{ const r=await M.callTool(MC,"getBrandSettings",{}); const p=payloadOf(r), b=((p&&p.data)||[]).find(x=>String(x.id)===MC_BRAND)||{}, ch=(b.networksData||{}).youtubeData;
+    el.className="pn-con"+(ch?" ok":""); el.innerHTML=ch?`<b>✅ Tu canal de YouTube está conectado en Metricool</b><span>Los videos se publican o programan desde acá. <a href="https://www.youtube.com/channel/${esc(ch)}" target="_blank" rel="noopener">Ver mi canal</a></span>`:`<b>🔌 Falta conectar YouTube en Metricool</b><span>En app.metricool.com → tu marca → Conectar redes → YouTube. Después tocá <button type="button" class="btn small" data-ytcon>Ya lo conecté</button></span>`;
+  }catch(e){ el.className="pn-con err"; el.innerHTML=`<b>⚠️ ${esc(pnErr(e))}</b><button type="button" class="btn small" data-ytcon>Reintentar</button>`; } }
+
+// ---------- vista ----------
+async function ytCargarVideo(f,origen){ if(YT.vurl&&YT.vurl.startsWith("blob:")&&YT.src!=="reel") try{ URL.revokeObjectURL(YT.vurl); }catch{}
+  YT.vurl=URL.createObjectURL(f); YT.subida=null; YT.link=""; const v=document.createElement("video"); v.preload="metadata"; v.muted=true; v.src=YT.vurl;
+  await new Promise(r=>{ v.onloadedmetadata=r; v.onerror=r; setTimeout(r,4000); }); YT.dur=isFinite(v.duration)?v.duration:0; YT.vw=v.videoWidth; YT.vh=v.videoHeight; if(YT.vw&&YT.vh) YT.tipo=YT.vh>YT.vw&&YT.dur<=180?"short":"video"; ytPintar(); }
+async function ytElegirMat(val){ YT.mat=val; YT.D=null; YT.R=null; if(val.startsWith("plat:")){ const it=(YT.lista||[]).find(x=>"plat:"+x.id===val); if(it){ const Dp=JSON.parse(JSON.stringify(it.D)); YT.D=Dp; try{ if(typeof mpAsegurarImgs==="function") await mpAsegurarImgs(Dp); YT.R=await rcRecursos(Dp); }catch{} const m=Dp.meta, fe=m.efemeride?String(m.efemeride).split(" – ")[0].trim():""; if(!YT.kw) YT.kw=fe?`actividades ${fe} primaria`.toLowerCase():`${m.nombreCorto||m.nombreCompleto} actividades primaria`.toLowerCase(); } }
+  else if(val.startsWith("mat:")){ YT.mat=val.slice(4); try{ YT.R={logo:await new Promise(r=>{ const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src=MP_SRC.logo; })}; }catch{} }
+  YT.ana=null; ytPintar(); }
+function ytPintar(){ const v=$("#view-youtube"); if(!v||!YT.on) return; const set=(id,val)=>{ const e=$("#"+id); if(e&&document.activeElement!==e) e.value=val||""; };
+  v.querySelectorAll("[data-yttipo]").forEach(b=>b.classList.toggle("on",b.dataset.yttipo===YT.tipo)); v.querySelectorAll("[data-ytsrc]").forEach(b=>b.classList.toggle("on",b.dataset.ytsrc===YT.src));
+  const ul=window.RC_ULTIMO; $("#ytReelInfo").innerHTML=ul?`🎬 ${esc(ul.nom)} · ${(ul.blob.size/1048576).toFixed(1)} MB`:"Todavía no grabaste un reel en esta sesión (Plataformas → Estudio de reels).";
+  $("#ytLinkBox").hidden=YT.src!=="link"; $("#ytFileBox").hidden=YT.src!=="file"; set("ytLink",YT.link);
+  const ms=$("#ytMat"); if(ms&&YT.lista&&!ms.dataset.ok){ ms.dataset.ok="1"; const mats=ytMateriales(); ms.innerHTML=`<option value="">— Elegí el material del video —</option><optgroup label="Plataformas">${YT.lista.map(x=>`<option value="plat:${esc(x.id)}">${esc(x.n)}</option>`).join("")}</optgroup>${mats.length?`<optgroup label="Cuadernillos y materiales">${mats.map(n=>`<option value="mat:${esc(n)}">${esc(n)}</option>`).join("")}</optgroup>`:""}<option value="otro">Otro (lo describo yo)</option>`; }
+  $("#ytOtroBox").hidden=YT.mat!=="otro"&&!(YT.mat&&!YT.mat.startsWith("plat:")&&ms&&ms.value==="otro");
+  set("ytKw",YT.kw); set("ytTit",YT.tit); set("ytDesc",YT.desc); set("ytFecha",YT.fecha); set("ytHora",YT.hora); set("ytMiniTxt",YT.miniTxt); set("ytMiniHi",YT.miniHi);
+  $("#ytTags").innerHTML=YT.tags.map((t,i)=>`<span class="yt-tag">${esc(t)}<button type="button" data-yttag="${i}" aria-label="Quitar ${esc(t)}">×</button></span>`).join("")+`<input id="ytTagIn" placeholder="Agregar etiqueta y Enter" aria-label="Agregar etiqueta">`;
+  const c=(id,n,max)=>{ const k=$(`[data-cnt="${id}"]`); if(k){ k.textContent=`${n}/${max}`; k.classList.toggle("over",n>max); } }; c("ytTit",YT.tit.length,100); c("ytDesc",YT.desc.length,5000); c("ytTags",ytLen(YT.tags),500);
+  $("#ytAna").innerHTML=ytAnaHtml(); v.querySelectorAll("[data-ytpriv]").forEach(b=>b.classList.toggle("on",b.dataset.ytpriv===YT.priv)); v.querySelectorAll("[data-ytcuando]").forEach(b=>b.classList.toggle("on",b.dataset.ytcuando===YT.cuando)); $("#ytProgBox").hidden=YT.cuando!=="prog";
+  $("#ytKids").checked=!YT.kids; $("#ytIa").checked=!!YT.ia; $("#ytNotif").checked=!!YT.notif; $("#ytMiniOn").checked=!!YT.mini; $("#ytMiniBox").hidden=!YT.mini; $("#ytMiniSec").hidden=YT.tipo!=="video"; v.querySelectorAll("[data-ytmtpl]").forEach(b=>b.classList.toggle("on",b.dataset.ytmtpl===YT.miniTpl));
+  $("#ytBest").innerHTML=YT.best&&YT.best.length?`<small>Mejores horarios de tu audiencia (Metricool):</small>${YT.best.map(s=>`<button type="button" data-ytbest="${+s.t}">${esc(s.t.toLocaleDateString("es-AR",{weekday:"short",day:"numeric"}))} · ${s.t.getHours()} h</button>`).join("")}`:"";
+  if(YT.est) ytEstado(YT.est.h,YT.est.html); ytPrev(); ytPintarSeo(); }
+async function ytInit(){ const v=$("#view-youtube"); if(!v) return; if(YT.on){ ytPintar(); return; } YT.on=true; const a=pnAhora(60*24); YT.fecha=a.f; const cf=ytCfg(); YT.priv=cf.priv||"public";
+  if(window.RC_ULTIMO) YT.src="reel";
+  v.innerHTML=`<div class="view-h"><div><h1>YouTube</h1><p class="lead">Publicá y programá tus videos con títulos, descripciones y etiquetas pensados para que las docentes te encuentren.</p></div><div class="actions"><a class="btn small" href="https://studio.youtube.com/" target="_blank" rel="noopener">YouTube Studio</a></div></div>
+  <div id="ytCon" class="pn-con"></div>
+  <div class="pn-g"><div class="pn-op">
+    <section class="card pn-sec yt-sec"><h3><span>1</span> El video</h3>
+      <div class="rs-seg"><button type="button" data-yttipo="short"><b>📱 Short</b><small>Vertical · hasta 3 min</small></button><button type="button" data-yttipo="video"><b>▶ Video</b><small>Horizontal · tutorial o recorrido</small></button></div>
+      <div class="yt-src"><button type="button" data-ytsrc="reel"><b>🎬 Último reel</b><small id="ytReelInfo"></small></button><button type="button" data-ytsrc="file"><b>📁 De mi compu</b><small>MP4 hasta 16 MB</small></button><button type="button" data-ytsrc="link"><b>🔗 Enlace</b><small>Google Drive, Dropbox o público</small></button></div>
+      <div id="ytFileBox" hidden><label class="btn small"><input type="file" id="ytFile" accept="video/mp4,video/*" hidden>⬆ Elegir video</label> <small class="muted" id="ytFileN"></small></div>
+      <div id="ytLinkBox" class="field" hidden><label for="ytLink">Enlace del video</label><input id="ytLink" type="url" placeholder="https://drive.google.com/file/d/…"><small class="muted">Para videos largos: subilo a tu Google Drive, compartilo con “Cualquiera con el enlace” y pegalo acá. En Metricool tenés que tener vinculado Google Drive.</small></div></section>
+    <section class="card pn-sec"><h3><span>2</span> ¿De qué trata? <button type="button" class="btn small primary" id="ytIA">✨ Estudio de títulos con Claude</button></h3>
+      <div class="pn-row"><div class="field"><label for="ytMat">Material</label><select id="ytMat"><option>Cargando…</option></select></div><div class="field"><label for="ytKw">Palabra clave principal</label><input id="ytKw" placeholder="Ej.: actividades día de la tradición primaria"></div></div>
+      <div class="field" id="ytOtroBox" hidden><label for="ytOtro">Contá de qué es el video</label><input id="ytOtro" placeholder="Ej.: cuadernillo de Hansel y Gretel para 2.º grado"></div><div id="ytAna"></div></section>
+    <section class="card pn-sec"><h3><span>3</span> Título, descripción y etiquetas</h3>
+      <div class="field"><label for="ytTit">Título <small data-cnt="ytTit"></small></label><input id="ytTit" maxlength="100"></div>
+      <div class="field"><label for="ytDesc">Descripción <small data-cnt="ytDesc"></small></label><textarea id="ytDesc" rows="8" maxlength="5000"></textarea></div>
+      <div class="field"><label>Etiquetas <small data-cnt="ytTags"></small></label><div class="yt-tags" id="ytTags"></div></div>
+      <div class="yt-chk"><label><input type="checkbox" id="ytKids"> No es para niños <small>(el video es para docentes: mantiene comentarios y notificaciones)</small></label><label><input type="checkbox" id="ytIa"> Contiene contenido realista alterado o generado con IA</label><label><input type="checkbox" id="ytNotif"> Avisar a mis suscriptores</label></div>
+      <div class="rs-seg" id="ytPriv">${YT_PRIV.map(([k,t])=>`<button type="button" data-ytpriv="${k}"><b>${t}</b></button>`).join("")}</div></section>
+    <section class="card pn-sec" id="ytMiniSec"><h3><span>4</span> Miniatura <label class="yt-sw"><input type="checkbox" id="ytMiniOn"> Usar miniatura personalizada</label></h3>
+      <div id="ytMiniBox" hidden><div class="pn-tpl yt-mtpl"><button type="button" data-ytmtpl="impacto"><b>⚡ Impacto</b><small>Fondo de color y título enorme</small></button><button type="button" data-ytmtpl="clara"><b>☀️ Clara</b><small>Imagen en tarjeta y texto al lado</small></button></div>
+        <div class="pn-row"><div class="field"><label for="ytMiniTxt">Texto grande (3 a 5 palabras)</label><input id="ytMiniTxt" maxlength="40"></div><div class="field"><label for="ytMiniHi">Etiqueta de color</label><input id="ytMiniHi" maxlength="28"></div></div>
+        <small class="muted">YouTube muestra miniaturas personalizadas en canales verificados (se verifica gratis con tu teléfono en YouTube Studio).</small> <button type="button" class="btn small" id="ytMiniDl">⬇ Descargar miniatura</button></div></section>
+    <section class="card pn-sec"><h3><span>5</span> Publicar</h3>
+      <div class="rs-seg"><button type="button" data-ytcuando="ahora"><b>⚡ Ahora</b><small>En unos minutos</small></button><button type="button" data-ytcuando="prog"><b>📅 Programar</b><small>Día y hora</small></button></div>
+      <div id="ytProgBox" hidden><div class="pn-row"><div class="field"><label for="ytFecha">Día</label><input id="ytFecha" type="date"></div><div class="field"><label for="ytHora">Hora</label><input id="ytHora" type="time"></div></div><div class="yt-best" id="ytBest"></div></div>
+      <div class="actions"><button type="button" class="btn primary yt-go" id="ytPub">▶ Publicar en YouTube</button><button type="button" class="btn" id="ytCopy">📋 Copiar título y descripción</button></div>
+      <div class="pn-est" id="ytEst" hidden></div></section>
+  </div><aside class="pn-side"><div id="ytPrev" class="yt-prev"></div><div id="ytSeo" class="yt-seo card"></div><div id="ytProg" class="pn-prog"></div></aside></div>`;
+  ytEnlazar(v); try{ if(typeof rcLookFuentes==="function") await rcLookFuentes(); }catch{}
+  try{ const sn=db&&await db.doc("panel/youtube").get(); const d=sn&&sn.exists?sn.data():null; if(d) YT.log=d.log||[]; }catch{}
+  YT.lista=typeof pnPlataformas==="function"?await pnPlataformas():[]; if(YT.src==="reel"&&window.RC_ULTIMO) await ytUsarReel(); ytPintar(); ytConexion(); ytMejores(); ytProgramados(); }
+async function ytUsarReel(){ const ul=window.RC_ULTIMO; if(!ul) return; YT.src="reel"; YT.blob=ul.blob; YT.file=null; await ytCargarVideo(ul.blob,"reel");
+  if(ul.D&&ul.D.meta){ const it=(YT.lista||[]).find(x=>x.D&&x.D.meta&&x.D.meta.id===ul.D.meta.id); if(it){ const ms=$("#ytMat"); if(ms) ms.value="plat:"+it.id; await ytElegirMat("plat:"+it.id); } } }
+function ytEnlazar(v){
+  v.addEventListener("click",async e=>{ const b=e.target.closest("button"); if(!b) return;
+    if(b.dataset.yttipo){ YT.tipo=b.dataset.yttipo; return ytPintar(); }
+    if(b.dataset.ytsrc){ const s=b.dataset.ytsrc; if(s==="reel"){ if(!window.RC_ULTIMO){ toast("Primero grabá un reel en Plataformas → Estudio de reels","err"); return; } return ytUsarReel(); } YT.src=s; if(s==="link"){ YT.blob=null; YT.file=null; YT.vurl=""; YT.dur=0; YT.vw=YT.vh=0; } if(s==="file") $("#ytFile").click(); return ytPintar(); }
+    if(b.dataset.ytpriv){ YT.priv=b.dataset.ytpriv; ytCfgSet({priv:YT.priv}); return ytPintar(); }
+    if(b.dataset.ytcuando){ YT.cuando=b.dataset.ytcuando; return ytPintar(); }
+    if(b.dataset.ytmtpl){ YT.miniTpl=b.dataset.ytmtpl; return ytPintar(); }
+    if(b.dataset.yttit!=null&&YT.ana){ YT.tit=YT.ana.titulos[+b.dataset.yttit].t; return ytPintar(); }
+    if(b.dataset.ytkw){ YT.kw=b.dataset.ytkw; return ytPintar(); }
+    if(b.dataset.yttag!=null){ YT.tags.splice(+b.dataset.yttag,1); return ytPintar(); }
+    if(b.dataset.ytbest){ const t=new Date(+b.dataset.ytbest), z=x=>String(x).padStart(2,"0"); YT.fecha=`${t.getFullYear()}-${z(t.getMonth()+1)}-${z(t.getDate())}`; YT.hora=`${z(t.getHours())}:00`; return ytPintar(); }
+    if(b.dataset.ytcopy==="com"&&YT.ana){ try{ await navigator.clipboard.writeText(YT.ana.comentarioFijado); toast("Comentario copiado ✓","ok"); }catch{} return; }
+    if(b.hasAttribute("data-ytcon")) return ytConexion();
+    if(b.id==="ytIA") return ytEstudio(b);
+    if(b.id==="ytMiniDl"){ ytMini(document.createElement("canvas")).toBlob(bl=>saveFile(`miniatura-${mpSlug(YT.tit||"video")}.jpg`,bl,"image/jpeg"),"image/jpeg",.92); return; }
+    if(b.id==="ytCopy"){ try{ await navigator.clipboard.writeText(`${YT.tit}\n\n${YT.desc}\n\nEtiquetas: ${YT.tags.join(", ")}`); toast("Copiado ✓","ok"); }catch{ toast("No se pudo copiar","err"); } return; }
+    if(b.id==="ytPub") return ytPublicar(b); });
+  v.addEventListener("change",async e=>{ const t=e.target;
+    if(t.id==="ytFile"&&t.files[0]){ YT.src="file"; YT.file=t.files[0]; YT.blob=null; $("#ytFileN").textContent=`${t.files[0].name} · ${(t.files[0].size/1048576).toFixed(1)} MB`; await ytCargarVideo(t.files[0]); t.value=""; return; }
+    if(t.id==="ytMat"){ if(t.value==="otro"){ YT.mat="otro"; YT.D=null; YT.R=null; ytPintar(); return; } return ytElegirMat(t.value); }
+    if(t.id==="ytKids"){ YT.kids=!t.checked; return ytPintarSeo(); } if(t.id==="ytIa"){ YT.ia=t.checked; return; } if(t.id==="ytNotif"){ YT.notif=t.checked; return; }
+    if(t.id==="ytMiniOn"){ YT.mini=t.checked; return ytPintar(); } });
+  v.addEventListener("keydown",e=>{ const t=e.target; if(t.id==="ytTagIn"&&(e.key==="Enter"||e.key===",")){ e.preventDefault(); t.value.split(",").map(x=>x.trim().replace(/^#/,"")).filter(Boolean).forEach(x=>{ if(!YT.tags.includes(x)) YT.tags.push(x); }); t.value=""; ytPintar(); setTimeout(()=>{ const n=$("#ytTagIn"); if(n) n.focus(); },0); } });
+  v.addEventListener("input",e=>{ const t=e.target; const map={ytTit:()=>YT.tit=t.value,ytDesc:()=>YT.desc=t.value,ytKw:()=>YT.kw=t.value,ytLink:()=>{ YT.link=/^https?:\/\//.test(t.value.trim())?t.value.trim():""; },ytFecha:()=>YT.fecha=t.value,ytHora:()=>YT.hora=t.value,ytMiniTxt:()=>YT.miniTxt=t.value,ytMiniHi:()=>YT.miniHi=t.value,ytOtro:()=>YT.mat=t.value};
+    if(!map[t.id]) return; map[t.id](); clearTimeout(YT.tm); YT.tm=setTimeout(()=>{ const c=(id,n,max)=>{ const k=$(`[data-cnt="${id}"]`); if(k){ k.textContent=`${n}/${max}`; k.classList.toggle("over",n>max); } }; c("ytTit",YT.tit.length,100); c("ytDesc",YT.desc.length,5000); if(/^yt(Tit|Desc|Mini)/.test(t.id)) ytPrev(); ytPintarSeo(); },150); }); }
+
+// ---------- Menú lateral agrupado por utilidad ----------
+const NAV_GRUPOS=[["principal","",["inicio","calendario"]],["ventas","💰 Ventas y clientes",["ventas","stats","clientes","materiales","correos"]],["redes","📣 Redes sociales",["instagram","igbot","pinterest","youtube","mensajes","lanzamientos"]],["crear","🎨 Crear y diseñar",["motor","plataformas","video","fichas","pdf"]],["sistema","⚙️ Sistema",["datos"]]];
+function navCerrados(){ try{ return JSON.parse(localStorage.getItem("cofre-navg")||"[]"); }catch{ return []; } }
+function navGuardar(){ try{ localStorage.setItem("cofre-navg",JSON.stringify([...document.querySelectorAll(".nav-g.cerrado")].map(g=>g.dataset.g))); }catch{} }
+function navGrupoDe(v){ const g=NAV_GRUPOS.find(x=>x[2].includes(v)); return g?g[0]:"sistema"; }
+function navAbrir(v){ const g=document.querySelector(`.nav-g[data-g="${navGrupoDe(v)}"]`); if(g&&g.classList.contains("cerrado")){ g.classList.remove("cerrado"); const h=g.querySelector(".nav-gh"); if(h) h.setAttribute("aria-expanded","true"); navGuardar(); } }
+function navAgrupar(){ const tl=document.querySelector('.side-nav [role="tablist"]'); if(!tl||tl.dataset.grp) return; tl.dataset.grp="1"; const cer=navCerrados(), usados=new Set();
+  NAV_GRUPOS.forEach(([k,t,vs])=>{ const g=document.createElement("div"); g.className="nav-g"+(t&&cer.includes(k)?" cerrado":""); g.dataset.g=k; const body=document.createElement("div"); body.className="nav-gb"; body.id="navgb-"+k;
+    vs.forEach(v=>{ const tab=tl.querySelector(`.tab[data-view="${v}"]`); if(tab){ body.appendChild(tab); usados.add(v); } });
+    if(t){ const h=document.createElement("button"); h.type="button"; h.className="nav-gh"; h.setAttribute("aria-expanded",String(!g.classList.contains("cerrado"))); h.setAttribute("aria-controls",body.id); h.innerHTML=`<span>${t}</span><i>${body.children.length}</i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+      h.addEventListener("click",()=>{ const c=g.classList.toggle("cerrado"); h.setAttribute("aria-expanded",String(!c)); navGuardar(); }); g.appendChild(h); }
+    g.appendChild(body); tl.appendChild(g); });
+  const sis=tl.querySelector('.nav-g[data-g="sistema"] .nav-gb'); tl.querySelectorAll(":scope > .tab[data-view]").forEach(t=>sis&&sis.appendChild(t));
+  if(typeof currentView!=="undefined"&&currentView) navAbrir(currentView);
+  const _sv=showView; showView=function(v){ _sv.apply(this,arguments); navAbrir(v); };
+  // hoja "Más" del celular: títulos por grupo
+  const more=document.querySelector(".tab-more"), grid=document.getElementById("moreGrid");
+  if(more&&grid) more.addEventListener("click",()=>setTimeout(()=>{ const lab={}; document.querySelectorAll(".tab[data-view]").forEach(t=>{ const s=t.querySelector("span"); if(s) lab[s.textContent.trim()]=navGrupoDe(t.dataset.view); }); let prev=""; [...grid.querySelectorAll(".more-i")].forEach(b=>{ const s=b.querySelector("span"), g=s?lab[s.textContent.trim()]:""; if(g&&g!==prev){ const gr=NAV_GRUPOS.find(x=>x[0]===g); if(gr&&gr[1]){ const h=document.createElement("p"); h.className="more-h"; h.textContent=gr[1]; b.before(h); } prev=g; } }); },0)); }
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",()=>setTimeout(navAgrupar,0)); else setTimeout(navAgrupar,0);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
