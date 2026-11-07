@@ -594,6 +594,45 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.pl-tabs{display:flex;gap:6px;padding:6px;border:1px solid var(--line);border-radius:16px;background:var(--surface);margin-bottom:14px;overflow-x:auto;scrollbar-width:none}.pl-tabs::-webkit-scrollbar{display:none}
+.pl-tabs button{flex:1 0 auto;display:flex;align-items:center;gap:10px;border:0;background:none;color:var(--muted);font:inherit;padding:9px 14px;border-radius:12px;cursor:pointer;text-align:left}.pl-tabs button>span:first-child{font-size:20px}.pl-tabs b{display:block;font-size:14px;color:var(--ink)}.pl-tabs small{font-size:11.5px}
+.pl-tabs button:hover{background:var(--surface-2)}.pl-tabs button[aria-selected="true"]{background:linear-gradient(135deg,color-mix(in srgb,#E1A100 20%,var(--surface-2)),var(--surface-2));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,#E1A100 50%,transparent)}
+.pl-body,.pl-progbox{display:grid;gap:14px}.pl-body[hidden],.pl-progbox[hidden],.pn-g[hidden]{display:none!important}
+.pl-sec{padding:16px;display:grid;gap:12px}.pl-sh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.pl-sh h3{margin:0;display:flex;align-items:center;gap:8px;font-size:16px}
+.pl-how{padding:16px;background:linear-gradient(135deg,color-mix(in srgb,#E1A100 12%,var(--surface)),var(--surface))}
+.pl-pasos{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center}.pl-pasos>div{display:grid;justify-items:center;text-align:center;gap:4px;padding:12px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}.pl-pn{font-size:28px}.pl-pasos b{font-size:14px}.pl-pasos small{font-size:12px;color:var(--muted)}.pl-arr{font-style:normal;font-size:20px;color:var(--muted)}
+.pl-drop{display:grid;justify-items:center;gap:6px;padding:34px 16px;border:2px dashed color-mix(in srgb,#E1A100 55%,var(--line));border-radius:18px;background:color-mix(in srgb,#E1A100 6%,var(--surface-2));cursor:pointer;text-align:center;transition:background .15s,border-color .15s}
+.pl-drop:hover,.pl-drop.over{background:color-mix(in srgb,#E1A100 14%,var(--surface-2));border-color:#E1A100}.pl-dic{font-size:38px}.pl-drop b{font-size:15px}.pl-drop small{color:var(--muted);font-size:12.5px}.pl-drop.mini{padding:12px;grid-auto-flow:column;justify-content:center}.pl-drop.mini .pl-dic{font-size:20px}
+.pl-cfg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pl-cfg label,.pl-cal label,.pl-f label{display:grid;gap:5px;font-size:12.5px;font-weight:700}
+.pl-sec :is(select,input:not([type=checkbox]),textarea),.pl-ed :is(select,input:not([type=checkbox]),textarea){border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:var(--surface-2);color:var(--ink);font:inherit;font-weight:400;width:100%;min-width:0}
+.pl-fmts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pl-fmt{display:grid;grid-template-columns:54px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:12px;align-items:start;text-align:left;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;border-radius:14px;padding:12px;cursor:pointer}.pl-fmt b{font-size:14px}.pl-fmt small{font-size:12px;color:var(--muted);line-height:1.35}
+.pl-fmt.on{border-color:#E1A100;box-shadow:0 0 0 3px color-mix(in srgb,#E1A100 22%,transparent)}
+.pl-fm{grid-row:1/3;position:relative;width:54px;height:72px;border-radius:8px;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.25);overflow:hidden}.pl-fm i{position:absolute;inset:8px 8px 8px;border-radius:4px;background:linear-gradient(135deg,#8ec5ff,#ffd27a)}
+.pl-fm.marca i{bottom:18px}.pl-fm.marca::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:#1b2a4a;border-top:2px solid #F2B33D}
+.pl-fm.diseno{background:#FFF8EC}.pl-fm.diseno i{top:22px;left:10px;right:10px;bottom:14px;box-shadow:0 2px 4px rgba(0,0,0,.2)}.pl-fm.diseno::before{content:"";position:absolute;left:10px;right:10px;top:8px;height:8px;border-radius:3px;background:#1d2433}
+.pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;align-items:start}
+.pl-pin{display:grid;gap:6px;cursor:pointer;border-radius:16px;padding:6px;border:1.5px solid transparent;transition:border-color .15s,background .15s}.pl-pin:hover{background:var(--surface-2)}.pl-pin.sel{border-color:#E1A100;background:color-mix(in srgb,#E1A100 8%,var(--surface-2))}.pl-pin.off{opacity:.45}
+.pl-pi{position:relative;border-radius:14px;overflow:hidden;background:var(--surface-2)}.pl-pi img{display:block;width:100%;height:auto;max-height:340px;object-fit:cover}
+.pl-n{position:absolute;top:8px;left:8px;min-width:24px;height:24px;display:grid;place-items:center;border-radius:99px;background:rgba(10,14,22,.78);color:#fff;font-size:12px;font-weight:800;padding:0 7px}
+.pl-x{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(10,14,22,.7);color:#fff;font-size:13px;cursor:pointer;opacity:0;transition:opacity .15s}.pl-pin:hover .pl-x,.pl-pin:focus-within .pl-x{opacity:1}
+.pl-st{position:absolute;left:8px;right:8px;bottom:8px;font-size:11px;font-weight:800;padding:4px 8px;border-radius:99px;backdrop-filter:blur(6px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}.pl-st.ok{background:rgba(34,163,90,.92);color:#fff}.pl-st.run{background:rgba(139,92,246,.92);color:#fff}.pl-st.err{background:rgba(224,90,71,.95);color:#fff}.pl-st.wait{background:rgba(10,14,22,.72);color:#fff}.pl-st.ready{background:rgba(255,255,255,.9);color:#1b2a4a}
+.pl-pb{display:grid;gap:2px;padding:0 4px}.pl-pb b{font-size:12.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pl-pb small{font-size:11px;color:var(--muted)}
+.pl-ed{padding:16px;display:grid;gap:12px;border-color:color-mix(in srgb,#E1A100 50%,var(--line))}.pl-edh{display:flex;justify-content:space-between;align-items:center}.pl-edh h3{margin:0}
+.pl-edg{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start}
+.pl-close{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:28px;background:#fff;color:#111;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.3)}.pl-cimg{background:#efefef;display:grid;place-items:center}.pl-cimg img{width:100%;display:block;border-radius:28px 0 0 28px}
+.pl-cinfo{display:grid;align-content:start;gap:10px;padding:18px;position:relative}.pl-cweb{font-size:12px;font-weight:700;text-decoration:underline}.pl-cinfo>b{font-size:18px;line-height:1.25}.pl-cinfo p{margin:0;font-size:12.5px;color:#333;line-height:1.45}
+.pl-cuser{display:flex;align-items:center;gap:6px;font-size:12px;color:#555}.pl-cuser img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:#eee}.pl-cuser b{color:#111}
+.pl-csave{position:absolute;top:14px;right:14px;background:#E60023;color:#fff;font-weight:800;font-size:13px;padding:8px 14px;border-radius:99px}
+.pl-f{display:grid;gap:10px;min-width:0}.pl-seg{display:flex;gap:6px;flex-wrap:wrap}.pl-seg button{border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;font-size:12.5px;font-weight:700;border-radius:99px;padding:6px 12px;cursor:pointer}.pl-seg button[aria-pressed="true"]{border-color:#E1A100;background:color-mix(in srgb,#E1A100 16%,var(--surface-2))}
+.pl-cnt{justify-self:end;margin-top:-20px;font-weight:600;color:var(--muted);font-size:11px}.pl-cnt.mal{color:#E05A47}.pl-r2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pl-dh{display:flex;gap:6px}.pl-sw{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700}.pl-sw input{width:auto}
+.pl-cal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pl-go{position:sticky;bottom:10px;z-index:4;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.25)}.pl-go>div{display:grid;gap:3px;min-width:0;flex:1}.pl-go b{font-size:14.5px}.pl-go small{font-size:12px;color:var(--muted)}
+@media (max-width:1000px){.pl-edg{grid-template-columns:minmax(0,1fr)}.pl-fmts{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){.pl-pasos{grid-template-columns:minmax(0,1fr)}.pl-arr{display:none}.pl-cfg,.pl-cal,.pl-r2{grid-template-columns:minmax(0,1fr)}.pl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pl-close{grid-template-columns:minmax(0,1fr)}.pl-cimg img{border-radius:28px 28px 0 0}.pl-go{bottom:calc(84px + env(safe-area-inset-bottom))}.pl-go .actions{width:100%}.pl-go .cp-big{flex:1}.pl-x{opacity:1}.pl-tabs small{display:none}}
+.pl-f label.pl-sw{display:flex;align-items:center;gap:6px}
+@media (max-width:700px){.pl-go{padding:8px;gap:8px;flex-wrap:nowrap}.pl-go>div small,.pl-go>div>b{display:none}.pl-go>div{flex:0 1 auto}.pl-go>div:not(:has(.pn-est)){display:none}.pl-go .actions{flex-wrap:nowrap;gap:6px}.pl-go #plZip{padding:10px 12px;font-size:0}.pl-go #plZip::before{content:"⬇";font-size:16px}.pl-go .cp-big{font-size:14px;padding:11px 12px}}
+
 .mx-hub{display:grid;gap:12px}
 .mx-hub{container-type:inline-size}.mx-hero{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}@container (max-width:1120px){.mx-hero{grid-template-columns:repeat(6,minmax(0,1fr))}.mx-hero>.mx-k{grid-column:span 2}.mx-hero>.mx-k.top{grid-column:span 4}}@container (max-width:560px){.mx-hero{grid-template-columns:repeat(2,minmax(0,1fr))}.mx-hero>.mx-k{grid-column:span 1}.mx-hero>.mx-k.top{grid-column:1/-1;order:1}}
 .mx-k{display:grid;grid-template-rows:auto auto 1fr;align-content:start;gap:6px;text-align:left;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;min-width:0;transition:transform .15s,box-shadow .15s,border-color .15s;box-shadow:var(--shadow)}
@@ -4666,7 +4705,7 @@ function renderView(v){
   if(v==="fichas") bnInit();
   if(v==="plataformas") plInit();
   if(v==="igbot") igInit();
-  if(v==="pinterest") pnInit();
+  if(v==="pinterest") pnInit().then(()=>plzInit()).catch(e=>console.warn(e));
   if(v==="youtube") ytInit();
   if(v==="redstats") rs2Init();
   if(v==="embudo") ngEmbudoInit();
@@ -17810,6 +17849,131 @@ function mxUnirDlg(k){ const all=Object.keys(matDocs).filter(x=>matUnir(x)===x),
     setTimeout(()=>{ const q=$("#mxUq"); if(q) q.focus(); },50); };
   dlg.dataset.c=k||""; dlg.dataset.paso=k?"2":"1"; pinta(); dlg.showModal(); }
 async function matUnirGrupo(p,hijos){ if(!needDb()) return; try{ for(const k of hijos){ const d=matDocs[k]||{}; await db.collection("materiales").doc(k).set({...d,name:d.name||k,unir:p,updated:new Date().toISOString()}); } const d=matDocs[p]||{}; if(d.unir) await db.collection("materiales").doc(p).set({...d,unir:"",updated:new Date().toISOString()}); toast("Listo: ventas unidas."); }catch(e){ toast("No se pudo guardar el cambio."); } }
+
+// =====================================================================
+// PINTEREST · ESTUDIO DE PINES: varias imágenes a la vez (actividades, infografías, hojas del cuadernillo)
+// =====================================================================
+const PL={on:false,tab:"lote",items:[],prod:"",fmt:"marca",tablero:"",hora:"21:00",cada:1,inicio:"",busy:false,prods:null,sel:null,est:"",seq:0};
+const PL_FMT=[["original","📄","Tal cual","La imagen original, sin cambios. Ideal si ya tiene tu marca."],["marca","🏷️","Con mi marca","Le suma abajo una franja con tu logo, tu web y tu Instagram. Ideal para infografías para imprimir."],["diseno","🎨","Pin vertical 2:3","Arma un pin 1000×1500 con título arriba y la imagen en tarjeta. Lo que más rinde en Pinterest."]];
+const PL_PASOS=[["📤","Subí tus imágenes","Actividades, infografías u hojas del cuadernillo: todas juntas."],["✨","Claude escribe todo","Mira cada imagen y escribe título, descripción con palabras clave y texto alternativo."],["📅","Programás en un toque","Un pin por día en el mejor horario, con el enlace a tu web."]];
+const plLogo=()=>document.querySelector('img[alt="Logo de Cofre Didáctico"]');
+async function plProds(){ if(PL.prods) return PL.prods; try{ const j=await (await fetch(MP_WEB+"/productos.json?t="+Math.floor(Date.now()/36e5))).json(); PL.prods=(j.productos||[]).filter(p=>p.activo!==false).map(p=>({id:p.id,n:p.nombre,meses:p.meses||[],tem:p.tematica||"",nivel:p.nivel||"",tipo:p.tipo||"",gratis:p.acceso==="gratis",img:p.imagen?mxWebUrl(p.imagen):""})).sort((a,b)=>a.n.localeCompare(b.n)); }catch(e){ console.warn(e); PL.prods=[]; } return PL.prods; }
+const plProd=id=>(PL.prods||[]).find(p=>p.id===id)||null;
+const plLink=id=>id?`${MP_WEB}/p/${id}.html`:MP_WEB+"/";
+// ---------- dibujo de cada pin ----------
+function plCanvas(it,maxW){ const im=it.im, fmt=it.fmt||PL.fmt, iw=im.naturalWidth, ih=im.naturalHeight, c=document.createElement("canvas"), g=c.getContext("2d"); g.imageSmoothingQuality="high";
+  if(fmt==="original"){ const k=Math.min(1,(maxW||1600)/Math.max(iw,ih)); c.width=Math.round(iw*k); c.height=Math.round(ih*k); g.drawImage(im,0,0,c.width,c.height); return c; }
+  if(fmt==="marca"){ const W=Math.min(iw,maxW||1500), k=W/iw, H=Math.round(ih*k), B=Math.max(64,Math.round(W*.085)); c.width=W; c.height=H+B; g.fillStyle="#fff"; g.fillRect(0,0,W,H+B); g.drawImage(im,0,0,W,H);
+    const gr=g.createLinearGradient(0,H,W,H+B); gr.addColorStop(0,"#1b2a4a"); gr.addColorStop(1,"#243b6b"); g.fillStyle=gr; g.fillRect(0,H,W,B); g.fillStyle="#F2B33D"; g.fillRect(0,H,W,Math.max(3,B*.06));
+    const lg=plLogo(), pad=B*.22, ls=B*.66; let x=pad; if(lg&&lg.complete){ g.drawImage(lg,x,H+(B-ls)/2+B*.03,ls,ls); x+=ls+pad*.7; }
+    g.textBaseline="middle"; g.textAlign="left"; g.fillStyle="#fff"; g.font=`800 ${Math.round(B*.3)}px ${pnFam()}`; g.fillText("cofredidactico.com.ar",x,H+B*.42); g.fillStyle="rgba(255,255,255,.78)"; g.font=`600 ${Math.round(B*.2)}px ${pnFam()}`; g.fillText("Más recursos para docentes · IG @cofredidactico",x,H+B*.72);
+    g.textAlign="right"; g.font=`700 ${Math.round(B*.2)}px ${pnFam()}`; const t="📌 Guardalo", tw=g.measureText(t).width; if(W>600){ pnRR(g,W-pad-tw-B*.36,H+B*.3,tw+B*.36,B*.44,B*.22,"#F2B33D"); g.fillStyle="#1b2a4a"; g.fillText(t,W-pad-B*.18,H+B*.53); } return c; }
+  // pin vertical 2:3
+  c.width=1000; c.height=1500; const p=plProd(it.prod||PL.prod), tit=(it.t&&it.t.corto)||(p&&p.n)||"Recurso para el aula";
+  g.fillStyle="#FFF8EC"; g.fillRect(0,0,1000,1500); g.fillStyle="#F2B33D"; g.beginPath(); g.arc(1000,0,260,0,7); g.fill(); g.fillStyle="#2F6FB0"; g.beginPath(); g.arc(0,1500,300,0,7); g.fill(); g.fillStyle="rgba(226,86,63,.9)"; g.beginPath(); g.arc(80,90,46,0,7); g.fill();
+  pnRR(g,350,70,300,52,26,"#2F6FB0"); g.fillStyle="#fff"; g.font=`800 26px ${pnFam()}`; g.textAlign="center"; g.textBaseline="middle"; g.fillText(it.t&&it.t.badge||"PARA IMPRIMIR",500,97);
+  const th=pnTexto(g,tit,500,150,860,78,{max:3,col:"#1d2433",min:44}).h; const top=150+th+34, bot=1340, ah=bot-top, aw=880;
+  const k=Math.min(aw/iw,ah/ih), dw=iw*k, dh=ih*k, x=500-dw/2, y=top+(ah-dh)/2; g.save(); g.shadowColor="rgba(20,30,60,.28)"; g.shadowBlur=36; g.shadowOffsetY=14; pnRR(g,x-14,y-14,dw+28,dh+28,22,"#fff"); g.restore(); g.drawImage(im,x,y,dw,dh);
+  pnPie(g,"#1b2a4a",plLogo()); return c; }
+function plThumb(it){ if(it._th&&it._thk===plKey(it)) return it._th; const c=plCanvas(it,700), k=Math.min(1,520/c.width), t=document.createElement("canvas"); t.width=Math.round(c.width*k); t.height=Math.round(c.height*k); t.getContext("2d").drawImage(c,0,0,t.width,t.height); it._th=t.toDataURL("image/jpeg",.82); it._thk=plKey(it); it._r=c.height/c.width; return it._th; }
+const plKey=it=>[it.fmt||PL.fmt,it.prod||PL.prod,it.t&&it.t.corto,it.t&&it.t.badge].join("|");
+// ---------- carga de imágenes ----------
+async function plAgregar(files){ const L=[...files].filter(f=>/^image\//.test(f.type)); if(!L.length) return toast("Elegí archivos de imagen (JPG, PNG o WEBP).","err");
+  for(const f of L){ try{ const u=URL.createObjectURL(f); const im=await new Promise((ok,no)=>{ const i=new Image(); i.onload=()=>ok(i); i.onerror=no; i.src=u; }); PL.items.push({id:++PL.seq,n:f.name.replace(/\.[^.]+$/,""),im,fmt:null,prod:"",t:null,d:"",h:"",st:"",msg:"",on:true}); }catch{ toast("No se pudo leer "+f.name,"err"); } }
+  plFechas(); plPintar(); }
+function plFechas(soloVacias){ const base=new Date((PL.inicio||pnAhora(60*24).f)+"T12:00"); let i=0; PL.items.forEach(it=>{ if(it.st==="ok") return; if(soloVacias&&it.d) { i++; return; } const d=new Date(+base+i*PL.cada*864e5); it.d=ngYmd(d); it.h=PL.hora; i++; }); }
+// ---------- textos con Claude (mira cada imagen) ----------
+async function plBlobChico(it){ const c=plCanvas({...it,fmt:"original"},1100); return await new Promise(r=>c.toBlob(r,"image/jpeg",.85)); }
+async function plClaude(lista,btn){ const sf=await getSample(); if(!sf){ PL.est="⚠️ Los textos los escribe Claude desde el panel dentro de Claude. En el panel web podés escribirlos a mano."; return plPintar(); }
+  let conImg=false; try{ const L=sf.limits?await sf.limits():null; conImg=!!(L&&L.images); }catch{}
+  PL.busy=true; let n=0; const tot=lista.length;
+  for(const it of lista){ n++; PL.est=`✨ Claude está mirando la imagen ${n} de ${tot}…`; it.st="ia"; plPintar();
+    const p=plProd(it.prod||PL.prod), mes=p&&p.meses&&p.meses.length?MESES[(p.meses[0]-1+12)%12]:"";
+    const prompt=`Sos la community manager de Cofre Didáctico (materiales didácticos para docentes de primaria de Argentina: cuadernillos PDF y plataformas interactivas). Web: cofredidactico.com.ar · Instagram: @cofredidactico. Voseo rioplatense, tono cálido y profesional, sin inventar precios ni datos.
+Vas a escribir los textos de UN pin de Pinterest para esta imagen${conImg?" (mirala con atención: describí lo que realmente muestra)":""}. Las docentes buscan en Pinterest cosas como "día de la tradición actividades", "infografía para imprimir", "efemérides primaria".
+Material relacionado: ${p?`"${p.n}"${p.nivel?` (${p.nivel})`:""}${mes?`, efeméride de ${mes}`:""}${p.gratis?", es GRATIS":""}`:"(sin material elegido)"}. Nombre del archivo: "${it.n}".
+Respondé SOLO JSON: {"titulo":"título del pin, máx 95 caracteres, con la palabra clave principal al principio (ej.: 'Día de la Tradición: infografía para imprimir | Primaria')","descripcion":"250 a 480 caracteres: qué es, para qué grado o ciclo, cómo usarla en el aula, que se puede imprimir; terminá invitando a ver el cuadernillo completo en cofredidactico.com.ar; 3 a 5 hashtags al final","alt":"texto alternativo de máx 140 caracteres que describe la imagen","corto":"título corto de 3 a 6 palabras para poner sobre el diseño","badge":"2 o 3 palabras en mayúsculas (ej.: PARA IMPRIMIR, ACTIVIDAD GRATIS)","tablero":"nombre sugerido de tablero"}`;
+    try{ const opt={modelTier:"default",cache:false}; if(conImg) opt.images=[await plBlobChico(it)]; const r=await sf.json(prompt,opt); if(!r||!r.titulo) throw new Error("sin texto");
+      it.t={titulo:String(r.titulo).slice(0,100),desc:String(r.descripcion||"").slice(0,500),alt:String(r.alt||"").slice(0,500),corto:String(r.corto||"").slice(0,60),badge:String(r.badge||"").slice(0,24).toUpperCase()}; if(!PL.tablero&&r.tablero) PL.tablero=r.tablero; it.st=""; }
+    catch(e){ console.warn(e); it.st="err"; it.msg=e&&e.code==="rate_limited"?"Claude está ocupado: probá en un rato.":"Claude no pudo escribir este pin."; if(e&&(e.code==="not_granted"||e.code==="rate_limited")) break; } }
+  PL.busy=false; PL.est=lista.some(it=>it.st==="err")?"⚠️ Algunos pines quedaron sin texto: tocá “Reescribir” en cada uno o escribilos a mano.":""; plPintar(); }
+// ---------- programar ----------
+async function plProgramar(){ const M=await pnMcp(); if(!M){ PL.est="⚠️ Programar en Pinterest se hace desde el panel dentro de Claude (usa tu Metricool). Acá podés descargar los pines."; return plPintar(); }
+  const L=PL.items.filter(it=>it.on&&it.st!=="ok"); if(!L.length){ PL.est="⚠️ No hay pines para programar."; return plPintar(); }
+  if(!PL.tablero.trim()){ PL.est="⚠️ Escribí el nombre exacto de tu tablero de Pinterest."; return plPintar(); }
+  const sinT=L.filter(it=>!it.t||!it.t.titulo); if(sinT.length){ PL.est=`⚠️ ${sinT.length} pin${sinT.length>1?"es no tienen":" no tiene"} título: tocá “✨ Escribir todo con Claude” o completalo a mano.`; return plPintar(); }
+  if(L.some(it=>new Date(`${it.d}T${it.h}:00-03:00`)<new Date(Date.now()+5*60000))){ PL.est="⚠️ Hay pines con fecha u hora en el pasado: tocá “↺ Repartir fechas”."; return plPintar(); }
+  if(!confirm(`Se van a programar ${L.length} pin${L.length>1?"es":""} en tu Pinterest (tablero “${PL.tablero}”) a través de Metricool. ¿Seguimos?`)) return;
+  PL.busy=true; let ok=0; pnCfgSet({tablero:PL.tablero});
+  for(const [i,it] of L.entries()){ it.st="run"; it.msg="Subiendo la imagen a tu Google Drive…"; PL.est=`📌 Programando ${i+1} de ${L.length}…`; plPintar();
+    try{ const c=plCanvas(it), bl=await new Promise(r=>c.toBlob(r,"image/jpeg",.9)); const url=await cpSubir(M,bl,`Pin - ${it.t.titulo.replace(/[\\/:*?"<>|]/g,"").slice(0,60)}.jpg`,"image/jpeg"); it.msg="Programando en Pinterest…"; plPintar();
+      const p=plProd(it.prod||PL.prod), r=await pnProgramar(M,{url,meta:{tablero:PL.tablero,pinTitle:it.t.titulo,desc:it.t.desc,alt:it.t.alt,link:it.link||plLink(p&&p.id),camp:(p&&p.n)||it.t.titulo},fecha:`${it.d}T${it.h}:00`});
+      it.st="ok"; it.msg=""; it.pl=r.planner||""; ok++; }
+    catch(e){ it.st="err"; it.msg=(e&&e.msg)||pnErr(e); if(e&&e.tablero){ PL.est="⚠️ Metricool no encontró ese tablero. Revisá que el nombre sea exacto (como aparece en tu Pinterest)."; break; } } }
+  PL.busy=false; const falt=L.filter(it=>it.st!=="ok").length; PL.est=falt?(PL.est.startsWith("⚠️ Metricool")?PL.est:`⚠️ Se programaron ${ok} de ${L.length}. Revisá los que tienen aviso y tocá “Programar” de nuevo.`):`✅ ¡Listo! ${ok} pin${ok>1?"es programados":" programado"}. Los ves en “📅 Programados” y en Metricool.`;
+  try{ PN.prog=null; pnProgramados(true); }catch{} try{ PN.tableros=[...new Set([PL.tablero,...(PN.tableros||[])])].slice(0,20); pnCfgSet({tableros:PN.tableros}); }catch{} plPintar(); }
+async function plZip(){ const L=PL.items.filter(it=>it.on); if(!L.length) return; try{ const JSZip=await loadJSZip(), z=new JSZip(); for(const [i,it] of L.entries()){ const bl=await new Promise(r=>plCanvas(it).toBlob(r,"image/jpeg",.92)); z.file(`${String(i+1).padStart(2,"0")}-${mpSlug((it.t&&it.t.titulo)||it.n).slice(0,50)}.jpg`,bl); } const zb=await z.generateAsync({type:"blob"}); saveFile("pines-cofre-didactico.zip",zb,"application/zip"); }catch(e){ console.warn(e); toast("No se pudo armar el ZIP","err"); } }
+// ---------- interfaz ----------
+const plCnt=(v,m)=>`<small class="pl-cnt ${String(v||"").length>m?"mal":""}">${String(v||"").length}/${m}</small>`;
+function plStatus(it){ return it.st==="ok"?`<span class="pl-st ok">✓ Programado</span>`:it.st==="run"?`<span class="pl-st run">⏳ ${esc(it.msg||"")}</span>`:it.st==="ia"?`<span class="pl-st run">✨ Escribiendo…</span>`:it.st==="err"?`<span class="pl-st err" title="${esc(it.msg)}">⚠️ ${esc(it.msg)}</span>`:!it.t?`<span class="pl-st wait">Sin textos</span>`:`<span class="pl-st ready">Listo</span>`; }
+function plCard(it,i){ const th=plThumb(it); return `<article class="pl-pin ${it.on?"":"off"} ${PL.sel===it.id?"sel":""}" data-plsel="${it.id}">
+  <div class="pl-pi"><img src="${th}" alt="${esc((it.t&&it.t.alt)||it.n)}"><span class="pl-n">${i+1}</span><button type="button" class="pl-x" data-plx="${it.id}" aria-label="Quitar">✕</button>${plStatus(it)}</div>
+  <div class="pl-pb"><b>${esc((it.t&&it.t.titulo)||it.n)}</b><small>📅 ${esc(cpFechaL(it.d||PL.inicio,{weekday:"short",day:"numeric",month:"short"}))} · ${esc(it.h||PL.hora)} h</small></div></article>`; }
+function plEditor(){ const it=PL.items.find(x=>x.id===PL.sel); if(!it) return ""; const t=it.t||{}, p=plProd(it.prod||PL.prod), fmt=it.fmt||PL.fmt;
+  return `<section class="card pl-ed" id="plEd"><div class="pl-edh"><h3>✏️ Pin ${PL.items.indexOf(it)+1}</h3><button type="button" class="btn small" data-plcerrar>Listo ✓</button></div>
+   <div class="pl-edg"><div class="pl-close"><div class="pl-cimg"><img src="${plThumb(it)}" alt=""></div><div class="pl-cinfo"><span class="pl-cweb">🔗 cofredidactico.com.ar</span><b>${esc(t.titulo||"Título del pin")}</b><p>${esc((t.desc||"La descripción aparece acá.").slice(0,180))}${(t.desc||"").length>180?"…":""}</p><span class="pl-cuser"><img src="${plLogo()?plLogo().src:""}" alt=""> <b>Cofre Didáctico</b> · ${esc(PL.tablero||"tu tablero")}</span><span class="pl-csave">Guardar</span></div></div>
+    <div class="pl-f"><div class="pl-seg">${PL_FMT.map(([k,ic,n])=>`<button type="button" data-plfmt1="${k}" aria-pressed="${fmt===k}">${ic} ${n}</button>`).join("")}</div>
+     <label>Título del pin ${plCnt(t.titulo,100)}<input data-plt="titulo" value="${esc(t.titulo||"")}" placeholder="Palabra clave primero: “Día de la Tradición: infografía para imprimir”"></label>
+     <label>Descripción ${plCnt(t.desc,500)}<textarea data-plt="desc" rows="6" placeholder="Qué es, para qué grado, cómo usarla y la invitación a tu web, con 3 a 5 hashtags.">${esc(t.desc||"")}</textarea></label>
+     <label>Texto alternativo <small class="muted">(describe la imagen para buscadores y lectores de pantalla)</small><input data-plt="alt" value="${esc(t.alt||"")}"></label>
+     ${fmt==="diseno"?`<div class="pl-r2"><label>Título sobre el diseño<input data-plt="corto" value="${esc(t.corto||"")}" maxlength="60"></label><label>Etiqueta<input data-plt="badge" value="${esc(t.badge||"")}" maxlength="24"></label></div>`:""}
+     <div class="pl-r2"><label>Material (para el enlace)<select data-pl1="prod"><option value="">${PL.prod?"Igual que el general":"— Sin material: lleva a tu web —"}</option>${(PL.prods||[]).map(x=>`<option value="${esc(x.id)}" ${it.prod===x.id?"selected":""}>${esc(x.n)}</option>`).join("")}</select></label><label>Día y hora<span class="pl-dh"><input type="date" data-pl1="d" value="${esc(it.d)}"><input type="time" data-pl1="h" value="${esc(it.h)}"></span></label></div>
+     <p class="muted small">Al tocar el pin, la docente va a: <b>${esc(plLink(p&&p.id).replace(/^https:\/\//,""))}</b> (marcado como Pinterest para medir las visitas).</p>
+     <div class="actions"><button type="button" class="btn small" data-plia1="${it.id}" ${PL.busy?"disabled":""}>✨ Reescribir con Claude</button><button type="button" class="btn small" data-pldl1="${it.id}">⬇ Descargar este</button><label class="pl-sw"><input type="checkbox" data-pl1="on" ${it.on?"checked":""}> Incluir al programar</label></div></div></div></section>`; }
+function plPintar(){ const b=$("#plBody"); if(!b) return; const N=PL.items.length, listos=PL.items.filter(it=>it.on&&it.t&&it.t.titulo&&it.st!=="ok").length, prog=PL.items.filter(it=>it.st==="ok").length, sinT=PL.items.filter(it=>it.on&&!(it.t&&it.t.titulo)).length;
+  const ultimo=PL.items.filter(it=>it.on).map(it=>it.d).sort().pop();
+  const ae=document.activeElement, foco=ae&&ae.dataset&&(ae.dataset.plt||ae.dataset.pl1)?[ae.dataset.plt?"plt":"pl1",ae.dataset.plt||ae.dataset.pl1,ae.selectionStart]:null;
+  b.innerHTML=`${!N?`<section class="card pl-how"><div class="pl-pasos">${PL_PASOS.map(([ic,t,d],i)=>`<div><span class="pl-pn">${ic}</span><b>${i+1}. ${t}</b><small>${d}</small></div>`).join('<i class="pl-arr" aria-hidden="true">→</i>')}</div></section>`:""}
+   <section class="card pl-sec"><div class="pl-sh"><h3><span class="cp-n">1</span> Tus imágenes</h3><small class="muted">JPG, PNG o WEBP · podés elegir muchas a la vez</small></div>
+    <label class="pl-drop ${N?"mini":""}" id="plDrop"><input type="file" id="plFile" accept="image/*" multiple hidden><span class="pl-dic">🖼️</span><b>${N?"➕ Sumar más imágenes":"Arrastrá tus imágenes acá o tocá para elegirlas"}</b><small>${N?"":"Actividades, infografías, hojas sueltas del cuadernillo… cada imagen es un pin."}</small></label>
+    <div class="pl-cfg"><label>¿De qué material son? <small class="muted">El pin lleva a su página en tu web</small><select id="plProd"><option value="">— Varios / sin material (lleva a tu web) —</option>${(PL.prods||[]).map(p=>`<option value="${esc(p.id)}" ${PL.prod===p.id?"selected":""}>${esc(p.n)}${p.gratis?" · gratis":""}</option>`).join("")}</select></label>
+     <label>Tablero de Pinterest <small class="muted">Nombre exacto, como está en tu cuenta</small><input id="plTab" list="plTabs" value="${esc(PL.tablero)}" placeholder="Ej.: Efemérides escolares"><datalist id="plTabs">${(PN.tableros||[]).map(t=>`<option value="${esc(t)}">`).join("")}</datalist></label></div>
+    <div class="pl-fmts" role="group" aria-label="Formato de los pines">${PL_FMT.map(([k,ic,n,d])=>`<button type="button" class="pl-fmt ${PL.fmt===k?"on":""}" data-plfmt="${k}" aria-pressed="${PL.fmt===k}"><span class="pl-fm ${k}"><i></i></span><b>${ic} ${n}</b><small>${d}</small></button>`).join("")}</div></section>
+   ${N?`<section class="card pl-sec"><div class="pl-sh"><h3><span class="cp-n">2</span> Tus pines <small class="muted">${N} imagen${N>1?"es":""}</small></h3><div class="actions"><button type="button" class="btn primary" id="plIA" ${PL.busy?"disabled":""}>✨ Escribir todo con Claude${sinT&&sinT<N?` (${sinT} sin texto)`:""}</button></div></div>
+     <p class="muted small">Tocá un pin para ver cómo queda en Pinterest y ajustar el texto. Claude mira cada imagen y escribe el título con la palabra clave primero, la descripción para que te encuentren y el texto alternativo.</p>
+     <div class="pl-grid">${PL.items.map(plCard).join("")}</div></section>${plEditor()}
+   <section class="card pl-sec"><div class="pl-sh"><h3><span class="cp-n">3</span> Cuándo salen</h3><button type="button" class="btn small" id="plRep">↺ Repartir fechas</button></div>
+     <div class="pl-cal"><label>Desde<input type="date" id="plIni" value="${esc(PL.inicio)}"></label><label>Frecuencia<select id="plCada">${[[1,"1 pin por día"],[2,"Día por medio"],[3,"Cada 3 días"],[7,"1 por semana"]].map(([v,t])=>`<option value="${v}" ${PL.cada===v?"selected":""}>${t}</option>`).join("")}</select></label><label>Hora<input type="time" id="plHora" value="${esc(PL.hora)}"></label></div>
+     <p class="muted small">💡 En Pinterest rinde publicar seguido y de noche (20 a 23 h). Para una efeméride, empezá 30 a 45 días antes: las docentes planifican con tiempo.${ultimo?` El último pin sale el <b>${esc(cpFechaL(ultimo,{weekday:"long",day:"numeric",month:"long"}))}</b>.`:""}</p></section>
+   <div class="pl-go"><div><b>${prog?`${prog} programado${prog>1?"s":""} · `:""}${listos} listo${listos===1?"":"s"} para programar</b><small>${PL.tablero?`Tablero: ${esc(PL.tablero)}`:"Falta elegir el tablero"} · enlace a ${esc(PL.prod?(plProd(PL.prod)||{}).n||"tu web":"tu web")}</small>${PL.est?`<div class="pn-est">${PL.est}</div>`:""}</div><span class="actions"><button type="button" class="btn" id="plZip" ${N?"":"disabled"}>⬇ Descargar todos</button><button type="button" class="btn yt-go cp-big" id="plGo" ${PL.busy||!listos?"disabled":""}>${PL.busy?"⏳ Trabajando…":`📌 Programar ${listos||""} pin${listos===1?"":"es"}`}</button></span></div>`:""}`;
+  if(foco){ const el=b.querySelector(`[data-${foco[0]}="${foco[1]}"]`); if(el){ el.focus(); try{ el.setSelectionRange(foco[2],foco[2]); }catch{} } } }
+function plTabs(){ return `<nav class="pl-tabs" role="tablist">${[["lote","📚","Estudio de pines","Varias imágenes a la vez"],["plat","🎨","Pin de plataforma","Diseño con tus plataformas"],["prog","📅","Programados","Lo que ya está agendado"]].map(([k,ic,t,d])=>`<button type="button" role="tab" data-pltab="${k}" aria-selected="${PL.tab===k}"><span>${ic}</span><span><b>${t}</b><small>${d}</small></span></button>`).join("")}</nav>`; }
+function plTab(k){ PL.tab=k; const v=$("#view-pinterest"); if(!v) return; v.querySelectorAll("[data-pltab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.pltab===k))); const g=v.querySelector(".pn-g"), l=$("#plBody"), pr=$("#plProgBox"); if(g) g.hidden=k!=="plat"; if(l) l.hidden=k!=="lote"; if(pr) pr.hidden=k!=="prog"; if(k==="prog") try{ pnProgramados(true); }catch{} }
+async function plzInit(){ const v=$("#view-pinterest"); if(!v||!v.querySelector(".pn-g")) return; if(!PL.on){ PL.on=true; PL.inicio=pnAhora(60*24).f; PL.tablero=(PN.meta&&PN.meta.tablero)||pnCfg().tablero||"";
+    const h=v.querySelector(".view-h"); h.querySelector("h1").textContent="Pinterest"; h.querySelector(".lead").textContent="Subí muchas imágenes de una vez —actividades, infografías, hojas del cuadernillo— y Claude escribe todo para que las docentes te encuentren.";
+    v.querySelector(".pn-g").insertAdjacentHTML("beforebegin",plTabs()+`<div id="plBody" class="pl-body"></div><div id="plProgBox" class="pl-progbox" hidden><section class="card pl-sec"><h3>📅 Pines programados y publicados</h3><p class="muted small">Lo que está agendado en Metricool para tu Pinterest.</p></section></div>`);
+    const pr=$("#pnProg"); if(pr) $("#plProgBox section").appendChild(pr);
+    v.addEventListener("click",async e=>{ const b=e.target.closest("[data-pltab],[data-plfmt],[data-plfmt1],[data-plsel],[data-plx],[data-plia1],[data-pldl1],[data-plcerrar],#plIA,#plRep,#plGo,#plZip"); if(!b||b.disabled) return; const d=b.dataset;
+      if(d.pltab) return plTab(d.pltab);
+      if(d.plx){ e.stopPropagation(); PL.items=PL.items.filter(x=>x.id!==+d.plx); if(PL.sel===+d.plx) PL.sel=null; return plPintar(); }
+      if(d.plfmt){ PL.fmt=d.plfmt; return plPintar(); }
+      if(d.plfmt1){ const it=PL.items.find(x=>x.id===PL.sel); if(it){ it.fmt=d.plfmt1===PL.fmt?null:d.plfmt1; } return plPintar(); }
+      if(d.plsel){ PL.sel=PL.sel===+d.plsel?null:+d.plsel; plPintar(); const ed=$("#plEd"); if(ed&&PL.sel) ed.scrollIntoView({behavior:"smooth",block:"nearest"}); return; }
+      if(b.hasAttribute("data-plcerrar")){ PL.sel=null; return plPintar(); }
+      if(d.plia1){ const it=PL.items.find(x=>x.id===+d.plia1); if(it) return plClaude([it],b); return; }
+      if(d.pldl1){ const it=PL.items.find(x=>x.id===+d.pldl1); if(it) plCanvas(it).toBlob(bl=>saveFile(`pin-${mpSlug((it.t&&it.t.titulo)||it.n).slice(0,50)}.jpg`,bl,"image/jpeg"),"image/jpeg",.92); return; }
+      if(b.id==="plIA"){ const L=PL.items.filter(it=>it.st!=="ok"&&(!(it.t&&it.t.titulo)||PL.items.every(x=>x.t))); return plClaude(L.length?L:PL.items.filter(it=>it.st!=="ok"),b); }
+      if(b.id==="plRep"){ plFechas(); return plPintar(); } if(b.id==="plGo") return plProgramar(); if(b.id==="plZip") return plZip(); });
+    v.addEventListener("change",e=>{ const t=e.target; if(t.id==="plFile"){ plAgregar(t.files); t.value=""; return; }
+      if(t.id==="plProd"){ PL.prod=t.value; return plPintar(); } if(t.id==="plIni"){ PL.inicio=t.value; plFechas(); return plPintar(); } if(t.id==="plCada"){ PL.cada=+t.value; plFechas(); return plPintar(); } if(t.id==="plHora"){ PL.hora=t.value; plFechas(); return plPintar(); }
+      if(t.dataset.pl1){ const it=PL.items.find(x=>x.id===PL.sel); if(!it) return; const k=t.dataset.pl1; if(k==="on") it.on=t.checked; else it[k]=t.value; if(it.st==="err") it.st=""; return plPintar(); } });
+    v.addEventListener("input",e=>{ const t=e.target; if(t.id==="plTab"){ PL.tablero=t.value; return; }
+      if(t.dataset.plt){ const it=PL.items.find(x=>x.id===PL.sel); if(!it) return; it.t=it.t||{titulo:"",desc:"",alt:"",corto:"",badge:""}; it.t[t.dataset.plt]=t.value; const c=t.closest("label")&&t.closest("label").querySelector(".pl-cnt"); if(c){ const m=+c.textContent.split("/")[1]; c.textContent=t.value.length+"/"+m; c.classList.toggle("mal",t.value.length>m); } if(t.dataset.plt==="titulo"){ const x=document.querySelector(".pl-cinfo>b"); if(x) x.textContent=t.value||"Título del pin"; } if(t.dataset.plt==="desc"){ const x=document.querySelector(".pl-cinfo p"); if(x) x.textContent=t.value.slice(0,180)+(t.value.length>180?"…":""); }
+        if(t.dataset.plt==="corto"||t.dataset.plt==="badge"){ clearTimeout(PL._tm); PL._tm=setTimeout(plPintar,500); } } });
+    const drop=e=>{ const z=e.target.closest&&e.target.closest("#plDrop"); if(!z) return; e.preventDefault(); z.classList.toggle("over",e.type==="dragover"); if(e.type==="drop") plAgregar(e.dataTransfer.files); };
+    ["dragover","dragleave","drop"].forEach(ev=>v.addEventListener(ev,drop));
+    await plProds(); }
+  plTab(PL.tab); plPintar(); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
