@@ -16200,7 +16200,8 @@ ${L.acts.map(k=>A.get(k)).filter(Boolean).map(([g,,ic,t,d])=>`  · ${t} (${g}): 
   document.addEventListener("click",e=>{ const t=e.target.closest&&e.target.closest("[data-mzwiz],[data-litnuevo]"); if(!t) return;
     if(t.hasAttribute("data-litnuevo")){ e.preventDefault(); litModo(true); f.scrollIntoView({behavior:"smooth",block:"start"}); setTimeout(()=>$("#litObra")&&$("#litObra").focus(),300); return; }
     if(LIT.on) litModo(false); },true);
-  litModo(LIT.on);
+  // se aplica cuando terminó de cargar todo el panel (si no, podía cortar la carga cuando el modo Literatura quedó guardado)
+  setTimeout(()=>{ try{ litModo(LIT.on); }catch(e){ console.warn("literatura",e); } },0);
 })();
 // ---------- Brújula literaria: en qué grado y en qué momento del año encaja la obra ----------
 const LIT_GRADOS={"Cuento tradicional":["Inicial","1.º","2.º","3.º"],"Cuento clásico":["1.º","2.º","3.º","4.º"],"Cuento de autor":["1.º","2.º","3.º","4.º","5.º","6.º","7.º"],"Fábula":["2.º","3.º","4.º"],"Leyenda":["3.º","4.º","5.º"],"Poesía / canción":["Inicial","1.º","2.º","3.º","4.º","5.º","6.º","7.º"],"Novela clásica":["4.º","5.º","6.º","7.º"],"Álbum ilustrado":["Inicial","1.º","2.º"],"Obra de teatro":["3.º","4.º","5.º","6.º","7.º"]};
@@ -16224,7 +16225,7 @@ Respondé SOLO JSON: {"grados":[{"grado":"2.º grado","porque":"","eje":"eje o b
 (function(){ const _b=litBox; litBox=function(){ return _b.apply(this,arguments).replace('<div class="lit-dp',litBrujula()+`<button type="button" class="btn small lit-img" data-litimg>🖼️ Imágenes y actividades ilustradas de este cuento</button><div class="lit-dp`); };
   document.addEventListener("click",e=>{ const t=e.target.closest&&e.target.closest("[data-litbru],[data-litimg]"); if(!t) return; if(t.hasAttribute("data-litbru")) return litBrujulaIA(t); if(typeof islAbrir==="function") islAbrir(LIT.obra); });
   document.addEventListener("toggle",e=>{ if(e.target.classList&&e.target.classList.contains("lit-bru")){ LIT.bruOpen=e.target.open; litGuardar(); } },true);
-  document.addEventListener("change",e=>{ if(e.target.id==="moJur"&&LIT.on) litPintar(); }); if(LIT.on) litPintar(); })();
+  document.addEventListener("change",e=>{ if(e.target.id==="moJur"&&LIT.on) litPintar(); }); setTimeout(()=>{ try{ if(LIT.on) litPintar(); }catch(e){ console.warn("literatura",e); } },0); })();
 
 // ---------- MOTOR CREADOR · "Mejorar mi PDF": diagnóstico profesional de un cuadernillo ya hecho ----------
 const ANA={on:false,pdf:null,nom:"",peso:0,pags:[],res:null,busy:false,foco:["pedagogia","diseno","accesibilidad","venta"],vista:"mejoras"};
