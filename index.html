@@ -678,6 +678,12 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .mx-cv>img{object-fit:contain!important;z-index:1;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}.mx-cv>.mx-ph{z-index:1}.mx-bd,.mx-lk,.mx-ho{z-index:2}
 .mx-cb{display:flex;flex-direction:column}.mx-cb>.mx-cs{margin-top:auto}
 .mx-panel[hidden]{display:none!important}
+.mx-unir{padding:0;overflow:hidden}.mx-unir summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;cursor:pointer;list-style:none}.mx-unir summary::-webkit-details-marker{display:none}
+.mx-ui{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:color-mix(in srgb,#8B5CF6 16%,var(--surface-2));font-size:18px}.mx-unir summary b{display:block;font-size:14px}.mx-unir summary small{font-size:12px;color:var(--muted)}.mx-unir summary em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--muted)}.mx-unir[open] summary em{visibility:hidden}
+.mx-ub{display:grid;gap:8px;padding:0 16px 14px}.mx-ub h4{margin:6px 0 0;font-size:13px}.mx-ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:6px}
+.mx-ur{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}.mx-ur.sug{border-style:dashed}.mx-uc{display:grid;min-width:0}.mx-uc b{font-size:13px}.mx-uc small{font-size:11.5px;color:var(--muted)}
+.mx-uchip{align-self:flex-start;font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;background:color-mix(in srgb,#8B5CF6 15%,transparent);color:#a78bfa;margin-top:-3px}:root[data-theme="light"] .mx-uchip{color:#6d28d9}
+@media (max-width:700px){.mx-ul{grid-template-columns:minmax(0,1fr)}}
 
 :root{--ng-r0:color-mix(in srgb,var(--surface-2) 100%,transparent);--ng-r1:#173a63;--ng-r2:#1f5294;--ng-r3:#2a6bc0;--ng-r4:#3987e5;--ng-r5:#7db3f5;--ng-ink1:#f0efec;--ng-ink5:#0b1220}
 :root[data-theme="light"]{--ng-r1:#d7e6f8;--ng-r2:#a9cbf0;--ng-r3:#6ea6e6;--ng-r4:#2a78d6;--ng-r5:#164d93;--ng-ink1:#0b1220;--ng-ink5:#ffffff}
@@ -4582,13 +4588,13 @@ function derive(){
   const items=[]; // una fila por material vendido (todas las órdenes)
   prepared.forEach(c=>c.o.forEach(o=>{
     const its=o.i||[]; const w=its.map(([q,n])=>(avg(slug(n))||allAvg)*q); const W=w.reduce((a,b)=>a+b,0)||1;
-    its.forEach(([q,n],j)=>items.push({c,o,q,name:n,k:slug(n),rev:o.pg==="Finalizado"?(o.tot||0)*w[j]/W:0,ok:o.pg==="Finalizado",d:o._d}));
+    its.forEach(([q,n],j)=>items.push({c,o,q,name:n,k:matUnir(slug(n)),rev:o.pg==="Finalizado"?(o.tot||0)*w[j]/W:0,ok:o.pg==="Finalizado",d:o._d}));
   }));
   // materiales
   const mats={};
-  items.forEach(it=>{ const m=mats[it.k]=mats[it.k]||{k:it.k,name:it.name,sold:0,rev:0,last:null,buyers:new Set(),manual:false};
+  items.forEach(it=>{ const m=mats[it.k]=mats[it.k]||{k:it.k,name:(matDocs[it.k]&&matDocs[it.k].name)||it.name,sold:0,rev:0,last:null,buyers:new Set(),manual:false};
     if(it.ok){ m.sold+=it.q; m.rev+=it.rev; m.buyers.add(it.c.e||it.c.n); if(!m.last||(it.d&&it.d>m.last)) m.last=it.d; } });
-  Object.entries(matDocs).forEach(([k,d])=>{ if(!mats[k]) mats[k]={k,name:d.name||k,sold:0,rev:0,last:null,buyers:new Set(),manual:true}; });
+  Object.entries(matDocs).forEach(([k,d])=>{ if(matUnir(k)!==k) return; if(!mats[k]) mats[k]={k,name:d.name||k,sold:0,rev:0,last:null,buyers:new Set(),manual:true}; });
   Object.values(mats).forEach(m=>{ const d=matDocs[m.k]||{}; m.doc=d; m.pass=d.pass||""; m.group=d.grupo||autoGroup(m.name); m.price=avg(m.k); });
   const matList=Object.values(mats);
   // meses
@@ -4600,7 +4606,7 @@ function derive(){
   // fin de datos
   const dates=items.map(i=>i.d).filter(Boolean); const dataEnd=dates.length?new Date(Math.max(...dates)):null; const dataStart=dates.length?new Date(Math.min(...dates)):null;
   // venta cruzada
-  const buyersOf={}; prepared.forEach(c=>{ const set=new Set(); c.o.filter(o=>o.pg==="Finalizado").forEach(o=>(o.i||[]).forEach(([,n])=>set.add(slug(n)))); c._mats=set; set.forEach(k=>{ (buyersOf[k]=buyersOf[k]||[]).push(c); }); });
+  const buyersOf={}; prepared.forEach(c=>{ const set=new Set(); c.o.filter(o=>o.pg==="Finalizado").forEach(o=>(o.i||[]).forEach(([,n])=>set.add(matUnir(slug(n))))); c._mats=set; set.forEach(k=>{ (buyersOf[k]=buyersOf[k]||[]).push(c); }); });
   const totalBuyers=prepared.filter(c=>c._ok).length||1; const pairs=[];
   const keys=Object.keys(buyersOf).filter(k=>buyersOf[k].length>=8);
   keys.forEach(a=>keys.forEach(b=>{ if(a===b) return; const ga=mats[a].group, gb=mats[b].group; if(ga===gb) return;
@@ -17669,14 +17675,14 @@ function mxRenderGal(list,q){ const g=$("#mGal"); if(!g) return; const S=mxSerie
   const vv=x=>{ const v=mxVis(x); return v?(v.v90||0):0; }, sd=x=>{ const n=mxDias(x); return n==null?9999:n; };
   L.sort((a,b)=>MXS.sort==="rev"?b.rev-a.rev:MXS.sort==="vis"?vv(b)-vv(a):MXS.sort==="soon"?sd(a)-sd(b):MXS.sort==="az"?a.name.localeCompare(b.name):b.sold-a.sold||a.name.localeCompare(b.name));
   const cnt=k=>list.filter(x=>{ const d=x.doc||{}; return k==="all"||(k==="top"&&x.sold>0)||(k==="soon"&&(n=>n!=null&&n<=60)(mxDias(x)))||(k==="year"&&!efeFor(x.name,d))||(k==="nopass"&&!x.pass)||(k==="nocover"&&!d.cover)||(k==="renew"&&d.estado==="A renovar"); }).length;
-  g.innerHTML=`<div class="mx-gt"><div class="mx-chips" role="group" aria-label="Filtrar">${MX_F.map(([k,t])=>{ const n=cnt(k); return (k==="all"||n)?`<button type="button" data-mxf="${k}" aria-pressed="${MXS.f===k}">${t} <small>${n}</small></button>`:""; }).join("")}</div>
+  g.innerHTML=`${typeof mxUnirHtml==="function"?mxUnirHtml():""}<div class="mx-gt"><div class="mx-chips" role="group" aria-label="Filtrar">${MX_F.map(([k,t])=>{ const n=cnt(k); return (k==="all"||n)?`<button type="button" data-mxf="${k}" aria-pressed="${MXS.f===k}">${t} <small>${n}</small></button>`:""; }).join("")}</div>
     <label class="mx-sort">Ordenar <select id="mxSort">${MX_S.map(([k,t])=>`<option value="${k}" ${MXS.sort===k?"selected":""}>${t}</option>`).join("")}</select></label></div>
     ${L.length?`<div class="mx-grid">${L.map(x=>{ const d=x.doc||{}, v=mxVis(x), n=mxDias(x), r=rank.get(x.k), est=d.estado&&d.estado!=="Activo"?d.estado:"";
       return `<article class="mx-card ${est?"st":""}" data-mx360="${esc(x.k)}" tabindex="0" aria-label="${esc(x.name)}: ver todo">
         <div class="mx-cv"${MX_HI&&MX_HI[x.k]?` style="--bgi:url(&quot;${esc(MX_HI[x.k])}&quot;)"`:(x.doc||{}).cover?` style="--bgi:url(&quot;${esc(x.doc.cover)}&quot;)"`:""}>${mxCover(x)}<div class="mx-bd">${r&&r<=3?`<span class="b gold">🏆 #${r}</span>`:r&&r<=10?`<span class="b">#${r}</span>`:""}${n!=null&&n<=60?`<span class="b soon">📅 ${n===0?"Hoy":n===1?"Mañana":`En ${n} días`}</span>`:""}${est?`<span class="b st">${esc(est)}</span>`:""}</div>
           <span class="mx-lk ${x.pass?"ok":"no"}" title="${x.pass?"Con contraseña":"Sin contraseña"}">${x.pass?mxIco.lock:mxIco.open}</span>
           <div class="mx-ho"><button type="button" class="btn small" data-mx360="${esc(x.k)}">🔍 Ver todo</button><button type="button" class="btn small" data-mxficha="${esc(x.k)}">✏️ Ficha</button><button type="button" class="btn small" data-mxcov="${esc(x.k)}">🖼️ ${d.cover?"Portada":"Subir portada"}</button></div></div>
-        <div class="mx-cb"><b class="mx-cn">${hl(x.name,q)}</b><small class="mx-cg">${esc([x.group!==x.name?x.group:"",d.nivel].filter(Boolean).join(" · ")||"Material")}</small>
+        <div class="mx-cb"><b class="mx-cn">${hl(x.name,q)}</b><small class="mx-cg">${esc([x.group!==x.name?x.group:"",d.nivel].filter(Boolean).join(" · ")||"Material")}</small>${typeof matUnidos==="function"&&matUnidos(x.k).length?`<span class="mx-uchip" title="${esc(matUnidos(x.k).map(k=>(matDocs[k]||{}).name||k).join(" · "))}">🔗 Incluye la versión con plataforma</span>`:""}
           <div class="mx-cs"><div><b>${nf(x.sold)}</b><small>vendidos</small></div><div><b>${moneyK(x.rev)}</b><small>facturado</small></div><div><b>${v?nf(v.v90||0):"—"}</b><small>vistas web</small></div></div>
           <div class="mx-ct">${mxSpark(S[x.k])}<small>12 meses</small></div>
           ${!x.pass?`<button type="button" class="mx-np" data-mxficha="${esc(x.k)}">🔑 Cargar contraseña</button>`:""}</div></article>`; }).join("")}</div>`:`<div class="empty-box">${D&&D.matList.length?"Ningún material coincide con este filtro o búsqueda.":"Todavía no hay materiales."}</div>`}`; }
@@ -17737,7 +17743,8 @@ function mxMontar(){ const v=$("#view-materiales"); if(!v||v.dataset.mx) return;
   const id=sec("mxIdeas"); if(id) pi.appendChild(id); const it=$("#intlBox")&&$("#intlBox").closest("section"); if(it) pn.appendChild(it);
   const fs=$("#mFilter"); if(fs) fs.hidden=true;
   v.querySelectorAll("[data-mview]").forEach(b=>{ const I={gal:"▦",mat:"☰",grp:"◫",map:"⊞"}[b.dataset.mview]; if(I&&!b.dataset.mxi){ b.dataset.mxi=1; b.innerHTML=`<span aria-hidden="true">${I}</span> ${b.textContent}`; } });
-  v.addEventListener("click",e=>{ const b=e.target.closest("[data-mxtabb],[data-mxtab],[data-mxf],[data-mx360],[data-mxficha],[data-mxcov],[data-mxmet],[data-mxper],[data-mxgo]"); if(!b||b.disabled) return; const d=b.dataset;
+  v.addEventListener("click",e=>{ const b=e.target.closest("[data-mxunir],[data-mxtabb],[data-mxtab],[data-mxf],[data-mx360],[data-mxficha],[data-mxcov],[data-mxmet],[data-mxper],[data-mxgo]"); if(!b||b.disabled) return; const d=b.dataset;
+    if(d.mxunir!=null){ e.stopPropagation(); MXS.unirOpen=true; matUnirSet(d.mxunir,d.v); return; }
     if(d.mxficha){ e.stopPropagation(); const m=D.matList.find(x=>x.k===d.mxficha); if(m) openMat(m); return; }
     if(d.mxcov){ e.stopPropagation(); const m=D.matList.find(x=>x.k===d.mxcov); if(m){ galTarget=m; $("#galCoverIn").click(); } return; }
     if(d.mxtabb||d.mxtab){ mxTab(d.mxtabb||d.mxtab); if(d.mxf){ MXS.f=d.mxf; if(mView!=="gal") setMView("gal"); else renderMats(); } return; }
@@ -17754,6 +17761,21 @@ function mxTab(k,silent){ MXS.tab=k; document.querySelectorAll("[data-mxtabb]").
 function mxInit(){ mxMontar(); mxHero(); if(!MX_HI) mxCargarHi().then(()=>{ if(currentView==="materiales"){ renderMats(); if(MXS.tab==="rend") mxRend(); if(MXS.tab==="pend") mxPend(); } }); if(MXS.tab==="rend") mxRend(); if(MXS.tab==="pend") mxPend(); }
 // la galería nueva reemplaza a la anterior, y el resumen se actualiza cuando cambian los datos
 try{ const _m3=m360Open; m360Open=function(k){ _m3.apply(this,arguments); const hi=MX_HI&&m360Cur&&MX_HI[m360Cur.k], im=document.querySelector('#m360 .m3-h img'); if(hi&&im){ const lo=im.src; im.onerror=()=>{ im.onerror=null; im.src=lo; }; im.src=hi; } }; renderGal=mxRenderGal; const _rm=renderMats; renderMats=function(){ _rm.apply(this,arguments); if(currentView==="materiales"){ mxHero(); if(MXS.tab==="pend") mxPend(); } }; }catch(e){ console.warn(e); }
+
+// ---------- Unir ventas: cuadernillo + "cuadernillo con plataforma interactiva" (la plataforma sola queda aparte) ----------
+const MAT_UNIR_AUTO=/-con-plataforma-interactiva$/, MAT_UNIR_SUG=/-(pasapalabra-incluido(-en-el-pack)?|papalabra-incluido)$/;
+function matUnir(k){ const d=matDocs[k]; if(d&&d.unir==="no") return k; if(d&&d.unir&&d.unir!==k&&matDocs[d.unir]) return d.unir; const b=k.replace(MAT_UNIR_AUTO,""); return b!==k&&matDocs[b]?b:k; }
+function matUnidos(k){ return Object.keys(matDocs).filter(x=>x!==k&&matUnir(x)===k); }
+function matUnirSug(){ return Object.keys(matDocs).filter(k=>matUnir(k)===k&&!(matDocs[k]||{}).unir).map(k=>{ const b=k.replace(MAT_UNIR_SUG,""); return b!==k&&matDocs[b]&&matUnir(b)===b?[k,b]:null; }).filter(Boolean); }
+async function matUnirSet(k,val){ if(!needDb()) return; const d=matDocs[k]||{}; try{ await db.collection("materiales").doc(k).set({...d,name:d.name||k,unir:val,updated:new Date().toISOString()}); toast(val==="no"?"Listo: quedó separado.":"Listo: ventas unidas."); }catch(e){ toast("No se pudo guardar el cambio."); } }
+function mxUnirHtml(){ if(!D) return ""; const pares=Object.keys(matDocs).filter(k=>matUnir(k)!==k).map(k=>[k,matUnir(k)]), sep=Object.keys(matDocs).filter(k=>(matDocs[k]||{}).unir==="no"), sug=matUnirSug(), nm=k=>esc((matDocs[k]||{}).name||k);
+  if(!pares.length&&!sug.length&&!sep.length) return "";
+  const ventas=k=>D.items.filter(i=>i.ok&&slug(i.name)===k).reduce((s,i)=>s+i.q,0);
+  return `<details class="card mx-unir"${MXS.unirOpen?" open":""}><summary><span class="mx-ui">🔗</span><span><b>Ventas unidas: cuadernillo + versión con plataforma</b><small>${pares.length} unido${pares.length===1?"":"s"}${sug.length?` · ${sug.length} sugerencia${sug.length===1?"":"s"}`:""} · las plataformas solas quedan aparte</small></span><em>Ver ▾</em></summary>
+    <div class="mx-ub">${pares.length?`<div class="mx-ul">${pares.map(([c,p])=>`<div class="mx-ur"><span class="mx-uc"><b>${nm(p)}</b><small>suma las ${nf(ventas(c))} ventas de “${nm(c)}”</small></span><button type="button" class="btn small" data-mxunir="${esc(c)}" data-v="no">Separar</button></div>`).join("")}</div>`:""}
+    ${sug.length?`<h4>¿Unir también estos?</h4><p class="muted small">Son el mismo cuadernillo con un juego incluido de regalo.</p><div class="mx-ul">${sug.map(([c,p])=>`<div class="mx-ur sug"><span class="mx-uc"><b>${nm(c)}</b><small>→ unir con “${nm(p)}” (${nf(ventas(c))} ventas)</small></span><button type="button" class="btn small primary" data-mxunir="${esc(c)}" data-v="${esc(p)}">Unir</button></div>`).join("")}</div>`:""}
+    ${sep.length?`<h4>Separados a mano</h4><div class="mx-ul">${sep.map(c=>`<div class="mx-ur"><span class="mx-uc"><b>${nm(c)}</b><small>se muestra por separado</small></span><button type="button" class="btn small" data-mxunir="${esc(c)}" data-v="">Volver a unir</button></div>`).join("")}</div>`:""}
+    <p class="muted small">Las contraseñas no cambian: cada compradora sigue recibiendo la de la versión que compró.</p></div></details>`; }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
