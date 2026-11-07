@@ -594,6 +594,81 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.mx-hub{display:grid;gap:12px;margin-bottom:14px}
+.mx-hero{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.mx-k{display:flex;align-items:center;gap:12px;text-align:left;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;min-width:0;transition:transform .15s,box-shadow .15s,border-color .15s;box-shadow:var(--shadow)}
+.mx-k:hover{transform:translateY(-2px);border-color:color-mix(in srgb,#3987e5 45%,var(--line))}
+.mx-k>span:last-child{display:grid;gap:1px;min-width:0}.mx-k small{font-size:11.5px;color:var(--muted);font-weight:700}.mx-k b{font-size:22px;line-height:1.15;font-variant-numeric:tabular-nums}.mx-k em{font-style:normal;font-size:12px;color:var(--muted)}
+.mx-k .up{color:#22A35A;font-weight:800}.mx-k .dn{color:#E05A47;font-weight:800}
+.mx-ki{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--surface-2);font-size:22px;flex:none}
+.mx-ring{--p:0;position:relative;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:conic-gradient(#22A35A calc(var(--p)*1%),var(--surface-2) 0);flex:none}.mx-ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--surface)}.mx-ring i{position:relative;font-style:normal;font-size:11.5px;font-weight:800}
+.mx-k.top .mx-kn{font-size:14.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mx-kc{width:42px;height:54px;border-radius:8px;object-fit:cover;flex:none;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.mx-k.warn{border-color:color-mix(in srgb,#F59E0B 50%,var(--line))}.mx-k.warn .mx-ki{background:color-mix(in srgb,#F59E0B 18%,var(--surface-2))}.mx-k.ok .mx-ki{background:color-mix(in srgb,#22A35A 18%,var(--surface-2))}
+.mx-tabs{display:flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow-x:auto;scrollbar-width:none;position:sticky;top:8px;z-index:5}.mx-tabs::-webkit-scrollbar{display:none}
+.mx-tabs button{display:inline-flex;align-items:center;gap:7px;flex:1 0 auto;justify-content:center;border:0;background:none;color:var(--muted);font:inherit;font-weight:700;font-size:14px;padding:10px 14px;border-radius:12px;cursor:pointer;transition:background .15s,color .15s}
+.mx-tabs button:hover{color:var(--ink);background:var(--surface-2)}.mx-tabs button[aria-selected="true"]{color:var(--ink);background:linear-gradient(135deg,color-mix(in srgb,#3987e5 22%,var(--surface-2)),var(--surface-2));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,#3987e5 45%,transparent)}
+.mx-tabs small:not(:empty){min-width:20px;padding:1px 7px;border-radius:99px;background:var(--surface-2);font-size:11px;color:var(--ink)}.mx-tabs [data-mxtabb="pend"] small:not(:empty){background:#F59E0B;color:#1b1206}
+.mx-panel{display:grid;gap:14px;animation:cpIn .25s ease}
+/* catálogo */
+.mx-gt{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;grid-column:1/-1}
+.mx-chips{display:flex;gap:6px;flex-wrap:wrap}.mx-chips button{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}.mx-chips button small{font-size:11px;color:var(--muted)}
+.mx-chips button[aria-pressed="true"]{border-color:#3987e5;background:color-mix(in srgb,#3987e5 16%,var(--surface))}.mx-chips button:disabled{opacity:.4;cursor:not-allowed}
+.mx-sort{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--muted)}.mx-sort select{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--surface);color:var(--ink)}
+#mGal.gal{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.mx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.mx-card{position:relative;display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:18px;background:var(--surface);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:var(--shadow)}
+.mx-card:hover,.mx-card:focus-visible{transform:translateY(-4px);box-shadow:0 18px 36px rgba(0,0,0,.28);border-color:color-mix(in srgb,#3987e5 40%,var(--line));outline:none}
+.mx-cv{position:relative;aspect-ratio:4/5;background:var(--surface-2);overflow:hidden}.mx-cv>img,.mx-cv>.mx-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}.mx-card:hover .mx-cv>img{transform:scale(1.05)}
+.mx-ph{display:grid;place-items:center;background:linear-gradient(150deg,hsl(var(--h) 55% 42%),hsl(calc(var(--h) + 40) 60% 28%))}.mx-ph b{font-size:46px;color:#fff;opacity:.9;font-weight:900}
+.mx-bd{position:absolute;top:10px;left:10px;right:48px;display:flex;flex-wrap:wrap;gap:5px}.mx-bd .b{font-size:11px;font-weight:800;padding:4px 9px;border-radius:99px;background:rgba(10,14,22,.78);color:#fff;backdrop-filter:blur(6px)}.mx-bd .gold{background:linear-gradient(135deg,#F7C948,#E19A1B);color:#2b1a00}.mx-bd .soon{background:#F97316}.mx-bd .st{background:#6b7280}
+.mx-lk{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;backdrop-filter:blur(6px)}.mx-lk svg{width:16px;height:16px}.mx-lk.ok{background:rgba(34,163,90,.9);color:#fff}.mx-lk.no{background:rgba(224,90,71,.95);color:#fff;animation:mxPing 2s ease-out infinite}
+@keyframes mxPing{0%{box-shadow:0 0 0 0 rgba(224,90,71,.6)}70%,100%{box-shadow:0 0 0 10px rgba(224,90,71,0)}}
+.mx-ho{position:absolute;inset:auto 0 0 0;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:28px 10px 12px;background:linear-gradient(transparent,rgba(5,8,14,.85));opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s}
+.mx-card:hover .mx-ho,.mx-card:focus-within .mx-ho{opacity:1;transform:none}.mx-ho .btn{background:rgba(255,255,255,.95);color:#111;border-color:transparent}
+.mx-cb{display:grid;gap:8px;padding:12px 14px 14px;align-content:start}
+.mx-cn{font-size:14.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.mx-cg{font-size:12px;color:var(--muted);margin-top:-5px}
+.mx-cs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.mx-cs div{display:grid;text-align:center}.mx-cs b{font-size:15px;font-variant-numeric:tabular-nums}.mx-cs small{font-size:10.5px;color:var(--muted)}
+.mx-ct{display:flex;align-items:center;gap:8px}.mx-ct small{font-size:10.5px;color:var(--muted);white-space:nowrap}
+.mx-sp{flex:1;height:30px;overflow:visible}.mx-sp .a{fill:color-mix(in srgb,#3987e5 18%,transparent)}.mx-sp .l{fill:none;stroke:#3987e5;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}.mx-sp circle{fill:#3987e5}.mx-sp line{stroke:var(--line);stroke-width:2;stroke-dasharray:3 4}
+.mx-np{border:1.5px dashed #E05A47;background:color-mix(in srgb,#E05A47 8%,transparent);color:#E05A47;border-radius:10px;padding:7px;font:inherit;font-size:12.5px;font-weight:800;cursor:pointer}
+.mx-card.st{opacity:.75}
+.mx-add{border:2px dashed var(--line)!important;background:transparent!important}
+/* rendimiento */
+.mx-sec{padding:16px;display:grid;gap:12px}.mx-sh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.mx-sh h2{margin:0;font-size:17px}.mx-sh p{margin:2px 0 0}.mx-ctr{display:flex;gap:10px;flex-wrap:wrap}
+.mx-rk{display:grid;gap:6px}
+.mx-rr{display:grid;grid-template-columns:28px 38px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid transparent;background:none;color:var(--ink);font:inherit;text-align:left;padding:6px 8px;border-radius:12px;cursor:pointer}.mx-rr:hover{background:var(--surface-2);border-color:var(--line)}
+.mx-rn{font-weight:900;font-size:15px;color:var(--muted);text-align:center}.mx-rr:nth-child(1) .mx-rn{color:#E1A100}.mx-rr:nth-child(2) .mx-rn{color:#9aa3b2}.mx-rr:nth-child(3) .mx-rn{color:#c27a3a}
+.mx-rc{width:38px;height:48px;border-radius:7px;object-fit:cover;position:relative}.mx-rc.mx-ph b{font-size:16px}
+.mx-rt{display:grid;gap:5px;min-width:0}.mx-rt b{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mx-rb{height:10px;border-radius:5px;background:var(--surface-2);overflow:hidden}.mx-rb i{display:block;height:100%;border-radius:0 5px 5px 0;background:linear-gradient(90deg,#3987e5,#7db3f5);transition:width .5s}
+.mx-rv{display:grid;text-align:right}.mx-rv b{font-size:15px;font-variant-numeric:tabular-nums}.mx-rv small{font-size:11px;color:var(--muted)}
+.mx-mz{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+.mx-plot{position:relative}.mx-plot svg{width:100%;height:auto;display:block}
+.mx-plot .ax{fill:var(--muted);font-size:11px}.mx-plot .ax.t{font-weight:700}.mx-plot .bl{stroke:var(--line);stroke-width:1.5}.mx-plot .md{stroke:var(--muted);stroke-dasharray:4 5;opacity:.6}
+.mx-plot .qs{fill:color-mix(in srgb,#22A35A 7%,transparent)}.mx-plot .qo{fill:color-mix(in srgb,#F59E0B 7%,transparent)}
+.mx-plot .pt{stroke:var(--surface);stroke-width:2;cursor:pointer;transition:r .15s}.mx-plot .pt:hover,.mx-plot .pt:focus{r:10;outline:none}
+.pt.s,.mx-q.s i{fill:#199e70;background:#199e70}.pt.o,.mx-q.o i{fill:#d95926;background:#d95926}.pt.i,.mx-q.i i{fill:#3987e5;background:#3987e5}.pt.b,.mx-q.b i{fill:#8a93a3;background:#8a93a3}
+.mx-tip{position:absolute;z-index:3;width:220px;pointer-events:none;display:grid;gap:2px;padding:8px 10px;border-radius:10px;background:#161c27;color:#f0efec;border:1px solid #2c3646;box-shadow:0 10px 26px rgba(0,0,0,.3);font-size:12.5px}.mx-tip span{color:#c9d0db}.mx-tip small{color:#8f99a8;font-size:11px}
+:root[data-theme="light"] .mx-tip{background:#fff;color:#0b1220;border-color:#d9dee7}:root[data-theme="light"] .mx-tip span{color:#3a4456}
+.mx-ql{display:grid;gap:8px}.mx-q{display:grid;gap:3px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2)}.mx-q>b{display:flex;align-items:center;gap:7px;font-size:13.5px}.mx-q>b i{width:11px;height:11px;border-radius:50%;flex:none}.mx-q>b small{margin-left:auto;font-size:11.5px;color:var(--muted)}.mx-q>small{font-size:12px;color:var(--muted)}.mx-q span{font-size:12px}
+/* pendientes */
+.mx-pend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mx-pc{padding:14px;display:grid;gap:10px;align-content:start}.mx-pch{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center}.mx-pch b{display:block;font-size:15px}.mx-pch small{font-size:12px;color:var(--muted)}
+.mx-pci{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;font-size:20px;background:var(--surface-2);font-weight:900}.mx-pcn{font-size:26px;font-weight:900;font-variant-numeric:tabular-nums}
+.mx-pc.bad{border-color:color-mix(in srgb,#E05A47 55%,var(--line))}.mx-pc.bad .mx-pci{background:color-mix(in srgb,#E05A47 18%,var(--surface-2))}.mx-pc.bad .mx-pcn{color:#E05A47}
+.mx-pc.warn .mx-pci{background:color-mix(in srgb,#F59E0B 18%,var(--surface-2))}.mx-pc.warn .mx-pcn{color:#F59E0B}
+.mx-pc.ok .mx-pci{background:#22A35A;color:#fff}.mx-pc.ok .mx-pcn{color:#22A35A}
+.mx-pl{display:grid;gap:6px;max-height:300px;overflow:auto}.mx-pl>div{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px 8px;border-radius:10px;background:var(--surface-2)}.mx-pl>div span{display:grid;min-width:0}.mx-pl>div b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mx-pl>div small{font-size:11.5px;color:var(--muted)}
+.mx-pt{width:34px;height:42px;border-radius:6px;object-fit:cover;position:relative}.mx-pt.mx-ph b{font-size:14px}
+.mx-pl.thumbs{grid-template-columns:repeat(auto-fill,minmax(74px,1fr));max-height:none}.mx-pth{display:grid;gap:4px;border:0;background:none;color:var(--ink);font:inherit;cursor:pointer;padding:0;text-align:left}.mx-pth>img,.mx-pth>.mx-ph{position:relative;width:100%;aspect-ratio:4/5;border-radius:8px;object-fit:cover;border:2px dashed var(--line)}.mx-pth .mx-ph b{font-size:22px}.mx-pth small{font-size:10.5px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.mx-pth:hover>.mx-ph{border-color:#3987e5}
+@media (max-width:1150px){.mx-hero{grid-template-columns:repeat(3,minmax(0,1fr))}.mx-mz{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){.mx-hero{grid-template-columns:repeat(2,minmax(0,1fr))}.mx-hero .mx-k:first-child{grid-column:1/-1}.mx-k{padding:11px;gap:9px}.mx-k b{font-size:18px}.mx-ki,.mx-ring{width:38px;height:38px;font-size:18px}.mx-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mx-cs b{font-size:13px}.mx-cb{padding:10px}.mx-ho{display:none}.mx-pend{grid-template-columns:minmax(0,1fr)}.mx-tabs button{padding:9px 11px;font-size:13px}.mx-tabs{top:4px}}
+@media (prefers-reduced-motion:reduce){.mx-lk.no{animation:none}.mx-card,.mx-cv>img{transition:none}}
+.mx-cs b{white-space:nowrap;font-size:14px}
+.mx-sp{min-width:0;width:100%}.mx-card,.mx-cb,.mx-ct{min-width:0}
+@media (max-width:700px){.mx-cs b{font-size:12.5px}.mx-cs small{font-size:9.5px}.mx-cn{font-size:13px}.mx-bd .b{font-size:10px;padding:3px 7px}.mx-ct small{display:none}}
+
 :root{--ng-r0:color-mix(in srgb,var(--surface-2) 100%,transparent);--ng-r1:#173a63;--ng-r2:#1f5294;--ng-r3:#2a6bc0;--ng-r4:#3987e5;--ng-r5:#7db3f5;--ng-ink1:#f0efec;--ng-ink5:#0b1220}
 :root[data-theme="light"]{--ng-r1:#d7e6f8;--ng-r2:#a9cbf0;--ng-r3:#6ea6e6;--ng-r4:#2a78d6;--ng-r5:#164d93;--ng-ink1:#0b1220;--ng-ink5:#ffffff}
 .ng-body{display:grid;gap:14px}.ng-card{padding:14px 16px;display:grid;gap:10px;align-content:start;min-width:0;position:relative}.ng-card h3{margin:0;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -4583,7 +4658,7 @@ function renderView(v){
   if(v==="clientes") renderClients();
   if(v==="materiales") renderMats();
   if(v==="calendario"){ renderYear(); renderEfes(); renderCal(); }
-  if(v==="materiales"){ renderAudit(); renderRenew(); renderCopias(); renderVis(); mxIdeasRender(); }
+  if(v==="materiales"){ renderAudit(); renderRenew(); renderCopias(); renderVis(); mxIdeasRender(); mxInit(); }
   if(v==="motor") renderMotor();
   if(v==="inicio") renderMQ();
   if(v==="mensajes"){ renderTpls(); renderGen(); renderAds(); lzMats(); }
@@ -17532,6 +17607,128 @@ async function rc2Init(){ const v=$("#view-reciclar"); if(!v) return; if(!v.data
     try{ if(!IGP.data){ const sn=db&&await db.doc("panel/igplus").get(); if(sn&&sn.exists){ IGP.data=sn.data(); IGP.gen=new Date(IGP.data.gen); } } }catch{}
     try{ if(!RS2.data){ const sn=db&&await db.doc("panel/redes").get(); if(sn&&sn.exists) RS2.data=sn.data(); } }catch{} }
   rc2Pintar(); if(MODE.cloud&&!IGP.data&&!IGP.cargando){ await igpCargar(); rc2Pintar(); } if(MODE.cloud&&!RS2.data&&!RS2.cargando){ await rs2Cargar(); rc2Pintar(); } }
+
+// =====================================================================
+// MATERIALES: centro visual (resumen, catálogo con tarjetas, rendimiento, pendientes)
+// =====================================================================
+const MXS={tab:"cat",f:"all",sort:"sold",met:"u",per:365,on:false};
+function mxSerie(){ const end=new Date(), keys=[]; for(let i=11;i>=0;i--){ const d=new Date(end.getFullYear(),end.getMonth()-i,1); keys.push(monthKey(d)); } const S={};
+  (D?D.items:[]).forEach(i=>{ if(!i.ok||!i.d) return; const j=keys.indexOf(monthKey(i.d)); if(j<0) return; (S[i.k]=S[i.k]||Array(12).fill(0))[j]+=i.q; }); return S; }
+function mxVis(m){ return visitas&&(visitas.items||[]).find(it=>it.k===m.k||(it.ks||[]).includes(m.k))||null; }
+function mxDias(m){ const tm=matTiming(m); if(!tm||tm.tipo!=="efe") return null; return Math.round((tm.next-startOfDay(new Date()))/DAY); }
+function mxVentas(desde,hasta){ const S={}; (D?D.items:[]).forEach(i=>{ if(!i.ok||!i.d||i.d<desde||(hasta&&i.d>=hasta)) return; const x=S[i.k]=S[i.k]||{u:0,r:0}; x.u+=i.q; x.r+=i.rev; }); return S; }
+function mxSpark(a){ if(!a||!a.some(Boolean)) return `<svg class="mx-sp" viewBox="0 0 120 30" aria-hidden="true"><line x1="0" y1="27" x2="120" y2="27"/></svg>`; const mx=Math.max(...a,1), P=a.map((v,i)=>[(i/11*118+1).toFixed(1),(27-v/mx*24).toFixed(1)]);
+  return `<svg class="mx-sp" viewBox="0 0 120 30" aria-hidden="true"><path class="a" d="M1,28 L${P.map(p=>p.join(",")).join(" L")} L119,28Z"/><path class="l" d="M${P.map(p=>p.join(",")).join(" L")}"/><circle cx="${P[11][0]}" cy="${P[11][1]}" r="2.6"/></svg>`; }
+function mxCover(m,cls){ const d=m.doc||{}; return d.cover?`<img class="${cls||""}" src="${esc(d.cover)}" alt="" loading="lazy">`:`<span class="mx-ph ${cls||""}" style="--h:${[...String(m.group||m.name)].reduce((a,c)=>a+c.charCodeAt(0),0)%360}"><b>${esc((fold(m.group||m.name).charAt(0)||"?").toUpperCase())}</b></span>`; }
+const mxIco={lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',open:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 7.5-2"/></svg>'};
+
+// ---------- resumen (indicadores de arriba) ----------
+function mxPendientes(){ if(!D) return {n:0}; let au=[]; try{ au=auditIssues().filter(i=>i.sev!=="low"); }catch{} let rn=[]; try{ rn=renewList(); }catch{}
+  const cp=(copias||[]).filter(c=>c.estado==="nuevo"), np=D.matList.filter(m=>m.sold>0&&!m.pass), nc=D.matList.filter(m=>!(m.doc||{}).cover&&(m.doc||{}).estado!=="Discontinuado");
+  return {au,rn,cp,np,nc,n:au.length+rn.length+cp.length+np.length}; }
+function mxHero(){ const h=$("#mxHero"); if(!h||!D) return; const all=D.matList, wp=all.filter(m=>m.pass).length, cov=all.filter(m=>(m.doc||{}).cover).length, t=startOfDay(new Date());
+  const a=mxVentas(new Date(+t-90*DAY)), b=mxVentas(new Date(+t-180*DAY),new Date(+t-90*DAY)), su=o=>Object.values(o).reduce((s,x)=>s+x.u,0), sr=o=>Object.values(o).reduce((s,x)=>s+x.r,0);
+  const ua=su(a), ub=su(b), dl=ub?Math.round((ua-ub)/ub*100):null, topK=Object.entries(a).sort((x,y)=>y[1].u-x[1].u)[0], top=topK&&all.find(m=>m.k===topK[0]), P=mxPendientes(), pct=all.length?wp/all.length:0;
+  h.innerHTML=`<button type="button" class="mx-k" data-mxtab="cat" data-mxf="all"><span class="mx-ki">📚</span><span><small>Materiales</small><b>${nf(all.length)}</b><em>${cov} con portada</em></span></button>
+    <button type="button" class="mx-k" data-mxtab="cat" data-mxf="nopass"><span class="mx-ring" style="--p:${(pct*100).toFixed(1)}"><i>${Math.round(pct*100)}%</i></span><span><small>Con contraseña</small><b>${wp} de ${all.length}</b><em>${all.length-wp?`${all.length-wp} sin cargar`:"¡Todas cargadas!"}</em></span></button>
+    <button type="button" class="mx-k" data-mxtab="rend"><span class="mx-ki">🛒</span><span><small>Vendidos · 90 días</small><b>${nf(ua)}</b><em>${moneyK(sr(a))}${dl!=null?` · <span class="${dl>=0?"up":"dn"}">${dl>=0?"▲":"▼"} ${Math.abs(dl)} %</span>`:""}</em></span></button>
+    <button type="button" class="mx-k top" ${top?`data-mx360="${esc(top.k)}"`:""}>${top?mxCover(top,"mx-kc"):`<span class="mx-ki">🏆</span>`}<span><small>🏆 El más vendido · 90 días</small><b class="mx-kn">${top?esc(top.name):"—"}</b><em>${top?nf(topK[1].u)+" vendidos":""}</em></span></button>
+    <button type="button" class="mx-k ${P.n?"warn":"ok"}" data-mxtab="pend"><span class="mx-ki">${P.n?"🛠️":"✅"}</span><span><small>Pendientes</small><b>${P.n||"Al día"}</b><em>${P.n?[P.np.length?`${P.np.length} sin contraseña`:"",P.au.length?`${P.au.length} a revisar`:"",P.cp.length?`${P.cp.length} copias`:""].filter(Boolean).join(" · ")||`${P.rn.length} para renovar`:"Nada urgente"}</em></span></button>`;
+  const tp=$('[data-mxtabb="pend"] small'); if(tp) tp.textContent=P.n||""; const tc=$('[data-mxtabb="cat"] small'); if(tc) tc.textContent=all.length||""; }
+
+// ---------- catálogo: tarjetas ----------
+const MX_F=[["all","Todos"],["top","Con ventas"],["soon","📅 Fecha próxima"],["year","Todo el año"],["nopass","🔓 Sin contraseña"],["nocover","🖼️ Sin portada"],["renew","♻️ A renovar"]];
+const MX_S=[["sold","Más vendidos"],["rev","Más facturación"],["vis","Más vistos en la web"],["soon","Fecha más cercana"],["az","A → Z"]];
+function mxRenderGal(list,q){ const g=$("#mGal"); if(!g) return; const S=mxSerie(), top=new Set(D?[...D.matList].sort((a,b)=>b.sold-a.sold).slice(0,3).filter(m=>m.sold>0).map(m=>m.k):[]), rank=new Map(D?[...D.matList].filter(m=>m.sold).sort((a,b)=>b.sold-a.sold).map((m,i)=>[m.k,i+1]):[]);
+  const L=list.filter(x=>{ const d=x.doc||{}; switch(MXS.f){ case "top": return x.sold>0; case "soon": { const n=mxDias(x); return n!=null&&n<=60; } case "year": return !efeFor(x.name,d); case "nopass": return !x.pass; case "nocover": return !d.cover; case "renew": return d.estado==="A renovar"; default: return true; } });
+  const vv=x=>{ const v=mxVis(x); return v?(v.v90||0):0; }, sd=x=>{ const n=mxDias(x); return n==null?9999:n; };
+  L.sort((a,b)=>MXS.sort==="rev"?b.rev-a.rev:MXS.sort==="vis"?vv(b)-vv(a):MXS.sort==="soon"?sd(a)-sd(b):MXS.sort==="az"?a.name.localeCompare(b.name):b.sold-a.sold||a.name.localeCompare(b.name));
+  const cnt=k=>list.filter(x=>{ const d=x.doc||{}; return k==="all"||(k==="top"&&x.sold>0)||(k==="soon"&&(n=>n!=null&&n<=60)(mxDias(x)))||(k==="year"&&!efeFor(x.name,d))||(k==="nopass"&&!x.pass)||(k==="nocover"&&!d.cover)||(k==="renew"&&d.estado==="A renovar"); }).length;
+  g.innerHTML=`<div class="mx-gt"><div class="mx-chips" role="group" aria-label="Filtrar">${MX_F.map(([k,t])=>{ const n=cnt(k); return (k==="all"||n)?`<button type="button" data-mxf="${k}" aria-pressed="${MXS.f===k}">${t} <small>${n}</small></button>`:""; }).join("")}</div>
+    <label class="mx-sort">Ordenar <select id="mxSort">${MX_S.map(([k,t])=>`<option value="${k}" ${MXS.sort===k?"selected":""}>${t}</option>`).join("")}</select></label></div>
+    ${L.length?`<div class="mx-grid">${L.map(x=>{ const d=x.doc||{}, v=mxVis(x), n=mxDias(x), r=rank.get(x.k), est=d.estado&&d.estado!=="Activo"?d.estado:"";
+      return `<article class="mx-card ${est?"st":""}" data-mx360="${esc(x.k)}" tabindex="0" aria-label="${esc(x.name)}: ver todo">
+        <div class="mx-cv">${mxCover(x)}<div class="mx-bd">${r&&r<=3?`<span class="b gold">🏆 #${r}</span>`:r&&r<=10?`<span class="b">#${r}</span>`:""}${n!=null&&n<=60?`<span class="b soon">📅 ${n===0?"Hoy":n===1?"Mañana":`En ${n} días`}</span>`:""}${est?`<span class="b st">${esc(est)}</span>`:""}</div>
+          <span class="mx-lk ${x.pass?"ok":"no"}" title="${x.pass?"Con contraseña":"Sin contraseña"}">${x.pass?mxIco.lock:mxIco.open}</span>
+          <div class="mx-ho"><button type="button" class="btn small" data-mx360="${esc(x.k)}">🔍 Ver todo</button><button type="button" class="btn small" data-mxficha="${esc(x.k)}">✏️ Ficha</button><button type="button" class="btn small" data-mxcov="${esc(x.k)}">🖼️ ${d.cover?"Portada":"Subir portada"}</button></div></div>
+        <div class="mx-cb"><b class="mx-cn">${hl(x.name,q)}</b><small class="mx-cg">${esc([x.group!==x.name?x.group:"",d.nivel].filter(Boolean).join(" · ")||"Material")}</small>
+          <div class="mx-cs"><div><b>${nf(x.sold)}</b><small>vendidos</small></div><div><b>${moneyK(x.rev)}</b><small>facturado</small></div><div><b>${v?nf(v.v90||0):"—"}</b><small>vistas web</small></div></div>
+          <div class="mx-ct">${mxSpark(S[x.k])}<small>12 meses</small></div>
+          ${!x.pass?`<button type="button" class="mx-np" data-mxficha="${esc(x.k)}">🔑 Cargar contraseña</button>`:""}</div></article>`; }).join("")}</div>`:`<div class="empty-box">${D&&D.matList.length?"Ningún material coincide con este filtro o búsqueda.":"Todavía no hay materiales."}</div>`}`; }
+
+// ---------- rendimiento ----------
+function mxRanking(){ const t=startOfDay(new Date()), V=MXS.per?mxVentas(new Date(+t-MXS.per*DAY)):null;
+  const R=D.matList.map(m=>{ const v=mxVis(m), s=V?(V[m.k]||{u:0,r:0}):{u:m.sold,r:m.rev}; return {m,u:s.u,r:s.r,w:v?(MXS.per===90?v.v90:v.v365)||0:0}; });
+  const val=x=>MXS.met==="r"?x.r:MXS.met==="w"?x.w:x.u, fmt=v=>MXS.met==="r"?moneyK(v):nf(v);
+  const L=R.filter(x=>val(x)>0).sort((a,b)=>val(b)-val(a)).slice(0,12), mx=Math.max(1,...L.map(val)), tot=R.reduce((s,x)=>s+val(x),0)||1;
+  return L.length?`<div class="mx-rk">${L.map((x,i)=>`<button type="button" class="mx-rr" data-mx360="${esc(x.m.k)}"><span class="mx-rn">${i+1}</span>${mxCover(x.m,"mx-rc")}<span class="mx-rt"><b>${esc(x.m.name)}</b><span class="mx-rb"><i style="width:${(val(x)/mx*100).toFixed(1)}%"></i></span></span><span class="mx-rv"><b>${fmt(val(x))}</b><small>${Math.round(val(x)/tot*100)} %</small></span></button>`).join("")}</div>`:`<p class="muted">Sin datos en este período.</p>`; }
+function mxMatriz(){ if(!visitas) return `<p class="muted">Cuando lleguen los datos de tu web (Umami) vas a ver qué materiales se miran mucho y se venden poco.</p>`;
+  const t=startOfDay(new Date()), V=mxVentas(new Date(+t-365*DAY));
+  const P=D.matList.map(m=>{ const v=mxVis(m); return {m,x:v?v.v365||0:0,y:(V[m.k]||{u:0}).u}; }).filter(p=>p.x>0||p.y>0); if(P.length<3) return `<p class="muted">Todavía hay pocos datos para la matriz.</p>`;
+  const med=a=>{ const s=a.slice().sort((x,y)=>x-y); return s[Math.floor(s.length/2)]||0; }, mx=Math.max(...P.map(p=>p.x),1), my=Math.max(...P.map(p=>p.y),1), cx=med(P.map(p=>p.x)), cy=med(P.map(p=>p.y));
+  const W=640,H=340,l=46,r=14,tp=14,b=36, sx=v=>l+Math.sqrt(v/mx)*(W-l-r), sy=v=>tp+(1-Math.sqrt(v/my))*(H-tp-b);
+  const q=p=>p.x>=cx&&p.y>=cy?"s":p.x>=cx?"o":p.y>=cy?"i":"b";
+  const Q={s:["⭐ Estrellas","Se miran y se venden: cuidalos y promocionalos en sus fechas."],o:["🔎 Mucho interés, pocas ventas","Revisá precio, fotos y descripción en tu web."],i:["📲 Venden sin la web","Llegan por Instagram o mensajes: sumales más visibilidad en la web."],b:["💤 Poco movimiento","Candidatos a renovar, combinar en combos o promocionar."]};
+  const ticks=v=>[0,Math.round(v/4),Math.round(v)].filter((x,i,a)=>a.indexOf(x)===i);
+  return `<div class="mx-mz"><div class="mx-plot" id="mxPlot"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Interés en la web contra ventas por material">
+      <rect x="${sx(cx)}" y="${tp}" width="${W-r-sx(cx)}" height="${sy(cy)-tp}" class="qs"/><rect x="${sx(cx)}" y="${sy(cy)}" width="${W-r-sx(cx)}" height="${H-b-sy(cy)}" class="qo"/>
+      ${ticks(mx).map(v=>`<text x="${sx(v)}" y="${H-b+16}" class="ax" text-anchor="middle">${nf(v)}</text>`).join("")}${ticks(my).map(v=>`<text x="${l-8}" y="${sy(v)+4}" class="ax" text-anchor="end">${nf(v)}</text>`).join("")}
+      <line x1="${l}" x2="${W-r}" y1="${H-b}" y2="${H-b}" class="bl"/><line x1="${l}" x2="${l}" y1="${tp}" y2="${H-b}" class="bl"/>
+      <line x1="${sx(cx)}" x2="${sx(cx)}" y1="${tp}" y2="${H-b}" class="md"/><line x1="${l}" x2="${W-r}" y1="${sy(cy)}" y2="${sy(cy)}" class="md"/>
+      <text x="${(l+W-r)/2}" y="${H-4}" class="ax t" text-anchor="middle">Vistas en tu web (último año) →</text><text x="12" y="${(tp+H-b)/2}" class="ax t" text-anchor="middle" transform="rotate(-90 12 ${(tp+H-b)/2})">Vendidos (último año) →</text>
+      ${P.map((p,i)=>`<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="7" class="pt ${q(p)}" data-mxpt="${i}" data-mx360="${esc(p.m.k)}" data-n="${esc(p.m.name)}" data-v="${nf(p.x)} vistas · ${nf(p.y)} vendidos${p.x?` · ${(p.y/p.x*100).toFixed(1).replace(".",",")} % compra`:""}" tabindex="0" aria-label="${esc(p.m.name)}: ${nf(p.x)} vistas, ${nf(p.y)} vendidos"></circle>`).join("")}</svg><div class="mx-tip" hidden></div></div>
+    <div class="mx-ql">${Object.entries(Q).map(([k,[t,d]])=>{ const L=P.filter(p=>q(p)===k).sort((a,b)=>(b.x+b.y*20)-(a.x+a.y*20)); return `<div class="mx-q ${k}"><b><i></i>${t} <small>${L.length}</small></b><small>${d}</small><span>${L.slice(0,4).map(p=>`<button type="button" class="linkish" data-mx360="${esc(p.m.k)}">${esc(p.m.name)}</button>`).join(" · ")}</span></div>`; }).join("")}</div></div>`; }
+function mxRend(){ const b=$("#mxRend"); if(!b||!D) return;
+  b.innerHTML=`<section class="card mx-sec"><div class="mx-sh"><div><h2>🏆 Ranking de materiales</h2><p class="muted small">Tocá uno para ver todo su detalle.</p></div><div class="mx-ctr"><div class="mx-chips" role="group" aria-label="Medir por">${[["u","Vendidos"],["r","Facturación"],["w","Vistas web"]].map(([k,t])=>`<button type="button" data-mxmet="${k}" aria-pressed="${MXS.met===k}">${t}</button>`).join("")}</div><div class="mx-chips" role="group" aria-label="Período">${[[90,"90 días"],[365,"1 año"],[0,"Siempre"]].map(([k,t])=>`<button type="button" data-mxper="${k}" aria-pressed="${MXS.per===k}" ${MXS.met==="w"&&k===0?"disabled":""}>${t}</button>`).join("")}</div></div></div>${mxRanking()}</section>
+    <section class="card mx-sec"><div class="mx-sh"><div><h2>🎯 Interés contra ventas</h2><p class="muted small">Cada punto es un material. Las líneas punteadas marcan la mitad: así ves en qué grupo cae cada uno.</p></div></div>${mxMatriz()}</section>`;
+  const pl=$("#mxPlot"); if(pl){ const tip=pl.querySelector(".mx-tip"), svg=pl.querySelector("svg");
+    pl.addEventListener("pointerover",e=>{ const c=e.target.closest("[data-mxpt]"); if(!c){ return; } const r=pl.getBoundingClientRect(), cr=c.getBoundingClientRect(), n=c.dataset.n, rest=c.dataset.v;
+      tip.innerHTML=`<b>${esc(n)}</b><span>${esc(rest.trim())}</span><small>Tocá para ver el detalle</small>`; tip.hidden=false; const x=cr.left-r.left+cr.width/2; tip.style.left=Math.max(4,Math.min(r.width-230,x-110))+"px"; tip.style.top=Math.max(0,cr.top-r.top-72)+"px"; });
+    pl.addEventListener("pointerout",e=>{ if(e.target.closest("[data-mxpt]")) tip.hidden=true; }); } }
+
+// ---------- pendientes ----------
+function mxPend(){ const b=$("#mxPendTop"); if(!b||!D) return; const P=mxPendientes();
+  const card=(ic,t,n,sub,body,cls)=>`<section class="card mx-pc ${n?cls||"warn":"ok"}"><div class="mx-pch"><span class="mx-pci">${n?ic:"✓"}</span><div><b>${t}</b><small>${n?sub:"Todo en orden"}</small></div><span class="mx-pcn">${n}</span></div>${n?body:""}</section>`;
+  b.innerHTML=`<div class="mx-pend">
+    ${card("🔑","Vendidos sin contraseña",P.np.length,"Las compradoras no pueden abrir el PDF hasta que la cargues.",`<div class="mx-pl">${P.np.slice(0,8).map(m=>`<div>${mxCover(m,"mx-pt")}<span><b>${esc(m.name)}</b><small>${nf(m.sold)} vendidos</small></span><button type="button" class="btn small primary" data-mxficha="${esc(m.k)}">Cargar</button></div>`).join("")}</div>`,"bad")}
+    ${card("🖼️","Sin portada",P.nc.length,"La portada se usa en la galería y en tu web.",`<div class="mx-pl thumbs">${P.nc.slice(0,10).map(m=>`<button type="button" class="mx-pth" data-mxcov="${esc(m.k)}" title="Subir portada de ${esc(m.name)}">${mxCover(m)}<small>${esc(m.name)}</small></button>`).join("")}</div>${P.nc.length>10?`<button type="button" class="linkish" data-mxtab="cat" data-mxf="nocover">Ver los ${P.nc.length} →</button>`:""}`)}
+    ${card("🔍","Para revisar",P.au.length,"Precios, nombres o mensajes que no coinciden.",`<button type="button" class="linkish" data-mxgo="audit">Ver detalle ↓</button>`)}
+    ${card("🛡️","Posibles copias nuevas",P.cp.length,"Encontradas en la búsqueda semanal.",`<button type="button" class="linkish" data-mxgo="copyTitle">Ver detalle ↓</button>`)}
+  </div>`; }
+
+// ---------- armado de la sección ----------
+function mxMontar(){ const v=$("#view-materiales"); if(!v||v.dataset.mx) return; v.dataset.mx="1"; const vh=v.querySelector(".view-h");
+  vh.querySelector("h1").textContent="Materiales"; vh.querySelector(".lead").textContent="Tu catálogo completo: portadas, ventas, contraseñas y qué conviene mejorar, todo en un solo lugar.";
+  const hub=document.createElement("div"); hub.className="mx-hub"; hub.innerHTML=`<div class="mx-hero" id="mxHero"></div>
+    <nav class="mx-tabs" role="tablist" aria-label="Secciones de materiales">${[["cat","📚","Catálogo"],["rend","📊","Rendimiento"],["pend","🛠️","Pendientes"],["ideas","💡","Ideas"],["intl","🌎","Internacional"]].map(([k,i,t])=>`<button type="button" role="tab" data-mxtabb="${k}" aria-selected="${MXS.tab===k}"><span>${i}</span>${t}<small></small></button>`).join("")}</nav>`;
+  vh.after(hub);
+  const panel=k=>{ const p=document.createElement("div"); p.className="mx-panel"; p.dataset.mxp=k; p.hidden=MXS.tab!==k; v.appendChild(p); return p; };
+  const pc=panel("cat"), pr=panel("rend"), pp=panel("pend"), pi=panel("ideas"), pn=panel("intl"), sec=id=>{ const e=$("#"+id); return e?e.closest("section,.card,.grid2")||e:null; };
+  const filt=v.querySelector(".filters"), prog=$("#mProg")&&$("#mProg").parentElement, add=$("#addMat")&&$("#addMat").closest(".card");
+  [filt,$("#mMap"),prog,$("#mGal"),$("#galCoverIn"),$("#mTable"),add].forEach(e=>e&&pc.appendChild(e));
+  if(add){ add.classList.add("mx-add"); const h=add.querySelector("h3"); if(h) h.innerHTML="➕ Agregar un material nuevo"; }
+  const rd=document.createElement("div"); rd.id="mxRend"; rd.className="mx-rendb"; pr.appendChild(rd); const vs=sec("visList"); if(vs) pr.appendChild(vs);
+  const pt=document.createElement("div"); pt.id="mxPendTop"; pp.appendChild(pt); [$("#audit"),$("#renewList")&&$("#renewList").closest(".grid2")].forEach(e=>e&&pp.appendChild(e));
+  const id=sec("mxIdeas"); if(id) pi.appendChild(id); const it=$("#intlBox")&&$("#intlBox").closest("section"); if(it) pn.appendChild(it);
+  const fs=$("#mFilter"); if(fs) fs.hidden=true;
+  v.querySelectorAll("[data-mview]").forEach(b=>{ const I={gal:"▦",mat:"☰",grp:"◫",map:"⊞"}[b.dataset.mview]; if(I&&!b.dataset.mxi){ b.dataset.mxi=1; b.innerHTML=`<span aria-hidden="true">${I}</span> ${b.textContent}`; } });
+  v.addEventListener("click",e=>{ const b=e.target.closest("[data-mxtabb],[data-mxtab],[data-mxf],[data-mx360],[data-mxficha],[data-mxcov],[data-mxmet],[data-mxper],[data-mxgo]"); if(!b||b.disabled) return; const d=b.dataset;
+    if(d.mxficha){ e.stopPropagation(); const m=D.matList.find(x=>x.k===d.mxficha); if(m) openMat(m); return; }
+    if(d.mxcov){ e.stopPropagation(); const m=D.matList.find(x=>x.k===d.mxcov); if(m){ galTarget=m; $("#galCoverIn").click(); } return; }
+    if(d.mxtabb||d.mxtab){ mxTab(d.mxtabb||d.mxtab); if(d.mxf){ MXS.f=d.mxf; if(mView!=="gal") setMView("gal"); else renderMats(); } return; }
+    if(d.mxf){ MXS.f=d.mxf; return renderMats(); }
+    if(d.mxmet){ MXS.met=d.mxmet; if(MXS.met==="w"&&!MXS.per) MXS.per=365; return mxRend(); } if(d.mxper!=null){ MXS.per=+d.mxper; return mxRend(); }
+    if(d.mxgo){ const t=$("#"+d.mxgo); if(t) t.scrollIntoView({behavior:"smooth",block:"start"}); return; }
+    if(d.mx360){ m360Open(d.mx360); } });
+  v.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches(".mx-card,[data-mxpt]")){ e.preventDefault(); m360Open(e.target.dataset.mx360); } });
+  v.addEventListener("change",e=>{ if(e.target.id==="mxSort"){ MXS.sort=e.target.value; renderMats(); } });
+  try{ const s=localStorage.getItem("mxTab"); if(s) mxTab(s,true); }catch{}
+  if(mView==="mat") setMView("gal"); }
+function mxTab(k,silent){ MXS.tab=k; document.querySelectorAll("[data-mxtabb]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.mxtabb===k))); document.querySelectorAll("[data-mxp]").forEach(p=>p.hidden=p.dataset.mxp!==k);
+  try{ localStorage.setItem("mxTab",k); }catch{} if(k==="rend") mxRend(); if(k==="pend") mxPend(); if(!silent){ const h=$(".mx-tabs"); if(h&&h.getBoundingClientRect().top<0) h.scrollIntoView({behavior:"smooth",block:"start"}); } }
+function mxInit(){ mxMontar(); mxHero(); if(MXS.tab==="rend") mxRend(); if(MXS.tab==="pend") mxPend(); }
+// la galería nueva reemplaza a la anterior, y el resumen se actualiza cuando cambian los datos
+try{ renderGal=mxRenderGal; const _rm=renderMats; renderMats=function(){ _rm.apply(this,arguments); if(currentView==="materiales"){ mxHero(); if(MXS.tab==="pend") mxPend(); } }; }catch(e){ console.warn(e); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
