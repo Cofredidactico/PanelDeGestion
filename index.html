@@ -594,6 +594,148 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+/* ===== Taller del cuento ===== */
+#view-cuentos{--tc1:#7C5CFF;--tc2:#FF6FA8;--tc3:#FFB547}
+.tc-hero{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding:26px 28px;border-radius:24px;border:1px solid var(--line);background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--tc1) 30%,transparent),transparent 55%),radial-gradient(90% 120% at 100% 100%,color-mix(in srgb,var(--tc2) 26%,transparent),transparent 60%),var(--surface);margin-bottom:14px}
+.tc-hero h1{margin:4px 0 6px;font-family:Fredoka,Nunito,sans-serif;font-size:34px;letter-spacing:-.01em}.tc-hero p{margin:0;max-width:620px;color:var(--muted);font-size:15px;line-height:1.5}.tc-k{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tc3)}
+.tc-ha{position:relative;z-index:1}.tc-deco{position:absolute;right:22px;top:12px;display:flex;gap:8px;opacity:.85;pointer-events:none}.tc-deco span{font-size:26px;animation:tcF 4s ease-in-out infinite}.tc-deco span:nth-child(2){animation-delay:.6s}.tc-deco span:nth-child(3){animation-delay:1.2s}.tc-deco span:nth-child(4){animation-delay:1.8s}@keyframes tcF{50%{transform:translateY(-6px) rotate(-6deg)}}
+.tc-body{display:grid;gap:14px;container-type:inline-size}
+.tc-st{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;position:sticky;top:8px;z-index:5;padding:6px;border-radius:18px;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);border:1px solid var(--line)}
+.tc-st button{display:flex;align-items:center;gap:10px;text-align:left;border:0;background:none;color:var(--muted);font:inherit;padding:8px 10px;border-radius:13px;cursor:pointer;min-width:0}.tc-st button:hover{background:var(--surface-2)}
+.tc-st i{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--surface-2);font-style:normal;font-size:16px;box-shadow:inset 0 0 0 1.5px var(--line)}.tc-st span{display:grid;min-width:0}.tc-st b{font-size:13.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tc-st small{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tc-st button.on{background:linear-gradient(135deg,color-mix(in srgb,var(--tc1) 24%,var(--surface-2)),color-mix(in srgb,var(--tc2) 14%,var(--surface-2)))}.tc-st button.on i{background:linear-gradient(135deg,var(--tc1),var(--tc2));box-shadow:none;color:#fff}.tc-st button.ok i{background:#22A35A;color:#fff;box-shadow:none;font-weight:800}
+.tc-pane{display:grid;gap:14px;animation:tcIn .3s ease}@keyframes tcIn{from{opacity:0;transform:translateY(6px)}}
+.tc-card{display:grid;gap:12px;align-content:start;padding:18px;border-radius:20px;border:1px solid var(--line);background:var(--surface);min-width:0}.tc-card h3{margin:0;font-size:17px;font-family:Fredoka,Nunito,sans-serif;font-weight:600}
+.tc-grid2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px}
+.tc-drop{display:grid;justify-items:center;gap:4px;text-align:center;padding:26px 16px;border-radius:18px;border:2px dashed color-mix(in srgb,var(--tc1) 45%,var(--line));background:color-mix(in srgb,var(--tc1) 6%,var(--surface-2));cursor:pointer;transition:.18s}.tc-drop:hover,.tc-drop.drag{border-color:var(--tc1);background:color-mix(in srgb,var(--tc1) 14%,var(--surface-2));transform:translateY(-1px)}
+.tc-drop.has{border-style:solid;border-color:#22A35A;background:color-mix(in srgb,#22A35A 8%,var(--surface-2))}.tc-drop.sm{padding:16px}.tc-di{font-size:34px}.tc-drop b{font-size:15.5px}.tc-drop small{color:var(--muted);font-size:12.5px;max-width:420px}
+.tc-or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;font-weight:700}.tc-or::before,.tc-or::after{content:"";flex:1;height:1px;background:var(--line)}
+.tc-ta{width:100%;box-sizing:border-box;font:inherit;font-size:14px;line-height:1.55;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);resize:vertical;min-height:130px}
+.tc-niv{display:grid;gap:8px}.tc-niv button{display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;text-align:left;padding:12px 14px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer;transition:.15s}.tc-niv button span{grid-row:1/3;font-size:26px;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--surface)}.tc-niv b{font-size:15px}.tc-niv small{color:var(--muted);font-size:12.5px}
+.tc-niv button[aria-pressed="true"]{border-color:var(--tc1);background:color-mix(in srgb,var(--tc1) 14%,var(--surface-2));box-shadow:0 0 0 3px color-mix(in srgb,var(--tc1) 22%,transparent)}
+.tc-go{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn.big{padding:12px 20px;font-size:15px;border-radius:14px}
+.tc-busy{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:18px 20px;border-radius:20px;border:1px solid color-mix(in srgb,var(--tc1) 40%,var(--line));background:linear-gradient(120deg,color-mix(in srgb,var(--tc1) 14%,var(--surface)),color-mix(in srgb,var(--tc2) 10%,var(--surface)))}.tc-busy p{margin:3px 0 8px;color:var(--muted);font-size:13.5px}.tc-busy.sm{padding:12px 16px}
+.tc-orb{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;font-size:26px;background:var(--surface);box-shadow:0 0 0 0 color-mix(in srgb,var(--tc1) 50%,transparent);animation:tcOrb 1.6s infinite}@keyframes tcOrb{70%{box-shadow:0 0 0 14px transparent}}
+.tc-chips{display:flex;flex-wrap:wrap;gap:6px}.tc-chips span{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--surface);animation:tcCh 1.5s var(--d) infinite alternate}@keyframes tcCh{from{opacity:.35}to{opacity:1}}
+.tc-ficha{gap:14px}.tc-fh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.tc-fh>div{display:grid;gap:2px;min-width:0;flex:1}.tc-fh small{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--tc2)}
+.tc-tin,.tc-ain{border:0;background:none;color:var(--ink);font:inherit;padding:2px 0;outline:none;border-bottom:1.5px dashed transparent;min-width:0}.tc-tin{font-family:Fredoka,Nunito,sans-serif;font-size:26px;font-weight:600}.tc-ain{color:var(--muted);font-size:14px}.tc-tin:focus,.tc-ain:focus,.tc-tin:hover,.tc-ain:hover{border-bottom-color:var(--line)}
+.tc-res{margin:0;font-size:14.5px;line-height:1.55;color:var(--muted);padding:12px 14px;border-radius:14px;background:var(--surface-2);border-left:4px solid var(--tc3)}
+.tc-fg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tc-fb{display:grid;gap:8px;align-content:start;padding:14px;border-radius:16px;background:var(--surface-2);min-width:0}.tc-fb.wide{grid-column:1/-1}
+.tc-fb h4{margin:0;font-size:14px;display:flex;align-items:center;gap:6px}.tc-fb h4 span{font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--surface);color:var(--muted)}
+.tc-pch,.tc-wch{display:flex;flex-wrap:wrap;gap:6px}.tc-pch span{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:999px;background:var(--surface);font-size:13px;font-weight:700}.tc-pch img{width:26px;height:26px;border-radius:50%;object-fit:contain;background:#fff}
+.tc-wch span{display:inline-flex;align-items:center;gap:6px;padding:5px 8px 5px 10px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:13.5px}.tc-wch span.im{padding-left:4px}.tc-wch img{width:24px;height:24px;object-fit:contain;border-radius:6px;background:#fff}.tc-wch em{font-style:normal;font-size:11.5px;color:var(--tc1);font-weight:700}.tc-wch button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0 2px}
+.tc-win{border:1px dashed var(--line);background:none;color:var(--ink);font:inherit;font-size:13px;padding:6px 10px;border-radius:12px;width:150px}
+.tc-mo{margin:0;padding-left:22px;display:grid;gap:4px}.tc-mo li{font-size:13.5px}.tc-mo li::marker{color:var(--tc2);font-weight:800}.tc-mo li{display:list-item}.tc-mo input{width:calc(100% - 26px);border:0;border-bottom:1px dashed transparent;background:none;color:var(--ink);font:inherit;padding:3px 0}.tc-mo input:hover,.tc-mo input:focus{border-bottom-color:var(--line);outline:none}.tc-mo button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:11px}
+.tc-add{justify-self:start;border:0;background:none;color:var(--tc1);font:inherit;font-weight:700;font-size:13px;cursor:pointer;padding:2px 0}
+.tc-vo{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13px}.tc-vo dt{font-weight:800}.tc-vo dd{margin:0;color:var(--muted)}
+.tc-qn{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.tc-qn span{display:grid;padding:8px;border-radius:12px;background:var(--surface);font-size:11.5px;color:var(--muted);text-align:center}.tc-qn b{font-size:20px;color:var(--ink);font-family:Fredoka,Nunito,sans-serif}.tc-qn .no{opacity:.45}
+.tc-sh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.tc-sh p{margin:4px 0 0;max-width:640px}
+.tc-sw{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;cursor:pointer;user-select:none}.tc-sw input{position:absolute;opacity:0;pointer-events:none}.tc-sw span{position:relative;width:38px;height:22px;border-radius:999px;background:var(--surface-2);box-shadow:inset 0 0 0 1.5px var(--line);transition:.2s}.tc-sw span::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--muted);transition:.2s}.tc-sw input:checked+span{background:var(--tc1);box-shadow:none}.tc-sw input:checked+span::after{left:19px;background:#fff}.tc-sw input:focus-visible+span{outline:2px solid var(--tc1);outline-offset:2px}
+.tc-pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.tc-pc{position:relative;display:grid;gap:6px;padding:10px;border-radius:18px;border:1px solid var(--line);background:var(--surface-2);transition:.15s}.tc-pc:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.tc-pi{display:grid;place-items:center;aspect-ratio:1;border-radius:14px;background:repeating-conic-gradient(#fff 0 25%,#F1F2F6 0 50%) 0 0/18px 18px;cursor:pointer;overflow:hidden}.tc-pi img{width:92%;height:92%;object-fit:contain}.tc-pi span{display:grid;justify-items:center;gap:2px;color:#6B7280;font-size:24px}.tc-pi small{font-size:12px;font-weight:700}
+.tc-pc.vac .tc-pi{background:var(--surface);border:2px dashed var(--line)}
+.tc-pn{font:inherit;font-weight:800;font-size:15px;padding:6px 8px;border-radius:10px;border:1px solid transparent;background:var(--surface);color:var(--ink);min-width:0}.tc-pd{font:inherit;font-size:12.5px;padding:6px 8px;border-radius:10px;border:1px solid transparent;background:var(--surface);color:var(--muted);resize:none;min-width:0}.tc-pn:focus,.tc-pd:focus{outline:none;border-color:var(--tc1)}
+.tc-px{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;background:color-mix(in srgb,var(--surface) 90%,transparent);color:var(--muted);cursor:pointer;opacity:0;transition:.15s}.tc-pc:hover .tc-px,.tc-px:focus{opacity:1}
+.tc-padd{place-items:center;align-content:center;min-height:220px;border-style:dashed;color:var(--muted);font:inherit;font-weight:700;cursor:pointer}.tc-padd span{font-size:30px}
+.tc-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tc-cfg{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-end}.tc-cfg label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:6px}.tc-tg{display:flex;gap:16px;flex-wrap:wrap;padding-bottom:6px}.tc-tg label{margin:0;color:var(--ink)}
+.tc-seg{display:inline-flex;flex-wrap:wrap;padding:3px;border-radius:13px;background:var(--surface-2);border:1px solid var(--line)}.tc-seg button{border:0;background:none;color:var(--muted);font:inherit;font-weight:700;font-size:13px;padding:7px 12px;border-radius:10px;cursor:pointer}.tc-seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px #0003}
+.tc-seg .lt-cur{font-family:"Playwrite AR",Caveat,cursive;font-weight:400}.tc-seg .lt-may{letter-spacing:.04em}
+.tc-rec{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted);font-weight:700}.tc-rec button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer}.tc-rec button:hover{border-color:var(--tc1)}
+.tc-grp{display:grid;gap:10px}.tc-grp h3{margin:4px 0 0;display:flex;align-items:center;gap:8px;font-family:Fredoka,Nunito,sans-serif;font-weight:600;font-size:17px}.tc-grp h3 span{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:color-mix(in srgb,var(--gc) 18%,var(--surface))}.tc-grp h3 em{font-style:normal;font-size:12px;color:var(--muted);font-family:Nunito,sans-serif;font-weight:700}
+.tc-acts{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.tc-ac{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr) 24px;gap:12px;align-items:center;text-align:left;padding:12px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;transition:.15s}.tc-ac:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.tc-ac.on{border-color:var(--gc);background:color-mix(in srgb,var(--gc) 9%,var(--surface));box-shadow:0 0 0 3px color-mix(in srgb,var(--gc) 18%,transparent)}.tc-ac.off{opacity:.5;cursor:not-allowed}.tc-ac.off:hover{transform:none;box-shadow:none}
+.tc-mn{position:relative;width:52px;height:62px}.tc-mn svg{width:100%;height:100%}.tc-mn .pg{fill:#fff;stroke:color-mix(in srgb,var(--gc) 40%,#d8dbe5);stroke-width:1.5}.tc-mn .gc{fill:var(--gc);color:var(--gc)}.tc-mn text{fill:var(--gc);font-family:Fredoka,sans-serif}.tc-mn i{position:absolute;right:-6px;bottom:-4px;font-style:normal;font-size:20px;filter:drop-shadow(0 2px 3px #0003)}
+.tc-at{display:grid;gap:2px;min-width:0}.tc-at b{font-size:14.5px}.tc-at small{font-size:12px;color:var(--muted);line-height:1.35}.tc-at em{font-style:normal;font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.tc-ck{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);font-size:13px;font-weight:900;color:#fff}.tc-ac.on .tc-ck{background:var(--gc);border-color:var(--gc)}
+.tc-bar{position:sticky;bottom:10px;z-index:4;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px 12px 20px;border-radius:18px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 10px 30px #0003;font-size:14.5px}
+.tc-dl{display:flex;gap:8px;flex-wrap:wrap}
+.tc-prog{position:relative;height:30px;border-radius:12px;background:var(--surface-2);overflow:hidden}.tc-prog i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--tc1),var(--tc2));transition:width .3s}.tc-prog span{position:relative;display:block;text-align:center;line-height:30px;font-size:13px;font-weight:800;color:#fff;text-shadow:0 1px 2px #0006}
+.tc-ths{--tw:200px;display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--tw),1fr));gap:16px}
+.tc-th{margin:0;display:grid;gap:6px}.tc-tv{position:relative;display:block;width:100%;aspect-ratio:794/1123;padding:0;border:0;border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in;box-shadow:0 2px 6px #0002,0 10px 24px #0002;transition:.18s;container-type:inline-size}.tc-tv:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 4px 10px #0003,0 18px 34px #0003}
+.tc-sc{position:absolute;left:0;top:0;width:794px;height:1123px;transform-origin:0 0;transform:scale(calc(100cqw / 794px));pointer-events:none}
+@supports not (width:1cqw){.tc-sc{transform:scale(.25)}}
+.tc-th.s .tc-tv{outline:2px dashed color-mix(in srgb,#22A35A 60%,transparent);outline-offset:3px}
+.tc-th figcaption{display:flex;align-items:center;gap:6px;font-size:12.5px;min-width:0}.tc-th figcaption>b{display:grid;place-items:center;min-width:22px;height:22px;border-radius:7px;background:var(--surface-2);font-size:11.5px}.tc-th figcaption>span:not(.tc-ta2){flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
+.tc-ta2{display:flex;gap:2px}.tc-ta2 button{border:0;background:var(--surface-2);color:var(--ink);width:24px;height:24px;border-radius:7px;cursor:pointer;font-size:11px;padding:0}.tc-ta2 button:hover{background:var(--tc1);color:#fff}
+.bn .tcp,.tc-render.bn .tcp{filter:grayscale(1) contrast(1.05)}
+.tc-lb{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;background:#0B0A14E6;backdrop-filter:blur(4px);animation:tcIn .2s}
+.tc-lp{--k:.7;width:calc(794px * var(--k));height:calc(1123px * var(--k));position:relative;border-radius:6px;overflow:hidden;box-shadow:0 30px 80px #000a;background:#fff}.tc-lsc{position:absolute;left:0;top:0;width:794px;height:1123px;transform-origin:0 0;transform:scale(var(--k))}
+.tc-lx{position:absolute;top:16px;right:18px;width:42px;height:42px;border-radius:50%;border:0;background:#ffffff1f;color:#fff;font-size:18px;cursor:pointer}.tc-ln{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:70px;border-radius:14px;border:0;background:#ffffff1a;color:#fff;font-size:34px;cursor:pointer}.tc-ln.p{left:18px}.tc-ln.n{right:18px}.tc-lx:hover,.tc-ln:hover{background:#ffffff33}
+.tc-lc{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:700;background:#0008;padding:5px 12px;border-radius:999px;white-space:nowrap}
+.tc-render{position:fixed;left:-12000px;top:0;width:794px;background:#fff}
+@container (max-width:860px){.tc-grid2,.tc-fg{grid-template-columns:1fr}.tc-st{grid-template-columns:repeat(4,minmax(0,1fr))}.tc-st small{display:none}}
+@container (max-width:560px){.tc-st span{display:none}.tc-st button{justify-content:center}.tc-ths{--tw:140px}.tc-qn{grid-template-columns:repeat(2,minmax(0,1fr))}.tc-acts{grid-template-columns:1fr}.tc-bar{flex-wrap:wrap}.tc-bar .btn{width:100%}}
+@media (max-width:640px){.tc-hero{padding:20px}.tc-hero h1{font-size:27px}.tc-deco{display:none}.tc-ln{width:38px;height:54px;font-size:26px}.tc-ln.p{left:4px}.tc-ln.n{right:4px}}
+
+/* ===== Hoja A4 (794×1123) ===== */
+.tcp{--gc:#7C5CFF;position:relative;box-sizing:border-box;width:794px;height:1123px;padding:42px 46px 64px;background:#fff;color:#1F2433;font-family:Andika,Nunito,Arial,sans-serif;font-size:19px;line-height:1.35;display:flex;flex-direction:column;gap:16px;overflow:hidden;text-align:left}
+.tcp *{box-sizing:border-box}
+.tcp::before{content:"";position:absolute;inset:16px;border:3px solid var(--g32);border-radius:26px;pointer-events:none}
+.tcp-h{position:relative;display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:20px;background:linear-gradient(120deg,var(--g16),var(--g6))}
+.tcp-ic{display:grid;place-items:center;width:58px;height:58px;flex:none;border-radius:18px;background:#fff;font-size:32px;box-shadow:0 3px 0 var(--g35)}
+.tcp-tt{flex:1;min-width:0}.tcp-tt small{display:block;font-size:13px;font-weight:700;color:var(--gd);letter-spacing:.03em;text-transform:uppercase}.tcp-tt h2{margin:0;font-family:Fredoka,Nunito,sans-serif;font-weight:600;font-size:31px;line-height:1.1;color:#1F2433}
+.tcp-nm{display:grid;grid-template-columns:auto 150px;gap:6px 8px;align-items:end;font-size:14px;font-weight:700;color:#4B5163}.tcp-nm i{display:block;border-bottom:2px solid #9AA1B5;height:18px}
+.tcp-sl{font-size:13px;font-weight:800;color:#fff;background:#22A35A;padding:6px 12px;border-radius:999px}
+.tcp-cs{position:relative;margin:0;padding:10px 16px;border-radius:14px;background:#F6F7FB;font-size:18px;font-weight:700;color:#2C3142}.tcp-cs b{margin-right:4px}
+.tcp-b{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
+.tcp-f{position:absolute;left:46px;right:46px;bottom:26px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:#9AA1B5}.tcp-f span{display:flex;align-items:center;gap:6px}.tcp-f img{height:20px;width:auto}
+.tcp[data-letra="may"] .tx{text-transform:uppercase}.tcp[data-letra="cur"] .tx{font-family:"Playwrite AR",Caveat,cursive;font-size:.9em;line-height:1.6}.tcp .imp{font-family:Andika,Arial,sans-serif;text-transform:uppercase}
+.tcp .big{font-size:26px;font-weight:700;letter-spacing:.02em}
+.tl{height:40px;border-bottom:2px solid #C9CEDB;flex:none}.tl.dbl{background:linear-gradient(transparent 49%,#E6E9F1 49%,#E6E9F1 51%,transparent 51%)}
+.tcf{display:block;width:96px;height:96px;object-fit:contain;flex:none}.tcf.sm{width:62px;height:62px}.tcf-v{display:grid;place-items:center;border:2px dashed #C9CEDB;border-radius:14px}.tcf-v em{font-style:normal;font-size:11px;color:#9AA1B5}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--gc);flex:none}
+.sol .rs,.sol .on,.sol .hole,.sol .bx i,.sol .wl,.sol td.on,.sol .sq-n,.sol .cr-g i{color:#C0265B}
+.qs{gap:14px}.q{display:grid;gap:2px}.q p{margin:0;font-weight:700}.q p b{color:var(--gc)}.q.op p b{color:#F08C00}.rs{margin:4px 0 0!important;font-weight:700;padding:6px 12px;border-radius:10px;background:#FDECF2}
+.vf{display:grid;gap:10px}.vf-r{display:grid;grid-template-columns:1fr 50px 50px;gap:10px;align-items:center;padding:10px 14px;border-radius:14px;background:#F6F7FB}.vf-r span{font-size:18.5px}.vf-r i{display:grid;place-items:center;height:46px;border-radius:12px;border:2.5px solid var(--g55);font-style:normal;font-weight:700;color:#9AA1B5;font-size:18px}.vf-r i.on{background:#FDECF2;border-color:#C0265B;color:#C0265B}
+.mc{display:grid;gap:8px}.mc p{margin:0;font-weight:700}.mc>div{display:grid;gap:6px;padding-left:22px}.mc span{display:flex;align-items:center;gap:10px}.mc span i{width:24px;height:24px;border-radius:50%;border:2.5px solid var(--g60);flex:none}.mc span.on i{background:#C0265B;border-color:#C0265B}
+.sq{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}.sq-c{position:relative;display:grid;grid-template-rows:1fr auto;gap:8px;padding:12px;border-radius:18px;border:2.5px solid var(--g30)}.sq-n{position:absolute;top:-2px;left:-2px;display:grid;place-items:center;width:48px;height:48px;border-radius:16px 4px 16px 4px;background:#fff;border:3px solid var(--gc);font-family:Fredoka,sans-serif;font-size:26px;font-weight:700;z-index:1}
+.sq-d{border-radius:12px;background:#F6F7FB;display:grid;place-items:center;min-height:150px}.sq-d em,.fav-d em,.gl-d em{font-style:normal;font-size:12px;color:#B5BAC8}.sq-c p{margin:0;font-size:17px;font-weight:700}
+.qd{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;flex:1;align-items:center}.qd-f,.qd-p{display:grid;gap:16px}
+.bb{position:relative;padding:14px 34px 14px 16px;border-radius:18px;background:#F2EEFF;font-weight:700;font-size:18px}.bb p{margin:0}.bb .dot{position:absolute;right:-7px;top:50%;margin-top:-7px}.bb>b{display:block;margin-top:4px;font-size:15px}
+.pc{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:16px;border:2.5px solid var(--g30)}.pc .dot{margin-left:-20px}.pc .tcf{width:76px;height:76px}.pc b{font-size:20px}
+.fav{display:grid;grid-template-rows:1fr auto;gap:10px;flex:1}.fav-d{border:3px dashed var(--g40);border-radius:24px;display:grid;place-items:center;min-height:420px}.fav>p{margin:0;font-weight:700}.fav-c{display:grid;justify-items:center;gap:10px}.fav-c p{margin:0;font-weight:700;font-size:24px}.em{display:flex;gap:40px}.em span{font-size:64px;width:96px;height:96px;display:grid;place-items:center;border-radius:50%;border:3px solid #E1E4EC;filter:grayscale(1);opacity:.75}
+.wc3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.wcard{display:grid;justify-items:center;align-content:center;gap:8px;padding:14px 8px;border-radius:18px;border:2.5px solid var(--g26);min-height:150px}.wcard.tall{min-height:220px}.wcard .tcf{width:110px;height:110px}.wcard .tcf.sm{width:70px;height:70px}
+.hole{display:inline-block;min-width:26px;height:36px;margin:0 2px;border-bottom:3px solid var(--gc);text-decoration:none;text-align:center;vertical-align:bottom;background:var(--g8);border-radius:6px 6px 0 0}
+.nv{display:grid;gap:16px}.nv-r{display:flex;align-items:center;gap:16px;padding:10px 14px;border-radius:18px;background:#F8F8FC}.nv-l{display:flex;flex-wrap:wrap;gap:6px}.lt{display:grid;place-items:center;width:56px;height:64px;border-radius:12px;border:3px solid #2C3142;font-size:38px;font-weight:700;color:#E3DEFA;-webkit-text-stroke:2px #2C3142;background:#fff}.sp{width:20px}
+.nv-k{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:6px;padding:12px;border-radius:16px;border:2px dashed #E1E4EC}.nv-k .lt{width:44px;height:50px;font-size:28px;-webkit-text-stroke:0;color:#E9547B;border-color:#E9547B}.nv-k em{font-style:normal;font-size:15px;font-weight:700;margin-left:8px}
+.sl{display:grid;gap:12px}.sl-r{display:grid;grid-template-columns:62px 1fr 30px auto;gap:14px;align-items:center;padding:8px 14px;border-radius:16px;background:#FFF8EC}.arr{color:var(--gc);font-size:24px}.bx{display:flex;gap:6px}.bx i{display:grid;place-items:center;min-width:72px;height:62px;padding:0 6px;border-radius:12px;border:3px solid var(--gc);background:#fff;font-style:normal;font-size:24px;font-weight:700}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:12px}.pm-c{display:grid;grid-template-columns:62px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:10px 14px;border-radius:16px;border:2.5px solid var(--g26)}.pm-c .tcf{grid-row:1/3}.pm-c .big{font-size:24px}.cir{display:flex;gap:8px;margin-top:6px}.cir i{width:30px;height:30px;border-radius:50%;border:3px solid var(--gc)}.cir i.on{background:#C0265B;border-color:#C0265B}
+.ar{display:grid;gap:14px}.ar-r{display:grid;grid-template-columns:1fr 30px 1fr;gap:14px;align-items:center}.ch{display:flex;flex-wrap:wrap;gap:8px}.ch i{display:grid;place-items:center;min-width:62px;height:52px;padding:0 10px;border-radius:14px;background:var(--g14);font-style:normal;font-weight:700;font-size:23px;transform:rotate(-2deg)}.ch i:nth-child(2n){transform:rotate(2deg)}.wl{height:52px;border-bottom:3px solid #C9CEDB;font-size:24px;font-weight:700;display:flex;align-items:flex-end;padding-bottom:4px}
+.sp-w{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start}.sopa{border-collapse:separate;border-spacing:3px;background:var(--g14);padding:6px;border-radius:16px}.sopa td{width:38px;height:38px;text-align:center;background:#fff;border-radius:7px;font-weight:700;font-size:21px}.sopa.n13 td{width:33px;height:33px;font-size:19px}.sopa td.on{background:#FDECF2}
+.sp-l{display:grid;gap:8px}.sp-l span{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:12px;background:#F6F7FB}.sp-l img{width:34px;height:34px;object-fit:contain}.sp-l b{font-size:17px}
+.cr{display:grid;gap:18px;flex:1}.cr-g{display:grid;justify-content:center;gap:0}.cr-g i,.cr-g b{width:var(--c);height:var(--c)}.cr-g i{position:relative;display:grid;place-items:center;border:2px solid #2C3142;margin:-1px;background:#fff;font-style:normal;font-weight:700;font-size:calc(var(--c) * .5)}.cr-g sup{position:absolute;left:2px;top:0;font-size:11px;line-height:1.1;color:var(--gc);font-weight:800}
+.cr-p{display:grid;grid-template-columns:1fr 1fr;gap:18px;font-size:16px}.cr-p h4{margin:0 0 6px;font-family:Fredoka,sans-serif;font-weight:600;font-size:18px}.cr-p p{margin:0 0 5px}.cr-p b{color:var(--gc)}
+.ds{display:grid;gap:12px}.ds-r{display:grid;grid-template-columns:62px 1fr 1fr;gap:14px;align-items:center;padding:8px 12px;border-radius:16px;background:#F4FBF8}.ds .bx i{min-width:44px;height:50px;font-size:22px;border-width:2.5px}.ds .ch i{min-width:40px;height:44px;font-size:20px;padding:0 4px}
+.gl{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);gap:14px;flex:1}.gl-c{display:grid;grid-template-rows:1fr auto auto;gap:4px;padding:12px;border-radius:18px;border:2.5px solid var(--g26)}.gl-d{border-radius:12px;background:#F6F7FB;display:grid;place-items:center;min-height:120px}.gl-c b{font-size:21px;color:var(--gc)}.gl-c p{margin:0;font-size:16px}
+.un{display:grid;gap:12px;flex:1;align-content:space-evenly}.un-r{display:grid;grid-template-columns:1fr 1fr;gap:140px;align-items:center}.un-i{display:flex;align-items:center;justify-content:flex-end;gap:14px}.un-i .tcf{width:110px;height:110px}.un-n{display:flex;align-items:center;gap:14px}.un-n b{padding:10px 16px;border-radius:14px;border:2.5px solid var(--g30)}.un-n em{font-style:normal;font-size:14px;color:#C0265B}
+.fi{display:grid;gap:16px;flex:1}.fi-c{display:grid;grid-template-columns:220px 1fr;gap:18px;padding:16px;border-radius:22px;border:2.5px solid var(--g26)}.fi-i{display:grid;place-items:center;border-radius:16px;background:#F8F6FF}.fi-i .tcf{width:190px;height:190px}.fi-t p{margin:4px 0 0;font-size:18px}.fi-t .tl{height:34px}
+.mt{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr);flex:1}.mt-c{display:grid;place-items:center;border:2px dashed #B5BAC8;margin:-1px;padding:10px;text-align:center}.mt-c img{max-width:86%;max-height:150px;object-fit:contain}.mt-c b{font-size:28px}
+.tt{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1}.tt-c{display:grid;justify-items:center;align-content:start;gap:6px}.tt-f{width:280px;height:280px;border-radius:50%;border:3px dashed #9AA1B5;display:grid;place-items:center;background:#fff}.tt-f img{width:84%;height:84%;object-fit:contain}.tt-c b{font-size:22px}.tt-p{width:60px;height:110px;border:2.5px dashed #9AA1B5;border-top:0;border-radius:0 0 12px 12px;font-size:10px;color:#9AA1B5;display:grid;place-items:center;text-align:center;writing-mode:vertical-rl;margin-top:-6px}
+/* tapa */
+.tcp-tapa{padding:0;gap:0;align-items:center;justify-content:flex-start}.tcp-tapa::before{border-color:#E8E2FF}
+.tt-bg{position:absolute;inset:0;background:radial-gradient(60% 40% at 15% 10%,#EDE7FF,transparent 70%),radial-gradient(55% 40% at 90% 30%,#FFE6F0,transparent 70%),radial-gradient(70% 45% at 50% 100%,#FFF3DC,transparent 70%)}
+.tt-top{position:relative;display:flex;align-items:center;gap:10px;margin-top:56px;font-weight:700;color:#6B5BD6;font-size:16px;letter-spacing:.12em;text-transform:uppercase}.tt-top img{height:46px}
+.tt-tit{position:relative;text-align:center;margin-top:34px;padding:0 60px}.tt-tit small{display:inline-block;padding:5px 14px;border-radius:999px;background:#fff;color:#E9547B;font-weight:700;font-size:15px;box-shadow:0 2px 0 #F6C5D6}.tt-tit h1{margin:14px 0 6px;font-family:Fredoka,sans-serif;font-weight:700;font-size:64px;line-height:1.02;color:#2C2560}.tt-tit p{margin:0;font-size:20px;color:#6B6F80;font-weight:700}
+.tt-pers{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:6px;margin-top:30px;height:430px;width:100%;padding:0 50px}.tt-pers figure{margin:0;display:grid;justify-items:center;gap:6px;flex:0 1 220px}.tt-pers img{width:100%;max-height:330px;object-fit:contain;filter:drop-shadow(0 8px 10px #0002)}.tt-pers.n1 figure{flex-basis:360px}.tt-pers.n1 img{max-height:400px}
+.tt-pers figcaption{font-family:Fredoka,sans-serif;font-weight:600;font-size:18px;color:#2C2560;background:#fff;padding:3px 12px;border-radius:999px}.tt-dib{font-size:180px;align-self:center}
+.tt-chips{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px;padding:0 60px}.tt-chips span{padding:6px 14px;border-radius:999px;background:#fff;border:2px solid #E8E2FF;font-weight:700;font-size:15px;color:#4A4380}
+.tt-nom{position:relative;display:flex;align-items:flex-end;gap:12px;width:560px;margin-top:34px;font-weight:700;font-size:18px;color:#4A4380}.tt-nom i{flex:1;border-bottom:2.5px solid #B9B2E6;height:24px}
+/* relleno de hoja */
+.tcp-b.qs{justify-content:space-around}
+.vf,.sl,.ar,.ds,.pm,.nv,.wc3{flex:1;align-content:space-evenly}.wc3{grid-auto-rows:minmax(0,1fr)}.wcard{min-height:0}
+.vf-r{padding:14px 16px}.vf-r span{font-size:20px}
+.sp-w{flex:1;align-content:center;align-items:center}.sopa.n11 td{width:44px;height:44px;font-size:24px}.sopa.n13 td{width:37px;height:37px;font-size:21px}.sp-l b{font-size:18px}
+.cr{align-content:space-evenly}.cr-p{font-size:17px;color:#1F2433}
+.mt{align-content:center}.wcard .big.lg{font-size:20px}
+.ds-r{grid-template-columns:62px minmax(0,1fr) auto}
+.pm-c{padding:14px}.sl-r{padding:12px 14px}
+.cr-p{text-align:left}.tt{grid-auto-rows:min-content;align-content:space-evenly}.tt-f{width:240px;height:240px}.tt-p{height:80px}
+.tc-cfg label.tc-sw{display:inline-flex;margin:0;color:var(--ink);font-size:13.5px}.tc-bar{background:color-mix(in srgb,var(--surface) 97%,transparent)}
+.tcp-b>*{min-height:0}.wc3 .wcard{overflow:hidden}.wc3 .tcf-v.sm{width:54px;height:54px}
+
 .an-body{display:grid;gap:14px}
 .an-hero{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .an-k{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;column-gap:10px;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow);min-width:0}.an-k>span{grid-row:1/4;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--surface-2);font-size:19px}.an-k small{font-size:12px;color:var(--muted);font-weight:700}.an-k b{font-size:23px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.an-k em{font-style:normal;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -2871,6 +3013,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     <button class="tab" role="tab" data-view="materiales" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Materiales</span><span class="n" id="nMats">—</span></button>
     <button class="tab" role="tab" data-view="calendario" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Calendario</span></button>
     <button class="tab" role="tab" data-view="motor" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg><span>Motor creador</span></button>
+    <button class="tab" role="tab" data-view="cuentos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5.5C4 4.5 7 4.3 12 6c5-1.7 8-1.5 10-.5V19c-2-1-5-1.2-10 .5C7 17.8 4 18 2 19z"/><path d="M12 6v13.5"/></svg><span>Taller del cuento</span></button>
     <button class="tab" role="tab" data-view="lanzamientos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.5-2 4.5-2 6 1.5 0 4.5-.5 6-2"/><path d="M9 15l-3-3c1-4 4.5-8 12-9-1 7.5-5 11-9 12z"/><circle cx="14.5" cy="9.5" r="1.5"/></svg><span>Lanzamientos</span><span class="n" id="nLanz">—</span></button>
     <button class="tab" role="tab" data-view="mensajes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Mensajes</span></button>
     <button class="tab" role="tab" data-view="igbot" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Respuestas IG</span></button>
@@ -3187,6 +3330,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 </main>
 
 <!-- ============ MOTOR ============ -->
+<main class="wrap view" id="view-cuentos" hidden></main>
 <main class="wrap view" id="view-motor" hidden>
   <section class="mz-hero" id="mzHero" aria-label="Estudio creativo"></section>
   <span class="pill info" id="motorMode" hidden></span>
@@ -4778,7 +4922,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","lanzamientos","mensajes","igbot","redstats","pinterest","youtube","campana","anuncios","reciclar","embudo","mapa","video","pdf","fichas","plataformas","correos","datos"];
+  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","cuentos","lanzamientos","mensajes","igbot","redstats","pinterest","youtube","campana","anuncios","reciclar","embudo","mapa","video","pdf","fichas","plataformas","correos","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -4802,6 +4946,7 @@ function renderView(v){
   if(v==="mapa") ngMapaInit();
   if(v==="campana") cpInit();
   if(v==="anuncios") anInit();
+  if(v==="cuentos") tcInit();
   if(v==="reciclar") rc2Init();
   if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
@@ -5721,7 +5866,7 @@ function mzHero() {
   const gaps = upcomingEfes(366).filter((u) => !efeInfo(u.e).rel.length); const g = gaps[0];
   const prox = upcomingEfes(60).find((u) => efeInfo(u.e).rel.length);
   box.innerHTML = `<div class="mz-h-t"><span class="mz-k">✨ Estudio creativo</span><h1>Motor creador</h1><p>Planificá la secuencia y el cuadernillo con tu estilo, miralo hoja por hoja y llevalo a Corel.</p>
-      <div class="mz-h-acts"><button class="btn primary mz-big" type="button" data-mzwiz>✨ Nuevo material</button><button class="btn mz-big2" type="button" data-isopen="act">🖼️ Estudio de imágenes</button><button class="btn" type="button" id="mzFoco" aria-pressed="${document.querySelector(".app").classList.contains("mz-foco")}">🎯 Modo foco</button></div></div>
+      <div class="mz-h-acts"><button class="btn primary mz-big" type="button" data-mzwiz>✨ Nuevo material</button><button class="btn mz-big2" type="button" data-isopen="act">🖼️ Estudio de imágenes</button><button class="btn" type="button" onclick="showView('cuentos')">📖 Taller del cuento</button><button class="btn" type="button" id="mzFoco" aria-pressed="${document.querySelector(".app").classList.contains("mz-foco")}">🎯 Modo foco</button></div></div>
     <div class="mz-h-s">
       <div class="mz-stat"><span>📝</span><b>${nf(hist.length)}</b><small>${hist.length === 1 ? "material planificado" : "materiales planificados"}</small></div>
       ${g ? `<button class="mz-stat mz-gap" type="button" data-mzwizefe="${g.e[0]}"><span>${mzIcon(g.e[0])}</span><b>${esc(g.e[1])}</b><small>Sin material · faltan ${g.diff} días</small><em>Crear ahora →</em></button>` : ""}
@@ -17084,7 +17229,7 @@ function ytEnlazar(v){
     if(!map[t.id]) return; map[t.id](); clearTimeout(YT.tm); YT.tm=setTimeout(()=>{ const c=(id,n,max)=>{ const k=$(`[data-cnt="${id}"]`); if(k){ k.textContent=`${n}/${max}`; k.classList.toggle("over",n>max); } }; c("ytTit",YT.tit.length,100); c("ytDesc",YT.desc.length,5000); if(/^yt(Tit|Desc|Mini)/.test(t.id)) ytPrev(); ytPintarSeo(); },150); }); }
 
 // ---------- Menú lateral agrupado por utilidad ----------
-const NAV_GRUPOS=[["principal","",["inicio","calendario"]],["ventas","💰 Ventas y clientes",["ventas","stats","embudo","mapa","clientes","materiales","correos"]],["redes","📣 Redes sociales",["instagram","redstats","campana","anuncios","reciclar","igbot","pinterest","youtube","mensajes","lanzamientos"]],["crear","🎨 Crear y diseñar",["motor","plataformas","video","fichas","pdf"]],["sistema","⚙️ Sistema",["datos"]]];
+const NAV_GRUPOS=[["principal","",["inicio","calendario"]],["ventas","💰 Ventas y clientes",["ventas","stats","embudo","mapa","clientes","materiales","correos"]],["redes","📣 Redes sociales",["instagram","redstats","campana","anuncios","reciclar","igbot","pinterest","youtube","mensajes","lanzamientos"]],["crear","🎨 Crear y diseñar",["motor","cuentos","plataformas","video","fichas","pdf"]],["sistema","⚙️ Sistema",["datos"]]];
 function navCerrados(){ try{ return JSON.parse(localStorage.getItem("cofre-navg")||"[]"); }catch{ return []; } }
 function navGuardar(){ try{ localStorage.setItem("cofre-navg",JSON.stringify([...document.querySelectorAll(".nav-g.cerrado")].map(g=>g.dataset.g))); }catch{} }
 function navGrupoDe(v){ const g=NAV_GRUPOS.find(x=>x[2].includes(v)); return g?g[0]:"sistema"; }
@@ -18324,6 +18469,334 @@ function ahBind(){ const v=$("#view-anuncios"); if(!v||v.dataset.ah) return; v.d
   v.addEventListener("mousemove",e=>{ const el=e.target.closest("[data-tip]"); if(!ahTipEl){ ahTipEl=document.createElement("div"); ahTipEl.className="ah-tip"; ahTipEl.hidden=true; document.body.appendChild(ahTipEl); }
     if(!el||!v.contains(el)){ ahTipEl.hidden=true; return; } ahTipEl.textContent=el.dataset.tip; ahTipEl.hidden=false; const w=ahTipEl.offsetWidth, h=ahTipEl.offsetHeight; let x=e.clientX+14, y=e.clientY+14; if(x+w>innerWidth-8) x=e.clientX-w-14; if(y+h>innerHeight-8) y=e.clientY-h-14; ahTipEl.style.left=x+"px"; ahTipEl.style.top=y+"px"; });
   v.addEventListener("mouseleave",()=>{ if(ahTipEl) ahTipEl.hidden=true; }); }
+
+// ---------- TALLER DEL CUENTO · motor ----------
+const TC={paso:1,texto:"",arch:"",scan:null,A:null,pers:[],nivel:"1c",letra:"may",sel:null,paginas:[],sol:true,bn:false,tapa:true,fondo:true,busy:"",prog:0,ver:null,manual:false};
+const TC_NIV=[["ini","Nivel inicial","Salas de 4 y 5"],["1c","Primer ciclo","1.º a 3.º grado"],["2c","Segundo ciclo","4.º a 6.º grado"]];
+const TC_LET=[["may","MAYÚSCULA","Imprenta mayúscula"],["min","minúscula","Imprenta minúscula"],["cur","Cursiva","Letra cursiva"]];
+const TC_GR={comp:["📖","Comprensión lectora","#3E7BFA"],voc:["🔤","Vocales y letras","#E9547B"],sil:["👏","Sílabas","#F08C00"],pal:["🧩","Palabras y juegos","#12A377"],per:["🧸","Con los personajes","#8B5CF6"]};
+// [id, grupo, ícono, título, descripción, requiere, niveles]
+const TC_ACTS=[
+ ["c1","comp","🔎","Busco en el cuento","Preguntas literales con renglones","q","1c2c"],
+ ["c2","comp","🤔","Pienso y respondo","Preguntas para inferir y opinar","q","1c2c"],
+ ["c3","comp","✅","Verdadero o falso","Afirmaciones para marcar V o F","q","1c2c"],
+ ["c4","comp","🔘","Elijo la respuesta","Opción múltiple","q","1c2c"],
+ ["c5","comp","🎞️","Ordeno la historia","Numerar los momentos del cuento","m","1c2c"],
+ ["c6","comp","💬","¿Quién lo dijo?","Unir cada frase con su personaje","d","1c2c"],
+ ["c7","comp","🎨","Mi parte favorita","Dibujar y escribir una opinión","","ini1c2c"],
+ ["v1","voc","🅰️","Completo las vocales","Palabras del cuento sin vocales","w","1c"],
+ ["v2","voc","🔠","¿Con qué letra empieza?","Letra inicial de cada palabra","w","ini1c"],
+ ["v3","voc","🖍️","Pinto las vocales","Nombres de los personajes en letras","p","ini1c"],
+ ["s1","sil","✂️","Separo en sílabas","Una sílaba en cada casillero","w","1c2c"],
+ ["s2","sil","👏","Cuento las palmadas","Pintar un círculo por sílaba","w","ini1c"],
+ ["s3","sil","🧱","Armo palabras","Sílabas desordenadas para unir","w","1c"],
+ ["p1","pal","🔍","Sopa de letras","Con las palabras del cuento","w","1c2c"],
+ ["p2","pal","✏️","Crucigrama","Pistas con el vocabulario","x","1c2c"],
+ ["p3","pal","🔀","Letras desordenadas","Ordenar letras y escribir","w","1c2c"],
+ ["p4","pal","📚","Glosario ilustrado","Palabras nuevas para dibujar","v","1c2c"],
+ ["k1","per","🔗","Uno cada personaje","Imagen con su nombre","pi","ini1c2c"],
+ ["k2","per","🪪","Ficha del personaje","Cómo es y qué hace","p","1c2c"],
+ ["k3","per","🃏","Memotest","Tarjetas para recortar y jugar","pi","ini1c2c"],
+ ["k4","per","🎭","Títeres de palito","Para recortar y dramatizar","pi","ini1c2c"]];
+const TC_REC=[["🌱","Nivel inicial",["c7","v3","v2","s2","k1","k3","k4"],"ini"],["🔤","Alfabetización 1.er ciclo",["v1","v2","v3","s1","s2","s3","p3","p1","k1"],"1c"],["📖","Comprensión 1.er ciclo",["c1","c3","c5","c6","k2","c7","p1","k3"],"1c"],["🧠","Comprensión 2.º ciclo",["c1","c2","c3","c4","c5","c6","p2","p4","k2"],"2c"]];
+const tcAct=id=>TC_ACTS.find(a=>a[0]===id);
+
+// ---- utilidades ----
+function tcRng(s){ return ()=>{ s|=0; s=s+0x6D2B79F5|0; let t=Math.imul(s^s>>>15,1|s); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function tcMez(a,r){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const tcSinTilde=s=>String(s).normalize("NFD").replace(/([aeiouAEIOU])[́̈]/g,"$1").replace(/ñ/g,"ñ").replace(/Ñ/g,"Ñ").normalize("NFC");
+const tcCap=s=>{ s=String(s||"").trim(); return s.charAt(0).toUpperCase()+s.slice(1); };
+const tcEsc=s=>esc(String(s==null?"":s));
+// separación en sílabas (castellano)
+function tcSilabas(pal){ const w=String(pal||"").toLowerCase().trim(); if(!w) return []; if(/\s/.test(w)) return w.split(/\s+/).flatMap(tcSilabas);
+  const V="aeiouáéíóúü", FUER="aeoáéíóú", ACW="íú", insep=new Set(["pr","pl","br","bl","fr","fl","tr","dr","cr","cl","gr","gl","ch","ll","rr","tl","qu","gu"]);
+  const ch=[...w]; const isV=i=>{ const c=ch[i]; if(c==="y") return !(i+1<ch.length&&V.includes(ch[i+1]))&&i>0; if(c==="u"&&i>0&&(ch[i-1]==="q"||ch[i-1]==="g")&&i+1<ch.length&&"eiéí".includes(ch[i+1])) return false; return V.includes(c); };
+  const nuc=[]; let i=0; while(i<ch.length){ if(isV(i)){ let j=i+1; while(j<ch.length&&isV(j)){ if(FUER.includes(ch[j-1])&&FUER.includes(ch[j])) break; j++; } nuc.push([i,j]); i=j; } else i++; }
+  if(!nuc.length) return [w]; const cortes=[];
+  for(let k=0;k<nuc.length-1;k++){ const a=nuc[k][1], b=nuc[k+1][0], cons=ch.slice(a,b).join(""), n=b-a; let c;
+    if(n===0) c=a; else if(n===1) c=a; else if(n===2) c=insep.has(cons)&&!(cons==="tl")?a:a+1; else if(n===3) c=insep.has(cons.slice(1))?a+1:a+2; else c=a+2;
+    if(cons.charAt(0)==="h"&&n===1) c=a; cortes.push(c); }
+  const out=[]; let p=0; cortes.forEach(c=>{ out.push(ch.slice(p,c).join("")); p=c; }); out.push(ch.slice(p).join("")); return out.filter(Boolean); }
+function tcPalabras(){ const A=TC.A||{}, set=new Map(); (A.palabras||[]).forEach(x=>{ const p=String(x.palabra||x||"").toLowerCase().trim(); if(!p||/\s/.test(p)||p.length<2) return; let s=Array.isArray(x.silabas)?x.silabas.map(y=>String(y).toLowerCase()):null; if(!s||s.join("")!==p) s=tcSilabas(p); set.set(p,{p,s}); });
+  TC.pers.forEach(c=>{ const n=String(c.nombre||"").trim(); if(n&&!/\s/.test(n)&&n.length<=12){ const k=n.toLowerCase(); if(!set.has(k)) set.set(k,{p:k,s:tcSilabas(k),nom:n}); else set.get(k).nom=n; } });
+  return [...set.values()]; }
+function tcImgDe(p){ const f=fold(p); const c=TC.pers.find(x=>x.img&&fold(x.nombre||"")===f)||TC.pers.find(x=>x.img&&f.length>3&&fold(x.nombre||"").split(/\s+/).includes(f)); return c?c.img:null; }
+const tcNomP=w=>w.nom||w.p;
+const tcPersImg=()=>TC.pers.filter(c=>c.img&&c.nombre);
+function tcTiene(req){ const A=TC.A||{}; switch(req){ case "q": return !!(A.literales&&A.literales.length); case "m": return (A.momentos||[]).length>=4; case "d": return (A.dialogos||[]).length>=3&&TC.pers.length>=2; case "w": return tcPalabras().length>=6; case "p": return TC.pers.filter(c=>c.nombre).length>=2; case "pi": return tcPersImg().length>=2; case "x": return tcCruWords().length>=4; case "v": return (A.vocabulario||[]).length>=3; default: return true; } }
+const TC_REQTXT={q:"Necesita el cuento analizado por Claude",m:"Necesita los momentos del cuento",d:"Necesita diálogos y 2 personajes",w:"Necesita al menos 6 palabras",p:"Necesita 2 personajes",pi:"Subí la imagen de al menos 2 personajes",x:"Necesita vocabulario o personajes",v:"Necesita vocabulario"};
+
+// ---- sopa de letras ----
+function tcSopa(words,n,diag,r){ const G=Array.from({length:n},()=>Array(n).fill("")), pos=[]; const D=[[0,1],[1,0]].concat(diag?[[1,1]]:[]);
+  const W=words.map(w=>tcSinTilde(w).toUpperCase().replace(/[^A-ZÑ]/g,"")).filter(w=>w.length>=2&&w.length<=n).sort((a,b)=>b.length-a.length); const ok=[];
+  W.forEach(w=>{ for(let t=0;t<300;t++){ const [dy,dx]=D[Math.floor(r()*D.length)], y=Math.floor(r()*(n-dy*(w.length-1))), x=Math.floor(r()*(n-dx*(w.length-1)));
+      let good=true; for(let k=0;k<w.length;k++){ const c=G[y+dy*k][x+dx*k]; if(c&&c!==w[k]){ good=false; break; } } if(!good) continue;
+      for(let k=0;k<w.length;k++) G[y+dy*k][x+dx*k]=w[k]; pos.push({w,y,x,dy,dx}); ok.push(w); return; } });
+  const AB="AABCDEEFGHIIJLMNOOPRSTUUV"; for(let y=0;y<n;y++) for(let x=0;x<n;x++) if(!G[y][x]) G[y][x]=AB[Math.floor(r()*AB.length)];
+  return {G,pos,ok}; }
+// ---- crucigrama ----
+function tcCruWords(){ const A=TC.A||{}, L=[]; (A.vocabulario||[]).forEach(v=>{ const w=tcSinTilde(String(v.palabra||"")).toUpperCase().replace(/[^A-ZÑ]/g,""); if(w.length>=3&&w.length<=11&&!/\s/.test(String(v.palabra).trim())) L.push({w,pista:tcCap(v.definicion||"")}); });
+  TC.pers.forEach(c=>{ const n=String(c.nombre||"").trim(); const w=tcSinTilde(n).toUpperCase().replace(/[^A-ZÑ]/g,""); if(w.length>=3&&w.length<=11&&!/\s/.test(n)&&!L.some(x=>x.w===w)) L.push({w,pista:`Personaje: ${tcCap(c.desc||c.hace||"aparece en el cuento")}`}); });
+  return L.slice(0,11); }
+function tcCruci(list,r){ const N=31, G=Array.from({length:N},()=>Array(N).fill(null)), pl=[]; const L=tcMez(list,r).sort((a,b)=>b.w.length-a.w.length);
+  const can=(w,y,x,d)=>{ const dy=d?1:0, dx=d?0:1; if(y<0||x<0||y+dy*(w.length-1)>=N||x+dx*(w.length-1)>=N) return -1; const by=y-dy, bx=x-dx, ay=y+dy*w.length, ax=x+dx*w.length; if(G[by]&&G[by][bx]) return -1; if(G[ay]&&G[ay][ax]) return -1; let cr=0;
+    for(let k=0;k<w.length;k++){ const yy=y+dy*k, xx=x+dx*k, c=G[yy][xx]; if(c){ if(c!==w[k]) return -1; cr++; } else { const n1=d?G[yy][xx-1]:(G[yy-1]&&G[yy-1][xx]), n2=d?G[yy][xx+1]:(G[yy+1]&&G[yy+1][xx]); if(n1||n2) return -1; } } return cr; };
+  const put=(o,y,x,d)=>{ for(let k=0;k<o.w.length;k++) G[y+(d?k:0)][x+(d?0:k)]=o.w[k]; pl.push({...o,y,x,d}); };
+  if(!L.length) return null; put(L[0],15,Math.floor((N-L[0].w.length)/2),0);
+  for(const o of L.slice(1)){ let best=null; pl.forEach(p=>{ for(let i=0;i<p.w.length;i++) for(let j=0;j<o.w.length;j++){ if(p.w[i]!==o.w[j]) continue; const d=p.d?0:1, y=p.d?p.y+i:p.y-j, x=p.d?p.x-j:p.x+i; const c=can(o.w,y,x,d); if(c>0&&(!best||c>best.c||(c===best.c&&r()<.3))) best={y,x,d,c}; } }); if(best) put(o,best.y,best.x,best.d); }
+  let y0=N,x0=N,y1=0,x1=0; pl.forEach(p=>{ y0=Math.min(y0,p.y); x0=Math.min(x0,p.x); y1=Math.max(y1,p.y+(p.d?p.w.length-1:0)); x1=Math.max(x1,p.x+(p.d?0:p.w.length-1)); });
+  const starts=[...new Set(pl.map(p=>p.y*100+p.x))].sort((a,b)=>a-b); pl.forEach(p=>{ p.n=starts.indexOf(p.y*100+p.x)+1; p.y-=y0; p.x-=x0; });
+  const g=[]; for(let y=y0;y<=y1;y++){ g.push(G[y].slice(x0,x1+1)); } return {g,pl,h:y1-y0+1,w:x1-x0+1}; }
+
+// ---- imágenes de personajes: achicar y quitar fondo blanco ----
+async function tcPrepImg(file,quitar){ const url=URL.createObjectURL(file); try{ const im=await new Promise((ok,ko)=>{ const i=new Image(); i.onload=()=>ok(i); i.onerror=()=>ko(new Error("No se pudo abrir la imagen")); i.src=url; });
+    const M=700, k=Math.min(1,M/Math.max(im.width,im.height)), W=Math.round(im.width*k), H=Math.round(im.height*k); const c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d"); x.drawImage(im,0,0,W,H);
+    if(quitar){ const d=x.getImageData(0,0,W,H), p=d.data, vis=new Uint8Array(W*H), st=[]; const blanco=i=>p[i*4+3]>0&&p[i*4]>232&&p[i*4+1]>232&&p[i*4+2]>232;
+      for(let X=0;X<W;X++){ st.push(X,(H-1)*W+X); } for(let Y=0;Y<H;Y++){ st.push(Y*W,Y*W+W-1); }
+      let borde=0; while(st.length){ const i=st.pop(); if(vis[i]) continue; vis[i]=1; if(!blanco(i)) continue; borde++; p[i*4+3]=0; const X=i%W, Y=(i/W)|0; if(X>0) st.push(i-1); if(X<W-1) st.push(i+1); if(Y>0) st.push(i-W); if(Y<H-1) st.push(i+W); }
+      if(borde>W*H*.04) x.putImageData(d,0,0); }
+    return c.toDataURL("image/png"); } finally{ URL.revokeObjectURL(url); } }
+const tcDataBlob=async d=>(await fetch(d)).blob();
+
+// ---- PDF del cuento: texto o páginas escaneadas ----
+async function tcLeerPdf(file){ const L=await lzPdfjs(); const doc=await L.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise; let t="";
+  for(let i=1;i<=Math.min(doc.numPages,40);i++){ const pg=await doc.getPage(i); const c=await pg.getTextContent(); let last=null; c.items.forEach(it=>{ const y=it.transform?it.transform[5]:0; if(last!=null&&Math.abs(y-last)>4) t+="\n"; else if(t&&!t.endsWith(" ")&&!t.endsWith("\n")) t+=" "; t+=it.str; last=y; }); t+="\n\n"; }
+  t=t.replace(/[ \t]+\n/g,"\n").replace(/\n{3,}/g,"\n\n").trim(); let scan=null;
+  if(t.replace(/\s/g,"").length<300){ scan=[]; for(let i=1;i<=Math.min(doc.numPages,8);i++){ const pg=await doc.getPage(i), vp=pg.getViewport({scale:1}), k=1200/Math.max(vp.width,vp.height), v2=pg.getViewport({scale:k}); const c=document.createElement("canvas"); c.width=v2.width; c.height=v2.height; await pg.render({canvasContext:c.getContext("2d"),viewport:v2}).promise; scan.push(await new Promise(ok=>c.toBlob(ok,"image/jpeg",.85))); } }
+  const n=doc.numPages; doc.destroy(); return {t,scan,n}; }
+
+// ---- Claude: análisis del cuento ----
+const TC_NIVTXT={ini:"nivel inicial (niños de 4 y 5 años que todavía no leen solos: consignas muy cortas para que lea la docente)",["1c"]:"primer ciclo de primaria (1.º a 3.º grado, alfabetización inicial: oraciones cortas y palabras simples)",["2c"]:"segundo ciclo de primaria (4.º a 6.º grado: comprensión más profunda, inferencias y opinión)"};
+async function tcAnalizar(){ const sf=await getSample(); if(!sf) throw new Error("El análisis lo hace Claude: usalo desde el panel dentro de Claude. En la versión web podés cargar los datos a mano.");
+  const lim=sf.limits?await sf.limits():{}; const imgs=TC.scan&&TC.scan.length&&lim.images?TC.scan:null; if(!TC.texto.trim()&&!imgs) throw new Error("Subí el PDF o pegá el texto del cuento");
+  const txt=TC.texto.trim().slice(0,30000);
+  const P=`Sos una docente argentina experta en alfabetización y literatura infantil. Analizá este cuento para armar un cuadernillo de actividades de ${TC_NIVTXT[TC.nivel]}. Escribí en español rioplatense (vos), con lenguaje claro y apropiado para chicos.
+${imgs?"El cuento está en las imágenes adjuntas (páginas escaneadas).":"CUENTO:\n\"\"\"\n"+txt+"\n\"\"\""}
+Devolvé SOLO un objeto JSON con estas claves:
+- "titulo": título del cuento. "autor": autor o "" si no figura.
+- "resumen": 2 oraciones.
+- "personajes": hasta 8, [{"nombre","descripcion" (cómo es, 1 oración simple),"hace" (qué hace en el cuento, 1 oración)}].
+- "lugares": hasta 6 lugares del cuento.
+- "momentos": EXACTAMENTE 6 oraciones cortas (máx. 12 palabras) en presente y en orden cronológico, que resuman toda la historia.
+- "dialogos": hasta 6 [{"personaje","frase"}]; frases textuales del cuento o muy fieles a lo que dice cada personaje (máx. 14 palabras). El "personaje" tiene que coincidir con un nombre de "personajes".
+- "palabras": 16 palabras del cuento para alfabetización: sustantivos concretos fáciles de dibujar, de 2 a 4 sílabas, en minúscula y singular, sin repetir, [{"palabra","silabas":[...]}] con la separación en sílabas correcta.
+- "vocabulario": 8 palabras nuevas o difíciles del cuento (una sola palabra cada una) [{"palabra","definicion" (máx. 12 palabras, simple)}].
+- "literales": 6 preguntas que se responden buscando en el texto [{"p","r"}].
+- "inferenciales": 4 preguntas para pensar e inferir [{"p","r"}].
+- "criticas": 3 preguntas de opinión o valoración [{"p"}].
+- "vf": 8 afirmaciones sobre el cuento, la mitad verdaderas [{"a","v":true|false}].
+- "opciones": 5 preguntas de opción múltiple [{"p","ops":[3 opciones],"ok": índice 0-2 de la correcta}].
+- "opinion": una consigna breve de escritura creativa u opinión sobre el cuento.
+Adaptá la dificultad de las preguntas al nivel. No inventes hechos que no estén en el cuento.`;
+  const o={modelTier:"complex",cache:false}; if(imgs) o.images=imgs; const r=await sf.json(P,o); if(!r||!Array.isArray(r.momentos)) throw new Error("Claude no devolvió el análisis completo. Probá de nuevo."); return r; }
+async function tcReconocer(){ const sf=await getSample(); if(!sf) return false; const lim=sf.limits?await sf.limits():{}; if(!lim.images) return false; const L=TC.pers.filter(c=>c.img&&c.auto); if(!L.length) return false;
+  const nombres=((TC.A&&TC.A.personajes)||[]).map(p=>p.nombre); const imgs=await Promise.all(L.map(c=>tcDataBlob(c.img)));
+  const r=await sf.json(`Estas ${L.length} imágenes son personajes${TC.A&&TC.A.titulo?` del cuento "${TC.A.titulo}"`:" de un cuento infantil"}. ${nombres.length?`Personajes del cuento: ${nombres.join(", ")}.`:""} Para cada imagen, en el mismo orden, decí qué personaje es${nombres.length?" (usá exactamente uno de esos nombres)":" (inventá un nombre si no se sabe)"} y describilo en una oración simple para chicos. Devolvé SOLO JSON: {"imagenes":[{"nombre","descripcion"}]}`,{images:imgs,cache:false});
+  (r&&r.imagenes||[]).forEach((x,i)=>{ const c=L[i]; if(!c||!x) return; const dup=TC.pers.find(p=>p!==c&&!p.img&&fold(p.nombre)===fold(x.nombre||"")); if(dup){ dup.img=c.img; TC.pers.splice(TC.pers.indexOf(c),1); } else { c.nombre=x.nombre||c.nombre; if(!c.desc) c.desc=x.descripcion||""; } c.auto=false; });
+  return true; }
+function tcPersDeAnalisis(){ const A=TC.A||{}; (A.personajes||[]).forEach(p=>{ const ex=TC.pers.find(c=>fold(c.nombre||"")===fold(p.nombre||"")); if(ex){ ex.desc=ex.desc||p.descripcion||""; ex.hace=ex.hace||p.hace||""; } else TC.pers.push({id:"p"+Math.random().toString(36).slice(2,8),nombre:p.nombre||"",desc:p.descripcion||"",hace:p.hace||"",img:null}); }); }
+function tcGuardarLocal(){ try{ localStorage.setItem("cofre-taller",JSON.stringify({A:TC.A,texto:TC.texto.slice(0,40000),arch:TC.arch,nivel:TC.nivel,letra:TC.letra,sel:TC.sel,sol:TC.sol,bn:TC.bn,tapa:TC.tapa,pers:TC.pers.map(c=>({...c,img:c.img&&c.img.length<350000?c.img:null}))})); }catch{} }
+function tcCargarLocal(){ try{ const o=JSON.parse(localStorage.getItem("cofre-taller")||"null"); if(!o) return; Object.assign(TC,{A:o.A||null,texto:o.texto||"",arch:o.arch||"",nivel:o.nivel||"1c",letra:o.letra||"may",sel:o.sel||null,sol:o.sol!==false,bn:!!o.bn,tapa:o.tapa!==false,pers:o.pers||[]}); }catch{} }
+
+// ---------- TALLER DEL CUENTO · hojas A4 ----------
+function tcMix(hex,p){ const n=parseInt(hex.slice(1),16), r=n>>16, g=n>>8&255, b=n&255, m=c=>Math.round(c*p/100+255*(1-p/100)); return "#"+[m(r),m(g),m(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
+function tcVars(hex){ const d=(c,k)=>Math.round(c*k); const n=parseInt(hex.slice(1),16); return `--gc:${hex};--gd:#${[n>>16,n>>8&255,n&255].map(c=>d(c,.75).toString(16).padStart(2,"0")).join("")};`+[6,8,14,16,26,30,32,35,40,55,60].map(k=>`--g${k}:${tcMix(hex,k)}`).join(";"); }
+function tcLogo(){ const i=document.querySelector('img[alt="Logo de Cofre Didáctico"]'); return i?i.src:""; }
+const tcLn=(n,cls)=>Array.from({length:n},()=>`<div class="tl ${cls||""}"></div>`).join("");
+const tcFig=(img,cls)=>img?`<img class="tcf ${cls||""}" src="${img}" alt="">`:`<span class="tcf tcf-v ${cls||""}"><em>Dibujalo</em></span>`;
+function tcHoja(act,body,o={}){ const a=tcAct(act)||["","per","📖",o.titulo||""], g=TC_GR[a[1]]||TC_GR.per, A=TC.A||{};
+  return `<div class="tcp ${o.sol?"sol":""}" style="${tcVars(g[2])}" data-letra="${TC.letra}">
+    <header class="tcp-h"><span class="tcp-ic">${a[2]}</span><div class="tcp-tt"><small>${tcEsc(A.titulo||"Mi cuento")}${o.sol?" · SOLUCIONES":""}</small><h2>${tcEsc(o.titulo||a[3])}</h2></div>${o.sol?`<span class="tcp-sl">Para la docente</span>`:`<div class="tcp-nm"><span>Nombre:</span><i></i><span>Fecha:</span><i></i></div>`}</header>
+    ${o.cons?`<p class="tcp-cs tx"><b>${a[2]}</b> ${tcEsc(o.cons)}</p>`:""}
+    <div class="tcp-b ${o.cls||""}">${body}</div>
+    <footer class="tcp-f"><span>${tcLogo()?`<img src="${tcLogo()}" alt="">`:""}Cofre Didáctico</span><span>cofredidactico.com.ar · @cofredidactico</span></footer></div>`; }
+
+function tcTapa(){ const A=TC.A||{}, P=tcPersImg().slice(0,5);
+  return `<div class="tcp tcp-tapa" style="${tcVars("#7C5CFF")}" data-letra="${TC.letra}"><div class="tt-bg"></div>
+    <div class="tt-top">${tcLogo()?`<img src="${tcLogo()}" alt="">`:""}<span>Cuadernillo de actividades</span></div>
+    <div class="tt-tit"><small>${tcEsc((TC_NIV.find(n=>n[0]===TC.nivel)||[])[1]||"")}</small><h1>${tcEsc(A.titulo||"Mi cuento")}</h1>${A.autor?`<p>${tcEsc(A.autor)}</p>`:""}</div>
+    <div class="tt-pers n${P.length}">${P.map((c,i)=>`<figure style="--i:${i}"><img src="${c.img}" alt=""><figcaption>${tcEsc(c.nombre)}</figcaption></figure>`).join("")||`<div class="tt-dib">📖</div>`}</div>
+    <div class="tt-chips">${["Comprensión lectora","Vocales y sílabas","Palabras y juegos","Personajes"].map(t=>`<span>${t}</span>`).join("")}</div>
+    <div class="tt-nom"><span>Este cuadernillo es de:</span><i></i></div>
+    <footer class="tcp-f"><span>Cofre Didáctico</span><span>cofredidactico.com.ar · @cofredidactico</span></footer></div>`; }
+
+// cada generador devuelve {html, sol?}
+const TC_GEN={
+ c1(r){ const L=(TC.A.literales||[]).slice(0,6); const f=s=>L.map((q,i)=>`<div class="q"><p class="tx"><b>${i+1}.</b> ${tcEsc(q.p)}</p>${s?`<p class="rs tx">${tcEsc(q.r)}</p>`:tcLn(TC.nivel==="2c"?2:2,"dbl")}</div>`).join("");
+   return {html:tcHoja("c1",f(0),{cons:"Leé con atención y respondé buscando en el cuento.",cls:"qs"}),sol:tcHoja("c1",f(1),{sol:1,cls:"qs"})}; },
+ c2(r){ const I=(TC.A.inferenciales||[]).slice(0,4), C=(TC.A.criticas||[]).slice(0,2); const f=s=>`${I.map((q,i)=>`<div class="q"><p class="tx"><b>🤔</b> ${tcEsc(q.p)}</p>${s?`<p class="rs tx">${tcEsc(q.r)}</p>`:tcLn(2)}</div>`).join("")}${C.map(q=>`<div class="q op"><p class="tx"><b>💭</b> ${tcEsc(q.p)}</p>${s?`<p class="rs tx">Respuesta personal.</p>`:tcLn(3)}</div>`).join("")}`;
+   return {html:tcHoja("c2",f(0),{cons:"Pensá y respondé con tus palabras.",cls:"qs"}),sol:tcHoja("c2",f(1),{sol:1,cls:"qs"})}; },
+ c3(r){ const L=tcMez(TC.A.vf||[],r).slice(0,8); const f=s=>`<div class="vf">${L.map((x,i)=>`<div class="vf-r"><span class="tx">${i+1}. ${tcEsc(x.a)}</span><i class="${s&&x.v?"on":""}">V</i><i class="${s&&!x.v?"on":""}">F</i></div>`).join("")}</div>`;
+   return {html:tcHoja("c3",f(0),{cons:"Marcá con una cruz: V si es verdadero, F si es falso."}),sol:tcHoja("c3",f(1),{sol:1})}; },
+ c4(r){ const L=(TC.A.opciones||[]).slice(0,5); const f=s=>L.map((q,i)=>`<div class="mc"><p class="tx"><b>${i+1}.</b> ${tcEsc(q.p)}</p><div>${(q.ops||[]).map((o,j)=>`<span class="tx ${s&&j===+q.ok?"on":""}"><i></i>${tcEsc(o)}</span>`).join("")}</div></div>`).join("");
+   return {html:tcHoja("c4",f(0),{cons:"Pintá el círculo de la respuesta correcta.",cls:"qs"}),sol:tcHoja("c4",f(1),{sol:1,cls:"qs"})}; },
+ c5(r){ const M=(TC.A.momentos||[]).slice(0,6).map((t,i)=>({t,i})), X=tcMez(M,r); const f=s=>`<div class="sq">${X.map(m=>`<div class="sq-c"><span class="sq-n">${s?m.i+1:""}</span><div class="sq-d"><em>Dibujá</em></div><p class="tx">${tcEsc(m.t)}</p></div>`).join("")}</div>`;
+   return {html:tcHoja("c5",f(0),{cons:"Leé, numerá del 1 al 6 según el orden en que pasó y dibujá cada momento."}),sol:tcHoja("c5",f(1),{sol:1})}; },
+ c6(r){ const D=(TC.A.dialogos||[]).slice(0,5), nom=[...new Set(D.map(d=>d.personaje))].map(n=>TC.pers.find(c=>fold(c.nombre||"")===fold(n||""))||{nombre:n}), PX=tcMez(nom,r);
+   const f=s=>`<div class="qd"><div class="qd-f">${D.map((d,i)=>`<div class="bb"><p class="tx">“${tcEsc(d.frase)}”</p>${s?`<b class="tx">${tcEsc(d.personaje)}</b>`:""}<i class="dot"></i></div>`).join("")}</div><div class="qd-p">${PX.map(c=>`<div class="pc"><i class="dot"></i>${tcFig(c.img)}<b class="tx">${tcEsc(c.nombre)}</b></div>`).join("")}</div></div>`;
+   return {html:tcHoja("c6",f(0),{cons:"Uní con una flecha cada frase con el personaje que la dijo."}),sol:tcHoja("c6",f(1),{sol:1})}; },
+ c7(r){ const A=TC.A||{}; const ini=TC.nivel==="ini";
+   return {html:tcHoja("c7",`<div class="fav"><div class="fav-d"><em>${ini?"Dibujá tu parte favorita del cuento":"Dibujá tu parte favorita"}</em></div>${ini?`<div class="fav-c"><p class="tx">¿Te gustó el cuento?</p><div class="em"><span>😀</span><span>😐</span><span>☹️</span></div></div>`:`<p class="tx">${tcEsc(A.opinion||"¿Por qué elegiste esa parte? Contalo con tus palabras.")}</p>${tcLn(5,"dbl")}`}</div>`,{cons:ini?"Escuchá el cuento, dibujá y pintá la carita.":"Dibujá y escribí."})}; },
+ v1(r){ const W=tcMez(tcPalabras(),r).slice(0,12); const f=s=>`<div class="wc3">${W.map(w=>{ const p=tcNomP(w); return `<div class="wcard">${tcFig(tcImgDe(w.p),"sm")}<span class="tx big ${p.length>8?"lg":""}">${[...p].map(c=>/[aeiouáéíóúü]/i.test(c)?`<u class="hole">${s?c:""}</u>`:tcEsc(c)).join("")}</span></div>`; }).join("")}</div>`;
+   return {html:tcHoja("v1",f(0),{cons:"Completá las vocales que faltan: a, e, i, o, u."}),sol:tcHoja("v1",f(1),{sol:1})}; },
+ v2(r){ const W=tcMez(tcPalabras(),r).sort((a,b)=>(!!tcImgDe(b.p))-(!!tcImgDe(a.p))).slice(0,9); const f=s=>`<div class="wc3">${W.map(w=>{ const p=tcNomP(w); return `<div class="wcard tall">${tcFig(tcImgDe(w.p))}<span class="tx big"><u class="hole">${s?tcEsc(p.charAt(0)):""}</u>${tcEsc(p.slice(1))}</span></div>`; }).join("")}</div>`;
+   return {html:tcHoja("v2",f(0),{cons:"¿Con qué letra empieza? Escribila en el casillero."}),sol:tcHoja("v2",f(1),{sol:1})}; },
+ v3(r){ const P=TC.pers.filter(c=>c.nombre).slice(0,5);
+   return {html:tcHoja("v3",`<div class="nv">${P.map(c=>`<div class="nv-r">${tcFig(c.img,"sm")}<div class="nv-l">${[...tcSinTilde(c.nombre).toUpperCase()].map(ch=>ch===" "?`<span class="sp"></span>`:`<span class="lt imp">${tcEsc(ch)}</span>`).join("")}</div></div>`).join("")}<div class="nv-k"><span class="lt imp">A</span><span class="lt imp">E</span><span class="lt imp">I</span><span class="lt imp">O</span><span class="lt imp">U</span><em>Pintá las vocales de rojo y las consonantes de azul.</em></div></div>`,{cons:"Buscá las vocales en el nombre de cada personaje y pintalas."})}; },
+ s1(r){ const W=tcMez(tcPalabras().filter(w=>w.s.length>=2),r).slice(0,8); const f=s=>`<div class="sl">${W.map(w=>`<div class="sl-r">${tcFig(tcImgDe(w.p),"sm")}<span class="tx big">${tcEsc(tcNomP(w))}</span><span class="arr">➜</span><span class="bx">${w.s.map(x=>`<i class="tx">${s?tcEsc(x):""}</i>`).join("")}</span></div>`).join("")}</div>`;
+   return {html:tcHoja("s1",f(0),{cons:"Separá cada palabra en sílabas: una sílaba en cada casillero."}),sol:tcHoja("s1",f(1),{sol:1})}; },
+ s2(r){ const W=tcMez(tcPalabras(),r).slice(0,10); const f=s=>`<div class="pm">${W.map(w=>`<div class="pm-c">${tcFig(tcImgDe(w.p),"sm")}<span class="tx big">${tcEsc(tcNomP(w))}</span><span class="cir">${[1,2,3,4].map(k=>`<i class="${s&&k<=w.s.length?"on":""}"></i>`).join("")}</span></div>`).join("")}</div>`;
+   return {html:tcHoja("s2",f(0),{cons:"Decí cada palabra aplaudiendo: pintá un círculo por cada palmada."}),sol:tcHoja("s2",f(1),{sol:1})}; },
+ s3(r){ const W=tcMez(tcPalabras().filter(w=>w.s.length>=2),r).slice(0,8); const f=s=>`<div class="ar">${W.map(w=>{ let x=tcMez(w.s,r); if(x.join("")===w.s.join("")) x=x.slice().reverse(); return `<div class="ar-r"><span class="ch">${x.map(y=>`<i class="tx">${tcEsc(y)}</i>`).join("")}</span><span class="arr">➜</span><span class="wl tx">${s?tcEsc(w.p):""}</span></div>`; }).join("")}</div>`;
+   return {html:tcHoja("s3",f(0),{cons:"Ordená las sílabas y escribí la palabra."}),sol:tcHoja("s3",f(1),{sol:1})}; },
+ p1(r){ const W=tcMez(tcPalabras(),r).slice(0,TC.nivel==="2c"?12:9).map(w=>tcNomP(w)); const n=TC.nivel==="2c"?13:11; const S=tcSopa(W,n,TC.nivel==="2c",r); const on=new Set(); S.pos.forEach(p=>{ for(let k=0;k<p.w.length;k++) on.add((p.y+p.dy*k)*100+p.x+p.dx*k); });
+   const f=s=>`<div class="sp-w"><table class="sopa imp n${n}">${S.G.map((row,y)=>`<tr>${row.map((c,x)=>`<td class="${s&&on.has(y*100+x)?"on":""}">${c}</td>`).join("")}</tr>`).join("")}</table><div class="sp-l">${S.ok.map(w=>{ const im=tcImgDe(w.toLowerCase()); return `<span>${im?`<img src="${im}" alt="">`:""}<b class="imp">${w}</b></span>`; }).join("")}</div></div>`;
+   return {html:tcHoja("p1",f(0),{cons:`Encontrá estas ${S.ok.length} palabras del cuento${TC.nivel==="2c"?" (hacia el costado, hacia abajo y en diagonal)":" (hacia el costado y hacia abajo)"}.`}),sol:tcHoja("p1",f(1),{sol:1})}; },
+ p2(r){ const C=tcCruci(tcCruWords(),r); if(!C) return null; const cell=Math.min(54,Math.floor(660/C.w),Math.floor(560/C.h)), num=new Map(); C.pl.forEach(p=>num.set(p.y*100+p.x,p.n));
+   const f=s=>`<div class="cr"><div class="cr-g" style="--c:${cell}px;grid-template-columns:repeat(${C.w},var(--c))">${C.g.flatMap((row,y)=>row.map((c,x)=>c?`<i class="imp">${num.has(y*100+x)?`<sup>${num.get(y*100+x)}</sup>`:""}${s?c:""}</i>`:`<b></b>`)).join("")}</div>
+     <div class="cr-p"><div><h4>➡️ Horizontales</h4>${C.pl.filter(p=>!p.d).sort((a,b)=>a.n-b.n).map(p=>`<p class="tx"><b>${p.n}.</b> ${tcEsc(p.pista)}</p>`).join("")}</div><div><h4>⬇️ Verticales</h4>${C.pl.filter(p=>p.d).sort((a,b)=>a.n-b.n).map(p=>`<p class="tx"><b>${p.n}.</b> ${tcEsc(p.pista)}</p>`).join("")}</div></div></div>`;
+   return {html:tcHoja("p2",f(0),{cons:"Leé las pistas y completá el crucigrama."}),sol:tcHoja("p2",f(1),{sol:1})}; },
+ p3(r){ const W=tcMez(tcPalabras().filter(w=>w.p.length>=3&&w.p.length<=9),r).slice(0,8); const f=s=>`<div class="ds">${W.map(w=>{ const L=[...tcSinTilde(tcNomP(w)).toUpperCase()]; let x=tcMez(L,r); if(x.join("")===L.join("")) x=x.slice().reverse(); return `<div class="ds-r">${tcFig(tcImgDe(w.p),"sm")}<span class="ch">${x.map(c=>`<i class="imp">${c}</i>`).join("")}</span><span class="bx">${L.map(c=>`<i class="imp">${s?c:""}</i>`).join("")}</span></div>`; }).join("")}</div>`;
+   return {html:tcHoja("p3",f(0),{cons:"Ordená las letras y escribí la palabra, una letra en cada casillero."}),sol:tcHoja("p3",f(1),{sol:1})}; },
+ p4(r){ const V=(TC.A.vocabulario||[]).slice(0,6);
+   return {html:tcHoja("p4",`<div class="gl">${V.map(v=>`<div class="gl-c"><div class="gl-d"><em>Dibujá</em></div><b class="tx">${tcEsc(tcCap(v.palabra))}</b><p class="tx">${tcEsc(tcCap(v.definicion))}</p></div>`).join("")}</div>`,{cons:"Leé qué significa cada palabra y dibujala."})}; },
+ k1(r){ const P=tcPersImg().slice(0,6), X=tcMez(P,r); const f=s=>`<div class="un">${P.map((c,i)=>`<div class="un-r"><span class="un-i">${tcFig(c.img)}<i class="dot"></i></span><span class="un-n"><i class="dot"></i><b class="tx big">${tcEsc(X[i].nombre)}</b>${s?`<em class="tx">➜ ${tcEsc(c.nombre)}</em>`:""}</span></div>`).join("")}</div>`;
+   return {html:tcHoja("k1",f(0),{cons:TC.nivel==="ini"?"Uní cada personaje con su nombre.":"Uní con una flecha cada personaje con su nombre."}),sol:tcHoja("k1",f(1),{sol:1})}; },
+ k2(r,parte){ const P=TC.pers.filter(c=>c.nombre), L=P.slice((parte||0)*2,(parte||0)*2+2);
+   return {html:tcHoja("k2",`<div class="fi">${L.map(c=>`<div class="fi-c"><div class="fi-i">${tcFig(c.img)}</div><div class="fi-t"><p class="tx"><b>Nombre:</b> ${tcEsc(c.nombre)}</p><p class="tx"><b>¿Cómo es?</b></p>${tcLn(2)}<p class="tx"><b>¿Qué hace en el cuento?</b></p>${tcLn(2)}<p class="tx"><b>${TC.nivel==="2c"?"¿Qué le dirías?":"Me gusta porque…"}</b></p>${tcLn(1)}</div></div>`).join("")}</div>`,{cons:"Completá la ficha de cada personaje."}),parts:Math.ceil(P.length/2)}; },
+ k3(r){ const P=tcPersImg().slice(0,6); const C=tcMez(P.flatMap(c=>[{c,t:"i"},{c,t:"n"}]),r);
+   return {html:tcHoja("k3",`<div class="mt" style="grid-template-rows:repeat(${Math.ceil(C.length/3)},minmax(0,220px))">${C.map(x=>`<div class="mt-c">${x.t==="i"?`<img src="${x.c.img}" alt="">`:`<b class="tx big">${tcEsc(x.c.nombre)}</b>`}</div>`).join("")}</div>`,{cons:"Pintá, recortá las tarjetas por la línea punteada y jugá a encontrar las parejas."})}; },
+ k4(r){ const P=tcPersImg().slice(0,4);
+   return {html:tcHoja("k4",`<div class="tt">${P.map(c=>`<div class="tt-c"><div class="tt-f"><img src="${c.img}" alt=""></div><b class="tx">${tcEsc(c.nombre)}</b><div class="tt-p">pegá el palito acá</div></div>`).join("")}</div>`,{cons:"Pintá, recortá por la línea punteada y pegá un palito para dramatizar el cuento."})}; }
+};
+function tcArmar(){ const out=[], sols=[]; if(TC.tapa) out.push({k:"tapa",html:tcTapa(),t:"Tapa"});
+  (TC.sel||[]).forEach(id=>{ const a=tcAct(id); if(!a||!tcTiene(a[5])) return; const seed=(TC.seeds&&TC.seeds[id])||7+id.charCodeAt(0)*31+id.charCodeAt(1);
+    try{ const g=TC_GEN[id](tcRng(seed),0); if(!g) return; out.push({k:id,html:g.html,t:a[3]}); if(g.sol&&TC.sol) sols.push({k:id+"s",html:g.sol,t:a[3]+" · soluciones",s:1});
+      for(let pp=1;pp<(g.parts||1);pp++){ const g2=TC_GEN[id](tcRng(seed),pp); out.push({k:id+pp,html:g2.html,t:a[3]+` (${pp+1})`}); } }catch(e){ console.warn("taller",id,e); } });
+  TC.paginas=out.concat(sols); return TC.paginas; }
+
+// ---------- TALLER DEL CUENTO · interfaz ----------
+const TC_PASOS=[["📄","El cuento","Subí el PDF o pegá el texto"],["🧸","Personajes","Sus imágenes y nombres"],["🧩","Actividades","Elegí qué hojas armar"],["🖨️","Tu cuadernillo","Revisá y descargá"]];
+function tcListo(n){ const A=TC.A; return n===1?!!(A&&((A.momentos||[]).length||(A.palabras||[]).length)):n===2?TC.pers.some(c=>c.nombre):n===3?(TC.sel||[]).length>0:false; }
+function tcSelDefault(){ const r=TC_REC.find(x=>x[3]===TC.nivel)||TC_REC[1]; TC.sel=r[2].filter(id=>{ const a=tcAct(id); return a&&tcTiene(a[5]); }); if(TC.sel.length<4) TC.sel=TC_ACTS.filter(a=>a[6].includes(TC.nivel)&&tcTiene(a[5])).map(a=>a[0]); }
+function tcStepper(){ return `<nav class="tc-st" aria-label="Pasos">${TC_PASOS.map(([ic,t,d],i)=>{ const n=i+1, on=TC.paso===n, ok=tcListo(n)&&!on; return `<button type="button" class="${on?"on":""} ${ok?"ok":""}" data-tcpaso="${n}" aria-current="${on?"step":"false"}"><i>${ok?"✓":ic}</i><span><b>${n}. ${t}</b><small>${d}</small></span></button>`; }).join("")}</nav>`; }
+const tcNv=()=>`<div class="tc-niv">${TC_NIV.map(([k,t,d])=>`<button type="button" data-tcniv="${k}" aria-pressed="${TC.nivel===k}"><span>${k==="ini"?"🌱":k==="1c"?"✏️":"📘"}</span><b>${t}</b><small>${d}</small></button>`).join("")}</div>`;
+
+function tcP1(){ const A=TC.A, nw=TC.texto.trim()?TC.texto.trim().split(/\s+/).length:0;
+  const busy=TC.busy==="analizar"?`<div class="tc-busy"><div class="tc-orb">📖</div><div><b>Claude está leyendo el cuento…</b><p>Busca personajes, momentos, diálogos, palabras para alfabetizar y arma las preguntas de comprensión.</p><div class="tc-chips">${["Personajes","Momentos","Diálogos","Palabras","Sílabas","Preguntas"].map((t,i)=>`<span style="--d:${i*.25}s">${t}</span>`).join("")}</div></div></div>`:"";
+  return `<div class="tc-grid2">
+   <section class="tc-card"><h3>1 · Traé el cuento</h3>
+    <label class="tc-drop ${TC.arch?"has":""}" data-tcdrop="pdf"><input type="file" accept="application/pdf,.pdf" data-tcfile="pdf" hidden><span class="tc-di">${TC.arch?"✅":"📄"}</span><b>${TC.arch?tcEsc(TC.arch):"Subí el cuento en PDF"}</b><small>${TC.arch?`${nw?nf(nw)+" palabras leídas":TC.scan?"PDF escaneado: Claude lo va a leer como imagen":""} · tocá para cambiarlo`:"Arrastralo acá o tocá para elegirlo. Si es escaneado, Claude lo lee igual."}</small></label>
+    <div class="tc-or"><span>o pegá el texto</span></div>
+    <textarea id="tcTxt" class="tc-ta" rows="7" placeholder="Había una vez…">${tcEsc(TC.texto)}</textarea><small class="muted" id="tcNw">${nw?nf(nw)+" palabras":""}</small></section>
+   <section class="tc-card"><h3>2 · ¿Para qué nivel?</h3>${tcNv()}
+    <div class="tc-go"><button type="button" class="btn primary big" data-tcanal ${TC.busy?"disabled":""}>✨ ${A?"Volver a analizar":"Analizar el cuento"}</button><button type="button" class="btn ghost small" data-tcman>✍️ Cargar los datos a mano</button></div>
+    <p class="muted small">Claude saca del cuento los personajes, los momentos, los diálogos, 16 palabras para trabajar vocales y sílabas, el vocabulario y las preguntas de comprensión adaptadas al nivel.</p></section></div>
+   ${busy}${A?tcFicha():""}`; }
+
+function tcFicha(){ const A=TC.A, W=tcPalabras();
+  return `<section class="tc-card tc-ficha"><div class="tc-fh"><div><small>Ficha del cuento</small><input class="tc-tin" data-tcfa="titulo" value="${tcEsc(A.titulo||"")}" placeholder="Título del cuento"><input class="tc-ain" data-tcfa="autor" value="${tcEsc(A.autor||"")}" placeholder="Autor"></div><button type="button" class="btn primary" data-tcpaso="2">Siguiente: personajes →</button></div>
+    ${A.resumen?`<p class="tc-res">${tcEsc(A.resumen)}</p>`:""}
+    <div class="tc-fg">
+     <div class="tc-fb"><h4>🧸 Personajes <span>${TC.pers.length}</span></h4><div class="tc-pch">${TC.pers.map(c=>`<span>${c.img?`<img src="${c.img}" alt="">`:"👤"}${tcEsc(c.nombre)}</span>`).join("")||`<em class="muted">Se cargan en el paso 2</em>`}</div></div>
+     <div class="tc-fb"><h4>🎞️ Momentos <span>${(A.momentos||[]).length}</span></h4><ol class="tc-mo">${(A.momentos||[]).map((m,i)=>`<li><input data-tcmo="${i}" value="${tcEsc(m)}"><button type="button" data-tcmodel="${i}" aria-label="Quitar">✕</button></li>`).join("")}</ol><button type="button" class="tc-add" data-tcmoadd>+ Agregar momento</button></div>
+     <div class="tc-fb wide"><h4>🔤 Palabras para vocales y sílabas <span>${W.length}</span></h4><div class="tc-wch">${W.map(w=>`<span class="${tcImgDe(w.p)?"im":""}">${tcImgDe(w.p)?`<img src="${tcImgDe(w.p)}" alt="">`:""}<b>${tcEsc(tcNomP(w))}</b><em>${w.s.join("·")}</em>${w.nom?"":`<button type="button" data-tcwdel="${tcEsc(w.p)}" aria-label="Quitar">✕</button>`}</span>`).join("")}<input class="tc-win" data-tcwadd placeholder="+ palabra y Enter"></div></div>
+     ${(A.vocabulario||[]).length?`<div class="tc-fb"><h4>📚 Vocabulario <span>${A.vocabulario.length}</span></h4><dl class="tc-vo">${A.vocabulario.map(v=>`<dt>${tcEsc(v.palabra)}</dt><dd>${tcEsc(v.definicion)}</dd>`).join("")}</dl></div>`:""}
+     <div class="tc-fb"><h4>❓ Preguntas listas</h4><div class="tc-qn">${[["Literales",(A.literales||[]).length],["Para inferir",(A.inferenciales||[]).length],["De opinión",(A.criticas||[]).length],["Verdadero o falso",(A.vf||[]).length],["Opción múltiple",(A.opciones||[]).length],["Diálogos",(A.dialogos||[]).length]].map(([t,n])=>`<span class="${n?"":"no"}"><b>${n}</b>${t}</span>`).join("")}</div>${(A.literales||[]).length?"":`<p class="muted small">Las preguntas las escribe Claude cuando analizás el cuento.</p>`}</div>
+    </div></section>`; }
+
+function tcP2(){ const can=TC.pers.some(c=>c.img&&c.auto);
+  return `<section class="tc-card"><div class="tc-sh"><div><h3>🧸 Los personajes del cuento</h3><p class="muted small">Subí una imagen por personaje (PNG o JPG). Con ellas se arman el memotest, los títeres, “uní con flechas”, las fichas y aparecen al lado de las palabras.</p></div>
+     <label class="tc-sw"><input type="checkbox" data-tctog="fondo" ${TC.fondo?"checked":""}><span></span>Quitar fondo blanco</label></div>
+    <label class="tc-drop sm" data-tcdrop="imgs"><input type="file" accept="image/png,image/jpeg,image/webp" multiple data-tcfile="imgs" hidden><span class="tc-di">🖼️</span><b>Subí las imágenes de los personajes</b><small>Podés elegir varias a la vez · ${TC.A?"Claude reconoce quién es cada uno":"después les ponés el nombre"}</small></label>
+    ${TC.busy==="reconocer"?`<div class="tc-busy sm"><div class="tc-orb">🔎</div><b>Claude está reconociendo a cada personaje…</b></div>`:""}
+    <div class="tc-pg">${TC.pers.map(c=>`<article class="tc-pc ${c.img?"":"vac"}"><label class="tc-pi"><input type="file" accept="image/*" data-tcimg="${c.id}" hidden>${c.img?`<img src="${c.img}" alt="">`:`<span>➕<small>Subir imagen</small></span>`}</label>
+       <input class="tc-pn" data-tcn="${c.id}" value="${tcEsc(c.nombre)}" placeholder="Nombre"><textarea class="tc-pd" data-tcd="${c.id}" rows="2" placeholder="¿Cómo es?">${tcEsc(c.desc||"")}</textarea><button type="button" class="tc-px" data-tcdel="${c.id}" aria-label="Quitar personaje">✕</button></article>`).join("")}
+     <button type="button" class="tc-pc tc-padd" data-tcadd><span>➕</span>Agregar personaje</button></div>
+    <div class="tc-foot">${can?`<button type="button" class="btn" data-tcrecon>🔎 Reconocer quién es quién</button>`:"<span></span>"}<button type="button" class="btn primary" data-tcpaso="3">Siguiente: actividades →</button></div></section>`; }
+
+const TC_MINI={comp:'<rect x="6" y="9" width="28" height="3" rx="1.5"/><rect x="6" y="16" width="22" height="2" rx="1"/><rect x="6" y="21" width="26" height="2" rx="1"/><rect x="6" y="29" width="24" height="3" rx="1.5"/><rect x="6" y="36" width="20" height="2" rx="1"/>',
+ voc:'<text x="20" y="31" text-anchor="middle" font-size="20" font-weight="800">A·E</text>',sil:'<circle cx="10" cy="24" r="4"/><circle cx="20" cy="24" r="4"/><circle cx="30" cy="24" r="4" fill-opacity=".35"/>',
+ pal:'<g fill-opacity=".9">'+[0,1,2,3].map(y=>[0,1,2,3].map(x=>`<rect x="${7+x*7}" y="${11+y*7}" width="6" height="6" rx="1" fill-opacity="${(x+y)%3?".3":"1"}"/>`).join("")).join("")+'</g>',per:'<circle cx="14" cy="20" r="6"/><circle cx="27" cy="20" r="6" fill-opacity=".45"/><rect x="8" y="30" width="12" height="3" rx="1.5"/><rect x="21" y="30" width="12" height="3" rx="1.5" fill-opacity=".45"/>'};
+function tcP3(){ const sel=new Set(TC.sel||[]); const n=sel.size+(TC.tapa?1:0), sols=TC.sol?[...sel].filter(id=>["c1","c2","c3","c4","c5","c6","v1","v2","s1","s2","s3","p1","p2","p3","k1"].includes(id)).length:0;
+  return `<section class="tc-card"><div class="tc-cfg">
+     <div><label>Nivel</label><div class="tc-seg">${TC_NIV.map(([k,t])=>`<button type="button" data-tcniv="${k}" aria-pressed="${TC.nivel===k}">${t}</button>`).join("")}</div></div>
+     <div><label>Tipo de letra</label><div class="tc-seg">${TC_LET.map(([k,t])=>`<button type="button" data-tclet="${k}" aria-pressed="${TC.letra===k}" class="lt-${k}">${t}</button>`).join("")}</div></div>
+     <div class="tc-tg"><label class="tc-sw"><input type="checkbox" data-tctog="tapa" ${TC.tapa?"checked":""}><span></span>Tapa</label><label class="tc-sw"><input type="checkbox" data-tctog="sol" ${TC.sol?"checked":""}><span></span>Soluciones</label><label class="tc-sw"><input type="checkbox" data-tctog="bn" ${TC.bn?"checked":""}><span></span>Blanco y negro</label></div></div>
+    <div class="tc-rec"><span>Recetas rápidas:</span>${TC_REC.map((r,i)=>`<button type="button" data-tcrec="${i}">${r[0]} ${r[1]}</button>`).join("")}<button type="button" data-tcrec="all">✨ Todo lo posible</button><button type="button" data-tcrec="none">Ninguna</button></div></section>
+   ${Object.entries(TC_GR).map(([g,[ic,t,col]])=>{ const L=TC_ACTS.filter(a=>a[1]===g); return `<section class="tc-grp" style="--gc:${col}"><h3><span>${ic}</span>${t}<em>${L.filter(a=>sel.has(a[0])).length} de ${L.length}</em></h3><div class="tc-acts">${L.map(a=>{ const ok=tcTiene(a[5]), on=sel.has(a[0])&&ok, rec=a[6].includes(TC.nivel);
+     return `<button type="button" class="tc-ac ${on?"on":""} ${ok?"":"off"}" data-tcact="${a[0]}" ${ok?"":`title="${tcEsc(TC_REQTXT[a[5]]||"")}"`} aria-pressed="${on}"><span class="tc-mn"><svg viewBox="0 0 40 48" aria-hidden="true"><rect x="1" y="1" width="38" height="46" rx="4" class="pg"/><g class="gc">${TC_MINI[g]}</g></svg><i>${a[2]}</i></span><span class="tc-at"><b>${a[3]}</b><small>${ok?a[4]:tcEsc(TC_REQTXT[a[5]])}</small>${rec?"":`<em>Otro nivel</em>`}</span><span class="tc-ck">${on?"✓":""}</span></button>`; }).join("")}</div></section>`; }).join("")}
+   <div class="tc-bar"><span><b>${n}</b> hoja${n===1?"":"s"}${sols?` + <b>${sols}</b> de soluciones`:""}</span><button type="button" class="btn primary big" data-tcpaso="4" ${sel.size?"":"disabled"}>Armar el cuadernillo →</button></div>`; }
+
+function tcP4(){ const P=tcArmar(); TC.ver=TC.ver!=null&&TC.ver<P.length?TC.ver:null;
+  const pr=TC.busy==="pdf"||TC.busy==="zip"?`<div class="tc-prog"><i style="width:${Math.round(TC.prog*100)}%"></i><span>Preparando la hoja ${Math.min(P.length,Math.ceil(TC.prog*P.length)||1)} de ${P.length}…</span></div>`:"";
+  return `<section class="tc-card tc-out"><div class="tc-sh"><div><h3>🖨️ Tu cuadernillo · ${P.length} hojas A4</h3><p class="muted small">Tocá una hoja para verla grande. Con 🔄 cambia el orden de las palabras o de las preguntas.</p></div>
+     <div class="tc-dl"><button type="button" class="btn primary" data-tcpdf ${TC.busy?"disabled":""}>⬇️ Descargar PDF</button><button type="button" class="btn" data-tczip ${TC.busy?"disabled":""}>🖼️ Imágenes PNG (ZIP)</button></div></div>${pr}
+    <div class="tc-ths ${TC.bn?"bn":""}">${P.map((p,i)=>`<figure class="tc-th ${p.s?"s":""}"><button type="button" class="tc-tv" data-tcver="${i}" aria-label="Ver ${tcEsc(p.t)}"><div class="tc-sc">${p.html}</div></button><figcaption><b>${i+1}</b><span>${tcEsc(p.t)}</span>${p.k==="tapa"||p.s?"":`<span class="tc-ta2"><button type="button" data-tcre="${p.k.slice(0,2)}" title="Cambiar">🔄</button><button type="button" data-tcmv="${p.k.slice(0,2)}|-1" title="Antes">◀</button><button type="button" data-tcmv="${p.k.slice(0,2)}|1" title="Después">▶</button><button type="button" data-tcact="${p.k.slice(0,2)}" title="Quitar">✕</button></span>`}</figcaption></figure>`).join("")}</div></section>
+   ${TC.ver!=null?`<div class="tc-lb" data-tclb><button type="button" class="tc-lx" data-tcver="" aria-label="Cerrar">✕</button><button type="button" class="tc-ln p" data-tcver="${Math.max(0,TC.ver-1)}" aria-label="Anterior">‹</button><div class="tc-lp ${TC.bn?"bn":""}"><div class="tc-lsc">${P[TC.ver].html}</div></div><button type="button" class="tc-ln n" data-tcver="${Math.min(P.length-1,TC.ver+1)}" aria-label="Siguiente">›</button><span class="tc-lc">${TC.ver+1} / ${P.length} · ${tcEsc(P[TC.ver].t)}</span></div>`:""}`; }
+
+function tcPintar(){ const b=$("#tcBody"); if(!b) return; const y=scrollY;
+  b.innerHTML=tcStepper()+`<div class="tc-pane">${TC.paso===1?tcP1():TC.paso===2?tcP2():TC.paso===3?tcP3():tcP4()}</div>`;
+  b.classList.toggle("bn",TC.bn); document.querySelectorAll("body > .tc-lb").forEach(x=>x.remove()); const lb=b.querySelector(".tc-lb");
+  if(lb){ document.body.appendChild(lb); lb.addEventListener("click",e=>{ const t=e.target.closest("[data-tcver]"); if(t){ TC.ver=t.dataset.tcver===""?null:+t.dataset.tcver; tcPintar(); } else if(e.target===lb){ TC.ver=null; tcPintar(); } }); tcLbFit(); }
+  window.scrollTo(0,y); }
+function tcLbFit(){ requestAnimationFrame(()=>{ const lp=$(".tc-lp"); if(!lp) return; const k=Math.min((innerHeight-120)/1123,(innerWidth-140)/794,1.1); lp.style.setProperty("--k",k.toFixed(3)); }); }
+function tcIr(n){ if(n>=3&&!TC.sel) tcSelDefault(); TC.paso=n; TC.ver=null; tcGuardarLocal(); tcPintar(); const v=$("#view-cuentos"); if(v) v.scrollIntoView({behavior:"smooth",block:"start"}); }
+
+async function tcRender(fn){ const P=TC.paginas.length?TC.paginas:tcArmar(); const box=document.createElement("div"); box.className="tc-render"+(TC.bn?" bn":""); document.body.appendChild(box);
+  try{ if(document.fonts&&document.fonts.ready) await document.fonts.ready; const h2c=await lzH2C();
+    for(let i=0;i<P.length;i++){ box.innerHTML=P[i].html; const el=box.firstElementChild; await Promise.all([...el.querySelectorAll("img")].map(im=>im.complete?0:new Promise(ok=>{ im.onload=im.onerror=ok; })));
+      const cv=await h2c(el,{scale:2.2,backgroundColor:"#ffffff",useCORS:true,logging:false,width:794,height:1123,windowWidth:900}); await fn(cv,i,P.length,P[i]); TC.prog=(i+1)/P.length; const pg=$(".tc-prog i"); if(pg) pg.style.width=Math.round(TC.prog*100)+"%"; const ps=$(".tc-prog span"); if(ps) ps.textContent=`Preparando la hoja ${i+1} de ${P.length}…`; } }
+  finally{ box.remove(); } }
+const tcNomArch=()=>slug((TC.A&&TC.A.titulo)||"cuento")||"cuento";
+async function tcPdf(){ if(TC.busy) return; TC.busy="pdf"; TC.prog=0; tcPintar();
+  try{ await poLibs(); const {PDFDocument}=window.PDFLib; const doc=await PDFDocument.create(); doc.setTitle(((TC.A&&TC.A.titulo)||"Cuento")+" · Cofre Didáctico"); doc.setAuthor("Cofre Didáctico");
+    await tcRender(async cv=>{ const b=await new Promise(ok=>cv.toBlob(ok,"image/jpeg",.88)); const im=await doc.embedJpg(new Uint8Array(await b.arrayBuffer())); const pg=doc.addPage([595.28,841.89]); pg.drawImage(im,{x:0,y:0,width:595.28,height:841.89}); });
+    const bytes=await doc.save(); const ok=await saveFile(`${tcNomArch()}-actividades.pdf`,new Blob([bytes],{type:"application/pdf"}),"application/pdf"); if(ok) toast("PDF listo ✓"); }
+  catch(e){ console.error(e); toast(e.message||"No se pudo armar el PDF","err"); } finally{ TC.busy=""; tcPintar(); } }
+async function tcZip(){ if(TC.busy) return; TC.busy="zip"; TC.prog=0; tcPintar();
+  try{ const JSZip=await loadJSZip(); const z=new JSZip(); await tcRender(async(cv,i,n,p)=>{ const b=await new Promise(ok=>cv.toBlob(ok,"image/png")); z.file(`${String(i+1).padStart(2,"0")}-${slug(p.t)}.png`,b); });
+    const blob=await z.generateAsync({type:"blob"}); const ok=await saveFile(`${tcNomArch()}-hojas.zip`,blob,"application/zip"); if(ok) toast("Imágenes listas ✓"); }
+  catch(e){ console.error(e); toast(e.message||"No se pudieron armar las imágenes","err"); } finally{ TC.busy=""; tcPintar(); } }
+
+async function tcArchivoPdf(f){ if(!f) return; if(!/pdf$/i.test(f.type)&&!/\.pdf$/i.test(f.name)) return toast("Elegí un archivo PDF","err"); TC.busy="leer"; toast("Leyendo el PDF…");
+  try{ const r=await tcLeerPdf(f); TC.arch=f.name; TC.texto=r.t; TC.scan=r.scan; toast(r.scan?"Es un PDF escaneado: Claude lo va a leer como imagen":`Listo: ${nf(r.t.split(/\s+/).length)} palabras`); }catch(e){ toast(e.message||"No se pudo leer el PDF","err"); } finally{ TC.busy=""; tcPintar(); } }
+async function tcImagenes(files){ const L=[...files].filter(f=>/^image\//.test(f.type)||/\.(png|jpe?g|webp|gif)$/i.test(f.name)).slice(0,12); if(!L.length) return; for(const f of L){ try{ const img=await tcPrepImg(f,TC.fondo); const libre=TC.pers.find(c=>!c.img&&c.nombre&&fold(f.name).includes(fold(c.nombre).split(" ")[0]));
+      if(libre) libre.img=img; else TC.pers.push({id:"p"+Math.random().toString(36).slice(2,8),nombre:tcCap(f.name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ").replace(/\d+/g,"").trim()).slice(0,24),desc:"",img,auto:true}); }catch(e){ toast(e.message,"err"); } }
+  tcGuardarLocal(); tcPintar(); if(TC.A&&TC.pers.some(c=>c.auto)) tcReconocerUI(); }
+async function tcReconocerUI(){ if(TC.busy) return; TC.busy="reconocer"; tcPintar(); try{ const ok=await tcReconocer(); if(ok) toast("Personajes reconocidos ✓ (revisá los nombres)"); }catch(e){ toast(sampleErr?sampleErr(e):(e.message||"No se pudo"),"err"); } finally{ TC.busy=""; tcGuardarLocal(); tcPintar(); } }
+
+function tcInit(){ const v=$("#view-cuentos"); if(!v) return; if(!v.dataset.on){ v.dataset.on="1"; tcCargarLocal();
+    if(!document.getElementById("tcFonts")){ const l=document.createElement("link"); l.id="tcFonts"; l.rel="stylesheet"; l.href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Playwrite+AR:wght@300;400&family=Fredoka:wght@500;600;700&display=swap"; document.head.appendChild(l); }
+    v.innerHTML=`<div class="tc-hero"><div><span class="tc-k">✨ Crear y diseñar</span><h1>Taller del cuento</h1><p>Subí un cuento y sus personajes: el panel arma las actividades de comprensión lectora, vocales, sílabas y palabras, listas para imprimir.</p></div><div class="tc-ha"><button type="button" class="btn small ghost" data-tcnuevo>🆕 Empezar otro cuento</button></div><div class="tc-deco" aria-hidden="true"><span>📖</span><span>✏️</span><span>🧸</span><span>🔤</span></div></div><div id="tcBody" class="tc-body"></div>`;
+    v.addEventListener("click",async e=>{ const t=e.target.closest("button,[data-tclb]"); if(!t) return; const d=t.dataset; if(t.disabled) return;
+      if(d.tclb!=null&&e.target===t){ TC.ver=null; return tcPintar(); }
+      if(d.tcpaso) return tcIr(+d.tcpaso); if(d.tcniv){ TC.nivel=d.tcniv; if(TC.paso===3&&TC.sel) tcSelDefault(); tcGuardarLocal(); return tcPintar(); } if(d.tclet){ TC.letra=d.tclet; tcGuardarLocal(); return tcPintar(); }
+      if(d.tcact){ const s=new Set(TC.sel||[]); const a=tcAct(d.tcact); if(a&&!tcTiene(a[5])) return toast(TC_REQTXT[a[5]],"err"); if(s.has(d.tcact)) s.delete(d.tcact); else s.add(d.tcact); TC.sel=TC_ACTS.map(x=>x[0]).filter(id=>s.has(id)).sort((x,y)=>(TC.sel||[]).indexOf(x)-(TC.sel||[]).indexOf(y)); if(TC.paso===4) TC.ver=null; tcGuardarLocal(); return tcPintar(); }
+      if(d.tcrec!=null){ TC.sel=d.tcrec==="none"?[]:d.tcrec==="all"?TC_ACTS.filter(a=>tcTiene(a[5])&&a[6].includes(TC.nivel)).map(a=>a[0]):TC_REC[+d.tcrec][2].filter(id=>tcTiene(tcAct(id)[5])); if(d.tcrec!=="all"&&d.tcrec!=="none") TC.nivel=TC_REC[+d.tcrec][3]; tcGuardarLocal(); return tcPintar(); }
+      if(d.tcanal!=null){ TC.busy="analizar"; tcPintar(); try{ const t2=$("#tcTxt"); if(t2) TC.texto=t2.value; TC.A=await tcAnalizar(); tcPersDeAnalisis(); TC.sel=null; tcGuardarLocal(); toast("Cuento analizado ✓"); }catch(err){ toast(typeof sampleErr==="function"&&err&&err.code?sampleErr(err):(err.message||"No se pudo analizar"),"err"); } finally{ TC.busy=""; tcPintar(); } return; }
+      if(d.tcman!=null){ const t2=$("#tcTxt"); if(t2) TC.texto=t2.value; TC.A=TC.A||{titulo:"",autor:"",momentos:[],palabras:[],vocabulario:[]}; tcGuardarLocal(); tcPintar(); setTimeout(()=>{ const i=$(".tc-tin"); if(i) i.focus(); },50); return; }
+      if(d.tcadd!=null){ TC.pers.push({id:"p"+Math.random().toString(36).slice(2,8),nombre:"",desc:"",img:null}); tcPintar(); const ins=document.querySelectorAll(".tc-pn"); if(ins.length) ins[ins.length-1].focus(); return; }
+      if(d.tcdel){ TC.pers=TC.pers.filter(c=>c.id!==d.tcdel); tcGuardarLocal(); return tcPintar(); } if(d.tcrecon!=null) return tcReconocerUI();
+      if(d.tcwdel){ TC.A.palabras=(TC.A.palabras||[]).filter(x=>String(x.palabra||x).toLowerCase()!==d.tcwdel); tcGuardarLocal(); return tcPintar(); }
+      if(d.tcmodel!=null){ TC.A.momentos.splice(+d.tcmodel,1); tcGuardarLocal(); return tcPintar(); } if(d.tcmoadd!=null){ (TC.A.momentos=TC.A.momentos||[]).push(""); tcPintar(); const L=document.querySelectorAll("[data-tcmo]"); if(L.length) L[L.length-1].focus(); return; }
+      if(d.tcre){ TC.seeds=TC.seeds||{}; TC.seeds[d.tcre]=Math.floor(Math.random()*1e9); return tcPintar(); }
+      if(d.tcmv){ const [id,dir]=d.tcmv.split("|"); const L=TC.sel, i=L.indexOf(id), j=i+(+dir); if(i<0||j<0||j>=L.length) return; [L[i],L[j]]=[L[j],L[i]]; tcGuardarLocal(); return tcPintar(); }
+      if(d.tcver!=null){ TC.ver=d.tcver===""?null:+d.tcver; return tcPintar(); } if(d.tcpdf!=null) return tcPdf(); if(d.tczip!=null) return tcZip();
+      if(d.tcnuevo!=null){ if(!await pcConfirm("¿Empezar con otro cuento? Se borra el cuento, los personajes y las actividades de este.",{titulo:"Nuevo cuento",ok:"Empezar de nuevo"})) return; Object.assign(TC,{paso:1,texto:"",arch:"",scan:null,A:null,pers:[],sel:null,paginas:[],seeds:{},ver:null}); tcGuardarLocal(); return tcPintar(); } });
+    v.addEventListener("change",e=>{ const t=e.target, d=t.dataset; if(d.tcfile==="pdf") return tcArchivoPdf(t.files[0]); if(d.tcfile==="imgs") return tcImagenes(t.files);
+      if(d.tcimg){ const c=TC.pers.find(x=>x.id===d.tcimg), f=t.files[0]; if(c&&f) tcPrepImg(f,TC.fondo).then(img=>{ c.img=img; tcGuardarLocal(); tcPintar(); }).catch(er=>toast(er.message,"err")); return; }
+      if(d.tctog){ TC[d.tctog]=t.checked; tcGuardarLocal(); return tcPintar(); }
+      if(d.tcn||d.tcd){ const c=TC.pers.find(x=>x.id===(d.tcn||d.tcd)); if(c){ if(d.tcn) c.nombre=t.value.trim(); else c.desc=t.value.trim(); c.auto=false; tcGuardarLocal(); } return; }
+      if(d.tcfa){ TC.A[d.tcfa]=t.value.trim(); tcGuardarLocal(); return; } if(d.tcmo!=null){ TC.A.momentos[+d.tcmo]=t.value.trim(); tcGuardarLocal(); return; } });
+    v.addEventListener("input",e=>{ if(e.target.id==="tcTxt"){ TC.texto=e.target.value; const n=$("#tcNw"); if(n){ const w=TC.texto.trim()?TC.texto.trim().split(/\s+/).length:0; n.textContent=w?nf(w)+" palabras":""; } } });
+    v.addEventListener("keydown",e=>{ const t=e.target; if(t.dataset&&t.dataset.tcwadd!=null&&e.key==="Enter"){ e.preventDefault(); const w=t.value.trim().toLowerCase(); if(!w) return; (TC.A.palabras=TC.A.palabras||[]).push({palabra:w,silabas:tcSilabas(w)}); tcGuardarLocal(); tcPintar(); setTimeout(()=>{ const i=$("[data-tcwadd]"); if(i) i.focus(); },20); }
+ });
+    document.addEventListener("keydown",e=>{ if(TC.ver==null||currentView!=="cuentos") return; if(e.key==="Escape"){ TC.ver=null; tcPintar(); } else if(e.key==="ArrowRight"||e.key==="ArrowLeft"){ TC.ver=Math.max(0,Math.min(TC.paginas.length-1,TC.ver+(e.key==="ArrowRight"?1:-1))); tcPintar(); } });
+    ["dragover","dragenter"].forEach(ev=>v.addEventListener(ev,e=>{ const z=e.target.closest("[data-tcdrop]"); if(z){ e.preventDefault(); z.classList.add("drag"); } }));
+    ["dragleave","drop"].forEach(ev=>v.addEventListener(ev,e=>{ const z=e.target.closest("[data-tcdrop]"); if(!z) return; z.classList.remove("drag"); if(ev==="drop"){ e.preventDefault(); const fs=e.dataTransfer.files; if(z.dataset.tcdrop==="pdf") tcArchivoPdf(fs[0]); else tcImagenes(fs); } }));
+    addEventListener("resize",()=>{ if(TC.ver!=null) tcLbFit(); }); }
+  tcPintar(); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
