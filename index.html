@@ -623,6 +623,59 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 @media (max-width:1100px){.an-hero{grid-template-columns:repeat(2,minmax(0,1fr))}.an-ag{grid-template-columns:minmax(0,1fr)}.an-gh,.an-gr{grid-template-columns:minmax(160px,220px) minmax(0,1fr)}.an-ge{grid-column:1/-1;justify-content:flex-start}.an-gh>:last-child{display:none}}
 @media (max-width:700px){.an-gh{display:none}.an-gr{grid-template-columns:minmax(0,1fr)}.an-r2{grid-template-columns:minmax(0,1fr)}.an-row{grid-template-columns:34px minmax(0,1fr) 60px;row-gap:6px}.an-row .an-rg{grid-column:span 1}.an-rv{grid-column:2}.an-del{grid-row:1;grid-column:3}.an-k b{font-size:19px}}
 
+.ah{--ok:#22A35A;--mid:#E1A100;--bad:#E05A47;--otro:#6B8BD6;--acc:#d55181;display:grid;gap:16px;container-type:inline-size}
+.ah h3,.ah h4{margin:0}.ah h4{font-size:15px}.ah p{margin:0}
+.ah-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}.ah-top h3{font-size:18px}.ah-ta{display:flex;gap:8px}
+.ah-live{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:center;padding:12px 16px;border-radius:16px;border:1.5px solid color-mix(in srgb,#F97316 50%,var(--line));background:color-mix(in srgb,#F97316 9%,var(--surface))}.ah-live div{display:grid}.ah-live small{color:var(--muted);font-size:12.5px}.ah-live small b{color:#C2410C}.ah-live em{grid-column:2;font-style:normal;font-size:12.5px;font-weight:700;color:#C2410C}
+.ah-dot{width:12px;height:12px;border-radius:50%;background:#F97316;box-shadow:0 0 0 0 #F9731680;animation:ahP 1.8s infinite}@keyframes ahP{70%{box-shadow:0 0 0 10px #F9731600}100%{box-shadow:0 0 0 0 #F9731600}}
+.ah-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ah-k{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;padding:14px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,var(--surface),var(--surface-2));min-width:0}.ah-k>span{grid-row:1/4;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);font-size:18px}.ah-k small{font-size:12px;color:var(--muted);font-weight:700}.ah-k b{font-size:21px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25}.ah-k em{font-style:normal;font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ah-k.ok b{color:var(--ok)}.ah-k.mid b{color:var(--mid)}.ah-k.bad b{color:var(--bad)}
+.ah-sec{display:grid;gap:12px;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--surface);min-width:0}
+.ah-sh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.ah-ins{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.ah-in{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;text-align:left;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;border-left:4px solid var(--c,var(--otro))}button.ah-in{cursor:pointer;transition:transform .15s}button.ah-in:hover{transform:translateY(-2px)}
+.ah-in>span{font-size:20px;line-height:1.2}.ah-in b{font-size:13.5px}.ah-in p{font-size:13px;line-height:1.45;color:var(--muted);margin-top:3px}.ah-in p b{color:var(--ink);font-size:inherit}
+.ah-in.ok{--c:var(--ok)}.ah-in.mid{--c:var(--mid)}.ah-in.bad{--c:var(--bad)}.ah-in.info{--c:var(--acc)}
+.ah-chipv{display:inline-block;padding:1px 7px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ah-seg{display:inline-flex;padding:3px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}.ah-seg button{border:0;background:none;color:var(--muted);font:inherit;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:9px;cursor:pointer}.ah-seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px #0002}
+.ah-ley{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);font-weight:600}
+.ah-bars{position:relative;display:grid;gap:2px;--lw:minmax(180px,300px);--vw:96px}
+.ah-br{display:grid;grid-template-columns:var(--lw) minmax(0,1fr) var(--vw);gap:12px;align-items:center;padding:5px 6px;border:0;border-radius:10px;background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer}.ah-br:hover{background:var(--surface-2)}
+.ah-bl{display:grid;grid-template-columns:30px minmax(0,1fr);gap:9px;align-items:center;min-width:0}.ah-bl>span{display:grid;min-width:0}.ah-bl b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ah-bl small{font-size:11px;color:var(--muted)}
+.ah-bc{width:30px;height:38px;border-radius:6px;object-fit:cover;display:grid;place-items:center;background:var(--surface-2)}.ah-bc.mx-ph b{font-size:13px}.ah-bx{font-size:15px}
+.ah-bt{position:relative;height:16px;border-radius:6px;background:var(--surface-2)}.ah-bt i{position:absolute;inset:0 auto 0 0;border-radius:6px;background:var(--c,var(--otro));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.ah-br.ok{--c:var(--ok)}.ah-br.mid{--c:var(--mid)}.ah-br.bad{--c:var(--bad)}.ah-br.otro{--c:var(--otro)}
+.ah-bv{display:grid;text-align:right}.ah-bv b{font-size:14px;font-variant-numeric:tabular-nums}.ah-bv small{font-size:10.5px;color:var(--muted)}
+.ah-bt::after{content:"";position:absolute;top:-5px;bottom:-5px;left:var(--med);border-left:2px dashed color-mix(in srgb,var(--ink) 40%,transparent);pointer-events:none}
+.ah-ley .medk{color:var(--ink)}
+.ah-two{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px}
+.ah-svg{width:100%;height:auto;display:block}.ah-svg text{font-size:11px;fill:var(--muted);font-family:inherit}.ah-svg .g{stroke:var(--line);stroke-width:1}.ah-svg .ln{fill:none;stroke:var(--acc);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}.ah-svg .pt{fill:color-mix(in srgb,var(--acc) 30%,var(--surface));stroke:var(--surface);stroke-width:2;cursor:pointer}.ah-svg .pt:hover{fill:var(--acc)}
+.ah-steps{margin:0;padding-left:20px;display:grid;gap:8px;font-size:13.5px;line-height:1.4}.ah-steps li::marker{color:var(--acc);font-weight:800}
+.ah-fil{display:flex;gap:6px;flex-wrap:wrap}.ah-fil button{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700;padding:7px 12px;border-radius:999px;cursor:pointer}.ah-fil button span{color:var(--muted);font-weight:600;margin-left:3px}.ah-fil button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}.ah-fil button[aria-pressed="true"] span{color:inherit;opacity:.7}
+.ah-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.ah-card{display:grid;gap:10px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);border-top:4px solid var(--c,var(--line));transition:box-shadow .15s,transform .15s}.ah-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}.ah-card.on{box-shadow:0 0 0 2px var(--acc)}
+.ah-card.ok{--c:var(--ok)}.ah-card.mid{--c:var(--mid)}.ah-card.bad{--c:var(--bad)}.ah-card.otro{--c:var(--otro)}.ah-card.run{--c:#F97316}
+.ah-ch{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:center;border:0;background:none;color:var(--ink);font:inherit;text-align:left;padding:0;cursor:pointer}
+.ah-cc{width:52px;height:66px;border-radius:9px;object-fit:cover;display:grid;place-items:center;background:var(--surface-2);box-shadow:0 2px 6px #0002}.ah-cc.mx-ph b{font-size:20px}
+.ah-cn{display:grid;gap:3px;min-width:0;justify-items:start}.ah-cn b{font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.ah-cn small{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.ah-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--pc,var(--otro)) 15%,var(--surface));color:color-mix(in srgb,var(--pc,var(--otro)) 80%,var(--ink))}.ah-pill.ok{--pc:var(--ok)}.ah-pill.mid{--pc:var(--mid)}.ah-pill.bad{--pc:var(--bad)}.ah-pill.run{--pc:#F97316}
+.ah-cm{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:8px;border-radius:12px;background:var(--surface-2)}.ah-cm div{display:grid;text-align:center;min-width:0}.ah-cm small{font-size:10.5px;color:var(--muted);font-weight:700}.ah-cm b{font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ah-cm .hl b{color:color-mix(in srgb,var(--c,var(--ink)) 85%,var(--ink))}
+.ah-cf{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}.ah-cf b{color:var(--ink)}
+.ah-roas{padding:3px 9px;border-radius:999px;font-size:12.5px;color:#fff!important;background:var(--bad)}.ah-roas.ok{background:var(--ok)}.ah-roas.mid{background:var(--mid)}
+.ah-det{display:grid;gap:12px;padding:18px;border-radius:18px;border:2px solid color-mix(in srgb,var(--acc) 45%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 6%,var(--surface)),var(--surface));animation:ahIn .25s ease}@keyframes ahIn{from{opacity:0;transform:translateY(-6px)}}
+.ah-det h4{font-size:18px}.ah-dh{display:flex;justify-content:space-between;align-items:center}.ah-x{border:0;background:var(--surface-2);color:var(--ink);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px}
+.ah-fun{display:grid;gap:6px}.ah-fs{display:grid;grid-template-columns:30px minmax(0,1fr) 150px;gap:10px;align-items:center}.ah-fs>span{font-size:18px;text-align:center}.ah-fs div{display:grid;gap:3px}.ah-fs small{font-size:12px;font-weight:700;color:var(--muted)}.ah-fs i{display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--acc),#F59E0B)}.ah-fs b{font-size:16px;font-variant-numeric:tabular-nums;display:grid;text-align:right}.ah-fs b em{font-style:normal;font-size:11px;color:var(--muted);font-weight:600}
+.ah-dg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.ah-dg>div{display:grid;padding:10px 12px;border-radius:12px;background:var(--surface-2)}.ah-dg small{font-size:11.5px;color:var(--muted);font-weight:700}.ah-dg b{font-size:18px;font-variant-numeric:tabular-nums}.ah-dg em{font-style:normal;font-size:11.5px;color:var(--muted)}.ah-dg .ok b{color:var(--ok)}.ah-dg .mid b{color:var(--mid)}.ah-dg .bad b{color:var(--bad)}
+.ah-dset{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:10px}.ah-dset label{display:grid;gap:4px;font-size:12px;font-weight:700;color:var(--muted)}.ah-dset select,.ah-dset input{font:inherit;font-size:13.5px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:0}
+.ah-empty{display:grid;justify-items:center;text-align:center;gap:10px;padding:34px 16px}.ah-empty p{max-width:460px;color:var(--muted)}.ah-ei{font-size:44px}
+.ah-como{font-size:13px;color:var(--muted)}.ah-como summary{cursor:pointer;font-weight:700;color:var(--ink)}.ah-como ol{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;text-align:left}
+.ah-tip{position:fixed;z-index:9999;max-width:280px;padding:8px 11px;border-radius:10px;background:#1E1B2E;color:#fff;font-size:12.5px;line-height:1.45;white-space:pre-line;pointer-events:none;box-shadow:0 8px 24px #0004}.ah-tip[hidden]{display:none}
+@container (max-width:1000px){.ah-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.ah-two{grid-template-columns:1fr}.ah-bars{--lw:minmax(150px,220px)}}
+@container (max-width:640px){.ah-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ah-kpis .ah-k:last-child{grid-column:1/-1}
+ .ah-br{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;row-gap:5px}.ah-bt{grid-column:1/-1;grid-row:2}
+ .ah-dg{grid-template-columns:repeat(2,minmax(0,1fr))}.ah-dset{grid-template-columns:1fr 1fr}.ah-dset label:first-child{grid-column:1/-1}.ah-fs{grid-template-columns:26px minmax(0,1fr) 110px}.ah-grid{grid-template-columns:1fr}}
+
 .pl-tabs{display:flex;gap:6px;padding:6px;border:1px solid var(--line);border-radius:16px;background:var(--surface);margin-bottom:14px;overflow-x:auto;scrollbar-width:none}.pl-tabs::-webkit-scrollbar{display:none}
 .pl-tabs button{flex:1 0 auto;display:flex;align-items:center;gap:10px;border:0;background:none;color:var(--muted);font:inherit;padding:9px 14px;border-radius:12px;cursor:pointer;text-align:left}.pl-tabs button>span:first-child{font-size:20px}.pl-tabs b{display:block;font-size:14px;color:var(--ink)}.pl-tabs small{font-size:11.5px}
 .pl-tabs button:hover{background:var(--surface-2)}.pl-tabs button[aria-selected="true"]{background:linear-gradient(135deg,color-mix(in srgb,#E1A100 20%,var(--surface-2)),var(--surface-2));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,#E1A100 50%,transparent)}
@@ -18036,7 +18089,7 @@ async function plzInit(){ const v=$("#view-pinterest"); if(!v||!v.querySelector(
 // =====================================================================
 // ANUNCIOS DE INSTAGRAM: cuándo pautar cada material, qué publicación promocionar, armador paso a paso y seguimiento del retorno
 // =====================================================================
-const AN={tab:"plan",lista:[],cargado:false,arm:null,ia:null,iaBusy:false};
+const AN={tab:"plan",lista:[],hist:[],cargado:false,arm:null,ia:null,iaBusy:false};
 const AN_OBJ=[["msg","💬","Mensajes","La persona te escribe o comenta la palabra y tus respuestas automáticas le mandan precio y link. Lo que mejor te funciona.","Interacción → Mensajes (Instagram Direct)"],["web","🛒","Ventas en la web","Lleva directo a la página del material. Ideal si tenés el Píxel de Meta conectado en tu tienda.","Tráfico → Sitio web (o Ventas si tenés el Píxel)"],["alc","📣","Que te conozcan","Llega a muchas docentes nuevas. Sirve antes de una fecha fuerte, para después reimpactar a las que interactuaron.","Reconocimiento → Alcance"]];
 const anPlata=n=>"$ "+Math.round(n||0).toLocaleString("es-AR");
 function anProdId(m){ const it=visitas&&(visitas.items||[]).find(x=>x.k===m.k||(x.ks||[]).includes(m.k)); if(it&&it.id) return it.id; const P=(typeof PL!=="undefined"&&PL.prods)||[]; const tail=x=>slug(String(x.link||"").split("?")[0].split("/").filter(Boolean).pop()||""), base=m.k.replace(/-(con-plataforma-interactiva|pasapalabra-incluido.*|papalabra-incluido.*)$/,"");
@@ -18055,12 +18108,12 @@ function anPubs(){ const P=(typeof IGP!=="undefined"&&IGP.data&&IGP.data.pubs)||
 function anPubMat(p){ const t=fold(p.t||""); if(!D||!t) return null; let best=null, bs=0; D.matList.forEach(m=>{ const w=fold(m.name).split(" ").filter(x=>x.length>4); const s=w.filter(x=>t.includes(x)).length/Math.max(1,w.length); if(s>bs){ bs=s; best=m; } }); return bs>=.4?best:null; }
 // ventas atribuidas: lo que vendió ese material durante el anuncio y 3 días después
 function anVentas(a){ if(!D||!a.k||!a.ini) return {u:0,r:0}; const i0=new Date(a.ini+"T00:00"), i1=new Date(+new Date((a.fin||a.ini)+"T23:59")+3*DAY); const L=D.items.filter(i=>i.ok&&i.k===a.k&&i.d&&i.d>=i0&&i.d<=i1); return {u:L.reduce((s,i)=>s+i.q,0),r:L.reduce((s,i)=>s+i.rev,0)}; }
-async function anCargar(){ try{ const sn=db&&await db.doc("panel/anuncios").get(); AN.lista=sn&&sn.exists?(sn.data().lista||[]):[]; }catch{ AN.lista=[]; } AN.cargado=true; }
-async function anGuardar(){ try{ if(db) await db.doc("panel/anuncios").set({lista:AN.lista,act:new Date().toISOString()}); }catch(e){ toast("No se pudo guardar","err"); } }
+async function anCargar(){ try{ const sn=db&&await db.doc("panel/anuncios").get(); const dd=sn&&sn.exists?sn.data():{}; AN.lista=dd.lista||[]; AN.hist=dd.hist||[]; if(!AN.cargado&&AN.hist.length) AN.tab="res"; }catch{ AN.lista=[]; } AN.cargado=true; }
+async function anGuardar(){ try{ if(db) await db.doc("panel/anuncios").set({lista:AN.lista,hist:AN.hist||[],act:new Date().toISOString()}); }catch(e){ toast("No se pudo guardar","err"); } }
 // ---------- vistas ----------
-function anHero(){ const L=AN.lista, gasto=L.reduce((s,a)=>s+(+a.gasto||0),0), V=L.map(a=>anVentas(a)), r=V.reduce((s,x)=>s+x.r,0), u=V.reduce((s,x)=>s+x.u,0), roas=gasto?r/gasto:null, vent=anVentanas(), ya=vent.filter(v=>v.est==="ahora"||v.est==="pronto");
+function anHero(){ const L=AN.lista, H=AN.hist||[], gasto=L.reduce((s,a)=>s+(+a.gasto||0),0)+H.reduce((s,a)=>s+(+a.gasto||0),0), V=L.map(a=>anVentas(a)), hs=H.length?ahStats():{r:0,u:0}, r=V.reduce((s,x)=>s+x.r,0)+hs.r, u=V.reduce((s,x)=>s+x.u,0)+hs.u, roas=gasto?r/gasto:null, vent=anVentanas(), ya=vent.filter(v=>v.est==="ahora"||v.est==="pronto");
   return `<div class="an-hero"><div class="an-k"><span>📅</span><small>Para pautar ahora</small><b>${ya.length}</b><em>${ya.length?esc(ya.slice(0,2).map(v=>v.m.name).join(" · ")):"Nada urgente"}</em></div>
-   <div class="an-k"><span>💸</span><small>Invertido en anuncios</small><b>${anPlata(gasto)}</b><em>${L.length} anuncio${L.length===1?"":"s"} registrado${L.length===1?"":"s"}</em></div>
+   <div class="an-k"><span>💸</span><small>Invertido en anuncios</small><b>${anPlata(gasto)}</b><em>${L.length+H.length} anuncio${L.length+H.length===1?"":"s"} registrado${L.length+H.length===1?"":"s"}</em></div>
    <div class="an-k"><span>🛒</span><small>Ventas durante los anuncios</small><b>${anPlata(r)}</b><em>${nf(u)} materiales</em></div>
    <div class="an-k ${roas==null?"":roas>=3?"ok":roas>=1.5?"mid":"bad"}"><span>📈</span><small>Retorno</small><b>${roas==null?"—":roas.toFixed(1).replace(".",",")+"×"}</b><em>${roas==null?"Registrá un anuncio para medirlo":roas>=3?"Muy bueno: escalá":roas>=1.5?"Rinde: ajustá y seguí":"Bajo: cambiá publicación o público"}</em></div></div>`; }
 function anPlan(){ const V=anVentanas(), t=startOfDay(new Date()); if(!V.length) return `<p class="muted">No hay fechas con ventas en los próximos meses.</p>`;
@@ -18102,9 +18155,9 @@ function anLista(){ const L=AN.lista; if(!L.length) return `<p class="muted">Tod
     <span class="an-rv"><b>${anPlata(v.r)}</b><small>${nf(v.u)} vendidos</small></span><span class="an-rr ${roas==null?"":roas>=3?"ok":roas>=1.5?"mid":"bad"}">${roas==null?"—":roas.toFixed(1).replace(".",",")+"×"}</span><button type="button" class="an-del" data-andel="${i}" aria-label="Borrar">✕</button></div>`; }).join("")}</div>
    <p class="muted small">Ventas = lo que vendió ese material durante el anuncio y los 3 días siguientes (también entran las que llegaron por otro lado). Retorno = ventas ÷ gastado: arriba de 3× es muy bueno.</p>`; }
 function anPintar(){ const b=$("#anBody"); if(!b) return;
-  b.innerHTML=`${anHero()}<nav class="an-tabs" role="tablist">${[["plan","🗓️","Cuándo pautar"],["pubs","🏆","Qué promocionar"],["mis","📒","Mis anuncios"],["guia","🎓","Guía"]].map(([k,ic,t])=>`<button type="button" role="tab" data-antab="${k}" aria-selected="${AN.tab===k}">${ic} ${t}</button>`).join("")}</nav>
+  b.innerHTML=`${anHero()}<nav class="an-tabs" role="tablist">${[["res","📊","Resultados"],["plan","🗓️","Cuándo pautar"],["pubs","🏆","Qué promocionar"],["mis","📒","Mis anuncios"],["guia","🎓","Guía"]].map(([k,ic,t])=>`<button type="button" role="tab" data-antab="${k}" aria-selected="${AN.tab===k}">${ic} ${t}</button>`).join("")}</nav>
    ${anArmador()}
-   <section class="card an-sec">${AN.tab==="plan"?`<div class="an-sh"><h3>🗓️ Cuándo pautar cada material</h3><button type="button" class="btn small primary" data-anarmar="">➕ Armar un anuncio</button></div>${anPlan()}`:AN.tab==="pubs"?`<div class="an-sh"><h3>🏆 Tus mejores publicaciones para anunciar</h3></div>${anPubsHtml()}`:AN.tab==="mis"?`<div class="an-sh"><h3>📒 Mis anuncios y su retorno</h3><button type="button" class="btn small" data-anarmar="">➕ Nuevo</button></div>${anLista()}`:anGuia()}</section>`; }
+   ${AN.tab==="res"?`<section class="card an-sec">${ahHtml()}</section>`:`<section class="card an-sec">${AN.tab==="plan"?`<div class="an-sh"><h3>🗓️ Cuándo pautar cada material</h3><button type="button" class="btn small primary" data-anarmar="">➕ Armar un anuncio</button></div>${anPlan()}`:AN.tab==="pubs"?`<div class="an-sh"><h3>🏆 Tus mejores publicaciones para anunciar</h3></div>${anPubsHtml()}`:AN.tab==="mis"?`<div class="an-sh"><h3>📒 Mis anuncios y su retorno</h3><button type="button" class="btn small" data-anarmar="">➕ Nuevo</button></div>${anLista()}`:anGuia()}</section>`}`; }
 function anGuia(){ const G=[["🎯","Pautá antes de la fecha","Encendé el anuncio unas 3 semanas antes de la efeméride y apagalo 2 días antes. El mismo día ya es tarde: la docente planifica con tiempo."],["🏆","Promocioná lo que ya funcionó","Usá la publicación existente con más guardados y compartidos. Conserva sus comentarios y genera confianza."],["💬","Mensajes + respuestas automáticas","El objetivo Mensajes con “Comentá la palabra” convierte muy bien: tus respuestas automáticas mandan precio y link al instante."],["🔥","Reimpactá a las que ya te conocen","Un segundo anuncio a quienes interactuaron en los últimos 60 días suele vender más barato que buscar público nuevo."],["🧪","Probá con poco y escalá","3 o 4 días con poco presupuesto. Si rinde, subí de a 20 a 30 %. Si no, cambiá la publicación o el público."],["📏","Medí cada anuncio","Registralo acá con lo gastado: el panel cruza tus ventas de esos días y te dice el retorno."],["🧷","Conectá el Píxel de Meta","Si tu tienda lo permite, conectalo: Meta aprende quién compra y los anuncios de ventas se abaratan."],["📧","Sumá un correo a tus clientas","Antes de cada fecha, un correo a quienes ya te compraron (sección Correos) acompaña al anuncio y casi no cuesta."]];
   return `<div class="an-sh"><h3>🎓 Cómo hacer anuncios que vendan</h3></div><div class="an-guia">${G.map(([ic,t,d])=>`<div><span>${ic}</span><b>${t}</b><small>${d}</small></div>`).join("")}</div>`; }
 async function anIA(){ const A=AN.arm, m=A&&D.matList.find(x=>x.k===A.k); const sf=await getSample(); if(!sf){ toast("Los textos los escribe Claude desde el panel dentro de Claude","err"); return; } AN.iaBusy=true; anPintar();
@@ -18129,7 +18182,148 @@ async function anInit(){ const v=$("#view-anuncios"); if(!v) return; if(!v.datas
     v.addEventListener("change",async e=>{ const t=e.target, d=t.dataset; if(d.ana&&AN.arm){ AN.arm[d.ana]=d.ana==="pub"?(t.value===""?null:+t.value):t.value; if(d.ana==="k"){ AN.ia=null; const w=anVentanas().find(x=>x.m.k===t.value); if(w){ AN.arm.ini=ngYmd(w.ini>new Date()?w.ini:new Date()); AN.arm.fin=ngYmd(w.fin); } } return anPintar(); }
       if(d.angasto!=null){ AN.lista[+d.angasto].gasto=t.value; await anGuardar(); return anPintar(); } if(d.anres!=null){ AN.lista[+d.anres].res=t.value; await anGuardar(); } });
     await anCargar(); try{ if(typeof plProds==="function") await plProds(); }catch{} try{ if(MODE.cloud&&typeof IGP!=="undefined"&&!IGP.data&&typeof igpCargar==="function") igpCargar().then(()=>anPintar()); else if(typeof IGP!=="undefined"&&!IGP.data&&db){ const sn=await db.doc("panel/igplus").get(); if(sn.exists) IGP.data=sn.data(); } }catch{} if(!MX_HI) mxCargarHi().then(()=>anPintar()); }
-  anPintar(); }
+  ahBind(); anPintar(); }
+
+// ---------- ANUNCIOS · RESULTADOS (historial importado de Meta) ----------
+const AH={f:"all",sort:"fecha",open:null,mk:new Map()};
+const AH_COLS={n:["Campaign name","Nombre de la campaña","Ad name","Nombre del anuncio"],est:["Campaign delivery","Entrega de la campaña","Entrega"],res:["Results","Resultados"],ind:["Result indicator","Indicador de resultados"],alc:["Reach","Alcance"],frec:["Frequency","Frecuencia"],presu:["Ad set budget","Presupuesto del conjunto de anuncios"],gasto:["Amount spent (ARS)","Importe gastado (ARS)","Amount spent","Importe gastado"],fin:["Ends","Finalización","Fin"],imp:["Impressions","Impresiones"],cpm:["CPM (cost per 1,000 impressions) (ARS)","CPM (costo por mil impresiones) (ARS)"],clics:["Link clicks","Clics en el enlace"],ctr:["CTR (link click-through rate)","CTR (porcentaje de clics en el enlace)"],lpv:["Landing page views","Visitas a la página de destino"]};
+function ahCSV(txt){ const R=[]; let row=[], f="", q=false; txt=String(txt).replace(/^﻿/,"");
+  for(let i=0;i<txt.length;i++){ const c=txt[i]; if(q){ if(c==='"'){ if(txt[i+1]==='"'){ f+='"'; i++; } else q=false; } else f+=c; }
+    else if(c==='"') q=true; else if(c===","){ row.push(f); f=""; } else if(c==="\n"||c==="\r"){ if(c==="\r"&&txt[i+1]==="\n") i++; row.push(f); f=""; if(row.some(x=>x!=="")) R.push(row); row=[]; } else f+=c; }
+  row.push(f); if(row.some(x=>x!=="")) R.push(row); return R; }
+function ahImportar(txt){ const R=ahCSV(txt); if(R.length<2) throw new Error("El archivo está vacío"); const H=R[0].map(h=>h.trim());
+  const ix={}; for(const [k,al] of Object.entries(AH_COLS)){ ix[k]=H.findIndex(h=>al.some(a=>a.toLowerCase()===h.toLowerCase())); }
+  if(ix.n<0||ix.gasto<0) throw new Error("No parece un informe de anuncios de Meta (faltan las columnas de nombre y gasto)");
+  const num=v=>{ const x=parseFloat(String(v||"").replace(/[^\d.\-]/g,"")); return isFinite(x)?x:0; };
+  return R.slice(1).map(r=>{ const g=k=>ix[k]>=0?r[ix[k]]:""; const n=String(g("n")||"").trim(), fin=String(g("fin")||"").slice(0,10);
+    return {id:slug(ahNom(n)).slice(0,48)+"|"+fin,n,fin,est:g("est"),res:num(g("res")),ind:g("ind"),alc:num(g("alc")),frec:num(g("frec")),presu:num(g("presu")),gasto:num(g("gasto")),imp:num(g("imp")),cpm:num(g("cpm")),clics:num(g("clics")),ctr:num(g("ctr")),lpv:num(g("lpv"))}; }).filter(a=>a.n&&a.fin); }
+async function ahCargarArchivo(file){ try{ const L=ahImportar(await file.text()); let nu=0, up=0; const H=AN.hist||(AN.hist=[]);
+    L.forEach(a=>{ const i=H.findIndex(x=>x.id===a.id); if(i>=0){ const o=H[i]; H[i]={...a,k:o.k,ini:o.ini,nota:o.nota}; up++; } else { H.push(a); nu++; } });
+    AH.mk.clear(); await anGuardar(); toast(`Listo: ${nu} anuncio${nu===1?"":"s"} nuevo${nu===1?"":"s"}${up?` y ${up} actualizado${up===1?"":"s"}`:""}`); AN.tab="res"; anPintar(); }
+  catch(e){ toast(e.message||"No se pudo leer el archivo","err"); } }
+const ahNom=n=>String(n||"").replace(/^Instagram post:\s*/i,"").trim();
+const AH_EMO=/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{20E3}]/gu;
+function ahTit(n){ let t=ahNom(n).split(/\n/)[0].replace(AH_EMO,"").replace(/\.{3}$|…$/,"").replace(/[\s|–\-(¡!]+$/,"").replace(/^[\s¡!]+/,"").replace(/\s+/g," ").trim();
+  const L=t.replace(/[^A-Za-zÁÉÍÓÚÑÜáéíóúñü]/g,""); if(L&&L.replace(/[^A-ZÁÉÍÓÚÑÜ]/g,"").length/L.length>.6){ const st=new Set(["de","la","del","y","el","los","las","a","en","al","por","para"]); t=t.toLowerCase().split(" ").map((w,i)=>i&&st.has(w)?w:w.charAt(0).toUpperCase()+w.slice(1)).join(" "); }
+  return t||"Anuncio"; }
+const ahEsPerfil=a=>/profile/i.test(a.ind||"")||/perfil/i.test(a.ind||"");
+const ahTipo=a=>ahEsPerfil(a)?"visita al perfil":/link|clic|enlace/i.test(a.ind||"")?"clic al link":/message|mensaj|convers/i.test(a.ind||"")?"mensaje":"resultado";
+const ahTipoPl=(a,n)=>{ const t=ahTipo(a); return n===1?t:t==="visita al perfil"?"visitas al perfil":t==="clic al link"?"clics al link":t==="mensaje"?"mensajes":"resultados"; };
+const ahCxr=a=>a.res?a.gasto/a.res:null;
+const ahActivo=a=>/active|activ/i.test(a.est||"")&&!/inactive/i.test(a.est||"");
+function ahMat(a){ if(!D) return null; if(a.k) return D.matList.find(x=>x.k===a.k)||null; if(AH.mk.has(a.id)) return AH.mk.get(a.id);
+  const txt=fold(ahNom(a.n)), e=efeFor(ahNom(a.n),null), STOP=new Set(["cuadernillo","actividades","actividad","secuencia","plataforma","interactiva","incluido","pasapalabra","para","docentes","nivel","ciclo","primer","segundo","grado"]);
+  const fin=new Date(a.fin+"T12:00"), plat=/plataforma/.test(txt), prox=m=>{ const f=efeFor(m.name,m.doc); if(!f) return null; const [mm,dd]=f[0].split("-").map(Number); let E=new Date(fin.getFullYear(),mm-1,dd,12); if(E<fin-DAY) E=new Date(fin.getFullYear()+1,mm-1,dd,12); return Math.round((E-fin)/DAY); };
+  ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre","incluido","papalabra","mundial"].forEach(x=>STOP.add(x));
+  let C=D.matList; if(e){ const c2=C.filter(m=>{ const f=efeFor(m.name,m.doc); return f&&f[0]===e[0]; }); if(c2.length) C=c2; }
+  let best=null, bs=-1; C.forEach(m=>{ const w=fold(m.name).split(/[^a-z0-9]+/).filter(x=>x.length>3&&!STOP.has(x)); const h=w.filter(x=>txt.includes(x)).length, d=prox(m), dp=d!=null&&d<=40?1-d/40:0, esP=/plataforma/.test(fold(m.name));
+    const s=(e?1:0)+h/Math.max(1,w.length)+h*.15+dp*.8+(esP===plat?0:-.7)+Math.min(.2,(m.sold||0)/2000); if((e||h>0||(d!=null&&d<=7))&&s>bs){ bs=s; best=m; } });
+  AH.mk.set(a.id,best); return best; }
+function ahIni(a){ if(a.ini) return a.ini; const f=new Date(a.fin+"T12:00"); return ngYmd(new Date(+f-6*DAY)); }
+function ahItems(a){ const m=ahMat(a); if(!m||!D) return []; const i0=new Date(ahIni(a)+"T00:00"), i1=new Date(+new Date(a.fin+"T23:59")+3*DAY); return D.items.filter(i=>i.ok&&i.k===m.k&&i.d&&i.d>=i0&&i.d<=i1); }
+function ahVentas(a){ const L=ahItems(a); return {u:L.reduce((s,i)=>s+i.q,0),r:L.reduce((s,i)=>s+i.rev,0)}; }
+const ahMed=v=>{ const s=v.filter(x=>x!=null).sort((a,b)=>a-b); return s.length?s[Math.floor(s.length/2)]:0; };
+function ahVer(a,med){ const c=ahCxr(a); if(c==null) return {k:"run",t:ahActivo(a)?"En curso":"Sin datos",ic:"⏳"}; if(!ahEsPerfil(a)) return {k:"otro",t:"Otro objetivo",ic:"🔗"};
+  return c<=med*.75?{k:"ok",t:"Muy buena",ic:"🟢"}:c<=med*1.3?{k:"mid",t:"Regular",ic:"🟡"}:{k:"bad",t:"Cara",ic:"🔴"}; }
+const ahN=(n,d=0)=>(+n||0).toLocaleString("es-AR",{maximumFractionDigits:d,minimumFractionDigits:d});
+const ahF=(ymd,o)=>cpFechaL(ymd,o||{day:"numeric",month:"short"});
+const ahGrupo=a=>fold(ahTit(a.n)).replace(/[^a-z0-9]+/g," ").trim().slice(0,26);
+
+function ahStats(){ const H=(AN.hist||[]).slice(), P=H.filter(a=>ahEsPerfil(a)&&a.res), med=ahMed(P.map(ahCxr));
+  const gasto=H.reduce((s,a)=>s+a.gasto,0), alc=H.reduce((s,a)=>s+a.alc,0), res=P.reduce((s,a)=>s+a.res,0), gP=P.reduce((s,a)=>s+a.gasto,0);
+  const set=new Set(); H.forEach(a=>ahItems(a).forEach(i=>set.add(i))); const S=[...set]; const r=S.reduce((s,i)=>s+i.rev,0), u=S.reduce((s,i)=>s+i.q,0);
+  return {H,P,med,gasto,alc,res,cpv:res?gP/res:null,r,u,roas:gasto&&D?r/gasto:null}; }
+
+function ahInsights(st){ const {H,P,med}=st, out=[]; if(!P.length) return out;
+  const ord=P.slice().sort((a,b)=>ahCxr(a)-ahCxr(b)), b=ord[0], w=ord[ord.length-1];
+  out.push({ic:"🏆",c:"ok",t:"Tu mejor anuncio",b:`<b>${esc(ahTit(b.n))}</b>: cada visita te costó <b>$ ${ahN(ahCxr(b))}</b>, ${ahN(med/ahCxr(b),1)} veces menos que tu promedio.`,id:b.id});
+  if(ahCxr(w)>med*1.6) out.push({ic:"🚫",c:"bad",t:"El que menos rindió",b:`<b>${esc(ahTit(w.n))}</b>: <b>$ ${ahN(ahCxr(w))}</b> por visita. No vuelvas a pautar esa publicación; probá otra del mismo tema.`,id:w.id});
+  const G=new Map(); P.slice().sort((x,y)=>x.fin.localeCompare(y.fin)).forEach(a=>{ const g=ahGrupo(a); if(!G.has(g)) G.set(g,[]); G.get(g).push(a); });
+  const rep=[...G.values()].filter(L=>L.length>=2).sort((x,y)=>y.length-x.length)[0];
+  if(rep){ const sube=ahCxr(rep[rep.length-1])>ahCxr(rep[0]); out.push({ic:"🔁",c:sube?"bad":"mid",t:"Promocionar lo mismo otra vez",b:`<b>${esc(ahTit(rep[0].n))}</b> la pautaste ${rep.length} veces: ${rep.map(a=>`<span class="ah-chipv">$ ${ahN(ahCxr(a))}</span>`).join(" → ")}. ${sube?"Cada vez más cara: es la misma gente viendo lo mismo. Mejor otra publicación del tema.":"Aguantó bien, pero vigilá que no suba."}`}); }
+  const top=P.slice().sort((x,y)=>y.gasto-x.gasto).slice(0,3), rest=P.filter(a=>!top.includes(a)); if(top.length&&rest.length){ const cT=top.reduce((s,a)=>s+a.gasto,0)/top.reduce((s,a)=>s+a.res,0), cR=rest.reduce((s,a)=>s+a.gasto,0)/rest.reduce((s,a)=>s+a.res,0);
+    if(cT>cR*1.15) out.push({ic:"💸",c:"mid",t:"Más plata no es más resultado",b:`Tus 3 anuncios con más presupuesto pagaron <b>$ ${ahN(cT)}</b> por visita; el resto, <b>$ ${ahN(cR)}</b>. Conviene repartir: <b>$ 8.000 a $ 12.000</b> por fecha y elegir bien la publicación.`}); }
+  const byT=[...H].filter(a=>a.cpm&&a.fin).sort((x,y)=>x.fin.localeCompare(y.fin)); if(byT.length>=6){ const h=Math.floor(byT.length/2), c1=byT.slice(0,h).reduce((s,a)=>s+a.cpm,0)/h, c2=byT.slice(h).reduce((s,a)=>s+a.cpm,0)/(byT.length-h);
+    if(c2>c1*1.2) out.push({ic:"📈",c:"mid",t:"Meta se encareció",b:`Mostrar tu anuncio 1.000 veces pasó de <b>$ ${ahN(c1)}</b> a <b>$ ${ahN(c2)}</b>. Por eso hoy importa más que nunca promocionar publicaciones que ya gustaron solas.`}); }
+  const nP=H.filter(ahEsPerfil).length; if(nP>=H.length*.7) out.push({ic:"🎯",c:"info",t:"Cambiá el objetivo",b:`${nP} de ${H.length} anuncios buscaron <b>visitas al perfil</b>, que es lo que pone el botón “Promocionar” por defecto. Una visita no es una venta: elegí <b>Mensajes</b> o <b>Visitas al sitio web</b>.`});
+  return out; }
+
+function ahBarras(st){ const H=st.H.filter(a=>a.res); let L=H.slice(); const med=st.med;
+  if(AH.sort==="mejor") L.sort((a,b)=>(ahEsPerfil(b)-ahEsPerfil(a))||ahCxr(a)-ahCxr(b)); else if(AH.sort==="gasto") L.sort((a,b)=>b.gasto-a.gasto); else L.sort((a,b)=>a.fin.localeCompare(b.fin));
+  const mx=Math.max(...L.map(ahCxr)), X=v=>Math.max(1.5,v/mx*100);
+  return `<div class="ah-bars" style="--med:${X(med)}%">${L.map(a=>{ const c=ahCxr(a), v=ahVer(a,med), m=ahMat(a);
+    return `<button type="button" class="ah-br ${v.k}" data-ahopen="${esc(a.id)}" data-tip="${esc(`${ahTit(a.n)} · ${ahF(a.fin,{day:"numeric",month:"long"})}\n$ ${ahN(a.gasto)} gastados · ${ahN(a.res)} ${ahTipoPl(a,a.res)}\n${ahN(a.alc)} personas alcanzadas`)}">
+      <span class="ah-bl">${m?mxCover(m,"ah-bc"):`<span class="ah-bc ah-bx">📢</span>`}<span><b>${esc(ahTit(a.n))}</b><small>${esc(ahF(a.fin))} · $ ${ahN(a.gasto)}</small></span></span>
+      <span class="ah-bt"><i style="width:${X(c)}%"></i></span><span class="ah-bv"><b>$ ${ahN(c)}</b><small>${ahEsPerfil(a)?"por visita":"por clic"}</small></span></button>`; }).join("")}</div>`; }
+
+function ahCpm(st){ const L=st.H.filter(a=>a.cpm&&a.fin).sort((x,y)=>x.fin.localeCompare(y.fin)); if(L.length<3) return "";
+  const W=640,Hh=210,pl=46,pr=14,pt=16,pb=30, t0=+new Date(L[0].fin), t1=+new Date(L[L.length-1].fin), mx=Math.ceil(Math.max(...L.map(a=>a.cpm))/500)*500;
+  const X=d=>pl+((+new Date(d))-t0)/Math.max(1,t1-t0)*(W-pl-pr), Y=v=>pt+(1-v/mx)*(Hh-pt-pb);
+  const M=new Map(); L.forEach(a=>{ const k=a.fin.slice(0,7); if(!M.has(k)) M.set(k,[]); M.get(k).push(a.cpm); }); const mp=[...M.entries()].map(([k,v])=>[k+"-15",v.reduce((s,x)=>s+x,0)/v.length]);
+  const ticks=[0,mx/2,mx]; const meses=[...M.keys()];
+  return `<svg class="ah-svg" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Costo por mil impresiones de cada anuncio">
+    ${ticks.map(v=>`<line x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}" class="g"/><text x="${pl-8}" y="${Y(v)+4}" text-anchor="end">$${ahN(v)}</text>`).join("")}
+    ${meses.map(k=>`<text x="${X(k+"-15")}" y="${Hh-8}" text-anchor="middle" class="m">${esc(MESES[+k.slice(5)-1].slice(0,3))}</text>`).join("")}
+    <polyline class="ln" points="${mp.map(([d,v])=>`${X(d).toFixed(1)},${Y(v).toFixed(1)}`).join(" ")}"/>
+    ${L.map(a=>`<circle cx="${X(a.fin).toFixed(1)}" cy="${Y(a.cpm).toFixed(1)}" r="6" class="pt" data-ahopen="${esc(a.id)}" data-tip="${esc(`${ahTit(a.n)}\n$ ${ahN(a.cpm)} cada 1.000 veces que se mostró`)}"/>`).join("")}</svg>`; }
+
+function ahEmbudo(a){ const S=[["👀","Se mostró",a.imp,"veces"],["🙋‍♀️","Personas distintas",a.alc,`la vio ${ahN(a.frec,1)} veces cada una`],["👆","Tocaron el anuncio",a.clics,`${ahN(a.ctr,1)} % de las personas`],["⭐",ahEsPerfil(a)?"Visitaron tu perfil":"Resultado",a.res,ahTipoPl(a,a.res)]].filter(s=>s[2]);
+  const mx=Math.sqrt(S[0]?S[0][2]:1); return `<div class="ah-fun">${S.map(s=>`<div class="ah-fs"><span>${s[0]}</span><div><small>${s[1]}</small><i style="width:${Math.max(6,Math.sqrt(s[2])/mx*100)}%"></i></div><b>${ahN(s[2])}<em>${esc(s[3])}</em></b></div>`).join("")}</div>`; }
+
+function ahDetalle(a,st){ const m=ahMat(a), v=ahVentas(a), roas=a.gasto&&m?v.r/a.gasto:null, ver=ahVer(a,st.med);
+  const opts=D?D.matList.slice().sort((x,y)=>x.name.localeCompare(y.name)).map(x=>`<option value="${esc(x.k)}"${m&&m.k===x.k?" selected":""}>${esc(x.name)}</option>`).join(""):"";
+  return `<div class="ah-det"><div class="ah-dh"><span class="ah-pill ${ver.k}">${ver.ic} ${ver.t}</span><button type="button" class="ah-x" data-ahopen="" aria-label="Cerrar">✕</button></div>
+    <h4>${esc(ahTit(a.n))}</h4><p class="muted small">${esc(ahNom(a.n).split(/\n/)[0])}</p>
+    ${ahEmbudo(a)}
+    <div class="ah-dg"><div><small>Gastaste</small><b>$ ${ahN(a.gasto)}</b></div><div><small>Costo por ${ahEsPerfil(a)?"visita":"resultado"}</small><b>${ahCxr(a)!=null?"$ "+ahN(ahCxr(a)):"—"}</b></div><div><small>Ventas del material en esos días</small><b>$ ${ahN(v.r)}</b><em>${ahN(v.u)} vendidos</em></div><div class="${roas==null?"":roas>=3?"ok":roas>=1.5?"mid":"bad"}"><small>Retorno</small><b>${roas==null?"—":ahN(roas,1)+"×"}</b><em>${roas==null?"Elegí el material":roas>=3?"Muy bueno":roas>=1?"Recuperaste lo invertido":"No se recuperó"}</em></div></div>
+    <div class="ah-dset"><label>Material que promocionaba<select data-ahk="${esc(a.id)}"><option value="">— Ninguno —</option>${opts}</select></label><label>Empezó el<input type="date" data-ahini="${esc(a.id)}" value="${esc(ahIni(a))}"></label><label>Terminó el<input type="date" value="${esc(a.fin)}" disabled></label></div>
+    <p class="muted small">Las ventas son todas las del material entre el inicio y 3 días después del final, también las que llegaron sin el anuncio. Si la fecha de inicio no es la real, cambiala y se recalcula.</p></div>`; }
+
+function ahTarjetas(st){ let L=st.H.slice().sort((a,b)=>b.fin.localeCompare(a.fin)); const med=st.med;
+  if(AH.f!=="all") L=L.filter(a=>ahVer(a,med).k===AH.f);
+  const cnt=k=>st.H.filter(a=>ahVer(a,med).k===k).length;
+  return `<div class="ah-fil" role="group" aria-label="Filtrar">${[["all","Todos",st.H.length],["ok","🟢 Muy buenos",cnt("ok")],["mid","🟡 Regulares",cnt("mid")],["bad","🔴 Caros",cnt("bad")]].map(([k,t,n])=>`<button type="button" data-ahf="${k}" aria-pressed="${AH.f===k}">${t} <span>${n}</span></button>`).join("")}</div>
+   <div class="ah-grid">${L.map(a=>{ const m=ahMat(a), v=ahVer(a,med), s=ahVentas(a), c=ahCxr(a), roas=a.gasto&&m&&D?s.r/a.gasto:null;
+    return `<article class="ah-card ${v.k}${AH.open===a.id?" on":""}"><button type="button" class="ah-ch" data-ahopen="${esc(a.id)}">
+      <span class="ah-cv">${m?mxCover(m,"ah-cc"):`<span class="ah-cc ah-bx">📢</span>`}</span><span class="ah-cn"><span class="ah-pill ${v.k}">${v.ic} ${v.t}</span><b>${esc(ahTit(a.n))}</b><small>Terminó el ${esc(ahF(a.fin,{day:"numeric",month:"long"}))}${m?` · ${esc(m.name)}`:""}</small></span></button>
+      <div class="ah-cm"><div><small>Gastado</small><b>$ ${ahN(a.gasto)}</b></div><div><small>Alcance</small><b>${ahN(a.alc)}</b></div><div><small>${ahEsPerfil(a)?"Visitas":"Clics"}</small><b>${ahN(a.res)}</b></div><div class="hl"><small>C/u</small><b>${c!=null?"$ "+ahN(c):"—"}</b></div></div>
+      <div class="ah-cf"><span>🛒 ${D&&m?`<b>$ ${ahN(s.r)}</b> en ventas esos días · ${ahN(s.u)} vendidos`:"Elegí el material para ver ventas"}</span>${roas!=null?`<b class="ah-roas ${roas>=3?"ok":roas>=1.5?"mid":"bad"}">${ahN(roas,1)}×</b>`:""}</div></article>`; }).join("")||`<p class="muted">No hay anuncios en este grupo.</p>`}</div>`; }
+
+function ahVacio(){ return `<div class="ah-empty"><div class="ah-ei">📊</div><h3>Traé tus anuncios de Meta</h3><p>Exportá el informe de campañas y subilo acá: el panel te muestra cuánto te costó cada resultado y cuánto vendiste esos días.</p><label class="btn primary">⬆️ Subir el archivo CSV<input type="file" accept=".csv,text/csv" data-ahfile hidden></label>${ahComo()}</div>`; }
+function ahComo(){ return `<details class="ah-como"><summary>¿Cómo descargo el archivo?</summary><ol><li>Entrá a <a href="https://adsmanager.facebook.com/" target="_blank" rel="noopener">Administrador de anuncios</a> desde la computadora.</li><li>Arriba a la derecha elegí el período: <b>Máximo</b>.</li><li>Tocá <b>Exportar</b> (o “Informes” → “Exportar datos de la tabla”) → formato <b>.csv</b>.</li><li>Subilo acá. Si lo volvés a subir más adelante, se actualizan los que ya estaban y se suman los nuevos.</li></ol></details>`; }
+
+function ahHtml(){ const st=ahStats(); if(!st.H.length) return ahVacio();
+  const act=st.H.filter(ahActivo), ins=ahInsights(st), sel=AH.open&&st.H.find(a=>a.id===AH.open);
+  const ds=st.H.map(a=>a.fin).sort(), rango=`${ahF(ds[0],{month:"short",year:"numeric"})} – ${ahF(ds[ds.length-1],{month:"short",year:"numeric"})}`;
+  return `<div class="ah">
+   <div class="ah-top"><div><h3>📊 Lo que ya invertiste en anuncios</h3><p class="muted small">${st.H.length} anuncios · ${esc(rango)}</p></div><div class="ah-ta"><label class="btn small">⬆️ Actualizar con otro CSV<input type="file" accept=".csv,text/csv" data-ahfile hidden></label></div></div>
+   ${act.map(a=>`<div class="ah-live"><span class="ah-dot"></span><div><b>En curso: ${esc(ahTit(a.n))}</b><small>Hasta el ${esc(ahF(a.fin,{weekday:"long",day:"numeric",month:"long"}))} · presupuesto $ ${ahN(a.presu)} · ${a.gasto?`$ ${ahN(a.gasto)} gastado`:"<b>todavía $ 0 gastado</b>"}</small></div>${a.gasto?"":`<em>Revisá en la app de Instagram que no esté “En revisión” o pausado.</em>`}</div>`).join("")}
+   <div class="ah-kpis">
+    <div class="ah-k"><span>💸</span><small>Invertido</small><b>$ ${ahN(st.gasto)}</b><em>en ${st.H.length} anuncios</em></div>
+    <div class="ah-k"><span>🙋‍♀️</span><small>Personas alcanzadas</small><b>${ahN(st.alc)}</b><em>sumando todos</em></div>
+    <div class="ah-k"><span>⭐</span><small>Visitas al perfil</small><b>${ahN(st.res)}</b><em>gracias a los anuncios</em></div>
+    <div class="ah-k"><span>🪙</span><small>Cada visita te costó</small><b>$ ${ahN(st.cpv)}</b><em>en promedio</em></div>
+    <div class="ah-k ${st.roas==null?"":st.roas>=3?"ok":st.roas>=1.5?"mid":"bad"}"><span>🛒</span><small>Ventas en esos días</small><b>${D?"$ "+ahN(st.r):"—"}</b><em>${D?`${ahN(st.u)} materiales · ${st.roas!=null?ahN(st.roas,1)+"× lo invertido":"—"}`:"Cargando ventas…"}</em></div>
+   </div>
+   ${ins.length?`<section class="ah-sec"><h4>💡 Lo que dicen tus números</h4><div class="ah-ins">${ins.map(i=>`<${i.id?`button type="button" data-ahopen="${esc(i.id)}"`:"div"} class="ah-in ${i.c}"><span>${i.ic}</span><div><b>${esc(i.t)}</b><p>${i.b}</p></div></${i.id?"button":"div"}>`).join("")}</div></section>`:""}
+   ${sel?ahDetalle(sel,st):""}
+   <section class="ah-sec"><div class="ah-sh"><div><h4>🪙 Cuánto te costó cada resultado</h4><p class="muted small">Barra más corta = anuncio más barato. La línea punteada es tu promedio. Tocá una barra para ver el detalle.</p></div><div class="ah-seg" role="group">${[["fecha","Por fecha"],["mejor","Más baratos"],["gasto","Más gasto"]].map(([k,t])=>`<button type="button" data-ahsort="${k}" aria-pressed="${AH.sort===k}">${t}</button>`).join("")}</div></div>
+    <div class="ah-ley"><span class="ok">🟢 Muy buena (≤ $ ${ahN(st.med*.75)})</span><span class="mid">🟡 Regular</span><span class="bad">🔴 Cara (&gt; $ ${ahN(st.med*1.3)})</span><span class="otro">🔗 Otro objetivo</span><span class="medk">┆ Tu promedio: $ ${ahN(st.med)}</span></div>${ahBarras(st)}</section>
+   <div class="ah-two"><section class="ah-sec"><h4>📈 Lo que cobra Meta por mostrar tu anuncio</h4><p class="muted small">Cada punto es un anuncio: cuánto pagaste cada 1.000 veces que se mostró. La línea es el promedio del mes.</p>${ahCpm(st)}</section>
+    <section class="ah-sec"><h4>🧭 Para tu próximo anuncio</h4><ol class="ah-steps"><li><b>Elegí la publicación</b> que más se guardó sin pagar (pestaña “Qué promocionar”).</li><li><b>Objetivo Mensajes</b> o <b>Visitas al sitio web</b>, no “visitas al perfil”.</li><li><b>Empezá 10 a 14 días antes</b> de la efeméride y terminá 2 días antes.</li><li><b>$ 8.000 a $ 12.000</b> por fecha; si a los 3 días rinde, subí 20 %.</li><li><b>Una vez por publicación</b>: para repetir, usá otra del mismo tema.</li></ol><button type="button" class="btn small primary" data-anarmar="">➕ Armar el próximo anuncio</button></section></div>
+   <section class="ah-sec"><h4>🗂️ Todos tus anuncios</h4>${ahTarjetas(st)}</section>
+   ${ahComo()}</div>`; }
+
+let ahTipEl=null;
+function ahBind(){ const v=$("#view-anuncios"); if(!v||v.dataset.ah) return; v.dataset.ah="1";
+  v.addEventListener("click",e=>{ const b=e.target.closest("[data-ahopen],[data-ahf],[data-ahsort]"); if(!b) return; if(ahTipEl) ahTipEl.hidden=true; const d=b.dataset;
+    if(d.ahf){ AH.f=d.ahf; return anPintar(); } if(d.ahsort){ AH.sort=d.ahsort; return anPintar(); }
+    if(d.ahopen!=null){ AH.open=d.ahopen&&AH.open!==d.ahopen?d.ahopen:null; anPintar(); if(AH.open) setTimeout(()=>{ const x=$(".ah-det"); if(x) x.scrollIntoView({behavior:"smooth",block:"nearest"}); },30); } });
+  v.addEventListener("change",async e=>{ const t=e.target, d=t.dataset; if(d.ahfile!=null&&t.files&&t.files[0]){ await ahCargarArchivo(t.files[0]); t.value=""; return; }
+    const id=d.ahk||d.ahini; if(!id) return; const a=(AN.hist||[]).find(x=>x.id===id); if(!a) return; if(d.ahk!=null){ a.k=t.value||""; AH.mk.delete(id); if(!t.value) AH.mk.set(id,null); } else a.ini=t.value; await anGuardar(); anPintar(); });
+  v.addEventListener("mousemove",e=>{ const el=e.target.closest("[data-tip]"); if(!ahTipEl){ ahTipEl=document.createElement("div"); ahTipEl.className="ah-tip"; ahTipEl.hidden=true; document.body.appendChild(ahTipEl); }
+    if(!el||!v.contains(el)){ ahTipEl.hidden=true; return; } ahTipEl.textContent=el.dataset.tip; ahTipEl.hidden=false; const w=ahTipEl.offsetWidth, h=ahTipEl.offsetHeight; let x=e.clientX+14, y=e.clientY+14; if(x+w>innerWidth-8) x=e.clientX-w-14; if(y+h>innerHeight-8) y=e.clientY-h-14; ahTipEl.style.left=x+"px"; ahTipEl.style.top=y+"px"; });
+  v.addEventListener("mouseleave",()=>{ if(ahTipEl) ahTipEl.hidden=true; }); }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
