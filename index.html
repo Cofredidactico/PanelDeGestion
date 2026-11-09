@@ -668,6 +668,18 @@ button.cl-k{cursor:pointer;transition:transform .15s,box-shadow .15s}button.cl-k
   .cl-card{padding:14px}
 }
 @media (max-width:620px){.cl-ks{grid-template-columns:repeat(2,minmax(0,1fr))}.cl-k b{font-size:18px}.cl-sts{grid-template-columns:repeat(2,minmax(0,1fr))}.cl-dh{flex-direction:column;align-items:flex-start}.cl-a{flex:1 1 calc(50% - 8px);justify-content:center;padding:9px 8px}.cl-mats{grid-template-columns:1fr}.cl-tl-t{margin-left:0}}
+.pg-box{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:9px;padding:8px 10px;border-radius:12px;background:var(--surface);border:1px dashed var(--line);font-size:12.5px}
+.pg-box .pg-t{flex:1 1 auto;color:var(--muted)}.pg-box .pg-t b{color:var(--ink)}
+.pg-box.wait{border:1.5px solid color-mix(in srgb,#F08C2E 55%,transparent);background:color-mix(in srgb,#F08C2E 9%,var(--surface))}
+.pg-bs{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pg-ok{background:#22A35A!important;border-color:#22A35A!important;color:#fff!important}.pg-no{border-color:color-mix(in srgb,#E05A47 55%,transparent)!important;color:#E05A47!important}
+.pg-ed{font-size:12.5px;white-space:nowrap}
+.pg-box.edit{border-style:solid;border-color:color-mix(in srgb,var(--c1,#3E7BFA) 45%,transparent)}
+.pg-seg{display:inline-flex;gap:4px;padding:3px;border-radius:11px;background:var(--surface-2)}.pg-seg button{border:0;background:none;color:var(--ink);font:inherit;font-size:12.5px;font-weight:800;padding:6px 10px;border-radius:9px;cursor:pointer}.pg-seg button[aria-pressed="true"]{background:var(--surface);box-shadow:0 2px 8px -4px rgba(0,0,0,.45),inset 0 0 0 1.5px color-mix(in srgb,var(--c1,#3E7BFA) 55%,transparent)}
+.pg-man{flex-basis:100%;font-size:11.5px;color:var(--muted)}
+.pg-alert{display:grid;gap:2px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,#F08C2E 10%,var(--surface));border:1.5px solid color-mix(in srgb,#F08C2E 50%,transparent)}.pg-alert b{font-size:14px}.pg-alert small{color:var(--muted);font-size:12px}.pg-alert .pg-box{background:none;border:0;padding:4px 0 0;margin:0}.pg-alert .pg-box .pg-t{display:none}
+.vt-od .pg-box{margin:0}
+@media (max-width:620px){.pg-seg{flex-wrap:wrap}.pg-bs .btn{flex:1}}
 
 .vt{display:grid;gap:14px;margin-bottom:16px;--vt1:#22A35A;--vt2:#3E7BFA}
 .vt-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,400px);gap:22px;align-items:center;padding:24px 26px;border-radius:24px 24px 0 0;border:1px solid var(--line);border-bottom:0;background:radial-gradient(110% 150% at 0% 0%,color-mix(in srgb,var(--vt1) 24%,transparent),transparent 55%),radial-gradient(90% 120% at 100% 100%,color-mix(in srgb,var(--vt2) 20%,transparent),transparent 60%),var(--surface)}
@@ -5019,7 +5031,7 @@ window.cofreBridge={ buf:"", out:null,
   // Ventas de la web en el formato del lector de Empretienda (para pasarlas al panel de Claude sin mover documentos enteros)
   ventasFilas(desdeNum,dias){ const V=ventasCargar(), lim=Date.now()-(dias||45)*864e5, rows=[];
     const pf=s=>{ const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s||""); if(!m) return 0; let y=+m[3]; if(y<100) y+=2000; return Date.UTC(y,+m[2]-1,+m[1]); };
-    V.clients.forEach(c=>(c.o||[]).forEach(o=>{ if(o.id>(+desdeNum||0)||pf(o.f)>=lim) rows.push({c:{n:c.n||"",e:c.e||"",d:c.d||"",t:c.t||"",ci:c.c||"",p:c.p||""},o}); }));
+    V.clients.forEach(c=>(c.o||[]).forEach(o=>{ const pm=pagosMan[String(o.id)]; if(o.id>(+desdeNum||0)||pf(o.f)>=lim||pm) rows.push({c:{n:c.n||"",e:c.e||"",d:c.d||"",t:c.t||"",ci:c.c||"",p:c.p||""},o:pm&&pm.pg?{...o,pg:pm.pg}:o}); }));
     rows.sort((a,b)=>a.o.id-b.o.id); const ids=Object.keys(V.where).map(Number);
     return this.show({total:ids.length,max:ids.length?Math.max(...ids):0,rows,fuente:(V.meta&&V.meta.fuente)||""}); },
   // Suma las órdenes que tu lector de Gmail guardó en Supabase (corre sola al abrir el panel web y cada 10 minutos)
@@ -5062,7 +5074,7 @@ async function tpMateriales(items){ if(!tpMapa){ const L=await db._api("cofre_ti
   const n=t=>String(t||"").trim().replace(/\s+/g," ").toLowerCase(), ids=new Set(), sin=[]; (items||[]).forEach(i=>{ const L=tpMapa[n(i[1])]; if(L) L.forEach(x=>ids.add(x)); else sin.push(i[1]); }); return {ids:[...ids],sin}; }
 async function tpBiblioteca(body){ const cfg=supaCfg(), tok=await supaToken(cfg); if(!tok){ supaExpired(); throw new Error("Tu sesión se cerró. Volvé a entrar."); }
   const r=await fetch(`${cfg.url}/functions/v1/biblioteca`,{method:"POST",headers:{apikey:cfg.key,Authorization:"Bearer "+tok,"Content-Type":"application/json"},body:JSON.stringify(body)}); let j={}; try{ j=await r.json(); }catch{} if(!r.ok) throw new Error(j.error||("Error "+r.status)); return j; }
-function tpPendientes(){ const V=ventasCargar(), lim=Date.now()-60*864e5, out=[]; V.clients.forEach(c=>(c.o||[]).forEach(o=>{ if(o.pg!=="Pendiente"||o.m!=="Transferencia") return; const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(o.f||""); if(m){ let y=+m[3]; if(y<100) y+=2000; if(Date.UTC(y,+m[2]-1,+m[1])<lim) return; } out.push({c,o}); })); return out.sort((a,b)=>b.o.id-a.o.id); }
+function tpPendientes(){ const V=ventasCargar(), lim=Date.now()-60*864e5, out=[]; V.clients.forEach(c=>(c.o||[]).forEach(o=>{ if(o.pg!=="Pendiente"||o.m!=="Transferencia"||pagosMan[String(o.id)]) return; const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(o.f||""); if(m){ let y=+m[3]; if(y<100) y+=2000; if(Date.UTC(y,+m[2]-1,+m[1])<lim) return; } out.push({c,o}); })); return out.sort((a,b)=>b.o.id-a.o.id); }
 function trPendPintar(){ const box=$("#trPend"); if(!box) return; if(!MODE.supa||!db||!db._api){ box.hidden=true; return; } const L=tpPendientes(); if(!L.length){ box.hidden=true; return; }
   box.hidden=false; box.innerHTML=`<div class="sec-h" style="margin-bottom:8px"><h2>⏳ Transferencias por confirmar <span class="tp-n">${L.length}</span></h2><span class="meta">Cuando te llegue la plata, tocá “Ya me pagó”: se habilita en Mi biblioteca y cuenta como venta cobrada.</span></div>
     <div class="tp-list">${L.map(({c,o})=>`<div class="tp-it" data-tpid="${o.id}"><div class="tp-i"><b>${esc(c.n||c.e)}</b><span class="muted">${esc(c.e)} · orden #${o.id} · ${esc(o.f||"")}</span><span>${(o.i||[]).map(i=>esc(i[1])).join(" · ")}</span></div><b class="tp-tot">${money(o.tot||0)}</b><span class="tp-acc"><button type="button" class="btn small primary" data-tpok="${o.id}">✅ Ya me pagó</button><button type="button" class="btn small ghost" data-tpno="${o.id}" title="La transferencia no llegó: marcarla como cancelada">No pagó</button></span></div>`).join("")}</div>`; }
@@ -5127,7 +5139,7 @@ function groupOf(name){ const d=matDocs[slug(name)]; return (d&&d.grupo)||autoGr
 
 function derive(){
   const prepared = clients.map(c=>{
-    const orders=(c.o||[]).map(o=>({...o,_d:parseF(o.f)})).sort((a,b)=>(b._d||0)-(a._d||0));
+    const orders=(c.o||[]).map(o=>{ const pm=pagosMan[String(o.id)]; return pm&&pm.pg?{...o,pg:pm.pg,_pgOrig:o.pg,_man:pm,_d:parseF(o.f)}:{...o,_d:parseF(o.f)}; }).sort((a,b)=>(b._d||0)-(a._d||0));
     const ok=orders.filter(o=>o.pg==="Finalizado");
     const units=ok.reduce((s,o)=>s+(o.i||[]).reduce((a,x)=>a+x[0],0),0);
     const names=orders.flatMap(o=>(o.i||[]).map(x=>x[1]));
@@ -19322,6 +19334,35 @@ function llvInit(){ const v=$("#view-llaves"); if(!v) return; if(!v.dataset.on){
 // aviso de vencimiento al abrir el panel
 setTimeout(()=>{ try{ llvBadge(); const E=llvEstado(); if((E.k==="warn"||E.k==="bad")&&llvGet("cofre-gh-aviso")!==new Date().toDateString()){ llvSet("cofre-gh-aviso",new Date().toDateString()); toast(E.k==="bad"?"Tu llave de GitHub venció: cambiala en Sistema → Llaves y conexiones":`Tu llave de GitHub vence en ${E.dias} días: renovala en Sistema → Llaves`,"err"); } }catch{} },4000);
 
+// ---------- Pagos marcados a mano (pendientes y transferencias) ----------
+// Cada marca se guarda en "pagos/<n.º de pedido>" y se aplica encima de lo que traen Empretienda o Gmail,
+// así una sincronización nunca pisa lo que confirmaste vos.
+var pagosMan={};
+const PG_EDIT=new Set();
+const PAGO_OPC=[["Finalizado","✅","Pagó"],["Pendiente","⏳","Pendiente"],["Cancelado","❌","No pagó"]];
+function pagoFecha(s){ try{ return new Date(s).toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",hour12:false}); }catch{ return ""; } }
+function pagoCtrl(c,o){ const id=String(o.id), ck=esc(c.e||c.n), man=o._man, ed=PG_EDIT.has(id);
+  const nota=man?`<span class="pg-man" title="Marcado a mano">✍️ Lo marcaste vos el ${esc(pagoFecha(man.at))} · en la tienda figura “${esc(PAY[o._pgOrig]?.[1]||o._pgOrig)}”</span>`:"";
+  if(o.pg==="Pendiente"&&!ed) return `<div class="pg-box wait"><span class="pg-t">⏳ <b>Esperando el pago</b>${o.m?` · ${esc(o.m)}`:""}</span><span class="pg-bs"><button type="button" class="btn small pg-ok" data-pgset="Finalizado" data-pgid="${esc(id)}" data-pgck="${ck}">✅ Ya pagó</button><button type="button" class="btn small pg-no" data-pgset="Cancelado" data-pgid="${esc(id)}" data-pgck="${ck}">❌ No pagó</button></span>${nota}</div>`;
+  if(!ed) return `<div class="pg-box"><span class="pg-t">${o.m==="Transferencia"?"🏦 Transferencia":o.m?`💳 ${esc(o.m)}`:"💳 Pago"} · ${esc(PAY[o.pg]?.[1]||o.pg)}</span><button type="button" class="linkish pg-ed" data-pgedit="${esc(id)}">✏️ Corregir pago</button>${nota}</div>`;
+  return `<div class="pg-box edit"><span class="pg-t"><b>¿Qué pasó con este pago?</b></span><span class="pg-seg" role="group" aria-label="Estado del pago">${PAGO_OPC.map(([v,ic,t])=>`<button type="button" data-pgset="${v}" data-pgid="${esc(id)}" data-pgck="${ck}" aria-pressed="${o.pg===v}">${ic} ${t}</button>`).join("")}</span>
+    <span class="pg-bs">${man?`<button type="button" class="linkish" data-pgset="${esc(o._pgOrig)}" data-pgid="${esc(id)}" data-pgck="${ck}">↩️ Volver a lo que dice la tienda</button>`:""}<button type="button" class="linkish" data-pgedit="${esc(id)}">Cerrar</button></span>${nota}</div>`; }
+function pagoRepintar(){ if(currentView==="clientes"&&typeof cliPintar==="function") cliPintar(); if(currentView==="ventas"&&typeof vtPed==="function"&&VT.tab==="ped") vtPed(); }
+async function pagoMarcar(ck,id,pg,btn){ const c=(D?D.clients:[]).find(x=>(x.e||x.n)===ck), o=c&&c.o.find(x=>String(x.id)===String(id)); if(!o||!needDb()) return;
+  if(pg===o.pg){ PG_EDIT.delete(String(id)); pagoRepintar(); return; }
+  const orig=o._pgOrig||o.pg, nom=c.n||c.e||"la clienta";
+  if(o.pg==="Finalizado"&&!await pcConfirm(`El pedido #${o.id} de ${nom} (${money(o.tot)}) va a dejar de contar como venta cobrada y pasa a “${pg==="Cancelado"?"No pagó":"Pendiente"}”.${MODE.supa?"\n\nSi ya le habilitaste el material en Mi biblioteca, revisalo ahí: esto no le quita el acceso.":""}`,{titulo:"Corregir el pago",ok:pg==="Cancelado"?"Sí, no pagó":"Sí, dejarlo pendiente"})) return;
+  if(btn) btn.disabled=true;
+  const marca={pg,prev:orig,at:new Date().toISOString(),m:o.m||""};
+  try{ if(pg===orig){ await db.doc("pagos/"+o.id).delete(); delete pagosMan[String(o.id)]; } else { await db.doc("pagos/"+o.id).set(marca); pagosMan[String(o.id)]=marca; }
+    PG_EDIT.delete(String(id)); derive(); pagoRepintar(); if(currentView!=="clientes") scheduleRerender();
+    if(pg==="Finalizado"){ toast(`✅ Registrado: ${nom} pagó el pedido #${o.id}`,"ok");
+      if(MODE.supa&&db._api&&c.e&&typeof tpMateriales==="function"){ try{ const {ids,sin}=await tpMateriales(o.i); if(ids.length){ await tpBiblioteca({accion:"dar",email:String(c.e).toLowerCase(),materiales:ids}); toast(`📚 ${ids.length===1?"Material habilitado":ids.length+" materiales habilitados"} en Mi biblioteca${sin.length?" · sin vincular: "+sin.join(", "):""}`,"ok"); } else toast("Quedó registrado el pago. No encontré el material en Mi biblioteca: vinculalo en Mi biblioteca → Materiales.","warn"); }catch(e){ toast("Quedó registrado el pago, pero no pude habilitarlo en Mi biblioteca: "+(e.message||e),"warn"); } } }
+    else toast(pg==="Cancelado"?`Registrado: el pedido #${o.id} no se pagó`:`El pedido #${o.id} quedó pendiente`); }
+  catch(e){ toast("No se pudo guardar. Probá de nuevo.","err"); if(btn) btn.disabled=false; } }
+document.addEventListener("click",e=>{ const s=e.target.closest("[data-pgset]"); if(s){ e.preventDefault(); pagoMarcar(s.dataset.pgck,s.dataset.pgid,s.dataset.pgset,s); return; }
+  const ed=e.target.closest("[data-pgedit]"); if(ed){ const id=ed.dataset.pgedit; PG_EDIT.has(id)?PG_EDIT.delete(id):PG_EDIT.add(id); pagoRepintar(); } });
+
 // ---------- CLIENTES · CRM visual ----------
 const CLI={seg:"todas",q:"",sort:"last",prov:"",sel:null,lim:60,mob:false};
 try{ const s=JSON.parse(localStorage.getItem("cofre-cli")||"{}"); if(s.sort) CLI.sort=s.sort; }catch{}
@@ -19339,7 +19380,8 @@ const CLI_SEGS=[
   ["volvieron","🔁","Volvieron","#8B5CF6",c=>c._ok===2,"Compraron 2 veces: están a un paso de ser fieles"],
   ["nuevas","🌱","Nuevas","#22A35A",c=>{ const f=cliFirst(c); return f&&cliDias(f)<=30; },"Primera compra en los últimos 30 días"],
   ["recuperar","💤","Para recuperar","#E05A47",c=>{ const l=cliLastOk(c); return l&&cliDias(l)>180; },"Compraron, pero hace más de 6 meses que no vuelven"],
-  ["pendiente","⏳","Pago pendiente","#F08C2E",c=>c.o.some(o=>o.pg==="Pendiente"),"Tienen un pedido esperando el pago"],
+  ["pendiente","⏳","Pago pendiente","#F08C2E",c=>c.o.some(o=>o.pg==="Pendiente"),"Tienen un pedido esperando el pago: marcá si pagó o no"],
+  ["transfer","🏦","Transferencias","#0EA5A4",c=>c.o.some(o=>o.m==="Transferencia"),"Hicieron algún pedido por transferencia: revisá o corregí si pagaron"],
   ["sinpago","⚠️","Sin pago aprobado","#B4505A",c=>c.o.length&&!c._ok,"Hicieron pedidos pero ninguno se aprobó"],
   ["sincompras","👤","Sin compras","#94A3B8",c=>!c.o.length,"Se registraron y nunca compraron"]];
 const CLI_SORT=[["last","Última compra"],["spent","Más gastó"],["units","Más materiales"],["new","Más nuevas"],["az","Nombre A-Z"]];
@@ -19377,7 +19419,7 @@ function cliLista(){ const C=D?D.clients:[], seg=CLI_SEGS.find(s=>s[0]===CLI.seg
   const S={last:(a,b)=>(b._last||0)-(a._last||0),spent:(a,b)=>b._spent-a._spent||(b._last||0)-(a._last||0),units:(a,b)=>b._units-a._units||b._spent-a._spent,new:(a,b)=>(cliFirst(b)||b._last||0)-(cliFirst(a)||a._last||0),az:(a,b)=>String(a.n||a.e).localeCompare(String(b.n||b.e),"es")};
   return L.sort((a,b)=>S[CLI.sort](a,b)||String(a.n).localeCompare(String(b.n),"es")); }
 function cliEstado(c){ if(c.o.some(o=>o.pg==="Pendiente")) return ["wait","Pago pendiente"]; if(!c.o.length) return ["none","Sin compras"]; if(!c._ok) return ["no","Sin pago aprobado"]; return ["ok","Al día"]; }
-function cliCol(){ const box=$("#clCol"); if(!box) return; const C=D?D.clients:[];
+function cliCol(){ const box=$("#clCol"); if(!box) return; const C=D?D.clients:[]; const _ol=box.querySelector(".cl-list"), _st=_ol?_ol.scrollTop:0; setTimeout(()=>{ const nl=box.querySelector(".cl-list"); if(nl&&_st) nl.scrollTop=_st; },0);
   if(!C.length){ box.innerHTML=`<div class="cl-empty"><span>🗂️</span><b>Todavía no hay clientas cargadas</b><p>Las ventas llegan solas con los avisos de Empretienda, o podés importarlas desde Sistema → Datos.</p></div>`; return; }
   const L=cliLista(), q=fold(CLI.q.trim()), provs=[...new Set(C.map(c=>c.p||"Sin dato"))].sort((a,b)=>a.localeCompare(b,"es"));
   const seg=CLI_SEGS.find(s=>s[0]===CLI.seg)||CLI_SEGS[0];
@@ -19404,7 +19446,7 @@ function cliDet(){ const box=$("#clDet"); if(!box) return; const C=D?D.clients:[
         ${ok?(p?`<div class="cl-mat-a"><button type="button" class="pass" data-copy-pass="${esc(p)}" title="Copiar contraseña">🔑 ${esc(p)}</button><button type="button" class="btn small" data-send="${esc(o.id)}" data-mat="${esc(name)}" data-tpl="t-pass">Enviar</button></div>`:`<div class="cl-mat-a"><span class="muted">Contraseña sin cargar</span><button class="linkish" type="button" data-goto-mat="${esc(name)}">Cargar</button></div>`):`<div class="cl-mat-a"><button type="button" class="btn small" data-send="${esc(o.id)}" data-mat="${esc(name)}" data-tpl="t-pendiente">Mensaje</button></div>`}</div></div>`; }).join("")}</div>`:`<p class="muted">Se registró pero nunca compró. No corresponde enviarle contraseñas.</p><button class="btn small" type="button" data-send="" data-mat="" data-tpl="t-nofigura">Escribirle</button>`;
   const ped=c.o.length?`<ol class="cl-tl">${c.o.map(o=>{ const cls=o.pg==="Finalizado"?"ok":o.pg==="Pendiente"?"wait":"no";
       return `<li class="${cls}"><div class="cl-tl-h"><b>${o._d?esc(o._d.toLocaleDateString("es-AR",{day:"numeric",month:"short",year:"numeric"})):"—"}</b><span class="muted">${o._d?esc(o._d.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit",hour12:false})):""}</span><span class="cl-tl-id">#${esc(o.id)}</span>${payPill(o.pg)}<b class="cl-tl-t">${money(o.tot)}</b></div>
-        <div class="cl-tl-i">${(o.i||[]).map(it=>`<span>${esc(it[1])}${it[0]>1?` ×${it[0]}`:""}</span>`).join("")}${o.m?`<span class="cl-tl-m">${o.m==="Transferencia"?"🏦":"💳"} ${esc(o.m)}</span>`:""}${o.cup?`<span class="cl-tl-m">🏷️ cupón −${money(o.cup)}</span>`:""}</div></li>`; }).join("")}</ol>`:"";
+        <div class="cl-tl-i">${(o.i||[]).map(it=>`<span>${esc(it[1])}${it[0]>1?` ×${it[0]}`:""}</span>`).join("")}${o.cup?`<span class="cl-tl-m">🏷️ cupón −${money(o.cup)}</span>`:""}</div>${pagoCtrl(c,o)}</li>`; }).join("")}</ol>`:"";
   const env=(c._sent||[]).slice().sort((a,b)=>new Date(b.at)-new Date(a.at));
   box.innerHTML=`<article class="cl-card">
     <button type="button" class="cl-back" data-clback>← Volver a la lista</button>
@@ -19412,6 +19454,7 @@ function cliDet(){ const box=$("#clDet"); if(!box) return; const C=D?D.clients:[
       <div class="cl-dn"><h2>${esc(c.n||c.e||"Sin nombre")}</h2><div class="cl-dm">${c.e?`<span>✉️ ${esc(c.e)}</span>`:""}${c.t?`<span>📱 ${esc(c.t)}</span>`:""}${c.c||c.p?`<span>📍 ${esc([c.c,c.p].filter(Boolean).join(", "))}</span>`:""}</div>
         <div class="cl-dt"><span class="pill ${es[0]}">${esc(es[1])}</span>${clientTags(c).filter(t=>t[0]!=="pend").map(([k2,l])=>`<span class="ctag ${k2}">${l}</span>`).join("")}</div></div></header>
     <div class="cl-acts">${ph?`<a class="cl-a wa" href="https://wa.me/${esc(ph)}" target="_blank" rel="noopener"><span>💬</span>WhatsApp</a>`:""}${c.e?`<a class="cl-a" href="mailto:${esc(c.e)}" target="_blank" rel="noopener"><span>✉️</span>Email</a>`:""}<button type="button" class="cl-a pri" data-send="${esc(lastO?lastO.id:"")}" data-mat="${esc(sendMat)}" data-tpl="${lastO?(lastO.pg==="Finalizado"?"t-pass":"t-pendiente"):"t-nofigura"}"><span>📝</span>Armar mensaje</button>${c.e?`<button type="button" class="cl-a" data-copy-txt="${esc(c.e)}"><span>📋</span>Copiar email</button>`:""}${c.t?`<button type="button" class="cl-a" data-copy-txt="${esc(c.t)}"><span>☎️</span>Copiar teléfono</button>`:""}</div>
+    ${c.o.filter(o=>o.pg==="Pendiente").map(o=>`<div class="pg-alert"><b>⏳ Pedido #${esc(o.id)} · ${money(o.tot)} · ${o._d?esc(fmtD(o._d)):""}</b><small>${esc((o.i||[]).map(i=>i[1]).join(" · "))}</small>${pagoCtrl(c,o)}</div>`).join("")}
     <div class="cl-sts">${T("💰","Gastó",money(c._spent),c._ok?`ticket ${money(c._spent/c._ok)}`:"")}${T("🧾","Compras",nf(c._ok),c._issues?`${c._issues} sin aprobar`:"aprobadas")}${T("📚","Materiales",nf(c._units),"")}${T("📅","Clienta desde",first?esc(first.toLocaleDateString("es-AR",{month:"short",year:"numeric"})):"—","")}${T("🕒","Última compra",cliHace(cliLastOk(c)),cliLastOk(c)?fmtD(cliLastOk(c)):"")}</div>
     <section class="cl-sec"><h3>📚 Sus materiales <span>${nf(mats.length)}</span></h3>${matHTML}</section>
     ${c.o.length?`<section class="cl-sec"><h3>🎯 Perfil y qué ofrecerle</h3>${crmHTML(c)}</section>`:""}
@@ -19527,6 +19570,7 @@ function vtPed(){ const box=$("#vtPed"); if(!box) return; const R=vxRange(), bas
       <span class="vt-ot">${money(o.tot)}</span>${payPill(o.pg)}<span class="vt-chev" aria-hidden="true">›</span></button>
       ${op?`<div class="vt-od"><div class="vt-odi">${its.map(it=>{ const cv=(matDocs[slug(it[1])]||{}).cover; return `<div class="vt-it">${cv?`<img src="${esc(cv)}" alt="" loading="lazy">`:`<span class="cl-mat-ph">${esc((fold(it[1]).charAt(0)||"?").toUpperCase())}</span>`}<div><b>${esc(it[1])}</b><small>${it[0]>1?`${it[0]} unidades`:"1 unidad"}</small></div></div>`; }).join("")}</div>
         <dl class="vt-odl"><div><dt>Fecha</dt><dd>${esc(o._d.toLocaleString("es-AR",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}))}</dd></div><div><dt>Medio de pago</dt><dd>${esc(o.m||"Sin dato")}</dd></div><div><dt>Estado</dt><dd>${esc(PAY[o.pg]?.[1]||o.pg)}</dd></div>${o.cup?`<div><dt>Cupón</dt><dd>−${money(o.cup)}</dd></div>`:""}<div><dt>Total</dt><dd><b>${money(o.tot)}</b></dd></div><div><dt>Clienta</dt><dd>${esc(c.e||c.t||"—")}</dd></div></dl>
+        ${pagoCtrl(c,o)}
         <div class="vt-oda"><button type="button" class="btn small primary" data-vtcli="${esc(ck)}">👩‍🏫 Ver ficha de ${esc(firstName(c.n)||"la clienta")}</button><button type="button" class="btn small" data-vtmsg="${esc(id)}" data-vtck="${esc(ck)}">📝 ${o.pg==="Finalizado"?"Enviar contraseña":o.pg==="Pendiente"?"Recordar el pago":"Escribirle"}</button>${waPhone(c.t)?`<a class="btn small" href="https://wa.me/${esc(waPhone(c.t))}" target="_blank" rel="noopener">💬 WhatsApp</a>`:""}</div></div>`:""}</div>`; });
   box.innerHTML=`<div class="vt-ped">
     <div class="vt-pts">${T("todos","🧾","Pedidos",base.length,tot(base),"#64748B")}${T("ok","✅","Aprobados",ok.length,tot(ok),"#22A35A")}${T("pend","⏳","Pendientes",pe.length,tot(pe),"#F08C2E")}${T("no","✖️","Cancelados o rechazados",no.length,tot(no),"#E05A47")}</div>
@@ -21661,6 +21705,7 @@ setStatus("Cargando…");
   },()=>{});
   db.collection("materiales").onSnapshot(snap=>{ matDocs={}; snap.docs.forEach(d=>{ matDocs[d.id]=d.data(); });
     if($("#mRows").contains(document.activeElement)){ matRenderPending=true; derive(); refreshOpenFichas(); } else scheduleRerender(); },()=>{});
+  db.collection("pagos").onSnapshot(snap=>{ pagosMan={}; snap.docs.forEach(d=>{ pagosMan[d.id]=d.data(); }); scheduleRerender(); },()=>{});
   db.collection("envios").onSnapshot(snap=>{ envios=snap.docs.map(d=>({id:d.id,...d.data()})); scheduleRerender(); },()=>{});
   db.collection("posts").onSnapshot(snap=>{ posts=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="calendario") renderCal(); if(currentView==="inicio") renderHoy(); },()=>{});
   db.collection("gastos").onSnapshot(snap=>{ gastos=snap.docs.map(d=>({id:d.id,...d.data()})); if(currentView==="ventas") renderFin(); },()=>{});
