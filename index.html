@@ -594,6 +594,24 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.llv-body{display:grid;gap:14px;max-width:980px}
+.llv-card{display:grid;gap:14px;padding:20px;border-radius:22px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.llv-card.ok{border-color:color-mix(in srgb,#22A35A 40%,var(--line))}.llv-card.warn{border-color:color-mix(in srgb,#E1A100 55%,var(--line))}.llv-card.bad{border-color:color-mix(in srgb,#E05A47 60%,var(--line))}
+.llv-h{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center}.llv-h h2{margin:0;font-size:18px}.llv-h h2 small{font-size:13px;color:var(--muted);font-weight:600}.llv-h p{margin:3px 0 0;color:var(--muted);font-size:13.5px}
+.llv-ic{display:grid;place-items:center;width:50px;height:50px;border-radius:15px;background:#24292F;color:#fff;font-size:24px}.llv-ic svg{width:28px;height:28px}.llv-ic.ig{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)}.llv-ic.sb{background:#1C3D2E}
+.llv-st{font-size:13px;font-weight:800;padding:6px 12px;border-radius:999px;background:var(--surface-2);white-space:nowrap}.llv-st.ok{color:#22A35A}.llv-st.warn{color:#B98500}.llv-st.bad{color:#E05A47}
+.llv-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px}
+.llv-info{display:grid;gap:8px;padding:14px;border-radius:16px;background:var(--surface-2);align-content:start}.llv-info small,.llv-usos>small{display:block;font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.llv-info b{font-size:15px;font-variant-numeric:tabular-nums}
+.llv-usos{display:grid;gap:6px;padding:14px;border-radius:16px;background:var(--surface-2);align-content:start}.llv-usos span{display:grid;grid-template-columns:24px auto 1fr;gap:8px;align-items:center;font-size:13px;color:var(--muted)}.llv-usos i{font-style:normal}.llv-usos b{color:var(--ink)}
+.llv-f{display:grid;gap:6px}.llv-f label{font-size:13px;font-weight:800}.llv-f>div{display:flex;gap:8px}.llv-f input{flex:1;min-width:0;font:inherit;font-size:15px;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);letter-spacing:.04em}.llv-f input:focus{outline:none;border-color:#22A35A}
+.llv-msg{margin:0;font-size:13.5px;font-weight:700;min-height:18px}.llv-msg.ok{color:#22A35A}.llv-msg.err{color:#E05A47}
+.llv-acts{display:flex;gap:8px;flex-wrap:wrap}
+.llv-how{font-size:13.5px}.llv-how summary{cursor:pointer;font-weight:800}.llv-how ol{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;color:var(--muted)}.llv-how b{color:var(--ink)}
+.llv-nota{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5}
+.llv-card.mini{gap:10px;padding:16px}.llv-card.mini .llv-ic{width:42px;height:42px;font-size:20px;border-radius:12px}
+.llv-dot{position:absolute;top:6px;right:8px;width:9px;height:9px;border-radius:50%;background:#E1A100}.llv-dot.bad{background:#E05A47}.tab[data-view="llaves"]{position:relative}
+@media (max-width:720px){.llv-g{grid-template-columns:1fr}.llv-h{grid-template-columns:auto minmax(0,1fr)}.llv-h .llv-st{grid-column:1/-1;justify-self:start}.llv-f>div{flex-direction:column}}
+
 /* ===== Taller del cuento ===== */
 #view-cuentos{--tc1:#7C5CFF;--tc2:#FF6FA8;--tc3:#FFB547}
 .tc-hero{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding:26px 28px;border-radius:24px;border:1px solid var(--line);background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--tc1) 30%,transparent),transparent 55%),radial-gradient(90% 120% at 100% 100%,color-mix(in srgb,var(--tc2) 26%,transparent),transparent 60%),var(--surface);margin-bottom:14px}
@@ -3100,6 +3118,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
     <button class="tab" role="tab" data-view="embudo" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg><span>Embudo de ventas</span></button>
     <button class="tab" role="tab" data-view="mapa" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg><span>Mapa de clientes</span></button>
     <button class="tab" role="tab" data-view="datos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg><span>Datos</span></button>
+    <button class="tab" role="tab" data-view="llaves" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 20 3M16 7l3 3M14 9l2 2"/></svg><span>Llaves y conexiones</span></button>
     </div>
     <div class="nav-tools"><span class="season-tag" id="seasonTag" hidden></span>
       <button class="btn small" type="button" data-cmd><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar<kbd>Ctrl K</kbd></button>
@@ -3837,6 +3856,7 @@ button.mx-b-i{cursor:pointer}button.mx-b-i:hover{border-color:color-mix(in srgb,
 <main class="wrap view" id="view-campana" hidden></main>
 <main class="wrap view" id="view-anuncios" hidden></main>
 <main class="wrap view" id="view-reciclar" hidden></main>
+<main class="wrap view" id="view-llaves" hidden></main>
 <main class="wrap view" id="view-datos" hidden>
   <div class="view-h"><div><h1>Datos</h1><p class="lead" id="dMode"></p></div><button class="btn small" type="button" id="supaOut2" hidden>Cerrar sesión</button></div>
   <section class="card">
@@ -4991,7 +5011,7 @@ function upcomingEfes(days){
 // Vistas
 // =====================================================================
 function showView(v){
-  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","cuentos","lanzamientos","mensajes","igbot","redstats","pinterest","youtube","campana","anuncios","reciclar","embudo","mapa","video","pdf","fichas","plataformas","correos","datos"];
+  const all=["inicio","ventas","stats","instagram","clientes","materiales","calendario","motor","cuentos","llaves","lanzamientos","mensajes","igbot","redstats","pinterest","youtube","campana","anuncios","reciclar","embudo","mapa","video","pdf","fichas","plataformas","correos","datos"];
   if(!all.includes(v)) v="inicio";
   currentView=v;
   document.querySelectorAll(".view").forEach(m=>m.hidden=m.id!=="view-"+v);
@@ -5016,6 +5036,7 @@ function renderView(v){
   if(v==="campana") cpInit();
   if(v==="anuncios") anInit();
   if(v==="cuentos") tcInit();
+  if(v==="llaves") llvInit();
   if(v==="reciclar") rc2Init();
   if(v!=="motor") document.querySelector(".app").classList.remove("mz-foco");
   if(v==="inicio"){ renderResumen(); renderHoy(); mxBrief(); }
@@ -17298,7 +17319,7 @@ function ytEnlazar(v){
     if(!map[t.id]) return; map[t.id](); clearTimeout(YT.tm); YT.tm=setTimeout(()=>{ const c=(id,n,max)=>{ const k=$(`[data-cnt="${id}"]`); if(k){ k.textContent=`${n}/${max}`; k.classList.toggle("over",n>max); } }; c("ytTit",YT.tit.length,100); c("ytDesc",YT.desc.length,5000); if(/^yt(Tit|Desc|Mini)/.test(t.id)) ytPrev(); ytPintarSeo(); },150); }); }
 
 // ---------- Menú lateral agrupado por utilidad ----------
-const NAV_GRUPOS=[["principal","",["inicio","calendario"]],["ventas","💰 Ventas y clientes",["ventas","stats","embudo","mapa","clientes","materiales","correos"]],["redes","📣 Redes sociales",["instagram","redstats","campana","anuncios","reciclar","igbot","pinterest","youtube","mensajes","lanzamientos"]],["crear","🎨 Crear y diseñar",["motor","cuentos","plataformas","video","fichas","pdf"]],["sistema","⚙️ Sistema",["datos"]]];
+const NAV_GRUPOS=[["principal","",["inicio","calendario"]],["ventas","💰 Ventas y clientes",["ventas","stats","embudo","mapa","clientes","materiales","correos"]],["redes","📣 Redes sociales",["instagram","redstats","campana","anuncios","reciclar","igbot","pinterest","youtube","mensajes","lanzamientos"]],["crear","🎨 Crear y diseñar",["motor","cuentos","plataformas","video","fichas","pdf"]],["sistema","⚙️ Sistema",["datos","llaves"]]];
 function navCerrados(){ try{ return JSON.parse(localStorage.getItem("cofre-navg")||"[]"); }catch{ return []; } }
 function navGuardar(){ try{ localStorage.setItem("cofre-navg",JSON.stringify([...document.querySelectorAll(".nav-g.cerrado")].map(g=>g.dataset.g))); }catch{} }
 function navGrupoDe(v){ const g=NAV_GRUPOS.find(x=>x[2].includes(v)); return g?g[0]:"sistema"; }
@@ -18970,6 +18991,63 @@ function tcInit(){ const v=$("#view-cuentos"); if(!v) return; if(!v.dataset.on){
     ["dragleave","drop"].forEach(ev=>v.addEventListener(ev,e=>{ const z=e.target.closest("[data-tcdrop]"); if(!z) return; z.classList.remove("drag"); if(ev==="drop"){ e.preventDefault(); const fs=e.dataTransfer.files; if(z.dataset.tcdrop==="pdf") tcArchivoPdf(fs[0]); else if(z.dataset.tcdrop==="objs") tcObjetos(fs); else tcImagenes(fs); } }));
     addEventListener("resize",()=>{ if(TC.ver!=null) tcLbFit(); }); }
   tcPintar(); }
+
+// ---------- LLAVES Y CONEXIONES (una sola llave para todo el panel) ----------
+const LLV={probando:false,msg:"",info:null};
+const LLV_EXP="cofre-gh-exp", LLV_CHK="cofre-gh-chk";
+const llvGet=k=>{ try{ return localStorage.getItem(k)||""; }catch{ return ""; } };
+const llvSet=(k,v)=>{ try{ v?localStorage.setItem(k,v):localStorage.removeItem(k); }catch{} };
+const LLV_USOS=[["🚀","Plataformas","Publicar una plataforma en cofredidactico.com.ar"],["🔄","Plataformas","Actualizar todas las plataformas ya publicadas"],["📅","Plataformas","Ver cuándo se publicó cada una"],["🚀","Lanzamientos","Botón “Actualizar plataformas publicadas”"]];
+function llvDias(iso){ if(!iso) return null; const d=new Date(iso.replace(" UTC","Z").replace(" ","T")); if(isNaN(d)) return null; return Math.ceil((d-Date.now())/864e5); }
+function llvFecha(iso){ const d=new Date(String(iso).replace(" UTC","Z").replace(" ","T")); return isNaN(d)?"":d.toLocaleDateString("es-AR",{day:"numeric",month:"long",year:"numeric"}); }
+async function llvProbar(tok){ const H={Authorization:"Bearer "+tok,Accept:"application/vnd.github+json","Content-Type":"application/json"};
+  const r=await fetch("https://api.github.com/repos/"+MP_REPO,{headers:H}); let j=null; try{ j=await r.json(); }catch{}
+  if(r.status===401) throw new Error("GitHub no aceptó la llave: está mal copiada, venció o la borraste.");
+  if(r.status===403||r.status===404) throw new Error("La llave no tiene acceso al repositorio PaginaWeb. Al crearla elegí “Only select repositories → PaginaWeb”.");
+  if(!r.ok) throw new Error((j&&j.message)||"GitHub respondió con error "+r.status);
+  const exp=r.headers.get("github-authentication-token-expiration")||"";
+  const b=await fetch("https://api.github.com/repos/"+MP_REPO+"/git/blobs",{method:"POST",headers:H,body:JSON.stringify({content:"prueba de permiso del panel Cofre",encoding:"utf-8"})});
+  if(!b.ok) throw new Error("La llave puede leer pero no escribir en PaginaWeb. En “Permissions → Contents” elegí “Read and write”.");
+  return {exp,rest:r.headers.get("x-ratelimit-remaining")}; }
+function llvEstado(){ const tok=mpGhTok(), exp=llvGet(LLV_EXP), dias=llvDias(exp), chk=llvGet(LLV_CHK);
+  if(!tok) return {k:"no",t:"Sin conectar en esta compu",ic:"⚪"};
+  if(dias!=null&&dias<0) return {k:"bad",t:"Venció",ic:"🔴",dias,exp,chk};
+  if(dias!=null&&dias<=10) return {k:"warn",t:`Vence en ${dias} día${dias===1?"":"s"}`,ic:"🟡",dias,exp,chk};
+  return {k:"ok",t:"Conectada",ic:"🟢",dias,exp,chk}; }
+function llvPintar(){ const b=$("#llvBody"); if(!b) return; const E=llvEstado(), tok=mpGhTok();
+  const ig=typeof IG!=="undefined"&&IG.estado, igOk=ig&&ig.cuenta&&!ig.errorCuenta;
+  b.innerHTML=`<section class="llv-card ${E.k}">
+    <div class="llv-h"><span class="llv-ic">${'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>'}</span>
+      <div><h2>Llave de GitHub <small>“Panel Cofre”</small></h2><p>La usan todas las secciones que publican en tu web. Cambiala acá una sola vez y se aplica en todas.</p></div>
+      <span class="llv-st ${E.k}">${E.ic} ${E.t}</span></div>
+    <div class="llv-g">
+     <div class="llv-info">${tok?`<div><small>Llave guardada</small><b>github_pat_••••${tcEscL(tok.slice(-4))}</b></div><div><small>Vence</small><b>${E.exp?`${llvFecha(E.exp)}${E.dias!=null&&E.dias>=0?` · en ${E.dias} días`:""}`:"Probala para ver la fecha"}</b></div><div><small>Último control</small><b>${E.chk?new Date(E.chk).toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):"—"}</b></div>`:`<p class="muted">Todavía no hay una llave en esta compu. Pegala abajo y el panel la prueba antes de guardarla.</p>`}</div>
+     <div class="llv-usos"><small>Dónde se usa</small>${LLV_USOS.map(([i,s,t])=>`<span><i>${i}</i><b>${s}</b>${t}</span>`).join("")}</div></div>
+    <form class="llv-f" id="llvF" autocomplete="off"><label for="llvTok">${tok?"Pegá la llave nueva para reemplazarla":"Pegá tu llave"}</label><div><input type="password" id="llvTok" placeholder="github_pat_…" autocomplete="off" spellcheck="false"><button class="btn primary" type="submit" ${LLV.probando?"disabled":""}>${LLV.probando?"Probando…":tok?"Probar y reemplazar":"Probar y guardar"}</button></div>
+     <p class="llv-msg ${LLV.msgK||""}" role="status">${tcEscL(LLV.msg||"")}</p></form>
+    <div class="llv-acts">${tok?`<button class="btn small" type="button" id="llvProbar" ${LLV.probando?"disabled":""}>🔍 Probar la llave guardada</button><button class="btn small ghost" type="button" id="llvQuitar">Desconectar de esta compu</button>`:""}<a class="btn small ghost" href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">Ver mis llaves en GitHub ↗</a></div>
+    <details class="llv-how"><summary>¿Cómo creo una llave nueva?</summary><ol><li>Entrá a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → crear llave</a> (Fine-grained token).</li><li>Nombre: <b>Panel Cofre</b>. Vencimiento: <b>1 año</b>.</li><li>Repository access: <b>Only select repositories → PaginaWeb</b>.</li><li>Permissions → Repository → <b>Contents: Read and write</b>.</li><li>Tocá <b>Generate token</b>, copiala y pegala arriba. No la pegues en chats ni la compartas.</li></ol></details>
+    <p class="llv-nota">🔒 La llave queda guardada solo en este navegador. Si usás el panel en otra compu (o el panel web y el de Claude), pegala una vez en cada uno. El panel de productos de tu web (<a href="${MP_WEB}/admin/" target="_blank" rel="noopener">cofredidactico.com.ar/admin</a>) es otro sitio y guarda su propia copia: si lo usás, actualizala ahí también.</p></section>
+   <section class="llv-card mini"><div class="llv-h"><span class="llv-ic ig">📸</span><div><h2>Instagram · Respuestas automáticas</h2><p>Su llave se guarda en Supabase (secreto IG_TOKEN) y se renueva desde Respuestas IG.</p></div><span class="llv-st ${igOk?"ok":"no"}">${igOk?"🟢 Conectado":ig?"⚪ Revisar":"⚪ Ver estado"}</span></div><div class="llv-acts"><button class="btn small" type="button" onclick="showView('igbot')">Ir a Respuestas IG →</button></div></section>
+   <section class="llv-card mini"><div class="llv-h"><span class="llv-ic sb">🗄️</span><div><h2>Panel web · sesión de Supabase</h2><p>${MODE.supa?"Estás en el panel web con tu sesión iniciada.":"Este es el panel de Claude: sus datos y conectores (Metricool, Google Drive) se manejan desde Claude."}</p></div><span class="llv-st ok">🟢 ${MODE.supa?"Sesión activa":"Claude"}</span></div></section>`;
+  const f=$("#llvF"); if(f) f.onsubmit=async e=>{ e.preventDefault(); const v=($("#llvTok").value||"").trim(); if(!v){ LLV.msg="Pegá la llave primero."; LLV.msgK="err"; return llvPintar(); } if(!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(v)){ LLV.msg="Eso no parece una llave de GitHub (empieza con github_pat_). Revisá que la copiaste completa."; LLV.msgK="err"; return llvPintar(); } await llvGuardar(v); };
+  const pr=$("#llvProbar"); if(pr) pr.onclick=()=>llvGuardar(mpGhTok(),true);
+  const q=$("#llvQuitar"); if(q) q.onclick=async()=>{ if(!await pcConfirm("¿Desconectar GitHub de esta compu? Hasta que pegues una llave de nuevo no vas a poder publicar plataformas desde acá. (La llave sigue existiendo en GitHub.)",{titulo:"Desconectar GitHub",ok:"Desconectar"})) return; llvSet(MP_GHK,""); llvSet(LLV_EXP,""); llvSet(LLV_CHK,""); LLV.msg="Listo: GitHub quedó desconectado de esta compu."; LLV.msgK="ok"; llvPintar(); llvBadge(); }; }
+const tcEscL=s=>esc(String(s==null?"":s));
+async function llvGuardar(tok,soloProbar){ LLV.probando=true; LLV.msg="Probando la llave con GitHub…"; LLV.msgK=""; llvPintar();
+  try{ const r=await llvProbar(tok); llvSet(MP_GHK,tok); llvSet(LLV_EXP,r.exp||""); llvSet(LLV_CHK,new Date().toISOString());
+    LLV.msg=soloProbar?"✓ La llave funciona: puede leer y escribir en PaginaWeb.":"✓ Llave guardada y probada. Ya la usan todas las secciones (Plataformas y Lanzamientos)."; LLV.msgK="ok";
+    if(typeof mpPubPintar==="function"){ try{ mpPubPintar(); }catch{} } toast(soloProbar?"La llave funciona ✓":"Llave de GitHub actualizada ✓"); }
+  catch(e){ LLV.msg=(soloProbar?"":"No la guardé: ")+(e.message||"No se pudo probar la llave. Revisá tu conexión."); LLV.msgK="err"; }
+  finally{ LLV.probando=false; llvPintar(); llvBadge(); } }
+function llvBadge(){ const t=document.querySelector('.tab[data-view="llaves"]'); if(!t) return; const E=llvEstado(); let d=t.querySelector(".llv-dot"); if(E.k==="warn"||E.k==="bad"){ if(!d){ d=document.createElement("i"); d.className="llv-dot"; t.appendChild(d); } d.className="llv-dot "+E.k; d.title=E.t; } else if(d) d.remove(); }
+function llvInit(){ const v=$("#view-llaves"); if(!v) return; if(!v.dataset.on){ v.dataset.on="1";
+  v.innerHTML=`<div class="view-h"><div><h1>Llaves y conexiones</h1><p class="lead">Todas las llaves que usa el panel en un solo lugar: cambiás una y se aplica en todas las secciones.</p></div></div><div id="llvBody" class="llv-body"></div>`; }
+  llvPintar(); }
+// la sección Plataformas también lleva a este lugar
+(function(){ if(typeof mpPubPintar!=="function") return; const _p=mpPubPintar; mpPubPintar=async function(){ await _p.apply(this,arguments); const inn=document.querySelector("#mpPub .mp-pubin"); if(inn&&!inn.querySelector(".llv-link")) inn.insertAdjacentHTML("beforeend",`<button type="button" class="btn small ghost llv-link" onclick="showView('llaves')">🔑 Administrar la llave (Llaves y conexiones)</button>`); }; })();
+// aviso de vencimiento al abrir el panel
+setTimeout(()=>{ try{ llvBadge(); const E=llvEstado(); if((E.k==="warn"||E.k==="bad")&&llvGet("cofre-gh-aviso")!==new Date().toDateString()){ llvSet("cofre-gh-aviso",new Date().toDateString()); toast(E.k==="bad"?"Tu llave de GitHub venció: cambiala en Sistema → Llaves y conexiones":`Tu llave de GitHub vence en ${E.dias} días: renovala en Sistema → Llaves`,"err"); } }catch{} },4000);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
