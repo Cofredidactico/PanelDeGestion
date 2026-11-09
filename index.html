@@ -21640,130 +21640,120 @@ Respondé SOLO JSON: {"titulo":"","subtitulo":"","etiqueta":"","cta":""}`,{model
 })();
 </script>
 
-<!-- ===== Enlaces para compartir con la portada del material (vista previa en Instagram / WhatsApp) ===== -->
+<!-- ===== Enlaces para tus mensajes (portada del material en la vista previa de Instagram / WhatsApp) ===== -->
 <style id="enCss">
+#enCard{display:grid;gap:16px;padding:20px;border-radius:22px;--en1:#F97316;--en2:#DD2A7B}
 #enCard .en-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-#enCard h2{margin:0 0 4px}
-.en-est{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
-.en-est .en-pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:5px 11px;font-size:12.5px;font-weight:800;background:var(--surface-2)}
-.en-est .en-pill.ok{background:color-mix(in srgb,#22C55E 18%,var(--surface-2))}
-.en-est .en-pill.av{background:color-mix(in srgb,#F59E0B 22%,var(--surface-2))}
-.en-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.en-tools input[type=search]{flex:1 1 200px;max-width:320px}
-.en-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}
-.en-it{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);padding:10px;display:grid;gap:8px}
-.en-dm{background:#EFEFEF;border-radius:18px;overflow:hidden;color:#111;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.en-dm .img{aspect-ratio:1.91/1;background:#ddd center/cover no-repeat}
-.en-dm.cuad .img{aspect-ratio:1/1}
-.en-dm .tx{padding:8px 11px 10px;display:grid;gap:2px}
-.en-dm .tx b{font-size:13.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.en-dm .tx small{font-size:11.5px;color:#666}
-.en-bd{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:11.5px;font-weight:800}
-.en-bd .st{padding:2px 8px;border-radius:99px;background:var(--surface)}
-.en-bd .st.ok{color:#15803D}.en-bd .st.no{color:#B45309}
-.en-acc{display:flex;gap:6px;flex-wrap:wrap}
-.en-acc .btn{flex:1 1 auto}
-.en-gh{border:1px dashed var(--line);border-radius:12px;padding:12px;display:grid;gap:8px;margin-top:10px;font-size:13px}
-.en-gh .row{display:flex;gap:8px;flex-wrap:wrap}.en-gh input{flex:1 1 220px}
-.en-prog{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-top:8px}.en-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#F97316,#FACC15);transition:width .25s}
-.en-modo{display:inline-flex;border:1.5px solid var(--line);border-radius:99px;overflow:hidden}
-.en-modo button{border:0;background:var(--surface);color:var(--ink);font:inherit;font-size:12.5px;font-weight:700;padding:6px 11px;cursor:pointer}
-.en-modo button.on{background:#F97316;color:#fff}
+#enCard .en-h h2{margin:0 0 4px;font-size:21px}#enCard .en-h p{margin:0;max-width:720px;color:var(--muted);font-size:14px;line-height:1.5}
+.en-ok{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-weight:800;font-size:13px;background:color-mix(in srgb,#22A35A 16%,var(--surface-2));color:#1E8A4C;white-space:nowrap}.en-ok.av{background:color-mix(in srgb,#F59E0B 18%,var(--surface-2));color:#A86A00}
+.en-pasos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.en-paso{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:12px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line)}
+.en-paso i{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;font-style:normal;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--en1),var(--en2));font-size:15px}
+.en-paso b{display:block;font-size:13.5px}.en-paso small{display:block;font-size:12px;color:var(--muted);line-height:1.3}
+.en-main{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;align-items:start}
+.en-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}.en-tools input[type=search]{flex:1 1 200px;min-width:0;font:inherit;font-size:14px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink)}
+.en-chips{display:flex;gap:6px;flex-wrap:wrap}.en-chips button{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:999px;cursor:pointer}.en-chips button[aria-pressed="true"]{background:var(--en1);border-color:var(--en1);color:#fff}
+.en-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;max-height:760px;overflow:auto;padding:2px 4px 4px 2px}
+.en-it{position:relative;display:grid;grid-template-rows:auto 1fr;text-align:left;border:2px solid transparent;border-radius:16px;background:var(--surface-2);padding:0;overflow:hidden;cursor:pointer;color:var(--ink);font:inherit;transition:transform .15s,border-color .15s,box-shadow .15s}
+.en-it:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.en-it.on{border-color:var(--en1);box-shadow:0 0 0 3px color-mix(in srgb,var(--en1) 25%,transparent)}
+.en-it .cv{position:relative;aspect-ratio:1/1;background:#fff center/cover no-repeat}.en-it .cv em{position:absolute;left:8px;top:8px;font-style:normal;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
+.en-it .cv .pr{position:absolute;right:8px;bottom:8px;font-size:12px;font-weight:900;padding:3px 9px;border-radius:999px;background:#fff;color:#111;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.en-it .nm{color:var(--ink)!important;padding:8px 10px 10px;font-size:13px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.en-it .ck{position:absolute;right:8px;top:8px;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--en1);color:#fff;font-size:14px;font-weight:900;opacity:0;transform:scale(.6);transition:.15s}.en-it.on .ck{opacity:1;transform:none}
+.en-side{position:sticky;top:12px;display:grid;gap:12px}
+.en-tabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}.en-tabs button{flex:1;border:0;background:none;color:var(--muted);font:inherit;font-weight:800;font-size:13px;padding:8px;border-radius:10px;cursor:pointer}.en-tabs button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.en-phone{border-radius:34px;padding:10px;background:#111;box-shadow:0 20px 40px -18px rgba(0,0,0,.6)}
+.en-scr{border-radius:26px;overflow:hidden;min-height:430px;display:flex;flex-direction:column}
+.en-scr.ig{background:#fff;color:#111}.en-scr.wa{background:#EFE7DE url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='4' cy='4' r='1.5' fill='%23d9cfc3'/%3E%3C/svg%3E");color:#111}
+.en-top{display:flex;align-items:center;gap:10px;padding:12px 14px;font-size:14px;font-weight:700}.en-scr.ig .en-top{border-bottom:1px solid #eee}.en-scr.wa .en-top{background:#075E54;color:#fff}
+.en-top .av{width:30px;height:30px;border-radius:50%;background:#fff center/cover no-repeat;box-shadow:0 0 0 1px #ddd}.en-top small{display:block;font-size:11px;font-weight:500;opacity:.7}
+.en-msgs{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:14px 12px}
+.en-in{align-self:flex-start;max-width:78%;padding:8px 12px;border-radius:18px;background:#EFEFEF;font-size:13px}.en-scr.wa .en-in{background:#fff;border-radius:10px}
+.en-out{align-self:flex-end;max-width:86%;border-radius:18px;overflow:hidden;font-size:13px}
+.en-scr.ig .en-out{background:#3797F0;color:#fff}.en-scr.wa .en-out{background:#D9FDD3;border-radius:10px;padding:4px}
+.en-out .tx{padding:8px 12px;white-space:pre-wrap;word-break:break-word;line-height:1.35}.en-out .tx a{color:inherit;text-decoration:underline}.en-scr.wa .en-out .tx a{color:#027EB5}
+.en-card2{background:#fff;color:#111;margin:0;overflow:hidden}.en-scr.ig .en-card2{margin:0 0 0;border-radius:0}.en-scr.wa .en-card2{border-radius:8px;background:#F0F0F0}
+.en-card2 .im{aspect-ratio:1.91/1;background:#ddd center/cover no-repeat}.en-card2 .im.cuad{aspect-ratio:1/1}
+.en-card2 .tt{padding:8px 10px;display:grid;gap:2px}.en-card2 b{font-size:13px;line-height:1.25}.en-card2 span{font-size:11.5px;color:#555;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.en-card2 small{font-size:11px;color:#888}
+.en-cfg{display:grid;gap:10px;padding:14px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line)}
+.en-cfg label{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.en-modo{display:grid;grid-template-columns:1fr 1fr;gap:6px}.en-modo button{display:grid;gap:2px;text-align:left;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;padding:9px 11px;border-radius:12px;cursor:pointer}.en-modo button b{font-size:13px}.en-modo button small{font-size:11.5px;color:var(--muted);line-height:1.3}.en-modo button[aria-pressed="true"]{border-color:var(--en1);background:color-mix(in srgb,var(--en1) 10%,var(--surface))}
+.en-pres{display:flex;gap:6px;flex-wrap:wrap}.en-pres button{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;cursor:pointer}.en-pres button:hover{border-color:var(--en1)}
+.en-cfg textarea{width:100%;box-sizing:border-box;min-height:86px;resize:vertical;font:inherit;font-size:13.5px;line-height:1.45;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.en-vars{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.en-vars button{border:1px dashed var(--line);background:none;color:var(--ink);font:inherit;font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;cursor:pointer}
+.en-url{display:flex;gap:6px;align-items:center;padding:8px 10px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:12.5px;font-family:ui-monospace,monospace;overflow:hidden}.en-url span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.en-acc{display:grid;grid-template-columns:1fr 1fr;gap:8px}.en-acc .btn{justify-content:center}.en-acc .btn.full{grid-column:1/-1}
+.en-tip{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}.en-tip b{color:var(--ink)}
+.en-help{font-size:13px}.en-help summary{cursor:pointer;font-weight:800}.en-help ol{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;color:var(--muted)}
+@media (max-width:1100px){.en-main{grid-template-columns:1fr}.en-side{position:static}.en-pasos{grid-template-columns:repeat(2,minmax(0,1fr))}.en-list{max-height:none;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+@media (max-width:560px){.en-pasos{grid-template-columns:1fr}#enCard{padding:14px}.en-list{grid-template-columns:repeat(2,minmax(0,1fr))}.en-acc{grid-template-columns:1fr}}
 </style>
 <script id="enJs">
 (function(){
-  const q=s=>document.querySelector(s);
-  const WEB="https://cofredidactico.com.ar", REPO="Cofredidactico/PaginaWeb", DIR="p", KEY="cofre-gh-token";
+  const q=s=>document.querySelector(s), WEB="https://cofredidactico.com.ar", REPO="Cofredidactico/PaginaWeb";
   const h=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const tok=()=>{ try{ return localStorage.getItem(KEY)||""; }catch{ return ""; } };
-  async function gh(path,opt={}){ const r=await fetch("https://api.github.com/repos/"+REPO+path,{...opt,headers:{Authorization:"Bearer "+tok(),Accept:"application/vnd.github+json","Content-Type":"application/json",...(opt.headers||{})}}); let j=null; try{ j=await r.json(); }catch{} if(!r.ok){ const e=new Error(r.status===401?"GitHub no aceptó la llave: revisala o creá una nueva.":r.status===403?"La llave no tiene permiso para escribir en PaginaWeb.":r.status===404?"no-existe":(j&&j.message)||("GitHub: error "+r.status)); e.status=r.status; throw e; } return j; }
-  const EN={prods:null,dims:{},existe:{},modo:"utm",q:""};
-
-  /* ---------- textos de la tarjeta ---------- */
+  const st={get:(k,d)=>{ try{ return localStorage.getItem(k)??d; }catch{ return d; } },set:(k,v)=>{ try{ localStorage.setItem(k,v); }catch{} }};
+  const PRES=[["👋 Amable","¡Hola! 😊 Te paso el enlace del {tipo} «{nombre}». Ahí ves todo lo que incluye y podés comprarlo:\n{enlace}\nCualquier duda, escribime 💙"],["⚡ Corto","¡Hola! Acá tenés el {tipo} 👉 {enlace}"],["💲 Con precio","¡Hola! 😊 «{nombre}» sale {precio}. Lo ves y lo comprás acá:\n{enlace}"],["🔗 Solo el enlace","{enlace}"]];
+  const EN={prods:null,dims:{},listos:null,sel:null,modo:st.get("cofre-en-modo","utm"),red:st.get("cofre-en-red","ig"),f:"todos",q:"",tpl:st.get("cofre-en-tpl",PRES[0][1])};
   const sinEmoji=s=>String(s||"").replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}\u{2B00}-\u{2BFF}\u{1F1E6}-\u{1F1FF}]/gu,"").replace(/\s+/g," ").trim();
-  const precioTxt=p=>{ const n=+String(p.precio||"").replace(/[^\d.]/g,""); return p.acceso==="gratis"||p.linkGratis?"Gratis":n?"$"+n.toLocaleString("es-AR"):""; };
-  function descripcion(p){ const base=String(p.descripcion||p.descripcionLarga||"").split(/\n+/).map(sinEmoji).filter(l=>l.length>25&&!/^[¡!]?\s*[A-ZÁÉÍÓÚÑ ]{4,}[!¡]?$/.test(l))[0]||sinEmoji(p.descripcion||"").slice(0,150);
-    const extra=[p.nivel,p.paginas?p.paginas+" hojas":"","PDF listo para imprimir",precioTxt(p)].filter(Boolean).join(" · "); let d=base.length>150?base.slice(0,147).replace(/\s+\S*$/,"")+"…":base; return (d?d+" ":"")+"| "+extra; }
-  const titulo=p=>{ const pr=precioTxt(p); return `${p.nombre}${pr?" · "+pr:""}`; };
+  const num=p=>+String(p.precio||"").replace(/[^\d.]/g,"");
+  const precioTxt=p=>p.acceso==="gratis"||p.linkGratis?"Gratis":num(p)?"$"+num(p).toLocaleString("es-AR"):"";
   const imgUrl=p=>p.imagen?(/^https?:/.test(p.imagen)?p.imagen:WEB+"/"+String(p.imagen).replace(/^\/+/,"").split("/").map(encodeURIComponent).join("/")):WEB+"/preview.png";
-  const pagUrl=p=>`${WEB}/${DIR}/${p.id}/`;
-  const enlace=p=>EN.modo==="utm"?`${pagUrl(p)}?utm_source=ig&utm_medium=dm&utm_campaign=${encodeURIComponent(p.id)}`:pagUrl(p);
-
-  function pagina(p){ const t=titulo(p), d=descripcion(p), img=imgUrl(p), u=pagUrl(p), dm=EN.dims[p.id]||{}, dest=`/index.html#/producto/${p.id}`;
-    return `<!doctype html>
-<html lang="es"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${h(t)} | Cofre Didáctico</title>
-<meta name="description" content="${h(d)}">
-<link rel="canonical" href="${h(u)}">
-<meta property="og:type" content="product">
-<meta property="og:site_name" content="Cofre Didáctico">
-<meta property="og:locale" content="es_AR">
-<meta property="og:title" content="${h(t)}">
-<meta property="og:description" content="${h(d)}">
-<meta property="og:url" content="${h(u)}">
-<meta property="og:image" content="${h(img)}">
-<meta property="og:image:secure_url" content="${h(img)}">
-${dm.w?`<meta property="og:image:width" content="${dm.w}">\n<meta property="og:image:height" content="${dm.h}">\n`:""}<meta property="og:image:alt" content="Tapa de ${h(p.nombre)}">
-${+String(p.precio||"").replace(/[^\d.]/g,"")?`<meta property="product:price:amount" content="${h(String(p.precio).replace(/[^\d.]/g,""))}">\n<meta property="product:price:currency" content="ARS">\n`:""}<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${h(t)}">
-<meta name="twitter:description" content="${h(d)}">
-<meta name="twitter:image" content="${h(img)}">
-<link rel="icon" href="/favicon.ico">
-<script>location.replace("${dest.split("#")[0]}"+location.search+"#${dest.split("#")[1]}");<\/script>
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:system-ui,sans-serif;background:#FFF7ED;color:#1A2744;text-align:center;padding:16px}img{max-width:260px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18)}a{color:#F97316;font-weight:700}</style>
-</head><body><main><img src="${h(img)}" alt="Tapa de ${h(p.nombre)}"><h1 style="font-size:20px">${h(p.nombre)}</h1><p><a href="${h(dest)}">Ver el material en Cofre Didáctico</a></p></main></body></html>
-`; }
-
-  /* ---------- datos ---------- */
-  async function cargar(){ if(EN.prods) return EN.prods; const j=await (await fetch(WEB+"/productos.json?t="+Date.now(),{cache:"no-store"})).json(); EN.prods=(Array.isArray(j)?j:(j.productos||[])).filter(p=>p&&p.id&&p.activo!==false&&String(p.activo)!=="false");
-    await Promise.all(EN.prods.map(p=>new Promise(ok=>{ const im=new Image(); im.onload=()=>{ EN.dims[p.id]={w:im.naturalWidth,h:im.naturalHeight}; ok(); }; im.onerror=()=>ok(); im.src=imgUrl(p); setTimeout(ok,6000); })));
-    try{ const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${DIR}`,{headers:tok()?{Authorization:"Bearer "+tok(),Accept:"application/vnd.github+json"}:{Accept:"application/vnd.github+json"}}); if(r.ok){ (await r.json()).forEach(x=>{ if(x.type==="dir") EN.existe[x.name]=true; }); } }catch{}
-    return EN.prods; }
-  async function shaBlob(txt){ const b=new TextEncoder().encode(txt), hd=new TextEncoder().encode(`blob ${b.length}\0`), all=new Uint8Array(hd.length+b.length); all.set(hd); all.set(b,hd.length); const d=await crypto.subtle.digest("SHA-1",all); return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
-
-  /* ---------- publicar todas las páginas en un solo cambio ---------- */
-  async function publicar(btn){ if(!tok()){ pintar(true); toast("Primero conectá GitHub (una sola vez)","err"); return; } const t0=btn.textContent; btn.disabled=true; const pr=q("#enProg"), msg=q("#enMsg"); pr.hidden=false; const paso=(t,f)=>{ msg.textContent=t; pr.querySelector("i").style.width=Math.round((f||0)*100)+"%"; };
-    try{ paso("Leyendo tus materiales…",0.05); EN.prods=null; const P=await cargar(); const ref=await gh("/git/ref/heads/main"), head=ref.object.sha, com=await gh("/git/commits/"+head);
-      let viejos={}; try{ const tr=await gh(`/git/trees/${com.tree.sha}?recursive=1`); (tr.tree||[]).forEach(x=>{ if(x.type==="blob"&&x.path.startsWith(DIR+"/")) viejos[x.path]=x.sha; }); }catch{}
-      const tree=[]; let k=0; const todos=[...P.map(p=>[`${DIR}/${p.id}/index.html`,pagina(p)]),[`${DIR}/index.html`,`<!doctype html><meta charset="utf-8"><title>Cofre Didáctico</title><script>location.replace("/"+location.search)<\/script><a href="/">Cofre Didáctico</a>\n`]];
-      for(const [path,txt] of todos){ k++; paso(`Preparando ${k} de ${todos.length}…`,0.1+0.6*k/todos.length); if(viejos[path]===await shaBlob(txt)) continue; const bl=await gh("/git/blobs",{method:"POST",body:JSON.stringify({content:txt,encoding:"utf-8"})}); tree.push({path,mode:"100644",type:"blob",sha:bl.sha}); }
-      if(!tree.length){ paso("✅ Todos los enlaces ya estaban al día.",1); toast("Los enlaces ya estaban al día ✓","ok"); P.forEach(p=>EN.existe[p.id]=true); pintar(); return; }
-      paso("Publicando en tu web…",0.85); const t=await gh("/git/trees",{method:"POST",body:JSON.stringify({base_tree:com.tree.sha,tree})}); const nc=await gh("/git/commits",{method:"POST",body:JSON.stringify({message:`Enlaces para compartir con portada (${tree.length} páginas) desde el panel`,tree:t.sha,parents:[head]})}); await gh("/git/refs/heads/main",{method:"PATCH",body:JSON.stringify({sha:nc.sha})});
-      P.forEach(p=>EN.existe[p.id]=true); paso(`✅ Listo: ${tree.length} página${tree.length>1?"s":""} publicada${tree.length>1?"s":""}. Tu web tarda 1 o 2 minutos en actualizarse.`,1); toast("Enlaces publicados ✓","ok"); pintar(); }
-    catch(e){ console.warn(e); paso("⚠️ "+(e.message||"No se pudo publicar"),0); toast(e.message||"No se pudo publicar","err"); }
-    finally{ btn.disabled=false; btn.textContent=t0; } }
-
-  /* ---------- interfaz ---------- */
-  function htmlCard(){ return `<section class="card" id="enCard"><div class="en-h"><div><h2>🔗 Enlaces con la portada del material</h2><p class="lead" style="margin:0;max-width:760px">Para tus mensajes automáticos: cuando mandás uno de estos enlaces por Instagram o WhatsApp, la vista previa muestra <b>la tapa del cuadernillo, el nombre y el precio</b> (como pasa con Empretienda), pero lleva a tu web.</p></div>
-      <div class="en-tools"><button type="button" class="btn primary" id="enPub">🚀 Publicar / actualizar enlaces</button></div></div>
-      <div class="en-est" id="enEst"></div><div class="en-prog" id="enProg" hidden><i></i></div><p class="muted" id="enMsg" style="margin:6px 0 0;font-size:13px"></p>
-      <div id="enGh"></div>
-      <div class="en-tools" style="margin-top:10px"><input type="search" id="enQ" placeholder="Buscar material…" aria-label="Buscar material"><div class="en-modo" role="group" aria-label="Tipo de enlace"><button type="button" data-enmodo="utm" title="Suma una marca para ver en el Embudo cuántas visitas llegan por los mensajes">Con seguimiento</button><button type="button" data-enmodo="limpio">Enlace limpio</button></div></div>
-      <div class="en-grid" id="enGrid"><p class="muted">Cargando tus materiales…</p></div></section>`; }
-  function ghForm(){ return `<div class="en-gh"><b>Conectar tu web (una sola vez)</b><span class="muted">1) Entrá a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → crear llave</a>. 2) Nombre: "Panel Cofre", vencimiento 1 año. 3) Repository access: <b>Only select repositories → PaginaWeb</b>. 4) Permissions → Repository → <b>Contents: Read and write</b>. 5) Copiá la llave y pegala acá. Queda guardada solo en esta compu (es la misma que usa “Publicar plataformas”).</span><div class="row"><input type="password" id="enTok" placeholder="github_pat_…" autocomplete="off"><button type="button" class="btn small primary" id="enTokOk">Conectar</button></div></div>`; }
-  function pintar(forzarGh){ const card=q("#enCard"); if(!card) return; const P=EN.prods||[];
-    card.querySelectorAll("[data-enmodo]").forEach(b=>b.classList.toggle("on",b.dataset.enmodo===EN.modo));
-    q("#enGh").innerHTML=!tok()||forzarGh===true?ghForm():"";
-    const pub=P.filter(p=>EN.existe[p.id]).length; q("#enEst").innerHTML=P.length?`<span class="en-pill ${pub===P.length?"ok":"av"}">${pub===P.length?"✅":"⏳"} ${pub} de ${P.length} materiales con enlace publicado</span>${tok()?`<span class="en-pill ok">🔐 Web conectada</span>`:`<span class="en-pill av">🔌 Falta conectar tu web</span>`}<span class="en-pill">🧭 Ejemplo: cofredidactico.com.ar/p/${h((P[0]||{}).id||"material")}/</span>`:"";
-    const f=EN.q.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,""), L=P.filter(p=>!f||String(p.nombre).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(f));
-    q("#enGrid").innerHTML=L.length?L.map(p=>{ const d=EN.dims[p.id], cuad=d&&d.h/d.w>0.8, ok=EN.existe[p.id]; return `<div class="en-it"><div class="en-dm${cuad?" cuad":""}" title="Así se ve en el mensaje"><div class="img" style="background-image:url('${h(imgUrl(p))}')"></div><div class="tx"><b>${h(titulo(p))}</b><small>cofredidactico.com.ar</small></div></div>
-        <div class="en-bd"><span>${h(p.tipo||"")}</span><span class="st ${ok?"ok":"no"}">${ok?"✅ Publicado":"⏳ Falta publicar"}</span></div>
-        <div class="en-acc"><button type="button" class="btn small primary" data-encop="${h(p.id)}" ${ok?"":"disabled title='Publicá los enlaces primero'"}>📋 Copiar enlace</button><a class="btn small" href="${h(enlace(p))}" target="_blank" rel="noopener" ${ok?"":"aria-disabled='true' style='opacity:.5;pointer-events:none'"}>👁 Probar</a></div></div>`; }).join(""):`<p class="muted">No hay materiales que coincidan.</p>`; }
-  async function copiar(p,btn){ const t=enlace(p); try{ await navigator.clipboard.writeText(t); }catch{ const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch{} ta.remove(); } const t0=btn.textContent; btn.textContent="✓ Copiado"; setTimeout(()=>btn.textContent=t0,1400); toast("Enlace copiado: pegalo en tu automatización de InstantDM","ok"); }
-  let listo=false;
+  const pagUrl=p=>`${WEB}/p/${p.id}.html`;
+  const enlace=p=>EN.modo==="utm"?`${pagUrl(p)}?utm_source=instagram&utm_medium=dm&utm_campaign=${encodeURIComponent(p.id)}`:pagUrl(p);
+  const TIPO={cuadernillo:["📘","Cuadernillo","cuadernillo"],juego:["🧩","Juego","juego"],lamina:["🖼️","Lámina","material"],plataforma:["🎮","Plataforma","material"]};
+  const tipoDe=p=>TIPO[p.tipo]||["📄","Material","material"];
+  const desc=p=>{ const d=sinEmoji(p.descripcion||""); return precioTxt(p)+(d?" · "+d:""); };
+  const msgDe=p=>EN.tpl.replace(/\{nombre\}/g,p.nombre).replace(/\{precio\}/g,precioTxt(p)||"").replace(/\{tipo\}/g,tipoDe(p)[2]).replace(/\{enlace\}/g,enlace(p));
+  async function cargar(){ const j=await (await fetch(WEB+"/productos.json?t="+Date.now(),{cache:"no-store"})).json(); EN.prods=(Array.isArray(j)?j:(j.productos||[])).filter(p=>p&&p.id&&p.activo!==false&&String(p.activo)!=="false");
+    EN.prods.forEach(p=>{ const im=new Image(); im.onload=()=>{ EN.dims[p.id]={w:im.naturalWidth,h:im.naturalHeight}; if(EN.sel===p.id) prev(); }; im.src=imgUrl(p); });
+    try{ const r=await fetch(`https://api.github.com/repos/${REPO}/contents/p`,{headers:{Accept:"application/vnd.github+json"}}); if(r.ok){ EN.listos=new Set((await r.json()).filter(x=>/\.html$/.test(x.name)).map(x=>x.name.replace(/\.html$/,""))); } }catch{}
+    if(!EN.sel&&EN.prods.length) EN.sel=EN.prods[0].id; }
+  const listo=p=>!EN.listos||EN.listos.has(p.id);
+  function htmlCard(){ return `<section class="card" id="enCard">
+    <div class="en-h"><div><h2>🔗 Enlaces para tus mensajes</h2><p>Cuando mandás uno de estos enlaces por Instagram o WhatsApp, el mensaje muestra <b>la tapa del material, el nombre y el precio</b> (como Empretienda), y al tocarlo la docente entra a tu web.</p></div><span class="en-ok" id="enOk">Revisando enlaces…</span></div>
+    <div class="en-pasos"><div class="en-paso"><i>1</i><span><b>Elegí el material</b><small>Tocá su tapa en la lista</small></span></div><div class="en-paso"><i>2</i><span><b>Elegí el tipo de enlace</b><small>Con seguimiento para medir ventas</small></span></div><div class="en-paso"><i>3</i><span><b>Revisá la vista previa</b><small>Así lo ve la docente en su celular</small></span></div><div class="en-paso"><i>4</i><span><b>Copiá y pegá</b><small>En InstantDM, Instagram o WhatsApp</small></span></div></div>
+    <div class="en-main"><div><div class="en-tools"><input type="search" id="enQ" placeholder="🔎 Buscar material…" aria-label="Buscar material"><div class="en-chips" id="enChips"></div></div><div class="en-list" id="enList"><p class="muted">Cargando tus materiales…</p></div></div>
+     <aside class="en-side" id="enSide"></aside></div>
+    <details class="en-help"><summary>¿Cómo lo uso en InstantDM?</summary><ol><li>Elegí el material y tocá <b>📋 Copiar el enlace</b> (o el mensaje completo).</li><li>En InstantDM abrí la automatización de esa publicación y pegalo en el mensaje que se envía por privado.</li><li>Guardá. La próxima persona que comente va a recibir el mensaje con la tapa del material.</li><li>Con <b>seguimiento</b> activado, en el <b>Embudo de ventas</b> vas a ver cuántas visitas llegaron desde esos mensajes.</li></ol></details></section>`; }
+  function pintarLista(){ const P=EN.prods||[], cnt={}; P.forEach(p=>cnt[p.tipo]=(cnt[p.tipo]||0)+1);
+    q("#enChips").innerHTML=[["todos","Todos",P.length]].concat(Object.keys(cnt).map(t=>[t,tipoDe({tipo:t})[1]+"s",cnt[t]])).map(([k,t,n])=>`<button type="button" data-enf="${k}" aria-pressed="${EN.f===k}">${t} ${n}</button>`).join("");
+    const f=EN.q.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,""), L=P.filter(p=>(EN.f==="todos"||p.tipo===EN.f)&&(!f||String(p.nombre).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(f)));
+    q("#enList").innerHTML=L.length?L.map(p=>`<button type="button" class="en-it ${p.id===EN.sel?"on":""}" data-ensel="${h(p.id)}" aria-pressed="${p.id===EN.sel}"><span class="cv" style="background-image:url('${h(imgUrl(p))}')"><em>${tipoDe(p)[0]} ${tipoDe(p)[1]}</em>${precioTxt(p)?`<span class="pr">${h(precioTxt(p))}</span>`:""}</span><span class="nm">${h(p.nombre)}</span><span class="ck">✓</span></button>`).join(""):`<p class="muted">No hay materiales que coincidan.</p>`;
+    const n=P.filter(listo).length, ok=q("#enOk"); if(ok){ ok.className="en-ok"+(n===P.length?"":" av"); ok.textContent=n===P.length?`✅ ${n} de ${P.length} enlaces listos`:`⏳ ${n} de ${P.length} listos · los nuevos tardan 1 o 2 minutos`; } }
+  function prev(){ const s=q("#enSide"), p=(EN.prods||[]).find(x=>x.id===EN.sel); if(!s||!p) return; const d=EN.dims[p.id], cuad=d&&d.h/d.w>0.8, ok=listo(p), m=msgDe(p), u=enlace(p), img=imgUrl(p);
+    const txt=h(m).replace(h(u),`<a>${h(u)}</a>`), conLink=m.includes(u);
+    const tarjeta=`<div class="en-card2"><div class="im${cuad?" cuad":""}" style="background-image:url('${h(img)}')"></div><div class="tt"><b>${h(p.nombre)} · Cofre Didáctico</b><span>${h(desc(p))}</span><small>cofredidactico.com.ar</small></div></div>`;
+    s.innerHTML=`<div class="en-tabs" role="group" aria-label="Ver la vista previa en"><button type="button" data-enred="ig" aria-pressed="${EN.red==="ig"}">📸 Instagram</button><button type="button" data-enred="wa" aria-pressed="${EN.red==="wa"}">💬 WhatsApp</button></div>
+     <div class="en-phone"><div class="en-scr ${EN.red}"><div class="en-top"><span class="av" style="background-image:url('${h(WEB)}/logo.png')"></span><span>${EN.red==="ig"?"cofredidactico":"Cofre Didáctico"}<small>${EN.red==="ig"?"Instagram":"en línea"}</small></span></div>
+      <div class="en-msgs"><div class="en-in">¡Hola! Quiero info del ${h(tipoDe(p)[2])} 😊</div><div class="en-out">${conLink?(EN.red==="ig"?`<div class="tx">${txt}</div>${tarjeta}`:`${tarjeta}<div class="tx">${txt}</div>`):`<div class="tx">${txt}</div>`}</div></div></div></div>
+     ${ok?"":`<p class="en-tip">⏳ <b>Este enlace se está creando</b>: tu web lo genera sola 1 o 2 minutos después de cargar o cambiar el material. Probalo en un ratito.</p>`}
+     <div class="en-cfg"><label>Tipo de enlace</label><div class="en-modo"><button type="button" data-enmodo="utm" aria-pressed="${EN.modo==="utm"}"><b>📊 Con seguimiento</b><small>Medís en el Embudo cuántas visitas llegan por mensajes</small></button><button type="button" data-enmodo="limpio" aria-pressed="${EN.modo==="limpio"}"><b>✨ Limpio</b><small>Más corto y prolijo, sin medir</small></button></div>
+      <div class="en-url"><span title="${h(u)}">${h(u)}</span></div>
+      <label>Mensaje</label><div class="en-pres">${PRES.map(([t],i)=>`<button type="button" data-enpre="${i}">${t}</button>`).join("")}</div>
+      <textarea id="enTpl" aria-label="Texto del mensaje">${h(EN.tpl)}</textarea>
+      <div class="en-vars">Insertar: ${["nombre","precio","tipo","enlace"].map(v=>`<button type="button" data-envar="${v}">{${v}}</button>`).join("")}</div>
+      <div class="en-acc"><button type="button" class="btn primary" data-encop="link">📋 Copiar el enlace</button><button type="button" class="btn" data-encop="msg">💬 Copiar el mensaje</button><a class="btn" href="https://wa.me/?text=${encodeURIComponent(m)}" target="_blank" rel="noopener">🟢 Enviar por WhatsApp</a><a class="btn" href="${h(u)}" target="_blank" rel="noopener" ${ok?"":"aria-disabled='true'"}>👁 Probar el enlace</a></div>
+      <p class="en-tip">💡 La vista previa con la tapa aparece cuando el enlace va solo o al final del mensaje. Instagram a veces tarda unos segundos en mostrarla la primera vez.</p></div>`; }
+  function pintar(){ pintarLista(); prev(); }
+  function vivo(){ const ta=q("#enTpl"), p=(EN.prods||[]).find(x=>x.id===EN.sel); if(!ta||!p) return; const pos=[ta.selectionStart,ta.selectionEnd], sc=ta.scrollTop; prev(); const t2=q("#enTpl"); t2.focus(); t2.setSelectionRange(pos[0],pos[1]); t2.scrollTop=sc; }
+  async function copiar(t,btn,que){ try{ await navigator.clipboard.writeText(t); }catch{ const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch{} ta.remove(); } const t0=btn.textContent; btn.textContent="✓ ¡Copiado!"; setTimeout(()=>btn.textContent=t0,1500); if(typeof toast==="function") toast(que==="link"?"Enlace copiado: pegalo en tu mensaje":"Mensaje copiado: pegalo en InstantDM o WhatsApp","ok"); }
   async function ini(){ const sec=q('#view-mensajes section[aria-labelledby="adTitle"]'); if(!sec||q("#enCard")) return; sec.insertAdjacentHTML("beforebegin",htmlCard()); const card=q("#enCard");
-    card.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; if(b.id==="enPub") return publicar(b);
-      if(b.id==="enTokOk"){ const v=(q("#enTok").value||"").trim(); if(!/^(github_pat_|ghp_)/.test(v)){ toast("Esa llave no parece de GitHub (empieza con github_pat_)","err"); return; } try{ localStorage.setItem(KEY,v); }catch{} EN.existe={}; EN.prods=null; toast("Web conectada ✓","ok"); cargar().then(()=>pintar()); return; }
-      if(b.dataset.enmodo){ EN.modo=b.dataset.enmodo; try{ localStorage.setItem("cofre-en-modo",EN.modo); }catch{} pintar(); return; }
-      if(b.dataset.encop){ const p=(EN.prods||[]).find(x=>x.id===b.dataset.encop); if(p) copiar(p,b); } });
-    card.addEventListener("input",e=>{ if(e.target.id==="enQ"){ EN.q=e.target.value; pintar(); } });
-    try{ EN.modo=localStorage.getItem("cofre-en-modo")||"utm"; }catch{}
-    try{ await cargar(); }catch(e){ q("#enGrid").innerHTML=`<p class="muted">No pude leer tus materiales de la web. Probá de nuevo en un rato.</p>`; } pintar(); listo=true; }
+    card.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const d=b.dataset; const p=(EN.prods||[]).find(x=>x.id===EN.sel);
+      if(d.ensel){ EN.sel=d.ensel; pintar(); if(innerWidth<1100) q("#enSide").scrollIntoView({behavior:"smooth",block:"start"}); return; }
+      if(d.enf){ EN.f=d.enf; return pintarLista(); } if(d.enred){ EN.red=d.enred; st.set("cofre-en-red",EN.red); return prev(); }
+      if(d.enmodo){ EN.modo=d.enmodo; st.set("cofre-en-modo",EN.modo); return prev(); }
+      if(d.enpre!=null){ EN.tpl=PRES[+d.enpre][1]; st.set("cofre-en-tpl",EN.tpl); return prev(); }
+      if(d.envar){ const ta=q("#enTpl"); const i=ta.selectionStart??ta.value.length; ta.value=ta.value.slice(0,i)+`{${d.envar}}`+ta.value.slice(ta.selectionEnd??i); EN.tpl=ta.value; st.set("cofre-en-tpl",EN.tpl); return prev(); }
+      if(d.encop&&p) return copiar(d.encop==="link"?enlace(p):msgDe(p),b,d.encop); });
+    card.addEventListener("input",e=>{ if(e.target.id==="enQ"){ EN.q=e.target.value; pintarLista(); } if(e.target.id==="enTpl"){ EN.tpl=e.target.value; st.set("cofre-en-tpl",EN.tpl); clearTimeout(EN.tt); EN.tt=setTimeout(vivo,120); } });
+    card.addEventListener("change",e=>{ if(e.target.id==="enTpl"){ EN.tpl=e.target.value||PRES[0][1]; st.set("cofre-en-tpl",EN.tpl); prev(); } });
+    try{ await cargar(); }catch(e){ q("#enList").innerHTML=`<p class="muted">No pude leer tus materiales de la web. Probá de nuevo en un rato.</p>`; return; } pintar(); }
   const go=()=>setTimeout(()=>ini().catch(e=>console.warn("enlaces",e)),0);
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",go); else go();
   if(typeof showView==="function"){ const _sv=showView; showView=function(v){ const r=_sv.apply(this,arguments); if(v==="mensajes") setTimeout(()=>{ if(!q("#enCard")) go(); },40); return r; }; }
-  window.cofreEnlaces={pagina,titulo,descripcion,imgUrl};
+  window.cofreEnlaces={enlace,imgUrl};
 })();
 </script>
+
 </body></html>
