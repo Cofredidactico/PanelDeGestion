@@ -594,6 +594,85 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+/* ===== Estudio · asistente paso a paso + hoja en vivo ===== */
+.iw{--w1:#3E7BFA;--w2:#8B5CF6;display:grid;gap:14px}
+.iw-steps{position:relative;display:flex;align-items:center;gap:6px;padding:8px;border-radius:18px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.iw-steps>button{flex:1 1 0;display:flex;align-items:center;gap:10px;min-width:0;text-align:left;border:0;background:none;color:var(--muted);font:inherit;padding:7px 9px;border-radius:13px;cursor:pointer;position:relative;z-index:1}
+.iw-steps>button:hover{background:var(--surface-2)}
+.iw-steps i{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;font-style:normal;font-size:16px;background:var(--surface-2);border:2px solid var(--line);transition:.2s}
+.iw-steps b{display:block;font-size:13.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.iw-steps small{display:block;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iw-steps>button.done i{background:#22A35A;border-color:#22A35A;color:#fff;font-weight:900}
+.iw-steps>button.on{background:linear-gradient(135deg,color-mix(in srgb,var(--w1) 18%,var(--surface-2)),color-mix(in srgb,var(--w2) 12%,var(--surface-2)));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--w1) 50%,transparent)}
+.iw-steps>button.on i{background:linear-gradient(135deg,var(--w1),var(--w2));border-color:transparent;color:#fff;box-shadow:0 6px 16px -8px var(--w1)}
+.iw-sep{flex:none;width:18px;height:2px;border-radius:2px;background:var(--line)}
+.iw-prog{position:absolute;left:0;bottom:0;height:3px;width:var(--p);background:linear-gradient(90deg,var(--w1),var(--w2));transition:width .4s}
+.iw-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,360px);gap:16px;align-items:start}
+.iw-main{display:grid;gap:14px;min-width:0}
+/* qué se ve en cada paso */
+.iw .is-steps{display:none}
+.iw .is-board{display:block}
+.iw .is-board>.is-colx{max-width:760px}
+.iw .is-colh{display:none}
+.iw[data-paso="1"] .is-board{display:none}
+.iw:not([data-paso="1"]) .iw-p1{display:none}
+.iw[data-paso="2"] #isC2,.iw[data-paso="2"] #isC3,.iw[data-paso="3"] #isC1,.iw[data-paso="3"] #isC3,.iw[data-paso="4"] #isC1,.iw[data-paso="4"] #isC2{display:none}
+.iw[data-paso="3"] #isC2 .is-prev{display:none}
+.iw-p1{display:grid;gap:12px}
+.iw-p1 .is-acts{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.iw-lotecta{display:flex;align-items:center;gap:14px;width:100%;text-align:left;font:inherit;color:inherit;padding:14px 16px;border-radius:18px;border:1.5px dashed color-mix(in srgb,var(--w2) 55%,var(--line));background:linear-gradient(120deg,color-mix(in srgb,var(--w2) 12%,var(--surface)),color-mix(in srgb,var(--w1) 8%,var(--surface)));cursor:pointer;transition:transform .15s}
+.iw-lotecta:hover{transform:translateY(-1px)}.iw-lotecta>span:first-child{font-size:28px}.iw-lotecta>span:nth-child(2){flex:1;display:grid}.iw-lotecta b{font-size:15px}.iw-lotecta small{color:var(--muted);font-size:12.5px}.iw-lotecta em{font-style:normal;font-weight:800;font-size:13px;color:var(--w2);white-space:nowrap}
+.iw-pie{position:sticky;bottom:0;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:0 -14px 26px -14px rgba(0,0,0,.55)}
+.iw-dots{display:flex;gap:6px}.iw-dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}.iw-dots i.on{width:22px;border-radius:5px;background:linear-gradient(90deg,var(--w1),var(--w2))}
+.iw-hint{font-size:12.5px;color:var(--muted)}
+/* hoja en vivo */
+.iw-live{position:sticky;top:0;display:grid;gap:10px;padding:14px;border-radius:20px;border:1px solid var(--line);background:var(--surface)}
+.iw-lh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.iw-lh b{display:block;font-size:14px}.iw-lh small{font-size:11.5px;color:var(--muted)}
+.iw-zb{flex:none;width:32px;height:32px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font-size:16px;cursor:pointer}
+.iw-ptabs{display:flex;gap:4px;padding:3px;border-radius:11px;background:var(--surface-2);overflow-x:auto;scrollbar-width:none}.iw-ptabs button{flex:1 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:12px;font-weight:800;padding:6px 9px;border-radius:9px;cursor:pointer;white-space:nowrap}.iw-ptabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 2px 8px -4px rgba(0,0,0,.45)}
+.iw-hoja{position:relative;aspect-ratio:595/842;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 16px 34px -18px rgba(0,0,0,.6),0 2px 6px -2px rgba(0,0,0,.25);cursor:zoom-in;transition:transform .2s}
+.iw-hoja:hover{transform:translateY(-2px)}
+.iw-hoja>svg{display:block;width:100%;height:100%}
+.iw-hoja .iw-hv{display:grid;place-items:center;height:100%;color:#7A869C;font-weight:800}
+.iw-badge{position:absolute;top:8px;left:8px;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(26,39,68,.78);color:#fff}
+.iw-hoja.real{animation:mjIn .3s ease}
+.iw-dis{display:grid;gap:7px}.iw-dis>small{font-size:11.5px;font-weight:800;color:var(--muted)}
+.iw-plants{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.iw-plants button{display:grid;justify-items:center;gap:2px;padding:4px 2px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer}.iw-plants button.on{border-color:var(--w1);background:color-mix(in srgb,var(--w1) 12%,var(--surface))}.iw-plants svg{width:30px;height:auto}.iw-plants span{font-size:9.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.iw-tg{display:flex;gap:6px}.iw-tg button{flex:1;font:inherit;font-size:12px;font-weight:800;padding:7px 8px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}.iw-tg button[aria-pressed="true"]{background:color-mix(in srgb,#22A35A 14%,var(--surface));border-color:#22A35A}
+.iw-zoom{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(8,12,22,.78);backdrop-filter:blur(4px);animation:mjIn .2s ease}
+.iw-zin{display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px;height:100%;max-height:calc(100dvh - 40px);width:min(760px,100%)}
+.iw-zh{display:flex;align-items:center;gap:10px;color:#fff}.iw-zh>b{font-size:15px}.iw-zh>span{flex:1;display:flex;gap:6px;flex-wrap:wrap}.iw-zh>span button{font:inherit;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:none;color:#fff;cursor:pointer}.iw-zh>span button[aria-pressed="true"]{background:#fff;color:#1A2744}
+.iw-zp{min-height:0;display:grid;place-items:center}.iw-zp>svg{max-height:100%;max-width:100%;height:100%;width:auto;background:#fff;border-radius:8px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+/* usar una imagen guardada */
+.iw-st{display:grid;gap:8px;padding:12px 14px;border-radius:16px;border:1px solid var(--line);background:var(--surface);max-width:760px}
+.iw-sth{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.iw-sth b{font-size:13.5px}.iw-sth small{font-size:12px;color:var(--muted)}
+.iw-thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.iw-thumbs button{flex:none;display:grid;gap:3px;width:86px;padding:4px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:inherit;cursor:pointer;transition:transform .15s,border-color .15s}.iw-thumbs button:hover,.iw-thumbs button.on{transform:translateY(-2px);border-color:var(--w1)}.iw-thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px}.iw-thumbs small{font-size:10px;font-weight:700;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iw-eleg{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 10px;border-radius:12px;background:color-mix(in srgb,var(--w1) 10%,var(--surface));font-size:13px;font-weight:700}
+/* galería */
+.iw-gal{display:grid;gap:14px}.iw-galh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.iw-galh h3{margin:0 0 4px}.iw-galh p{margin:0;max-width:620px}.iw-cnt{flex:none;font-size:12px;font-weight:800;padding:5px 11px;border-radius:999px;background:var(--surface-2)}
+.iw-gf{display:flex;gap:6px;flex-wrap:wrap}.iw-gf button{font:inherit;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}.iw-gf button[aria-pressed="true"]{background:var(--w1,#3E7BFA);border-color:var(--w1,#3E7BFA);color:#fff}
+
+.iw-gal .iw-ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.iw-ic{margin:0;display:grid;gap:8px;padding:9px;border-radius:16px;border:1px solid var(--line);background:var(--surface);transition:transform .15s}.iw-ic:hover{transform:translateY(-2px)}
+.iw-im{aspect-ratio:4/3;border-radius:11px;overflow:hidden;background:repeating-conic-gradient(#e9edf3 0 25%,#fff 0 50%) 0 0/16px 16px}.iw-im img{width:100%;height:100%;object-fit:contain;display:block}
+.iw-ic figcaption{display:grid;min-width:0}.iw-ic figcaption b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.iw-ic figcaption small{font-size:11.5px;color:var(--muted)}
+.iw-ia{display:flex;gap:5px}.iw-ia .btn.primary{flex:1;justify-content:center}
+/* lote */
+.iw-plan{display:grid;gap:12px;padding:16px;border-radius:18px;border:1.5px solid color-mix(in srgb,var(--w2) 50%,var(--line));background:color-mix(in srgb,var(--w2) 6%,var(--surface))}
+.iw-planh{display:flex;justify-content:space-between;gap:10px}.iw-planh b{display:block;font-size:15px}.iw-planh small{color:var(--muted);font-size:12.5px}
+.iw-pre{display:flex;gap:8px;flex-wrap:wrap}.iw-pre button{font:inherit;font-size:13px;font-weight:800;padding:8px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}.iw-pre small{font-weight:700;color:var(--muted);margin-left:4px}
+.iw-pg{display:grid;gap:6px}.iw-pg>small{font-size:11.5px;font-weight:800;color:var(--muted)}.iw-pg>div{display:flex;flex-wrap:wrap;gap:6px}
+.iw-pa{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}.iw-pa.on{border-color:var(--w2);background:color-mix(in srgb,var(--w2) 14%,var(--surface))}.iw-pa i{font-style:normal;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--w2);color:#fff;font-size:11px;font-weight:900}
+.iw-planf{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding-top:10px;border-top:1px solid var(--line);font-size:13px}
+.iw-lote{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border-radius:16px;background:linear-gradient(120deg,color-mix(in srgb,var(--w2) 16%,var(--surface)),color-mix(in srgb,var(--w1) 10%,var(--surface)));border:1px solid color-mix(in srgb,var(--w2) 45%,var(--line))}
+.iw-lt{display:grid}.iw-lt b{font-size:13.5px;white-space:nowrap}.iw-lt small{font-size:11.5px;color:var(--muted)}
+.iw-lc{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}.iw-lc button{flex:none;display:flex;align-items:center;gap:5px;font:inherit;font-size:12px;font-weight:700;padding:5px 9px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}.iw-lc button span{max-width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.iw-lc button.ok{border-color:#22A35A;color:#22A35A}.iw-lc button.cur{border-color:var(--w2);color:var(--ink);background:color-mix(in srgb,var(--w2) 14%,var(--surface))}
+.iw-la{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+@container (max-width:1000px){.iw-grid{grid-template-columns:minmax(0,1fr) 280px}.iw-steps small{display:none}}
+@container (max-width:760px){.iw-grid{grid-template-columns:minmax(0,1fr)}.iw-live{position:static}.iw-live .iw-hoja{max-width:260px;justify-self:center;width:100%}.iw-steps>button span{display:none}.iw-steps>button.on span{display:block}.iw-sep{width:8px}.iw-lote{grid-template-columns:minmax(0,1fr)}.iw-la{justify-content:flex-start}}
+
+.iw-p1.planning>.is-cats,.iw-p1.planning>.is-acts{display:none}
+@media (max-width:860px){.is-nav button{flex:none}}
+
 .cl{display:grid;gap:14px;margin-bottom:16px;--c1:#3E7BFA;--c2:#8B5CF6}
 .cl-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:22px;align-items:center;padding:24px 26px;border-radius:24px;border:1px solid var(--line);background:radial-gradient(110% 140% at 0% 0%,color-mix(in srgb,var(--c1) 22%,transparent),transparent 55%),radial-gradient(90% 120% at 100% 100%,color-mix(in srgb,var(--c2) 20%,transparent),transparent 60%),var(--surface)}
 .cl-kk{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2)}.cl-ht h1{margin:4px 0 6px;font-family:Fredoka,Nunito,sans-serif;font-size:34px}.cl-ht p{margin:0;max-width:560px;color:var(--muted);font-size:14.5px;line-height:1.5}.cl-meta{display:block;margin-top:6px;font-size:12.5px}
@@ -19598,6 +19677,150 @@ function vtInput(e){ if(e.target.id==="vtPq"){ VT.pq=e.target.value; VT.plim=40;
 function vtChange(e){ if(e.target.id==="vtPm"){ VT.pm=e.target.value; VT.plim=40; vtPed(); } }
 // enganches
 (function(){ const _r=renderVentas; renderVentas=function(){ vtMontar(); const r=_r.apply(this,arguments); try{ vtPintar(); }catch(err){ console.error(err); } return r; }; })();
+
+// ---------- ESTUDIO DE IMÁGENES · asistente paso a paso, hoja A4 en vivo, Mis imágenes y cuadernillo en lote ----------
+const IW = { pag: 0, pages: null, pagesTipo: "", busy: false, t: null, zoom: false, imgs: null, imgFiltro: "tema", elegir: null, plan: null, planSel: [] };
+IS.paso = IS.paso || 1;
+try { const l = JSON.parse(localStorage.getItem("cofre-is-lote") || "null"); if (l && Array.isArray(l.tipos) && l.tipos.length) IS.lote = l; } catch {}
+const iwLoteGuardar = () => { try { if (IS.lote) localStorage.setItem("cofre-is-lote", JSON.stringify(IS.lote)); else localStorage.removeItem("cofre-is-lote"); } catch {} };
+const IW_CONS = {
+  dif: () => [`Encontrá las ${IS.n} diferencias`, `OBSERVÁ las dos imágenes y ENCONTRÁ las ${IS.n} diferencias. PINTÁ un casillero por cada una.`],
+  falta: () => ["¿Qué falta?", `OBSERVÁ las dos imágenes y DESCUBRÍ los ${IS.n} elementos que faltan en la segunda.`],
+  busca: () => ["Buscá y encontrá", "BUSCÁ en la escena los objetos de la lista y RODEALOS con un círculo cuando los encuentres."],
+  lab: () => ["Laberinto", "RECORRÉ el laberinto desde la entrada hasta la salida."],
+  puzzle: () => ["Rompecabezas", "RECORTÁ las piezas por las líneas y ARMÁ el rompecabezas."],
+  puntos: () => ["Uní los puntos", "UNÍ los puntos en orden y DESCUBRÍ el dibujo escondido."],
+  pintar: () => ["Para pintar", "PINTÁ el dibujo con tus colores favoritos."],
+  secuencia: () => ["Ordená la historia", "RECORTÁ las escenas y ORDENALAS como sucedió la historia."],
+};
+function iwHecho() { try { return isCuadPuede(); } catch { return false; } }
+function iwSinIA(t) { try { return isJ2SinIA(t); } catch { return false; } }
+function iwPasos() { const t = IS.tipo, sin = iwSinIA(t), cop = (IS.copiado || {})[t];
+  return [["1", "🧩", "Elegí", "La actividad"], ["2", "⚙️", "Prepará", "Tema, nivel y diseño"], ["3", sin ? "👀" : "✨", sin ? "Revisá" : "Pedí la imagen", sin ? "Lo dibuja el panel" : `Copiá y pegá en ${IS.plat === "gemini" ? "Gemini" : "ChatGPT"}`, !sin && cop], ["4", "📥", sin ? "Descargá" : "Subí y armá", "Hojas listas", iwHecho()]]; }
+
+// ---------- hoja A4 en vivo ----------
+function iwPlaceholder() { const t = IS.tipo, info = IS_TIPO_INFO[t] || ["", "Actividad", ""], [tit, cons] = (IW_CONS[t] || (() => [info[1], ""]))();
+  let mock = ""; try { const m = isMock(t, isOrient(), true); if (/^\s*<svg/i.test(m)) mock = m.replace(/<svg/i, `<svg x="150" y="300" width="295" height="250" preserveAspectRatio="xMidYMid meet"`); } catch {}
+  const conN = t === "dif" ? Array.from({ length: IS.n }, (_, i) => `<rect x="${297.5 - IS.n * 14 + i * 28}" y="760" width="20" height="20" rx="5" fill="none" stroke="#4AAE4F" stroke-width="2"/>`).join("") : "";
+  const cuerpo = `<rect x="40" y="172" width="515" height="${conN ? 572 : 600}" rx="16" fill="#F3F6FB" stroke="#B9C5DA" stroke-width="1.6" stroke-dasharray="9 7"/>${mock}<text x="297.5" y="600" text-anchor="middle" font-size="15" font-weight="800" fill="#7A869C" font-family="Nunito, Arial, sans-serif">${iwSinIA(t) ? "El panel dibuja esta actividad" : "Acá va tu imagen"}</text><text x="297.5" y="622" text-anchor="middle" font-size="11.5" fill="#97A2B6" font-family="Nunito, Arial, sans-serif">${iwSinIA(t) ? "Elegí las opciones y se arma sola" : "Cuando la subas en el paso 4, cae en su lugar"}</text>${conN}`;
+  try { return isMarco(tit, cons, cuerpo, ""); } catch (e) { return ""; } }
+async function iwPaginasReales() {
+  const C = IS.cuad, items0 = C.items, tit0 = C.titulo, g = isCuadGuardar; IW.busy = true; C.items = []; isCuadGuardar = async () => {};
+  try { await isCuadAgregar(); return C.items.map((x) => ({ et: x.etiqueta || (x.sol ? "Soluciones" : "Actividad"), sol: !!x.sol, svg: x.tipo === "svg" ? x.svg : isMarco(x.args[0], x.args[1], x.args[2], "") })); }
+  catch { return null; } finally { C.items = items0; C.titulo = tit0; isCuadGuardar = g; IW.busy = false; } }
+function iwLiveHtml() { const real = IW.pages && IW.pagesTipo === IS.tipo && iwHecho(), P = real ? IW.pages : [{ et: "Así va a quedar", svg: iwPlaceholder() }], i = Math.min(IW.pag, P.length - 1), plant = IS.dis.plantilla in IS_PLANTILLAS ? IS.dis.plantilla : "clasica", conHoja = IS.tipo !== "pintar" && IS.tipo !== "info";
+  return `<div class="iw-lh"><div><b>📄 Así queda tu hoja</b><small>${real ? `${P.length} ${P.length === 1 ? "hoja lista" : "hojas listas"} · se actualiza solo` : "Vista previa · cambia con cada opción"}</small></div><button type="button" class="iw-zb" data-iwzoom title="Ver grande" aria-label="Ver la hoja grande">⤢</button></div>
+    ${P.length > 1 ? `<div class="iw-ptabs" role="tablist">${P.map((p, k) => `<button type="button" role="tab" data-iwpag="${k}" aria-selected="${k === i}">${p.sol ? "✅" : "📝"} ${esc(p.et)}</button>`).join("")}</div>` : ""}
+    <div class="iw-hoja${real ? " real" : ""}" data-iwzoom>${P[i].svg || '<div class="iw-hv">Elegí una actividad</div>'}${real ? "" : '<span class="iw-badge">Vista previa</span>'}</div>
+    ${conHoja ? `<div class="iw-dis"><small>Diseño de hoja</small><div class="iw-plants">${Object.entries(IS_PLANTILLAS).map(([k, P2]) => `<button type="button" class="${plant === k ? "on" : ""}" data-isplant="${k}" title="${esc(P2.d)}">${isMiniPlant(k)}<span>${P2.n}</span></button>`).join("")}</div>
+      <div class="iw-tg"><button type="button" data-iwtog="isEncab" aria-pressed="${!!IS.dis.encab}">✏️ Nombre y fecha</button><button type="button" data-iwtog="isInclusivo" aria-pressed="${!!IS.dis.inclusivo}">♿ Inclusiva</button></div></div>` : ""}`; }
+function iwLivePintar() { const a = document.getElementById("iwLive"); if (a) { a.innerHTML = iwLiveHtml(); } }
+function iwLiveRefrescar() { clearTimeout(IW.t); if (!iwHecho()) { if (IW.pagesTipo !== IS.tipo) IW.pages = null; return; }
+  IW.t = setTimeout(async () => { if (IW.busy || !$("#isDlg") || !$("#isDlg").open || IS.tab !== "act") return; const t = IS.tipo, P = await iwPaginasReales(); if (!P || !P.length || IS.tipo !== t) return;
+    const igual = IW.pages && IW.pagesTipo === t && IW.pages.length === P.length && IW.pages.every((p, k) => p.svg === P[k].svg); IW.pages = P; IW.pagesTipo = t; if (IW.pag >= P.length) IW.pag = 0; if (!igual) iwLivePintar(); }, 450); }
+function iwZoom(on) { let z = document.getElementById("iwZoom"); if (!on) { if (z) z.remove(); return; } const P = IW.pages && IW.pagesTipo === IS.tipo && iwHecho() ? IW.pages : [{ et: "Vista previa", svg: iwPlaceholder() }], i = Math.min(IW.pag, P.length - 1);
+  if (!z) { z = document.createElement("div"); z.id = "iwZoom"; z.className = "iw-zoom"; $("#isDlg").appendChild(z); }
+  z.innerHTML = `<div class="iw-zin"><div class="iw-zh"><b>${esc(P[i].et)}</b><span>${P.length > 1 ? P.map((p, k) => `<button type="button" data-iwzpag="${k}" aria-pressed="${k === i}">${esc(p.et)}</button>`).join("") : ""}</span><button type="button" class="vx-x" data-iwzx aria-label="Cerrar">✕</button></div><div class="iw-zp">${P[i].svg}</div></div>`; }
+
+// ---------- Mis imágenes (se guardan en este navegador) ----------
+const iwIDB = () => new Promise((ok, no) => { try { const r = indexedDB.open("cofre-imagenes", 1); r.onupgradeneeded = () => r.result.createObjectStore("img", { keyPath: "id" }); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); } catch (e) { no(e); } });
+async function iwImgs() { if (IW.imgs) return IW.imgs; try { const db = await iwIDB(); IW.imgs = await new Promise((ok) => { const r = db.transaction("img").objectStore("img").getAll(); r.onsuccess = () => ok((r.result || []).sort((a, b) => b.at - a.at)); r.onerror = () => ok([]); }); } catch { IW.imgs = []; } return IW.imgs; }
+async function iwGuardarImg(img, file) {
+  if (!file || !(file instanceof Blob) || !/^image\//.test(file.type || "image/")) return; const L = await iwImgs(), id = [file.name, file.size, file.lastModified || 0].join("|");
+  if (L.some((x) => x.id === id)) { const x = L.find((y) => y.id === id); x.at = Date.now(); return; }
+  const s = Math.min(1, 260 / Math.max(img.w, img.h)), c = document.createElement("canvas"); c.width = Math.max(1, Math.round(img.w * s)); c.height = Math.max(1, Math.round(img.h * s)); c.getContext("2d").drawImage(img.im, 0, 0, c.width, c.height);
+  const E = isEscena(IS.tema), rec = { id, at: Date.now(), tema: IS.tema, temaN: E.nombre, tipo: IS.tab === "act" ? IS.tipo : IS.tab, name: file.name || "imagen.png", type: file.type || "image/png", w: img.w, h: img.h, blob: file, thumb: c.toDataURL("image/jpeg", 0.8) };
+  try { const db = await iwIDB(); await new Promise((ok, no) => { const tx = db.transaction("img", "readwrite"); tx.objectStore("img").put(rec); tx.oncomplete = ok; tx.onerror = () => no(tx.error); }); L.unshift(rec);
+    if (L.length > 150) { const sob = L.splice(150); const tx = db.transaction("img", "readwrite"); sob.forEach((x) => tx.objectStore("img").delete(x.id)); } } catch (e) { console.warn("No se pudo guardar la imagen", e); } }
+async function iwBorrarImg(id) { try { const db = await iwIDB(); await new Promise((ok) => { const tx = db.transaction("img", "readwrite"); tx.objectStore("img").delete(id); tx.oncomplete = ok; tx.onerror = ok; }); } catch {} IW.imgs = (IW.imgs || []).filter((x) => x.id !== id); }
+const iwTipoN = (k) => (IS_TIPO_INFO[k] ? IS_TIPO_INFO[k][0] + " " + IS_TIPO_INFO[k][1] : ({ color: "🖍️ Para colorear", corte: "✂️ Stickers", tarj: "🃏 Tarjetas", print: "🖨️ Imprenta", cuad: "📚 Cuadernillo" })[k] || "🖼️ Imagen");
+function iwInputs() { const c = document.getElementById("isC3"); if (!c) return []; return [...c.querySelectorAll('input[type="file"]')].filter((i) => !i.disabled).map((i) => ({ i, n: ((i.closest("label") || {}).querySelector ? (i.closest("label").querySelector("b") || {}).textContent : "") || "Subir imagen" })); }
+async function iwUsar(id, inputIdx) { const x = (await iwImgs()).find((y) => y.id === id); if (!x) return; const L = iwInputs(); if (!L.length) { toast("Esta actividad no necesita subir imágenes.", "warn"); return; }
+  if (L.length > 1 && inputIdx == null) { IW.elegir = id; iwStrip(); return; }
+  const inp = L[inputIdx || 0].i, f = new File([x.blob], x.name, { type: x.type || x.blob.type || "image/png", lastModified: x.blob.lastModified || 0 }); const dt = new DataTransfer(); dt.items.add(f); inp.files = dt.files; IW.elegir = null; inp.dispatchEvent(new Event("change", { bubbles: true })); toast("Imagen cargada ✓", "ok"); }
+async function iwStrip() { const box = document.getElementById("iwStrip"); if (!box) return; const L = await iwImgs(); if (!L.length || !iwInputs().length) { box.innerHTML = ""; return; }
+  const mios = L.filter((x) => x.tema === IS.tema), lista = (mios.length ? mios : L).slice(0, 14), ins = iwInputs();
+  box.innerHTML = `<div class="iw-st"><div class="iw-sth"><b>🖼️ Usar una imagen que ya tenés</b><small>${mios.length ? `De ${esc(isEscena(IS.tema).nombre)}` : "Las últimas que subiste"} · <button type="button" class="linkish" data-istab="imgs">Ver todas</button></small></div>
+    ${IW.elegir ? `<div class="iw-eleg"><span>¿Dónde la ponés?</span>${ins.map((x, k) => `<button type="button" class="btn small primary" data-iwusar="${esc(IW.elegir)}" data-iwin="${k}">${esc(x.n)}</button>`).join("")}<button type="button" class="linkish" data-iwelegx>Cancelar</button></div>` : ""}
+    <div class="iw-thumbs">${lista.map((x) => `<button type="button" data-iwusar="${esc(x.id)}" title="${esc(x.name)} · ${esc(x.temaN || "")}"${IW.elegir === x.id ? ' class="on"' : ""}><img src="${x.thumb}" alt=""><small>${esc(iwTipoN(x.tipo).replace(/^\S+\s/, ""))}</small></button>`).join("")}</div></div>`; }
+async function iwGaleria() { const L = await iwImgs(), f = IW.imgFiltro, temas = [...new Map(L.map((x) => [x.tema, x.temaN || x.tema])).entries()];
+  const lista = f === "todas" ? L : f === "tema" ? L.filter((x) => x.tema === IS.tema) : L.filter((x) => x.tema === f);
+  return `<div class="iw-gal"><div class="iw-galh"><div><h3>🖼️ Mis imágenes</h3><p class="muted">Cada imagen que subís al estudio queda guardada en este navegador. Reusala en otra actividad o en otro cuadernillo sin volver a pedirla.</p></div><span class="iw-cnt">${nf(L.length)} ${L.length === 1 ? "imagen" : "imágenes"}</span></div>
+    <div class="iw-gf"><button type="button" data-iwgf="tema" aria-pressed="${f === "tema"}">${mzIcon(IS.tema) || "📌"} ${esc(isEscena(IS.tema).nombre)}</button><button type="button" data-iwgf="todas" aria-pressed="${f === "todas"}">Todas</button>${temas.filter(([k]) => k !== IS.tema).map(([k, n]) => `<button type="button" data-iwgf="${esc(k)}" aria-pressed="${f === k}">${mzIcon(k) || "📌"} ${esc(n)}</button>`).join("")}</div>
+    ${lista.length ? `<div class="iw-ggrid">${lista.map((x) => `<figure class="iw-ic"><div class="iw-im"><img src="${x.thumb}" alt="" loading="lazy"></div><figcaption><b title="${esc(x.name)}">${esc(iwTipoN(x.tipo))}</b><small>${esc(x.temaN || "")} · ${esc(new Date(x.at).toLocaleDateString("es-AR", { day: "numeric", month: "short" }))} · ${x.w}×${x.h}</small></figcaption>
+      <div class="iw-ia"><button type="button" class="btn small primary" data-iwgusar="${esc(x.id)}">Usar en una actividad</button><button type="button" class="btn small" data-iwgdl="${esc(x.id)}" title="Descargar">⬇</button><button type="button" class="btn small ghost" data-iwgdel="${esc(x.id)}" title="Borrar de Mis imágenes">🗑</button></div></figure>`).join("")}</div>`
+      : `<div class="is-empty"><span>🖼️</span><b>${L.length ? "No hay imágenes de este tema" : "Todavía no subiste imágenes"}</b><p>${L.length ? "Elegí otro filtro arriba." : "Cuando subas una imagen en cualquier actividad, aparece acá para reusarla."}</p></div>`}</div>`; }
+
+// ---------- cuadernillo en lote ----------
+const IW_PRESETS = [["clasico", "⭐ Clásico", ["dif", "busca", "lab", "puntos", "sopa", "secuencia"]], ["rapido", "⚡ Sin pedir imágenes", ["sopa", "cruci", "completa", "problemas", "pixel", "simetria"]], ["juegos", "🎲 Para jugar", ["memo", "bingo", "oca", "puzzle", "sombras", "dif"]]];
+const iwExiste = (k) => !!IS_TIPO_INFO[k];
+function iwPlanHtml() { const sel = IW.planSel, cats = IS_CATS.concat((typeof IS_TIPO_CAT === "object" && Object.values(IS_TIPO_CAT).includes("juegos") && !IS_CATS.some((c) => c[0] === "juegos")) ? [["juegos", "🎲 Juegos"]] : []);
+  return `<div class="iw-plan"><div class="iw-planh"><div><b>📚 Armar un cuadernillo completo</b><small>Elegí las actividades (en el orden en que las tocás) y te guío una por una. Cada una se agrega sola al cuadernillo.</small></div><button type="button" class="vx-x" data-iwplanx aria-label="Cerrar">✕</button></div>
+    <div class="iw-pre">${IW_PRESETS.map(([k, n, L]) => { const ok = L.filter(iwExiste); return ok.length ? `<button type="button" data-iwpre="${k}">${n} <small>${ok.length} actividades</small></button>` : ""; }).join("")}</div>
+    ${cats.map(([c, n]) => { const L = Object.keys(IS_TIPO_INFO).filter((k) => (IS_TIPO_CAT[k] || "ia") === c); return L.length ? `<div class="iw-pg"><small>${n}</small><div>${L.map((k) => { const i = sel.indexOf(k); return `<button type="button" class="iw-pa${i >= 0 ? " on" : ""}" data-iwpsel="${k}">${i >= 0 ? `<i>${i + 1}</i>` : ""}${IS_TIPO_INFO[k][0]} ${esc(IS_TIPO_INFO[k][1])}</button>`; }).join("")}</div></div>` : ""; }).join("")}
+    <div class="iw-planf"><span>${sel.length ? `<b>${sel.length}</b> ${sel.length === 1 ? "actividad" : "actividades"} · tema: <b>${esc(isEscena(IS.tema).nombre)}</b>` : "Tocá las actividades que querés"}</span><button type="button" class="btn primary" data-iwplango ${sel.length ? "" : "disabled"}>Empezar →</button></div></div>`; }
+function iwLoteBanner() { const L = IS.lote; if (!L) return ""; const ok = new Set(L.ok || []), cur = L.tipos[L.i], puede = iwHecho() && IS.tipo === cur, ult = L.i >= L.tipos.length - 1;
+  return `<div class="iw-lote"><div class="iw-lt"><b>📚 Cuadernillo en lote · ${L.i + 1} de ${L.tipos.length}</b><small>${esc(L.temaN || "")}</small></div>
+    <div class="iw-lc">${L.tipos.map((k, i) => `<button type="button" class="${ok.has(k) ? "ok" : ""}${i === L.i ? " cur" : ""}" data-iwlir="${i}" title="${esc(IS_TIPO_INFO[k] ? IS_TIPO_INFO[k][1] : k)}">${ok.has(k) ? "✓" : IS_TIPO_INFO[k] ? IS_TIPO_INFO[k][0] : "•"}<span>${esc(IS_TIPO_INFO[k] ? IS_TIPO_INFO[k][1] : k)}</span></button>`).join("")}</div>
+    <div class="iw-la"><button type="button" class="btn small primary" data-iwlok ${puede ? "" : "disabled"} title="${puede ? "" : "Primero terminá esta actividad (paso 4)"}">${ok.has(cur) ? (ult ? "Ver el cuadernillo →" : "Siguiente actividad →") : ult ? "✅ Agregar y terminar" : "✅ Agregar y seguir"}</button>${!ult ? `<button type="button" class="linkish" data-iwlskip>Saltear</button>` : ""}<button type="button" class="linkish" data-iwlfin>Salir del lote</button></div></div>`; }
+function iwIrTipo(k) { const d = $("#isDlg"); if (!d) return; const b = document.createElement("button"); b.type = "button"; b.dataset.istipo = k; b.hidden = true; d.appendChild(b); IS.paso = 2; b.click(); b.remove(); }
+async function iwLoteAvanzar(agregar) { const L = IS.lote; if (!L) return; const cur = L.tipos[L.i];
+  if (agregar && !(L.ok || []).includes(cur)) { try { const n = await isCuadAgregar(); L.ok = [...(L.ok || []), cur]; toast(`Agregué ${n} hoja${n > 1 ? "s" : ""} de ${IS_TIPO_INFO[cur][1]} ✓`, "ok"); } catch (e) { toast(e.message || "No se pudo agregar.", "warn"); return; } }
+  if (L.i >= L.tipos.length - 1) { IS.lote = null; iwLoteGuardar(); toast("🎉 ¡Listo! Tu cuadernillo está armado. Revisalo y descargá el PDF.", "ok"); IS.tab = "cuad"; isRender(); return; }
+  L.i++; iwLoteGuardar(); iwIrTipo(L.tipos[L.i]); }
+
+// ---------- asistente: envuelve el tablero de 3 columnas ----------
+const _iwRenderAct = isRenderAct;
+isRenderAct = function () {
+  const h = _iwRenderAct.apply(this, arguments), k = h.indexOf('<div class="is-board">'); if (k < 0) return h;
+  const acts = h.slice(0, k), rest = h.slice(k), paso = Math.min(4, Math.max(1, IS.paso || 1)), P = iwPasos(), info = IS_TIPO_INFO[IS.tipo] || ["", "", ""];
+  const stepper = `<nav class="iw-steps" aria-label="Pasos">${P.map(([n, ic, t, s, ok], i) => `<button type="button" data-iwpaso="${n}" class="${+n === paso ? "on" : ""}${+n < paso || ok ? " done" : ""}" aria-current="${+n === paso ? "step" : "false"}"><i>${ok || +n < paso ? "✓" : ic}</i><span><b>${t}</b><small>${s}</small></span></button>${i < 3 ? '<span class="iw-sep" aria-hidden="true"></span>' : ""}`).join("")}<span class="iw-prog" style="--p:${((paso - 1) / 3 * 100).toFixed(0)}%" aria-hidden="true"></span></nav>`;
+  const p1 = `<div class="iw-p1${IW.plan ? " planning" : ""}">${IW.plan ? iwPlanHtml() : `<button type="button" class="iw-lotecta" data-iwplan><span>📚</span><span><b>¿Armás un cuadernillo completo?</b><small>Elegí varias actividades de una vez y te guío una por una hasta el PDF.</small></span><em>Armar en lote →</em></button>`}${acts}</div>`;
+  const sig = paso < 4 ? `<button type="button" class="btn primary" data-iwpaso="${paso + 1}">${paso === 1 ? `Seguir con ${esc(info[1])} →` : paso === 2 ? (iwSinIA(IS.tipo) ? "Ver el diseño →" : "Pedir la imagen →") : (iwSinIA(IS.tipo) ? "Descargar →" : "Ya la tengo, subirla →")}</button>` : iwHecho() ? `<button type="button" class="btn primary" ${IS.lote ? "data-iwlok" : "data-iscuadd"}>${IS.lote ? "✅ Agregar y seguir" : "➕ Agregar al cuadernillo"}</button>` : `<span class="iw-hint">${iwSinIA(IS.tipo) ? "Elegí las opciones y descargá" : "Subí la imagen para armar las hojas"}</span>`;
+  const pie = `<div class="iw-pie">${paso > 1 ? `<button type="button" class="btn" data-iwpaso="${paso - 1}">← Atrás</button>` : "<span></span>"}<span class="iw-dots">${[1, 2, 3, 4].map((n) => `<i class="${n === paso ? "on" : ""}"></i>`).join("")}</span>${sig}</div>`;
+  return `<div class="iw" data-paso="${paso}">${iwLoteBanner()}${stepper}<div class="iw-grid"><div class="iw-main">${p1}${rest}${paso === 4 ? '<div id="iwStrip"></div>' : ""}${pie}</div><aside class="iw-live" id="iwLive">${iwLiveHtml()}</aside></div></div>`;
+};
+const _iwRender0 = isRender0;
+isRender0 = function () {
+  if (IS.tab === "imgs") { IS.tab = "pack"; try { _iwRender0.apply(this, arguments); } finally { IS.tab = "imgs"; }
+    const d = $("#isDlg"); if (!d) return; const tt = d.querySelector("#isT"); if (tt) tt.textContent = "Mis imágenes"; d.querySelectorAll("[data-istab]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.istab === "imgs"))); d.dataset.vista = "imgs|"; const body = d.querySelector(".is-body"); if (body) { body.innerHTML = '<div class="is-empty"><span>⏳</span><b>Cargando tus imágenes…</b></div>'; iwGaleria().then((h) => { if (IS.tab === "imgs" && body.isConnected) body.innerHTML = h; }); } return; }
+  _iwRender0.apply(this, arguments);
+  if (IS.tab === "act") { iwLiveRefrescar(); if (IS.paso === 4) iwStrip(); }
+};
+const _iwCargarImg = isCargarImg;
+isCargarImg = async function (file) { const r = await _iwCargarImg.apply(this, arguments); try { if (IS.tab !== "estilo") iwGuardarImg(r, file); } catch {} return r; };
+// nueva sección en el menú
+try { const g = IS_NAV.find((x) => x[0] === "Recursos"); if (g && !g[1].some((x) => x[0] === "imgs")) g[1].unshift(["imgs", "🖼️", "Mis imágenes", "Todo lo que subiste, para reusar"]); } catch {}
+// clics del asistente (antes que el manejador del estudio)
+document.addEventListener("click", async (e) => {
+  const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const t = e.target, c = (s) => t.closest(s);
+  if (c("[data-istipo]") && IS.tab === "act" && (IS.paso || 1) === 1 && !IW.plan) { IS.paso = 2; IW.pag = 0; return; }
+  if (c("[data-istipo]") && IW.plan) { e.stopPropagation(); e.preventDefault(); return; }
+  if (c("[data-iscuadd],[data-iscuadd2]") && IW.busy) { e.stopPropagation(); e.preventDefault(); toast("Un segundo, estoy actualizando la vista previa…"); return; }
+  let b;
+  if ((b = c("[data-iwpaso]"))) { e.stopPropagation(); IS.paso = +b.dataset.iwpaso; isRender(); const m = d.querySelector(".is-body"); if (m) m.scrollTop = 0; return; }
+  if ((b = c("[data-iwpag]"))) { e.stopPropagation(); IW.pag = +b.dataset.iwpag; iwLivePintar(); return; }
+  if ((b = c("[data-iwzpag]"))) { e.stopPropagation(); IW.pag = +b.dataset.iwzpag; iwZoom(true); iwLivePintar(); return; }
+  if (c("[data-iwzx]") || (t.id === "iwZoom")) { e.stopPropagation(); iwZoom(false); return; }
+  if (c("[data-iwzoom]")) { e.stopPropagation(); iwZoom(true); return; }
+  if ((b = c("[data-iwtog]"))) { e.stopPropagation(); const x = document.getElementById(b.dataset.iwtog); if (x) x.click(); else { const k = b.dataset.iwtog === "isEncab" ? "encab" : "inclusivo"; IS.dis[k] = !IS.dis[k]; try { isHojaGuardar(); } catch {} isRender(); } return; }
+  if ((b = c("[data-iwusar]"))) { e.stopPropagation(); iwUsar(b.dataset.iwusar, b.dataset.iwin != null ? +b.dataset.iwin : null); return; }
+  if (c("[data-iwelegx]")) { e.stopPropagation(); IW.elegir = null; iwStrip(); return; }
+  if ((b = c("[data-iwgf]"))) { e.stopPropagation(); IW.imgFiltro = b.dataset.iwgf; isRender(); return; }
+  if ((b = c("[data-iwgusar]"))) { e.stopPropagation(); IS.tab = "act"; IS.paso = 4; isRender(); setTimeout(() => iwUsar(b.dataset.iwgusar), 120); return; }
+  if ((b = c("[data-iwgdl]"))) { e.stopPropagation(); const x = (await iwImgs()).find((y) => y.id === b.dataset.iwgdl); if (x) { try { await saveFile(x.name, x.blob, x.type); } catch (err) { toast(err.message || "No se pudo descargar", "warn"); } } return; }
+  if ((b = c("[data-iwgdel]"))) { e.stopPropagation(); if (!await pcConfirm("¿Borrar esta imagen de Mis imágenes? Las hojas que ya armaste con ella no cambian.", { titulo: "Borrar imagen", ok: "Borrar" })) return; await iwBorrarImg(b.dataset.iwgdel); isRender(); return; }
+  if (c("[data-iwplan]")) { e.stopPropagation(); IW.plan = true; IW.planSel = []; isRender(); return; }
+  if (c("[data-iwplanx]")) { e.stopPropagation(); IW.plan = null; isRender(); return; }
+  if ((b = c("[data-iwpre]"))) { e.stopPropagation(); const p = IW_PRESETS.find((x) => x[0] === b.dataset.iwpre); IW.planSel = p[2].filter(iwExiste); isRender(); return; }
+  if ((b = c("[data-iwpsel]"))) { e.stopPropagation(); const k = b.dataset.iwpsel, i = IW.planSel.indexOf(k); if (i >= 0) IW.planSel.splice(i, 1); else IW.planSel.push(k); isRender(); return; }
+  if (c("[data-iwplango]")) { e.stopPropagation(); if (!IW.planSel.length) return; IS.lote = { tema: IS.tema, temaN: isEscena(IS.tema).nombre, tipos: IW.planSel.slice(), i: 0, ok: [] }; IW.plan = null; iwLoteGuardar(); if (!IS.cuad.titulo) IS.cuad.titulo = isEscena(IS.tema).nombre; iwIrTipo(IS.lote.tipos[0]); toast("¡Empezamos! Hacé la primera actividad y tocá “Agregar y seguir”.", "ok"); return; }
+  if ((b = c("[data-iwlir]"))) { e.stopPropagation(); IS.lote.i = +b.dataset.iwlir; iwLoteGuardar(); iwIrTipo(IS.lote.tipos[IS.lote.i]); return; }
+  if ((b = c("[data-iwlok]"))) { e.stopPropagation(); b.disabled = true; await iwLoteAvanzar(true); return; }
+  if (c("[data-iwlskip]")) { e.stopPropagation(); await iwLoteAvanzar(false); return; }
+  if (c("[data-iwlfin]")) { e.stopPropagation(); if (!await pcConfirm("¿Salir del cuadernillo en lote? Lo que ya agregaste queda en el cuadernillo.", { titulo: "Salir del lote", ok: "Salir" })) return; IS.lote = null; iwLoteGuardar(); isRender(); return; }
+}, true);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && document.getElementById("iwZoom")) { e.preventDefault(); e.stopPropagation(); iwZoom(false); } }, true);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
