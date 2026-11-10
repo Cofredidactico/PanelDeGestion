@@ -594,6 +594,20 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+/* ===== dificultad + variantes ===== */
+.df-card{display:grid;gap:14px;padding:16px;border-radius:20px;border:1px solid color-mix(in srgb,#8B5CF6 40%,var(--line));background:linear-gradient(140deg,color-mix(in srgb,#8B5CF6 9%,var(--surface)),color-mix(in srgb,#3E7BFA 6%,var(--surface)));max-width:760px}
+.df-ch{display:flex;align-items:center;gap:12px}.df-ch>span{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#8B5CF6,#3E7BFA);font-size:20px}.df-ch b{display:block;font-size:15px}.df-ch small{font-size:12px;color:var(--muted)}
+.df{display:grid;gap:8px}.df-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.df-h b{font-size:13.5px}.df-h small{font-size:12px;color:var(--muted)}
+.df-l{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.df-c{display:grid;gap:2px;justify-items:start;text-align:left;font:inherit;color:inherit;padding:10px 12px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.df-c:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--c) 60%,var(--line))}
+.df-c.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 13%,var(--surface));box-shadow:0 10px 22px -16px var(--c)}
+.df-st{font-size:13px;letter-spacing:1px}.df-c b{font-size:14px}.df-c small{font-size:11.5px;color:var(--muted);line-height:1.3}
+.df-f{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}.df-f .check{font-size:12.5px}
+.vr.vr-in{padding:0;border:0;background:none;max-width:none}
+.df-tres{font-size:12.5px;padding:8px 10px;border-radius:12px;background:color-mix(in srgb,#F6B40E 12%,var(--surface))}
+@media (max-width:620px){.df-l{grid-template-columns:minmax(0,1fr)}}
+
 /* ===== galería de variantes ===== */
 .vr{display:grid;gap:10px;padding:14px;border-radius:18px;border:1px solid color-mix(in srgb,#8B5CF6 40%,var(--line));background:linear-gradient(140deg,color-mix(in srgb,#8B5CF6 9%,var(--surface)),color-mix(in srgb,#3E7BFA 6%,var(--surface)));max-width:760px}
 .vr-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.vr-h b{font-size:14.5px}.vr-h small{font-size:12px;color:var(--muted)}
@@ -20200,7 +20214,7 @@ const VR_EXIST = {
   memo: [["imagen", "🃏", "Dibujo con dibujo", "Parejas iguales", [["isj2modo", "imagen"]]], ["palabra", "🔤", "Dibujo con palabra", "Leer para jugar", [["isj2modo", "palabra"]]]],
 };
 Object.entries(NV_INFO).forEach(([k, [ic, n, d, cat]]) => { IS_J2[k] = [ic, n, d]; IS_TIPO_INFO[k] = [ic, n, d]; IS_TIPO_CAT[k] = cat; if (!IS_J2_BANCO.includes(k)) IS_J2_BANCO.push(k); IS_ACT_N[k] = n; IS_ORIENT_DEF[k] = "v"; IS_TXT_DEF[k] = false; });
-const nvCfg = (t = IS.tipo) => { IS.nv = IS.nv || {}; const nk = isNivK(), c = IS.nv[t] = IS.nv[t] || {}; if (!c.v) c.v = NV_VAR[t][0][0]; if (!c.letra) c.letra = nk === 2 ? "minus" : "mayus"; if (!c.n) c.n = { silabas: [4, 6, 8], unir: [4, 5, 6], trazar: [3, 4, 5], contar: [4, 5, 6], patron: [3, 4, 5], grafico: [3, 4, 5] }[t][nk]; return c; };
+let nvCfg = (t = IS.tipo) => { IS.nv = IS.nv || {}; const nk = isNivK(), c = IS.nv[t] = IS.nv[t] || {}; if (!c.v) c.v = NV_VAR[t][0][0]; if (!c.letra) c.letra = nk === 2 ? "minus" : "mayus"; if (!c.n) c.n = { silabas: [4, 6, 8], unir: [4, 5, 6], trazar: [3, 4, 5], contar: [4, 5, 6], patron: [3, 4, 5], grafico: [3, 4, 5] }[t][nk]; return c; };
 const nvCas = (c, s) => (c.letra === "minus" ? String(s).toLocaleLowerCase("es") : String(s).toLocaleUpperCase("es"));
 function nvImgs() { return (isBancoSel(IS.tipo, isBanco().items) || []).filter((it) => it && it.url); }
 function nvPal() { return nvImgs().filter((it) => /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+$/.test(String(it.n || "").trim()) && String(it.n).trim().length <= 12).map((it) => ({ n: it.n.trim(), url: it.url })); }
@@ -20346,6 +20360,71 @@ function vrAplicar(k) { const t = IS.tipo, v = (vrLista(t) || []).find((x) => x.
   const d = $("#isDlg"); v.clicks.forEach(([a, val]) => { const b = document.createElement("button"); b.type = "button"; b.setAttribute("data-" + a, val); b.hidden = true; const host = d.querySelector("#isC1") || d; host.appendChild(b); b.click(); b.remove(); }); IS.j2Ver = 0; setTimeout(isRender, 30); }
 function nvGaleria(h) { const L = vrLista(); if (!L) return ""; const cur = vrActual(h || ""), info = IS_TIPO_INFO[IS.tipo] || ["", ""];
   return `<section class="vr"><div class="vr-h"><b>🎨 Variantes de ${esc(info[1])}</b><small>${L.length} formas distintas de la misma actividad · elegí una, o hacé varias para tu cuadernillo</small></div><div class="vr-l">${L.map((v, i) => `<button type="button" class="vr-c${v.k === cur ? " on" : ""}" data-vrgo="${esc(v.k)}" style="--i:${i}"><span class="vr-i">${v.ic}</span><span class="vr-t"><b>${esc(v.n)}</b><small>${esc(v.d)}</small></span>${v.k === cur ? '<em class="vr-ok">✓</em>' : ""}</button>`).join("")}</div></section>`; }
+
+// ---------- NIVELES DE DIFICULTAD para todas las actividades ----------
+const DF_N = [["⭐", "Fácil", "Menos elementos, más grandes y con ayudas", "#22A35A"], ["⭐⭐", "Media", "Lo justo para el nivel que elegiste", "#F28C28"], ["⭐⭐⭐", "Difícil", "Más elementos y más desafío", "#D7263D"]];
+const DF_NIV = ["Nivel Inicial", "Primaria – Primer Ciclo", "Primaria – Segundo Ciclo"];
+IS.difs = IS.difs || {}; IS.difBadge = IS.difBadge !== false;
+let DF_SELLO = null; // dificultad que se está dibujando (para el sello de la hoja)
+const dfDe = (t = IS.tipo) => (IS.difs[t] != null ? IS.difs[t] : 1);
+const dfNk = () => (IS.dis && IS.dis.inclusivo ? 0 : /Inicial/.test(IS.nivel) ? 0 : /Primer/.test(IS.nivel) ? 1 : 2);
+// qué cambia en cada actividad que pide imagen a la IA (se guarda al elegir)
+const DF_IA = { dif: (d) => { IS.n = [5, 7, 10][d]; }, falta: (d) => { IS.n = [5, 7, 10][d]; }, busca: (d) => { IS.n = [6, 8, 10][d]; }, lab: (d) => { IS.labDif = d + 1; }, puzzle: (d) => { IS.pzN = [6, 12, 20][d]; } };
+const DF_J2_EXTRA = { problemas: (d) => { IS.prob = { ...(IS.prob || {}), dif: ["facil", "intermedio", "desafio"][d] }; }, sombras: (d) => { IS.somDif = d === 2 ? "dificil" : "facil"; }, bingo: (d) => { IS.bingoK = d === 2 ? 4 : 3; } };
+const dfAplica = (t = IS.tipo) => !!(IS_J2[t] && t !== "secuencia" && t !== "armar") || !!DF_IA[t];
+const dfPanel = (t = IS.tipo) => !!(IS_J2[t] && t !== "secuencia" && t !== "armar");
+function dfElegir(d, t = IS.tipo) { IS.difs[t] = d; if (DF_IA[t]) DF_IA[t](d); if (DF_J2_EXTRA[t]) DF_J2_EXTRA[t](d); }
+// "extra": cuando ya no se puede bajar o subir de nivel, cada actividad nueva ajusta sus cantidades
+function dfExtra(t = IS.tipo) { const nk = dfNk(), d = dfDe(t), e = Math.max(0, Math.min(2, nk + d - 1)); return d - 1 - (e - nk); }
+async function dfCon(t, fn) { const nivel = IS.nivel, nk = dfNk(), d = dfDe(t), e = Math.max(0, Math.min(2, nk + d - 1)), prevSello = DF_SELLO;
+  if (dfPanel(t)) { IS.nivel = DF_NIV[e]; DF_SELLO = d; } try { return await fn(); } finally { IS.nivel = nivel; DF_SELLO = prevSello; } }
+function dfConSync(t, fn) { const nivel = IS.nivel, nk = dfNk(), d = dfDe(t), e = Math.max(0, Math.min(2, nk + d - 1)), prevSello = DF_SELLO;
+  if (dfPanel(t)) { IS.nivel = DF_NIV[e]; DF_SELLO = d; } try { return fn(); } finally { IS.nivel = nivel; DF_SELLO = prevSello; } }
+// sello de nivel en la esquina de la hoja
+function dfSelloSvg(d) { const col = DF_N[d][3], x = 553, y = 80, star = (cx, cy, r, on) => `<polygon points="${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((j) => { const a = -Math.PI / 2 + j * Math.PI / 5, rr = j % 2 ? r * 0.45 : r; return `${j2f(cx + rr * Math.cos(a))},${j2f(cy + rr * Math.sin(a))}`; }).join(" ")}" fill="${on ? col : "#fff"}" stroke="${col}" stroke-width="1"/>`;
+  return `<g data-rol="nivel"><rect x="${x - 58}" y="${y - 10}" width="58" height="20" rx="10" fill="#fff" stroke="${col}" stroke-width="1.3"/>${[0, 1, 2].map((k) => star(x - 46 + k * 17, y, 6.4, k <= d)).join("")}</g>`; }
+const _dfMarco = isMarco;
+isMarco = function (titulo, consigna, cuerpo, num) { if (DF_SELLO != null && IS.difBadge && !/data-rol="nivel"/.test(cuerpo || "")) cuerpo = (cuerpo || "") + dfSelloSvg(DF_SELLO); return _dfMarco.call(this, titulo, consigna, cuerpo, num); };
+const _dfJ2Pag = isJ2Paginas;
+isJ2Paginas = function () { const t = IS.tipo, a = arguments, self = this; return dfConSync(t, () => _dfJ2Pag.apply(self, a)); };
+const _dfPaginas = isPaginas;
+isPaginas = function () { const t = IS.tipo, a = arguments, self = this; return dfCon(t, () => _dfPaginas.apply(self, a)); };
+// las actividades nuevas usan la dificultad también para sus cantidades
+const _dfNvCfg = nvCfg;
+nvCfg = function (t = IS.tipo) { const c = _dfNvCfg(t); if (!c.nUser) { const nk = isNivK(), base = { silabas: [4, 6, 8], unir: [4, 5, 6], trazar: [3, 4, 5], contar: [4, 5, 6], patron: [3, 4, 5], grafico: [3, 4, 5] }[t][nk], ex = DF_SELLO != null ? dfExtra(t) : 0, lim = { silabas: [3, 10], unir: [3, 6], trazar: [2, 5], contar: [3, 6], patron: [3, 6], grafico: [2, 5] }[t]; c.n = Math.max(lim[0], Math.min(lim[1], base + ex * (t === "silabas" ? 2 : 1))); } if (!c.letraUser) c.letra = isNivK() === 2 ? "minus" : "mayus"; return c; };
+// ---------- interfaz: selector de dificultad + variantes ----------
+function dfSelector() { const t = IS.tipo; if (!dfAplica(t)) return ""; const d = dfDe(t), nivelN = ["Nivel Inicial", "1.er ciclo", "2.º ciclo"][dfNk()];
+  return `<div class="df"><div class="df-h"><b>🎚️ Dificultad</b><small>${dfPanel(t) ? `Sobre ${esc(nivelN)}: cambia cantidades, tamaños y ayudas.` : "Cambia cuántas cosas hay que encontrar."} Hacé las 3 para tener hojas de distinto nivel.</small></div>
+    <div class="df-l">${DF_N.map(([st, n, desc, col], k) => `<button type="button" class="df-c${k === d ? " on" : ""}" data-dfset="${k}" style="--c:${col}" aria-pressed="${k === d}"><span class="df-st">${st}</span><b>${n}</b><small>${esc(DF_DESC[t] ? DF_DESC[t][k] : desc)}</small></button>`).join("")}</div>
+    ${dfPanel(t) ? `<div class="df-f"><label class="check"><input type="checkbox" data-dfsello ${IS.difBadge ? "checked" : ""}> Mostrar el nivel con estrellas en la hoja</label>${iwHecho() ? `<button type="button" class="btn small" data-df3>⭐ Agregar los 3 niveles al cuadernillo</button>` : ""}</div>` : ""}</div>`; }
+const DF_DESC = {
+  completa: ["Pocas palabras y la inicial", "Las del nivel", "Más palabras y más letras"], silabas: ["Palabras cortas y pocas", "Las del nivel", "Más palabras para separar"], unir: ["3 o 4 parejas", "5 parejas", "6 parejas"], trazar: ["Pocas palabras, letra grande", "Las del nivel", "Más palabras"],
+  contar: ["Números hasta 5", "Números hasta 10", "Números más grandes"], patron: ["Series cortas", "Series del nivel", "Más filas y huecos"], grafico: ["Pocos dibujos", "Los del nivel", "Más tipos y cantidades"],
+  memo: ["Pocas parejas", "Las del nivel", "Muchas parejas"], bingo: ["Cartón 3 × 3", "Cartón 3 × 3 del nivel", "Cartón 4 × 4"], sopa: ["Pocas y grandes", "Las del nivel", "Más y más chicas"], cruci: ["Pocas palabras", "Las del nivel", "Más palabras cruzadas"], sombras: ["Sombras bien distintas", "Sombras del nivel", "Sombras parecidas"], problemas: ["Cuentas chicas", "Un paso más", "Desafío"],
+  dif: ["5 diferencias", "7 diferencias", "10 diferencias"], falta: ["5 elementos", "7 elementos", "10 elementos"], busca: ["6 objetos", "8 objetos", "10 objetos"], lab: ["Laberinto simple", "Laberinto medio", "Laberinto difícil"], puzzle: ["6 piezas", "12 piezas", "20 piezas"],
+};
+const _dfGal = nvGaleria;
+nvGaleria = function (h) { const g = _dfGal(h), s = dfSelector(); if (!g && !s) return ""; return `<section class="df-card"><div class="df-ch"><span>🎨</span><div><b>Personalizá tu actividad</b><small>Elegí la dificultad y la variante: cada combinación es una hoja distinta para tu cuadernillo</small></div></div>${s}${g.replace('<section class="vr">', '<div class="vr vr-in">').replace(/<\/section>$/, "</div>")}</section>`; };
+async function df3Niveles(btn) { const t = IS.tipo, d0 = dfDe(t); let n = 0; if (btn) btn.disabled = true;
+  try { for (const d of [0, 1, 2]) { dfElegir(d, t); n += await isCuadAgregar(); } toast(`⭐ Agregué ${n} hojas: ${IS_TIPO_INFO[t][1]} en Fácil, Media y Difícil`, "ok"); }
+  catch (e) { toast(e.message || "No se pudo agregar.", "warn"); } finally { dfElegir(d0, t); isRender(); } }
+document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target) || IS.tab !== "act") return; const t = e.target; let b;
+  if ((b = t.closest("[data-dfset]"))) { e.stopPropagation(); dfElegir(+b.dataset.dfset); IS.j2Ver = 0; isRender(); return; }
+  if ((b = t.closest("[data-df3]"))) { e.stopPropagation(); await df3Niveles(b); return; }
+  if ((b = t.closest("[data-nvn]"))) { const c = nvCfg(); c.nUser = true; }
+  if ((b = t.closest("[data-nvletra]"))) { const c = nvCfg(); c.letraUser = true; }
+}, true);
+document.addEventListener("change", (e) => { const t = e.target; if (t.matches && t.matches("[data-dfsello]")) { e.stopPropagation(); IS.difBadge = t.checked; isRender(); } }, true);
+// armado automático del pack: opción "cada actividad en 3 niveles"
+if (typeof upkArmar === "function") { const _dfArmar = upkArmar; upkArmar = async function () { if (!UPK.tres) return _dfArmar.apply(this, arguments); const L = (UPK.auto || []).filter((x) => x.on), orig = L.map((x) => ({ ...x })); const prev = { ...IS.difs };
+    UPK.auto = []; L.forEach((x) => [0, 1, 2].forEach((d) => UPK.auto.push({ ...x, on: true, dif: d, n: `${x.n} · ${DF_N[d][1]}` })));
+    const _cuad = isCuadAgregar; isCuadAgregar = async function () { const it = UPK.auto.find((y) => y.t === IS.tipo && !y._ok); if (it) { it._ok = true; dfElegir(it.dif, IS.tipo); } return _cuad.apply(this, arguments); };
+    try { await _dfArmar.apply(this, arguments); } finally { isCuadAgregar = _cuad; IS.difs = prev; UPK.auto = orig.map((x) => ({ ...x })); isRender(); } };
+  const _dfAutoHtml = upkAutoHtml; upkAutoHtml = function () { const h = _dfAutoHtml.apply(this, arguments), n = (UPK.auto || []).filter((x) => x.on).length;
+    return h.replace('<div class="rp-ra"><button type="button" class="btn primary" data-upkarmar', `<label class="check df-tres"><input type="checkbox" data-upktres ${UPK.tres ? "checked" : ""}> ⭐ Hacer cada actividad en <b>3 niveles</b> (Fácil, Media y Difícil) · ${n * (UPK.tres ? 3 : 1)} actividades</label><div class="rp-ra"><button type="button" class="btn primary" data-upkarmar`); };
+  document.addEventListener("change", (e) => { const t = e.target; if (t.matches && t.matches("[data-upktres]")) { e.stopPropagation(); UPK.tres = t.checked; isRender(); } }, true); }
+const _dfOpc = isJ2Opciones;
+isJ2Opciones = function () { const a = arguments, self = this; return dfConSync(IS.tipo, () => _dfOpc.apply(self, a)); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
