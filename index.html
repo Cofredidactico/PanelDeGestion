@@ -657,6 +657,26 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 @container (max-width:900px){.rp-main{grid-template-columns:minmax(0,1fr)}.rp-side{position:static}.rp-hero{grid-template-columns:minmax(0,1fr)}.rp-flow small{text-align:left}}
 @container (max-width:620px){.rp-src{grid-template-columns:minmax(0,1fr)}.rp-src button{padding:10px 12px}.rp-grid{grid-template-columns:minmax(0,1fr)}.rp-infop{grid-template-columns:80px minmax(0,1fr)}.rp-add{flex-wrap:wrap}.rp-add input{flex-basis:100%}.rp-tema select{flex-basis:100%}.rp-opc{grid-template-columns:minmax(0,1fr)}}
 
+.rp-src.rp-src4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.upk-drop.over{background:color-mix(in srgb,var(--p1,#8B5CF6) 18%,var(--surface));border-style:solid}
+.upk-busy{padding:10px 12px;border-radius:12px;background:color-mix(in srgb,#3E7BFA 10%,var(--surface));font-size:13px;font-weight:700}
+.upk-reco{justify-self:start}.upk-nota{margin:0;font-size:12.5px}.upk-falta{color:#E05A47}
+.upk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.upk-it{position:relative;margin:0;display:grid;gap:5px;padding:6px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);transition:opacity .15s,border-color .15s}
+.upk-it.off{opacity:.45}.upk-it.sin{border-color:#E05A47}.upk-it.sin input{border-color:#E05A47;background:color-mix(in srgb,#E05A47 8%,var(--surface))}
+.upk-it input{font:inherit;font-size:12px;font-weight:700;text-align:center;padding:4px 5px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);min-width:0}
+.upk-ck2{position:absolute;top:4px;left:4px;z-index:2;width:22px;height:22px;border-radius:7px;border:2px solid var(--line);background:var(--surface);color:#fff;font-weight:900;font-size:12px;cursor:pointer;display:grid;place-items:center}.upk-it:not(.off) .upk-ck2{background:#22A35A;border-color:#22A35A}
+.upk-pasos{display:grid;gap:6px}.upk-pasos span{padding:9px 12px;border-radius:12px;background:var(--surface-2);font-size:13px;font-weight:700}
+.upk-auto{border-color:color-mix(in srgb,#8B5CF6 50%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#8B5CF6 10%,var(--surface)),var(--surface))}
+.upk-al{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}
+.upk-ai{display:flex;align-items:center;gap:8px;text-align:left;font:inherit;color:inherit;padding:8px 10px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;opacity:.6}.upk-ai.on{opacity:1;border-color:#8B5CF6}
+.upk-ck{flex:none;width:20px;height:20px;border-radius:6px;border:2px solid var(--line);display:grid;place-items:center;color:#fff;font-size:11px;font-weight:900}.upk-ai.on .upk-ck{background:#8B5CF6;border-color:#8B5CF6}
+.upk-ic{font-size:18px}.upk-ai b{display:block;font-size:12.5px}.upk-ai small{font-size:11px;color:var(--muted)}
+.upk-log{display:grid;gap:3px;font-size:12px}.upk-log .no{color:#E05A47}
+.upk-atajo{display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:10px;border-radius:14px;border:1.5px dashed color-mix(in srgb,#8B5CF6 50%,var(--line));background:color-mix(in srgb,#8B5CF6 7%,var(--surface))}.upk-atajo>span{font-size:22px}.upk-atajo div{flex:1;display:grid;min-width:0}.upk-atajo b{font-size:13px}.upk-atajo small{font-size:11.5px;color:var(--muted)}
+@container (max-width:900px){.rp-src.rp-src4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container (max-width:620px){.rp-src.rp-src4{grid-template-columns:minmax(0,1fr)}}
+
 /* ===== Estudio · asistente paso a paso + hoja en vivo ===== */
 .iw{--w1:#3E7BFA;--w2:#8B5CF6;display:grid;gap:14px}
 .iw-steps{position:relative;display:flex;align-items:center;gap:6px;padding:8px;border-radius:18px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
@@ -20052,6 +20072,105 @@ document.addEventListener("input", (e) => { const d = $("#isDlg"); if (!d || !d.
 // lo que escribís se refleja en la hoja y el pedido sin perder el foco
 let rpLadoT = null;
 function rpLado() { clearTimeout(rpLadoT); rpLadoT = setTimeout(() => { const a = document.querySelector("#isDlg .rp-side"); if (!a || IS.tab !== "pack") return; const tmp = document.createElement("div"); tmp.innerHTML = rpPaso2y3(); const n = tmp.firstElementChild; if (n) a.replaceWith(n); }, 350); }
+
+// ---------- SUBIR MI PACK: imágenes sueltas, ZIP u hoja → dibujos reconocidos → actividades automáticas ----------
+const UPK = { items: [], busy: "", err: "", colorear: false, reco: false, auto: null, autoBusy: false, autoLog: [] };
+const UPK_GEN = /^(img|image|imagen|recurso|sticker|dibujo|dsc|whatsapp|captura|screenshot|photo|foto|file|archivo|untitled|sin titulo|chatgpt|gemini|pxl|cofre)?[\s\d_\-()]*$/i;
+function upkNombre(file) { let n = String(file).split(/[\\/]/).pop().replace(/\.[a-z0-9]+$/i, ""); try { n = decodeURIComponent(n); } catch {}
+  n = n.replace(/^\d+[\s._-]+/, "").replace(/[-_ ](color|a color|colores|png|final|v\d+)$/i, "").replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim(); return n; }
+const upkEsColorear = (name) => /colorear|para pintar|lineas?|line ?art|\bbn\b|blanco y negro|outline/i.test(name);
+async function upkUnzip(buf) { const u = new Uint8Array(buf), dv = new DataView(buf), out = []; let e = -1; for (let i = u.length - 22; i >= Math.max(0, u.length - 66000); i--) { if (dv.getUint32(i, true) === 0x06054b50) { e = i; break; } } if (e < 0) throw new Error("El ZIP está dañado o no es un ZIP.");
+  const n = dv.getUint16(e + 10, true); let p = dv.getUint32(e + 16, true); const dec = new TextDecoder();
+  for (let k = 0; k < n; k++) { if (dv.getUint32(p, true) !== 0x02014b50) break; const met = dv.getUint16(p + 10, true), csz = dv.getUint32(p + 20, true), nl = dv.getUint16(p + 28, true), xl = dv.getUint16(p + 30, true), cl = dv.getUint16(p + 32, true), off = dv.getUint32(p + 42, true), name = dec.decode(u.subarray(p + 46, p + 46 + nl)); p += 46 + nl + xl + cl;
+    if (/\/$/.test(name) || /(^|\/)(__MACOSX|\.)/.test(name) || !/\.(png|jpe?g|webp)$/i.test(name)) continue;
+    const lnl = dv.getUint16(off + 26, true), lxl = dv.getUint16(off + 28, true), data = u.subarray(off + 30 + lnl + lxl, off + 30 + lnl + lxl + csz); let bytes;
+    if (met === 0) bytes = data; else if (met === 8 && typeof DecompressionStream === "function") bytes = new Uint8Array(await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).arrayBuffer()); else continue;
+    out.push(new File([bytes], name.split("/").pop(), { type: /\.png$/i.test(name) ? "image/png" : /\.webp$/i.test(name) ? "image/webp" : "image/jpeg" })); }
+  return out; }
+// fondo blanco → transparente (relleno desde los bordes) y recorte al dibujo
+function upkLimpiar(img) { const s = Math.min(1, 900 / Math.max(img.w, img.h)), W = Math.max(1, Math.round(img.w * s)), H = Math.max(1, Math.round(img.h * s)), c = document.createElement("canvas"); c.width = W; c.height = H; const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img.im, 0, 0, W, H);
+  const D = x.getImageData(0, 0, W, H), d = D.data, A = (i) => d[i * 4 + 3]; let opacos = 0; [0, W - 1, (H - 1) * W, H * W - 1].forEach((i) => { if (A(i) > 200) opacos++; });
+  if (opacos >= 3) { const r0 = d[0], g0 = d[1], b0 = d[2], claro = r0 > 200 && g0 > 200 && b0 > 200, tol = claro ? 38 : 22, vis = new Uint8Array(W * H), st = [], ok = (i) => { const r = d[i * 4], g = d[i * 4 + 1], b = d[i * 4 + 2]; return Math.abs(r - r0) + Math.abs(g - g0) + Math.abs(b - b0) < tol * 3; };
+    for (let X = 0; X < W; X++) { st.push(X, (H - 1) * W + X); } for (let Y = 0; Y < H; Y++) { st.push(Y * W, Y * W + W - 1); }
+    while (st.length) { const i = st.pop(); if (vis[i]) continue; vis[i] = 1; if (!ok(i)) continue; d[i * 4 + 3] = 0; const X = i % W, Y = (i / W) | 0; if (X > 0) st.push(i - 1); if (X < W - 1) st.push(i + 1); if (Y > 0) st.push(i - W); if (Y < H - 1) st.push(i + W); }
+    x.putImageData(D, 0, 0); }
+  let x0 = W, y0 = H, x1 = -1, y1 = -1; for (let Y = 0; Y < H; Y++) for (let X = 0; X < W; X++) if (d[(Y * W + X) * 4 + 3] > 24) { if (X < x0) x0 = X; if (X > x1) x1 = X; if (Y < y0) y0 = Y; if (Y > y1) y1 = Y; }
+  if (x1 < 0) return null; const m = 4, cw = x1 - x0 + 1 + m * 2, ch = y1 - y0 + 1 + m * 2, o = document.createElement("canvas"); o.width = cw; o.height = ch; o.getContext("2d").drawImage(c, x0 - m, y0 - m, cw, ch, 0, 0, cw, ch); return o; }
+async function upkCargar(files) { const L = [...files]; if (!L.length) return; UPK.busy = "Leyendo tus imágenes…"; UPK.err = ""; isRender();
+  try { let F = []; for (const f of L) { if (/\.zip$/i.test(f.name) || f.type === "application/zip" || f.type === "application/x-zip-compressed") F.push(...await upkUnzip(await f.arrayBuffer())); else if (/^image\//.test(f.type) || /\.(png|jpe?g|webp)$/i.test(f.name)) F.push(f); }
+    if (!F.length) throw new Error("No encontré imágenes. Subí PNG, JPG o un ZIP con imágenes.");
+    if (F.length === 1 && L.length === 1 && !/\.zip$/i.test(L[0].name)) { const img = await isCargarImg(F[0]); if (img.w > 900 && img.h > 600) { const cs = await isRecortar(img, [], isEscena(IS.tema).nombre, true); if (cs.length >= 3) { UPK.items.push(...cs.map((c, i) => ({ n: "", gen: true, on: true, cv: c.canvas, url: c.canvas.toDataURL("image/png"), file: "hoja " + (i + 1) }))); UPK.busy = ""; toast(`Era una hoja de stickers: separé ${cs.length} dibujos. Ponele nombre a cada uno.`, "ok"); isRender(); return; } } }
+    let k = 0; for (const f of F) { k++; UPK.busy = `Procesando ${k} de ${F.length}…`; if (k % 4 === 1) { isRender(); await new Promise((r) => setTimeout(r, 0)); }
+      const n = upkNombre(f.name), col = upkEsColorear(f.name); if (col && !UPK.colorear) continue; if (UPK.items.some((x) => x.file === f.name)) continue;
+      try { const img = await isCargarImg(f), cv = upkLimpiar(img); if (!cv) continue; const gen = !n || UPK_GEN.test(n); UPK.items.push({ n: gen ? "" : (n === n.toLocaleUpperCase("es") ? n.toLocaleLowerCase("es") : n), gen, on: true, cv, url: cv.toDataURL("image/png"), file: f.name }); } catch {} }
+    toast(`Cargué ${UPK.items.length} dibujos ✓`, "ok"); }
+  catch (e) { UPK.err = e.message || "No se pudieron leer las imágenes."; } finally { UPK.busy = ""; isRender(); } }
+async function upkReconocer() { const sf = await getSample(); if (!sf) return; const lim = sf.limits ? await sf.limits() : {}; if (!lim.images) { toast("En esta vista Claude no puede mirar imágenes.", "warn"); return; }
+  const L = UPK.items.filter((x) => x.on && (x.gen || !x.n)), todo = L.length ? L : UPK.items.filter((x) => x.on); if (!todo.length) return; UPK.reco = true; isRender(); const E = isEscena(IS.tema);
+  try { for (let i = 0; i < todo.length; i += 10) { const G = todo.slice(i, i + 10), blobs = await Promise.all(G.map((x) => new Promise((ok) => { const c = document.createElement("canvas"), s = Math.min(1, 320 / Math.max(x.cv.width, x.cv.height)); c.width = Math.round(x.cv.width * s); c.height = Math.round(x.cv.height * s); const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.drawImage(x.cv, 0, 0, c.width, c.height); c.toBlob(ok, "image/jpeg", 0.85); })));
+      const r = await sf.json(`Estas ${G.length} imágenes son dibujos sueltos (stickers) para un cuadernillo escolar argentino${E ? ` sobre ${E.nombre}` : ""}. Para cada imagen, en el mismo orden, decí qué muestra con 1 a 3 palabras en minúscula y en español rioplatense (ej.: "mate", "cabildo", "Manuel Belgrano" si es un prócer reconocible por su vestimenta y el tema). Preferí una sola palabra común cuando se pueda (sirve para crucigramas y sopas de letras). Devolvé SOLO {"nombres": ["...", ...]} con ${G.length} elementos.`, { images: blobs, modelTier: "default", cache: false });
+      (r.nombres || []).forEach((n, k) => { if (G[k] && n) { G[k].n = String(n).trim(); G[k].gen = false; } }); isRender(); }
+    toast("Claude reconoció los dibujos ✓ Revisá los nombres.", "ok"); }
+  catch (e) { toast(sampleErr(e), "warn"); } finally { UPK.reco = false; isRender(); } }
+async function upkUsar() { const L = UPK.items.filter((x) => x.on && x.n.trim()); if (!L.length) { toast("Ponele nombre al menos a un dibujo.", "warn"); return; } const items = L.map((x) => ({ n: x.n.trim(), cv: x.cv, url: x.url }));
+  const rec = await rpGuardar(IS.tema, items, "mipack"), B = { nombres: items.map((x) => x.n), items, pack: rec.id }; RP.listo[IS.tema] = B; IS.bancos = IS.bancos || {}; IS.bancos[IS.tema] = B; RP.usado = true; UPK.auto = upkSugerencias(); toast(`🎉 Pack cargado: ${items.length} dibujos listos para ${isEscena(IS.tema).nombre}`, "ok"); isRender(); }
+// ---------- actividades automáticas ----------
+function upkSugerencias() { const B = (RP.listo[IS.tema] || {}).items || [], una = B.filter((it) => /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+$/.test(String(it.n).trim()) && String(it.n).trim().length <= 12).length, nk = isNivK(), L = [];
+  const add = (t, v, n, on, d) => { if (IS_TIPO_INFO[t]) L.push({ t, v, n, on, d }); };
+  if (una >= 3) { add("completa", nk ? "vocales" : "inicial", nk ? "Completá las vocales" : "Completá la letra inicial", true, "Lengua"); add("silabas", nk ? "separar" : "contar", nk ? "Separá en sílabas" : "Contá las sílabas", true, "Lengua"); add("unir", nk === 2 ? "silabas" : "palabra", "Uní con flechas", true, "Lengua"); add("trazar", nk ? "copiar" : "trazar", nk ? "Copiá la palabra" : "Trazá y copiá", nk < 2, "Lengua"); add("cruci", "", "Crucigrama ilustrado", nk > 0, "Lengua"); add("sopa", "letras", "Sopa de letras", nk > 0, "Lengua"); }
+  add("memo", "imagen", "Memotest", true, "Juegos"); add("sombras", "unir", "Uní con su sombra", true, "Visual"); add("contar", nk ? "sumar" : "contar", nk ? "Sumá los grupos" : "Contá y escribí", true, "Matemática"); add("patron", "mixta", "Seguí la serie", true, "Matemática"); add("grafico", nk === 2 ? "preguntas" : "barras", "Contá y graficá", nk > 0, "Matemática"); add("bingo", "", "Bingo", false, "Juegos"); add("sopa", "contar", "Sopa de dibujos (contar)", false, "Visual");
+  return L; }
+async function upkArmar() { const L = (UPK.auto || []).filter((x) => x.on); if (!L.length) return; UPK.autoBusy = true; UPK.autoLog = []; isRender();
+  const prev = { tipo: IS.tipo, cat: IS.cat, j2Modo: IS.j2Modo, cmp: IS.cmp ? { ...IS.cmp } : null, somModo: IS.somModo }; let total = 0;
+  for (const s of L) { try { IS.tipo = s.t; IS.cat = IS_TIPO_CAT[s.t] || "ia"; isJ2Reset(); IS.j2Err = "";
+      if (NV_INFO[s.t]) nvCfg(s.t).v = s.v; if (s.t === "completa") IS.cmp = { ...(IS.cmp || {}), falta: s.v, resp: "escribir" }; if (s.t === "sopa") IS.j2Modo = s.v; if (s.t === "memo") IS.j2Modo = s.v; if (s.t === "sombras") IS.somModo = s.v;
+      const n = await isCuadAgregar(); total += n; UPK.autoLog.push(["ok", `${s.n}: ${n} hoja${n > 1 ? "s" : ""}`]); }
+    catch (e) { UPK.autoLog.push(["no", `${s.n}: ${e.message || "no se pudo"}`]); } isRender(); await new Promise((r) => setTimeout(r, 20)); }
+  Object.assign(IS, { tipo: prev.tipo, cat: prev.cat, j2Modo: prev.j2Modo, somModo: prev.somModo }); if (prev.cmp) IS.cmp = prev.cmp; isJ2Reset();
+  UPK.autoBusy = false; toast(`📚 Agregué ${total} hojas al cuadernillo`, "ok"); isRender(); }
+function upkAutoHtml() { const L = UPK.auto || upkSugerencias(); UPK.auto = L; const n = L.filter((x) => x.on).length;
+  return `<section class="rp-card upk-auto"><header class="rp-ch"><i>✨</i><div><b>Armá el cuadernillo automáticamente</b><small>Elegí las actividades y el panel arma todas las hojas con tus dibujos, con sus soluciones</small></div></header>
+    <div class="upk-al">${L.map((x, i) => `<button type="button" class="upk-ai${x.on ? " on" : ""}" data-upkai="${i}" aria-pressed="${x.on}"><span class="upk-ck">${x.on ? "✓" : ""}</span><span class="upk-ic">${(IS_TIPO_INFO[x.t] || [""])[0]}</span><span><b>${esc(x.n)}</b><small>${esc(x.d)}</small></span></button>`).join("")}</div>
+    ${UPK.autoLog.length ? `<div class="upk-log">${UPK.autoLog.map(([k, s]) => `<span class="${k}">${k === "ok" ? "✅" : "⚠️"} ${esc(s)}</span>`).join("")}</div>` : ""}
+    <div class="rp-ra"><button type="button" class="btn primary" data-upkarmar ${n && !UPK.autoBusy ? "" : "disabled"}>${UPK.autoBusy ? "⏳ Armando las hojas…" : `📚 Armar ${n} ${n === 1 ? "actividad" : "actividades"}`}</button>${UPK.autoLog.length && !UPK.autoBusy ? `<button type="button" class="btn" data-istab="cuad">Ver el cuadernillo →</button>` : ""}</div></section>`; }
+// ---------- pantalla ----------
+function upkHtml() { const L = UPK.items, on = L.filter((x) => x.on), sinN = on.filter((x) => !x.n.trim()).length, listo = RP.listo[IS.tema];
+  const drop = `<label class="rp-drop upk-drop"><input type="file" accept="image/*,.zip,application/zip" multiple data-upkfiles hidden><span>📦</span><b>${L.length ? "Sumar más imágenes" : "Subí tu pack de imágenes"}</b><small>Varias imágenes sueltas (PNG o JPG), un ZIP o una hoja de stickers · el nombre de cada archivo pasa a ser el nombre del dibujo</small></label>`;
+  const opc = `<div class="rp-tema"><label for="rpTema">Tema del pack</label><select id="rpTema">${isTemas()}</select></div><label class="check"><input type="checkbox" id="upkCol" ${UPK.colorear ? "checked" : ""}> Incluir también las versiones “para colorear” del ZIP</label>`;
+  const grid = L.length ? `<div class="rp-gh"><b>🖼️ Tus dibujos</b><small>${on.length} de ${L.length} elegidos${sinN ? ` · <b class="upk-falta">${sinN} sin nombre</b>` : ""}</small>${L.length ? `<button type="button" class="linkish" data-upkvaciar>Empezar de nuevo</button>` : ""}</div>
+    ${MODE.cloud ? `<button type="button" class="btn small upk-reco" data-upkreco ${UPK.reco ? "disabled" : ""}>${UPK.reco ? "⏳ Claude está mirando los dibujos…" : sinN ? `✨ Que Claude reconozca los ${sinN} sin nombre` : "✨ Que Claude revise los nombres"}</button>` : sinN ? `<p class="muted upk-nota">Escribí el nombre de cada dibujo (la palabra que va a aparecer en las actividades).</p>` : ""}
+    <div class="upk-grid">${L.map((x, i) => `<figure class="upk-it${x.on ? "" : " off"}${!x.n.trim() ? " sin" : ""}"><button type="button" class="upk-ck2" data-upkon="${i}" aria-pressed="${x.on}" aria-label="${x.on ? "Quitar" : "Sumar"}">${x.on ? "✓" : ""}</button><div class="rp-sti"><img src="${x.url}" alt=""></div><input data-upkn="${i}" value="${esc(x.n)}" placeholder="¿Qué es?" aria-label="Nombre del dibujo ${i + 1}"></figure>`).join("")}</div>
+    <div class="rp-ra"><button type="button" class="btn primary" data-upkusar ${on.length && !sinN ? "" : "disabled"}>🧩 Usar estos ${on.length} dibujos en las actividades</button>${sinN ? `<small class="muted">Primero ponele nombre a todos (o quitá los que no van).</small>` : ""}</div>` : "";
+  return `<div class="rp-main"><div class="rp-col"><section class="rp-card"><header class="rp-ch"><i>1</i><div><b>Subí tu pack y revisá los nombres</b><small>El panel quita el fondo blanco, recorta cada dibujo y lo deja listo</small></div></header>${opc}${drop}${UPK.busy ? `<div class="upk-busy">⏳ ${esc(UPK.busy)}</div>` : ""}${UPK.err ? `<p class="rp-err">${esc(UPK.err)}</p>` : ""}${grid}</section>${rpMisPacks()}</div>
+    <aside class="rp-side">${listo ? upkAutoHtml() + rpActs(listo) : `<section class="rp-card"><header class="rp-ch"><i>2</i><div><b>Actividades automáticas</b><small>Cuando cargues tus dibujos, el panel te propone las actividades y las arma todas de una</small></div></header><div class="upk-pasos"><span>📦 Subís el pack</span><span>✏️ Revisás los nombres</span><span>✨ Elegís las actividades</span><span>📚 Se arman solas en tu cuadernillo</span></div></section>`}</aside></div>`; }
+// enganches con Packs de recursos
+const _mpRender = isRenderPack;
+isRenderPack = function () { if (RP.fuente !== "mipack") return _mpRender.apply(this, arguments).replace('<div class="rp-src" role="tablist">', '<div class="rp-src rp-src4" role="tablist">').replace(/(<div class="rp-src rp-src4" role="tablist">)/, `$1<button type="button" role="tab" data-rpfuente="mipack" aria-selected="false"><span>📦</span><b>Subir mi pack</b><small>Imágenes sueltas o ZIP que ya tenés</small></button>`);
+  rpCargar(); return `<div class="rp">${rpHero()}${rpFuentes().replace('<div class="rp-src" role="tablist">', `<div class="rp-src rp-src4" role="tablist"><button type="button" role="tab" data-rpfuente="mipack" aria-selected="true"><span>📦</span><b>Subir mi pack</b><small>Imágenes sueltas o ZIP que ya tenés</small></button>`)}${upkHtml()}</div>`; };
+// el atajo desde el paso 4 de las actividades que usan dibujos
+const _mpJ2Der = isJ2Derecha;
+isJ2Derecha = function () { const h = _mpJ2Der.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo)) return h; const n = (isBanco().items || []).length;
+  return `<div class="upk-atajo"><span>📦</span><div><b>${n ? `Usando ${n} dibujos de ${esc(isEscena(IS.tema).nombre)}` : "¿Ya tenés tus dibujos?"}</b><small>${n ? "Podés cambiarlos por otro pack" : "Subí tus imágenes sueltas o un ZIP y se arma solo"}</small></div><button type="button" class="btn small${n ? "" : " primary"}" data-upkir>${n ? "Cambiar pack" : "Subir mi pack"}</button></div>` + h; };
+document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const t = e.target, c = (s) => t.closest(s), fin = () => { e.stopPropagation(); e.preventDefault(); }; let b;
+  if (c("[data-upkir]")) { fin(); IS.tab = "pack"; RP.fuente = "mipack"; isRender(); return; }
+  if (IS.tab !== "pack") return;
+  if ((b = c('[data-rpfuente="mipack"]'))) { fin(); RP.fuente = "mipack"; isRender(); return; }
+  if ((b = c("[data-upkon]"))) { fin(); const x = UPK.items[+b.dataset.upkon]; x.on = !x.on; isRender(); return; }
+  if (c("[data-upkvaciar]")) { fin(); if (!await pcConfirm("¿Sacar todos los dibujos cargados? (No borra los packs guardados.)", { titulo: "Empezar de nuevo", ok: "Sacar" })) return; UPK.items = []; UPK.auto = null; UPK.autoLog = []; isRender(); return; }
+  if (c("[data-upkreco]")) { fin(); upkReconocer(); return; }
+  if (c("[data-upkusar]")) { fin(); await upkUsar(); return; }
+  if ((b = c("[data-upkai]"))) { fin(); const x = UPK.auto[+b.dataset.upkai]; x.on = !x.on; isRender(); return; }
+  if (c("[data-upkarmar]")) { fin(); await upkArmar(); return; }
+}, true);
+document.addEventListener("change", (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target) || IS.tab !== "pack" || RP.fuente !== "mipack") return; const t = e.target;
+  if (t.dataset && "upkfiles" in t.dataset && t.files && t.files.length) { e.stopPropagation(); const F = [...t.files]; t.value = ""; upkCargar(F); return; }
+  if (t.id === "upkCol") { e.stopPropagation(); UPK.colorear = t.checked; return; }
+  if (t.id === "rpTema") { e.stopPropagation(); IS.tema = t.value; RP.tema = null; UPK.auto = null; UPK.autoLog = []; isRender(); return; } }, true);
+document.addEventListener("input", (e) => { const t = e.target; if (IS.tab !== "pack" || RP.fuente !== "mipack" || !t.dataset || t.dataset.upkn == null) return; e.stopPropagation(); const x = UPK.items[+t.dataset.upkn]; if (x) { x.n = t.value; x.gen = false; t.closest(".upk-it").classList.toggle("sin", !t.value.trim()); clearTimeout(UPK.tt); UPK.tt = setTimeout(() => { const a = document.activeElement, i = a && a.dataset ? a.dataset.upkn : null, p = a && a.selectionStart; isRender(); if (i != null) { const n = document.querySelector(`[data-upkn="${i}"]`); if (n) { n.focus(); try { n.setSelectionRange(p, p); } catch {} } } }, 900); } }, true);
+// arrastrar y soltar archivos sobre la zona
+document.addEventListener("dragover", (e) => { if (e.target.closest && e.target.closest(".upk-drop")) { e.preventDefault(); e.target.closest(".upk-drop").classList.add("over"); } });
+document.addEventListener("dragleave", (e) => { const z = e.target.closest && e.target.closest(".upk-drop"); if (z) z.classList.remove("over"); });
+document.addEventListener("drop", (e) => { const z = e.target.closest && e.target.closest(".upk-drop"); if (!z) return; e.preventDefault(); z.classList.remove("over"); if (e.dataTransfer && e.dataTransfer.files.length) upkCargar([...e.dataTransfer.files]); });
 
 // ---------- ESTUDIO · 6 actividades nuevas con variantes + galería de variantes para todas ----------
 const NV_INFO = {
