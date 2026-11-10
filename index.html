@@ -594,6 +594,14 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+.vf{display:grid;gap:10px;padding:12px;margin-bottom:10px;border-radius:16px;border:1.5px solid color-mix(in srgb,#F28C28 45%,var(--line));background:color-mix(in srgb,#F28C28 7%,var(--surface))}
+.vf[open]{gap:12px}.vf summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none}.vf summary::-webkit-details-marker{display:none}.vf-ic{font-size:20px}.vf summary b{display:block;font-size:13.5px}.vf summary small{font-size:12px;color:var(--muted);line-height:1.35}
+.vf-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.vf-g figure{margin:0;display:grid;gap:4px;padding:5px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface)}.vf-g figure.dud{border-color:#F28C28;box-shadow:0 0 0 3px color-mix(in srgb,#F28C28 22%,transparent)}
+.vf-im{aspect-ratio:1;display:grid;place-items:center;border-radius:9px;background:repeating-conic-gradient(#e9edf3 0 25%,#fff 0 50%) 0 0/14px 14px}.vf-im img{max-width:90%;max-height:90%;object-fit:contain}
+.vf-g input{font:inherit;font-size:12px;font-weight:800;text-align:center;padding:4px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);min-width:0}
+.vf-a{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.vf-a small{font-size:11.5px}
+
 /* ===== dificultad + variantes ===== */
 .df-card{display:grid;gap:14px;padding:16px;border-radius:20px;border:1px solid color-mix(in srgb,#8B5CF6 40%,var(--line));background:linear-gradient(140deg,color-mix(in srgb,#8B5CF6 9%,var(--surface)),color-mix(in srgb,#3E7BFA 6%,var(--surface)));max-width:760px}
 .df-ch{display:flex;align-items:center;gap:12px}.df-ch>span{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#8B5CF6,#3E7BFA);font-size:20px}.df-ch b{display:block;font-size:15px}.df-ch small{font-size:12px;color:var(--muted)}
@@ -20425,6 +20433,57 @@ if (typeof upkArmar === "function") { const _dfArmar = upkArmar; upkArmar = asyn
   document.addEventListener("change", (e) => { const t = e.target; if (t.matches && t.matches("[data-upktres]")) { e.stopPropagation(); UPK.tres = t.checked; isRender(); } }, true); }
 const _dfOpc = isJ2Opciones;
 isJ2Opciones = function () { const a = arguments, self = this; return dfConSync(IS.tipo, () => _dfOpc.apply(self, a)); };
+
+// ---------- VERIFICAR QUE CADA DIBUJO TENGA SU NOMBRE CORRECTO ----------
+// ChatGPT no siempre respeta el orden de la hoja: por eso, después de recortar, Claude mira cada dibujo
+// y le asigna el nombre que le corresponde. Además, siempre se puede revisar y corregir a mano.
+const VF = { busy: false, ult: null };
+function vfBlob(cv) { return new Promise((ok) => { const c = document.createElement("canvas"), s = Math.min(1, 300 / Math.max(cv.width, cv.height)); c.width = Math.max(1, Math.round(cv.width * s)); c.height = Math.max(1, Math.round(cv.height * s)); const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.drawImage(cv, 0, 0, c.width, c.height); c.toBlob(ok, "image/jpeg", 0.85); }); }
+// L: [{cv, get(), set(nombre, dudoso)}] · esperados: nombres que debería haber
+async function vfClaude(L, esperados, silencio) { const sf = await getSample(); if (!sf || !L.length) return null; const lim = sf.limits ? await sf.limits() : {}; if (!lim.images) return null;
+  VF.busy = true; if (!silencio) toast(`🔍 Claude está revisando que cada uno de los ${L.length} dibujos tenga su nombre…`); try { if ($("#isDlg") && $("#isDlg").open) isRender(); } catch {}
+  const E = isEscena(IS.tema), lista = [...new Set((esperados || []).map((x) => String(x).trim()).filter(Boolean))]; let cambios = 0, dudas = 0;
+  try { for (let i = 0; i < L.length; i += 12) { const G = L.slice(i, i + 12), imgs = await Promise.all(G.map((x) => vfBlob(x.cv)));
+      const r = await sf.json(`Estas ${G.length} imágenes son dibujos recortados de una hoja de stickers para un cuadernillo escolar argentino sobre ${E.nombre}.${lista.length ? `\nNombres que deberían aparecer: ${lista.join(", ")}.` : ""}\nPara cada imagen, en el mismo orden, decí qué muestra.${lista.length ? " Si corresponde a un nombre de la lista, usá ESE nombre exacto; si ninguno corresponde, escribí qué es en 1 a 3 palabras en minúscula." : " Usá 1 a 3 palabras en minúscula, preferí una sola palabra común."} Si es un personaje histórico reconocible por la vestimenta y el tema, usá su nombre. No le pongas el mismo nombre a dos dibujos distintos.\nDevolvé SOLO {"dibujos": [{"nombre": "...", "seguro": true o false}]} con ${G.length} elementos.`, { images: imgs, modelTier: "default", cache: false });
+      (r.dibujos || []).forEach((d, k) => { const x = G[k]; if (!x || !d || !d.nombre) return; const nuevo = String(d.nombre).trim(), viejo = String(x.get() || "").trim(); if (fold(nuevo) !== fold(viejo)) cambios++; if (d.seguro === false) dudas++; x.set(nuevo, d.seguro === false); }); }
+    VF.ult = { at: Date.now(), n: L.length, cambios, dudas };
+    toast(cambios ? `✅ Claude revisó los ${L.length} dibujos y corrigió ${cambios} ${cambios === 1 ? "nombre" : "nombres"}${dudas ? ` · ${dudas} para que mires vos` : ""}` : `✅ Claude revisó los ${L.length} dibujos: todos los nombres están bien${dudas ? ` (${dudas} para que mires vos)` : ""}`, "ok"); return VF.ult; }
+  catch (e) { toast(sampleErr(e), "warn"); return null; } finally { VF.busy = false; try { if ($("#isDlg") && $("#isDlg").open) isRender(); } catch {} } }
+// dibujos del tema (los que usan las actividades)
+function vfBancoL() { const B = isBanco(); return (B.items || []).map((it, i) => ({ cv: it.cv, get: () => it.n, set: (n, dud) => { it.n = n; it.dudoso = !!dud; B.nombres[i] = n; } })); }
+async function vfBanco(silencio) { const B = isBanco(), esp = [...(B.nombres || []), ...((B.esperados) || [])]; const r = await vfClaude(vfBancoL(), B.esperados || esp, silencio); if (r) { B.verificado = Date.now(); vfGuardarPack(); } return r; }
+function vfGuardarPack() { try { const B = isBanco(); if (!B.pack || !RP.packs) return; const p = RP.packs.find((x) => x.id === B.pack); if (!p) return; p.items = B.items.map((it) => ({ n: it.n, url: it.url })); rpIDB().then((db) => { const tx = db.transaction("pk", "readwrite"); tx.objectStore("pk").put(p); }).catch(() => {}); } catch {} }
+// después de recortar una hoja de dibujos en las actividades, se verifica sola (solo con Claude)
+const _vfRecortar = isRecortar;
+isRecortar = async function (img, nombres, carpeta, quitar) { const cs = await _vfRecortar.apply(this, arguments); try { if (cs && cs.length >= 2) { const esp = (nombres || []).slice(); setTimeout(() => vfAuto(cs, esp), 400); } } catch {} return cs; };
+async function vfAuto(cs, esp) { const set = new Set(cs.map((c) => c.canvas));
+  const B = IS.bancos && IS.bancos[IS.tema]; if (B && B.items && B.items.some((it) => set.has(it.cv))) { B.esperados = esp; B.verificado = null; if (MODE.cloud) await vfBanco(); else if ($("#isDlg") && $("#isDlg").open) isRender(); return; }
+  if (!MODE.cloud) return;
+  const R = (RP.res || []).flat().filter((r) => r && set.has(r.canvas)); if (R.length) { await vfClaude(R.map((r) => ({ cv: r.canvas, get: () => r.nombre, set: (n, dud) => { r.nombre = n; r.dudoso = !!dud; } })), esp); return; } }
+// ---------- revisión a mano en el paso 4 ----------
+function vfRevisionHtml() { const B = isBanco(), L = B.items || []; if (!L.length) return ""; const dud = L.filter((it) => it.dudoso).length, esp = (B.esperados || []).length, dif = esp && esp !== L.length;
+  return `<details class="vf"${dud || dif || !B.verificado ? " open" : ""}><summary><span class="vf-ic">${dud || dif ? "⚠️" : B.verificado ? "✅" : "🔍"}</span><span><b>${dud || dif ? "Revisá los nombres de los dibujos" : B.verificado ? "Nombres verificados" : "¿Cada dibujo tiene su nombre correcto?"}</b><small>${dif ? `Esperaba ${esp} dibujos y encontré ${L.length}: los nombres pueden estar corridos. ` : ""}${dud ? `${dud} ${dud === 1 ? "dibujo dudoso" : "dibujos dudosos"} en naranja. ` : ""}La palabra de abajo es la que aparece en la actividad.</small></span></summary>
+    <div class="vf-g">${L.map((it, i) => `<figure class="${it.dudoso ? "dud" : ""}"><div class="vf-im"><img src="${it.url}" alt=""></div><input data-vfn="${i}" value="${esc(it.n)}" aria-label="Nombre del dibujo ${i + 1}"></figure>`).join("")}</div>
+    <div class="vf-a">${MODE.cloud ? `<button type="button" class="btn small primary" data-vfclaude ${VF.busy ? "disabled" : ""}>${VF.busy ? "⏳ Revisando…" : "🔍 Que Claude verifique los nombres"}</button>` : ""}<button type="button" class="btn small" data-vfok>✓ Están todos bien</button><small class="muted">Al cambiar un nombre, la hoja se actualiza sola.</small></div></details>`; }
+const _vfDer = isJ2Derecha;
+isJ2Derecha = function () { const h = _vfDer.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo) || !(isBanco().items || []).length) return h; const k = h.indexOf('<div class="is-bk">'); const rev = vfRevisionHtml(); return k >= 0 ? h.slice(0, k) + rev + h.slice(k) : rev + h; };
+document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const t = e.target;
+  if (t.closest("[data-vfclaude]")) { e.stopPropagation(); await vfBanco(); return; }
+  if (t.closest("[data-vfok]")) { e.stopPropagation(); const B = isBanco(); B.verificado = Date.now(); B.esperados = null; (B.items || []).forEach((it) => { it.dudoso = false; }); vfGuardarPack(); toast("Listo ✓", "ok"); isRender(); return; }
+  if (t.closest("[data-rpvf]")) { e.stopPropagation(); const R = (RP.res || []).flat().filter(Boolean); await vfClaude(R.map((r) => ({ cv: r.canvas, get: () => r.nombre, set: (n, dud) => { r.nombre = n; r.dudoso = !!dud; } })), rpSel().map((x) => x.n)); return; }
+}, true);
+document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset || t.dataset.vfn == null) return; e.stopPropagation(); const B = isBanco(), i = +t.dataset.vfn, it = B.items[i]; if (!it) return; it.n = t.value.trim() || it.n; it.dudoso = false; B.nombres[i] = it.n; vfGuardarPack(); IS.j2Ver = IS.j2Ver || 0; isRender(); }, true);
+// botón de verificación también en Packs de recursos (después de recortar la hoja)
+const _vfRP = rpPaso2y3;
+rpPaso2y3 = function () { const h = _vfRP.apply(this, arguments); return MODE.cloud ? h.replace('<button type="button" class="btn" data-rpzip>', `<button type="button" class="btn" data-rpvf ${VF.busy ? "disabled" : ""}>${VF.busy ? "⏳ Revisando…" : "🔍 Verificar nombres con Claude"}</button><button type="button" class="btn" data-rpzip>`) : h; };
+// ---------- opciones de "Rodeá la sílaba": distractores que sean sílabas reales del castellano ----------
+const VF_SIL = (() => { const O = ["B", "C", "D", "F", "G", "L", "M", "N", "P", "R", "S", "T", "V", "CH", "LL", "BR", "CR", "DR", "FR", "GR", "PR", "TR", "BL", "CL", "FL", "GL", "PL"], V = ["A", "E", "I", "O", "U"], K = ["", "N", "R", "S", "L"], out = []; O.forEach((o) => V.forEach((v) => K.forEach((k) => out.push(o + v + k)))); V.forEach((v) => ["N", "R", "S", "L"].forEach((k) => out.push(v + k))); return out; })();
+const _vfDistr = isCmpDistr;
+isCmpDistr = function (P, r) { const U = String(P).toLocaleUpperCase("es"), sin = (x) => isSinTilde(x).toUpperCase(), base = sin(U); if (base.length < 2 || !/^[A-ZÑ]+$/.test(base)) return _vfDistr.apply(this, arguments);
+  const vo = (base.match(/[AEIOU]/) || [""])[0], acento = /[ÁÉÍÓÚ]/.test(U), coda = /[NRSL]$/.test(base) ? base.slice(-1) : "", ini = base[0];
+  const C = VF_SIL.filter((s) => s.length === base.length && s !== base).map((s) => ({ s, p: (s.includes(vo) ? 3 : 0) + ((/[NRSL]$/.test(s) ? s.slice(-1) : "") === coda ? 1 : 0) + (s[0] === ini ? 1 : 0) + r() * 2.5 })).sort((a, b) => b.p - a.p).slice(0, 8);
+  const pick = isMezclar(C, Math.floor(r() * 1e6)).slice(0, 2).map((x) => (acento ? x.s.replace(vo, { A: "Á", E: "É", I: "Í", O: "Ó", U: "Ú" }[vo] || vo) : x.s)), cas = (s) => (U === P ? s : s.toLocaleLowerCase("es"));
+  const out = [P]; pick.forEach((s) => { if (!out.some((o) => sin(o) === sin(s))) out.push(cas(s)); }); return out.length >= 3 ? out : _vfDistr.apply(this, arguments); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
