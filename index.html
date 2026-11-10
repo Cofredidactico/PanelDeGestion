@@ -594,6 +594,22 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+/* ===== pack + elementos ===== */
+.el{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1px solid color-mix(in srgb,#3E7BFA 40%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#3E7BFA 8%,var(--surface)),var(--surface))}
+.el-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.el-h b{display:block;font-size:14.5px}.el-h small{font-size:12px;color:var(--muted)}.el-h small b{display:inline;font-size:12px;color:var(--ink)}.el-ha{display:flex;gap:10px;flex:none}
+.el-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}
+.el-it{margin:0;display:grid;gap:5px;padding:6px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);opacity:.55;transition:opacity .15s,border-color .15s,transform .15s}
+.el-it.on{opacity:1;border-color:#3E7BFA;box-shadow:0 8px 18px -14px #3E7BFA}.el-it.no{opacity:.4}.el-it.dud{border-color:#F28C28}
+.el-im{position:relative;display:grid;place-items:center;aspect-ratio:1;padding:6px;border:0;border-radius:10px;cursor:pointer;background:repeating-conic-gradient(#e9edf3 0 25%,#fff 0 50%) 0 0/14px 14px}.el-im:disabled{cursor:default}
+.el-im img{max-width:100%;max-height:100%;object-fit:contain}.el-im i{position:absolute;top:4px;left:4px;display:grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:999px;background:#3E7BFA;color:#fff;font-style:normal;font-weight:900;font-size:12px}
+.el-im em{position:absolute;inset:auto 4px 4px 4px;font-style:normal;font-size:9.5px;font-weight:800;padding:2px 4px;border-radius:6px;background:rgba(224,90,71,.92);color:#fff;text-align:center}
+.el-it input{font:inherit;font-size:12px;font-weight:800;text-align:center;padding:5px 4px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);min-width:0}.el-it input:focus{outline:0;border-color:#3E7BFA}
+.el-f{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:12px;color:var(--muted)}.el-f>span{flex:1 1 260px}
+.el-vacio{display:grid;justify-items:center;text-align:center;gap:8px;padding:24px 18px;border-radius:18px;border:2px dashed color-mix(in srgb,#8B5CF6 45%,var(--line));background:color-mix(in srgb,#8B5CF6 6%,var(--surface));margin-bottom:12px}.el-vacio>span{font-size:36px}.el-vacio b{font-size:15.5px}.el-vacio p{margin:0;max-width:440px;font-size:13px;color:var(--muted);line-height:1.5}
+.el-vb{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+.el-pack{display:grid;gap:12px}.el-ph{display:flex;align-items:center;gap:12px}.el-ph b{display:block;font-size:15px}.el-ph small{font-size:12px;color:var(--muted)}.el-pm{display:grid;grid-template-columns:repeat(2,30px);gap:3px;flex:none}.el-pm img{width:30px;height:30px;object-fit:contain;background:#fff;border-radius:7px}.el-pack .el-vb{justify-content:flex-start}
+.el-aviso{margin:0;padding:10px 12px;border-radius:12px;font-size:12.5px;line-height:1.45;background:color-mix(in srgb,#F28C28 12%,var(--surface));border:1px solid color-mix(in srgb,#F28C28 45%,var(--line))}
+
 .vf{display:grid;gap:10px;padding:12px;margin-bottom:10px;border-radius:16px;border:1.5px solid color-mix(in srgb,#F28C28 45%,var(--line));background:color-mix(in srgb,#F28C28 7%,var(--surface))}
 .vf[open]{gap:12px}.vf summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none}.vf summary::-webkit-details-marker{display:none}.vf-ic{font-size:20px}.vf summary b{display:block;font-size:13.5px}.vf summary small{font-size:12px;color:var(--muted);line-height:1.35}
 .vf-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
@@ -19883,7 +19899,7 @@ isRenderAct = function () {
   const p1 = `<div class="iw-p1${IW.plan ? " planning" : ""}">${IW.plan ? iwPlanHtml() : `<button type="button" class="iw-lotecta" data-iwplan><span>📚</span><span><b>¿Armás un cuadernillo completo?</b><small>Elegí varias actividades de una vez y te guío una por una hasta el PDF.</small></span><em>Armar en lote →</em></button>`}${acts}</div>`;
   const sig = paso < 4 ? `<button type="button" class="btn primary" data-iwpaso="${paso + 1}">${paso === 1 ? `Seguir con ${esc(info[1])} →` : paso === 2 ? (iwSinIA(IS.tipo) ? "Ver el diseño →" : "Pedir la imagen →") : (iwSinIA(IS.tipo) ? "Descargar →" : "Ya la tengo, subirla →")}</button>` : iwHecho() ? `<button type="button" class="btn primary" ${IS.lote ? "data-iwlok" : "data-iscuadd"}>${IS.lote ? "✅ Agregar y seguir" : "➕ Agregar al cuadernillo"}</button>` : `<span class="iw-hint">${iwSinIA(IS.tipo) ? "Elegí las opciones y descargá" : "Subí la imagen para armar las hojas"}</span>`;
   const pie = `<div class="iw-pie">${paso > 1 ? `<button type="button" class="btn" data-iwpaso="${paso - 1}">← Atrás</button>` : "<span></span>"}<span class="iw-dots">${[1, 2, 3, 4].map((n) => `<i class="${n === paso ? "on" : ""}"></i>`).join("")}</span>${sig}</div>`;
-  return `<div class="iw" data-paso="${paso}">${iwLoteBanner()}${stepper}<div class="iw-grid"><div class="iw-main">${p1}${paso >= 2 && paso <= 3 && typeof nvGaleria === "function" ? nvGaleria(h) : ""}${rest}${paso === 4 ? '<div id="iwStrip"></div>' : ""}${pie}</div><aside class="iw-live" id="iwLive">${iwLiveHtml()}</aside></div></div>`;
+  return `<div class="iw" data-paso="${paso}">${iwLoteBanner()}${stepper}<div class="iw-grid"><div class="iw-main">${p1}${paso === 2 && typeof nvGaleria === "function" ? nvGaleria(h) : ""}${rest}${paso === 4 ? '<div id="iwStrip"></div>' : ""}${pie}</div><aside class="iw-live" id="iwLive">${iwLiveHtml()}</aside></div></div>`;
 };
 const _iwRender0 = isRender0;
 isRender0 = function () {
@@ -20171,7 +20187,7 @@ isRenderPack = function () { if (RP.fuente !== "mipack") return _mpRender.apply(
   rpCargar(); return `<div class="rp">${rpHero()}${rpFuentes().replace('<div class="rp-src" role="tablist">', `<div class="rp-src rp-src4" role="tablist"><button type="button" role="tab" data-rpfuente="mipack" aria-selected="true"><span>📦</span><b>Subir mi pack</b><small>Imágenes sueltas o ZIP que ya tenés</small></button>`)}${upkHtml()}</div>`; };
 // el atajo desde el paso 4 de las actividades que usan dibujos
 const _mpJ2Der = isJ2Derecha;
-isJ2Derecha = function () { const h = _mpJ2Der.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo)) return h; const n = (isBanco().items || []).length;
+const _mpAtajoViejo = function () { const h = _mpJ2Der.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo)) return h; const n = (isBanco().items || []).length;
   return `<div class="upk-atajo"><span>📦</span><div><b>${n ? `Usando ${n} dibujos de ${esc(isEscena(IS.tema).nombre)}` : "¿Ya tenés tus dibujos?"}</b><small>${n ? "Podés cambiarlos por otro pack" : "Subí tus imágenes sueltas o un ZIP y se arma solo"}</small></div><button type="button" class="btn small${n ? "" : " primary"}" data-upkir>${n ? "Cambiar pack" : "Subir mi pack"}</button></div>` + h; };
 document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const t = e.target, c = (s) => t.closest(s), fin = () => { e.stopPropagation(); e.preventDefault(); }; let b;
   if (c("[data-upkir]")) { fin(); IS.tab = "pack"; RP.fuente = "mipack"; isRender(); return; }
@@ -20466,7 +20482,7 @@ function vfRevisionHtml() { const B = isBanco(), L = B.items || []; if (!L.lengt
     <div class="vf-g">${L.map((it, i) => `<figure class="${it.dudoso ? "dud" : ""}"><div class="vf-im"><img src="${it.url}" alt=""></div><input data-vfn="${i}" value="${esc(it.n)}" aria-label="Nombre del dibujo ${i + 1}"></figure>`).join("")}</div>
     <div class="vf-a">${MODE.cloud ? `<button type="button" class="btn small primary" data-vfclaude ${VF.busy ? "disabled" : ""}>${VF.busy ? "⏳ Revisando…" : "🔍 Que Claude verifique los nombres"}</button>` : ""}<button type="button" class="btn small" data-vfok>✓ Están todos bien</button><small class="muted">Al cambiar un nombre, la hoja se actualiza sola.</small></div></details>`; }
 const _vfDer = isJ2Derecha;
-isJ2Derecha = function () { const h = _vfDer.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo) || !(isBanco().items || []).length) return h; const k = h.indexOf('<div class="is-bk">'); const rev = vfRevisionHtml(); return k >= 0 ? h.slice(0, k) + rev + h.slice(k) : rev + h; };
+const _vfRevViejo = function () { const h = _vfDer.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo) || !(isBanco().items || []).length) return h; const k = h.indexOf('<div class="is-bk">'); const rev = vfRevisionHtml(); return k >= 0 ? h.slice(0, k) + rev + h.slice(k) : rev + h; };
 document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const t = e.target;
   if (t.closest("[data-vfclaude]")) { e.stopPropagation(); await vfBanco(); return; }
   if (t.closest("[data-vfok]")) { e.stopPropagation(); const B = isBanco(); B.verificado = Date.now(); B.esperados = null; (B.items || []).forEach((it) => { it.dudoso = false; }); vfGuardarPack(); toast("Listo ✓", "ok"); isRender(); return; }
@@ -20484,6 +20500,63 @@ isCmpDistr = function (P, r) { const U = String(P).toLocaleUpperCase("es"), sin 
   const C = VF_SIL.filter((s) => s.length === base.length && s !== base).map((s) => ({ s, p: (s.includes(vo) ? 3 : 0) + ((/[NRSL]$/.test(s) ? s.slice(-1) : "") === coda ? 1 : 0) + (s[0] === ini ? 1 : 0) + r() * 2.5 })).sort((a, b) => b.p - a.p).slice(0, 8);
   const pick = isMezclar(C, Math.floor(r() * 1e6)).slice(0, 2).map((x) => (acento ? x.s.replace(vo, { A: "Á", E: "É", I: "Í", O: "Ó", U: "Ú" }[vo] || vo) : x.s)), cas = (s) => (U === P ? s : s.toLocaleLowerCase("es"));
   const out = [P]; pick.forEach((s) => { if (!out.some((o) => sin(o) === sin(s))) out.push(cas(s)); }); return out.length >= 3 ? out : _vfDistr.apply(this, arguments); };
+
+// ---------- PACK + ACTIVIDADES UNIDOS: cada actividad elige sus elementos (dibujo y nombre siempre juntos) ----------
+const EL_UNA = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+$/;
+function elSirve(t, n) { n = String(n || "").trim(); if (!n) return [false, "Sin nombre"];
+  if (["cruci", "silabas", "unir", "trazar"].includes(t) || (t === "sopa" && IS.j2Modo === "letras")) return EL_UNA.test(n) && n.length <= 12 ? [true] : [false, n.includes(" ") ? "Tiene más de una palabra" : "Nombre muy largo"];
+  if (t === "completa") return /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$/.test(n) && n.length <= 14 ? [true] : [false, "Nombre muy largo"];
+  return [true]; }
+function elPacksTema() { return (RP.packs || []).filter((p) => p.tema === IS.tema); }
+function stripDiv(h, tok) { const i = h.indexOf(tok); if (i < 0) return h; let k = i, dep = 0; const re = /<div\b|<\/div>/g; re.lastIndex = i; let m; while ((m = re.exec(h))) { dep += m[0] === "</div>" ? -1 : 1; if (dep === 0) { k = re.lastIndex; break; } } return h.slice(0, i) + h.slice(k); }
+// tarjeta de "tu pack" (paso 3 de las actividades con dibujos)
+function elPackCard() { const B = isBanco(), n = (B.items || []).length, E = isEscena(IS.tema), P = elPacksTema(), act = P.find((p) => p.id === B.pack);
+  if (!n) return `<div class="el-vacio"><span>🖼️</span><b>Esta actividad usa los dibujos de tu pack</b><p>Todavía no tenés un pack de <b>${esc(E.nombre)}</b>. Crealo una sola vez y te sirve para todas las actividades de esta fecha, con cada dibujo y su nombre ya revisados.</p>
+      <div class="el-vb"><button type="button" class="btn primary" data-elir="efe">🎨 Crear el pack con ChatGPT</button><button type="button" class="btn" data-elir="mipack">📦 Subir un pack que ya tengo</button></div>${P.length ? "" : ""}</div>`;
+  return `<div class="el-pack"><div class="el-ph"><div class="el-pm">${B.items.slice(0, 4).map((it) => `<img src="${it.url}" alt="">`).join("")}</div><div><b>📦 Pack de ${esc(E.nombre)}</b><small>${n} dibujos con su nombre${act ? ` · guardado el ${esc(new Date(act.at).toLocaleDateString("es-AR", { day: "numeric", month: "short" }))}` : ""}</small></div></div>
+    ${P.length > 1 ? `<div class="field"><label for="elPackSel">Usar otro pack de esta fecha</label><select id="elPackSel">${P.map((p) => `<option value="${esc(p.id)}"${p.id === B.pack ? " selected" : ""}>${esc(p.temaN)} · ${p.items.length} dibujos · ${esc(new Date(p.at).toLocaleDateString("es-AR", { day: "numeric", month: "short" }))}</option>`).join("")}</select></div>` : ""}
+    <div class="el-vb"><button type="button" class="btn primary" data-iwpaso="4">Elegir los elementos →</button><button type="button" class="btn small" data-elir="editar">✏️ Editar el pack</button><button type="button" class="linkish" data-elir="efe">Crear otro pack</button></div></div>`; }
+// grilla de elementos (paso 4)
+function elGrilla() { const t = IS.tipo, B = isBanco(), L = B.items || []; if (!L.length) return elPackCard();
+  const sinSel = IS_BK_SIN_SEL.includes(t), S = sinSel ? L.map((_, i) => i) : (isBkSelIdx(t, L.length) || L.map((_, i) => i)), ok = L.map((it) => elSirve(t, it.n)), usables = S.filter((i) => ok[i][0]).length, noSirven = L.filter((_, i) => !ok[i][0]).length;
+  const nombres = [...new Set([...(B.esperados || []), ...L.map((it) => it.n)].filter(Boolean))];
+  return `<div class="el"><div class="el-h"><div><b>🖼️ Elementos de esta actividad</b><small>${sinSel ? "Esta actividad usa todos los dibujos del pack." : `Tocá un dibujo para sumarlo o sacarlo · <b>${usables}</b> en la actividad`}${noSirven ? ` · ${noSirven} no sirven para esta actividad` : ""}</small></div>
+      ${sinSel ? "" : `<span class="el-ha"><button class="linkish" type="button" data-isbktodos="1">Todos</button><button class="linkish" type="button" data-isbktodos="0">Ninguno</button></span>`}</div>
+    <datalist id="elNombres">${nombres.map((n) => `<option value="${esc(n)}">`).join("")}</datalist>
+    <div class="el-g">${L.map((it, i) => { const on = S.includes(i), k = S.filter((q) => ok[q][0]).indexOf(i), [sv, por] = ok[i]; return `<figure class="el-it${on ? " on" : ""}${sv ? "" : " no"}${it.dudoso ? " dud" : ""}">
+        <button type="button" class="el-im" ${sinSel ? "disabled" : `data-isbksel="${i}"`} aria-pressed="${on}" aria-label="${on ? "Sacar" : "Sumar"} ${esc(it.n)}"><img src="${it.url}" alt="">${on && sv && !sinSel ? `<i>${k + 1}</i>` : ""}${!sv ? `<em>${esc(por)}</em>` : ""}</button>
+        <input data-eln="${i}" value="${esc(it.n)}" list="elNombres" aria-label="Nombre del dibujo ${i + 1}" title="Si el nombre no corresponde, elegí el correcto: se intercambia con el otro dibujo"></figure>`; }).join("")}</div>
+    <div class="el-f"><span>✏️ Si un nombre no corresponde al dibujo, escribí o elegí el correcto: si ya lo tenía otro dibujo, se intercambian.</span>${MODE.cloud ? `<button type="button" class="btn small" data-vfclaude ${VF.busy ? "disabled" : ""}>${VF.busy ? "⏳ Revisando…" : "🔍 Que Claude revise los nombres"}</button>` : ""}<button type="button" class="linkish" data-elir="editar">Editar el pack</button></div></div>`; }
+// reemplaza la vieja zona "nombres en orden + subir hoja" por el pack y su grilla
+const _elDer = isJ2Derecha;
+isJ2Derecha = function () { let h = _elDer.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo)) return h; h = stripDiv(h, '<div class="is-bk">'); const n = (isBanco().items || []).length;
+  return elGrilla() + (n ? h : h.replace(/<div class="is-tip">Cuando subas la hoja de dibujos[^<]*<\/div>/, "")); };
+const _elRA = isRenderAct;
+isRenderAct = function () { const h = _elRA.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo)) return h; const a = h.indexOf('<section class="is-colx" id="isC2">'), b = h.indexOf('<section class="is-colx', a + 10); if (a < 0 || b < 0) return h;
+  return (h.slice(0, a) + `<section class="is-colx" id="isC2"><div class="is-card">${elPackCard()}</div></section>` + h.slice(b)).replace("Ya la tengo, subirla →", "Elegir los elementos →").replace("Pedir la imagen →", "Ver mi pack →"); };
+const _elPasos = iwPasos;
+iwPasos = function () { const P = _elPasos.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo)) return P; const n = (isBanco().items || []).length; P[2] = ["3", "📦", "Tu pack", n ? `${n} dibujos listos` : "Dibujos de la fecha", n > 0]; P[3] = ["4", "🖼️", "Elegí y descargá", "Elementos y hojas", P[3][4]]; return P; };
+// cambiar un nombre: si otro dibujo ya lo tenía, se intercambian
+function elRenombrar(i, nuevo) { const B = isBanco(), L = B.items, it = L[i]; nuevo = String(nuevo || "").trim(); if (!it || !nuevo || nuevo === it.n) return;
+  const j = L.findIndex((x, k) => k !== i && fold(x.n) === fold(nuevo)); if (j >= 0) { L[j].n = it.n; B.nombres[j] = it.n; L[j].dudoso = false; toast(`Intercambié los nombres: “${nuevo}” ↔ “${it.n}”`, "ok"); }
+  it.n = nuevo; B.nombres[i] = nuevo; it.dudoso = false; vfGuardarPack(); IS.j2Ver = 0; isRender(); }
+document.addEventListener("change", (e) => { const t = e.target; if (t.dataset && t.dataset.eln != null) { e.stopPropagation(); elRenombrar(+t.dataset.eln, t.value); return; }
+  if (t.id === "elPackSel") { e.stopPropagation(); const p = (RP.packs || []).find((x) => x.id === t.value); if (p) pkCambiar(p); } }, true);
+async function pkCambiar(p) { await rpActivar(p); toast(`Usando el pack de ${p.temaN} ✓`, "ok"); isRender(); }
+document.addEventListener("click", (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const b = e.target.closest("[data-elir]"); if (!b) return; e.stopPropagation(); const k = b.dataset.elir;
+  IS.tab = "pack"; RP.fuente = k === "mipack" ? "mipack" : "efe"; if (k === "editar") { RP.fuente = "efe"; RP.editarPack = true; } isRender(); setTimeout(() => { const x = document.querySelector(k === "editar" ? ".rp-mis" : ".rp-main"); if (x) x.scrollIntoView({ block: "start", behavior: "smooth" }); }, 80); }, true);
+// al cargar el estudio, los packs guardados se cargan solos (así cada actividad ya encuentra su pack)
+const _elOpen = isOpen;
+isOpen = function () { const r = _elOpen.apply(this, arguments); try { rpCargar(); } catch {} return r; };
+// ---------- en Packs: confirmar los nombres antes de usar el pack ----------
+const _elRP2 = rpPaso2y3;
+rpPaso2y3 = function () { let h = _elRP2.apply(this, arguments); const res = (RP.res || []).flat().filter(Boolean); if (!res.length) return h; const nombres = rpSel().map((x) => x.n);
+  h = h.replace(/<input data-rprn="(\d+)" value="([^"]*)"/g, (m, i, v) => `<input data-rprn="${i}" value="${v}" list="rpNombresL"`);
+  h = h.replace('<div class="rp-st">', `<p class="el-aviso">⚠️ <b>Revisá que cada nombre corresponda a su dibujo.</b> ChatGPT a veces cambia el orden: si un nombre no va, elegí el correcto de la lista y se intercambia con el otro dibujo.</p><datalist id="rpNombresL">${nombres.map((n) => `<option value="${esc(n)}">`).join("")}</datalist><div class="rp-st">`);
+  return h.replace(/🧩 Usar en las actividades de ([^<]*)</, "✓ Confirmo los nombres y lo uso en las actividades de $1<"); };
+document.addEventListener("focusin", (e) => { const t = e.target; if (t.dataset && t.dataset.rprn != null) { const r = (RP.res || []).flat().filter(Boolean)[+t.dataset.rprn]; if (r) r._prev = r.nombre; } }, true);
+document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset || t.dataset.rprn == null) return; const res = (RP.res || []).flat().filter(Boolean), i = +t.dataset.rprn, r = res[i]; if (!r) return; const nuevo = t.value.trim(), viejo = r._prev != null ? r._prev : r.nombre; if (!nuevo) return;
+  const j = res.findIndex((x, k) => k !== i && fold(x.nombre) === fold(nuevo)); if (j >= 0 && fold(viejo) !== fold(nuevo)) { res[j].nombre = viejo; toast(`Intercambié: “${nuevo}” ↔ “${viejo}”`, "ok"); } r.nombre = nuevo; r._prev = nuevo; isRender(); }, true);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
