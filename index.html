@@ -609,6 +609,18 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .el-vb{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
 .el-pack{display:grid;gap:12px}.el-ph{display:flex;align-items:center;gap:12px}.el-ph b{display:block;font-size:15px}.el-ph small{font-size:12px;color:var(--muted)}.el-pm{display:grid;grid-template-columns:repeat(2,30px);gap:3px;flex:none}.el-pm img{width:30px;height:30px;object-fit:contain;background:#fff;border-radius:7px}.el-pack .el-vb{justify-content:flex-start}
 .el-aviso{margin:0;padding:10px 12px;border-radius:12px;font-size:12.5px;line-height:1.45;background:color-mix(in srgb,#F28C28 12%,var(--surface));border:1px solid color-mix(in srgb,#F28C28 45%,var(--line))}
+/* dibujos siempre contenidos en su casilla, sin importar el tamaño original de la imagen */
+.el-g>*,.vf-g>*,.rp-st>*,.upk-grid>*,.rp-ggrid>*{min-width:0}
+.el-im,.vf-im,.rp-sti{overflow:hidden;min-width:0;min-height:0;width:100%}
+.el-im img,.vf-im img,.rp-sti img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+.el-im{padding:8px;aspect-ratio:1/1;height:auto}
+.el-it{overflow:hidden}
+.rp-mini img,.rp-mpi img,.el-pm img,.iw-thumbs img{object-fit:contain}
+.el-im,.vf-im,.rp-sti{position:relative;aspect-ratio:1/1;height:auto;display:block;padding:0}
+.el-im img,.vf-im img,.rp-sti img{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);max-width:none;max-height:none;object-fit:contain}
+.el-g{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.el-it input{font-size:11.5px;padding:5px 3px}
+@media (max-width:620px){.el-g{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 .vf{display:grid;gap:10px;padding:12px;margin-bottom:10px;border-radius:16px;border:1.5px solid color-mix(in srgb,#F28C28 45%,var(--line));background:color-mix(in srgb,#F28C28 7%,var(--surface))}
 .vf[open]{gap:12px}.vf summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none}.vf summary::-webkit-details-marker{display:none}.vf-ic{font-size:20px}.vf summary b{display:block;font-size:13.5px}.vf summary small{font-size:12px;color:var(--muted);line-height:1.35}
@@ -20557,6 +20569,12 @@ rpPaso2y3 = function () { let h = _elRP2.apply(this, arguments); const res = (RP
 document.addEventListener("focusin", (e) => { const t = e.target; if (t.dataset && t.dataset.rprn != null) { const r = (RP.res || []).flat().filter(Boolean)[+t.dataset.rprn]; if (r) r._prev = r.nombre; } }, true);
 document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset || t.dataset.rprn == null) return; const res = (RP.res || []).flat().filter(Boolean), i = +t.dataset.rprn, r = res[i]; if (!r) return; const nuevo = t.value.trim(), viejo = r._prev != null ? r._prev : r.nombre; if (!nuevo) return;
   const j = res.findIndex((x, k) => k !== i && fold(x.nombre) === fold(nuevo)); if (j >= 0 && fold(viejo) !== fold(nuevo)) { res[j].nombre = viejo; toast(`Intercambié: “${nuevo}” ↔ “${viejo}”`, "ok"); } r.nombre = nuevo; r._prev = nuevo; isRender(); }, true);
+// en los problemas, los personajes con nombre propio no se cuentan ("5 Lucios Mansilla" no tiene sentido)
+const EL_PROPIO = (n) => /^[A-ZÁÉÍÓÚÑ]/.test(String(n || "").trim());
+const _elProb = j2Problemas;
+j2Problemas = function (B) { return _elProb.call(this, (B || []).filter((b) => !EL_PROPIO(b.n))); };
+const _elSirve = elSirve;
+elSirve = function (t, n) { if (t === "problemas" && EL_PROPIO(n)) return [false, "Nombre propio: no se cuenta"]; return _elSirve(t, n); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
