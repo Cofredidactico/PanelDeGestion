@@ -20397,8 +20397,11 @@ function nvTrazar() { const c = nvCfg(), its = nvPal().slice(0, c.n); if (its.le
   return nvPag({ trazar: "Trazá y copiá", copiar: "Copiá la palabra", escribir: "Escribí el nombre", inicial: "Trazá la letra inicial" }[c.v], cons, act, sol); }
 
 // ---------- 4 · contá y resolvé ----------
-function nvGrupo(url, k, x, y, w, h, tach) { if (!k) return ""; const C = k <= 3 ? k : k <= 6 ? 3 : k <= 10 ? 5 : 6, R = Math.ceil(k / C), s = Math.min((w - 8) / C, (h - 8) / R) * 0.92, ox = x + (w - C * s) / 2, oy = y + (h - R * s) / 2; let o = "";
-  for (let i = 0; i < k; i++) { const cx = ox + (i % C) * s, cy = oy + Math.floor(i / C) * s; o += j2im(url, cx + s * 0.06, cy + s * 0.06, s * 0.88, s * 0.88); if (tach && i >= k - tach) o += `<path d="M${j2f(cx + s * 0.12)} ${j2f(cy + s * 0.12)}L${j2f(cx + s * 0.88)} ${j2f(cy + s * 0.88)}M${j2f(cx + s * 0.88)} ${j2f(cy + s * 0.12)}L${j2f(cx + s * 0.12)} ${j2f(cy + s * 0.88)}" stroke="#D7263D" stroke-width="3" stroke-linecap="round"/>`; } return o; }
+function nvGrupo(url, k, x, y, w, h, tach) { if (!k) return ""; const pad = 6, W = w - pad * 2, H = h - pad * 2; let best = null;
+  for (let C = 1; C <= k; C++) { const R = Math.ceil(k / C), s = Math.min(W / C, H / R); if (!best || s > best.s + 0.01 || (Math.abs(s - best.s) <= 0.01 && R < best.R)) best = { C, R, s }; }
+  const { C, R } = best, s = Math.min(best.s, 110), oy = y + pad + (H - R * s) / 2; let o = "";
+  for (let i = 0; i < k; i++) { const fila = Math.floor(i / C), enFila = fila === R - 1 ? k - fila * C : C, col = i % C, ox = x + pad + (W - enFila * s) / 2, cx = ox + col * s, cy = oy + fila * s, m = s * 0.06;
+    o += j2im(url, cx + m, cy + m, s - m * 2, s - m * 2); if (tach && i >= k - tach) o += `<path d="M${j2f(cx + s * 0.14)} ${j2f(cy + s * 0.14)}L${j2f(cx + s * 0.86)} ${j2f(cy + s * 0.86)}M${j2f(cx + s * 0.86)} ${j2f(cy + s * 0.14)}L${j2f(cx + s * 0.14)} ${j2f(cy + s * 0.86)}" stroke="#D7263D" stroke-width="${j2f(Math.max(2.5, s * 0.07))}" stroke-linecap="round"/>`; } return o; }
 function nvContar() { const c = nvCfg(), I = nvImgs(); if (!I.length) throw new Error("Hace falta al menos 1 dibujo."); const nk = isNivK(), max = [5, 10, 15][nk], r = isRand(IS.seed * 17 + 3), rn = (a, b) => a + Math.floor(r() * (b - a + 1)), n = c.n, top = 172, rh = (776 - top) / n; let act = "", sol = "";
   const box = (x, y, w, h) => `<rect x="${j2f(x)}" y="${j2f(y)}" width="${j2f(w)}" height="${j2f(h)}" rx="12" fill="#fff" stroke="#1A2744" stroke-width="1.3"/>`, num = (x, y, v, fs = 30, col = "#D7263D") => nvT(x, y, String(v), fs, { a: "middle", c: col });
   for (let i = 0; i < n; i++) { const it = I[i % I.length], it2 = I[(i + 1) % I.length], y = top + i * rh, cy = y + rh / 2, h = rh - 14; act += nvFila(44, y + 3, 507, rh - 6, i);
@@ -20674,7 +20677,7 @@ const NW_INFO = {
   clases: ["🏷️", "Sustantivos, adjetivos y verbos", "Pintá, clasificá y subrayá", "lengua", [6, 8, 10], [5, 12], [6, 8, 10, 12], 1, "comun"],
   pupi: ["🔍", "Pupiletras con dibujos", "Sopa de letras con lista de dibujos", "lengua", [5, 6, 8], [4, 10], [4, 5, 6, 8, 10], 1, "una"],
   acrostico: ["🅰️", "Acróstico", "Una palabra por cada letra", "lengua", [6, 8, 9], [3, 10], [], 2, "una"],
-  sumas: ["➕", "Sumas y restas ilustradas", "Cuentas con dibujos y números", "mate", [4, 6, 8], [3, 10], [3, 4, 6, 8, 10], 1, ""],
+  sumas: ["➕", "Sumas y restas ilustradas", "Cuentas con dibujos y números", "mate", [3, 4, 5], [3, 8], [3, 4, 5, 6, 8], 1, ""],
   comparar: ["🐊", "Mayor, menor o igual", "Comparar con >, < e =", "mate", [5, 6, 8], [3, 10], [4, 5, 6, 8, 10], 2, ""],
   dinero: ["💵", "Dinero argentino", "Contar, pagar y dar el vuelto", "mate", [4, 5, 6], [3, 6], [3, 4, 5, 6], 2, ""],
   fracciones: ["🍕", "Fracciones", "Pintar, escribir y comparar partes", "mate", [6, 8, 9], [4, 12], [4, 6, 8, 9, 12], 0, ""],
@@ -20894,14 +20897,20 @@ function nwAcrostico() { const c = nvCfg(), cand = nwAcroPalabras(), pal = Strin
   return nwPag(`Acróstico: ${pal}`, cons, act, sol, "Ejemplos de respuesta: cualquier palabra o frase que empiece con la letra está bien."); }
 
 // ---------- 13 · sumas y restas ilustradas ----------
-function nwSumas() { const c = nvCfg(), I = nwItems(); nwNeed(I, 1); const nk = isNivK(), max = [5, 10, 15][nk], r = isRand(IS.seed * 37 + 1), rn = (a, b) => a + Math.floor(r() * (b - a + 1)), n = c.n, dos = n > 6, filas = dos ? Math.ceil(n / 2) : n, colW = dos ? 257.5 : 515, rh = (776 - 172) / filas; let act = "", sol = "";
+function nwSumas() { const c = nvCfg(), I = nwItems(); nwNeed(I, 1); const nk = isNivK(), max = [5, 10, 12][nk], r = isRand(IS.seed * 37 + 1), rn = (a, b) => a + Math.floor(r() * (b - a + 1)), n = c.n, dos = n > 6, filas = dos ? Math.ceil(n / 2) : n, colW = dos ? 257.5 : 515, rh = (776 - 172) / filas; let act = "", sol = "";
   for (let i = 0; i < n; i++) { const it = I[i % I.length], it2 = I[(i + 1) % I.length], col = dos ? i % 2 : 0, rr = dos ? Math.floor(i / 2) : i, x = 40 + col * colW, y = 172 + rr * rh, op = c.v === "mixtas" ? (r() < 0.5 ? "+" : "−") : c.v === "restas" ? "−" : "+";
     let a, b, res; if (op === "+") { a = rn(1, Math.max(1, max - 1)); b = rn(1, Math.max(1, max - a)); res = a + b; } else { a = rn(2, max); b = rn(1, a - 1); res = a - b; }
-    act += nvFila(x + 4, y + 3, colW - 8, rh - 6, i); const w = colW - 16, gW = (w - 70) / (op === "−" ? 1.6 : 2), gh = rh - 50, gy = y + 8;
-    if (op === "+") { act += nwBox(x + 10, gy, gW, gh, { rx: 10, st: "#C9D3E3", sw: 1 }) + nvGrupo(it.url, a, x + 10, gy, gW, gh) + nwT(x + 10 + gW + 17, gy + gh / 2 + 9, "+", 26, { a: "middle" }) + nwBox(x + 10 + gW + 34, gy, gW, gh, { rx: 10, st: "#C9D3E3", sw: 1 }) + nvGrupo(c.v === "faltante" ? it.url : it2.url, c.v === "faltante" ? b : b, x + 10 + gW + 34, gy, gW, gh); if (c.v === "faltante") act += `<rect x="${j2f(x + 10 + gW + 34)}" y="${j2f(gy)}" width="${j2f(gW)}" height="${j2f(gh)}" rx="10" fill="#fff"/>` + nwT(x + 10 + gW * 1.5 + 34, gy + gh / 2 + 12, "?", 34, { a: "middle", c: "#C9D3E3" }); }
-    else { act += nwBox(x + 10, gy, gW * 1.6 + 34, gh, { rx: 10, st: "#C9D3E3", sw: 1 }) + nvGrupo(it.url, a, x + 10, gy, gW * 1.6 + 34, gh); sol += nvGrupo(it.url, a, x + 10, gy, gW * 1.6 + 34, gh, b); }
-    const ey = y + rh - 18, fs = Math.min(22, rh * 0.18), parts = c.v === "faltante" ? [String(a), "+", "☐", "=", String(res)] : [String(a), op, String(b), "=", "☐"], pw = Math.min(40, (w - 20) / 5), ex = x + colW / 2 - (pw * 5) / 2;
-    parts.forEach((p, k) => { const cx = ex + k * pw + pw / 2; if (p === "☐") { act += nwBox(cx - pw / 2 + 3, ey - fs - 4, pw - 6, fs + 10, { rx: 6 }); sol += nwT(cx, ey, String(c.v === "faltante" ? b : res), fs, { a: "middle", c: NW_ROJO }); } else act += nwT(cx, ey, p, fs, { a: "middle" }); }); }
+    act += nvFila(x + 4, y + 3, colW - 8, rh - 6, i); const gy = y + 9, gh = rh - 18, x0 = x + 12, av = colW - 24, aw = Math.min(62, av * 0.16), ah = Math.min(56, gh), opW = 24, cy = gy + gh / 2;
+    const pill = (bx, by, v, col = "#1E5BB8") => { const t = String(v), pw2 = Math.max(22, nwMed(t, 13) + 12); return `<rect x="${j2f(bx + 8)}" y="${j2f(by - 7)}" width="${j2f(pw2)}" height="18" rx="9" fill="${col}" stroke="#fff" stroke-width="1.5"/>` + nwT(bx + 8 + pw2 / 2, by + 6.5, t, 13, { a: "middle", c: "#fff" }); };
+    const caja = (bx, w2, k, url, tach) => nwBox(bx, gy, w2, gh, { rx: 12, st: "#C9D3E3", sw: 1 }) + nvGrupo(url, k, bx, gy + 7, w2, gh - 7) + pill(bx, gy, k);
+    const opT = (cx, t) => nwT(cx, cy + 10, t, 28, { a: "middle" }), resp = (bx) => nwBox(bx, cy - ah / 2, aw, ah, { rx: 10, sw: 1.6 });
+    const xr = x0 + av - aw;
+    if (op === "+") { const libre = av - aw - opW * 2 - 8, pa = c.v === "faltante" ? 0.62 : Math.max(0.3, Math.min(0.7, Math.sqrt(a) / (Math.sqrt(a) + Math.sqrt(b)))), wA = libre * pa, wB = libre - wA, xB = x0 + wA + opW;
+      act += caja(x0, wA, a, it.url) + opT(x0 + wA + opW / 2, "+");
+      if (c.v === "faltante") { act += nwBox(xB, gy, wB, gh, { rx: 12, st: "#F28C28", sw: 1.6, dash: "6 4" }) + nwT(xB + wB / 2, cy + 13, "?", 36, { a: "middle", c: "#F28C28" }) + opT(xB + wB + opW / 2, "=") + nwBox(xr, cy - ah / 2, aw, ah, { rx: 10, fill: "#EEF4FF", st: "#1E5BB8", sw: 1.6 }) + nwT(xr + aw / 2, cy + 9, String(res), 26, { a: "middle", c: "#1E5BB8" }); sol += nwT(xB + wB / 2, cy + 40, String(b), 22, { a: "middle", c: NW_ROJO }) + nvGrupo(it.url, b, xB, gy + 4, wB, gh - 30); }
+      else { act += caja(xB, wB, b, it2.url) + opT(xB + wB + opW / 2, "=") + resp(xr); sol += nwT(xr + aw / 2, cy + 9, String(res), 26, { a: "middle", c: NW_ROJO }); } }
+    else { const libre = av - aw - opW - 8 - 56, wA = libre; act += caja(x0, wA, a, it.url) + `<rect x="${j2f(x0 + wA + 6)}" y="${j2f(cy - 16)}" width="46" height="32" rx="16" fill="#FDE4EA"/>` + nwT(x0 + wA + 29, cy + 7, `−${b}`, 20, { a: "middle", c: NW_ROJO }) + opT(x0 + wA + 56 + opW / 2, "=") + resp(xr);
+      sol += nvGrupo(it.url, a, x0, gy + 7, wA, gh - 7, b) + nwT(xr + aw / 2, cy + 9, String(res), 26, { a: "middle", c: NW_ROJO }); } }
   const cons = { sumas: "CONTÁ los dibujos de cada grupo, JUNTALOS y ESCRIBÍ el resultado de la suma.", restas: "CONTÁ los dibujos, TACHÁ los que se van y ESCRIBÍ cuántos quedan.", mixtas: "LEÉ si es suma (+) o resta (−), CONTÁ los dibujos y RESOLVÉ cada cuenta.", faltante: "CONTÁ los dibujos y PENSÁ cuántos faltan para llegar al resultado. ESCRIBÍ el número que falta." }[c.v];
   return nwPag({ sumas: "Sumas ilustradas", restas: "Restas ilustradas", mixtas: "Sumas y restas", faltante: "¿Qué número falta?" }[c.v], cons, act, sol); }
 
@@ -21120,7 +21129,7 @@ document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d 
   if ((b = t.closest("[data-nwclaude]"))) { e.stopPropagation(); if (b.dataset.nwclaude === "quien") await nwQuienClaude(); else await nwLibroClaude(); return; }
 }, true);
 document.addEventListener("change", (e) => { const t = e.target; if (!t.matches || !t.matches("[data-nwtxt]") || !NW_INFO[IS.tipo]) return; e.stopPropagation(); nvCfg().txt = t.value.trim(); IS.j2Ver = 0; isRender(); }, true);
-if (typeof DF_DESC !== "undefined") Object.assign(DF_DESC, { pupi: ["Sopa chica, solo derecha y abajo", "Agrega la diagonal", "Sopa grande en todas las direcciones"], sumas: ["Hasta 5", "Hasta 10", "Hasta 15"], comparar: ["Números chicos", "Hasta 100", "Hasta 1000"], dinero: ["Monedas y billetes chicos", "Hasta $1000", "Billetes grandes"], fracciones: ["Medios, tercios y cuartos", "Hasta octavos", "Hasta doceavos y distintas partes"], mandala: ["Trazos gruesos y pocas partes", "Intermedio", "Detallado, trazo fino"], escape: ["3 retos", "4 retos", "5 retos"] });
+if (typeof DF_DESC !== "undefined") Object.assign(DF_DESC, { pupi: ["Sopa chica, solo derecha y abajo", "Agrega la diagonal", "Sopa grande en todas las direcciones"], sumas: ["Hasta 5", "Hasta 10", "Hasta 12"], comparar: ["Números chicos", "Hasta 100", "Hasta 1000"], dinero: ["Monedas y billetes chicos", "Hasta $1000", "Billetes grandes"], fracciones: ["Medios, tercios y cuartos", "Hasta octavos", "Hasta doceavos y distintas partes"], mandala: ["Trazos gruesos y pocas partes", "Intermedio", "Detallado, trazo fino"], escape: ["3 retos", "4 retos", "5 retos"] });
 // ---------- letra cursiva (Playwrite AR, OFL) para fichas, oraciones y libritos ----------
 const _nwFuente = isFuente;
 isFuente = function (fam, peso) { if (/playwrite|cursiv/i.test(fam || "")) { const F = isFuentes(); return F["cursiva-400"] || _nwFuente.call(this, "Nunito", 400); } return _nwFuente.apply(this, arguments); };
