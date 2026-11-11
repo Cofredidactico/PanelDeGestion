@@ -594,6 +594,50 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+/* ===== mis imágenes (elementos propios) ===== */
+#isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
+#isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
+#isDlg .me-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#isDlg .me-h b{display:block;font-size:14.5px}#isDlg .me-h small{font-size:12px;color:var(--muted);line-height:1.4;display:block}#isDlg .me-h small b{display:inline;font-size:12px;color:var(--ink)}
+#isDlg .me-up{flex:none;cursor:pointer;white-space:nowrap}#isDlg .me-up.busy{opacity:.7;pointer-events:none}
+#isDlg .me-drop{padding:14px;border-radius:12px;text-align:center;font-size:12.5px;color:var(--muted);background:var(--surface);border:1px solid var(--line)}
+#isDlg .me-tip{margin:0;font-size:11.5px;color:var(--muted);line-height:1.45}
+#isDlg .me-lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+#isDlg .me-li{position:relative;display:grid;gap:4px;padding:5px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);min-width:0}
+#isDlg .me-li.on{border-color:#F2A100;box-shadow:0 6px 16px -12px #F2A100}
+#isDlg .me-lb{position:relative;display:block;aspect-ratio:1/1;width:100%;padding:0;border:0;border-radius:9px;cursor:pointer;overflow:hidden;background:repeating-conic-gradient(#eef1f5 0 25%,#fff 0 50%) 0 0/12px 12px}
+#isDlg .me-lb img{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:contain}
+#isDlg .me-lb span{position:absolute;right:4px;bottom:4px;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;font-weight:900;font-size:13px;background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+#isDlg .me-li.on .me-lb span{background:#F2A100;border-color:#F2A100;color:#fff}
+#isDlg .me-li>small{font-size:11px;font-weight:800;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#isDlg .me-x{position:absolute;top:3px;right:3px;width:22px;height:22px;padding:0;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:11px;cursor:pointer;opacity:0;transition:opacity .15s}
+#isDlg .me-li:hover .me-x,#isDlg .me-x:focus-visible{opacity:1}
+@media (hover:none){#isDlg .me-x{opacity:.85}}
+#isDlg .me-del{position:absolute;inset:5px 5px auto 5px;display:flex;gap:4px;justify-content:center;padding:4px;border-radius:9px;background:color-mix(in srgb,var(--surface) 92%,transparent)}
+#isDlg .me-del button{font:inherit;font-size:11px;font-weight:800;padding:3px 8px;border-radius:7px;border:1px solid var(--line);cursor:pointer;background:var(--surface);color:var(--ink)}
+#isDlg .me-del .me-si{background:#E05A47;border-color:#E05A47;color:#fff}
+#isDlg .me-pend{display:grid;gap:10px;padding:12px;border-radius:14px;background:var(--surface);border:1.5px solid #F2A100}
+#isDlg .me-pt b{display:block;font-size:13.5px}#isDlg .me-pt small{font-size:12px;color:var(--muted)}
+#isDlg .me-pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+#isDlg .me-pi{position:relative;margin:0;display:grid;gap:6px;padding:6px;border-radius:12px;border:1.5px solid var(--line);min-width:0}
+#isDlg .me-pi.err{opacity:.6}
+#isDlg .me-pim{position:relative;aspect-ratio:1/1;border-radius:9px;overflow:hidden;background:repeating-conic-gradient(#eef1f5 0 25%,#fff 0 50%) 0 0/12px 12px}
+#isDlg .me-pim img{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:contain}
+#isDlg .me-pim span{position:absolute;inset:0;display:grid;place-items:center;font-size:11px;color:var(--muted)}
+#isDlg .me-pi input{font:inherit;font-size:12.5px;font-weight:800;text-align:center;padding:6px 4px;border-radius:9px;border:1.5px solid #F2A100;background:var(--surface-2);color:var(--ink);min-width:0}
+#isDlg .me-pi input:focus{outline:0;box-shadow:0 0 0 3px color-mix(in srgb,#F2A100 30%,transparent)}
+#isDlg .me-pi input:placeholder-shown{border-style:dashed}
+#isDlg .me-px{position:absolute;top:2px;right:2px;width:22px;height:22px;padding:0;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:11px;cursor:pointer}
+#isDlg .me-pa{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+#isDlg .me-pa>span{display:flex;gap:6px}
+#isDlg .me-chk{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;cursor:pointer}#isDlg .me-chk small{font-weight:600;color:var(--muted)}
+/* marca en la grilla del pack */
+#isDlg .el-it.me-tuya{position:relative}
+#isDlg .el-it.me-tuya::before{content:"⭐ tuya";position:absolute;top:9px;right:9px;z-index:2;font-size:9.5px;font-weight:900;padding:2px 6px;border-radius:999px;background:#F2A100;color:#fff;pointer-events:none}
+#isDlg .el-it.me-tuya.on{border-color:#F2A100;box-shadow:0 8px 18px -14px #F2A100}
+@media (max-width:620px){#isDlg .me-h{flex-wrap:wrap}#isDlg .me-lib{grid-template-columns:repeat(3,minmax(0,1fr))}#isDlg .me-pg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#isDlg .me-ya{margin:0;padding:8px 12px;border-radius:12px;font-size:12.5px;background:color-mix(in srgb,#F2B705 14%,var(--surface));border:1px solid color-mix(in srgb,#F2B705 50%,var(--line))}
+
 /* ===== diseño pro ===== */
 .ds{display:grid;gap:9px;margin-top:10px;padding:11px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
 .ds-h{display:grid;gap:1px}.ds-h b{font-size:13px}.ds-h small{font-size:11px;color:var(--muted)}
@@ -21681,6 +21725,146 @@ isLabMontar = function () { _fxLab.apply(this, arguments); const cv = $("#isLabC
 ["click", "wheel", "keydown", "touchstart"].forEach((ev) => document.addEventListener(ev, () => { try { dsTipOcultar(); } catch {} }, { capture: true, passive: true }));
 const _fxRender = isRender;
 isRender = function () { try { dsTipOcultar(); } catch {} return _fxRender.apply(this, arguments); };
+
+// ---------- MIS IMÁGENES: elementos propios (imagen + nombre) que se suman a cualquier actividad, además del pack ----------
+// Biblioteca en IndexedDB "cofre-mis-elementos" (sirve para todas las fechas). Qué imágenes usa cada fecha: localStorage.
+const ME = { lib: [], cv: {}, usa: {}, pend: [], fondo: true, abierta: false, cargado: false, borrar: null, nosync: false };
+const ME_MAX = 720;
+try { const u = JSON.parse(localStorage.getItem("cofre-mis-elementos-usa") || "{}"); if (u && typeof u === "object") ME.usa = u; } catch {}
+try { const e = JSON.parse(localStorage.getItem("cofre-mis-elementos-en") || "{}"); ME.en = e && typeof e === "object" ? e : {}; } catch { ME.en = {}; }
+try { ME.fondo = localStorage.getItem("cofre-mis-elementos-fondo") !== "0"; } catch {}
+const meIDB = () => new Promise((ok, no) => { try { const r = indexedDB.open("cofre-mis-elementos", 1); r.onupgradeneeded = () => r.result.createObjectStore("el", { keyPath: "id" }); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); } catch (e) { no(e); } });
+function meGuardarUsa() { try { localStorage.setItem("cofre-mis-elementos-usa", JSON.stringify(ME.usa)); localStorage.setItem("cofre-mis-elementos-en", JSON.stringify(ME.en || {})); } catch {} }
+function meEn(tema, id, tipo, on) { ME.en = ME.en || {}; const T = (ME.en[tema] = ME.en[tema] || {}), L = (T[id] = T[id] || []); if (on && !L.includes(tipo)) L.push(tipo); if (!on) T[id] = L.filter((x) => x !== tipo); }
+async function mePut(rec) { try { const db = await meIDB(); await new Promise((ok) => { const tx = db.transaction("el", "readwrite"); tx.objectStore("el").put({ id: rec.id, n: rec.n, url: rec.url, at: rec.at }); tx.oncomplete = ok; tx.onerror = ok; }); } catch (e) { console.warn("No se pudo guardar la imagen", e); } }
+async function meDel(id) { try { const db = await meIDB(); await new Promise((ok) => { const tx = db.transaction("el", "readwrite"); tx.objectStore("el").delete(id); tx.oncomplete = ok; tx.onerror = ok; }); } catch {} }
+async function meCargar() { if (ME.cargado) return; ME.cargado = true; let L = [];
+  try { const db = await meIDB(); L = await new Promise((ok) => { const r = db.transaction("el").objectStore("el").getAll(); r.onsuccess = () => ok(r.result || []); r.onerror = () => ok([]); }); } catch {}
+  L.sort((a, b) => a.at - b.at); for (const r of L) { const cv = await rpCanvas(r.url); if (cv) { ME.cv[r.id] = cv; ME.lib.push(r); } }
+  if ($("#isDlg") && $("#isDlg").open && IS.tab === "act") isRender(); }
+const meRec = (id) => ME.lib.find((r) => r.id === id);
+const meUsaTema = (tema = IS.tema) => (ME.usa[tema] || []).filter((id) => ME.cv[id]);
+
+// --- el banco de cada fecha = pack + mis imágenes elegidas para esa fecha (siempre al final) ---
+function meAjustarSel(tema, viejoN, nuevoN, quitado, sumarEn) { IS.bkSel = IS.bkSel || {};
+  Object.keys(IS.bkSel).forEach((k) => { if (!k.startsWith(tema + "|")) return; const S = IS.bkSel[k]; if (!S || S.n !== viejoN) return;
+    let sel = S.sel.slice(); if (quitado != null) sel = sel.filter((i) => i !== quitado).map((i) => (i > quitado ? i - 1 : i)); IS.bkSel[k] = { n: nuevoN, sel }; });
+  if (sumarEn) { const k = tema + "|" + sumarEn, S = IS.bkSel[k]; const base = S && S.n === nuevoN ? S.sel : meSelDefecto(tema, nuevoN - 1); IS.bkSel[k] = { n: nuevoN, sel: [...base.filter((i) => i !== nuevoN - 1), nuevoN - 1] }; } }
+function meSelDefecto(tema, n, tipo = IS.tipo) { const B = (IS.bancos || {})[tema], L = (B && B.items) || [], T = (ME.en || {})[tema] || {}; const r = []; for (let i = 0; i < n; i++) { const it = L[i]; if (!it || !it.pid || (T[it.pid] || []).includes(tipo)) r.push(i); } return r; }
+function meSync(B, tema) { if (ME.nosync || !B || !Array.isArray(B.items)) return B; const quiero = meUsaTema(tema); B.nombres = B.nombres || [];
+  // sacar las que ya no se usan (o se borraron de la biblioteca)
+  for (let i = B.items.length - 1; i >= 0; i--) { const it = B.items[i]; if (it.pid && !quiero.includes(it.pid)) { const n0 = B.items.length; B.items.splice(i, 1); if (B.nombres.length > i) B.nombres.splice(i, 1); meAjustarSel(tema, n0, n0 - 1, i); } }
+  // sumar las que faltan
+  quiero.forEach((id) => { if (B.items.some((it) => it.pid === id)) return; const r = meRec(id); if (!r) return; const n0 = B.items.length; B.items.push({ n: r.n, cv: ME.cv[id], url: r.url, pid: id }); B.nombres[n0] = r.n; if (ME._sumarEn === id) meEn(tema, id, IS.tipo, true); meAjustarSel(tema, n0, n0 + 1, null, ME._sumarEn === id ? IS.tipo : null); });
+  // nombres al día con la biblioteca
+  B.items.forEach((it, i) => { if (it.pid) { const r = meRec(it.pid); if (r && r.n !== it.n) { it.n = r.n; B.nombres[i] = r.n; } } });
+  return B; }
+const _meBanco = isBanco;
+isBanco = function () { const B = _meBanco.apply(this, arguments); return meSync(B, IS.tema); };
+// por defecto, una imagen propia solo entra en la actividad donde la sumaste (en las demás la tocás para sumarla)
+const _meSelIdx = isBkSelIdx;
+isBkSelIdx = function (t, n) { const r = _meSelIdx.apply(this, arguments); if (r) return r; const B = (IS.bancos || {})[IS.tema], L = (B && B.items) || []; if (L.length !== n || !L.some((x) => x.pid)) return null; return meSelDefecto(IS.tema, n, t); };
+// tocar una imagen propia en la grilla: queda recordado en qué actividades está
+const _meBkClick = isBkClick;
+isBkClick = function (t) { const B = (IS.bancos || {})[IS.tema], L0 = (B && B.items) || []; const r = _meBkClick.apply(this, arguments); if (!r || !L0.some((x) => x.pid)) return r; const sel = isBkSelIdx(IS.tipo, L0.length) || L0.map((_, i) => i); L0.forEach((it, i) => { if (it.pid) meEn(IS.tema, it.pid, IS.tipo, sel.includes(i)); }); meGuardarUsa(); return r; };
+// el pack guardado no lleva las imágenes propias (viven en su propia biblioteca)
+const _meVfG = vfGuardarPack;
+vfGuardarPack = function () { const B = isBanco(), all = B.items, nom = B.nombres, prev = ME.nosync; ME.nosync = true; try { B.items = all.filter((x) => !x.pid); B.nombres = B.items.map((x) => x.n); _meVfG.apply(this, arguments); } finally { B.items = all; B.nombres = nom; ME.nosync = prev; } };
+// renombrar en la grilla: si es una imagen propia, el nombre nuevo queda guardado en la biblioteca
+const _meRen = elRenombrar;
+elRenombrar = function (i, nuevo) { const B = isBanco(), antes = B.items.map((x) => x.n), prev = ME.nosync; ME.nosync = true; try { _meRen.apply(this, arguments); } finally { ME.nosync = prev; } B.items.forEach((it, k) => { if (it.pid && it.n !== antes[k]) { const r = meRec(it.pid); if (r) { r.n = it.n; mePut(r); } } }); };
+
+// --- procesar la imagen subida: achicar, quitar el fondo blanco (opcional) y recortar el borde vacío ---
+function meLeer(file) { return new Promise((ok) => { const fr = new FileReader(); fr.onload = () => ok(String(fr.result || "")); fr.onerror = () => ok(""); fr.readAsDataURL(file); }); }
+async function meProcesar(dataUrl, quitarFondo) { const src = await rpCanvas(dataUrl); if (!src || !src.width) return null;
+  const s = Math.min(1, ME_MAX / Math.max(src.width, src.height)), W = Math.max(1, Math.round(src.width * s)), H = Math.max(1, Math.round(src.height * s));
+  const c = document.createElement("canvas"); c.width = W; c.height = H; const g = c.getContext("2d"); g.imageSmoothingQuality = "high"; g.drawImage(src, 0, 0, W, H);
+  const id = g.getImageData(0, 0, W, H), d = id.data; let transp = 0; for (let i = 3; i < d.length; i += 16) if (d[i] < 200) transp++;
+  if (quitarFondo && transp < (d.length / 16) * 0.02) { // flood fill desde los bordes sobre píxeles casi blancos
+    const claro = (p) => d[p * 4] > 232 && d[p * 4 + 1] > 232 && d[p * 4 + 2] > 232 && d[p * 4 + 3] > 0, vis = new Uint8Array(W * H), st = [];
+    for (let x = 0; x < W; x++) { st.push(x, (H - 1) * W + x); } for (let y = 0; y < H; y++) { st.push(y * W, y * W + W - 1); }
+    while (st.length) { const p = st.pop(); if (vis[p] || !claro(p)) continue; vis[p] = 1; d[p * 4 + 3] = 0; const x = p % W, y = (p - x) / W; if (x > 0) st.push(p - 1); if (x < W - 1) st.push(p + 1); if (y > 0) st.push(p - W); if (y < H - 1) st.push(p + W); }
+    // suavizar el borde: píxeles claros pegados al fondo quedan semitransparentes
+    for (let p = 0; p < W * H; p++) { if (vis[p] || d[p * 4 + 3] === 0) continue; const x = p % W; const nb = (x > 0 && vis[p - 1]) || (x < W - 1 && vis[p + 1]) || vis[p - W] || vis[p + W]; if (nb) { const l = (d[p * 4] + d[p * 4 + 1] + d[p * 4 + 2]) / 3; if (l > 200) d[p * 4 + 3] = Math.round(d[p * 4 + 3] * Math.max(0.25, (255 - l) / 55)); } }
+    g.putImageData(id, 0, 0); }
+  // recortar el borde vacío (transparente)
+  const d2 = g.getImageData(0, 0, W, H).data; let x0 = W, y0 = H, x1 = -1, y1 = -1;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (d2[(y * W + x) * 4 + 3] > 12) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  if (x1 < 0) return null; const m = Math.round(Math.max(x1 - x0, y1 - y0) * 0.04), cx = Math.max(0, x0 - m), cy = Math.max(0, y0 - m), cw = Math.min(W, x1 + m + 1) - cx, ch = Math.min(H, y1 + m + 1) - cy;
+  const o = document.createElement("canvas"); o.width = cw; o.height = ch; o.getContext("2d").drawImage(c, cx, cy, cw, ch, 0, 0, cw, ch);
+  return o.toDataURL("image/png"); }
+function meNombreArchivo(f) { let n = String((f && f.name) || "").replace(/\.[a-z0-9]+$/i, "").replace(/[_\-.]+/g, " ").replace(/\s+/g, " ").trim(); if (/^(img|image|imagen|photo|foto|screenshot|captura|whatsapp|dsc|pxl|unnamed)\b/i.test(n) || /\d{4,}/.test(n)) n = ""; return n.slice(0, 30).toLowerCase(); }
+async function meSubir(files) { const L = [...(files || [])].filter((f) => /^image\//.test(f.type)).slice(0, 12); if (!L.length) { toast("Elegí una imagen (PNG, JPG o WEBP)", "err"); return; }
+  ME.abierta = true; ME.leyendo = true; isRender();
+  for (const f of L) { const raw = await meLeer(f); if (!raw) continue; ME.pend.push({ raw, url: await meProcesar(raw, ME.fondo), n: meNombreArchivo(f) }); }
+  ME.leyendo = false; isRender(); setTimeout(() => { const x = document.querySelector("[data-mepn]"); if (x) { x.focus(); x.scrollIntoView({ block: "center", behavior: "smooth" }); } }, 60); }
+async function meReprocesar() { for (const p of ME.pend) p.url = await meProcesar(p.raw, ME.fondo); isRender(); }
+async function meConfirmar() { const listos = ME.pend.filter((p) => p.url && p.n.trim()); if (!listos.length) { toast("Poné el nombre de cada imagen", "err"); return; }
+  if (listos.length < ME.pend.filter((p) => p.url).length) { toast("Falta el nombre de alguna imagen", "err"); const x = [...document.querySelectorAll("[data-mepn]")].find((i) => !i.value.trim()); if (x) x.focus(); return; }
+  const tema = IS.tema; ME.usa[tema] = ME.usa[tema] || [];
+  for (const p of listos) { const r = { id: "me" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), n: p.n.trim(), url: p.url, at: Date.now() }; const cv = await rpCanvas(r.url); if (!cv) continue; ME.cv[r.id] = cv; ME.lib.push(r); await mePut(r); ME.usa[tema].push(r.id); ME._sumarEn = r.id; IS.bancos = IS.bancos || {}; meSync(isBanco(), tema); }
+  ME._sumarEn = null; meGuardarUsa(); ME.pend = []; IS.j2Ver = 0; toast(listos.length === 1 ? `“${listos[0].n.trim()}” sumado a la actividad ✓` : `${listos.length} imágenes sumadas a la actividad ✓`, "ok"); isRender(); }
+function meEnActividad(id) { const B = isBanco(), L = B.items || [], i = L.findIndex((x) => x.pid === id); if (i < 0) return false; if (IS_BK_SIN_SEL.includes(IS.tipo)) return true; const sel = isBkSelIdx(IS.tipo, L.length) || L.map((_, k) => k); return sel.includes(i); }
+function meUsar(id) { const tema = IS.tema, U = (ME.usa[tema] = ME.usa[tema] || []); const r = meRec(id); if (!r) return;
+  if (!U.includes(id)) { U.push(id); ME._sumarEn = id; meSync(isBanco(), tema); ME._sumarEn = null; meGuardarUsa(); toast(`“${r.n}” sumado a la actividad ✓`, "ok"); }
+  else if (!meEnActividad(id)) { const B = isBanco(), L = B.items, i = L.findIndex((x) => x.pid === id), cur = isBkSelIdx(IS.tipo, L.length) || L.map((_, k) => k); IS.bkSel = IS.bkSel || {}; IS.bkSel[isBkKey()] = { n: L.length, sel: [...cur.filter((k) => k !== i), i] }; meEn(tema, id, IS.tipo, true); meGuardarUsa(); toast(`“${r.n}” sumado a la actividad ✓`, "ok"); }
+  else { const B = isBanco(), L = B.items, i = L.findIndex((x) => x.pid === id);
+    if (!IS_BK_SIN_SEL.includes(IS.tipo)) { const cur = isBkSelIdx(IS.tipo, L.length) || L.map((_, k) => k); IS.bkSel = IS.bkSel || {}; IS.bkSel[isBkKey()] = { n: L.length, sel: cur.filter((k) => k !== i) }; }
+    meEn(tema, id, IS.tipo, false); const T = (ME.en || {})[tema] || {}; if (IS_BK_SIN_SEL.includes(IS.tipo) || !(T[id] || []).length) { ME.usa[tema] = U.filter((x) => x !== id); if (ME.en && ME.en[tema]) delete ME.en[tema][id]; meSync(isBanco(), tema); }
+    meGuardarUsa(); toast(`Saqué “${r.n}” de esta actividad`, "ok"); }
+  IS.j2Ver = 0; isRender(); }
+async function meBorrar(id) { const r = meRec(id); if (!r) return; ME.lib = ME.lib.filter((x) => x.id !== id); delete ME.cv[id]; Object.keys(ME.usa).forEach((k) => { ME.usa[k] = ME.usa[k].filter((x) => x !== id); }); Object.values(ME.en || {}).forEach((T) => delete T[id]); meGuardarUsa(); await meDel(id); ME.borrar = null;
+  Object.keys(IS.bancos || {}).forEach((t) => meSync(IS.bancos[t], t)); IS.j2Ver = 0; toast(`Borré “${r.n}” de Mis elementos`, "ok"); isRender(); }
+
+// --- interfaz: sección "Mis imágenes" debajo de los elementos del pack ---
+function meSeccion() { const tema = IS.tema, U = meUsaTema(tema), A = U.filter((id) => meEnActividad(id)), n = ME.lib.length, abierta = ME.abierta || ME.pend.length || n > 0;
+  const pend = ME.pend.length ? `<div class="me-pend"><div class="me-pt"><b>✏️ Poné el nombre de cada imagen</b><small>El nombre es la palabra que va a aparecer en la actividad (memotest, crucigrama, sopa de letras…). En minúscula, salvo nombres propios.</small></div>
+      <div class="me-pg">${ME.pend.map((p, i) => `<figure class="me-pi${p.url ? "" : " err"}"><div class="me-pim">${p.url ? `<img src="${p.url}" alt="">` : "<span>No se pudo leer</span>"}</div>${p.url ? `<input data-mepn="${i}" value="${esc(p.n)}" placeholder="Ej.: escarapela" maxlength="30" aria-label="Nombre de la imagen ${i + 1}">` : ""}<button type="button" class="me-px" data-mepq="${i}" aria-label="Quitar esta imagen">✕</button></figure>`).join("")}</div>
+      <div class="me-pa"><label class="me-chk"><input type="checkbox" data-mefondo ${ME.fondo ? "checked" : ""}> Quitar el fondo blanco <small>(así sirve también para Sombras)</small></label><span><button type="button" class="btn small" data-mecancel>Cancelar</button><button type="button" class="btn primary small" data-meok>✓ Sumar ${ME.pend.length > 1 ? `las ${ME.pend.length} imágenes` : "a la actividad"}</button></span></div></div>` : "";
+  const lib = n ? `<div class="me-lib">${ME.lib.map((r) => { const on = A.includes(r.id), del = ME.borrar === r.id; return `<div class="me-li${on ? " on" : ""}"><button type="button" class="me-lb" data-meusa="${esc(r.id)}" aria-pressed="${on}" title="${on ? "Sacar de esta actividad" : "Sumar a esta actividad"}"><img src="${r.url}" alt=""><span>${on ? "✓" : "＋"}</span></button><small title="${esc(r.n)}">${esc(r.n)}</small>
+        ${del ? `<span class="me-del"><button type="button" class="me-si" data-mebor="${esc(r.id)}">Borrar</button><button type="button" class="me-no" data-mebor0>No</button></span>` : `<button type="button" class="me-x" data-mebor1="${esc(r.id)}" aria-label="Borrar ${esc(r.n)} de Mis elementos" title="Borrar de Mis elementos">🗑</button>`}</div>`; }).join("")}</div>` : "";
+  return `<div class="me${abierta ? " open" : ""}" data-medrop><div class="me-h"><div><b>⭐ Mis elementos</b><small>${n ? `${n} guardada${n > 1 ? "s" : ""} · <b>${A.length}</b> en esta actividad · tocá una para sumarla o sacarla` : "Subí la imagen de un elemento, ponele nombre y sumala a las actividades que quieras, además de las del pack."}</small></div>
+      <label class="btn small me-up${ME.leyendo ? " busy" : ""}">${ME.leyendo ? "⏳ Preparando…" : "＋ Subir imagen"}<input type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-meups hidden></label></div>
+    ${pend}${lib}${!n && !ME.pend.length ? `<div class="me-drop">🖼️ Arrastrá una o varias imágenes acá · PNG con fondo transparente queda perfecto, si tiene fondo blanco lo quito yo</div>` : ""}
+    ${n ? `<p class="me-tip">Tus elementos quedan guardados en este navegador y sirven para todas las fechas. Cada imagen entra solo en las actividades donde la sumás: en las demás de esta fecha aparece en la grilla y la tocás para sumarla.</p>` : ""}</div>`; }
+const _meGrilla = elGrilla;
+elGrilla = function () { const h = _meGrilla.apply(this, arguments); try { if (!isJ2UsaBanco(IS.tipo)) return h; } catch {} return h + meSeccion(); };
+// en la grilla del pack, las imágenes propias llevan una marca
+const _meDer = isJ2Derecha;
+isJ2Derecha = function () { let h = _meDer.apply(this, arguments); if (!isJ2UsaBanco(IS.tipo)) return h; const L = isBanco().items || [];
+  let k = -1; return h.replace(/<figure class="el-it([^"]*)">/g, (m, c) => { k++; return L[k] && L[k].pid ? `<figure class="el-it${c} me-tuya">` : m; }); };
+// en la tarjeta vacía (sin pack), también se puede arrancar solo con imágenes propias
+const _mePC = elPackCard;
+elPackCard = function () { const B = isBanco(), all = B.items, nom = B.nombres, prev = ME.nosync, propias = all.filter((x) => x.pid).length; let h; ME.nosync = true;
+  try { B.items = all.filter((x) => !x.pid); B.nombres = B.items.map((x) => x.n); h = _mePC.apply(this, arguments); } finally { B.items = all; B.nombres = nom; ME.nosync = prev; }
+  if (/class="el-vacio"/.test(h)) { h = h.replace('<button type="button" class="btn" data-elir="mipack">', '<button type="button" class="btn" data-meabrir>⭐ Usar mis propias imágenes</button><button type="button" class="btn" data-elir="mipack">');
+    if (propias) h = h.replace('<div class="el-vb">', `<p class="me-ya">⭐ Ya sumaste <b>${propias} imagen${propias > 1 ? "es" : ""} tuya${propias > 1 ? "s" : ""}</b> a esta fecha. Podés seguir solo con ellas o sumarles un pack.</p><div class="el-vb"><button type="button" class="btn primary" data-iwpaso="4">Seguir con mis imágenes →</button>`).replace('class="btn primary" data-elir="efe"', 'class="btn" data-elir="efe"'); }
+  else if (propias) h = h.replace(/(dibujos con su nombre)/, `$1 · ⭐ ${propias} tuya${propias > 1 ? "s" : ""}`);
+  return h; };
+// grilla solo con imágenes propias (sin pack): el pie ofrece crear el pack en lugar de "editar"
+const _meGr2 = elGrilla;
+elGrilla = function () { let h = _meGr2.apply(this, arguments); const L = (isBanco().items || []); if (L.length && L.every((x) => x.pid)) h = h.replace('<button type="button" class="linkish" data-elir="editar">Editar el pack</button>', '<button type="button" class="btn small" data-elir="efe">🎨 Crear un pack con ChatGPT</button><button type="button" class="linkish" data-elir="mipack">Subir un pack que ya tengo</button>').replace("Esta actividad usa todos los dibujos del pack.", "Esta actividad usa todos los dibujos."); return h; };
+const _meOpen = isOpen;
+isOpen = function () { const r = _meOpen.apply(this, arguments); meCargar(); return r; };
+
+document.addEventListener("click", (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const b = e.target.closest("[data-meusa],[data-mebor1],[data-mebor],[data-mebor0],[data-meok],[data-mecancel],[data-mepq],[data-meabrir]"); if (!b) return; e.stopPropagation(); e.preventDefault();
+  if (b.dataset.meusa) return meUsar(b.dataset.meusa);
+  if (b.dataset.mebor1) { ME.borrar = b.dataset.mebor1; return isRender(); }
+  if (b.dataset.mebor) return meBorrar(b.dataset.mebor);
+  if (b.hasAttribute("data-mebor0")) { ME.borrar = null; return isRender(); }
+  if (b.hasAttribute("data-meok")) return meConfirmar();
+  if (b.hasAttribute("data-mecancel")) { ME.pend = []; return isRender(); }
+  if (b.dataset.mepq != null) { ME.pend.splice(+b.dataset.mepq, 1); return isRender(); }
+  if (b.hasAttribute("data-meabrir")) { ME.abierta = true; IS.paso = 4; isRender(); setTimeout(() => { const x = document.querySelector("[data-meups]"); if (x) { x.closest(".me").scrollIntoView({ block: "center", behavior: "smooth" }); x.click(); } }, 80); } }, true);
+document.addEventListener("input", (e) => { const t = e.target; if (t.dataset && t.dataset.mepn != null) { const p = ME.pend[+t.dataset.mepn]; if (p) p.n = t.value; } }, true);
+document.addEventListener("keydown", (e) => { const t = e.target; if (e.key === "Enter" && t.dataset && t.dataset.mepn != null) { e.preventDefault(); const L = [...document.querySelectorAll("[data-mepn]")], k = L.indexOf(t); if (L[k + 1]) L[k + 1].focus(); else meConfirmar(); } }, true);
+document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset) return;
+  if (t.dataset.meups != null) { e.stopPropagation(); const f = t.files; meSubir(f); t.value = ""; return; }
+  if (t.dataset.mefondo != null) { e.stopPropagation(); ME.fondo = t.checked; try { localStorage.setItem("cofre-mis-elementos-fondo", ME.fondo ? "1" : "0"); } catch {} meReprocesar(); return; }
+  if (t.dataset.mepn != null) { e.stopPropagation(); } }, true);
+document.addEventListener("dragover", (e) => { const z = e.target.closest && e.target.closest("[data-medrop]"); if (!z) return; e.preventDefault(); z.classList.add("drag"); }, true);
+document.addEventListener("dragleave", (e) => { const z = e.target.closest && e.target.closest("[data-medrop]"); if (z && !z.contains(e.relatedTarget)) z.classList.remove("drag"); }, true);
+document.addEventListener("drop", (e) => { const z = e.target.closest && e.target.closest("[data-medrop]"); if (!z) return; e.preventDefault(); e.stopPropagation(); z.classList.remove("drag"); meSubir(e.dataTransfer && e.dataTransfer.files); }, true);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
