@@ -684,6 +684,18 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .cl-a{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .cl-pegar{border-radius:12px;padding:8px 10px;background:var(--surface-2)}.cl-pegar summary{cursor:pointer;font-size:12.5px;font-weight:700}.cl-pegar textarea{margin-top:8px}
 .cl-ok{margin:0;font-size:12px;line-height:1.45;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,#22A35A 12%,var(--surface))}
+.cl-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;padding:8px;border-radius:14px;border:2px dashed var(--line);transition:border-color .15s,background .15s}.cl-imgs.over{border-color:#3E7BFA;background:color-mix(in srgb,#3E7BFA 10%,var(--surface))}
+.cl-im{position:relative;margin:0;display:grid;gap:4px;padding:5px;border-radius:12px;background:var(--surface);border:1.5px solid var(--line);min-width:0}.cl-im img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;border-radius:8px}
+.cl-im figcaption{font-size:11px;font-weight:700;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-n{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#3E7BFA;color:#fff;font-size:11px;font-weight:900}.cl-im>.cl-n{position:absolute;top:9px;left:9px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.cl-ia{display:flex;gap:4px;justify-content:flex-end}.cl-ia button{font:inherit;font-size:11px;font-weight:800;min-width:24px;height:22px;border-radius:7px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}.cl-ia button:hover{border-color:#3E7BFA}
+.cl-add{display:grid;place-items:center;align-content:center;gap:3px;text-align:center;min-height:150px;padding:10px;border-radius:12px;border:1.5px dashed color-mix(in srgb,#3E7BFA 50%,var(--line));background:color-mix(in srgb,#3E7BFA 6%,var(--surface));cursor:pointer}.cl-add span{font-size:22px}.cl-add b{font-size:12.5px}.cl-add small{font-size:10.5px;color:var(--muted)}.cl-add:hover{border-color:#3E7BFA}
+.cl-busy{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:11px;background:color-mix(in srgb,#3E7BFA 14%,var(--surface))}.cl-busy i{width:14px;height:14px;border-radius:50%;border:2.5px solid #3E7BFA;border-right-color:transparent;animation:clGira .8s linear infinite}@keyframes clGira{to{transform:rotate(360deg)}}
+.cl-err{margin:0;font-size:12.5px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,#E0457B 14%,var(--surface))}
+.cl-hall{border-radius:14px;border:1px solid var(--line);background:var(--surface);padding:10px 12px}.cl-hall>summary{cursor:pointer;display:grid;gap:2px;list-style:none}.cl-hall>summary::-webkit-details-marker{display:none}.cl-hall>summary b{font-size:13.5px}.cl-hall>summary small{font-size:11.5px;color:var(--muted)}
+.cl-hg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:10px 0}.cl-hi{display:grid;gap:6px;align-content:start;padding:10px;border-radius:12px;background:var(--surface-2)}.cl-hi>b{display:flex;gap:6px;align-items:center;font-size:12.5px}.cl-hi p{margin:0;font-size:11.5px;line-height:1.45;color:var(--muted)}
+.cl-ch{display:flex;flex-wrap:wrap;gap:4px;align-items:center}.cl-ch em{font-style:normal;font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;width:100%}.cl-ch span{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.cl-cmp{overflow:auto;margin-bottom:10px;border-radius:10px;border:1px solid var(--line)}.cl-cmp table{width:100%;border-collapse:collapse;font-size:11.5px}.cl-cmp th,.cl-cmp td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.cl-cmp th{background:var(--surface-2);font-weight:800}.cl-cmp td:first-child{font-weight:800;white-space:nowrap}
 
 /* ===== pack + elementos ===== */
 .el{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1px solid color-mix(in srgb,#3E7BFA 40%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#3E7BFA 8%,var(--surface)),var(--surface))}
@@ -21292,6 +21304,110 @@ document.addEventListener("change", async (e) => { const t = e.target; if (!t.ma
 document.addEventListener("input", (e) => { const t = e.target; if (t.matches && t.matches("[data-cltxt]")) { const s = t.parentElement && t.parentElement.querySelector(".cl-txt + small"); if (s) s.textContent = `${t.value.length}/6000 caracteres`; } }, true);
 if (typeof DF_DESC !== "undefined") DF_DESC.comprension = ["Pocas consignas y oraciones cortas", "Lo justo para el nivel", "Más consignas, con corrección de las falsas"];
 
+// ---------- COMPRENSIÓN 2: varias infografías, lectura con Claude corregida, comparación y elementos importantes ----------
+NW_VAR.comprension.push(["comparar", "⚖️", "Compará las infografías", "Cuadro comparativo (2 o más)"]);
+// varias imágenes (IS.cl.img sigue apuntando a la primera para el código anterior)
+IS.cl.imgs = []; delete IS.cl.img; Object.defineProperty(IS.cl, "img", { configurable: true, enumerable: false, get() { return this.imgs[0] || null; }, set(v) { this.imgs = v ? [v] : []; } });
+IS.cl.ctl = null; IS.cl.err = "";
+const CL_MAX = 6;
+clGuardar = function () { try { const { imgs, busy, ctl, ...r } = IS.cl; localStorage.setItem("cofre-comprension", JSON.stringify(r)); } catch {} };
+function clIDB() { return new Promise((ok, no) => { const r = indexedDB.open("cofre-comprension", 1); r.onupgradeneeded = () => r.result.createObjectStore("kv"); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); }); }
+async function clImgsGuardar() { try { const db = await clIDB(); await new Promise((ok) => { const t = db.transaction("kv", "readwrite"); t.objectStore("kv").put(IS.cl.imgs, "imgs"); t.oncomplete = ok; t.onerror = ok; }); } catch {} }
+(async () => { try { const db = await clIDB(); const v = await new Promise((ok) => { const q = db.transaction("kv").objectStore("kv").get("imgs"); q.onsuccess = () => ok(q.result); q.onerror = () => ok(null); }); if (Array.isArray(v) && v.length && !IS.cl.imgs.length) IS.cl.imgs = v; } catch {} })();
+// imagen → Blob sin usar fetch (el panel de Claude bloquea fetch de data: URLs: por eso el botón no hacía nada)
+function clBlob(u) { const [cab, b64] = String(u).split(","), mime = (cab.match(/data:([^;]+)/) || [])[1] || "image/jpeg", bin = atob(b64), a = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return new Blob([a], { type: mime }); }
+async function clLeerArchivo(f) { const url = await new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = () => no(r.error); r.readAsDataURL(f); }), im = new Image(); im.src = url; await im.decode(); const J = await isJpeg({ im, w: im.naturalWidth, h: im.naturalHeight }, 2200); J.nombre = String(f.name || "infografía").replace(/\.[a-z0-9]+$/i, ""); return J; }
+async function clAgregarImgs(files) { const L = [...files].filter((f) => /^image\//.test(f.type)); if (!L.length) { toast("Elegí imágenes PNG o JPG.", "warn"); return; } const lugar = CL_MAX - IS.cl.imgs.length; if (lugar <= 0) { toast(`Podés subir hasta ${CL_MAX} infografías.`, "warn"); return; }
+  for (const f of L.slice(0, lugar)) { try { IS.cl.imgs.push(await clLeerArchivo(f)); } catch { toast(`No pude leer «${f.name}».`, "warn"); } } if (L.length > lugar) toast(`Entraron ${lugar}: el máximo es ${CL_MAX} infografías.`, "warn");
+  IS.cl.fuente = "imagen"; IS.cl.datos = null; IS.cl.err = ""; clGuardar(); clImgsGuardar(); IW.pages = null; toast(`${IS.cl.imgs.length === 1 ? "Infografía cargada" : IS.cl.imgs.length + " infografías cargadas"}: ${MODE.cloud ? "tocá «✨ Que Claude las lea»" : "copiá el pedido para ChatGPT con las imágenes"}.`, "ok"); isRender(); }
+// pedido para Claude / ChatGPT con varias infografías, comparación y elementos importantes
+const _clPedido1 = clPedido;
+clPedido = function (conImagen) { const n = IS.cl.imgs.length; if (!conImagen || n < 1) return _clPedido1.apply(this, arguments); const E = isEscena(IS.tema);
+  return `Sos docente de primaria en Argentina y diseñás cuadernillos. Te paso ${n === 1 ? "UNA INFOGRAFÍA" : `${n} INFOGRAFÍAS (numeradas del 1 al ${n}, en el orden de las imágenes)`}. Miralas con atención y leé TODOS sus textos, títulos y dibujos.
+Armá actividades de comprensión lectora para chicos de ${IS.nivel}${E && E.nombre ? ` (tema del cuadernillo: ${E.nombre})` : ""}. Usá SOLO información que esté en las infografías (no inventes), español rioplatense, oraciones cortas y claras.${n > 1 ? " Las actividades tienen que usar datos de todas las infografías, y la comparación tiene que mostrar en qué se parecen y en qué se diferencian." : ""}
+Devolvé SOLO un JSON válido con esta forma exacta:
+{"titulo":"tema general en 2 a 5 palabras","fuente":"infografía",
+"infografias":[{"numero":1,"titulo":"título de esa infografía","resumen":"de qué trata, en 1 o 2 oraciones","personajes":[{"nombre":"","descripcion":"cómo se ve, para poder dibujarlo"}],"elementos":[{"nombre":"objeto, lugar o símbolo importante","descripcion":"cómo se ve"}]}],
+${n > 1 ? `"comparacion":[{"aspecto":"qué se compara (por ejemplo: época, lugar, protagonistas, idea principal)","valores":["lo que dice la infografía 1","lo que dice la 2"${n > 2 ? ', "…"' : ""}]}],\n` : ""}"oraciones":[{"texto":"oración completa con un dato","clave":"UNA palabra clave que aparece tal cual en esa oración"}],
+"vf":[{"afirmacion":"","v":true,"correccion":"si es falsa, la versión verdadera"}],
+"multiple":[{"pregunta":"","opciones":["","",""],"correcta":0}],
+"preguntas":[{"pregunta":"","tipo":"literal|inferencial|critica","respuesta":"respuesta esperada breve"}],
+"ordenar":["oración de 4 a 8 palabras"],
+"secuencia":["hecho o idea 1, en orden","hecho 2"],
+"vocabulario":[{"palabra":"","definicion":"definición breve para chicos"}]}
+Cantidades: en cada infografía hasta 6 personajes y 10 elementos; ${n > 1 ? "5 a 7 aspectos de comparación; " : ""}8 oraciones (cada una con una clave distinta), 8 vf (la mitad falsas), 6 multiple, 6 preguntas (2 literales, 2 inferenciales, 2 de opinión), 5 ordenar, 5 secuencia, 6 vocabulario.`; };
+const _clNorm1 = clNormalizar;
+clNormalizar = function (d) { const r = _clNorm1.apply(this, arguments); if (!r) return r; const A = (x) => (Array.isArray(x) ? x : []), S = (x) => String(x == null ? "" : x).trim(), P = (L) => A(L).map((x) => ({ nombre: S(x && (x.nombre || x)), descripcion: S(x && x.descripcion) })).filter((x) => x.nombre);
+  r.infografias = A(d.infografias).map((x, i) => ({ numero: +(x && x.numero) || i + 1, titulo: S(x && x.titulo), resumen: S(x && x.resumen), personajes: P(x && x.personajes), elementos: P(x && x.elementos) }));
+  r.comparacion = A(d.comparacion).map((x) => ({ aspecto: S(x && x.aspecto), valores: A(x && x.valores).map(S) })).filter((x) => x.aspecto && x.valores.length >= 2); return r; };
+// mensajes claros para los errores de imágenes
+function clErr(e) { const c = e && e.code; if (c === "images_unavailable" || c === "noimg") return "En esta vista Claude no puede recibir imágenes. Copiá el pedido para ChatGPT o pegá el texto de la infografía."; if (c === "image_rejected") return "Claude no pudo abrir una de las imágenes (formato o tamaño). Probá con PNG o JPG más chico."; if (c === "cancelled") return "Cancelaste la lectura."; return sampleErr(e); }
+clClaude = async function () { const sf = await getSample(); if (!sf) { toast("Leer con Claude funciona en el panel de Claude. Acá podés copiar el pedido para ChatGPT.", "warn"); return; }
+  const imgs = IS.cl.fuente === "imagen" ? IS.cl.imgs : []; if (!imgs.length && String(IS.cl.texto).trim().length < 40) { toast("Pegá un texto más largo o subí la infografía.", "warn"); return; }
+  IS.cl.busy = true; IS.cl.err = ""; IS.cl.ctl = new AbortController(); isRender();
+  try { let images; if (imgs.length) { const lim = sf.limits ? await sf.limits().catch(() => ({})) : {}; if (!lim.images) throw { code: "noimg" }; const max = Math.min(lim.images.maxCount || CL_MAX, CL_MAX); if (imgs.length > max) toast(`Claude puede leer ${max} imágenes por vez: uso las primeras ${max}.`, "warn"); images = imgs.slice(0, max).map((x) => clBlob(x.url)); }
+    const raw = await sf.json(clPedido(!!imgs.length), { images, modelTier: imgs.length > 1 ? "complex" : "default", cache: false, signal: IS.cl.ctl.signal }); const d = clNormalizar(raw); if (!d) throw { code: "invalid_json" };
+    IS.cl.datos = d; clGuardar(); IS.j2Ver = 0; const nEl = (d.infografias || []).reduce((a, x) => a + x.personajes.length + x.elementos.length, 0); toast(`✨ Listo: ${d.oraciones.length} oraciones, ${d.vf.length} V o F, ${d.preguntas.length} preguntas${nEl ? ` y ${nEl} elementos importantes` : ""}`, "ok"); }
+  catch (e) { IS.cl.err = clErr(e); toast(IS.cl.err, "warn"); } finally { IS.cl.busy = false; IS.cl.ctl = null; IW.pages = null; isRender(); } };
+// hojas de lectura: una por infografía
+clHojaLectura = function (c, D) { if (IS.cl.fuente === "imagen" && IS.cl.imgs.length) { const L = IS.cl.imgs, I = D.infografias || [];
+    return L.map((im, i) => [`lectura${i + 1}`, L.length > 1 ? `Infografía ${i + 1}` : "Infografía", isMarco((I[i] && I[i].titulo) || (L.length > 1 ? `Infografía ${i + 1}` : D.titulo || "La infografía"), L.length > 1 ? `OBSERVÁ la infografía ${i + 1} y LEÉ todos sus textos. Después compará con las otras.` : "OBSERVÁ la infografía y LEÉ con atención todos sus textos antes de resolver las actividades.", isFoto(im, 40, 172, 515, 600).svg, "")]); }
+  const T = clT(c, IS.cl.texto), parr = String(T).split(/\n+/).map((s) => s.trim()).filter(Boolean); let fs = 18, L; for (; fs >= 9; fs -= 0.5) { L = []; parr.forEach((p) => { L.push(...clLin(p, 480, fs)); L.push(""); }); if (L.length * fs * 1.55 < 560) break; }
+  let o = nwBox(40, 172, 515, Math.min(604, L.length * fs * 1.55 + 30), { rx: 16, fill: "#FFFDF6", st: "#F2C58F" }); L.forEach((l, q) => { if (l) o += nwT(58, 196 + q * fs * 1.55, l, fs, { f: "b", w: 700 }); });
+  return [["lectura", "Texto", isMarco(D.titulo || "El texto", "LEÉ el texto con atención. Si querés, SUBRAYÁ las palabras que no conocés.", o, "")]]; };
+const _clGen1 = clGenerar;
+clGenerar = function () { const c = nvCfg("comprension"); if (c.v !== "comparar") { const P = _clGen1.apply(this, arguments); return clLectFix(P, c); }
+  const D = clDatos(); if (!D || !(D.comparacion || []).length) nwErr(IS.cl.imgs.length < 2 ? "Para comparar, subí 2 o más infografías y pedile a Claude (o a ChatGPT) que las lea." : MODE.cloud ? "Tocá «✨ Que Claude las lea» para armar el cuadro comparativo." : "Copiá el pedido para ChatGPT (con todas las imágenes) y pegá la respuesta para armar el cuadro comparativo.");
+  const C = D.comparacion.slice(0, Math.max(3, c.n + 1)), N = Math.max(...C.map((x) => x.valores.length)), I = D.infografias || [], col0 = 128, cw = (515 - col0) / N, hh = 48, rh = Math.min(110, (600 - hh) / C.length), R = NW_ROJO; let act = "", sol = "";
+  act += `<rect x="40" y="172" width="515" height="${j2f(hh + rh * C.length)}" rx="14" fill="#fff" stroke="#1A2744" stroke-width="1.4"/>`;
+  for (let k = 0; k < N; k++) { const x = 40 + col0 + k * cw, t = (I[k] && I[k].titulo) || `Infografía ${k + 1}`; act += `<rect x="${j2f(x)}" y="172" width="${j2f(cw)}" height="${hh}" fill="${NW_COL[k % NW_COL.length]}"/>` + nwT(x + cw / 2, 172 + 18, `INFOGRAFÍA ${k + 1}`, 9.5, { a: "middle", f: "b", c: "#fff" }) + nwT(x + cw / 2, 172 + 36, clT(c, t), nwFit(clT(c, t), 12.5, cw - 12, "b"), { a: "middle", f: "b", c: "#fff" }); }
+  act += `<rect x="40" y="172" width="${col0}" height="${hh}" rx="14" fill="#F3F5F9"/>` + nwT(40 + col0 / 2, 172 + 29, clT(c, "Aspecto"), 13, { a: "middle", f: "b" });
+  C.forEach((row, i) => { const y = 172 + hh + i * rh, fsA = 12.5; act += `<line x1="40" y1="${j2f(y)}" x2="555" y2="${j2f(y)}" stroke="#C9D3E3"/>` + (i % 2 ? `<rect x="40.7" y="${j2f(y)}" width="${col0 - 0.7}" height="${j2f(rh)}" fill="#FAFBFD"/>` : "");
+    clLin(clT(c, row.aspecto), col0 - 16, fsA).slice(0, 3).forEach((l, q, a) => { act += nwT(48, y + rh / 2 - (a.length - 1) * fsA * 0.65 + fsA * 0.35 + q * fsA * 1.3, l, fsA, { f: "b" }); });
+    for (let k = 0; k < N; k++) { const x = 40 + col0 + k * cw, v = row.valores[k] || "", nl = Math.max(1, Math.floor((rh - 16) / 22)); act += `<line x1="${j2f(x)}" y1="${j2f(y)}" x2="${j2f(x)}" y2="${j2f(y + rh)}" stroke="#C9D3E3"/>`; for (let q = 1; q <= nl; q++) act += `<line x1="${j2f(x + 8)}" y1="${j2f(y + 4 + q * 22)}" x2="${j2f(x + cw - 8)}" y2="${j2f(y + 4 + q * 22)}" stroke="#E3E8F1" stroke-dasharray="2 3"/>`;
+      clLin(clT(c, v), cw - 16, 10.5).slice(0, nl).forEach((l, q) => { sol += nwT(x + 8, y + 1 + (q + 1) * 22, l, 10.5, { f: "b", c: R }); }); } });
+  return clLectFix(nwPag("Compará las infografías", `LEÉ las ${N} infografías y COMPLETÁ el cuadro: escribí qué dice cada una sobre cada aspecto.`, act, sol, "Respuestas posibles: se aceptan otras palabras si la idea es correcta."), c); };
+// la hoja de lectura puede ser más de una (una por infografía)
+function clLectFix(P, c) { if (!P) return P; const out = []; P.forEach((p) => { if (Array.isArray(p) && Array.isArray(p[0])) out.push(...p); else out.push(p); }); if (c.lectura && c.v === "comparar" && (IS.cl.imgs.length || IS.cl.texto)) { const L = clHojaLectura(c, clDatos() || {}); return [...L, ...out]; } return out; }
+// pasar los elementos importantes a «Packs de recursos» para usarlos en todas las actividades
+function clElementos(D) { const I = (D && D.infografias) || [], P = [], L = [], vis = new Set(); I.forEach((x) => { x.personajes.forEach((p) => { if (!vis.has(fold(p.nombre))) { vis.add(fold(p.nombre)); P.push(p); } }); x.elementos.forEach((p) => { if (!vis.has(fold(p.nombre))) { vis.add(fold(p.nombre)); L.push(p); } }); }); return { personajes: P, elementos: L }; }
+function clAPack() { const D = IS.cl.datos, E = clElementos(D); if (!E.personajes.length && !E.elementos.length) { toast("Todavía no hay elementos: pedile a Claude que lea las infografías.", "warn"); return; }
+  try { RP.fuente = "info"; rpAplicarAnalisis({ tema: D.titulo || "", personajes: E.personajes, elementos: E.elementos }, "info"); RP.tema = IS.tema; } catch (e) { toast("No pude pasar los elementos al pack.", "warn"); return; }
+  toast(`📦 Pasé ${E.personajes.length + E.elementos.length} elementos a «Packs de recursos»: revisalos y armá la hoja de stickers`, "ok"); IS.tab = "pack"; isRender(); }
+// ---------- interfaz ----------
+function clImgsHtml() { const L = IS.cl.imgs, D = IS.cl.datos;
+  return `<div class="cl-imgs" data-cldrop>${L.map((im, i) => `<figure class="cl-im"><span class="cl-n">${i + 1}</span><img src="${im.url}" alt="Infografía ${i + 1}"><figcaption>${esc((D && D.infografias && D.infografias[i] && D.infografias[i].titulo) || im.nombre || `Infografía ${i + 1}`)}</figcaption><div class="cl-ia">${i ? `<button type="button" data-clmov="${i}|-1" aria-label="Mover antes">←</button>` : ""}${i < L.length - 1 ? `<button type="button" data-clmov="${i}|1" aria-label="Mover después">→</button>` : ""}<button type="button" data-clquitar="${i}" aria-label="Quitar">✕</button></div></figure>`).join("")}
+    ${L.length < CL_MAX ? `<label class="cl-add"><input type="file" accept="image/png,image/jpeg,image/webp" multiple data-clups hidden><span>${L.length ? "➕" : "⬆️"}</span><b>${L.length ? "Agregar otra" : "Subir infografías"}</b><small>${L.length ? `${L.length} de ${CL_MAX}` : `Hasta ${CL_MAX} · PNG o JPG · también podés arrastrarlas`}</small></label>` : ""}</div>
+    ${L.length > 1 ? `<small class="muted">Claude las lee juntas: compara en qué se parecen y en qué se diferencian, y saca los elementos importantes de cada una.</small>` : ""}`; }
+function clHallazgos() { const D = IS.cl.datos; if (!D || !(D.infografias || []).length) return ""; const E = clElementos(D);
+  return `<details class="cl-hall" open><summary><b>🔎 Lo que encontró en ${D.infografias.length === 1 ? "la infografía" : `las ${D.infografias.length} infografías`}</b><small>${E.personajes.length} personajes · ${E.elementos.length} elementos${(D.comparacion || []).length ? ` · ${D.comparacion.length} aspectos para comparar` : ""}</small></summary>
+    <div class="cl-hg">${D.infografias.map((x, i) => `<div class="cl-hi"><b><span class="cl-n">${i + 1}</span>${esc(x.titulo || `Infografía ${i + 1}`)}</b>${x.resumen ? `<p>${esc(x.resumen)}</p>` : ""}${x.personajes.length ? `<div class="cl-ch"><em>Personajes</em>${x.personajes.map((p) => `<span title="${esc(p.descripcion)}">🧑 ${esc(p.nombre)}</span>`).join("")}</div>` : ""}${x.elementos.length ? `<div class="cl-ch"><em>Elementos</em>${x.elementos.map((p) => `<span title="${esc(p.descripcion)}">🔹 ${esc(p.nombre)}</span>`).join("")}</div>` : ""}</div>`).join("")}</div>
+    ${(D.comparacion || []).length ? `<div class="cl-cmp"><table><thead><tr><th>Aspecto</th>${D.infografias.map((x, i) => `<th>${i + 1}. ${esc(x.titulo || "")}</th>`).join("")}</tr></thead><tbody>${D.comparacion.map((r) => `<tr><td>${esc(r.aspecto)}</td>${r.valores.map((v) => `<td>${esc(v)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>` : ""}
+    <div class="cl-a"><button type="button" class="btn primary" data-clpack>📦 Usar estos elementos en un pack de dibujos</button>${(D.comparacion || []).length ? `<button type="button" class="btn" data-clvercmp>⚖️ Ver el cuadro comparativo</button>` : ""}<small class="muted">El pack sirve después para todas las actividades con dibujos.</small></div></details>`; }
+const _clOpc2 = isJ2Opciones;
+isJ2Opciones = function () { let h = _clOpc2.apply(this, arguments); if (IS.tipo !== "comprension") return h; const C = IS.cl, n = C.imgs.length;
+  h = h.replace(/<label class="is-up[^"]*"><input type="file" accept="image\/\*" data-clup hidden>[\s\S]*?<\/label>/, clImgsHtml());
+  h = h.replace(/(\[\["texto", "📝 Pegar texto"\], \["imagen", ")🖼️ Subir infografía/, "$1");
+  h = h.replace(">🖼️ Subir infografía</button>", `>🖼️ Infografías${n ? ` (${n})` : ""}</button>`);
+  if (MODE.cloud) h = h.replace(/<button type="button" class="btn primary" data-clclaude[^>]*>[\s\S]*?<\/button>/, C.busy ? `<span class="cl-busy"><i></i>${C.fuente === "imagen" && n ? `Claude está leyendo ${n === 1 ? "la infografía" : `las ${n} infografías`}… puede tardar un minuto` : "Claude está armando las preguntas…"}</span><button type="button" class="btn small" data-clcancel>Cancelar</button>` : `<button type="button" class="btn primary" data-clclaude ${C.fuente === "imagen" && !n ? "disabled" : ""}>${C.fuente === "imagen" ? (n > 1 ? `✨ Que Claude lea y compare las ${n} infografías` : "✨ Que Claude lea la infografía") : "✨ Que Claude arme preguntas mejores"}</button>`);
+  if (C.err) h = h.replace('<div class="cl-a">', `<p class="cl-err">⚠️ ${esc(C.err)}</p><div class="cl-a">`);
+  h = h.replace('<label class="check"><input type="checkbox" data-cllect', `${clHallazgos()}<label class="check"><input type="checkbox" data-cllect`);
+  h = h.replace(/Agregar la infografía como primera hoja/, n > 1 ? "Agregar las infografías como primeras hojas" : "Agregar la infografía como primera hoja");
+  return h; };
+document.addEventListener("click", (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target) || IS.tipo !== "comprension") return; const t = e.target; let b;
+  if ((b = t.closest("[data-clquitar]"))) { e.stopPropagation(); IS.cl.imgs.splice(+b.dataset.clquitar, 1); IS.cl.datos = null; clGuardar(); clImgsGuardar(); IW.pages = null; isRender(); return; }
+  if ((b = t.closest("[data-clmov]"))) { e.stopPropagation(); const [i, dd] = b.dataset.clmov.split("|").map(Number), L = IS.cl.imgs, j = i + dd; if (j >= 0 && j < L.length) { [L[i], L[j]] = [L[j], L[i]]; IS.cl.datos = null; clGuardar(); clImgsGuardar(); IW.pages = null; isRender(); } return; }
+  if (t.closest("[data-clcancel]")) { e.stopPropagation(); if (IS.cl.ctl) IS.cl.ctl.abort(); return; }
+  if (t.closest("[data-clpack]")) { e.stopPropagation(); clAPack(); return; }
+  if (t.closest("[data-clvercmp]")) { e.stopPropagation(); nvCfg("comprension").v = "comparar"; IS.j2Ver = 0; IW.pages = null; isRender(); return; }
+}, true);
+document.addEventListener("change", async (e) => { const t = e.target; if (!t.matches || !t.matches("[data-clups]") || IS.tipo !== "comprension") return; e.stopPropagation(); await clAgregarImgs(t.files || []); }, true);
+document.addEventListener("dragover", (e) => { if (e.target.closest && e.target.closest("[data-cldrop]")) { e.preventDefault(); e.target.closest("[data-cldrop]").classList.add("over"); } }, true);
+document.addEventListener("dragleave", (e) => { const z = e.target.closest && e.target.closest("[data-cldrop]"); if (z) z.classList.remove("over"); }, true);
+document.addEventListener("drop", async (e) => { const z = e.target.closest && e.target.closest("[data-cldrop]"); if (!z || !e.dataTransfer || !e.dataTransfer.files.length) return; e.preventDefault(); e.stopPropagation(); z.classList.remove("over"); await clAgregarImgs(e.dataTransfer.files); }, true);
+// el pedido para ChatGPT avisa cuántas imágenes adjuntar
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-clcopiar]"); if (!b || IS.tipo !== "comprension" || IS.cl.fuente !== "imagen") return; if (!IS.cl.imgs.length) { e.stopPropagation(); e.preventDefault(); toast("Primero subí las infografías.", "warn"); return; } e.stopPropagation(); e.preventDefault(); const n = IS.cl.imgs.length, txt = clPedido(true) + `\n\n(Adjuntá ${n === 1 ? "la imagen de la infografía" : `las ${n} imágenes, en este orden: ${IS.cl.imgs.map((x, i) => `${i + 1}) ${x.nombre || "infografía"}`).join(", ")}`} junto con este pedido.)`; copyText(b, txt, "📋 Copiar pedido para ChatGPT").catch(() => {}); toast(`Pedido copiado: pegalo en ChatGPT junto con ${n === 1 ? "la imagen" : `las ${n} imágenes`} y traé la respuesta.`, "ok"); }, true);
+
 // ---------- SELECTOR DE ACTIVIDADES SIEMPRE A MANO (pasos 2 a 4) ----------
 // Permite saltar a cualquier tipo de actividad sin volver al paso 1, manteniendo el pack y el paso actual.
 const AS = { cat: null, q: "", abierto: !(window.innerWidth <= 620) };
@@ -21561,6 +21677,10 @@ isBanco = function () { const B = _fxBanco.apply(this, arguments); if (B && Arra
 // 6) laberinto: después de marcar la entrada, se acomoda el dibujo para que la salida quede a la vista (no debajo de la barra inferior)
 const _fxLab = isLabMontar;
 isLabMontar = function () { _fxLab.apply(this, arguments); const cv = $("#isLabCv"); if (cv && IS.labPts && IS.labPts.length === 1) setTimeout(() => { try { cv.scrollIntoView({ block: "center", behavior: "smooth" }); } catch {} }, 30); };
+// 7) la vista previa flotante del selector nunca queda colgada (se oculta al tocar, desplazar, escribir o redibujar)
+["click", "wheel", "keydown", "touchstart"].forEach((ev) => document.addEventListener(ev, () => { try { dsTipOcultar(); } catch {} }, { capture: true, passive: true }));
+const _fxRender = isRender;
+isRender = function () { try { dsTipOcultar(); } catch {} return _fxRender.apply(this, arguments); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
