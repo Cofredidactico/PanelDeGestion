@@ -594,6 +594,41 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+/* ===== selector de actividades (pasos 2-4) ===== */
+.as{margin:0 0 12px;border-radius:16px;border:1px solid var(--line);background:var(--surface);box-shadow:0 10px 24px -22px rgba(20,30,60,.5)}
+.as>summary{list-style:none;display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;border-radius:16px}.as>summary::-webkit-details-marker{display:none}
+.as>summary:hover{background:var(--surface-2)}
+.as-ic{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;font-size:18px;background:color-mix(in srgb,#3E7BFA 12%,var(--surface));flex:none}
+.as-tt{display:grid;min-width:0;flex:1}.as-tt small{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:800}.as-tt b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.as-sw{display:inline-flex;align-items:center;gap:6px;flex:none;font-size:12.5px;font-weight:800;padding:7px 11px;border-radius:999px;background:#3E7BFA;color:#fff}
+.as-sw i{font-style:normal;font-size:10.5px;padding:1px 6px;border-radius:999px;background:rgba(255,255,255,.25)}
+.as[open] .as-sw{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.as-b{display:grid;gap:10px;padding:2px 12px 12px}
+.as-top{display:grid;grid-template-columns:1fr minmax(160px,230px);gap:8px;align-items:start}@media (max-width:760px){.as-top{grid-template-columns:1fr}}
+.as-tabs{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 100%}
+.as-tabs button{flex:none;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+.as-tabs button small{font-size:10.5px;color:var(--muted);font-weight:800}
+.as-tabs button.on{background:#3E7BFA;border-color:#3E7BFA;color:#fff}.as-tabs button.on small{color:inherit;opacity:.75}
+.as-q{display:flex;align-items:center;gap:6px;flex:1 1 100%;padding:0 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface-2)}
+.as-q input{flex:1;min-width:0;font:inherit;font-size:12.5px;padding:7px 0;border:0;background:transparent;color:var(--ink)}.as-q input:focus{outline:0}.as-q:focus-within{border-color:#3E7BFA}
+.as-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px;max-height:236px;overflow:auto;padding:2px;scrollbar-width:thin}
+.as-c{display:flex;align-items:center;gap:8px;min-width:0;text-align:left;font:inherit;padding:7px 8px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .12s,transform .12s,box-shadow .12s}
+.as-c:hover{border-color:#3E7BFA;transform:translateY(-1px);box-shadow:0 8px 16px -14px #3E7BFA}
+.as-c.on{border-color:#3E7BFA;background:color-mix(in srgb,#3E7BFA 10%,var(--surface));cursor:default}
+.as-c[hidden]{display:none}
+.as-ci{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:9px;font-size:16px;background:var(--surface-2)}
+.as-cn{display:grid;min-width:0;flex:1}.as-cn b{font-size:12.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.as-cn small{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.as-c.on .as-cn small{color:#3E7BFA;font-weight:800}
+.as-tg{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex:none}
+.as-tg em,.as-ley em{font-style:normal;font-size:9.5px;font-weight:800;padding:1px 5px;border-radius:6px;background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.as-tg em.pk,.as-ley em.pk{background:color-mix(in srgb,#8B5CF6 14%,var(--surface));color:#8B5CF6}
+.as-vacio{margin:0;font-size:12.5px;color:var(--muted);text-align:center;padding:10px}
+.as-ley{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11px;color:var(--muted)}
+@media (max-width:620px){.as-sw{font-size:0;padding:7px 9px}.as-sw::before{content:"🔁";font-size:13px}.as-sw i{display:none}.as-g{grid-template-columns:1fr 1fr;max-height:280px}.as-tg{display:none}.as-q{flex:1 1 100%}}
+/* ===== elementos de la actividad: tarjetas compactas ===== */
+#isDlg .el-g{grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:6px;max-height:320px;overflow:auto;padding:2px;scrollbar-width:thin}#isDlg .el-it{padding:4px;gap:4px;border-radius:11px}#isDlg .el-im{border-radius:8px;background-size:10px 10px}#isDlg .el-im img{inset:5px!important;width:calc(100% - 10px)!important;height:calc(100% - 10px)!important}#isDlg .el-im i{top:3px;left:3px;min-width:18px;height:18px;font-size:10.5px;padding:0 4px}#isDlg .el-im em{font-size:8.5px;inset:auto 3px 3px 3px;padding:1px 3px}#isDlg .el-it input{font-size:11px!important;padding:3px 2px!important;border-radius:7px}
+@media (max-width:620px){#isDlg .el-g{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+
 /* ===== pack + elementos ===== */
 .el{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1px solid color-mix(in srgb,#3E7BFA 40%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#3E7BFA 8%,var(--surface)),var(--surface))}
 .el-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.el-h b{display:block;font-size:14.5px}.el-h small{font-size:12px;color:var(--muted)}.el-h small b{display:inline;font-size:12px;color:var(--ink)}.el-ha{display:flex;gap:10px;flex:none}
@@ -20575,6 +20610,34 @@ const _elProb = j2Problemas;
 j2Problemas = function (B) { return _elProb.call(this, (B || []).filter((b) => !EL_PROPIO(b.n))); };
 const _elSirve = elSirve;
 elSirve = function (t, n) { if (t === "problemas" && EL_PROPIO(n)) return [false, "Nombre propio: no se cuenta"]; return _elSirve(t, n); };
+
+// ---------- SELECTOR DE ACTIVIDADES SIEMPRE A MANO (pasos 2 a 4) ----------
+// Permite saltar a cualquier tipo de actividad sin volver al paso 1, manteniendo el pack y el paso actual.
+const AS = { cat: null, q: "", abierto: !(window.innerWidth <= 620) };
+function asTodas() { return Object.entries(IS_TIPO_INFO).map(([k, v]) => ({ k, ic: v[0], n: v[1], s: v[2] || "", cat: IS_TIPO_CAT[k] || "ia", pack: typeof isJ2UsaBanco === "function" && isJ2UsaBanco(k), nVar: typeof vrLista === "function" ? asNVar(k) : 0 })); }
+function asNVar(k) { try { const t = IS.tipo; IS.tipo = k; const L = vrLista(); IS.tipo = t; return L ? L.length : 0; } catch { return 0; } }
+function asBarra() { const L = asTodas(), cur = IS.tipo, cat = AS.cat || IS_TIPO_CAT[cur] || "ia", info = IS_TIPO_INFO[cur] || ["", ""];
+  const tabs = [["todas", "⭐ Todas", L.length], ...IS_CATS.map(([k, n]) => [k, n, L.filter((x) => x.cat === k).length])];
+  return `<details class="as" ${AS.abierto ? "open" : ""} data-ascat-act="${cat}"><summary><span class="as-ic">${info[0]}</span><span class="as-tt"><small>Actividad actual</small><b>${esc(info[1])}</b></span><span class="as-sw">🔁 Cambiar de actividad <i>${L.length}</i></span></summary>
+    <div class="as-b"><div class="as-top"><div class="as-tabs" role="tablist">${tabs.map(([k, n, c]) => `<button type="button" role="tab" class="${cat === k ? "on" : ""}" data-ascat="${k}" aria-selected="${cat === k}">${n}<small>${c}</small></button>`).join("")}</div>
+      <label class="as-q"><span>🔎</span><input type="search" data-asq placeholder="Buscar actividad…" value="${esc(AS.q)}" aria-label="Buscar actividad"></label></div>
+      <div class="as-g">${L.map((x) => `<button type="button" class="as-c${x.k === cur ? " on" : ""}" data-asgo="${x.k}" data-cat="${x.cat}" data-nm="${esc(fold(x.n + " " + x.s))}" title="${esc(x.s)}"><span class="as-ci">${x.ic}</span><span class="as-cn"><b>${esc(x.n)}</b><small>${x.k === cur ? "✓ Estás acá" : esc(x.s)}</small></span><span class="as-tg">${x.pack ? '<em class="pk" title="Usa los dibujos de tu pack">📦</em>' : ""}${x.nVar > 1 ? `<em title="Variantes disponibles">${x.nVar} var.</em>` : ""}</span></button>`).join("")}</div>
+      <p class="as-vacio" hidden>No encontré actividades con ese nombre.</p>
+      <div class="as-ley"><span><em class="pk">📦</em> usa los dibujos de tu pack</span><span><em>3 var.</em> variantes del mismo tipo</span><span>Al cambiar, seguís en el mismo paso con tu pack cargado.</span></div></div></details>`; }
+function asFiltrar(root) { const r = root || $("#isDlg"); if (!r) return; const box = r.querySelector(".as"); if (!box) return; const cat = AS.cat || box.dataset.ascatAct, q = fold(AS.q.trim()); let n = 0;
+  box.querySelectorAll(".as-c").forEach((b) => { const ok = q ? b.dataset.nm.includes(q) : (cat === "todas" || b.dataset.cat === cat); b.hidden = !ok; if (ok) n++; });
+  box.querySelectorAll("[data-ascat]").forEach((b) => { const on = !q && b.dataset.ascat === cat; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+  const v = box.querySelector(".as-vacio"); if (v) v.hidden = n > 0; }
+const _asAct = isRenderAct;
+isRenderAct = function () { const h = _asAct.apply(this, arguments); if (!((IS.paso || 1) >= 2) || h.indexOf('<div class="iw-main">') < 0) return h; setTimeout(() => asFiltrar(), 0); return h.replace('<div class="iw-main">', '<div class="iw-main">' + asBarra()); };
+document.addEventListener("click", (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; const t = e.target;
+  const c = t.closest("[data-ascat]"); if (c) { e.preventDefault(); e.stopPropagation(); AS.cat = c.dataset.ascat; AS.q = ""; const i = d.querySelector("[data-asq]"); if (i) i.value = ""; asFiltrar(); return; }
+  const g = t.closest("[data-asgo]"); if (g) { e.preventDefault(); e.stopPropagation(); const k = g.dataset.asgo; if (k === IS.tipo) return; const keep = IS.paso || 2; AS.q = "";
+    iwIrTipo(k); IS.paso = (IS_J2[k] || isJ2UsaBanco(k) || (typeof IS_J3 !== "undefined" && IS_J3[k])) ? Math.max(2, keep) : 2; isRender(); const n = (IS_TIPO_INFO[k] || [])[1]; if (n) toast(`${(IS_TIPO_INFO[k] || [])[0]} ${n}`, "ok");
+    setTimeout(() => { const a = $("#isDlg .as"); if (a) a.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, 30); return; }
+  const s = t.closest(".as > summary"); if (s) { setTimeout(() => { const a = s.parentElement; AS.abierto = a.open; }, 0); }
+}, true);
+document.addEventListener("input", (e) => { const t = e.target; if (!t.dataset || t.dataset.asq == null) return; e.stopPropagation(); AS.q = t.value; asFiltrar(); }, true);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
