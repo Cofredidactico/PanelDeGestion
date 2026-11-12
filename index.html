@@ -21958,6 +21958,53 @@ isRenderAct = function () { const h = _dfRA.apply(this, arguments); if (IS.tab !
 
 document.addEventListener("input", (e) => { const t = e.target; if (t.classList && t.classList.contains("el-nin") && t.dataset.eln != null) IS.elDraft = t.value; }, true);
 
+// ---------- LETRA DE LAS ACTIVIDADES DE LENGUA: MAYÚSCULA / minúscula / cursiva en TODAS ----------
+// Se aplica a las palabras de la actividad (no al título, la consigna ni los rótulos en mayúscula).
+// Al cambiar de letra, el tamaño se ajusta para ocupar el mismo ancho: nada se sale de su casillero.
+const LT_CUR = "'Playwrite AR', cursive";
+let LT_ON = null, LT_MED = null, LT_D = null, LT_MIDE_OK = false;
+const _ltMedir = isMedir;
+isMedir = function (txt, size, fam, peso) { if (!LT_MED || /Playwrite/i.test(fam || "") || txt == null) return _ltMedir.apply(this, arguments); const s0 = String(txt);
+  if (!/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(s0) || ltRotulo(s0, LT_D)) return _ltMedir.apply(this, arguments);
+  const s1 = ltConv(s0, LT_MED, LT_D); return LT_MED === "cursiva" ? _ltMedir.call(this, s1, size, "Playwrite AR", 400) + (+size || 0) * 0.3 : _ltMedir.call(this, s1, size, fam, peso); };
+// las actividades con letra propia: la cursiva va en minúscula (después se le pone la fuente cursiva)
+const _ltCfg = nvCfg;
+nvCfg = function (t = IS.tipo) { const c = _ltCfg.apply(this, arguments); const g = IS.dis && IS.dis.letra; if (c && !c.letraUser && g === "cursiva") c.letra = (NW_INFO[t] && ["vocab", "oracion", "acrostico", "minilibro"].includes(t)) ? "cursiva" : "minus"; return c; };
+function ltModo(t = IS.tipo) { if (IS_TIPO_CAT[t] !== "lengua") return null;
+  try { if ((typeof NV_INFO !== "undefined" && NV_INFO[t]) || NW_INFO[t]) { const c = nvCfg(t); if (c && c.letraUser) return c.letra === "cur" || c.letra === "cursiva" ? "cursiva" : c.letra === "minus" ? "minus" : "mayus"; } } catch {}
+  const g = IS.dis && IS.dis.letra; return g && g !== "auto" ? g : null; }
+const ltFold = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+function ltPalabras() { const W = new Set(), P = []; try { (isBanco().items || []).forEach((it) => { const n = String(it.n || ""); n.split(/\s+/).forEach((w) => { if (w) { W.add(ltFold(w)); if (/^[A-ZÁÉÍÓÚÑ]/.test(w)) P.push(w); } }); }); } catch {} return { W, P }; }
+const ltDecode = (s) => s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&");
+const ltEncode = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// ¿es un rótulo (ej. "LETRAS PARA USAR", "SOLUCIÓN")? → se deja como está
+function ltRotulo(txt, D) { const L = txt.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s]/g, " ").trim(); if (!L || /[a-záéíóúüñ]/.test(L)) return false;
+  return L.split(/\s+/).some((w) => w.length >= 4 && !D.W.has(ltFold(w))); }
+function ltMinus(s, D) { s = s.toLocaleLowerCase("es"); D.P.forEach((w) => { const re = new RegExp(`(^|[^\\p{L}])(${ltFold(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})(?=$|[^\\p{L}])`, "giu"); s = s.replace(re, (m, a, b) => (ltFold(b) === ltFold(w) ? a + w : m)); }); return s; }
+function ltConv(s, modo, D) { if (modo === "mayus") return s.toLocaleUpperCase("es"); return /[a-záéíóúüñ]/.test(s) ? s : ltMinus(s, D); }
+function ltAttr(tag, k) { const m = tag.match(new RegExp(`\\s${k}="([^"]*)"`)); if (m) return m[1]; const st = tag.match(/\sstyle="([^"]*)"/); if (st) { const n = st[1].match(new RegExp(`${k}\\s*:\\s*([^;]+)`)); if (n) return n[1].trim(); } return null; }
+function ltSetAttr(tag, k, v) { if (new RegExp(`\\s${k}="`).test(tag)) return tag.replace(new RegExp(`(\\s${k}=")[^"]*"`), `$1${v}"`); return tag.replace(/^<text/, `<text ${k}="${v}"`); }
+function ltProc(svg, modo) { if (!svg || !modo) return svg; const D = ltPalabras();
+  return svg.replace(/<text\b([^>]*)>([\s\S]*?)<\/text>/g, (m, at, inner) => {
+    const tag = "<text" + at + ">"; if (/Playwrite/.test(at) || /data-rol=/.test(at)) return m;
+    const plano = ltDecode(inner.replace(/<[^>]+>/g, "")); if (!/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(plano) || ltRotulo(plano, D)) return m;
+    const conv = (s) => ltConv(s, modo, D);
+    // convertir solo el texto (no las etiquetas <tspan> ni las entidades)
+    const inner2 = inner.split(/(<[^>]+>)/).map((seg) => (seg.startsWith("<") ? seg : ltEncode(conv(ltDecode(seg))))).join("");
+    let t2 = tag; const nuevo = ltDecode(inner2.replace(/<[^>]+>/g, ""));
+    const fs = parseFloat(ltAttr(tag, "font-size")) || 0, fam0 = (ltAttr(tag, "font-family") || "Nunito").replace(/['"]/g, "").split(",")[0].trim() || "Nunito", w0 = ltAttr(tag, "font-weight") || "400", peso = w0 === "bold" ? 700 : parseInt(w0) || 400;
+    if (modo === "cursiva") { t2 = ltSetAttr(t2, "font-family", LT_CUR); t2 = ltSetAttr(t2, "font-weight", "400"); if (/font-family\s*:/.test(t2)) t2 = t2.replace(/font-family\s*:[^;"]+/, `font-family:${LT_CUR.replace(/'/g, "")}`); if (/font-weight\s*:/.test(t2)) t2 = t2.replace(/font-weight\s*:[^;"]+/, "font-weight:400"); }
+    // la cursiva tiene trazos largos hacia abajo (f, g, p): un poco más chica y más arriba, para no tocar lo que hay debajo
+    if (modo === "cursiva" && fs > 0) { const y = parseFloat(ltAttr(t2, "y")); t2 = /\sfont-size="/.test(t2) ? ltSetAttr(t2, "font-size", Math.round(fs * 0.9 * 10) / 10) : t2.replace(/font-size\s*:\s*[\d.]+(px)?/, `font-size:${Math.round(fs * 0.9 * 10) / 10}px`); const traza = /stroke-dasharray|fill="none"/.test(at) || nuevo.replace(/[^\p{L}]/gu, "").length < 2; if (!traza && !isNaN(y) && /\sy="/.test(t2)) t2 = ltSetAttr(t2, "y", Math.round((y - fs * 0.18) * 10) / 10); }
+    // mismo ancho que antes: si la letra nueva ocupa más, se achica un poco (nunca se agranda)
+    if (fs > 0 && !/textLength=/.test(tag)) { try { const a = isMedir(plano, fs, fam0, peso), b = isMedir(nuevo, fs, modo === "cursiva" ? "Playwrite AR" : fam0, modo === "cursiva" ? 400 : peso); if (a > 0 && b > a * (LT_MIDE_OK ? 1.35 : 1.02)) { const k = Math.max(modo === "cursiva" ? 0.55 : 0.7, a / b), nfs = Math.round(fs * k * 10) / 10; t2 = /\sfont-size="/.test(t2) ? ltSetAttr(t2, "font-size", nfs) : t2.replace(/font-size\s*:\s*[\d.]+(px)?/, `font-size:${nfs}px`); } } catch {} }
+    return t2 + inner2 + "</text>"; }); }
+// solo mientras se arma una actividad de lengua (también en el cuadernillo y la exportación)
+const _ltMarco = isMarco;
+isMarco = function (titulo, consigna, cuerpo, num) { if (!LT_ON) return _ltMarco.call(this, titulo, consigna, cuerpo, num); cuerpo = ltProc(cuerpo, LT_ON); const m = LT_MED; LT_MED = null; try { return _ltMarco.call(this, titulo, consigna, cuerpo, num); } finally { LT_MED = m; } };
+const _ltJ2 = isJ2Paginas;
+isJ2Paginas = function () { const prev = [LT_ON, LT_MED, LT_D, LT_MIDE_OK]; LT_ON = ltModo(IS.tipo); LT_MED = LT_ON; LT_D = LT_ON ? ltPalabras() : null; LT_MIDE_OK = !!LT_ON; const fin = () => { [LT_ON, LT_MED, LT_D, LT_MIDE_OK] = prev; }; try { const r = _ltJ2.apply(this, arguments); if (r && typeof r.then === "function") return r.finally(fin); fin(); return r; } catch (e) { fin(); throw e; } };
+
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
 function adForMat(m){ return autodm.find(a=>{ const x=matForAd(a); return x&&x.k===m.k; })||null; }
