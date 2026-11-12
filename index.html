@@ -680,6 +680,31 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 #isDlg .cv-c.on{border-color:#3E7BFA;background:color-mix(in srgb,#3E7BFA 10%,var(--surface))}#isDlg .cv-c.on small{color:#3E7BFA}
 #isDlg .cv-up{border-style:dashed}#isDlg .cv-up span{font-size:18px;font-weight:900;color:var(--muted)}
 
+/* ===== tarjetas: mensaje secreto y rimas ===== */
+#isDlg .rmc{display:grid;gap:10px;padding:14px 16px;margin-bottom:12px;border-radius:18px;border:1.5px solid color-mix(in srgb,#8B5CF6 45%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#8B5CF6 9%,var(--surface)),var(--surface))}
+#isDlg .rmc-h{display:flex;align-items:flex-start;gap:10px}#isDlg .rmc-h>span{font-size:24px;line-height:1}#isDlg .rmc-h>div:first-of-type{flex:1;min-width:0}
+#isDlg .rmc-h b{display:block;font-size:14.5px}#isDlg .rmc-h small{font-size:12px;color:var(--muted);line-height:1.4}
+#isDlg .rmc-f{display:flex;gap:8px;flex-wrap:wrap}
+#isDlg .rmc-f input{flex:1 1 240px;min-width:0;font:inherit;font-size:17px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;border-radius:12px;border:2px solid #8B5CF6;background:var(--surface);color:var(--ink)}
+#isDlg .rmc-f input:focus{outline:0;box-shadow:0 0 0 4px color-mix(in srgb,#8B5CF6 25%,transparent)}
+#isDlg .rmc-i{font-size:12px;font-weight:700;color:var(--muted)}#isDlg .rmc-i.err{color:#E05A47}
+#isDlg .rmc-s{display:flex;flex-wrap:wrap;gap:6px;align-items:center}#isDlg .rmc-s small{font-size:11.5px;color:var(--muted);margin-right:2px}
+#isDlg .rmc-chip{font:inherit;font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+#isDlg .rmc-chip.on{background:#8B5CF6;border-color:#8B5CF6;color:#fff}
+#isDlg .rmr-n{flex:none;display:grid;gap:4px;justify-items:end}#isDlg .rmr-n small{font-size:11px;color:var(--muted)}
+#isDlg .rmr-p{display:inline-flex;gap:3px;padding:3px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line)}
+#isDlg .rmr-p button{font:inherit;font-size:12.5px;font-weight:900;min-width:30px;padding:5px 6px;border:0;border-radius:7px;background:transparent;color:var(--ink);cursor:pointer}
+#isDlg .rmr-p button.on{background:#8B5CF6;color:#fff}
+#isDlg .rmr-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:6px}
+#isDlg .rmr-f{display:grid;grid-template-columns:38px minmax(0,1fr) minmax(120px,46%);grid-template-areas:'img nom inp' 'img rc em';align-items:center;column-gap:8px;row-gap:1px;padding:6px 8px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+#isDlg .rmr-f img{grid-area:img}#isDlg .rmr-f b{grid-area:nom}#isDlg .rmr-c{grid-area:rc}#isDlg .rmr-f input{grid-area:inp;grid-row:1/3;align-self:center}#isDlg .rmr-f em{grid-area:em;position:absolute;opacity:0}#isDlg .rmr-f:has(em) .rmr-c{display:none}#isDlg .rmr-f em{position:static;opacity:1;grid-area:rc}
+#isDlg .rmr-f img{width:38px;height:38px;object-fit:contain;border-radius:8px;background:#fff}
+#isDlg .rmr-f b{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#isDlg .rmr-c{font-size:11px;color:var(--muted)}
+#isDlg .rmr-f input{min-width:0;font:inherit;font-size:12.5px;font-weight:800;padding:6px 8px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink)}
+#isDlg .rmr-f input:focus{outline:0;border-color:#8B5CF6}
+#isDlg .rmr-f em{font-style:normal;font-size:10.5px;font-weight:800;color:#E05A47;white-space:nowrap}#isDlg .rmr-f em.ok{color:#22A35A}#isDlg .rmr-f em.no{color:var(--muted)}
+@media (max-width:620px){#isDlg .rmc-h{flex-wrap:wrap}#isDlg .rmr-n{justify-items:start}#isDlg .rmr-l{grid-template-columns:1fr}}
+
 /* ===== diseño pro ===== */
 .ds{display:grid;gap:9px;margin-top:10px;padding:11px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
 .ds-h{display:grid;gap:1px}.ds-h b{font-size:13px}.ds-h small{font-size:11px;color:var(--muted)}
@@ -22064,6 +22089,55 @@ dsPanel = function () { const h = _cvPanel.apply(this, arguments); if ((IS.dis.l
   const k = h.indexOf('data-dsletra="cursiva"'); if (k < 0) return h + box; const end = h.indexOf("</div></div>", k); return end < 0 ? h + box : h.slice(0, end + 12) + box + h.slice(end + 12); };
 document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-cvfont]"); if (!b) return; e.preventDefault(); e.stopPropagation(); IS.dis.curFont = b.dataset.cvfont; try { isHojaGuardar(); } catch {} IW.pages = null; IS.j2Ver = 0; isRender(); }, true);
 document.addEventListener("change", (e) => { const t = e.target; if (t.dataset && t.dataset.cvup != null) { e.stopPropagation(); cvSubir(t.files && t.files[0]); t.value = ""; } }, true);
+
+// ---------- (1) FICHAS DE VOCABULARIO: cada fila mantiene su tipo de letra (MAYÚSCULA / minúscula / cursiva) ----------
+const _rmLtModo = ltModo;
+ltModo = function (t = IS.tipo) { if (t === "vocab") return null; return _rmLtModo.apply(this, arguments); };
+
+// ---------- (2) CÓDIGO SECRETO: el mensaje lo escribís vos, bien visible ----------
+function rmCodCard() { const txt = isCodFraseTxt(), fr = isCodNorm(txt), nL = fr.replace(/ /g, "").length, nD = new Set(fr.replace(/ /g, "")).size, largo = nL > 40;
+  return `<div class="rmc"><div class="rmc-h"><span>🔐</span><div><b>Mensaje secreto</b><small>Escribí la palabra o la frase que los chicos van a descifrar. Se arma la clave con tus dibujos.</small></div></div>
+    <div class="rmc-f"><input id="rmCodMsg" data-rmcod value="${esc(txt)}" maxlength="60" placeholder="Ej.: VIVA LA PATRIA" autocomplete="off" aria-label="Mensaje secreto"><button type="button" class="btn primary small" data-rmcodok>✓ Usar este mensaje</button></div>
+    <div class="rmc-i${largo ? " err" : ""}">${largo ? `⚠️ Tiene ${nL} letras: usá hasta 40 para que los dibujos se vean bien.` : `${nL} letras · ${nD} distintas`}${IS.codFrase ? "" : " · sugerido para esta fecha"}</div>
+    <div class="rmc-s"><small>Ideas:</small>${isCodSug().map((f) => `<button type="button" class="rmc-chip${isCodNorm(f) === fr ? " on" : ""}" data-rmcodsug="${esc(f)}">${esc(f)}</button>`).join("")}</div></div>`; }
+function rmCodUsar(v) { v = String(v || "").trim(); if (!v) { toast("Escribí el mensaje secreto", "err"); return; } if (!isCodNorm(v).replace(/ /g, "")) { toast("El mensaje tiene que tener letras", "err"); return; } IS.codFrase = v; IW.pages = null; IS.j2Ver = 0; toast("Mensaje secreto actualizado ✓", "ok"); isRender(); }
+
+// ---------- (3) RIMAS: hasta 8 dibujos, y vos podés escribir la rima de cada uno ----------
+IS.rimaP = IS.rimaP || {};
+try { const g = JSON.parse(localStorage.getItem("cofre-rimas-propias") || "{}"); if (g && typeof g === "object") IS.rimaP = g; } catch {}
+const rmGuardarRimas = () => { try { localStorage.setItem("cofre-rimas-propias", JSON.stringify(IS.rimaP)); } catch {} };
+const rmRimaPropia = (w) => { const v = IS.rimaP[fold(String(w || "").trim())]; return v && String(v).trim() ? String(v).trim() : null; };
+// más palabras para encontrar rimas solas
+const RM_DIC = "bandera pradera madera cartera escalera tijera pecera heladera primavera cadera sombrero florero granero jardinero cocinero panadero bombero carpintero zapatero aguatero farolero lechero tintero llavero salero sendero viajero guerrero caballero torero vaquero ingeniero dinero cordero agujero mortero soldado helado pescado candado dorado bordado nublado prado arado tejado collado melón botón cañón balcón cajón ratón jabón limón corazón camión avión canción león salón pantalón cinturón peinetón escalón tazón algodón bastón murciélago gaucho caucho cartucho serrucho cucurucho mate tomate chocolate patín jardín botín delfín cojín violín parchís calcetín maletín bailarín espadín cabildo tilde molde balde escarapela vela abuela canela muela tela cazuela escuela ciruela paraguas aguas yeguas canasta pasta masta vasta carreta camiseta galleta maceta trompeta bicicleta peseta libreta paleta receta empanada ensalada almohada escalera nevada hada espada cascada patria corneta cometa ventana campana manzana banana rana lana semana hermana mañana sartén tren andén rehén caballo gallo rayo payaso vaso caso lazo abrazo plato zapato gato pato rato sapato cielo pelo hielo suelo vuelo abuelo pañuelo caramelo martillo anillo ladrillo castillo cepillo grillo cuchillo pasillo tobillo bolsillo frutilla silla ardilla rodilla mantequilla zapatilla pastilla tortilla estrella botella mella huella perro cerro gorro burro jarro carro barro tarro cuna luna aceituna laguna fortuna mesa fresa princesa sorpresa cereza pieza cabeza tristeza belleza naranja granja oveja abeja ceja oreja teja reja tortuga lechuga oruga arruga nube sube mono trono tono globo lobo bobo piano mano hermano verano gusano enano llama cama rama dama pijama";
+const _rmRimaCon = nwRimaCon;
+nwRimaCon = function (w, r) { const p = rmRimaPropia(w); if (p) return p; const pw = String(w || "").trim().split(/\s+/), ult = pw[pw.length - 1] || w; const a = _rmRimaCon.call(this, ult, r); if (a && fold(a) !== fold(ult)) return a; const k = nwRima(w), L = RM_DIC.split(" ").filter((x) => nwRima(x) === k && fold(x) !== fold(w)); return L.length ? L[Math.floor((r ? r() : Math.random()) * L.length)] : null; };
+// la cantidad llega hasta 8
+try { NW_INFO.rimas[5] = [3, 8]; NW_INFO.rimas[6] = [3, 4, 5, 6, 7, 8]; } catch {}
+function rmRimasCard() { const c = nvCfg("rimas"), items = (isBancoSel("rimas", isBanco().items) || []); if (!items.length) return "";
+  const con = items.filter((it) => nwRimaCon(it.n, () => 0)), usa = Math.min(con.length, c.n);
+  const filas = items.map((it) => { const p = rmRimaPropia(it.n), auto = p ? null : nwRimaCon(it.n, () => 0), ok = p ? nwRima(p) === nwRima(it.n) : true;
+    return `<div class="rmr-f"><img src="${it.url}" alt=""><b title="${esc(it.n)}">${esc(it.n)}</b><span class="rmr-c">rima con</span><input data-rmrima="${esc(it.n)}" value="${esc(p || "")}" placeholder="${esc(auto ? auto + " (automática)" : "escribí una rima")}" maxlength="24" autocomplete="off" aria-label="Palabra que rima con ${esc(it.n)}">${p && !ok ? `<em title="Revisá que termine igual">⚠️ no termina igual</em>` : p ? `<em class="ok">✓ tuya</em>` : auto ? "" : `<em class="no">sin rima</em>`}</div>`; }).join("");
+  return `<div class="rmc rmr"><div class="rmc-h"><span>🎵</span><div><b>Palabras que riman</b><small>Escribí la rima de cada dibujo (o dejá la automática). Los dibujos “sin rima” no entran hasta que les escribas una.</small></div>
+      <div class="rmr-n"><small>Dibujos en la hoja</small><div class="rmr-p">${[3, 4, 5, 6, 7, 8].map((n) => `<button type="button" class="${n === c.n ? "on" : ""}" data-rmrimn="${n}">${n}</button>`).join("")}</div></div></div>
+    <div class="rmr-l">${filas}</div><div class="rmc-i${usa < c.n ? " err" : ""}">${usa < c.n ? `⚠️ Elegiste ${c.n} pero hay ${con.length} dibujos con rima: escribí rimas para los que faltan o elegí más dibujos del pack.` : `En la hoja van ${usa} dibujos con su rima.`}</div></div>`; }
+
+// tarjetas arriba del paso 2, 3 y 4
+const _rmRA = isRenderAct;
+isRenderAct = function () { const h = _rmRA.apply(this, arguments); if (IS.tab !== "act") return h; const paso = +IS.paso || 1; let card = "";
+  if (IS.tipo === "codigo" && paso >= 2) card = rmCodCard(); else if (IS.tipo === "rimas" && paso >= 2) card = rmRimasCard(); if (!card) return h;
+  const k = h.indexOf('<div class="iw-main">'); if (k < 0) return h; const at = k + '<div class="iw-main">'.length; return h.slice(0, at) + card + h.slice(at); };
+document.addEventListener("click", (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; let b;
+  if ((b = e.target.closest("[data-rmcodok]"))) { e.preventDefault(); e.stopPropagation(); rmCodUsar((d.querySelector("#rmCodMsg") || {}).value); return; }
+  if ((b = e.target.closest("[data-rmcodsug]"))) { e.preventDefault(); e.stopPropagation(); rmCodUsar(b.dataset.rmcodsug); return; }
+  if ((b = e.target.closest("[data-rmrimn]"))) { e.preventDefault(); e.stopPropagation(); const c = nvCfg("rimas"); c.n = +b.dataset.rmrimn; c.nUser = true; IW.pages = null; IS.j2Ver = 0; isRender(); return; } }, true);
+document.addEventListener("keydown", (e) => { const t = e.target; if (e.key !== "Enter" || !t.dataset) return; if (t.dataset.rmcod != null) { e.preventDefault(); e.stopPropagation(); rmCodUsar(t.value); } else if (t.dataset.rmrima != null) { e.preventDefault(); e.stopPropagation(); t.blur(); } }, true);
+document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset) return;
+  if (t.dataset.rmcod != null) { e.stopPropagation(); if (t.value.trim() && t.value.trim() !== IS.codFrase) rmCodUsar(t.value); return; }
+  if (t.dataset.rmrima != null) { e.stopPropagation(); const k = fold(t.dataset.rmrima), v = t.value.trim(); if (v) IS.rimaP[k] = v; else delete IS.rimaP[k]; rmGuardarRimas(); IW.pages = null; IS.j2Ver = 0; isRender(); } }, true);
+// rimas con nombres de más de una palabra (ej. “dama con peinetón”): la rima es la de la última palabra
+try { NW_INFO.rimas[8] = null; } catch {}
+const _rmRima = nwRima;
+nwRima = function (w) { const p = String(w || "").trim().split(/\s+/); return _rmRima.call(this, p[p.length - 1] || w); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
