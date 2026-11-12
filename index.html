@@ -10688,7 +10688,7 @@ function isMarco(titulo, consigna, cuerpo, num) {
   else { const dx = k === "patria" ? 14 : 0; if (lg) o += `<image href="${lg}" x="${k === "cuaderno" ? 44 : 32 + dx}" y="${ly + (k === "patria" ? 4 : 0)}" width="${ls}" height="${ls}"/>`; if (em) o += `<image href="${em}" x="${555 - ls + 6 - dx}" y="${ly + 2 + (k === "patria" ? 4 : 0)}" width="${ls - 4}" height="${ls - 4}"/>`; }
   if (enc) o += isEncabezado(P);
   // título (ajustado al ancho, con la fuente real)
-  const T = String(titulo).toUpperCase(), maxW = k === "minimal" ? 470 : 420; let ts = 30; while (ts > 18 && isMedir(T, ts, "Fredoka", 700) > maxW) ts -= 0.5;
+  const sello = /data-rol="nivel"/.test(cuerpo || ""), T = String(titulo).toUpperCase(), maxW = k === "minimal" ? (sello ? 425 : 470) : (sello ? 378 : 420); let ts = 30; while (ts > 15 && isMedir(T, ts, "Fredoka", 700) > maxW) ts -= 0.5;
   const ty = enc ? 96 : 100;
   if (k === "minimal") o += `<rect x="40" y="${ty - ts * 0.72}" width="5" height="${j2f(ts * 0.78)}" rx="2.5" fill="${P.acc}"/><text x="54" y="${ty}" font-size="${ts}" font-weight="700" fill="${P.tit}" ${IS_FAM_T} data-rol="titulo">${svgEsc(T)}</text>`;
   else { if (k === "patria") { const w = Math.min(500, isMedir(T, ts, "Fredoka", 700) + 70); o += `<path d="M${j2f(297.5 - w / 2)} ${ty - ts * 0.95}H${j2f(297.5 + w / 2)}l-10 ${j2f(ts * 0.6)} 10 ${j2f(ts * 0.6)}H${j2f(297.5 - w / 2)}l10 -${j2f(ts * 0.6)}z" fill="#E3F0FB" stroke="#74ACDF" stroke-width="1.2"/>`; }
@@ -10697,9 +10697,9 @@ function isMarco(titulo, consigna, cuerpo, num) {
   // consigna con íconos de acción
   const cons = String(consigna || "").trim();
   if (cons) { const V = isVerbos(cons), iw = V.length ? V.length * 29 + 4 : 0, bx = 36, bw = 523, by = 117, bh = 41, aw = bw - 24 - iw;
-    const esV0 = (w) => /[A-ZÁÉÍÓÚÑ]{2,}/.test(w) && w === w.toUpperCase(), pal = cons.split(/\s+/).filter(Boolean).map((w) => w.startsWith("\u00a7") ? w : IS.dis.inclusivo && !esV0(w) ? "\u00a7" + w.toLocaleUpperCase("es") : w), esV = (w) => !w.startsWith("\u00a7") && esV0(w), lim = (w) => w.replace(/^\u00a7/, ""), wW = (w, f) => isMedir(lim(w), f, "Nunito", esV(w) ? 900 : 700);
+    const esV0 = (w) => /[A-ZÁÉÍÓÚÑ]{2,}/.test(w) && w === w.toUpperCase(), pal = cons.split(/\s+/).filter(Boolean).map((w) => w.startsWith("\u00a7") ? w : (IS.dis.inclusivo || isConsMay()) && !esV0(w) ? "\u00a7" + w.toLocaleUpperCase("es") : w), esV = (w) => !w.startsWith("\u00a7") && esV0(w), lim = (w) => w.replace(/^\u00a7/, ""), wW = (w, f) => isMedir(lim(w), f, "Nunito", esV(w) ? 900 : 700);
     const partir = (f) => { const out = []; let c = [], cw = 0; const sp = isMedir(" ", f, "Nunito", 700); pal.forEach((w) => { const ww = wW(w, f); if (c.length && cw + sp + ww > aw) { out.push(c.join(" ")); c = [w]; cw = ww; } else { cw += (c.length ? sp : 0) + ww; c.push(w); } }); if (c.length) out.push(c.join(" ")); return out; };
-    let fs = IS.dis.inclusivo ? 15.5 : 13.5, L; for (;;) { L = partir(fs); if (L.length <= 2 || fs <= 10.5) break; fs -= 0.5; } if (L.length > 2) { L = [L[0], L.slice(1).join(" ")]; }
+    let fs = IS.dis.inclusivo ? 15.5 : 13.5, L; for (;;) { L = partir(fs); if (L.length <= 2 || fs <= (isConsMay() ? 9.5 : 10.5)) break; fs -= 0.5; } if (L.length > 2) { L = [L[0], L.slice(1).join(" ")]; }
     o += `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="${bh / 2}" fill="${P.caja}" stroke="${P.borde}" stroke-width="1.3" stroke-dasharray="${k === "minimal" ? "" : "5 4"}"/>`;
     V.forEach((v, i) => { o += isIcono(v, bx + 22 + i * 29, by + bh / 2, P.acc); });
     const tx = bx + 14 + iw, lh = fs * 1.22, y0 = by + bh / 2 + fs * 0.35 - (L.length - 1) * lh / 2;
@@ -10852,7 +10852,7 @@ function isCuadPaginas() {
   const primera = {}; pags.forEach((p) => { if (p.k === "item" && !p.x.sol && !(p.x.grupo in primera)) primera[p.x.grupo] = p; });
   pags.forEach((p) => { if (p.k !== "item") return; const x = p.x, n = C.numeros ? p.num : "";
     if (x.tipo === "svg") { p.svg = x.svg; p.titulo = x.act; return; }
-    let [t, c, b] = x.args; if (x.sol && primera[x.grupo]) { t = "Soluciones"; c = `Página ${primera[x.grupo].num}: ${primera[x.grupo].x.args[0]}.`; }
+    let [t, c, b] = x.args; if (x.sol && primera[x.grupo]) { t = "Soluciones"; c = `Página ${primera[x.grupo].num}: ${primera[x.grupo].x.args[0]}${/[?!.]$/.test(primera[x.grupo].x.args[0]) ? "" : "."}`; }
     p.titulo = x.sol ? `Soluciones · ${x.args[0] === "Soluciones" && primera[x.grupo] ? primera[x.grupo].x.args[0] : x.act}` : x.args[0]; p.svg = isMarco(t, c, b, n); });
   if (C.indice) { const ip = pags.find((p) => p.k === "indice"); if (ip) { ip.svg = isIndiceSVG(pags, C.numeros ? ip.num : ""); ip.titulo = "Índice"; } }
   if (C.tapa) { pags[0].svg = isTapaSVG(); pags[0].titulo = "Tapa"; }
@@ -21269,7 +21269,7 @@ isConFuentes = function (svg) { let s = _nwConF.apply(this, arguments); const F 
 // el título nunca pisa el sello de dificultad: se mide un poco más ancho cuando hay sello
 let NW_TIT = null;
 const _nwMedir = isMedir;
-isMedir = function (txt) { const w = _nwMedir.apply(this, arguments); return NW_TIT != null && txt === NW_TIT ? w * 1.26 : w; };
+isMedir = function (txt) { const w = _nwMedir.apply(this, arguments); return NW_TIT != null && txt === NW_TIT ? w * 1 : w; };
 const _nwMarcoT = isMarco;
 isMarco = function (titulo) { const prev = NW_TIT; NW_TIT = typeof DF_SELLO !== "undefined" && DF_SELLO != null && IS.difBadge ? String(titulo).toUpperCase() : null; try { return _nwMarcoT.apply(this, arguments); } finally { NW_TIT = prev; } };
 
@@ -21333,7 +21333,7 @@ function clFit(items, alto, avail, fsMax = 19, fsMin = 10) { let fs = fsMax; for
 const CL_HUECO = "____________";
 // dibuja un renglón de texto con huecos (línea para escribir) donde aparece el marcador
 function clRenglon(l, x, y, fs, col) { const partes = l.split(CL_HUECO); if (partes.length === 1) return { o: nwT(x, y, l, fs, { f: "b", w: 700, c: col }), huecos: [] }; let o = "", xx = x; const hw = nwMed(CL_HUECO, fs, "b"), huecos = [];
-  partes.forEach((pt, k) => { if (pt) { o += nwT(xx, y, pt, fs, { f: "b", w: 700, c: col }); xx += nwMed(pt, fs, "b"); } if (k < partes.length - 1) { o += `<line x1="${j2f(xx + 2)}" y1="${j2f(y + 3)}" x2="${j2f(xx + hw - 2)}" y2="${j2f(y + 3)}" stroke="#1A2744" stroke-width="1.2"/>`; huecos.push(xx); xx += hw; } }); return { o, huecos, hw }; }
+  partes.forEach((pt, k) => { if (pt) { const lead = pt.length - pt.trimStart().length, p2 = pt.trimStart(); if (lead) xx += nwMed(" ", fs, "b") * lead; if (p2) { o += nwT(xx, y, p2, fs, { f: "b", w: 700, c: col }); xx += nwMed(p2, fs, "b"); } } if (k < partes.length - 1) { o += `<line x1="${j2f(xx + 2)}" y1="${j2f(y + 3)}" x2="${j2f(xx + hw - 2)}" y2="${j2f(y + 3)}" stroke="#1A2744" stroke-width="1.2"/>`; huecos.push(xx); xx += hw; } }); return { o, huecos, hw }; }
 function clGenerar() { const c = nvCfg("comprension"), D = clDatos(); if (!D) nwErr(IS.cl.fuente === "imagen" && IS.cl.img ? (MODE.cloud ? "Tocá «✨ Que Claude lea la infografía» para armar las actividades." : "Para leer la imagen hace falta una IA: copiá el pedido para ChatGPT (con la imagen) y pegá la respuesta, o pegá el texto de la infografía.") : "Pegá el texto (o subí la imagen de la infografía) en «Tu material» para armar las actividades.");
   const n = c.n, R = NW_ROJO, esInfo = IS.cl.fuente === "imagen" || /infograf/i.test(D.fuente || ""), tit = esInfo ? "Comprensión de la infografía" : "Comprensión del texto", usados = new Set(); let act = "", sol = "";
   const lectura = c.lectura && (IS.cl.img || IS.cl.texto) ? clHojaLectura(c, D) : null;
@@ -22428,7 +22428,7 @@ function nwFamilia() { const c = nvCfg(), nk = isNivK(), n = c.n; let act = "", 
       [0, 1, 2].forEach((k) => { const x = 150 + k * 133, t = nwCase(c, hs[k]); act += nvRenglon(x, y + rh / 2 - lh / 2, 122, lh); sol += nwT(x + 4, y + rh / 2 + lh / 2 - 6, t, nwFit(t, 16, 114, "b"), { f: "b", c: NW_ROJO }); }); });
     return nwPag("Escribí la familia", "ESCRIBÍ tres palabras de la misma familia de cada palabra del centro.", act, sol, "Algunas respuestas posibles (hay muchas más)."); }
   const F = nwFamElegir(Math.max(2, Math.min(6, n))), cols = F.length > 2 ? 2 : 1, filas = Math.ceil(F.length / cols), cw = 515 / cols, ch = (nk < 2 ? 536 : 604) / filas, PET = ["#FDE4EA", "#E3F1FF", "#E5F6E5", "#FFF1D6"], nh = nk + 1, todas = [];
-  F.forEach(([raiz, hs], q) => { const col = q % cols, rr = Math.floor(q / cols), cx = 40 + col * cw + cw / 2, cy = 172 + rr * ch + ch / 2, R = Math.min(cw * 0.46, ch * 0.5) * 0.98, hu = isMezclar([0, 1, 2, 3], IS.seed + q * 3).slice(0, nh); hu.forEach((k) => todas.push(hs[k]));
+  F.forEach(([raiz, hs], q) => { const col = q % cols, rr = Math.floor(q / cols), sola = cols === 2 && q === F.length - 1 && F.length % 2 === 1, cx = sola ? 297.5 : 40 + col * cw + cw / 2, cy = 172 + rr * ch + ch / 2, R = Math.min(cw * 0.46, ch * 0.5) * 0.98, hu = isMezclar([0, 1, 2, 3], IS.seed + q * 3).slice(0, nh); hu.forEach((k) => todas.push(hs[k]));
     const [a, s] = nwPetalos(cx, cy, R, raiz, hs, hu, c, PET); act += a; sol += s; });
   if (nk < 2) { const by = 718, t = isMezclar(todas, IS.seed + 9).map((w) => nwCase(c, w)).join("   ·   "); act += nwBox(40, by, 515, 54, { rx: 14, fill: "#FFF8EC", st: "#F2C58F" }) + nwT(56, by + 18, "PALABRAS PARA USAR", 11, { c: "#B5650A" }) + nwT(297.5, by + 40, t, nwFit(t, 15, 495, "b"), { a: "middle", f: "b" }); }
   return nwPag("Completá la familia", nk < 2 ? "Cada flor es una familia: todas las palabras vienen de la del centro. ESCRIBÍ en los pétalos vacíos las palabras que faltan." : "Cada flor es una familia: todas las palabras vienen de la del centro. ESCRIBÍ en los pétalos vacíos otra palabra de la familia.", act, sol); }
@@ -22444,14 +22444,14 @@ function nwAdivina() { const c = nvCfg(), nk = isNivK(), lim = [6, 9, 14][nk], i
       act += nwBox(x + 6, y + 6, cw - 12, ch - 12, { rx: 14, st: "#9AA3B5", dash: "6 4" }) + j2im(it.url, x + 18, y + (ch - im) / 2, im, im) + nwT(tx, y + ch / 2 - 10, "PALABRA SECRETA", nwFit("PALABRA SECRETA", 9.5, tw), { c: "#9AA3B5" }) + nwT(tx, y + ch / 2 + 12, w, nwFit(w, 20, tw), {}) + nwT(tx, y + ch / 2 + 30, `${w.replace(/[^A-ZÑ]/g, "").length} letras`, 11, { f: "b", c: "#5B6478" }); });
     return [["actividad", "Tarjetas", isMarco("Tarjetas secretas", "RECORTÁ las tarjetas. Un jugador saca una sin mostrarla y el otro adivina la palabra letra por letra en el tablero.", act, "")]]; }
   const res = [], bh = 296; for (let p = 0; p < its.length; p += 2) { let act = "", sol = ""; its.slice(p, p + 2).forEach((it, q) => { const y = 176 + q * (bh + 8), letras = [...up(it.n)];
-      act += nwBox(40, y, 515, bh, { rx: 16, fill: q % 2 ? "#EEF6FF" : "#FFF8EC", st: "none", sw: 0 }) + nwFlor(112, y + 92, 66) + nwT(112, y + bh - 14, "Tachá un pétalo por error", 10, { a: "middle", f: "b", c: "#5B6478" });
+      act += nwBox(40, y, 515, bh, { rx: 16, fill: q % 2 ? "#EEF6FF" : "#FFF8EC", st: "none", sw: 0 }) + nwFlor(112, y + 92, 66) + nwT(112, y + 214, "Tachá un pétalo", 10.5, { a: "middle", f: "b", c: "#5B6478" }) + nwT(112, y + 228, "por cada error", 10.5, { a: "middle", f: "b", c: "#5B6478" });
       if (c.v === "pistas") act += nwBox(200, y + 16, 74, 74, { rx: 12, st: "#C9D3E3", sw: 1 }) + j2im(it.url, 204, y + 20, 66, 66) + nwT(237, y + 104, "PISTA", 9.5, { a: "middle", c: "#9AA3B5" });
       const x0 = c.v === "pistas" ? 290 : 210, aw = 545 - x0, s = Math.min(34, aw / letras.length - 4), fy = y + 70;
       letras.forEach((L, k) => { const x = x0 + k * (s + 4); if (L === " ") return; act += `<line x1="${j2f(x)}" y1="${j2f(fy)}" x2="${j2f(x + s)}" y2="${j2f(fy)}" stroke="#1A2744" stroke-width="2.2" stroke-linecap="round"/>`; const t = nwT(x + s / 2, fy - 6, L, Math.min(24, s * 0.8), { a: "middle", c: c.v === "pistas" && k === 0 ? "#1A2744" : NW_ROJO }); if (c.v === "pistas" && k === 0) act += t; else sol += t; });
       act += nwT(x0, fy + 22, `${letras.filter((l) => l !== " ").length} letras`, 11, { f: "b", c: "#5B6478" }) + nwT(210, y + 140, "Tachá las letras que ya dijeron:", 11, { f: "b", c: "#5B6478" });
       const ay = y + 150, cs = 22.5; [...NW_ABC].forEach((L, k) => { const x = 210 + (k % 14) * (cs + 1.3), yy = ay + Math.floor(k / 14) * (cs + 6); act += nwBox(x, yy, cs, cs, { rx: 5, st: "#9AA3B5", sw: 1 }) + nwT(x + cs / 2, yy + cs / 2 + 5, L, 13, { a: "middle" }); });
       sol += j2im(it.url, 470, y + bh - 76, 64, 64); });
-    const k = res.length / 2; res.push([`actividad${k ? k + 1 : ""}`, `Tablero ${k + 1}`, isMarco("Adiviná la palabra", `Se juega de a dos. Uno piensa la palabra${c.v === "pistas" ? " (¡hay un dibujo de pista!)" : ""} y el otro dice letras. Si la letra está, se escribe; si no, se tacha un pétalo. ¡Ganás si la descubrís antes de tachar los 7!`, act, "")], [`solucion${k ? k + 1 : ""}`, `Palabras ${k + 1}`, isMarco("Soluciones", "Estas son las palabras escondidas.", act + sol, "")]); }
+    const k = res.length / 2; res.push([`actividad${k ? k + 1 : ""}`, `Tablero ${k + 1}`, isMarco("Adiviná la palabra", `De a dos: uno piensa la palabra y el otro DICE letras. Si está, se ESCRIBE; si no, se TACHA un pétalo. ¡Descubrila antes de tachar los 7!`, act, "")], [`solucion${k ? k + 1 : ""}`, `Palabras ${k + 1}`, isMarco("Soluciones", "Estas son las palabras escondidas.", act + sol, "")]); }
   return res; }
 
 // ---------- 12 · carrera de preguntas ----------
@@ -22481,6 +22481,15 @@ function nwCarrera() { const c = nvCfg(), Q = nwCarreraPreg(c), I = nwImgsOpc();
 const _nwMayLt = ltModo; ltModo = function (t = IS.tipo) { if (t === "mayus") return null; return _nwMayLt.apply(this, arguments); };
 const NW_CANT = { cuadro: "Cantidad (huecos, trozos o filas)", armo: "Cantidad de números", reparto: "Cantidad de problemas", filas: "Cantidad de filas", geo: "Cantidad de figuras", doble: "Cantidad de filas", estima: "Cantidad de escenas", mayus: "Cantidad de oraciones", dimin: "Cantidad de palabras", familia: "Cantidad de familias", adivina: "Cantidad de palabras", carrera: "Cantidad de tarjetas" };
 const _nwCantOpc = isJ2Opciones; isJ2Opciones = function () { let h = _nwCantOpc.apply(this, arguments); if (IS.tipo === "mayus") h = h.replace(/<div class="field"><label>Letra<\/label><div class="is-opts">[\s\S]*?<\/div><\/div>/, ""); return NW_CANT[IS.tipo] ? h.replace("<label>Cantidad de dibujos</label>", `<label>${NW_CANT[IS.tipo]}</label>`) : h; };
+
+// ---------- REVISIÓN EDITORIAL: consignas, títulos y letra mínima para imprimir ----------
+// consignas en IMPRENTA MAYÚSCULA para Nivel Inicial y Primer Ciclo (salvo que se elija minúscula o cursiva)
+function isConsMay() { const g = IS.dis && IS.dis.letra, niv = IS._nivBase || IS.nivel || ""; if (g === "minus" || g === "cursiva") return false; if (g === "mayus") return true; return /Inicial|Primer/.test(niv); }
+const _edJ2 = isJ2Paginas;
+isJ2Paginas = function () { const prev = IS._nivBase; IS._nivBase = IS.nivel; try { return _edJ2.apply(this, arguments); } finally { IS._nivBase = prev; } };
+// letra mínima legible al imprimir (7 pt) en todo el cuerpo de la hoja
+const _edMarco = isMarco;
+isMarco = function (titulo, consigna, cuerpo, num) { if (cuerpo) cuerpo = String(cuerpo).replace(/(<text\b[^>]*?\sfont-size=")([\d.]+)(")/g, (m, a, v, b) => (+v < 7 ? a + "7" + b : m)); return _edMarco.call(this, titulo, consigna, cuerpo, num); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
