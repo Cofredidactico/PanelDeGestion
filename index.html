@@ -594,6 +594,32 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 
 /* Generador */
 .gen-form{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px}
+/* ===== juegos pro ===== */
+#isDlg .jg,#isDlg .gq{display:grid;gap:10px;padding:14px 16px;margin-bottom:12px;border-radius:18px;border:1.5px solid color-mix(in srgb,#0EA5A4 45%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#0EA5A4 9%,var(--surface)),var(--surface))}
+#isDlg .gq{border-color:color-mix(in srgb,#7B4FD0 45%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#7B4FD0 8%,var(--surface)),var(--surface))}
+#isDlg .jg-h,#isDlg .gq-h,#isDlg .jk-h{display:flex;align-items:flex-start;gap:10px}#isDlg .jg-h>span,#isDlg .gq-h>span,#isDlg .jk-h>span{font-size:24px;line-height:1}
+#isDlg .jg-h>div,#isDlg .gq-h>div,#isDlg .jk-h>div{flex:1;min-width:0}#isDlg .jg-h b,#isDlg .gq-h b,#isDlg .jk-h b{display:block;font-size:14.5px}#isDlg .jg-h small,#isDlg .gq-h small,#isDlg .jk-h small{font-size:12px;color:var(--muted);line-height:1.4}
+#isDlg .jg-kit{flex:none}
+#isDlg .jg-m,#isDlg .gq-a{display:grid;gap:5px}#isDlg .jg-m>small,#isDlg .gq-a>small{font-size:11.5px;color:var(--muted);font-weight:700}
+#isDlg .jg-p,#isDlg .gq-p,#isDlg .gq-s{display:flex;flex-wrap:wrap;gap:6px}
+#isDlg .jg-p button,#isDlg .gq-p button,#isDlg .gq-s button{font:inherit;font-size:12px;font-weight:800;padding:6px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+#isDlg .jg-p button.on{background:#0EA5A4;border-color:#0EA5A4;color:#fff}#isDlg .gq-p button.on,#isDlg .gq-s button.on{background:#7B4FD0;border-color:#7B4FD0;color:#fff}
+#isDlg .gq-s{flex:none;padding:3px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);gap:3px}#isDlg .gq-s button{border:0;padding:6px 12px}
+#isDlg .jg-o{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:12.5px}#isDlg .jg-o small{color:var(--muted)}
+#isDlg .jg-chk{font-size:12.5px}
+#isDlg .gq-b{display:flex;flex-wrap:wrap;gap:8px}
+#isDlg .gq-t{width:100%;box-sizing:border-box;font:inherit;font-size:13px;line-height:1.5;padding:10px 12px;border-radius:12px;border:1.5px solid color-mix(in srgb,#7B4FD0 50%,var(--line));background:var(--surface);color:var(--ink);resize:vertical;min-height:130px}
+#isDlg .gq-t:focus{outline:0;box-shadow:0 0 0 3px color-mix(in srgb,#7B4FD0 25%,transparent)}
+#isDlg .gq-i{font-size:12px;font-weight:700;color:var(--muted)}#isDlg .gq-i.err{color:#E05A47}
+#isDlg .jk{display:grid;gap:10px;padding:12px;border-radius:14px;background:var(--surface);border:1.5px dashed color-mix(in srgb,#F28C28 60%,var(--line))}
+#isDlg .jk-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px}
+#isDlg .jk-c{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:11px;border:1.5px solid var(--line);font-size:12.5px;font-weight:700;cursor:pointer;background:var(--surface-2)}
+#isDlg .jk-c.on{border-color:#F28C28;background:color-mix(in srgb,#F28C28 10%,var(--surface))}#isDlg .jk-c span{font-size:16px}#isDlg .jk-c input{accent-color:#F28C28}
+#isDlg .jk-o{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px}
+#isDlg .jk-w,#isDlg .jk-r{margin:0;font-size:12px;font-weight:700;color:var(--muted);line-height:1.5}#isDlg .jk-r{color:#2E7D32}
+#isDlg .jk-b{display:flex;flex-wrap:wrap;gap:8px}
+@media (max-width:620px){#isDlg .jg-h,#isDlg .gq-h{flex-wrap:wrap}}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -8546,7 +8572,7 @@ IS_PAL_EFE["02-27"] = IS_PAL_EFE["06-20"];
 const IS_PAL_FUENTES = [["dibujos", "🖼️ Mis dibujos"], ["historia", "📖 La historia de la secuencia"], ["efemeride", "📅 Vocabulario de la fecha"], ["propias", "✍️ Mis palabras"]];
 const isPalFuente = () => { const f = IS.palFuente || "dibujos"; return f === "efemeride" && !IS_PAL_EFE[IS.tema] ? "historia" : f; };
 const isPalUsa = (t = IS.tipo) => t === "cruci" || t === "completa" || t === "bingo" || t === "oca" || (t === "sopa" && IS.j2Modo === "letras");
-const isPalSinBanco = (t = IS.tipo) => isPalUsa(t) && isPalFuente() !== "dibujos";
+let isPalSinBanco = (t = IS.tipo) => isPalUsa(t) && isPalFuente() !== "dibujos";
 const isSinTilde = (w) => String(w).replace(/Ñ/g, "#").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/#/g, "Ñ");
 const IS_PAL_STOP = new Set("PARA COMO PERO TODOS TODAS DESDE HASTA ENTRE SOBRE CADA MUCHO MUCHA MUCHOS MUCHAS PORQUE CUANDO DONDE ESTE ESTA ESTOS ESTAS ELLOS ELLAS NUESTRO NUESTRA NUESTROS NUESTRAS OTRA OTRO OTROS OTRAS MISMO MISMA DESPUÉS ANTES TAMBIÉN TIENE TIENEN HACEN HACE ESTÁ ESTÁN SIEMPRE AHORA LUEGO JUNTOS JUNTAS BIEN CASI UNOS UNAS SIN CON LOS LAS DEL QUE".split(" "));
 // palabras clave de la historia: una por escena, con la oración como pista (con la palabra tapada)
@@ -22490,6 +22516,303 @@ isJ2Paginas = function () { const prev = IS._nivBase; IS._nivBase = IS.nivel; tr
 // letra mínima legible al imprimir (7 pt) en todo el cuerpo de la hoja
 const _edMarco = isMarco;
 isMarco = function (titulo, consigna, cuerpo, num) { if (cuerpo) cuerpo = String(cuerpo).replace(/(<text\b[^>]*?\sfont-size=")([\d.]+)(")/g, (m, a, v, b) => (+v < 7 ? a + "7" + b : m)); return _edMarco.call(this, titulo, consigna, cuerpo, num); };
+
+// ---------- JUEGOS PRO · banco de preguntas (Claude o propias), modos nuevos y kit de juegos ----------
+// ===== banco de preguntas por fecha =====
+const GQ = (() => { try { const g = JSON.parse(localStorage.getItem("cofre-preguntas") || "{}"); return g && typeof g === "object" ? g : {}; } catch { return {}; } })();
+const gqGuardar = () => { try { localStorage.setItem("cofre-preguntas", JSON.stringify(GQ)); } catch {} };
+const gqDe = (t = IS.tema) => (GQ[t] = GQ[t] || { fuente: "auto", txt: "", area: "mixto" });
+const GQ_AREAS = [["mixto", "🎲 Mezcla"], ["lengua", "🔤 Lengua"], ["mate", "🔢 Matemática"], ["sociales", "🏛️ Sociales"], ["naturales", "🌱 Naturales"]];
+function gqParse(txt) { return String(txt || "").split(/\n+/).map((l) => l.replace(/^\s*(\d+[.)-]|[-•*])\s*/, "").trim()).filter(Boolean).map((l) => { const m = l.match(/^P:\s*(.+?)\s*R:\s*(.+)$/i) || l.match(/^(.+?)\s*\|\s*(.+)$/) || l.match(/^(.+?[?=])\s+(?:R(?:espuesta)?:\s*)?(.+)$/i); return m ? { p: m[1].trim(), r: m[2].trim() } : null; }).filter((x) => x && x.p && x.r && x.p.length <= 140 && x.r.length <= 40); }
+function gqLista() { const D = gqDe(); if (D.fuente !== "mias") return null; const L = gqParse(D.txt); return L.length ? L : null; }
+const gqNivel = () => ({ 0: "Nivel Inicial (5 años)", 1: "1.º a 3.º grado", 2: "4.º a 6.º grado" })[isNivK()];
+function gqPedido(json) { const D = gqDe(), E = isEscena(IS.tema), A = { mixto: "lengua, matemática y ciencias sociales mezcladas", lengua: "prácticas del lenguaje (letras, sílabas, rimas, palabras, comprensión)", mate: "matemática (cuentas, números, problemas cortos, geometría)", sociales: "ciencias sociales", naturales: "ciencias naturales" }[D.area || "mixto"];
+  return `Sos docente de primaria en Argentina. Escribí 24 preguntas para un juego de mesa del aula, para chicos de ${gqNivel()}, de ${A}${D.area === "mate" || D.area === "lengua" ? `, ambientadas en ${E.nombre} cuando se pueda` : `, sobre ${E.nombre}`}.
+Reglas: preguntas cortas (máximo 14 palabras) y claras para la edad; respuesta única, corta (1 a 3 palabras o un número) y correcta; datos históricos verificados (no inventes nada); sin preguntas repetidas; variá la dificultad.
+${json ? 'Devolvé SOLO {"preguntas":[{"p":"...","r":"..."}]}' : "Escribí una por renglón con este formato exacto: pregunta | respuesta"}`; }
+async function gqClaude() { const sf = await getSample(); if (!sf) { toast("Las preguntas de Claude funcionan en el panel de Claude. Acá copiá el pedido para ChatGPT.", "warn"); return; }
+  const D = gqDe(); GQ._busy = true; isRender();
+  try { const r = await sf.json(gqPedido(true), { modelTier: "default" }); const L = (r && Array.isArray(r.preguntas) ? r.preguntas : []).map((x) => ({ p: String(x.p || "").trim(), r: String(x.r || "").trim() })).filter((x) => x.p && x.r);
+    if (!L.length) throw new Error("Claude no devolvió preguntas."); D.txt = (D.txt.trim() ? D.txt.trim() + "\n" : "") + L.map((x) => `${x.p} | ${x.r}`).join("\n"); D.fuente = "mias"; gqGuardar(); toast(`✨ ${L.length} preguntas listas: revisalas y editalas si querés`, "ok"); }
+  catch (e) { toast(typeof sampleErr === "function" ? sampleErr(e) : e.message, "warn"); } finally { GQ._busy = false; IW.pages = null; IS.j2Ver = 0; isRender(); } }
+const GQ_TIPOS = ["carrera", "tateti", "oca", "escape", "rompe", "memo"];
+function gqCard() { const D = gqDe(), L = gqParse(D.txt), lineas = D.txt.split(/\n+/).filter((l) => l.trim()).length, malas = lineas - L.length, mias = D.fuente === "mias";
+  if (IS.tipo === "memo" && IS.memoPar !== "pregresp") return ""; if (IS.tipo === "escape" && nvCfg("escape").v !== "historia") return "";
+  return `<div class="gq"><div class="gq-h"><span>🧠</span><div><b>Preguntas del juego</b><small>${IS.tipo === "memo" ? "Cada pareja es una pregunta y su respuesta." : "Las tarjetas y casilleros de pregunta salen de acá."}</small></div>
+      <div class="gq-s">${[["auto", "Automáticas"], ["mias", "Mis preguntas"]].map(([k, n]) => `<button type="button" class="${D.fuente === k ? "on" : ""}" data-gqf="${k}">${n}</button>`).join("")}</div></div>
+    ${mias ? `<div class="gq-a"><small>Área</small><div class="gq-p">${GQ_AREAS.map(([k, n]) => `<button type="button" class="${(D.area || "mixto") === k ? "on" : ""}" data-gqa="${k}">${n}</button>`).join("")}</div>
+      <div class="gq-b">${MODE.cloud ? `<button type="button" class="btn primary small" data-gqc ${GQ._busy ? "disabled" : ""}>${GQ._busy ? "⏳ Escribiendo preguntas…" : `✨ Que Claude escriba 24 preguntas para ${esc(gqNivel())}`}</button>` : ""}<button type="button" class="btn small" data-gqcopy>📋 Copiar pedido para ChatGPT</button></div></div>
+      <textarea class="gq-t" data-gqt rows="7" placeholder="Escribí o pegá una pregunta por renglón, con su respuesta después de la barra:&#10;¿En qué año fue la Revolución de Mayo? | 1810&#10;¿Cuánto es 7 + 5? | 12&#10;¿Con qué letra empieza Cabildo? | C">${esc(D.txt)}</textarea>
+      <div class="gq-i${malas > 0 ? " err" : ""}">${L.length ? `✓ ${L.length} preguntas listas` : "Todavía no hay preguntas"}${malas > 0 ? ` · ⚠️ ${malas} renglón${malas > 1 ? "es" : ""} sin «|» entre pregunta y respuesta` : ""} · se guardan para esta fecha</div>`
+      : `<div class="gq-i">Se arman solas con los dibujos de tu pack y cuentas del nivel. Tocá «Mis preguntas» para escribir las tuyas o pedírselas a Claude.</div>`}</div>`; }
+document.addEventListener("click", (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; let b; const D = gqDe();
+  if ((b = e.target.closest("[data-gqf]"))) { e.preventDefault(); e.stopPropagation(); D.fuente = b.dataset.gqf; gqGuardar(); IW.pages = null; IS.j2Ver = 0; isRender(); return; }
+  if ((b = e.target.closest("[data-gqa]"))) { e.preventDefault(); e.stopPropagation(); D.area = b.dataset.gqa; gqGuardar(); isRender(); return; }
+  if ((b = e.target.closest("[data-gqc]"))) { e.preventDefault(); e.stopPropagation(); gqClaude(); return; }
+  if ((b = e.target.closest("[data-gqcopy]"))) { e.preventDefault(); e.stopPropagation(); copiar(gqPedido(false), b, "pedido"); return; } }, true);
+document.addEventListener("change", (e) => { const t = e.target; if (t.dataset && t.dataset.gqt != null) { e.stopPropagation(); gqDe().txt = t.value; gqGuardar(); IW.pages = null; IS.j2Ver = 0; isRender(); } }, true);
+
+// ===== Carrera y Ta-te-ti con el banco =====
+const _jgCarPreg = nwCarreraPreg;
+nwCarreraPreg = function (c) { const L = gqLista(); if (!L) return _jgCarPreg.apply(this, arguments); const M = isMezclar(L, IS.seed * 3 + 1); return Array.from({ length: c.n }, (_, k) => [M[k % M.length].p, M[k % M.length].r]); };
+const _jgTateti = nwTateti;
+nwTateti = function () { const L = gqLista(); if (!L) return _jgTateti.apply(this, arguments); const Q = isMezclar(L, IS.seed * 5 + 2).slice(0, 9); while (Q.length < 9) Q.push(Q[Q.length % Math.max(1, L.length)]);
+  const bs = 400, cs = bs / 3, ox = 40 + (515 - bs) / 2, oy = 176, cols = ["#FFF6E8", "#EEF6FF"]; let act = "", sol = "";
+  Q.forEach((q, i) => { const x = ox + (i % 3) * cs, y = oy + Math.floor(i / 3) * cs, L2 = isPartirAncho(q.p, cs - 22, 13, "Nunito", 800).slice(0, 5), fs = L2.length > 4 ? 11.5 : 13; act += `<rect x="${j2f(x)}" y="${j2f(y)}" width="${j2f(cs)}" height="${j2f(cs)}" fill="${cols[i % 2]}"/>` + L2.map((l, k) => nwT(x + cs / 2, y + cs / 2 - (L2.length - 1) * fs * 0.62 + k * fs * 1.24 - 6, l, fs, { a: "middle", f: "b" })).join("");
+    sol += nwBox(x + 8, y + cs - 28, cs - 16, 22, { rx: 11, fill: "#FDE4EA", st: NW_ROJO, sw: 1 }) + nwT(x + cs / 2, y + cs - 13, q.r, nwFit(q.r, 11.5, cs - 26, "b"), { a: "middle", f: "b", c: NW_ROJO }); });
+  act += `<path d="M${j2f(ox + cs)} ${oy}V${oy + bs}M${j2f(ox + cs * 2)} ${oy}V${oy + bs}M${ox} ${j2f(oy + cs)}H${ox + bs}M${ox} ${j2f(oy + cs * 2)}H${ox + bs}" stroke="#1A2744" stroke-width="5" stroke-linecap="round"/>`;
+  const fy = oy + bs + 30; act += `<line x1="40" y1="${fy - 10}" x2="555" y2="${fy - 10}" stroke="#9AA3B5" stroke-dasharray="6 4"/>` + NW_TIJ(52, fy - 11, 1) + nwT(64, fy + 4, "FICHAS PARA RECORTAR", 11, { c: "#F28C28", f: "b" });
+  for (let q = 0; q < 10; q++) { const x = 60 + (q % 5) * 98, y = fy + 16 + Math.floor(q / 5) * 74, cx = x + 33, cy = y + 33; act += nwBox(x, y, 66, 66, { rx: 10, st: "#9AA3B5", sw: 1, dash: "4 3" }) + (q < 5 ? `<path d="M${cx - 16} ${cy - 16}L${cx + 16} ${cy + 16}M${cx + 16} ${cy - 16}L${cx - 16} ${cy + 16}" stroke="#D7263D" stroke-width="7" stroke-linecap="round"/>` : `<circle cx="${cx}" cy="${cy}" r="17" fill="none" stroke="#1E5BB8" stroke-width="7"/>`); }
+  return nwPag("Ta-te-ti de preguntas", "JUGÁ de a dos: para poner tu ficha en un casillero, RESPONDÉ la pregunta. Gana quien hace tres en línea.", act, sol, "Respuestas de cada casillero."); };
+
+NW_GEN.tateti = nwTateti;
+// ===== Bingo: modos nuevos + planilla de control =====
+const JB_MODOS = [["clasico", "🖼️ Dibujos o palabras"], ["silaba", "👏 Sílaba inicial"], ["inicial", "🔤 Letra inicial"], ["palabra", "📖 Leé la palabra"], ["sumas", "➕ Cuentas"]];
+function jbItems() { const m = IS.bingoMode, nk = isNivK(), B = nwImgsOpc().filter((it) => /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,22}$/.test(it.n)), U = (s) => String(s).toLocaleUpperCase("es"), out = [], vis = new Set();
+  if (m === "sumas") { const [r, rn] = nwRn(IS.seed * 131 + 7), K = +(IS.bingoK || 3), need = K * K + 4, res = nk === 2 ? isMezclar([...new Set(Array.from({ length: 64 }, (_, i) => (2 + (i % 8)) * (2 + Math.floor(i / 8))))].filter((v) => v <= 81), IS.seed).slice(0, need) : isMezclar(Array.from({ length: nk ? 19 : 13 }, (_, i) => i + 2), IS.seed).slice(0, need);
+    res.forEach((v) => { let p; if (nk === 2) { const ds = []; for (let a = 2; a <= 9; a++) if (v % a === 0 && v / a <= 9 && v / a >= 2) ds.push(a); const a = ds[Math.floor(r() * ds.length)] || 1; p = `${a} × ${v / a}`; } else if (r() < 0.7 || nk === 0) { const a = rn(1, v - 1); p = `${a} + ${v - a}`; } else { const b2 = rn(1, 6); p = `${v + b2} − ${b2}`; } out.push({ cell: { w: String(v) }, call: { w: p }, sol: String(v) }); }); return out; }
+  B.forEach((it) => { const w = it.n.trim(), key = m === "silaba" ? U(isSilabas(w.toLowerCase())[0] || w[0]) : m === "inicial" ? nwFold(w)[0] : U(w); if (vis.has(key)) return; vis.add(key);
+    out.push(m === "palabra" ? { cell: { w: key }, call: { url: it.url }, sol: key } : { cell: { w: key }, call: { url: it.url, w: U(w) }, sol: key }); }); return out; }
+function jbBingo() { const m = IS.bingoMode, K = +(IS.bingoK || 3), need = K * K, pool = jbItems(), N = Math.max(1, Math.min(60, +(IS.bingoN || 8))), E = isEscena(IS.tema);
+  if (pool.length < need + 1) throw new Error(m === "sumas" ? "Para este cartón hacen falta más resultados: probá con cartón de 3 × 3." : `Para cartones de ${K} × ${K} en este modo hacen falta al menos ${need + 1} ${m === "silaba" ? "sílabas iniciales" : m === "inicial" ? "letras iniciales" : "palabras"} distintas (hay ${pool.length}). Sumá dibujos al pack o probá con cartón de 3 × 3.`);
+  const vis = new Set(), cartones = []; for (let c = 0; c < N; c++) { let sel; for (let t = 0; t < 120; t++) { sel = isMezclar(pool.map((_, i) => i), IS.seed * 977 + c * 7919 + t * 104729).slice(0, need); const k = [...sel].sort((a, b) => a - b).join(","); if (!vis.has(k) || t === 119) { vis.add(k); break; } } cartones.push(sel); }
+  IS.j2Info = `${N} cartones · ${pool.length} tarjetas para cantar`;
+  const cols = ["#1E5BB8", "#D7263D", "#4AAE4F", "#F28C28"], cw = 252, ch = 296, pos = [[40, 172], [303, 172], [40, 474], [303, 474]];
+  const celda = (it, x, y, s) => nwBox(x + 2, y + 2, s - 4, s - 4, { rx: s * 0.12, st: "#C9D2E3", sw: 1.2 }) + nwT(x + s / 2, y + s / 2 + Math.min(s * 0.34, 34) * 0.36, it.cell.w, nwFit(it.cell.w, Math.min(s * 0.34, 34), s - 12), { a: "middle" });
+  const pags = []; for (let p = 0; p * 4 < N; p++) { let o = ""; for (let j = 0; j < 4 && p * 4 + j < N; j++) { const n = p * 4 + j, [x, y] = pos[j], col = cols[n % 4], s = Math.min((cw - 20) / K, (ch - 62) / K), gx = x + (cw - s * K) / 2, gy = y + 52;
+      o += `<rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="18" fill="${col}"/><rect x="${x + 6}" y="${y + 44}" width="${cw - 12}" height="${ch - 50}" rx="13" fill="#F6F8FC"/>` + nwT(x + 16, y + 31, "BINGO", 24, { c: "#fff" }) + nwT(x + cw - 14, y + 22, E.nombre.toUpperCase().slice(0, 34), 9.5, { a: "end", f: "b", c: "#fff" }) + nwT(x + cw - 14, y + 35, `CARTÓN ${n + 1}`, 9, { a: "end", f: "b", c: "#fff" });
+      cartones[n].forEach((pi, i) => { o += celda(pool[pi], gx + (i % K) * s, gy + Math.floor(i / K) * s, s); }); }
+    o += `<line x1="297.5" y1="172" x2="297.5" y2="770" stroke="#9AA3B5" stroke-width=".8" stroke-dasharray="5 4"/><line x1="40" y1="471" x2="555" y2="471" stroke="#9AA3B5" stroke-width=".8" stroke-dasharray="5 4"/>`;
+    const cons = { silaba: "La seño muestra un dibujo: MARCÁ la sílaba con la que empieza su nombre. ¡Cuando completes tu cartón, gritá BINGO!", inicial: "La seño muestra un dibujo: MARCÁ la letra con la que empieza su nombre. ¡Cuando completes tu cartón, gritá BINGO!", palabra: "La seño muestra un dibujo: BUSCÁ su nombre en tu cartón y MARCALO. ¡Cartón lleno, gritá BINGO!", sumas: "La seño canta una cuenta: RESOLVELA y MARCÁ el resultado. ¡Cuando completes tu cartón, gritá BINGO!" }[m];
+    pags.push([`carton${p}`, `Cartones ${p * 4 + 1}–${Math.min(N, p * 4 + 4)}`, isMarco(`Bingo de ${{ silaba: "sílabas", inicial: "letras", palabra: "palabras", sumas: "cuentas" }[m]}`, cons, o, "")]); }
+  const per = 20; for (let p = 0; p * per < pool.length; p++) { const L = pool.slice(p * per, p * per + per), tw = 515 / 4, th = 600 / 5; let o = "";
+    L.forEach((it, i) => { const x = 40 + (i % 4) * tw, y = 172 + Math.floor(i / 4) * th; o += nwBox(x + 4, y + 4, tw - 8, th - 8, { rx: 10, sw: 1, dash: "5 3.5" });
+      if (it.call.url) o += j2im(it.call.url, x + tw / 2 - (it.call.w ? 34 : 42), y + (it.call.w ? 12 : 14), it.call.w ? 68 : 84, it.call.w ? 68 : 84) + (it.call.w ? nwT(x + tw / 2, y + th - 18, it.call.w, nwFit(it.call.w, 13, tw - 16, "b"), { a: "middle", f: "b" }) : "");
+      else o += nwT(x + tw / 2, y + th / 2 + 8, it.call.w, nwFit(it.call.w, 24, tw - 16), { a: "middle" }); });
+    pags.push([`cantar${p}`, "Tarjetas para cantar", isMarco("Tarjetas para cantar", "RECORTÁ las tarjetas, guardalas en una bolsita y SACÁ de a una para cantarlas.", o, "")]); }
+  pags.push(jbPlanilla(pool.map((it) => [it.call.w || "(dibujo)", it.sol, it.call.url]))); return pags; }
+function jbPlanilla(filas) { const n = filas.length, cols = n > 16 ? 2 : 1, porCol = Math.ceil(n / cols), cw = 515 / cols, rh = Math.min(30, 560 / porCol); let o = "";
+  for (let c = 0; c < cols; c++) { const x0 = 40 + c * cw; o += nwT(x0 + 34, 194, "CANTADO", 9.5, { a: "middle", f: "b", c: "#1E5BB8" }) + nwT(x0 + 70, 194, "TARJETA", 9.5, { f: "b", c: "#1E5BB8" }) + nwT(x0 + cw - 14, 194, "RESPUESTA", 9.5, { a: "end", f: "b", c: "#1E5BB8" }); }
+  filas.forEach(([q, r, url], i) => { const c = Math.floor(i / porCol), k = i % porCol, x0 = 40 + c * cw, y = 204 + k * rh; o += nvFila(x0 + 4, y, cw - 8, rh - 3, k) + `<rect x="${j2f(x0 + 26)}" y="${j2f(y + rh / 2 - 9)}" width="16" height="16" rx="4" fill="#fff" stroke="#1A2744" stroke-width="1.2"/>` + (url ? j2im(url, x0 + 68, y + 2, rh - 7, rh - 7) : "") + nwT(x0 + 70 + (url ? rh : 0), y + rh / 2 + 3.5, q, nwFit(q, 11.5, cw * 0.48, "b"), { f: "b" }) + nwT(x0 + cw - 14, y + rh / 2 + 3.5, r, nwFit(r, 11.5, cw * 0.3, "b"), { a: "end", f: "b", c: NW_ROJO }); });
+  return ["planilla", "Planilla de la seño", isMarco("Planilla de control", "Para la seño: TILDÁ cada tarjeta que vas cantando. Así, cuando alguien grita BINGO, revisás su cartón en un minuto.", o, "")]; }
+const _jgBingo = j2Bingo;
+j2Bingo = function () { const m = IS.bingoMode || "clasico"; if (m !== "clasico") return jbBingo(); const P = _jgBingo.apply(this, arguments); try { const pool = isPalLista(); P.push(jbPlanilla(pool.map((it) => [it.w, it.w, it.url]))); } catch {} return P; };
+const _jgPalSin = isPalSinBanco;
+isPalSinBanco = function (t) { if (t === "bingo" && (IS.bingoMode === "sumas")) return true; return _jgPalSin.apply(this, arguments); };
+
+// ===== Dominó: modos nuevos (cuentas, mayúscula-minúscula, fracciones) y solución con la ronda armada =====
+NW_VAR.domino.push(["cuentas", "➕", "Cuenta y resultado", "4 + 2 con 6"], ["mayusmin", "🔠", "Mayúscula y minúscula", "A con a"], ["fraccion", "🍕", "Fracción y dibujo", "½ con su pizza"]);
+NW_INFO.domino[7] = 2; NW_INFO.domino[8] = "";
+const JD_SIN_PACK = ["cuentas", "mayusmin", "fraccion"];
+function jdCaras(c) { const nk = isNivK(), [r, rn] = nwRn(IS.seed * 61 + 1), n = c.n;
+  if (c.v === "cuentas") { const res = isMezclar(Array.from({ length: nk === 2 ? 40 : nk ? 18 : 9 }, (_, i) => i + 2), IS.seed).slice(0, n); return res.map((v) => { let p; if (nk === 2 && r() < 0.6) { const ds = []; for (let a = 2; a <= 9; a++) if (v % a === 0 && v / a >= 2 && v / a <= 9) ds.push(a); if (ds.length) { const a = ds[Math.floor(r() * ds.length)]; p = `${a} × ${v / a}`; } } if (!p) { if (nk && r() < 0.4) { const b = rn(1, 9); p = `${v + b} − ${b}`; } else { const a = rn(1, v - 1); p = `${a} + ${v - a}`; } } return [["txt", p], ["txt", String(v)]]; }); }
+  if (c.v === "mayusmin") { const L = isMezclar("ABDEFGHLMNPRST".split(""), IS.seed + 3).slice(0, n); return L.map((x) => [["txt", x], ["txt", x.toLowerCase()]]); }
+  if (c.v === "fraccion") { const F = []; for (const d of [2, 3, 4, 5, 6, 8]) for (let k = 1; k < d; k++) F.push([k, d]); return isMezclar(F, IS.seed + 5).slice(0, n).map(([k, d]) => [["frac", k, d], ["pie", k, d]]); }
+  const its = nwItems().slice(0, n); nwNeed(its, 5); const nums = isMezclar([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], IS.seed).slice(0, its.length);
+  return its.map((it, q) => [c.v === "palabra" ? ["txt", nwCase(c, it.n)] : c.v === "silaba" ? ["txt", nwCase(c, isSilabas(it.n.toLowerCase())[0])] : c.v === "inicial" ? ["txt", nwCase(c, it.n[0])] : ["txt", String(nums[q])], c.v === "cantidad" ? ["grp", it, nums[q]] : ["img", it]]); }
+function jdLado(L, x, y, w, h, c) { if (L[0] === "txt") { const big = L[1].length <= 3, fs = nwFit(L[1], big ? 34 : 22, w - 16); return nwT(x + w / 2, y + h / 2 + fs * 0.36, L[1], fs, { a: "middle" }); }
+  if (L[0] === "img") return j2im(L[1].url, x + 8, y + 8, w - 16, h - 16); if (L[0] === "grp") return nvGrupo(L[1].url, L[2], x + 4, y + 4, w - 8, h - 8);
+  if (L[0] === "frac") return nwFrac(x + w / 2, y + h / 2 + 4, L[1], L[2], Math.min(28, h * 0.3)); if (L[0] === "pie") return nwFrFig("circ", L[2], L[1], x + w / 2, y + h / 2, Math.min(w, h) - 22); return ""; }
+nwDomino = function () { const c = nvCfg(); if (!JD_SIN_PACK.includes(c.v) && !(isBanco().items || []).length) nwErr("Esta variante usa los dibujos de tu pack. Cargá un pack o elegí «Cuenta y resultado», «Mayúscula y minúscula» o «Fracción y dibujo».");
+  const P = jdCaras(c), n = P.length; if (n < 5) nwErr("Hacen falta al menos 5 fichas."); const cards = P.map((_, q) => [P[q][0], P[(q + 1) % n][1]]), orden = isMezclar(cards.map((_, q) => q), IS.seed * 3 + 2);
+  const cw = 245, gap = 12, ch = Math.min(118, (560 - gap * (Math.ceil(n / 2) - 1)) / Math.ceil(n / 2)), ox = 40 + (515 - cw * 2 - gap) / 2, oy = 176; let act = "", sol = "";
+  const ficha = (q, x, y, w, h) => nwBox(x, y, w, h, { rx: Math.min(14, h * 0.18), st: "#1A2744", sw: 1.6 }) + `<line x1="${j2f(x + w / 2)}" y1="${j2f(y + 8)}" x2="${j2f(x + w / 2)}" y2="${j2f(y + h - 8)}" stroke="#1A2744" stroke-width="1.4"/>` + jdLado(cards[q][0], x, y, w / 2, h, c) + jdLado(cards[q][1], x + w / 2, y, w / 2, h, c);
+  orden.forEach((q, k) => { act += ficha(q, ox + (k % 2) * (cw + gap), oy + Math.floor(k / 2) * (ch + gap), cw, ch); }); act += NW_TIJ(ox - 14, oy - 6, 1);
+  // solución: cada ficha con su número de orden en la ronda
+  orden.forEach((q, k) => { const x = ox + (k % 2) * (cw + gap), y = oy + Math.floor(k / 2) * (ch + gap); sol += `<circle cx="${j2f(x + 2)}" cy="${j2f(y + 2)}" r="11" fill="${NW_ROJO}" stroke="#fff" stroke-width="2"/>` + nwT(x + 2, y + 6, `${q + 1}`, 11, { a: "middle", f: "b", c: "#fff" }); });
+  const T = { cuentas: ["Dominó de cuentas", "RECORTÁ las fichas. JUGÁ uniendo cada cuenta con la ficha que tiene su resultado, hasta cerrar la ronda."], mayusmin: ["Dominó de letras", "RECORTÁ las fichas. JUGÁ uniendo cada MAYÚSCULA con su minúscula, hasta cerrar la ronda."], fraccion: ["Dominó de fracciones", "RECORTÁ las fichas. JUGÁ uniendo cada fracción con el dibujo que la muestra, hasta cerrar la ronda."] }[c.v] || ["Dominó ilustrado", "RECORTÁ las fichas. JUGÁ uniendo cada dibujo con la ficha que le corresponde hasta cerrar la ronda."];
+  return nwPag(T[0], T[1], act, sol, "Los números rojos dan el orden de la ronda: la 1 se une con la 2, la 2 con la 3… y la última con la 1."); };
+NW_GEN.domino = nwDomino;
+if (typeof DF_DESC !== "undefined") DF_DESC.domino = ["Pocas fichas", "Las del nivel", "Más fichas"];
+
+// ===== Memotest: parejas distintas =====
+const JM_MODOS = [["igual", "🖼️ Dibujo y dibujo"], ["palabra", "🔤 Dibujo y palabra"], ["numcant", "🔢 Número y cantidad"], ["mayusmin", "🔠 Mayúscula y minúscula"], ["pregresp", "❓ Pregunta y respuesta"]];
+function jmPares() { const m = IS.memoPar, nk = isNivK(), P = Math.max(2, Math.min(12, IS.j2N || [4, 6, 8][nk])), B = (isBancoSel("memo", isBanco().items) || []).filter((x) => x && x.url);
+  if (m === "numcant") { const nums = isMezclar(Array.from({ length: nk ? 10 : 6 }, (_, i) => i + 1), IS.seed).slice(0, P), url = B[0] ? B[0].url : isEmojiPng("⭐"); return nums.map((k, i) => [{ txt: String(k) }, { grp: (B[i % Math.max(1, B.length)] || {}).url || url, k }]); }
+  if (m === "mayusmin") return isMezclar("ABDEFGHLMNPRST".split(""), IS.seed + 3).slice(0, P).map((x) => [{ txt: x }, { txt: x.toLowerCase() }]);
+  const L = gqLista(); if (L) return isMezclar(L, IS.seed + 7).slice(0, P).map((q) => [{ txt: q.p, chico: true }, { txt: q.r }]);
+  const [r, rn] = nwRn(IS.seed * 7 + 3), max = [5, 10, 20][nk], vis = new Set(), out = []; while (out.length < P && vis.size < 60) { const a = rn(1, max), b = rn(1, max), v = a + b; if (vis.has(v)) { vis.add("x" + out.length + v); continue; } vis.add(v); out.push([{ txt: `${a} + ${b}` }, { txt: String(v) }]); } return out; }
+function jmMemo() { const pares = jmPares(), P = pares.length, cartas = isMezclar(pares.flatMap((p, i) => [{ f: p[0], i }, { f: p[1], i }]), IS.seed + 11), n = cartas.length;
+  const C = n <= 8 ? 2 : n <= 12 ? 3 : 4, R = Math.ceil(n / C), J = { x: 40, y: 165, w: 515, h: 610 }, g = 8, cw = (J.w - g * (C - 1)) / C, ch = Math.min((J.h - g * (R - 1)) / R, cw * 1.25), oy = J.y + (J.h - (ch * R + g * (R - 1))) / 2;
+  const pos = (i, espejo) => { const c = i % C, rr = Math.floor(i / C); return [J.x + (espejo ? C - 1 - c : c) * (cw + g), oy + rr * (ch + g)]; };
+  const cols = ["#1E5BB8", "#D7263D", "#4AAE4F", "#F28C28", "#7B4FD0", "#2A9D8F"], logo = (() => { try { const u = mzLogo(); return /^data:image\//.test(u) ? u : ""; } catch { return ""; } })(); let fr = "", dor = "";
+  cartas.forEach((c, i) => { const [x, y] = pos(i, false), col = cols[c.i % cols.length]; fr += nwBox(x, y, cw, ch, { rx: 12, sw: 1, dash: "5 3" }) + `<rect x="${j2f(x + 6)}" y="${j2f(y + 6)}" width="${j2f(cw - 12)}" height="${j2f(ch - 12)}" rx="9" fill="#FFF8EA" stroke="${col}" stroke-width="2.5"/>`;
+    const F = c.f; if (F.grp) fr += nvGrupo(F.grp, F.k, x + 10, y + 10, cw - 20, ch - 20); else if (F.chico) { const L = isPartirAncho(F.txt, cw - 26, 13, "Nunito", 800).slice(0, 6), fs = L.length > 4 ? 11.5 : 13; fr += L.map((l, k) => nwT(x + cw / 2, y + ch / 2 + (k - (L.length - 1) / 2) * fs * 1.25 + fs * 0.35, l, fs, { a: "middle", f: "b" })).join(""); }
+    else { const fs = nwFit(F.txt, Math.min(46, ch * 0.4), cw - 44); fr += nwT(x + cw / 2, y + ch / 2 + fs * 0.36, F.txt, fs, { a: "middle", c: col }); }
+    const [dx, dy] = pos(i, true); dor += `<rect x="${j2f(dx)}" y="${j2f(dy)}" width="${j2f(cw)}" height="${j2f(ch)}" rx="12" fill="#1E5BB8"/><rect x="${j2f(dx + 6)}" y="${j2f(dy + 6)}" width="${j2f(cw - 12)}" height="${j2f(ch - 12)}" rx="9" fill="none" stroke="#F6B40E" stroke-width="2" stroke-dasharray="3 3"/>` + (() => { const ls = Math.min(cw * 0.44, ch * 0.52), tf = Math.min(12, cw / 10); return (logo ? `<image href="${logo}" x="${j2f(dx + cw / 2 - ls / 2)}" y="${j2f(dy + ch / 2 - ls / 2 - tf * 0.7)}" width="${j2f(ls)}" height="${j2f(ls)}"/>` : "") + nwT(dx + cw / 2, dy + ch / 2 + ls / 2 + tf * 0.6, "COFRE DIDÁCTICO", tf, { a: "middle", c: "#fff" }); })(); });
+  const q = { numcant: "cada número con su cantidad", mayusmin: "cada MAYÚSCULA con su minúscula", pregresp: "cada pregunta con su respuesta" }[IS.memoPar];
+  return [["frente", "Frente", isMarco("Memotest", `RECORTÁ las ${n} cartas y JUGÁ a encontrar las parejas: ${q}.`, fr, "")], ["dorso", "Dorso (imprimir del otro lado)", isMarco("Memotest · dorso", "Imprimí esta hoja del otro lado de las cartas (a doble faz, por el borde largo).", dor, "")]]; }
+const _jgMemo = j2Memo;
+j2Memo = function (B) { const m = IS.memoPar || "igual"; if (m === "igual" || m === "palabra") { const prev = IS.j2Modo; IS.j2Modo = m === "palabra" ? "palabra" : "igual"; try { return _jgMemo.apply(this, arguments); } finally { IS.j2Modo = prev; } } return jmMemo(); };
+
+// ===== Escape room con historia y candados distintos =====
+NW_VAR.escape.push(["historia", "📜", "Con historia y candados", "Sobres, 4 tipos de candado"]);
+const JE_COL = [["rojo", "#D7263D"], ["azul", "#1E5BB8"], ["verde", "#4AAE4F"], ["amarillo", "#F6B40E"]];
+function jeFlecha(dir, cx, cy, s, col = "#1A2744") { const a = { "↑": -90, "→": 0, "↓": 90, "←": 180 }[dir]; return `<g transform="rotate(${a} ${j2f(cx)} ${j2f(cy)})"><path d="M${j2f(cx - s * 0.36)} ${j2f(cy)}H${j2f(cx + s * 0.3)}M${j2f(cx + s * 0.06)} ${j2f(cy - s * 0.26)}L${j2f(cx + s * 0.34)} ${j2f(cy)}L${j2f(cx + s * 0.06)} ${j2f(cy + s * 0.26)}" fill="none" stroke="${col}" stroke-width="${j2f(s * 0.13)}" stroke-linecap="round" stroke-linejoin="round"/></g>`; }
+function jeCandado(x, y, w, h, col, tit) { return `<path d="M${j2f(x + w * 0.28)} ${j2f(y + h * 0.36)}V${j2f(y + h * 0.22)}a${j2f(w * 0.22)} ${j2f(w * 0.22)} 0 0 1 ${j2f(w * 0.44)} 0V${j2f(y + h * 0.36)}" fill="none" stroke="#7A869C" stroke-width="${j2f(w * 0.07)}"/>` + nwBox(x, y + h * 0.34, w, h * 0.66, { rx: 14, fill: col, st: "#1A2744", sw: 1.4 }) + nwT(x + w / 2, y + h * 0.34 + 20, tit, nwFit(tit, 12, w - 16), { a: "middle", c: "#fff" }); }
+function nwEscapeHist() { const c = nvCfg(), nk = isNivK(), I = nwImgsOpc().filter((it) => /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{3,8}$/.test(it.n) && !/^[A-ZÁÉÍÓÚÑ]/.test(it.n)), [r, rn] = nwRn(IS.seed * 139 + 11), E = isEscena(IS.tema), max = [5, 10, 20][nk];
+  const pers = (nwImgsOpc().find((it) => /^[A-ZÁÉÍÓÚÑ]/.test(it.n)) || {}).n, it0 = I[0] || nwImgsOpc()[0];
+  // reto 1 y 2 → candado de números (2 cifras)
+  const d1 = rn(1, 9), d2 = rn(0, 9), a2 = rn(0, Math.max(0, d2)), L = gqLista(), qNum = L ? L.filter((q) => /^\d$/.test(q.r.trim())) : [];
+  const r1 = it0 ? { t: "Contá los dibujos", tipo: "grp", k: d1, url: it0.url, sol: String(d1) } : { t: "Resolvé", tipo: "txt", txt: `${d1 - 1} + 1 = ?`, sol: String(d1) };
+  const r2 = qNum[0] ? { t: "Respondé la pregunta", tipo: "txt", txt: qNum[0].p, sol: qNum[0].r.trim() } : { t: "Resolvé la cuenta", tipo: "txt", txt: d2 - a2 > 0 || a2 > 0 ? `${d2 - a2} + ${a2} = ?` : `${d2 + 3} − 3 = ?`, sol: String(d2) };
+  const num = r1.sol + r2.sol;
+  // reto 3 → candado de palabra (ordená las letras)
+  const W = I.length ? nwFold(I[rn(0, I.length - 1)].n) : "PATRIA"; let mez = W; for (let g = 0; g < 20 && mez === W; g++) mez = isMezclar([...W], IS.seed + g).join("");
+  // reto 4 → candado de colores (sumá y pintá)
+  const colS = isMezclar(JE_COL.map((x, i) => i), IS.seed + 4).slice(0, 3), cuentasC = colS.map((ci) => { const v = ci + 1 + (nk ? 4 : 0), a = rn(0, v); return [`${a} + ${v - a}`, ci]; }), claveC = JE_COL.map(([n, col], i) => [i + 1 + (nk ? 4 : 0), n, col]);
+  // reto 5 → candado de flechas (camino en la cuadrícula)
+  const N = 4, pasos = nk ? 4 : 3, dirs = []; let px = 0, py = N - 1; const start = [px, py]; const MV = [["→", 1, 0], ["↑", 0, -1], ["↓", 0, 1], ["←", -1, 0]], OP = { "→": "←", "←": "→", "↑": "↓", "↓": "↑" }; for (let s = 0; s < pasos; s++) { const op = MV.filter(([d, dx, dy]) => px + dx >= 0 && px + dx < N && py + dy >= 0 && py + dy < N && d !== OP[dirs[dirs.length - 1]]); const [d, dx, dy] = op[Math.floor(r() * op.length)]; dirs.push(d); px += dx; py += dy; }
+  // ---------- hoja 1: historia + cofre con 4 candados ----------
+  const quien = pers || "La seño"; let sol = "", act = nwBox(40, 172, 515, 92, { rx: 16, fill: "#FFF8EC", st: "#F2C58F" }) + nwT(60, 194, "LA HISTORIA", 11.5, { c: "#B5650A" });
+  const hist = `¡Oh, no! ${quien} guardó un tesoro de ${E.nombre} en el cofre y lo cerró con 4 candados. Abrí los sobres, resolvé cada reto y escribí la clave en su candado. ¡Si abrís los 4, el tesoro es tuyo!`;
+  isPartirAncho(hist, 480, 13, "Nunito", 800).slice(0, 4).forEach((l, k) => { act += nwT(60, 214 + k * 16, l, 13, { f: "b" }); });
+  const cy0 = 290, lw = 245, lh = 220, LOCKS = [["CANDADO DE NÚMEROS", "#1E5BB8", "Sobres 1 y 2"], ["CANDADO DE PALABRA", "#7B4FD0", "Sobre 3"], ["CANDADO DE COLORES", "#F28C28", "Sobre 4"], ["CANDADO DE FLECHAS", "#4AAE4F", "Sobre 5"]];
+  LOCKS.forEach(([t, col, sb], k) => { const x = 40 + (k % 2) * (lw + 25), y = cy0 + Math.floor(k / 2) * (lh + 12); act += jeCandado(x, y, lw, lh, col, t) + nwT(x + lw / 2, y + lh * 0.34 + 36, sb, 10, { a: "middle", f: "b", c: "#fff" });
+    const by = y + lh * 0.34 + 54, bh = 52; if (k === 0) [0, 1].forEach((q) => { act += nwBox(x + lw / 2 - 62 + q * 66, by, 58, bh, { rx: 10, st: "#1A2744", sw: 1.6 }); sol += nwNum(x + lw / 2 - 33 + q * 66, by + 36, num[q], 30); });
+    if (k === 1) { const s = Math.min(34, (lw - 30) / W.length - 4); [...W].forEach((ch, q) => { const bx = x + (lw - W.length * (s + 4)) / 2 + q * (s + 4); act += nwBox(bx, by + 8, s, s + 4, { rx: 7, st: "#1A2744", sw: 1.4 }); sol += nwNum(bx + s / 2, by + 8 + s * 0.78, ch, s * 0.7); }); }
+    if (k === 2) colS.forEach((ci, q) => { const cx = x + lw / 2 - 60 + q * 60; act += `<circle cx="${j2f(cx)}" cy="${j2f(by + bh / 2)}" r="22" fill="#fff" stroke="#1A2744" stroke-width="1.6"/>`; sol += `<circle cx="${j2f(cx)}" cy="${j2f(by + bh / 2)}" r="19" fill="${JE_COL[ci][1]}"/>`; });
+    if (k === 3) dirs.forEach((d, q) => { const bx = x + (lw - pasos * 50) / 2 + q * 50; act += nwBox(bx + 3, by, 44, bh, { rx: 10, st: "#1A2744", sw: 1.4 }); sol += jeFlecha(d, bx + 25, by + bh / 2, 32, NW_ROJO); }); });
+  // ---------- hoja 2: sobres para recortar ----------
+  const sw = 257.5, sh = 200; let sob = "";
+  const sobre = (k, x, y, tit, col) => nwBox(x + 6, y + 6, sw - 12, sh - 12, { rx: 14, fill: "#FFFDF6", st: "#9AA3B5", dash: "6 4" }) + `<path d="M${j2f(x + 6)} ${j2f(y + 20)}L${j2f(x + sw / 2)} ${j2f(y + 56)}L${j2f(x + sw - 6)} ${j2f(y + 20)}" fill="none" stroke="${col}" stroke-width="1.6"/><circle cx="${j2f(x + sw / 2)}" cy="${j2f(y + 54)}" r="14" fill="${col}"/>` + nwT(x + sw / 2, y + 59, String(k), 14, { a: "middle", c: "#fff" }) + nwT(x + 20, y + 26, `SOBRE ${k}`, 10, { f: "b", c: col }) + nwT(x + sw / 2, y + 86, tit, nwFit(tit, 12.5, sw - 30, "b"), { a: "middle", f: "b" });
+  const R1 = (x, y) => r1.tipo === "grp" ? nvGrupo(r1.url, r1.k, x + 30, y + 96, sw - 60, sh - 112) : nwT(x + sw / 2, y + 140, r1.txt, 24, { a: "middle" });
+  const R2 = (x, y) => { const Lr = isPartirAncho(r2.txt, sw - 40, 15, "Nunito", 800).slice(0, 4); return Lr.map((l, k) => nwT(x + sw / 2, y + 122 + k * 18, l, Lr.length > 1 ? 13.5 : 22, { a: "middle", f: Lr.length > 1 ? "b" : undefined })).join(""); };
+  [[1, r1.t + " · 1.ª cifra", "#1E5BB8", R1], [2, r2.t + " · 2.ª cifra", "#1E5BB8", R2], [3, "Ordená las letras: es la palabra", "#7B4FD0", (x, y) => { const s = Math.min(30, (sw - 40) / mez.length - 4); return [...mez].map((ch, q) => { const bx = x + (sw - mez.length * (s + 4)) / 2 + q * (s + 4); return nwBox(bx, y + 112, s, s + 4, { rx: 7, fill: "#F3EEFF", st: "#7B4FD0", sw: 1.2 }) + nwT(bx + s / 2, y + 112 + s * 0.78, ch, s * 0.7, { a: "middle" }); }).join(""); }],
+    [4, "Resolvé y mirá el color de cada resultado", "#F28C28", (x, y) => cuentasC.map(([t], q) => nwT(x + 30, y + 112 + q * 22, `${q + 1}.º:  ${t} = ?`, 14, { f: "b" })).join("") + claveC.map(([v, n, col], q) => `<circle cx="${j2f(x + 176 + (q % 2) * 40)}" cy="${j2f(y + 108 + Math.floor(q / 2) * 34)}" r="12" fill="${col}"/>` + nwT(x + 176 + (q % 2) * 40, y + 112 + Math.floor(q / 2) * 34, String(v), 10.5, { a: "middle", c: "#fff" })).join("")],
+    [5, "Seguí el camino y anotá las flechas", "#4AAE4F", (x, y) => { const g = 22, gx = x + (sw - N * g) / 2, gy = y + 98; let o = ""; for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) o += `<rect x="${j2f(gx + j * g)}" y="${j2f(gy + i * g)}" width="${g}" height="${g}" fill="#fff" stroke="#C9D3E3"/>`; let cx = start[0], cy = start[1], d = `M${j2f(gx + cx * g + g / 2)} ${j2f(gy + cy * g + g / 2)}`; dirs.forEach((dd) => { const [dx, dy] = { "→": [1, 0], "←": [-1, 0], "↑": [0, -1], "↓": [0, 1] }[dd]; cx += dx; cy += dy; d += `L${j2f(gx + cx * g + g / 2)} ${j2f(gy + cy * g + g / 2)}`; }); return o + `<path d="${d}" fill="none" stroke="#4AAE4F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 7"/><circle cx="${j2f(gx + start[0] * g + g / 2)}" cy="${j2f(gy + start[1] * g + g / 2)}" r="6" fill="#4AAE4F"/>` + isEstrella(gx + cx * g + g / 2, gy + cy * g + g / 2, 9, 4, "#F6B40E"); }]]
+    .forEach(([k, t, col, f], q) => { const x = 40 + (q % 2) * sw, y = 172 + Math.floor(q / 2) * sh; sob += sobre(k, x, y, t, col) + f(x, y); });
+  sob += nwBox(40 + sw + 6, 172 + 2 * sh + 6, sw - 12, sh - 12, { rx: 14, fill: "#F1F8EF", st: "#4AAE4F" }) + nwT(40 + sw * 1.5, 172 + 2 * sh + 60, "¡ABRISTE EL COFRE!", 16, { a: "middle", c: "#2E7D32" }) + isEstrella(40 + sw * 1.5, 172 + 2 * sh + 112, 30, 13, "#F6B40E") + nwT(40 + sw * 1.5, 172 + 2 * sh + 168, "Diploma de detective", 11, { a: "middle", f: "b", c: "#2E7D32" });
+  const solC = `Claves: ${num} · ${W} · ${colS.map((ci) => JE_COL[ci][0]).join(", ")} · ${dirs.map((d) => ({ "↑": "arriba", "→": "derecha", "↓": "abajo", "←": "izquierda" })[d] || d).join(", ")}`;
+  return [["actividad", "Cofre y candados", isMarco("Escape room: el cofre", "LEÉ la historia, RESOLVÉ los retos de los sobres y ESCRIBÍ cada clave en su candado.", act, "")], ["sobres", "Sobres", isMarco("Escape room: los sobres", "RECORTÁ los sobres y dalos de a uno. El último es el premio: entregalo cuando abran los 4 candados.", sob, "")], ["solucion", "Soluciones", isMarco("Soluciones", solC, act + sol, "")]]; }
+const _jgEscape = nwEscape;
+nwEscape = function () { return nvCfg().v === "historia" ? nwEscapeHist() : _jgEscape.apply(this, arguments); };
+NW_GEN.escape = nwEscape; NW_INFO.escape[7] = 2;
+
+// ===== Oca con casilleros temáticos y tarjetas del banco =====
+function joTema() { const B = (isBancoSel("oca", isBanco().items) || nwImgsOpc()).filter((x) => x && x.url && x.n), comun = B.filter((x) => !/^[A-ZÁÉÍÓÚÑ]/.test(x.n) && !/\s/.test(x.n)), pers = B.filter((x) => /^[A-ZÁÉÍÓÚÑ]/.test(x.n)), E = isEscena(IS.tema);
+  const art = (n) => nwArt(n), it = (L, k) => L.length ? L[k % L.length] : null;
+  return { avanza: (k) => { const x = it(comun, k); return x ? [x, `¡Encontraste ${art(x.n).un} ${x.n}! Avanzá 2`] : [null, "¡Qué suerte! Avanzá 2"]; },
+    vuelve: (k) => { const x = it(comun, k + 1); return x ? [x, `Se te perdió ${art(x.n).el} ${x.n}. Volvé 3`] : [null, "¡Uy! Volvé 3"]; },
+    turno: (k) => { const x = it(pers, k); return x ? [x, `Ayudás a ${x.n}. Perdés un turno`] : [null, `Te quedás mirando ${E.nombre.toLowerCase().startsWith("día") ? "el acto" : "el festejo"}. Perdés un turno`]; },
+    otra: (k) => { const x = it(pers, k + 1); return x ? [x, `¡${x.n} te da ánimo! Tirá otra vez`] : [null, "¡Bien! Tirá otra vez"]; } }; }
+let JO_SUP = { ic: 0, ro: 0 }, JO_CAP = { tab: "" };
+const _joIc = isOcaIcono; isOcaIcono = function () { if (JO_SUP.ic > 0) { JO_SUP.ic--; return ""; } return _joIc.apply(this, arguments); };
+const _joRo = isOcaRotulo; isOcaRotulo = function () { if (JO_SUP.ro > 0) { JO_SUP.ro--; return { l: [], fs: 8 }; } return _joRo.apply(this, arguments); };
+const _jgOcaMarco = isMarco;
+isMarco = function (titulo, consigna, cuerpo, num) { if (JO_CAP.on && /^Juego de la oca:/.test(titulo || "")) JO_CAP.tab = cuerpo || ""; return _jgOcaMarco.apply(this, arguments); };
+const _jgOca = j2Oca;
+j2Oca = function () { const tema = IS.ocaTema !== false, L = gqLista(), N = Math.max(20, Math.min(42, +(IS.ocaN || 30))), C = 6, R = Math.ceil(N / C), cw = 515 / C, chh = Math.min(96, 470 / R), y0 = 176;
+  const tipos = Array(N).fill("normal"), ciclo = ["preg", "avanza", "preg", "turno", "preg", "otra", "preg", "vuelve"], r = isRand(IS.seed * 13 + 1); let k = Math.floor(r() * 3); for (let i = 3; i < N - 2; i += 2 + Math.floor(r() * 2)) tipos[i] = ciclo[k++ % ciclo.length];
+  const esp = tipos.filter((t) => t !== "normal" && t !== "preg").length; let P;
+  if (tema) { JO_SUP = { ic: 0, ro: 0 }; JO_CAP = { tab: "", on: true }; const T = joTema();
+    // los casilleros especiales del tablero original quedan sin texto: se reemplazan por los temáticos
+    const orig = isOcaRotulo, origI = isOcaIcono; let cuenta = 0; isOcaRotulo = function (txt) { if (cuenta < tipos.filter((t) => t !== "normal").length && ["AVANZÁ 2", "VOLVÉ 3", "PERDÉS UN TURNO", "TIRÁ OTRA VEZ", "PREGUNTA"].includes(txt)) { cuenta++; if (txt !== "PREGUNTA") { JO_SUP.ic = 1; return { l: [], fs: 8 }; } } return orig.apply(this, arguments); };
+    try { P = _jgOca.apply(this, arguments); } finally { isOcaRotulo = orig; isOcaIcono = origI; JO_SUP = { ic: 0, ro: 0 }; JO_CAP.on = false; }
+    const pos = (i) => { const row = Math.floor(i / C), c = i % C, col = row % 2 ? C - 1 - c : c; return [40 + col * cw + cw / 2, y0 + row * chh + chh / 2]; }, cnt = {}; let extra = "";
+    tipos.forEach((t, i) => { if (!T[t]) return; cnt[t] = (cnt[t] || 0) + 1; const [cx, cy] = pos(i), col = IS_OCA_T[t][0], [x, txt] = T[t](cnt[t] - 1), im = Math.min(cw, chh) * 0.34, L2 = isPartirAncho(txt, cw - 14, 7.5, "Nunito", 800).slice(0, 3), ty = cy + chh / 2 - 10 - (L2.length - 1) * 9;
+      extra += (x ? j2im(x.url, cx - im / 2, cy - chh / 2 + 18, im, im) : _joIc(t, cx, cy - chh / 2 + 18 + im / 2, im, col)) + L2.map((l, j) => nwT(cx, ty + j * 9, l, 7.5, { a: "middle", f: "b", c: col })).join(""); });
+    const ti = P.findIndex((x) => x[0] === "tablero"); if (ti >= 0 && JO_CAP.tab) P[ti] = ["tablero", "Tablero", isMarco(`Juego de la oca: ${isEscena(IS.tema).nombre}`, "TIRÁ el dado, AVANZÁ con tu ficha y HACÉ lo que dice el casillero.", JO_CAP.tab + extra, "")]; }
+  else P = _jgOca.apply(this, arguments);
+  if (L) { const Q = isMezclar(L, IS.seed + 9).slice(0, 12), qw = 515 / 3, qh = 150; let o = ""; Q.forEach((q, i) => { const x = 40 + (i % 3) * qw, y = 172 + Math.floor(i / 3) * qh, L2 = isPartirAncho(q.p, qw - 28, 12.5, "Nunito", 800).slice(0, 5);
+      o += nwBox(x + 4, y + 4, qw - 8, qh - 8, { rx: 12, st: "#1E5BB8", sw: 1.2, dash: "5 3.5" }) + `<circle cx="${j2f(x + 22)}" cy="${y + 22}" r="10" fill="#1E5BB8"/>` + nwT(x + 22, y + 27, "?", 13, { a: "middle", c: "#fff" }) + nwT(x + 38, y + 26, "PREGUNTA", 9, { f: "b", c: "#1E5BB8" }) + L2.map((l, j) => nwT(x + 14, y + 52 + j * 16, l, 12.5, { f: "b" })).join("") + `<text transform="rotate(180 ${j2f(x + qw - 16)} ${y + qh - 16})" x="${j2f(x + qw - 16)}" y="${y + qh - 16}" font-size="8.5" font-weight="700" fill="#9AA3B5" ${J2B}>Respuesta: ${svgEsc(q.r)}</text>`; });
+    P.splice(1, 0, ["preguntas", "Tarjetas de preguntas", isMarco("Tarjetas de preguntas", "RECORTÁ las tarjetas y ponelas boca abajo. La respuesta está chiquita y dada vuelta, para la seño.", o, "")]); }
+  return P; };
+
+// ===== Rompecabezas de preguntas (juego nuevo) =====
+NW_INFO.rompe = ["🧩", "Rompecabezas de preguntas", "Respondé bien y aparece el dibujo", "juegos", [6, 9, 12], [6, 12], [6, 9, 12], 2, ""];
+NW_VAR.rompe = [["mixto", "🎲", "Lengua y matemática", "Preguntas mezcladas"], ["mate", "🔢", "Solo matemática", "Cuentas del nivel"], ["lengua", "🔤", "Solo lengua", "Letras y palabras"]];
+(() => { const k = "rompe", I = NW_INFO[k]; IS_J2[k] = [I[0], I[1], I[2]]; IS_TIPO_INFO[k] = [I[0], I[1], I[2]]; IS_TIPO_CAT[k] = I[3]; IS_ACT_N[k] = I[1]; IS_ORIENT_DEF[k] = "v"; IS_TXT_DEF[k] = false; NV_VAR[k] = NW_VAR[k]; })();
+function jrPreguntas(c, n) { const L = gqLista(); if (L) { const vis = new Set(), out = []; isMezclar(L, IS.seed + 13).forEach((q) => { const k = fold(q.r); if (!vis.has(k) && out.length < n) { vis.add(k); out.push({ p: q.p, r: q.r }); } }); if (out.length >= n) return out; }
+  const nk = isNivK(), [r, rn] = nwRn(IS.seed * 151 + 3), max = [5, 10, 20][nk], I = nwImgsOpc().filter((it) => /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{3,9}$/.test(it.n)), vis = new Set(), out = [];
+  const mate = () => { for (let g = 0; g < 40; g++) { const a = rn(1, max), b = rn(1, max), op = nk && r() < 0.35 ? "−" : nk === 2 && r() < 0.3 ? "×" : "+"; let p, v; if (op === "+") { p = `${a} + ${b}`; v = a + b; } else if (op === "−") { const x = Math.max(a, b), y = Math.min(a, b); p = `${x} − ${y}`; v = x - y; } else { const x = rn(2, 9), y = rn(2, 9); p = `${x} × ${y}`; v = x * y; } if (!vis.has(String(v))) { vis.add(String(v)); return { p: `${p} = ?`, r: String(v), big: true }; } } return null; };
+  const lengua = (k) => { const it = I[(k + IS.seed) % Math.max(1, I.length)]; if (!it) return null; const w = nwFold(it.n), opts = [{ p: "¿Con qué letra empieza?", r: w[0], img: it.url }, { p: "¿Con qué letra termina?", r: w[w.length - 1], img: it.url }, { p: "¿Cuántas letras tiene?", r: String(w.length), img: it.url }, { p: `Ordená: ${isMezclar([...w], IS.seed + k).join(" - ")}`, r: w }];
+    for (const o of isMezclar(opts, IS.seed + k * 3)) if (!vis.has(fold(o.r))) { vis.add(fold(o.r)); return o; } return null; };
+  for (let k = 0; out.length < n && k < n * 6; k++) { const q = c.v === "mate" || (c.v === "mixto" && k % 2) || !I.length ? mate() : lengua(k); if (q) out.push(q); } return out.slice(0, n); }
+function nwRompe() { const c = nvCfg(), n = c.n, Q = jrPreguntas(c, n); if (Q.length < n) nwErr("No alcanzan las preguntas con respuestas distintas: sumá preguntas en «Mis preguntas» o elegí menos piezas.");
+  const C = 3, R = Math.ceil(n / C), gw = 507, gh = Math.min(590, R * 170), cw = gw / C, ch = gh / R, ox = 44, oy = 176 + (600 - gh) / 2, it = nwImgsOpc()[0], img = it ? it.url : isEmojiPng(mzIcon(IS.tema)), orden = isMezclar(Q.map((_, i) => i), IS.seed * 7 + 5);
+  const cel = (i, k = i) => [ox + (k % C) * cw, oy + Math.floor(k / C) * ch]; let base = "", pz = "", dor = "", sol = "";
+  Q.forEach((q, i) => { const [x, y] = cel(i); base += nwBox(x + 3, y + 3, cw - 6, ch - 6, { rx: 12, fill: i % 2 ? "#EEF6FF" : "#FFF6E8", st: "#C9D3E3", sw: 1.2 }) + nwT(x + 16, y + 22, String(i + 1), 12, { f: "b", c: "#9AA3B5" });
+    if (q.img) base += j2im(q.img, x + cw / 2 - 26, y + 16, 52, 52); const L2 = q.big ? [q.p] : isPartirAncho(q.p, cw - 26, 13, "Nunito", 800).slice(0, 4), fs = q.big ? nwFit(q.p, 24, cw - 24) : 13, y0 = q.img ? y + 92 : y + ch / 2 - (L2.length - 1) * fs * 0.62 + fs * 0.3;
+    base += L2.map((l, k) => nwT(x + cw / 2, y0 + k * fs * 1.24, l, fs, { a: "middle", f: q.big ? undefined : "b" })).join("");
+    sol += nwBox(x + cw / 2 - 40, y + ch - 32, 80, 24, { rx: 12, fill: "#FDE4EA", st: NW_ROJO, sw: 1 }) + nwT(x + cw / 2, y + ch - 15, q.r, nwFit(q.r, 13, 72, "b"), { a: "middle", f: "b", c: NW_ROJO }); });
+  // piezas (respuestas mezcladas) y su dorso con el pedazo del dibujo (espejado para imprimir a doble faz)
+  const fondo = `<defs><linearGradient id="jrG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCEEFF"/><stop offset="1" stop-color="#FFF4D6"/></linearGradient></defs>`; dor += fondo;
+  orden.forEach((qi, k) => { const [x, y] = cel(qi, k); pz += nwBox(x + 2, y + 2, cw - 4, ch - 4, { rx: 6, st: "#1A2744", sw: 1.2, dash: "6 4" }) + nwT(x + cw / 2, y + ch / 2 + 10, Q[qi].r, nwFit(Q[qi].r, 30, cw - 24), { a: "middle" });
+    const col = k % C, rr = Math.floor(k / C), mx = ox + (C - 1 - col) * cw, my = oy + rr * ch, [bx, by] = cel(qi), id = `jrc${IS.seed % 997}_${k}`;
+    dor += `<clipPath id="${id}"><rect x="${j2f(mx)}" y="${j2f(my)}" width="${j2f(cw)}" height="${j2f(ch)}"/></clipPath><g clip-path="url(#${id})"><rect x="${j2f(mx)}" y="${j2f(my)}" width="${j2f(cw)}" height="${j2f(ch)}" fill="url(#jrG)"/>${j2im(img, mx - (bx - ox) + gw * 0.08, my - (by - oy) + gh * 0.06, gw * 0.84, gh * 0.88)}</g><rect x="${j2f(mx)}" y="${j2f(my)}" width="${j2f(cw)}" height="${j2f(ch)}" fill="none" stroke="#fff" stroke-width="1.5"/>`; });
+  pz += NW_TIJ(ox - 10, oy - 8, 1);
+  return [["actividad", "Base con preguntas", isMarco("Rompecabezas de preguntas", "RECORTÁ las piezas y PONÉ cada una sobre la pregunta que responde. Después DALAS VUELTA: ¡aparece el dibujo!", base, "")],
+    ["piezas", "Piezas con respuestas", isMarco("Piezas para recortar", "Imprimí la hoja siguiente del otro lado (doble faz, por el borde largo). RECORTÁ por las líneas punteadas.", pz, "")],
+    ["dorso", "Dorso de las piezas", isMarco("Dorso de las piezas", "Imprimí esta hoja del otro lado de las piezas: cada pieza tiene un pedacito del dibujo.", dor, "")],
+    ["solucion", "Soluciones", isMarco("Soluciones", "La respuesta de cada pregunta.", base + sol, "")]]; }
+NW_GEN.rompe = nwRompe;
+if (typeof DF_DESC !== "undefined") DF_DESC.rompe = ["6 piezas", "9 piezas", "12 piezas"];
+try { IS_NAV[0][1][0][3] = `${Object.keys(IS_TIPO_INFO).length} actividades: lengua, matemática, juegos, arte y más`; } catch {}
+if (typeof NW_CANT !== "undefined") NW_CANT.rompe = "Cantidad de piezas";
+
+// ===== qué cuenta como juego =====
+const JG_TIPOS = ["bingo", "memo", "domino", "oca", "carrera", "rompe", "adivina", "tateti", "quien", "escape"];
+const jgEs = (t = IS.tipo) => JG_TIPOS.includes(t) || IS_TIPO_CAT[t] === "juegos";
+IS.gNivColor = IS.gNivColor !== false;
+
+// ===== versión adaptada: menos opciones, letra más grande, consignas con pictogramas =====
+let JG_ON = false;
+const _jgCfg = nvCfg;
+nvCfg = function (t = IS.tipo) { const c = _jgCfg.apply(this, arguments); if (JG_ON && IS.gAdapt && NW_INFO[t] && jgEs(t)) return Object.assign({}, c, { n: NW_INFO[t][5][0], ...(t === "adivina" && c.v === "tablero" ? { v: "pistas" } : {}) }); return c; };
+const _jgJ2 = isJ2Paginas;
+isJ2Paginas = function () { if (!jgEs(IS.tipo)) return _jgJ2.apply(this, arguments); const prev = { on: JG_ON, inc: IS.dis.inclusivo, k: IS.bingoK, pal: IS.bingoPal, oca: IS.ocaN, n: IS.j2N };
+  JG_ON = true; if (IS.gAdapt) { IS.dis.inclusivo = true; IS.bingoK = 3; IS.bingoPal = true; IS.ocaN = 20; IS.j2N = 4; }
+  try { return _jgJ2.apply(this, arguments); } finally { JG_ON = prev.on; IS.dis.inclusivo = prev.inc; IS.bingoK = prev.k; IS.bingoPal = prev.pal; IS.ocaN = prev.oca; IS.j2N = prev.n; } };
+
+// ===== borde de color según el nivel (para jugar por grupos: verde, naranja, rojo) =====
+const _jgMarcoN = isMarco;
+isMarco = function (titulo, consigna, cuerpo, num) { let b = cuerpo || "";
+  if (JG_ON && IS.gNivColor && typeof DF_SELLO !== "undefined" && DF_SELLO != null && IS.difBadge && !/data-rol="nivborde"/.test(b)) { const [, nom, , col] = DF_N[DF_SELLO];
+    b += `<g data-rol="nivborde"><rect x="11" y="11" width="573" height="820" rx="26" fill="none" stroke="${col}" stroke-width="7"/><rect x="34" y="796" width="${j2f(nwMed(`DIFICULTAD ${nom.toUpperCase()}`, 9, "b") + 18)}" height="17" rx="8.5" fill="${col}"/>` + nwT(43, 808, `DIFICULTAD ${nom.toUpperCase()}`, 9, { f: "b", c: "#fff" }) + `</g>`; }
+  return _jgMarcoN.call(this, titulo, consigna, b, num); };
+
+// ===== kit de juegos de la fecha en un clic =====
+const JK_DEF = ["bingo", "memo", "domino", "oca", "carrera", "rompe", "adivina", "tateti"];
+IS.gKit = IS.gKit || { sel: JK_DEF.slice(), tres: false, abierto: false };
+async function jkArmar(btn) { const K = IS.gKit, L = K.sel.filter((t) => IS_TIPO_INFO[t]); if (!L.length) { toast("Elegí al menos un juego", "err"); return; } if (btn) btn.disabled = true;
+  const t0 = IS.tipo, ok = [], mal = [], E = isEscena(IS.tema); K.busy = true; isRender();
+  try { for (const t of L) { IS.tipo = t; IS.j2Ver = 0; try { let n = 0; if (K.tres && typeof dfElegir === "function") { const d0 = dfDe(t); for (const d of [0, 1, 2]) { dfElegir(d, t); n += await isCuadAgregar(); } dfElegir(d0, t); } else n = await isCuadAgregar(); ok.push(`${IS_TIPO_INFO[t][1]} (${n})`); } catch (e) { mal.push(`${IS_TIPO_INFO[t][1]}: ${e.message}`); } }
+    if (ok.length) IS.cuad.titulo = `Juegos de ${E.nombre}`; try { await isCuadGuardar(); } catch {}
+    toast(ok.length ? `🎁 Kit listo: ${ok.length} juego${ok.length > 1 ? "s" : ""} en el cuadernillo${mal.length ? ` · ${mal.length} sin armar` : ""}` : "No se pudo armar ningún juego", ok.length ? "ok" : "warn");
+    K.res = { ok, mal }; } finally { IS.tipo = t0; K.busy = false; if (btn) btn.disabled = false; isRender(); } }
+function jkPanel() { const K = IS.gKit, nb = (isBanco().items || []).length;
+  return `<div class="jk"><div class="jk-h"><span>🎁</span><div><b>Kit de juegos de la fecha</b><small>Arma todos los juegos de ${esc(isEscena(IS.tema).nombre)} juntos, con el mismo diseño, listos para el cuadernillo y el PDF.</small></div></div>
+    <div class="jk-g">${JG_TIPOS.filter((t) => IS_TIPO_INFO[t]).map((t) => `<label class="jk-c${K.sel.includes(t) ? " on" : ""}"><input type="checkbox" data-jksel="${t}" ${K.sel.includes(t) ? "checked" : ""}><span>${IS_TIPO_INFO[t][0]}</span>${esc(IS_TIPO_INFO[t][1])}</label>`).join("")}</div>
+    <div class="jk-o"><label class="check"><input type="checkbox" data-jktres ${K.tres ? "checked" : ""}> Cada juego en 3 niveles (Fácil, Media y Difícil, con borde de color)</label><label class="check"><input type="checkbox" data-jgadapt ${IS.gAdapt ? "checked" : ""}> Versión adaptada</label></div>
+    ${nb ? "" : `<p class="jk-w">⚠️ Sin pack de dibujos para esta fecha, solo se arman los juegos que no los necesitan.</p>`}
+    ${K.res ? `<p class="jk-r">${K.res.ok.length ? `✓ ${esc(K.res.ok.join(" · "))}` : ""}${K.res.mal.length ? `<br>⚠️ ${esc(K.res.mal.join(" · "))}` : ""}</p>` : ""}
+    <div class="jk-b"><button type="button" class="btn primary" data-jkarmar ${K.busy ? "disabled" : ""}>${K.busy ? "⏳ Armando el kit…" : `🎁 Armar el kit (${K.sel.length} juegos${K.tres ? " × 3 niveles" : ""})`}</button>${K.res && K.res.ok.length ? `<button type="button" class="btn" data-jkver>📚 Ver el cuadernillo</button>` : ""}</div></div>`; }
+
+// ===== tarjeta de opciones del juego (modos, adaptado, niveles, kit) =====
+function jgCard() { const t = IS.tipo; let modos = "";
+  if (t === "bingo") modos = `<div class="jg-m"><small>Modo del bingo</small><div class="jg-p">${JB_MODOS.map(([k, n]) => `<button type="button" class="${(IS.bingoMode || "clasico") === k ? "on" : ""}" data-jbm="${k}">${n}</button>`).join("")}</div></div>`;
+  if (t === "memo") modos = `<div class="jg-m"><small>Tipo de parejas</small><div class="jg-p">${JM_MODOS.map(([k, n]) => `<button type="button" class="${(IS.memoPar || "igual") === k ? "on" : ""}" data-jmm="${k}">${n}</button>`).join("")}</div></div>`;
+  if (t === "oca") modos = `<label class="check jg-chk"><input type="checkbox" data-jot ${IS.ocaTema !== false ? "checked" : ""}> Casilleros temáticos con los dibujos y personajes de la fecha</label>`;
+  const tres = typeof dfPanel === "function" && dfPanel(t) && typeof iwHecho === "function" && iwHecho();
+  return `<div class="jg"><div class="jg-h"><span>🎮</span><div><b>Opciones del juego</b><small>Modo, versión adaptada y niveles para jugar en grupos</small></div><button type="button" class="btn small jg-kit" data-jkopen>${IS.gKit.abierto ? "✕ Cerrar kit" : "🎁 Kit de juegos de la fecha"}</button></div>
+    ${modos}<div class="jg-o"><label class="check"><input type="checkbox" data-jgadapt ${IS.gAdapt ? "checked" : ""}> ♿ Versión adaptada <small>(menos opciones, letra grande y consigna con pictogramas)</small></label><label class="check"><input type="checkbox" data-jgcol ${IS.gNivColor ? "checked" : ""}> 🎨 Borde de color según el nivel</label>${tres ? `<button type="button" class="btn small" data-df3>⭐ Este juego en 3 niveles al cuadernillo</button>` : ""}</div>
+    ${IS.gKit.abierto ? jkPanel() : ""}</div>`; }
+const _jgRA = isRenderAct;
+isRenderAct = function () { const h = _jgRA.apply(this, arguments); if (IS.tab !== "act" || !jgEs(IS.tipo) || (+IS.paso || 1) < 2) return h; let card = jgCard() + (GQ_TIPOS.includes(IS.tipo) ? gqCard() : "");
+  const k = h.indexOf('<div class="iw-main">'); if (k < 0) return h; const at = k + '<div class="iw-main">'.length; return h.slice(0, at) + card + h.slice(at); };
+document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; let b; const go = () => { IW.pages = null; IS.j2Ver = 0; isRender(); };
+  if ((b = e.target.closest("[data-jbm]"))) { e.preventDefault(); e.stopPropagation(); IS.bingoMode = b.dataset.jbm; go(); return; }
+  if ((b = e.target.closest("[data-jmm]"))) { e.preventDefault(); e.stopPropagation(); IS.memoPar = b.dataset.jmm; go(); return; }
+  if ((b = e.target.closest("[data-jkopen]"))) { e.preventDefault(); e.stopPropagation(); IS.gKit.abierto = !IS.gKit.abierto; isRender(); return; }
+  if ((b = e.target.closest("[data-jkarmar]"))) { e.preventDefault(); e.stopPropagation(); await jkArmar(b); return; }
+  if ((b = e.target.closest("[data-jkver]"))) { e.preventDefault(); e.stopPropagation(); IS.tab = "cuad"; isRender(); return; } }, true);
+document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset) return; const go = () => { IW.pages = null; IS.j2Ver = 0; isRender(); };
+  if (t.dataset.jot != null) { e.stopPropagation(); IS.ocaTema = t.checked; go(); return; }
+  if (t.dataset.jgadapt != null) { e.stopPropagation(); IS.gAdapt = t.checked; go(); return; }
+  if (t.dataset.jgcol != null) { e.stopPropagation(); IS.gNivColor = t.checked; go(); return; }
+  if (t.dataset.jktres != null) { e.stopPropagation(); IS.gKit.tres = t.checked; isRender(); return; }
+  if (t.dataset.jksel != null) { e.stopPropagation(); const K = IS.gKit, k = t.dataset.jksel; K.sel = t.checked ? [...new Set([...K.sel, k])] : K.sel.filter((x) => x !== k); isRender(); return; } }, true);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
