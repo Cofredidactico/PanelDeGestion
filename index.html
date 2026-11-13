@@ -620,6 +620,16 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 #isDlg .jk-b{display:flex;flex-wrap:wrap;gap:8px}
 @media (max-width:620px){#isDlg .jg-h,#isDlg .gq-h{flex-wrap:wrap}}
 
+.ct-nota{margin:-4px 0 8px}
+.ct-hojas{display:grid;gap:8px;margin:10px 0 12px;padding:10px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.ct-hojas-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:13px}.ct-hojas-h small{color:var(--muted);font-weight:700}
+.ct-hojas-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px}
+.ct-hoja{position:relative}.ct-hoja>button:first-child,.ct-mas{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;padding:6px 4px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;box-sizing:border-box}
+.ct-hoja.on>button:first-child{border-color:#F28C28;box-shadow:0 0 0 3px color-mix(in srgb,#F28C28 22%,transparent)}
+.ct-hoja img{width:100%;height:52px;object-fit:contain;border-radius:6px;background:#fff}.ct-hoja span{font-size:11.5px;font-weight:800}.ct-hoja small,.ct-mas small{font-size:10.5px;color:var(--muted);font-weight:700}
+.ct-x{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:0;background:#E05A47;color:#fff;font-size:11px;font-weight:800;cursor:pointer;line-height:22px;padding:0}
+.ct-mas{justify-content:center;border-style:dashed;min-height:96px}.ct-mas span{font-size:24px;font-weight:800;color:#F28C28;line-height:1}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -10975,7 +10985,7 @@ function isCuadDnD(d) { let desde = null;
   d.addEventListener("dragstart", (e) => { const f = e.target.closest && e.target.closest("[data-cqi]"); if (!f) return; desde = +f.dataset.cqi; f.classList.add("arr"); try { e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", String(desde)); } catch {} });
   d.addEventListener("dragover", (e) => { if ((IS.tab === "corte" || IS.tab === "tarj") && e.dataTransfer && [...e.dataTransfer.types].includes("Files")) { e.preventDefault(); return; } const f = e.target.closest && e.target.closest("[data-cqi]"); if (f && desde != null) { e.preventDefault(); d.querySelectorAll(".is-cpg.sobre").forEach((x) => x.classList.remove("sobre")); f.classList.add("sobre"); } });
   d.addEventListener("dragend", () => { desde = null; d.querySelectorAll(".is-cpg.arr,.is-cpg.sobre").forEach((x) => x.classList.remove("arr", "sobre")); });
-  d.addEventListener("drop", (e) => { if (IS.tab === "tarj" && e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) { e.preventDefault(); isTjCargar(e.dataTransfer.files, false); return; } if (IS.tab === "corte" && e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) { e.preventDefault(); isCtCargar(e.dataTransfer.files[0]); return; } const f = e.target.closest && e.target.closest("[data-cqi]"); if (!f || desde == null) return; e.preventDefault(); const a = +f.dataset.cqi, L = IS.cuad.items, [m] = L.splice(desde, 1); L.splice(a, 0, m); desde = null; isCuadGuardar(); isRender(); });
+  d.addEventListener("drop", (e) => { if (IS.tab === "tarj" && e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) { e.preventDefault(); isTjCargar(e.dataTransfer.files, false); return; } if (IS.tab === "corte" && e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) { e.preventDefault(); ctAgregar(e.dataTransfer.files); return; } const f = e.target.closest && e.target.closest("[data-cqi]"); if (!f || desde == null) return; e.preventDefault(); const a = +f.dataset.cqi, L = IS.cuad.items, [m] = L.splice(desde, 1); L.splice(a, 0, m); desde = null; isCuadGuardar(); isRender(); });
 }
 
 
@@ -20340,7 +20350,7 @@ document.addEventListener("click", async (e) => {
   if ((b = c("[data-rppor]"))) { fin(); RP.por = +b.dataset.rppor; RP.res = []; RP.file = []; isRender(); return; }
   if ((b = c("[data-rpcopy]"))) { fin(); const H = rpHojas(); isCopiar(b, rpPrompt(H[+b.dataset.rpcopy], +b.dataset.rpcopy, H.length)); return; }
   if (c("[data-rpzip]")) { fin(); try { await rpZip(); } catch (err) { toast(err.message || "No se pudo descargar", "warn"); } return; }
-  if (c("[data-rpfino]")) { fin(); const raw = (RP.fileRaw || []).find(Boolean); if (!raw) return; IS.ct.nombres = rpHojas()[0].map((x) => x.n); IS.ct.carpeta = isEscena(IS.tema).nombre; IS.tab = "corte"; isRender(); await isCtCargar(raw); return; }
+  if (c("[data-rpfino]")) { fin(); const raw = (RP.fileRaw || []).find(Boolean); if (!raw) return; ctLimpiar(); IS.ct.nombres = rpHojas()[0].map((x) => x.n); IS.ct.carpeta = isEscena(IS.tema).nombre; IS.tab = "corte"; isRender(); await isCtCargar(raw); return; }
   if (c("[data-rpusar]")) { fin(); const res = RP.res.flat().filter(Boolean); if (!res.length) return; const items = res.map((r) => ({ n: r.nombre, cv: r.canvas, url: r.url })); const rec = await rpGuardar(IS.tema, items, RP.fuente); const B = { nombres: items.map((x) => x.n), items, pack: rec.id }; RP.listo[IS.tema] = B; IS.bancos = IS.bancos || {}; IS.bancos[IS.tema] = B; RP.usado = true; toast(`🎉 Pack guardado: ${items.length} dibujos listos para las actividades de ${isEscena(IS.tema).nombre}`, "ok"); isRender(); setTimeout(() => { const a = document.querySelector(".rp-acts"); if (a) a.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, 80); return; }
   if ((b = c("[data-rpact]"))) { fin(); IS.tab = "act"; isRender(); iwIrTipo(b.dataset.rpact); IS.paso = 4; isRender(); return; }
   if ((b = c("[data-rpmpusar]"))) { fin(); const p = (RP.packs || []).find((x) => x.id === b.dataset.rpmpusar); if (!p) return; if (p.tema !== IS.tema) IS.tema = p.tema; RP.tema = null; rpAsegurar(); await rpActivar(p); RP.usado = true; toast(`Pack de ${p.temaN} en uso ✓`, "ok"); isRender(); return; }
@@ -22813,6 +22823,51 @@ document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset)
   if (t.dataset.jgcol != null) { e.stopPropagation(); IS.gNivColor = t.checked; go(); return; }
   if (t.dataset.jktres != null) { e.stopPropagation(); IS.gKit.tres = t.checked; isRender(); return; }
   if (t.dataset.jksel != null) { e.stopPropagation(); const K = IS.gKit, k = t.dataset.jksel; K.sel = t.checked ? [...new Set([...K.sel, k])] : K.sel.filter((x) => x !== k); isRender(); return; } }, true);
+
+// ---------- RECORTADOR · varias hojas de stickers a la vez ----------
+const CT_CAMPOS = ["img", "det", "res", "sel", "nombres"];
+IS.ct.hojas = IS.ct.hojas || []; IS.ct.h = IS.ct.h || 0;
+function ctGuardarH() { const C = IS.ct, H = C.hojas[C.h]; if (!H) return; CT_CAMPOS.forEach((k) => { H[k] = C[k]; }); }
+function ctActivar(i) { const C = IS.ct; ctGuardarH(); C.h = Math.max(0, Math.min(C.hojas.length - 1, i)); const H = C.hojas[C.h];
+  if (H) CT_CAMPOS.forEach((k) => { C[k] = H[k]; }); else { C.img = C.det = C.res = null; C.sel = []; } C.sel = C.sel || []; C.modo = "ver"; }
+function ctLimpiar() { const C = IS.ct; C.hojas = []; C.h = 0; C.img = C.det = C.res = null; C.sel = []; }
+const ctTodos = () => { ctGuardarH(); return IS.ct.hojas.flatMap((H) => (H.res || []).filter(Boolean)); };
+async function ctAgregar(files) { const C = IS.ct, L = [...(files || [])].filter((f) => f && (!f.type || /^image\//.test(f.type))); if (!L.length) { toast("Elegí imágenes PNG o JPG."); return; }
+  ctGuardarH(); const primera = !C.hojas.length || (C.hojas.length === 1 && !C.hojas[0].img); if (primera) C.hojas = [];
+  let ok = 0;
+  for (const f of L) { try { const img = await isCargarImg(f); C.hojas.push({ img, det: null, res: null, sel: [], nombres: primera && !ok ? (C.nombres || []).slice() : [] });
+      C.h = C.hojas.length - 1; CT_CAMPOS.forEach((k) => { C[k] = C.hojas[C.h][k]; }); await isCtProcesar(); ctGuardarH(); ok++; }
+    catch (e) { toast(`${f.name}: ${e.message || "no se pudo leer la imagen"}`); } }
+  if (ok > 1) toast(`✂️ ${ok} hojas recortadas · ${ctTodos().length} stickers en total`, "ok"); isRender(); }
+isCtCargar = async function (f) { await ctAgregar([f]); };
+function ctQuitar(i) { const C = IS.ct; ctGuardarH(); C.hojas.splice(i, 1); if (!C.hojas.length) { ctLimpiar(); C.nombres = []; isRender(); return; } C.h = -1; const n = Math.min(i, C.hojas.length - 1); C.h = n; CT_CAMPOS.forEach((k) => { C[k] = C.hojas[n][k]; }); isRender(); }
+
+const _ctRender = isRenderCorte;
+isRenderCorte = function () { const C = IS.ct; ctGuardarH(); let h = _ctRender.apply(this, arguments); const N = C.hojas.length, tot = N > 1 ? ctTodos().length : 0;
+  h = h.replace("<h3>1. Subí la hoja de stickers</h3>", `<h3>1. Subí las hojas de stickers</h3><p class="muted is-note ct-nota">Podés elegir <b>varias imágenes a la vez</b>: cada una se recorta por separado y al final descargás todo junto.</p>`)
+    .replace('<input type="file" accept="image/*" data-isuphoja hidden>', '<input type="file" accept="image/*" data-isuphoja multiple hidden>')
+    .replace('"Elegí o arrastrá la hoja"', '"Elegí o arrastrá la hoja"');
+  if (C.img) h = h.replace(`<b>${esc(C.img.name)}</b>`, `<b>${esc(C.img.name)}</b>`);
+  if (!C.img) h = h.replace("<b>Elegí o arrastrá la hoja</b>", "<b>Elegí o arrastrá las hojas</b>");
+  // tira de hojas
+  if (N) { const tira = `<div class="ct-hojas"><div class="ct-hojas-h"><b>${N} hoja${N > 1 ? "s" : ""}</b>${N > 1 ? `<small>${tot} stickers en total</small>` : ""}</div><div class="ct-hojas-g">${C.hojas.map((H, i) => { const n = (H.res || []).filter(Boolean).length;
+      return `<div class="ct-hoja${i === C.h ? " on" : ""}"><button type="button" data-cthoja="${i}" title="${esc(H.img ? H.img.name : "")}"><img src="${H.img ? H.img.url : ""}" alt=""><span>Hoja ${i + 1}</span><small>${H.det ? `${n} ✓` : "…"}</small></button><button type="button" class="ct-x" data-ctquitar="${i}" aria-label="Quitar hoja ${i + 1}">✕</button></div>`; }).join("")}
+      <label class="ct-mas"><input type="file" accept="image/*" data-isuphoja multiple hidden><span>＋</span><small>Sumar hojas</small></label></div></div>`;
+    h = h.replace('<div class="field"><label for="isNombres">', tira + '<div class="field"><label for="isNombres">'); }
+  if (N > 1) { h = h.replace("Nombres en orden <small", `Nombres de la hoja ${C.h + 1} <small`).replace("<h3>3. Revisá la detección</h3>", `<h3>3. Revisá la hoja ${C.h + 1} de ${N}</h3>`)
+      .replace(/<h3>4\. (\d+) sticker(s?) listo(s?)<\/h3>/, (m, n, s) => `<h3>4. Hoja ${C.h + 1}: ${n} sticker${s} listo${s}</h3>`)
+      .replace("⬇ Descargar PNG (ZIP)</button>", `⬇ Descargar los ${tot} PNG (ZIP)</button>`).replace(/🖼️ Usar como dibujos de /, `🖼️ Usar los ${tot} como dibujos de `)
+      .replace("⬇ Hoja de stickers (SVG)", "⬇ Hojas de stickers (SVG)").replace("⬇ Hoja de stickers (PDF)", "⬇ Hojas de stickers (PDF)")
+      .replace('<div class="actions"><button class="btn primary" type="button" data-iszip>', `<p class="muted is-note ct-nota">Las descargas y el pack incluyen los stickers de <b>las ${N} hojas</b>.</p><div class="actions"><button class="btn primary" type="button" data-iszip>`); }
+  return h; };
+const _ctClick = isCtClick;
+isCtClick = async function (t) { const C = IS.ct, hb = t.closest("[data-cthoja]"); if (hb) { ctActivar(+hb.dataset.cthoja); isRender(); return true; }
+  const qb = t.closest("[data-ctquitar]"); if (qb) { ctQuitar(+qb.dataset.ctquitar); return true; }
+  if (C.hojas.length > 1 && t.closest("[data-iszip],[data-isctbanco],[data-isctlam]")) { const prev = C.res; C.res = ctTodos(); try { return await _ctClick.apply(this, arguments); } finally { C.res = prev; } }
+  return _ctClick.apply(this, arguments); };
+const _ctChange = isCtChange;
+isCtChange = async function (t) { if (t.dataset && "isuphoja" in t.dataset && t.files && t.files.length) { const F = [...t.files]; t.value = ""; await ctAgregar(F); return true; }
+  const r = await _ctChange.apply(this, arguments); if (t.id === "isNombres" && IS.tab === "corte") ctGuardarH(); return r; };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
