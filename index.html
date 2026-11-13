@@ -630,6 +630,75 @@ th{background:color-mix(in srgb,var(--solid) 70%,transparent)}
 .ct-x{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:0;background:#E05A47;color:#fff;font-size:11px;font-weight:800;cursor:pointer;line-height:22px;padding:0}
 .ct-mas{justify-content:center;border-style:dashed;min-height:96px}.ct-mas span{font-size:24px;font-weight:800;color:#F28C28;line-height:1}
 
+/* ===== panel pro ===== */
+dialog.pp-dlg{max-height:calc(100dvh - 20px);overflow:auto}
+.dlg.pp{gap:14px}.pp-h{display:flex;gap:12px;align-items:flex-start}.pp-h>span{font-size:28px;line-height:1}.pp-h>div{flex:1;min-width:0}.pp-h h3{margin:0;font-size:18px}.pp-h p{margin:3px 0 0;font-size:13px;line-height:1.45}
+.pp-search{margin:0}.pp-search input{font-size:16px}
+.pp-res{display:grid;gap:10px;min-height:120px}
+.pp-vacio{display:grid;justify-items:center;gap:6px;text-align:center;padding:26px 14px;border:1.5px dashed var(--line);border-radius:14px}.pp-vacio>span{font-size:34px}.pp-vacio p{margin:0}.pp-vacio.no{border-color:color-mix(in srgb,var(--danger) 45%,var(--line));background:color-mix(in srgb,var(--danger) 5%,var(--surface))}
+.pp-cli{border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px;background:var(--surface-2)}
+.pp-cli-h{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}.pp-cli-h>div{display:grid;gap:2px;min-width:0}.pp-cli-h b{font-size:15.5px}.pp-cli-h small{font-size:12.5px;overflow-wrap:anywhere}
+.pp-mats{list-style:none;margin:0;padding:0;display:grid;gap:6px}.pp-mats li{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:9px 10px;border-radius:11px;background:var(--surface);border:1px solid var(--line)}
+.pp-mat-i{display:grid;gap:2px;min-width:0;flex:1 1 220px}.pp-mat-i b{font-size:13.5px}.pp-mat-i small{font-size:12px}
+.pp-mat-a{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.pp-pass{font:inherit;font-size:13px;font-weight:800;padding:6px 10px;border-radius:9px;border:1.5px dashed var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums}.pp-pass.on{border-style:solid;border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--surface));user-select:all}
+.pp-mal{margin:0;font-size:12.5px;line-height:1.5;padding:9px 11px;border-radius:10px;background:color-mix(in srgb,var(--star) 14%,var(--surface));color:var(--ink)}
+.pp-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pp-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.pp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.pp-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 11px;border-radius:999px;background:color-mix(in srgb,var(--blue) 13%,var(--surface));color:var(--ink);font-size:12.5px;font-weight:700}.pp-chip button{border:0;background:color-mix(in srgb,var(--ink) 12%,transparent);color:inherit;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:10px;padding:0}
+.pp-sug{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.pp-sug button{font:inherit;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer;text-align:left}.pp-sug button:hover{border-color:var(--blue)}
+.dlg.pp textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13.5px;line-height:1.5;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);resize:vertical}
+.pp-ok{margin:0;min-height:1em;font-size:12.5px}.pp-ok.err{color:var(--danger);font-weight:700}
+.pp-det{border:1px solid var(--line);border-radius:12px;padding:10px 12px}.pp-det summary{cursor:pointer;font-weight:800;font-size:13px}.pp-det[open] summary{margin-bottom:10px}
+.pp-dir{list-style:none;margin:0;padding:0;display:grid;gap:6px}.pp-dir li{display:flex;gap:10px;align-items:center;justify-content:space-between;font-size:13px}.pp-dir li>div{display:grid;min-width:0;flex:1}.pp-dir small{font-size:11.5px}
+.pp-acc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.pp-acc button{display:grid;gap:3px;justify-items:start;text-align:left;font:inherit;padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,border-color .12s}
+.pp-acc button:hover{transform:translateY(-2px);border-color:var(--blue)}.pp-acc span{font-size:24px;line-height:1}.pp-acc b{font-size:14px}.pp-acc small{font-size:12px;color:var(--muted);line-height:1.35}
+.pp-vh{display:flex;gap:8px;flex-wrap:wrap}
+/* lanzamiento */
+.pl-cols{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:18px;align-items:start}.pl-in,.pl-out{display:grid;gap:12px;min-width:0}
+.pl-pw{display:flex;gap:6px}.pl-pw input{flex:1;min-width:0}.pl-go{display:flex;gap:8px;flex-wrap:wrap}
+.pl-tabs{display:flex;flex-wrap:wrap;gap:5px;padding:4px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}.pl-tabs button{font:inherit;font-size:12.5px;font-weight:800;padding:7px 10px;border-radius:9px;border:0;background:transparent;color:var(--muted);cursor:pointer}.pl-tabs button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.pl-pz{position:relative}.pl-pz>button{justify-self:end;margin-top:-2px}
+.pl-check{display:grid;gap:7px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2)}.pl-check-h{display:flex;justify-content:space-between;font-size:13px}.pl-check-h span{color:var(--muted);font-weight:700}
+.pl-bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden}.pl-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#4AAE4F,#0EA5A4);transition:width .25s}
+.pl-check .check{font-size:13px}.pl-check .check.ok{color:var(--muted);text-decoration:line-through}
+/* rentabilidad y pronóstico */
+.pr-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin:4px 0 14px}.pr-bar .seg{display:flex;flex-wrap:wrap;gap:3px;padding:3px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line)}
+.pr-bar .seg button{font:inherit;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:8px;border:0;background:transparent;color:var(--muted);cursor:pointer}.pr-bar .seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.pr-kpis .kpi-v{font-size:clamp(15px,1.5vw,22px);overflow-wrap:anywhere;line-height:1.2}.pr-tw{overflow-x:auto;margin-top:14px}
+.pr-t{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}.pr-t th,.pr-t td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}.pr-t th{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}.pr-t .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.pr-t .neg{color:var(--danger)}.pr-t tfoot td{border-top:2px solid var(--line);border-bottom:0;background:var(--surface-2)}
+.pr-n{display:grid;gap:4px;min-width:180px}.pr-n b{font-weight:700}.pr-n i{display:block;height:6px;border-radius:99px;background:color-mix(in srgb,var(--blue) 22%,var(--surface-2));overflow:hidden}.pr-n em{display:block;height:100%;background:#4AAE4F;border-radius:99px}
+.pr-nota{font-size:12.5px;line-height:1.5;margin:10px 0 0}
+.fm-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}
+.fm-m{display:grid;gap:8px;align-content:start;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);min-width:0}.fm-m.hoy{border-color:color-mix(in srgb,var(--blue) 55%,var(--line))}
+.fm-m header{display:flex;justify-content:space-between;align-items:baseline;gap:6px}.fm-m header b{text-transform:capitalize;font-size:15px}.fm-m header small{color:var(--muted);font-size:11.5px;font-weight:700}
+.fm-v{font-size:clamp(18px,1.9vw,25px);font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}.fm-r{font-size:12px;color:var(--muted);margin-top:-4px}
+.fm-bars{display:grid;gap:4px}.fm-bars>div{display:grid;grid-template-columns:74px 1fr auto;gap:6px;align-items:center;font-size:11px;color:var(--muted)}.fm-bars i{display:block;height:8px;border-radius:99px;background:color-mix(in srgb,var(--ink) 22%,var(--surface));min-width:3px}.fm-bars i.est{background:var(--blue)}.fm-bars i.real{background:#4AAE4F}.fm-bars em{font-style:normal;font-variant-numeric:tabular-nums}
+.fm-m .pill{justify-self:start;font-size:11.5px;white-space:normal}.fm-t{margin:0;font-size:12.5px}
+.fm-e{display:grid;gap:3px;font-size:12px}.fm-e small{color:var(--muted);font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.03em}.fm-e em{font-style:normal;color:var(--muted)}
+/* cuadernillo en un clic y planificación */
+#isDlg .cc-wrap{display:grid;gap:12px;margin-bottom:14px}
+#isDlg .cc{display:grid;gap:11px;padding:14px 16px;border-radius:18px;border:1.5px solid color-mix(in srgb,#1E5BB8 45%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#1E5BB8 9%,var(--surface)),var(--surface))}
+#isDlg .cc.pd{border-color:color-mix(in srgb,#4AAE4F 45%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#4AAE4F 8%,var(--surface)),var(--surface))}
+#isDlg .cc .jg-p button.on{background:#1E5BB8;border-color:#1E5BB8;color:#fff}#isDlg .cc.pd .jg-p button.on{background:#2E8B3A;border-color:#2E8B3A}#isDlg .cc .jg-p em{font-style:normal;font-weight:600;opacity:.8}
+#isDlg .cc-o{display:grid;gap:10px}#isDlg .cc-a{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px}
+#isDlg .cc .jk-c.on{border-color:#1E5BB8;background:color-mix(in srgb,#1E5BB8 10%,var(--surface))}#isDlg .cc .jk-c input{accent-color:#1E5BB8}
+@media (max-width:900px){.pl-cols{grid-template-columns:1fr}.fm-g{grid-template-columns:1fr 1fr}.pp-acc{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.pp-grid2,.pp-grid3{grid-template-columns:1fr}.fm-g{grid-template-columns:1fr}.dlg.pp{padding:14px}.pp-mat-a{width:100%}.pp-acc button{padding:11px}}
+/* celular */
+.pp-menu{display:grid;gap:8px}.pp-menu button{display:flex;gap:12px;align-items:center;text-align:left;font:inherit;padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.pp-menu button>span{font-size:26px;line-height:1}.pp-menu button>div{display:grid;gap:2px;min-width:0}.pp-menu b{font-size:15px}.pp-menu small{font-size:12.5px;color:var(--muted)}
+@media (max-width:720px){
+  body[data-ppv]:not([data-ppv="inicio"]) .hero-wrap{display:none}
+  dialog.pp-dlg{width:100vw!important;max-width:100vw;margin:auto 0 0 0;border-radius:20px 20px 0 0;border-bottom:0;max-height:94dvh}
+  dialog.pp-dlg .dlg.pp{padding:16px 14px calc(18px + env(safe-area-inset-bottom))}
+  dialog.pp-dlg input,dialog.pp-dlg select,dialog.pp-dlg textarea{font-size:16px}
+  dialog.pp-dlg .dlg-actions .btn{flex:1 1 auto;justify-content:center;min-height:46px}
+  .pp-mat-a .btn,.pp-pass{min-height:40px}.pp-acc{gap:8px}.pp-acc small{display:none}
+  .pr-kpis,.kpis.pr-kpis{grid-template-columns:1fr 1fr}.pr-bar{justify-content:flex-start}
+  .pl-tabs button{flex:1 1 30%}
+}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -22868,6 +22937,376 @@ isCtClick = async function (t) { const C = IS.ct, hb = t.closest("[data-cthoja]"
 const _ctChange = isCtChange;
 isCtChange = async function (t) { if (t.dataset && "isuphoja" in t.dataset && t.files && t.files.length) { const F = [...t.files]; t.value = ""; await ctAgregar(F); return true; }
   const r = await _ctChange.apply(this, arguments); if (t.id === "isNombres" && IS.tab === "corte") ctGuardarH(); return r; };
+
+// ---------- PANEL PRO · verificador de compra, entrega de ventas directas y acciones rápidas ----------
+function ppDlg(id, html, ancho) { let d = document.getElementById(id);
+  if (!d) { d = document.createElement("dialog"); d.id = id; d.className = "pp-dlg"; document.body.appendChild(d); d.addEventListener("click", (e) => { if (e.target === d || e.target.closest("[data-ppclose]")) d.close(); }); }
+  d.style.width = `min(${ancho || 640}px, calc(100vw - 20px))`; d.innerHTML = `<div class="dlg pp">${html}</div>`; if (!d.open) d.showModal(); return d; }
+const ppHead = (ic, t, sub) => `<header class="pp-h"><span>${ic}</span><div><h3>${t}</h3>${sub ? `<p class="muted">${sub}</p>` : ""}</div><button type="button" class="iconbtn" data-ppclose aria-label="Cerrar">✕</button></header>`;
+const ppHoyF = (d = new Date()) => `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}/${d.getFullYear()} ${d.getHours()}:${String(d.getMinutes()).padStart(2, "0")}`;
+
+// ===== ventas directas (por transferencia, por Instagram): viven en el historial de envíos y cuentan como ventas =====
+function ppConDirectas(base) { const dir = (envios || []).filter((e) => e && e.directa); if (!dir.length) return base;
+  const out = base.slice(), idx = {}; out.forEach((c, i) => { if (c.e) idx[String(c.e).toLowerCase()] = i; });
+  dir.forEach((e) => { const d = new Date(e.fecha ? e.fecha + "T12:00" : e.at), its = (e.items && e.items.length ? e.items : [e.m]).filter(Boolean);
+    const o = { id: +e.oid || 9e9, f: ppHoyF(isNaN(d) ? new Date() : d), pg: "Finalizado", m: e.medio || "Transferencia", tot: +e.tot || 0, i: its.map((n) => [1, n]), src: "directa" };
+    const k = String(e.e || "").toLowerCase() || "sin:" + fold(e.n) + "|" + fold(e.ig || "");
+    if (idx[k] != null) { const c = out[idx[k]] = { ...out[idx[k]], o: [...(out[idx[k]].o || []), o] }; if (e.ig && !c.ig) c.ig = e.ig; if (e.t && !c.t) c.t = e.t; }
+    else { idx[k] = out.length; out.push({ n: e.n || "", e: e.e || "", t: e.t || "", ig: e.ig || "", d: "", c: "", p: "", o: [o], directo: true }); } });
+  return out; }
+const _ppDerive = derive;
+derive = function () { const base = clients; try { clients = ppConDirectas(base); return _ppDerive.apply(this, arguments); } finally { clients = base; } };
+
+// ===== (8) verificador de compra instantáneo =====
+const PPV = { q: "" };
+function ppBuscar(q) { const T = fold(q).replace(/@(?=\w)/g, " ").split(/\s+/).filter((t) => t.length >= 2); if (!T.length || !D) return [];
+  const mail = /\S+@\S+/.test(q) ? fold(q.trim()) : "";
+  return D.clients.filter((c) => { if (mail) return fold(c.e) === mail || fold(c.e).includes(mail); const h = c._idx + " " + fold(c.ig || ""); return T.every((t) => h.includes(t)); })
+    .sort((a, b) => (b._ok - a._ok) || ((b._last || 0) - (a._last || 0))).slice(0, 8); }
+function ppVerifHtml() { const q = PPV.q.trim(); if (q.length < 2) return `<div class="pp-vacio"><span>🔎</span><p>Escribí el <b>nombre</b>, el <b>correo</b>, el <b>teléfono</b> o el <b>usuario de Instagram</b> de la docente.</p><small class="muted">Busca en tus ${nf((D ? D.clients : []).length)} clientes: Empretienda y ventas directas.</small></div>`;
+  const L = ppBuscar(q); if (!L.length) return `<div class="pp-vacio no"><span>🚫</span><p><b>No figura ninguna compra</b> con “${esc(q)}”.</p><small class="muted">Probá con el correo exacto o con el apellido. Si te compró por transferencia y no la cargaste, registrala ahora.</small><button type="button" class="btn small" data-ppentregar="${esc(q)}">📦 Registrar una venta directa</button></div>`;
+  return L.map((c) => { const ci = D.clients.indexOf(c), ok = c.o.filter((o) => o.pg === "Finalizado"), mal = c.o.filter((o) => o.pg !== "Finalizado");
+    const filas = ok.flatMap((o) => (o.i || []).map(([q2, n]) => ({ o, n }))), datos = [c.e, c.t, c.ig ? "@" + String(c.ig).replace(/^@/, "") : "", [c.c, c.p].filter(Boolean).join(", ")].filter(Boolean);
+    return `<article class="pp-cli"><div class="pp-cli-h"><div><b>${esc(c.n || c.e || "Sin nombre")}</b><small class="muted">${datos.map(esc).join(" · ")}</small></div>${ok.length ? `<span class="pill ok">✅ ${ok.length === 1 ? "1 compra paga" : ok.length + " compras pagas"} · ${money(c._spent)}</span>` : `<span class="pill no">Sin compras pagas</span>`}</div>
+      ${filas.length ? `<ul class="pp-mats">${filas.map(({ o, n }) => { const p = passFor(n), k = slug(n), env = (c._sent || []).filter((s) => s.k === k).length, doc = matDocs[matUnir(k)] || matDocs[k] || {};
+        return `<li><div class="pp-mat-i"><b>${esc(n)}</b><small class="muted">${o.src === "directa" ? "Venta directa" : "Pedido #" + o.id} · ${fmtD(o._d)} · ${esc(o.m || "")}${env ? ` · enviado ${env} ${env > 1 ? "veces" : "vez"}` : ""}</small></div>
+          <div class="pp-mat-a">${p ? `<button type="button" class="pp-pass" data-pppass="${esc(p)}" title="Tocá para ver la contraseña"><span>🔑 ••••••</span></button><button type="button" class="btn small" data-ppcopy="${esc(p)}">Copiar</button>` : `<span class="pill none">Sin contraseña cargada</span>`}${doc.link ? `<button type="button" class="btn small" data-ppcopy="${esc(doc.link)}" title="Copiar el enlace del archivo">🔗</button>` : ""}<button type="button" class="btn small primary" data-ppmsg="${ci}|${o.id}|${esc(n)}">✉️ Mensaje</button></div></li>`; }).join("")}</ul>` : ""}
+      ${mal.length ? `<p class="pp-mal">⚠️ ${mal.map((o) => `Pedido #${o.id} (${fmtD(o._d)}): <b>${esc(String(o.pg).toLowerCase())}</b>, no está pago · ${(o.i || []).map((x) => esc(x[1])).join(", ")}`).join("<br>")}</p>` : ""}</article>`; }).join(""); }
+function ppVerificar(q) { if (q != null) PPV.q = q; const d = ppDlg("ppVerif", ppHead("🔎", "Verificar una compra", "Sabé al instante si compró, qué compró y qué contraseña le corresponde.") + `<div class="search pp-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="ppvIn" type="search" placeholder="Nombre, correo, teléfono o @usuario" autocomplete="off" value="${esc(PPV.q)}"></div><div id="ppvRes" class="pp-res">${ppVerifHtml()}</div>`, 720);
+  const inp = d.querySelector("#ppvIn"); inp.focus(); inp.addEventListener("input", () => { PPV.q = inp.value; d.querySelector("#ppvRes").innerHTML = ppVerifHtml(); }); }
+
+// ===== (7) entrega de una venta directa =====
+const PPE = { n: "", e: "", ig: "", t: "", mats: [], tot: "", medio: "Transferencia", fecha: "", txt: "", tocado: false, bib: true, busy: false, q: "" };
+const PPE_MSG = "¡Hola {nombre}! 😊 ¡Muchas gracias por tu compra en Cofre Didáctico! 💛\n\nAcá tenés tu material:\n\n{materiales}\n\nGuardá este mensaje para tenerlo siempre a mano. Cualquier duda me escribís. ¡Que lo disfruten mucho en el aula! 🎒";
+function ppeMat(n) { const k = slug(n), doc = matDocs[matUnir(k)] || matDocs[k] || {}; return { n, pass: passFor(n) || doc.pass || "", link: doc.link || "", precio: +String(doc.precio || "").replace(/\D/g, "") || (D && D.mats[matUnir(k)] && D.mats[matUnir(k)].price) || 0 }; }
+function ppeTexto() { const L = PPE.mats.map(ppeMat); return PPE_MSG.replace("{nombre}", (PPE.n || "").trim().split(" ")[0] || "seño").replace("{materiales}", L.map((m) => `📘 ${m.n}${m.link ? `\n👉 ${m.link}` : ""}${m.pass ? `\n🔑 Contraseña: ${m.pass}` : ""}`).join("\n\n") || "(elegí los materiales)"); }
+function ppeAvisos() { const L = PPE.mats.map(ppeMat), sinL = L.filter((m) => !m.link), sinP = L.filter((m) => !m.pass), a = [];
+  if (sinL.length) a.push(`Sin enlace del archivo: ${sinL.map((m) => esc(m.n)).join(", ")}. Cargalo en Materiales → ficha del material.`);
+  if (sinP.length) a.push(`Sin contraseña cargada: ${sinP.map((m) => esc(m.n)).join(", ")}.`); return a; }
+function ppeHtml() { const L = D ? D.matList.filter((m) => (m.doc.estado || "Activo") !== "Archivado") : [], q = fold(PPE.q), sug = L.filter((m) => !PPE.mats.includes(m.name) && (!q || fold(m.name).includes(q))).sort((a, b) => b.sold - a.sold).slice(0, q ? 12 : 6);
+  const dir = (envios || []).filter((e) => e.directa).sort((a, b) => String(b.at).localeCompare(String(a.at))).slice(0, 6), av = ppeAvisos(), sugTot = PPE.mats.map(ppeMat).reduce((s, m) => s + m.precio, 0);
+  return ppHead("📦", "Entregar una venta directa", "Para quien te pagó por transferencia o te compró por Instagram: arma el mensaje con enlace y contraseña, y la deja registrada como venta.") + `
+    <div class="pp-grid2"><div class="field"><label for="ppeN">Nombre de la docente</label><input id="ppeN" data-ppe="n" value="${esc(PPE.n)}" placeholder="Ej.: Laura Gómez" autocomplete="off"></div>
+      <div class="field"><label for="ppeIg">Usuario de Instagram <small class="muted">(opcional)</small></label><input id="ppeIg" data-ppe="ig" value="${esc(PPE.ig)}" placeholder="@usuario" autocomplete="off"></div>
+      <div class="field"><label for="ppeE">Correo <small class="muted">(para Mi biblioteca)</small></label><input id="ppeE" data-ppe="e" type="email" value="${esc(PPE.e)}" placeholder="correo@ejemplo.com" autocomplete="off"></div>
+      <div class="field"><label for="ppeT">WhatsApp <small class="muted">(opcional)</small></label><input id="ppeT" data-ppe="t" value="${esc(PPE.t)}" placeholder="Ej.: 387 555 1234" autocomplete="off"></div></div>
+    <div class="field"><label for="ppeQ">Materiales que compró</label>
+      ${PPE.mats.length ? `<div class="pp-chips">${PPE.mats.map((n, i) => `<span class="pp-chip">${esc(n)}<button type="button" data-ppequitar="${i}" aria-label="Quitar ${esc(n)}">✕</button></span>`).join("")}</div>` : ""}
+      <input id="ppeQ" data-ppe="q" value="${esc(PPE.q)}" placeholder="Buscá el material por nombre…" autocomplete="off">
+      <div class="pp-sug">${sug.map((m) => `<button type="button" data-ppeadd="${esc(m.name)}">＋ ${esc(m.name)}</button>`).join("") || `<small class="muted">No hay materiales con ese nombre.</small>`}</div></div>
+    <div class="pp-grid3"><div class="field"><label for="ppeTot">Monto cobrado</label><input id="ppeTot" data-ppe="tot" inputmode="numeric" value="${esc(PPE.tot)}" placeholder="${sugTot ? "Sugerido: " + nf(Math.round(sugTot)) : "Ej.: 6500"}"></div>
+      <div class="field"><label for="ppeM">Medio de pago</label><select id="ppeM" data-ppe="medio">${["Transferencia", "Mercado Pago", "Efectivo", "Otro"].map((m) => `<option${PPE.medio === m ? " selected" : ""}>${m}</option>`).join("")}</select></div>
+      <div class="field"><label for="ppeF">Fecha</label><input id="ppeF" data-ppe="fecha" type="date" value="${esc(PPE.fecha || iso(new Date()))}"></div></div>
+    <div class="field"><label for="ppeTxt">Mensaje para enviarle <small class="muted">(lo podés editar)</small></label><textarea id="ppeTxt" class="msgbox" data-ppe="txt" rows="9">${esc(PPE.tocado ? PPE.txt : ppeTexto())}</textarea></div>
+    ${av.length ? `<p class="pp-mal">⚠️ ${av.join("<br>")}</p>` : ""}
+    ${MODE.supa ? `<label class="check"><input type="checkbox" data-ppe="bib" ${PPE.bib ? "checked" : ""}> Habilitarle estos materiales en <b>Mi biblioteca</b> <small class="muted">(necesita el correo)</small></label>` : ""}
+    <p class="muted pp-ok" id="ppeOk"></p>
+    <div class="dlg-actions">${waPhone(PPE.t) ? `<a class="btn" target="_blank" rel="noopener" href="https://wa.me/${waPhone(PPE.t)}?text=${encodeURIComponent(PPE.tocado ? PPE.txt : ppeTexto())}">Abrir WhatsApp</a>` : ""}<span class="spacer"></span><button type="button" class="btn" data-ppecopy>Copiar mensaje</button><button type="button" class="btn primary" data-ppereg ${PPE.busy ? "disabled" : ""}>✅ Copiar y registrar la venta</button></div>
+    ${dir.length ? `<details class="pp-det"><summary>Últimas ventas directas registradas (${(envios || []).filter((e) => e.directa).length})</summary><ul class="pp-dir">${dir.map((e) => `<li><div><b>${esc(e.n || e.e)}</b><small class="muted">${esc((e.items || [e.m]).join(" · "))} · ${fmtD(new Date(e.fecha ? e.fecha + "T12:00" : e.at))} · ${esc(e.medio || "")}</small></div><b>${money(+e.tot || 0)}</b><button type="button" class="linkish" data-ppeborrar="${esc(e.id)}">Quitar</button></li>`).join("")}</ul></details>` : ""}`; }
+function ppEntregar(pre) { if (pre != null) { Object.assign(PPE, { n: "", e: "", ig: "", t: "", mats: [], tot: "", txt: "", tocado: false, q: "", fecha: iso(new Date()) }); const s = String(pre).trim(); if (/\S+@\S+/.test(s)) PPE.e = s; else if (/^@/.test(s)) PPE.ig = s; else if (/^[\d\s+-]{6,}$/.test(s)) PPE.t = s; else PPE.n = s; }
+  const v = document.getElementById("ppVerif"); if (v && v.open) v.close(); ppDlg("ppEnt", ppeHtml(), 700); }
+function ppeRepintar(foco) { const d = document.getElementById("ppEnt"); if (!d || !d.open) return; const sc = d.scrollTop; d.innerHTML = `<div class="dlg pp">${ppeHtml()}</div>`; d.scrollTop = sc; if (foco) { const el = d.querySelector(foco); if (el) { el.focus(); try { el.setSelectionRange(el.value.length, el.value.length); } catch {} } } }
+async function ppeRegistrar(btn) { const ok = document.getElementById("ppeOk"), txt = PPE.tocado ? PPE.txt : ppeTexto(), msg = (m, mal) => { if (ok) { ok.textContent = m; ok.classList.toggle("err", !!mal); } };
+  if (!PPE.n.trim() && !PPE.e.trim()) return msg("Escribí el nombre o el correo de la docente.", true); if (!PPE.mats.length) return msg("Elegí al menos un material.", true);
+  if (PPE.e && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(PPE.e.trim())) return msg("Revisá el correo: no parece válido.", true); if (!needDb()) return;
+  const tot = +String(PPE.tot).replace(/[^\d]/g, "") || 0; PPE.busy = true; btn.disabled = true; try { await navigator.clipboard.writeText(txt); } catch {}
+  try { const at = new Date().toISOString(), base = { e: PPE.e.trim().toLowerCase(), n: PPE.n.trim(), at };
+    await db.collection("envios").add({ ...base, m: PPE.mats[0], k: slug(PPE.mats[0]), pedido: "", directa: true, oid: 9e9 + Math.floor(Date.now() / 1000) % 1e9, items: PPE.mats.slice(), tot, medio: PPE.medio, ig: PPE.ig.trim().replace(/^@/, ""), t: PPE.t.trim(), fecha: PPE.fecha || iso(new Date()) });
+    for (const n of PPE.mats.slice(1)) await db.collection("envios").add({ ...base, m: n, k: slug(n), pedido: "" });
+    let extra = "";
+    if (MODE.supa && PPE.bib && base.e && typeof tpMateriales === "function") { try { const { ids, sin } = await tpMateriales(PPE.mats.map((n) => [1, n])); if (ids.length) { await tpBiblioteca({ accion: "dar", email: base.e, materiales: ids }); extra = ` · ${ids.length === 1 ? "habilitado" : ids.length + " habilitados"} en Mi biblioteca`; } if (sin.length) extra += ` · sin vincular en la biblioteca: ${sin.join(", ")}`; } catch (e) { extra = ` · no se pudo habilitar en Mi biblioteca (${e.message || "error"})`; } }
+    toast(`✅ Venta de ${PPE.n || PPE.e} registrada y mensaje copiado${extra}`, "ok"); Object.assign(PPE, { n: "", e: "", ig: "", t: "", mats: [], tot: "", txt: "", tocado: false, q: "", busy: false }); ppeRepintar("#ppeN"); }
+  catch (e) { PPE.busy = false; btn.disabled = false; msg("No se pudo registrar la venta. Probá de nuevo.", true); } }
+
+// ===== acciones rápidas en Inicio y eventos =====
+const PP_ACC = [["verificar", "🔎", "Verificar una compra", "¿Compró? ¿Qué contraseña le toca?"], ["entregar", "📦", "Entregar venta directa", "Transferencia o Instagram"], ["lanzar", "🚀", "Lanzar un material", "Textos para tienda, redes y correo"], ["cuadernillo", "📘", "Cuadernillo en un clic", "Actividades, tapa e índice"]];
+function ppAccion(k) { if (k === "verificar") return ppVerificar(); if (k === "entregar") return ppEntregar(""); if (k === "lanzar") return typeof lkAbrir === "function" ? lkAbrir(null) : null;
+  if (k === "cuadernillo") { showView("motor"); setTimeout(() => { try { isOpen("cuad"); } catch {} }, 150); } }
+function ppMontar() { const v = document.getElementById("view-inicio"); if (v && !document.getElementById("ppAcc")) { const s = document.createElement("section"); s.id = "ppAcc"; s.className = "pp-acc"; s.setAttribute("aria-label", "Acciones rápidas");
+    s.innerHTML = PP_ACC.map(([k, ic, t, d]) => `<button type="button" data-ppacc="${k}"><span>${ic}</span><b>${t}</b><small>${d}</small></button>`).join(""); const ref = v.querySelector("#mQuick") || v.firstElementChild; ref.parentNode.insertBefore(s, ref); }
+  const vh = document.querySelector("#view-ventas .view-h"); if (vh && !vh.querySelector("[data-ppacc]")) { const w = document.createElement("div"); w.className = "pp-vh"; w.innerHTML = `<button type="button" class="btn" data-ppacc="verificar">🔎 Verificar compra</button><button type="button" class="btn primary" data-ppacc="entregar">📦 Venta directa</button>`; vh.appendChild(w); } }
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ppMontar); else setTimeout(ppMontar, 0);
+document.addEventListener("click", async (e) => { const t = e.target; let b;
+  if ((b = t.closest("[data-ppacc]"))) { e.preventDefault(); ppAccion(b.dataset.ppacc); return; }
+  if ((b = t.closest("[data-pppass]"))) { const s = b.querySelector("span"), on = b.classList.toggle("on"); s.textContent = on ? "🔑 " + b.dataset.pppass : "🔑 ••••••"; return; }
+  if ((b = t.closest("[data-ppcopy]"))) { copyText(b, b.dataset.ppcopy); return; }
+  if ((b = t.closest("[data-ppmsg]"))) { const [ci, oid, ...r] = b.dataset.ppmsg.split("|"), c = D.clients[+ci]; if (c) { document.getElementById("ppVerif").close(); openSend(c, oid, r.join("|")); } return; }
+  if ((b = t.closest("[data-ppentregar]"))) { ppEntregar(b.dataset.ppentregar); return; }
+  if ((b = t.closest("[data-ppeadd]"))) { PPE.mats.push(b.dataset.ppeadd); PPE.q = ""; ppeRepintar("#ppeQ"); return; }
+  if ((b = t.closest("[data-ppequitar]"))) { PPE.mats.splice(+b.dataset.ppequitar, 1); ppeRepintar(); return; }
+  if ((b = t.closest("[data-ppecopy]"))) { copyText(b, PPE.tocado ? PPE.txt : ppeTexto()); return; }
+  if ((b = t.closest("[data-ppereg]"))) { await ppeRegistrar(b); return; }
+  if ((b = t.closest("[data-ppeborrar]"))) { if (!b.dataset.c) { b.dataset.c = 1; b.textContent = "Tocá de nuevo para quitar"; setTimeout(() => { if (b.isConnected) { delete b.dataset.c; b.textContent = "Quitar"; } }, 3500); return; }
+    try { await db.collection("envios").doc(b.dataset.ppeborrar).delete(); toast("Venta directa quitada"); setTimeout(() => ppeRepintar(), 400); } catch { toast("No se pudo quitar."); } return; } });
+document.addEventListener("input", (e) => { const t = e.target, k = t.dataset && t.dataset.ppe; if (!k || !t.closest("#ppEnt")) return;
+  if (k === "bib") { PPE.bib = t.checked; return; } PPE[k] = t.value; if (k === "txt") { PPE.tocado = true; return; }
+  if (k === "q") { ppeRepintar("#ppeQ"); return; } if (k === "n" && !PPE.tocado) { const x = document.getElementById("ppeTxt"); if (x) x.value = ppeTexto(); } });
+document.addEventListener("change", (e) => { const t = e.target, k = t.dataset && t.dataset.ppe; if (!k || !t.closest("#ppEnt")) return; if (k === "t" || k === "medio") { PPE[k] = t.value; if (k === "t") ppeRepintar(); } });
+
+// ---------- PANEL PRO · (1) asistente de lanzamiento: un material, todos los textos ----------
+const LK = { id: null, in: {}, out: null, hecho: {}, busy: false, tab: "tienda", err: "" };
+const LK_IN0 = () => ({ nombre: "", efe: "", nivel: "", precio: "", incluye: "", link: STORE_URL, pass: "", archivo: "" });
+const LK_PIEZAS = [["tienda", "🛒 Tienda", [["tienda_titulo", "Título del producto"], ["tienda_desc", "Descripción para Empretienda"]]], ["web", "🌐 Web", [["web_titulo", "Título en cofredidactico.com.ar"], ["web_corta", "Descripción corta"], ["web_larga", "Descripción completa"], ["web_tags", "Etiquetas"]]],
+  ["instagram", "📸 Instagram", [["ig_caption", "Publicación"], ["ig_hashtags", "Hashtags"], ["ig_historias", "Historias (3 placas)"]]], ["pinterest", "📌 Pinterest", [["pin_titulo", "Título del pin"], ["pin_desc", "Descripción del pin"]]],
+  ["correo", "✉️ Correo", [["mail_asunto", "Asunto"], ["mail_cuerpo", "Cuerpo del correo"]]], ["mensaje", "💬 WhatsApp / DM", [["wa", "Mensaje corto para difundir"], ["dm", "Respuesta a “¿precio?” / “info”"]]]];
+const LK_PASOS = [["ficha", "Ficha y contraseña guardadas en Materiales"], ["tienda", "Publicado en Empretienda"], ["web", "Cargado en cofredidactico.com.ar"], ["biblio", "Vinculado en Mi biblioteca"], ["ig", "Publicación de Instagram programada"], ["pin", "Pin de Pinterest programado"], ["mail", "Correo enviado a tus clientes"], ["tablero", "Movido a “Publicado” en el tablero"]];
+const lkEfe = () => EFEMERIDES.find((e) => e[0] === LK.in.efe) || null;
+let lkTimer = null;
+function lkGuardar() { clearTimeout(lkTimer); const id = LK.id; lkTimer = setTimeout(() => { const { pass, ...sinPass } = LK.in, kit = { in: sinPass, out: LK.out, hecho: LK.hecho }; if (id && db) { db.collection("lanzamientos").doc(id).update({ kit }).catch(() => {}); } else { try { localStorage.setItem("cofre-lanz-kit", JSON.stringify(kit)); } catch {} } }, 700); }
+function lkPlantillas() { const I = LK.in, ef = lkEfe(), fecha = ef ? `${ef[0].split("-").reverse().join("/")}` : "", tema = ef ? ef[1] : I.nombre, niv = I.nivel || "primaria", pr = I.precio ? money(+String(I.precio).replace(/\D/g, "")) : "", L = String(I.incluye || "").split("\n").map((x) => x.trim()).filter(Boolean), li = (pre) => L.map((x) => `${pre} ${x}`).join("\n");
+  const tagT = fold(tema).replace(/[^a-z0-9 ]/g, "").split(" ").filter((w) => w.length > 2).map((w) => w[0].toUpperCase() + w.slice(1)).join("");
+  return { tienda_titulo: `${I.nombre}${I.nivel ? ` · ${I.nivel}` : ""} (PDF imprimible)`,
+    tienda_desc: `${I.nombre}\n\nMaterial didáctico en PDF, listo para imprimir y usar en el aula${ef ? `, pensado para trabajar ${tema} (${fecha})` : ""}. Nivel: ${niv}.\n\n${L.length ? `¿QUÉ INCLUYE?\n${li("✔")}\n\n` : ""}¿CÓMO LO RECIBO?\nApenas se acredita el pago te llega por correo el enlace de descarga. El archivo es digital: no se envía nada por correo postal.\n\nMaterial de uso personal para tu aula. No se permite su reventa ni su distribución.\n\nCofre Didáctico · Material de autoría de Miguel Alejandro Rojo.`,
+    web_titulo: I.nombre, web_corta: `${ef ? `${tema}: ` : ""}cuadernillo en PDF para ${niv}, listo para imprimir.${L.length ? ` Incluye ${L.slice(0, 3).join(", ").toLowerCase()}.` : ""}`,
+    web_larga: `${I.nombre} es un material pensado para que ${ef ? `${tema} se trabaje` : "tus clases se armen"} con actividades claras, lindas y graduadas para ${niv}.\n\n${L.length ? `Incluye:\n${li("•")}\n\n` : ""}Imprimís solo las hojas que necesitás, las veces que quieras, para tu grupo.`,
+    web_tags: [tema, niv, "cuadernillo", "PDF imprimible", "efemérides", "primaria", "actividades"].filter(Boolean).join(", "),
+    ig_caption: `${ef ? `📅 Se viene el ${fecha}: ${tema}.` : "✨ ¡Material nuevo!"}\n\n${I.nombre} ya está disponible 💛\n\n${L.length ? `${li("✅")}\n\n` : ""}📄 PDF listo para imprimir · ${niv}${pr ? `\n💰 ${pr}` : ""}\n\n👉 Comentá “INFO” y te mando el link, o entrá al enlace del perfil.\n\n¿Con qué grado lo vas a usar? Te leo 👇`,
+    ig_hashtags: ["#CofreDidactico", "#MaterialDidactico", "#Docentes", "#DocentesArgentinos", "#Primaria", "#RecursosEducativos", "#Efemerides", "#Cuadernillo", tagT ? "#" + tagT : "", "#SeñoDePrimaria"].filter(Boolean).join(" "),
+    ig_historias: `1) “${ef ? `¿Ya tenés listo el ${fecha}?` : "¿Buscás material nuevo?"}” + encuesta SÍ / TODAVÍA NO\n2) Mostrá 3 hojas por dentro: “${I.nombre}: mirá lo que trae 👀”\n3) “Ya disponible${pr ? ` · ${pr}` : ""} · Tocá el link 👉” + sticker de enlace`,
+    pin_titulo: `${I.nombre} | ${tema} para ${niv}`.slice(0, 100), pin_desc: `Actividades de ${tema} para ${niv}, en PDF listo para imprimir.${L.length ? ` Incluye ${L.slice(0, 4).join(", ").toLowerCase()}.` : ""} Material de Cofre Didáctico para docentes de primaria. #${tagT || "Efemerides"} #MaterialDidactico #Primaria`,
+    mail_asunto: ef ? `${tema}: ya está el material nuevo 📚` : `Nuevo en Cofre Didáctico: ${I.nombre}`,
+    mail_cuerpo: `¡Hola {nombre}! 😊\n\n${ef ? `Falta poco para el ${fecha} y quería avisarte antes que a nadie:` : "Quería avisarte antes que a nadie:"} ya está disponible ${I.nombre}.\n\n${L.length ? `Trae:\n${li("•")}\n\n` : ""}Es un PDF para ${niv}, listo para imprimir${pr ? `, y sale ${pr}` : ""}.\n\n👉 ${I.link || STORE_URL}\n\nGracias por acompañar siempre este proyecto 💛\nAlejandro · Cofre Didáctico`,
+    wa: `📚 ¡Nuevo! ${I.nombre}${ef ? ` · para el ${fecha}` : ""}\nPDF listo para imprimir · ${niv}${pr ? ` · ${pr}` : ""}\n👉 ${I.link || STORE_URL}`,
+    dm: `¡Hola! 😊 Gracias por escribir 💛\n\n${I.nombre}${pr ? ` sale ${pr}` : ""}. Es un PDF listo para imprimir, para ${niv}.${L.length ? `\n\nIncluye:\n${li("✅")}` : ""}\n\nLo comprás acá y te llega al correo en el momento:\n👉 ${I.link || STORE_URL}\n\nSi preferís transferencia, avisame y te paso los datos.` }; }
+function lkPedido() { const I = LK.in, ef = lkEfe(); return `Sos el redactor de Cofre Didáctico, una marca argentina de materiales didácticos para docentes de primaria (autor: Miguel Alejandro Rojo). Escribí TODOS los textos de lanzamiento de este material, en español rioplatense (voseo), tono cálido, claro y profesional, sin exagerar ni inventar nada que no esté en los datos.
+Material: ${I.nombre}${ef ? `\nEfeméride: ${ef[1]} (${ef[0].split("-").reverse().join("/")})` : ""}\nNivel: ${I.nivel || "primaria"}${I.precio ? `\nPrecio: $${I.precio}` : ""}\nQué incluye:\n${I.incluye || "(sin detalle)"}\nLink de compra: ${I.link || STORE_URL}\nFormato: PDF digital para imprimir; se entrega por correo al acreditarse el pago.
+Devolvé SOLO un JSON con estas claves (todas texto): tienda_titulo (máx. 80 caracteres), tienda_desc (descripción completa para la tienda, con qué incluye y cómo se recibe), web_titulo, web_corta (máx. 160 caracteres), web_larga (2 o 3 párrafos), web_tags (8 etiquetas separadas por coma), ig_caption (gancho en la primera línea, beneficios, llamado a comentar INFO; con emojis medidos), ig_hashtags (10 hashtags), ig_historias (3 placas numeradas), pin_titulo (máx. 100), pin_desc (máx. 400, con palabras clave de búsqueda), mail_asunto (máx. 50), mail_cuerpo (empieza con "¡Hola {nombre}!"), wa (mensaje corto de difusión), dm (respuesta a quien pregunta el precio).`; }
+async function lkGenerar(conIA) { const I = LK.in; if (!I.nombre.trim()) { LK.err = "Escribí el nombre del material."; lkPintar(); return; } LK.err = ""; const base = lkPlantillas();
+  if (!conIA) { LK.out = base; lkGuardar(); lkPintar(); return; }
+  const sf = await getSample(); if (!sf) { LK.out = base; lkGuardar(); lkPintar(); toast("Textos armados con plantillas. La redacción con Claude funciona en el panel de Claude."); return; }
+  LK.busy = true; lkPintar();
+  try { const r = await sf.json(lkPedido(), { modelTier: "default" }); const o = {}; Object.keys(base).forEach((k) => { const v = r && r[k]; o[k] = typeof v === "string" && v.trim() ? v.trim() : Array.isArray(v) ? v.join(k === "ig_hashtags" ? " " : "\n") : base[k]; }); LK.out = o; lkGuardar(); toast("✨ Textos de lanzamiento listos", "ok"); }
+  catch (e) { LK.out = LK.out || base; LK.err = sampleErr(e) + " Te dejé los textos de plantilla."; }
+  LK.busy = false; lkPintar(); }
+function lkSugerirPass() { const ef = lkEfe(), w = fold((ef ? ef[1] : LK.in.nombre).replace(/^d[ií]a (de la |del |de los |de las |de )?/i, "")).replace(/[^a-z]/g, " ").split(" ").filter((x) => x.length > 3)[0] || "cofre"; const n = new Uint16Array(1); crypto.getRandomValues(n); return w[0].toUpperCase() + w.slice(1, 9) + (1000 + n[0] % 9000); }
+async function lkFicha(btn) { const I = LK.in; if (!I.nombre.trim()) return toast("Escribí el nombre del material."); if (!needDb()) return; const k = slug(I.nombre), ef = lkEfe(), prev = matDocs[k] || {}; btn.disabled = true;
+  try { await db.collection("materiales").doc(k).set({ ...prev, name: I.nombre.trim(), pass: I.pass.trim() || prev.pass || "", precio: String(I.precio || prev.precio || "").replace(/\D/g, ""), nivel: I.nivel || prev.nivel || "", efe: ef ? ef[0].split("-").reverse().join("/") : prev.efe || "", estado: "Activo", link: I.archivo.trim() || prev.link || "", updated: new Date().toISOString() });
+    LK.hecho.ficha = true; lkGuardar(); toast("✅ Ficha guardada en Materiales", "ok"); lkPintar(); } catch { toast("No se pudo guardar la ficha."); btn.disabled = false; } }
+function lkHtml() { const I = LK.in, O = LK.out, hechos = LK_PASOS.filter(([k]) => LK.hecho[k]).length, pz = LK_PIEZAS.find((p) => p[0] === LK.tab) || LK_PIEZAS[0], ya = I.nombre && matDocs[slug(I.nombre)];
+  return ppHead("🚀", "Asistente de lanzamiento", "Cargás el material una vez y salen todos los textos: tienda, web, Instagram, Pinterest, correo y mensajes.") + `
+    <div class="pl-cols"><div class="pl-in">
+      <div class="field"><label for="lkN">Nombre del material</label><input id="lkN" data-pl="nombre" value="${esc(I.nombre)}" placeholder="Ej.: Cuadernillo Día de la Soberanía Nacional"></div>
+      <div class="pp-grid2"><div class="field"><label for="lkE">Efeméride</label><select id="lkE" data-pl="efe"><option value="">Ninguna</option>${EFEMERIDES.map((e) => `<option value="${e[0]}"${I.efe === e[0] ? " selected" : ""}>${e[0].split("-").reverse().join("/")} · ${esc(e[1])}</option>`).join("")}</select></div>
+        <div class="field"><label for="lkNv">Nivel o grados</label><input id="lkNv" data-pl="nivel" value="${esc(I.nivel)}" placeholder="Ej.: 1.º a 3.º grado"></div>
+        <div class="field"><label for="lkP">Precio</label><input id="lkP" data-pl="precio" inputmode="numeric" value="${esc(I.precio)}" placeholder="Ej.: 6500"></div>
+        <div class="field"><label for="lkL">Link de compra</label><input id="lkL" data-pl="link" value="${esc(I.link)}"></div></div>
+      <div class="field"><label for="lkI">Qué incluye <small class="muted">(un renglón por ítem)</small></label><textarea id="lkI" data-pl="incluye" rows="5" placeholder="24 páginas de actividades&#10;Lengua y matemática&#10;Juegos para recortar&#10;Soluciones">${esc(I.incluye)}</textarea></div>
+      <details class="pp-det"${LK.hecho.ficha ? "" : " open"}><summary>🔑 Ficha del material y contraseña</summary>
+        <div class="pp-grid2"><div class="field"><label for="lkPw">Contraseña del PDF</label><div class="pl-pw"><input id="lkPw" data-pl="pass" value="${esc(I.pass)}" placeholder="${ya && ya.pass ? "Ya tiene una cargada" : "Escribila o sugerí una"}" autocomplete="off"><button type="button" class="btn small" data-plsug>Sugerir</button></div></div>
+          <div class="field"><label for="lkA">Enlace del archivo <small class="muted">(Drive)</small></label><input id="lkA" data-pl="archivo" value="${esc(I.archivo)}" placeholder="https://drive.google.com/…"></div></div>
+        <button type="button" class="btn small" data-plficha>${ya ? "Actualizar la ficha en Materiales" : "Crear la ficha en Materiales"}</button></details>
+      ${LK.err ? `<p class="pp-mal">⚠️ ${esc(LK.err)}</p>` : ""}
+      <div class="pl-go"><button type="button" class="btn primary" data-plgen="ia" ${LK.busy ? "disabled" : ""}>${LK.busy ? "⏳ Escribiendo…" : MODE.cloud ? "✨ Escribir todo con Claude" : "⚡ Armar todos los textos"}</button>${MODE.cloud ? `<button type="button" class="btn" data-plgen="pl" ${LK.busy ? "disabled" : ""}>Usar plantillas</button>` : `<button type="button" class="btn" data-plprompt>📋 Copiar pedido para ChatGPT</button>`}</div>
+    </div><div class="pl-out">
+      ${O ? `<div class="pl-tabs" role="tablist">${LK_PIEZAS.map(([k, n]) => `<button type="button" role="tab" class="${LK.tab === k ? "on" : ""}" data-pltab="${k}">${n}</button>`).join("")}</div>
+        ${pz[2].map(([k, lab]) => `<div class="field pl-pz"><label for="pl_${k}">${lab} <small class="muted">${(O[k] || "").length} caracteres</small></label><textarea id="pl_${k}" data-plout="${k}" rows="${Math.min(12, Math.max(2, Math.ceil((O[k] || "").length / 62) + (O[k] || "").split("\n").length - 1))}">${esc(O[k] || "")}</textarea><button type="button" class="btn small" data-plcopy="${k}">Copiar</button></div>`).join("")}
+        ${LK.tab === "instagram" ? `<button type="button" class="linkish" data-plir="instagram">Ir a programar la publicación →</button>` : LK.tab === "pinterest" ? `<button type="button" class="linkish" data-plir="pinterest">Ir a Pinterest →</button>` : LK.tab === "correo" ? `<button type="button" class="linkish" data-plir="correos">Ir a Correos →</button>` : ""}`
+      : `<div class="pp-vacio"><span>📝</span><p>Completá los datos y tocá <b>${MODE.cloud ? "Escribir todo con Claude" : "Armar todos los textos"}</b>.</p><small class="muted">Salen 15 textos listos para copiar, todos editables.</small></div>`}
+      <div class="pl-check"><div class="pl-check-h"><b>Lista de lanzamiento</b><span>${hechos} de ${LK_PASOS.length}</span></div><div class="pl-bar"><i style="width:${Math.round(hechos / LK_PASOS.length * 100)}%"></i></div>
+        ${LK_PASOS.map(([k, t]) => `<label class="check${LK.hecho[k] ? " ok" : ""}"><input type="checkbox" data-plpaso="${k}" ${LK.hecho[k] ? "checked" : ""}> ${t}</label>`).join("")}</div>
+    </div></div>`; }
+function lkPintar() { const d = document.getElementById("ppLanz"), foco = document.activeElement && document.activeElement.id; if (!d || !d.open) { ppDlg("ppLanz", lkHtml(), 1040); return; } const sc = d.scrollTop; d.innerHTML = `<div class="dlg pp">${lkHtml()}</div>`; d.scrollTop = sc; if (foco) { const el = document.getElementById(foco); if (el && d.contains(el)) el.focus(); } }
+function lkAbrir(l) { let kit = null; LK.id = l ? l.id : null;
+  if (l) { kit = l.kit || null; if (!kit) { const ef = l.efe || ""; kit = { in: { ...LK_IN0(), nombre: l.titulo || "", efe: ef, nivel: l.nivel || "", incluye: "" }, out: null, hecho: {} }; } }
+  else { try { kit = JSON.parse(localStorage.getItem("cofre-lanz-kit") || "null"); } catch {} }
+  LK.in = { ...LK_IN0(), ...((kit && kit.in) || {}) }; LK.out = (kit && kit.out) || null; LK.hecho = (kit && kit.hecho) || {}; LK.err = ""; LK.busy = false; LK.tab = "tienda"; ppDlg("ppLanz", lkHtml(), 1040); }
+const _plLanz = renderLanz;
+renderLanz = function () { const r = _plLanz.apply(this, arguments);
+  try { const vh = document.querySelector("#view-lanzamientos .view-h"); if (vh && !vh.querySelector("[data-plnuevo]")) { const b = document.createElement("button"); b.type = "button"; b.className = "btn"; b.dataset.plnuevo = "1"; b.textContent = "🚀 Asistente de lanzamiento"; vh.insertBefore(b, vh.lastElementChild); }
+    document.querySelectorAll("#board .col").forEach((col, si) => { const st = LSTATES[si][0], items = lanz.filter((l) => (l.estado || "Idea") === st).sort((a, b) => String(a.due || "9").localeCompare(String(b.due || "9")));
+      col.querySelectorAll(".lc").forEach((c, i) => { const l = items[i], a = c.querySelector(".actions"); if (!l || !a || a.querySelector("[data-plid]")) return; const b = document.createElement("button"); b.type = "button"; b.className = "btn small"; b.dataset.plid = l.id; b.title = "Textos de lanzamiento y lista de pasos"; const n = l.kit && l.kit.hecho ? Object.values(l.kit.hecho).filter(Boolean).length : 0; b.textContent = n ? `🚀 ${n}/${LK_PASOS.length}` : "🚀 Lanzar"; a.insertBefore(b, a.lastElementChild); }); }); } catch (e) { console.warn(e); }
+  return r; };
+document.addEventListener("click", async (e) => { const t = e.target; let b;
+  if ((b = t.closest("[data-plnuevo]"))) { lkAbrir(null); return; }
+  if ((b = t.closest("[data-plid]"))) { const l = lanz.find((x) => x.id === b.dataset.plid); if (l) lkAbrir(l); return; }
+  if (!t.closest("#ppLanz")) return;
+  if ((b = t.closest("[data-plgen]"))) { await lkGenerar(b.dataset.plgen === "ia"); return; }
+  if ((b = t.closest("[data-plprompt]"))) { if (!LK.in.nombre.trim()) { LK.err = "Escribí el nombre del material."; lkPintar(); return; } copyText(b, lkPedido()); return; }
+  if ((b = t.closest("[data-pltab]"))) { LK.tab = b.dataset.pltab; lkPintar(); return; }
+  if ((b = t.closest("[data-plcopy]"))) { copyText(b, (LK.out || {})[b.dataset.plcopy] || ""); return; }
+  if ((b = t.closest("[data-plsug]"))) { LK.in.pass = lkSugerirPass(); lkGuardar(); lkPintar(); return; }
+  if ((b = t.closest("[data-plficha]"))) { await lkFicha(b); return; }
+  if ((b = t.closest("[data-plir]"))) { document.getElementById("ppLanz").close(); showView(b.dataset.plir); return; } });
+document.addEventListener("input", (e) => { const t = e.target; if (!t.closest || !t.closest("#ppLanz")) return; const d = t.dataset || {};
+  if (d.pl) { LK.in[d.pl] = t.value; lkGuardar(); } else if (d.plout && LK.out) { LK.out[d.plout] = t.value; lkGuardar(); } });
+document.addEventListener("change", async (e) => { const t = e.target; if (!t.closest || !t.closest("#ppLanz")) return; const k = t.dataset && t.dataset.plpaso; if (!k) return; LK.hecho[k] = t.checked; lkGuardar();
+  if (k === "tablero" && t.checked && LK.id && db) { try { await db.collection("lanzamientos").doc(LK.id).update({ estado: "Publicado" }); } catch {} } lkPintar(); });
+
+// ---------- PANEL PRO · (16) rentabilidad real por material y (18) pronóstico de los próximos meses ----------
+const PR = { per: "anio", ver: "mat", todos: false };
+function prRango() { const h = new Date(), y = h.getFullYear(); if (PR.per === "12m") return [new Date(y, h.getMonth() - 11, 1), new Date(y, h.getMonth() + 1, 1), "últimos 12 meses"]; if (PR.per === "todo") return [new Date(2000, 0, 1), new Date(y + 1, 0, 1), "todo el historial"];
+  if (/^\d{4}$/.test(PR.per)) return [new Date(+PR.per, 0, 1), new Date(+PR.per + 1, 0, 1), PR.per]; return [new Date(y, 0, 1), new Date(y + 1, 0, 1), String(y)]; }
+function prGastos(f, e) { let pub = 0, otros = 0; const hoyK = monthKey(new Date()), k0 = monthKey(f), k1 = monthKey(new Date(+e - 1));
+  (gastos || []).forEach((g) => { if (!g.fecha) return; const amt = +g.monto || 0, gk = g.fecha.slice(0, 7); let n = 0;
+    if (g.rec) { let [y, m] = gk.split("-").map(Number); const fin = [g.hasta || hoyK, k1, hoyK].sort()[0]; for (let k = gk; k <= fin; ) { if (k >= k0) n++; m++; if (m > 12) { m = 1; y++; } k = `${y}-${String(m).padStart(2, "0")}`; } } else n = gk >= k0 && gk <= k1 ? 1 : 0;
+    if (/publicidad/i.test(g.cat || "")) pub += amt * n; else otros += amt * n; }); return { pub, otros }; }
+function prFilas() { if (!D) return null; const [f, e, lab] = prRango(), pct = parseFloat(String(finCfg.mpPct || "0").replace(",", ".")) || 0, M = {};
+  D.items.forEach((it) => { if (!it.ok || !it.d || it.d < f || it.d >= e) return; const m = D.mats[it.k], key = PR.ver === "grupo" ? (m ? m.group : it.name) : it.k, r = M[key] = M[key] || { key, nombre: PR.ver === "grupo" ? key : (m ? m.name : it.name), u: 0, rev: 0, comm: 0, ped: new Set() };
+    r.u += it.q; r.rev += it.rev; if (/mercado/i.test(it.o.m || "")) r.comm += it.rev * pct / 100; r.ped.add(it.o.id); });
+  const L = Object.values(M), tot = L.reduce((s, r) => s + r.rev, 0), G = prGastos(f, e);
+  L.forEach((r) => { const sh = tot ? r.rev / tot : 0; r.pub = G.pub * sh; r.otros = G.otros * sh; r.net = r.rev - r.comm - r.pub - r.otros; r.mg = r.rev ? r.net / r.rev : 0; r.xu = r.u ? r.net / r.u : 0; r.ped = r.ped.size; });
+  L.sort((a, b) => b.net - a.net); return { L, tot, G, lab, pct, comm: L.reduce((s, r) => s + r.comm, 0), net: L.reduce((s, r) => s + r.net, 0), u: L.reduce((s, r) => s + r.u, 0), ped: sx().ok.filter((x) => x.d >= f && x.d < e).length }; }
+function prRender() { const sec = document.getElementById("prSec"); if (!sec) return; const R = prFilas(), y = new Date().getFullYear(), anios = D && D.dataStart ? Array.from({ length: y - D.dataStart.getFullYear() }, (_, i) => String(y - 1 - i)) : [];
+  const per = [["anio", "Este año"], ["12m", "12 meses"], ...anios.map((a) => [a, a]), ["todo", "Todo"]];
+  const head = `<div class="sec-h"><h2>Rentabilidad por material</h2><span class="meta">Qué te deja de verdad cada material: facturado menos comisión, publicidad y gastos</span></div>
+    <div class="pr-bar"><div class="seg" role="group" aria-label="Período">${per.map(([k, n]) => `<button type="button" class="${PR.per === k ? "on" : ""}" data-prper="${k}">${n}</button>`).join("")}</div><div class="seg" role="group" aria-label="Agrupar">${[["mat", "Por material"], ["grupo", "Por tema"]].map(([k, n]) => `<button type="button" class="${PR.ver === k ? "on" : ""}" data-prver="${k}">${n}</button>`).join("")}</div></div>`;
+  if (!R || !R.L.length) { sec.innerHTML = head + `<p class="muted">No hay ventas cobradas en ese período.</p>`; return; }
+  const mejor = R.L[0], peor = [...R.L].filter((r) => r.rev > R.tot * 0.01).sort((a, b) => a.mg - b.mg)[0], porU = [...R.L].filter((r) => r.u >= 3).sort((a, b) => b.xu - a.xu)[0], max = Math.max(...R.L.map((r) => r.rev)), L = PR.todos ? R.L : R.L.slice(0, 12);
+  const k = (l, v, n, c) => `<div class="kpi" style="--k:var(${c})"><div class="kpi-l"><i></i><span>${l}</span></div><div class="kpi-v">${v}</div><div class="kpi-n">${n}</div></div>`;
+  sec.innerHTML = head + `<div class="kpis pr-kpis">${k("Ganancia neta · " + esc(R.lab), money(R.net), R.tot ? `Margen ${Math.round(R.net / R.tot * 100)}% sobre ${money(R.tot)}` : "", "--c-trabajo")}${k("El que más deja", esc(mejor.nombre), `${money(mejor.net)} · ${nf(mejor.u)} unidades`, "--c-ventas")}${k("Mejor ganancia por unidad", porU ? esc(porU.nombre) : "—", porU ? `${money(porU.xu)} por unidad vendida` : "Hacen falta 3 ventas o más", "--c-metricas")}${k("Publicidad por venta", R.ped ? money(R.G.pub / R.ped) : "—", R.G.pub ? `${money(R.G.pub)} en ${nf(R.ped)} pedidos` : "Sin gastos de publicidad cargados", "--c-redes")}</div>
+    <div class="table-wrap pr-tw"><table class="pr-t"><thead><tr><th>${PR.ver === "grupo" ? "Tema" : "Material"}</th><th class="num">Unid.</th><th class="num">Facturado</th><th class="num">Comisión</th><th class="num">Publicidad</th><th class="num">Otros gastos</th><th class="num">Ganancia</th><th class="num">Margen</th><th class="num">Por unidad</th></tr></thead><tbody>
+      ${L.map((r) => `<tr><td><div class="pr-n"><b>${esc(r.nombre)}</b><i style="width:${Math.max(2, Math.round(r.rev / max * 100))}%"><em style="width:${Math.max(0, Math.min(100, Math.round(r.mg * 100)))}%"></em></i></div></td><td class="num">${nf(r.u)}</td><td class="num">${money(r.rev)}</td><td class="num">${r.comm ? "−" + money(r.comm) : "—"}</td><td class="num">${r.pub ? "−" + money(r.pub) : "—"}</td><td class="num">${r.otros ? "−" + money(r.otros) : "—"}</td><td class="num ${r.net < 0 ? "neg" : ""}" style="font-weight:700">${money(r.net)}</td><td class="num"><span class="pill ${r.mg >= 0.7 ? "ok" : r.mg >= 0.4 ? "wait" : "no"}">${Math.round(r.mg * 100)}%</span></td><td class="num">${money(r.xu)}</td></tr>`).join("")}
+      </tbody><tfoot><tr><td><b>Total</b></td><td class="num">${nf(R.u)}</td><td class="num">${money(R.tot)}</td><td class="num">${R.comm ? "−" + money(R.comm) : "—"}</td><td class="num">${R.G.pub ? "−" + money(R.G.pub) : "—"}</td><td class="num">${R.G.otros ? "−" + money(R.G.otros) : "—"}</td><td class="num" style="font-weight:800">${money(R.net)}</td><td class="num">${R.tot ? Math.round(R.net / R.tot * 100) + "%" : "—"}</td><td class="num">${R.u ? money(R.net / R.u) : "—"}</td></tr></tfoot></table></div>
+    ${R.L.length > 12 ? `<button type="button" class="linkish" data-prtodos>${PR.todos ? "Ver solo los 12 primeros" : `Ver los ${R.L.length} ${PR.ver === "grupo" ? "temas" : "materiales"}`}</button>` : ""}
+    <p class="muted pr-nota">${peor && peor !== mejor ? `El margen más bajo es el de <b>${esc(peor.nombre)}</b> (${Math.round(peor.mg * 100)}%). ` : ""}La comisión se calcula con tu tasa de Mercado Pago (${R.pct ? String(R.pct).replace(".", ",") + "%" : "sin cargar"}) sobre lo cobrado por ese medio. La publicidad y los demás gastos se reparten entre los materiales según lo que facturó cada uno.</p>`; }
+const _prFin = renderFin;
+renderFin = function () { const r = _prFin.apply(this, arguments); try { if (!document.getElementById("prSec")) { const fin = document.getElementById("finStats"), card = fin && fin.closest("section"); if (card) { const s = document.createElement("section"); s.className = "card"; s.id = "prSec"; card.parentNode.insertBefore(s, card.nextSibling); } } prRender(); } catch (e) { console.warn(e); } return r; };
+
+// ===== pronóstico mes a mes =====
+function fmModelo() { if (!D || !D.monthList.length) return null; const rev = {}; D.monthList.forEach((m) => { rev[m.key] = m; }); const h = new Date(), kk = (y, m) => { const d = new Date(y, m, 1); return monthKey(d); };
+  // crecimiento: los últimos 3 meses completos contra los mismos meses de un año antes
+  let a = 0, b = 0; for (let i = 1; i <= 3; i++) { const k1 = kk(h.getFullYear(), h.getMonth() - i), k0 = kk(h.getFullYear() - 1, h.getMonth() - i); if (rev[k0] && rev[k1]) { a += rev[k1].rev; b += rev[k0].rev; } }
+  const conAnio = b > 0, g = conAnio ? Math.min(3, Math.max(0.5, a / b)) : 1, ult = [1, 2, 3].map((i) => rev[kk(h.getFullYear(), h.getMonth() - i)]).filter(Boolean), base3 = ult.length ? ult.reduce((s, m) => s + m.rev, 0) / ult.length : 0;
+  const okL = sx().ok, rec = okL.filter((x) => (h - x.d) / DAY <= 120), ticket = rec.length ? rec.reduce((s, x) => s + x.tot, 0) / rec.length : 0;
+  const meses = []; for (let i = 0; i <= 3; i++) { const d = new Date(h.getFullYear(), h.getMonth() + i, 1), k = monthKey(d), k0 = kk(d.getFullYear() - 1, d.getMonth()), ly = rev[k0] ? rev[k0].rev : null;
+    let mid = ly != null && conAnio ? ly * g : base3; const banda = ly != null && conAnio ? 0.22 + 0.04 * i : 0.38;
+    const efes = EFEMERIDES.filter((e) => +e[0].slice(0, 2) === d.getMonth() + 1).map((e) => { const mats = D.matList.filter((m) => { const x = efeFor(m.name, m.doc); return x && x[0] === e[0]; }); return { e, mats, ly: mats.reduce((s, m) => s + D.items.filter((it) => it.ok && it.d && it.k === m.k && it.d >= new Date(d.getFullYear() - 1, d.getMonth() - 1, 1) && it.d < new Date(d.getFullYear() - 1, d.getMonth() + 1, 1)).reduce((q, it) => q + it.rev, 0), 0) }; });
+    const top = {}; D.items.forEach((it) => { if (it.ok && it.d && monthKey(it.d) === k0) top[it.k] = (top[it.k] || 0) + it.rev; });
+    const real = i === 0 ? (rev[k] ? rev[k].rev : 0) : null, dias = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+    if (i === 0) mid = Math.max(real, (mid + real / Math.max(1, h.getDate()) * dias) / 2);
+    meses.push({ d, k, ly, mid, lo: Math.max(real || 0, mid * (1 - banda)), hi: mid * (1 + banda), real, efes, top: Object.entries(top).sort((x, y) => y[1] - x[1]).slice(0, 3).map(([kx, v]) => ({ n: (D.mats[kx] || {}).name || kx, v })) }); }
+  return { meses, g, conAnio, ticket, base3 }; }
+function fmRender() { const sec = document.getElementById("fmSec"); if (!sec) return; const F = fmModelo(), nom = (d) => d.toLocaleDateString("es-AR", { month: "long" });
+  const head = `<h2>Pronóstico de los próximos meses</h2><p class="sub">Cuánto esperar cada mes según el mismo mes del año pasado, tu crecimiento y las fechas escolares.</p>`;
+  if (!F || !(F.base3 || F.conAnio)) { sec.innerHTML = head + `<p class="muted">Hacen falta al menos 3 meses de ventas para estimar.</p>`; return; }
+  const max = Math.max(...F.meses.map((m) => Math.max(m.hi, m.ly || 0))), sin = typeof efesWithoutMaterial === "function" ? efesWithoutMaterial().filter((x) => (x.d - new Date()) / DAY <= 110 && !x.planned).slice(0, 4) : [];
+  sec.innerHTML = head + `<div class="fm-g">${F.meses.map((m, i) => { const dif = m.ly ? (m.mid - m.ly) / m.ly : null, con = m.efes.filter((x) => x.mats.length);
+      return `<article class="fm-m${i === 0 ? " hoy" : ""}"><header><b>${nom(m.d)}</b><small>${i === 0 ? "mes en curso" : m.d.getFullYear()}</small></header>
+        <div class="fm-v">${money(m.mid)}</div><div class="fm-r">entre ${moneyK(m.lo)} y ${moneyK(m.hi)}</div>
+        <div class="fm-bars"><div><span>Estimado</span><i class="est" style="width:${Math.round(m.mid / max * 100)}%"></i></div>${m.ly != null ? `<div><span>${m.d.getFullYear() - 1}</span><i style="width:${Math.round(m.ly / max * 100)}%"></i><em>${moneyK(m.ly)}</em></div>` : ""}${m.real != null ? `<div><span>Ya cobrado</span><i class="real" style="width:${Math.round(m.real / max * 100)}%"></i><em>${moneyK(m.real)}</em></div>` : ""}</div>
+        ${dif != null ? `<span class="pill ${dif >= 0 ? "ok" : "no"}">${dif >= 0 ? "▲" : "▼"} ${Math.abs(Math.round(dif * 100))}% contra ${nom(m.d)} de ${m.d.getFullYear() - 1}</span>` : `<span class="pill none">Sin datos del año pasado: uso tu promedio reciente</span>`}
+        ${F.ticket ? `<p class="fm-t">≈ <b>${nf(Math.round(m.mid / F.ticket))} ventas</b> con tu ticket de ${money(F.ticket)}</p>` : ""}
+        ${con.length ? `<div class="fm-e"><small>Fechas que empujan</small>${con.slice(0, 4).map((x) => `<span>📅 ${esc(x.e[0].slice(3))}/${esc(x.e[0].slice(0, 2))} ${esc(x.e[1])}${x.ly ? ` <em>${moneyK(x.ly)} el año pasado</em>` : ""}</span>`).join("")}</div>` : `<div class="fm-e"><small>Sin efemérides con materiales tuyos este mes</small></div>`}
+        ${m.top.length ? `<div class="fm-e"><small>Lo que más vendió ese mes en ${m.d.getFullYear() - 1}</small>${m.top.map((t) => `<span>⭐ ${esc(t.n)} <em>${moneyK(t.v)}</em></span>`).join("")}</div>` : ""}</article>`; }).join("")}</div>
+    <p class="st-txt">${F.conAnio ? `En los últimos 3 meses facturaste <b>${F.g >= 1 ? Math.round((F.g - 1) * 100) + "% más" : Math.round((1 - F.g) * 100) + "% menos"}</b> que en los mismos meses del año pasado: uso ese ritmo para proyectar. El número ya incluye los cambios de precio.` : "Todavía no hay un año completo de historial: la estimación usa el promedio de tus últimos 3 meses, por eso el rango es más amplio."}${sin.length ? ` <b>Para aprovechar:</b> ${sin.map((x) => `${esc(x.e[1])} (${esc(fmtDM(x.d))})`).join(", ")} todavía no ${sin.length > 1 ? "tienen" : "tiene"} material.` : ""}</p>`; }
+const _fmFc = renderForecast;
+renderForecast = function () { const r = _fmFc.apply(this, arguments); try { if (!document.getElementById("fmSec")) { const fc = document.getElementById("stFc"), card = fc && fc.closest(".card"); if (card) { const s = document.createElement("section"); s.className = "card st-card"; s.id = "fmSec"; card.parentNode.insertBefore(s, card.nextSibling); } } fmRender(); } catch (e) { console.warn(e); } return r; };
+document.addEventListener("click", (e) => { let b; if ((b = e.target.closest("[data-prper]"))) { PR.per = b.dataset.prper; prRender(); return; } if ((b = e.target.closest("[data-prver]"))) { PR.ver = b.dataset.prver; prRender(); return; } if (e.target.closest("[data-prtodos]")) { PR.todos = !PR.todos; prRender(); } });
+
+// ---------- PANEL PRO · (11) cuadernillo completo en un clic y (12) planificación docente ----------
+const CC_PREF = { lengua: [["trazar", "letra", "silabas", "unir", "rimas", "vocab", "picto", "clasif"], ["silabas", "ordenar", "vocab", "oracion", "rimas", "completa", "mayus", "cruci", "familia", "acrostico", "unir", "letra", "clasif"], ["clases", "oracion", "cruci", "pupi", "dimin", "familia", "mayus", "acrostico", "codigo", "completa", "ordenar"]],
+  mate: [["contar", "patron", "grafico", "comparar", "estima", "geo"], ["sumas", "contar", "cuadro", "armo", "doble", "dinero", "patron", "geo", "problemas", "grafico", "comparar", "estima"], ["problemas", "reparto", "filas", "fracciones", "dinero", "geo", "pixel", "simetria", "cuadro", "doble", "armo"]],
+  juegos: [["memo", "bingo", "domino", "oca"], ["bingo", "memo", "domino", "oca", "tateti", "adivina", "carrera", "rompe"], ["carrera", "rompe", "tateti", "escape", "adivina", "domino", "bingo", "oca"]],
+  arte: [["mandala", "sombras", "banderines", "sopa"], ["sombras", "mandala", "sopa", "banderines", "minilibro", "maqueta"], ["minilibro", "mandala", "maqueta", "sopa", "banderines", "sombras"]] };
+const CC_TAM = { corto: ["Corto", "8 actividades", { lengua: 3, mate: 3, juegos: 1, arte: 1 }], medio: ["Medio", "12 actividades", { lengua: 4, mate: 4, juegos: 2, arte: 2 }], completo: ["Completo", "18 actividades", { lengua: 6, mate: 6, juegos: 3, arte: 3 }] };
+const CC_AREAS = [["lengua", "🔤 Lengua"], ["mate", "🔢 Matemática"], ["juegos", "🎲 Juegos"], ["arte", "🎨 Arte y recortables"]];
+IS.cc = IS.cc || { tam: "medio", areas: { lengua: true, mate: true, juegos: true, arte: true }, reemplazar: false, busy: false, res: null };
+const ccCat = (t) => (typeof JG_TIPOS !== "undefined" && JG_TIPOS.includes(t)) ? "juegos" : ({ recortar: "arte", arte: "arte", lengua: "lengua", mate: "mate", juegos: "juegos" })[IS_TIPO_CAT[t]] || null;
+function ccCandidatos(area) { const nk = isNivK(), pref = CC_PREF[area][nk].filter((t) => IS_J2[t]), resto = Object.keys(IS_J2).filter((t) => ccCat(t) === area && !pref.includes(t) && !["secuencia", "armar", "comprension", "quien"].includes(t)); return [...pref, ...resto]; }
+async function ccArmar(btn) { const K = IS.cc, Q = CC_TAM[K.tam][2], areas = CC_AREAS.map((a) => a[0]).filter((a) => K.areas[a]); if (!areas.length) { toast("Elegí al menos un área.", "err"); return; }
+  if (K.reemplazar && IS.cuad.items.length && !K.conf) { K.conf = true; isRender(); return; } K.conf = false;
+  K.busy = true; K.res = null; if (btn) btn.disabled = true; isRender(); await new Promise((r) => setTimeout(r, 40));
+  const t0 = IS.tipo, E = isEscena(IS.tema), ok = [], mal = [], cola = {}, falta = {}; areas.forEach((a) => { cola[a] = ccCandidatos(a); falta[a] = Q[a]; });
+  try { if (K.reemplazar) IS.cuad.items = [];
+    // se intercalan las áreas para que el cuadernillo no quede en bloques; los juegos van al final
+    const orden = []; const max = Math.max(...areas.map((a) => Q[a])); for (let i = 0; i < max; i++) ["lengua", "mate", "arte"].forEach((a) => { if (areas.includes(a) && i < Q[a]) orden.push(a); }); if (areas.includes("juegos")) for (let i = 0; i < Q.juegos; i++) orden.push("juegos");
+    for (const a of orden) { let hecho = false; while (!hecho && cola[a].length) { const t = cola[a].shift(); IS.tipo = t; IS.j2Ver = 0; try { const n = await isCuadAgregar(); ok.push({ t, a, n, nom: IS_TIPO_INFO[t][1] }); falta[a]--; hecho = true; } catch (e) { mal.push(`${IS_TIPO_INFO[t][1]}: ${String(e.message || e).slice(0, 70)}`); } } }
+    if (ok.length) { const C = IS.cuad; C.tapa = true; C.indice = true; C.numeros = true; C.solFinal = true; if (K.reemplazar || !C.titulo) C.titulo = E.nombre; await isCuadGuardar(); }
+    K.res = { ok, mal, hojas: ok.reduce((s, x) => s + x.n, 0), falta: areas.filter((a) => falta[a] > 0) };
+    toast(ok.length ? `📘 Cuadernillo listo: ${ok.length} actividades · ${K.res.hojas} hojas` : "No se pudo armar ninguna actividad", ok.length ? "ok" : "warn"); }
+  finally { IS.tipo = t0; K.busy = false; isRender(); } }
+function ccCard() { const K = IS.cc, E = isEscena(IS.tema), nb = (isBanco().items || []).length, R = K.res;
+  return `<div class="cc"><div class="jk-h"><span>📘</span><div><b>Cuadernillo completo en un clic</b><small>Arma el cuadernillo de <strong>${esc(E.nombre)}</strong> para <strong>${esc(IS.nivel)}</strong>: actividades variadas, tapa, índice, números y soluciones al final.</small></div></div>
+    <div class="cc-o"><div class="jg-m"><small>Tamaño</small><div class="jg-p">${Object.entries(CC_TAM).map(([k, [n, d]]) => `<button type="button" class="${K.tam === k ? "on" : ""}" data-cctam="${k}">${n} <em>· ${d}</em></button>`).join("")}</div></div>
+      <div class="jg-m"><small>Áreas</small><div class="cc-a">${CC_AREAS.map(([k, n]) => `<label class="jk-c${K.areas[k] ? " on" : ""}"><input type="checkbox" data-ccarea="${k}" ${K.areas[k] ? "checked" : ""}>${n}</label>`).join("")}</div></div></div>
+    ${IS.cuad.items.length ? `<label class="check"><input type="checkbox" data-ccreempl ${K.reemplazar ? "checked" : ""}> Empezar de cero <small class="muted">(saca las ${IS.cuad.items.length} hojas que ya tiene el cuadernillo)</small></label>` : ""}
+    ${nb ? "" : `<p class="jk-w">⚠️ Esta fecha no tiene pack de dibujos cargado: solo se arman las actividades que no los necesitan. Para un cuadernillo completo, cargá primero el pack en “Packs de recursos” o “Recortar stickers”.</p>`}
+    ${R ? `<p class="jk-r">${R.ok.length ? `✓ ${R.ok.length} actividades (${R.hojas} hojas): ${esc(R.ok.map((x) => x.nom).join(" · "))}` : ""}${R.falta.length ? `<br>⚠️ No alcanzaron las actividades de ${esc(R.falta.map((a) => (CC_AREAS.find((x) => x[0] === a) || [])[1] || a).join(", "))} para este nivel sin pack de dibujos.` : ""}</p>` : ""}
+    <div class="jk-b"><button type="button" class="btn primary" data-ccarmar ${K.busy ? "disabled" : ""}>${K.busy ? "⏳ Armando el cuadernillo…" : K.conf ? `¿Seguro? Se quitan las ${IS.cuad.items.length} hojas actuales · Tocá de nuevo` : "📘 Armar el cuadernillo"}</button></div></div>`; }
+
+// ===== (12) planificación docente =====
+const PD_CONT = { silabas: "Separación en sílabas y conciencia fonológica", unir: "Relación entre imagen y palabra", trazar: "Trazado y escritura de palabras", letra: "Reconocimiento de letras en palabras", ordenar: "Escritura de palabras: orden de las letras", clasif: "Clasificación de palabras según un criterio", rimas: "Rimas y sonidos finales", vocab: "Vocabulario específico de la fecha", oracion: "Armado y escritura de oraciones", clases: "Clases de palabras: sustantivos, adjetivos y verbos", pupi: "Lectura y búsqueda de palabras", acrostico: "Escritura a partir de una palabra clave", cruci: "Escritura convencional de palabras (crucigrama)", completa: "Lectura y completamiento de textos", codigo: "Lectura y escritura con códigos", mayus: "Uso de mayúsculas en nombres propios", dimin: "Diminutivos y aumentativos", familia: "Familias de palabras", picto: "Lectura con pictogramas", comprension: "Comprensión lectora",
+  contar: "Conteo de colecciones", patron: "Series y regularidades", grafico: "Registro y lectura de gráficos", sumas: "Sumas y restas", comparar: "Comparación de cantidades y números", dinero: "Uso del dinero: billetes y monedas", fracciones: "Fracciones: partes de un entero", cuadro: "Regularidades del cuadro de números", armo: "Composición y descomposición de números", reparto: "Repartos equitativos", filas: "Organizaciones rectangulares y multiplicación", geo: "Figuras y cuerpos geométricos", doble: "Dobles y mitades", estima: "Estimación y conteo", pixel: "Ubicación en la cuadrícula", simetria: "Simetría", problemas: "Resolución de problemas",
+  mandala: "Expresión plástica: color y composición", minilibro: "Producción de un mini libro", banderines: "Producción para ambientar el aula", sombras: "Observación y discriminación visual", sopa: "Atención y discriminación visual", maqueta: "Construcción en tres dimensiones", memo: "Memoria visual y turnos de juego", bingo: "Reconocimiento de palabras e imágenes en un juego reglado", domino: "Asociación de pares en un juego reglado", oca: "Juego de recorrido: conteo y respeto de reglas", tateti: "Estrategia y resolución de desafíos", carrera: "Repaso de contenidos con preguntas", rompe: "Repaso de contenidos con preguntas", adivina: "Escritura de palabras y deducción", escape: "Resolución de desafíos en equipo", quien: "Descripción y deducción" };
+const PD_AREA = { lengua: "Prácticas del Lenguaje", mate: "Matemática", juegos: "Juego y repaso", arte: "Educación Artística" };
+IS.pd = IS.pd || { clases: 0, min: 60, busy: false };
+function pdActs() { const vistos = new Set(), L = []; IS.cuad.items.forEach((x) => { if (x.plan || x.sol || vistos.has(x.grupo)) return; vistos.add(x.grupo); const t = x.tipoAct || "", a = ccCat(t) || ({ ia: "arte" })[x.cat] || "arte"; L.push({ grupo: x.grupo, t, a, nom: x.tipo === "svg" ? x.act : (x.args && x.args[0]) || x.act, act: x.act, cons: x.tipo === "svg" ? "" : String((x.args && x.args[1]) || "").replace(/\*/g, ""), hojas: IS.cuad.items.filter((y) => y.grupo === x.grupo && !y.sol).length }); }); return L; }
+function pdPlan() { const A = pdActs(), E = isEscena(IS.tema), nk = isNivK(), ef = EFEMERIDES.find((e) => e[0] === IS.tema), fecha = ef ? `${IS.tema.slice(3)}/${IS.tema.slice(0, 2)}` : "", N = Math.max(2, Math.min(10, +IS.pd.clases || Math.ceil(A.length / 2.5)));
+  const grado = ["Nivel Inicial (sala de 5)", "Primer ciclo (1.º, 2.º y 3.er grado)", "Segundo ciclo (4.º, 5.º y 6.º grado)"][nk], edad = ["los chicos y las chicas de la sala", "los chicos y las chicas del primer ciclo", "los chicos y las chicas del segundo ciclo"][nk];
+  const porA = {}; A.forEach((x) => { (porA[x.a] = porA[x.a] || []).push(x); });
+  const cont = Object.entries(porA).map(([a, L]) => [PD_AREA[a], [...new Set(L.map((x) => PD_CONT[x.t] || x.act))]]);
+  // reparto de actividades en clases: los juegos cierran la secuencia
+  const trabajo = A.filter((x) => x.a !== "juegos"), juegos = A.filter((x) => x.a === "juegos"), clases = Array.from({ length: N }, () => []);
+  trabajo.forEach((x, i) => clases[Math.min(N - 1, Math.floor(i * (juegos.length ? N - 1 : N) / Math.max(1, trabajo.length)))].push(x)); juegos.forEach((x, i) => clases[juegos.length >= N ? i % N : Math.max(0, N - 1 - (i % Math.max(1, Math.min(N, 2))))].push(x));
+  const inicios = [`Conversamos: ¿qué saben sobre ${E.nombre}? Anotamos las ideas en un afiche para volver a ellas al final.`, "Retomamos el afiche de la clase anterior y leemos entre todos lo que ya aprendimos.", "Observamos una imagen de la fecha y describimos qué vemos, quiénes aparecen y qué están haciendo.", "Jugamos a “veo, veo” con palabras de la fecha para recuperar el vocabulario trabajado.", "Recordamos en ronda qué hicimos la clase pasada y qué nos gustó más."];
+  const cierres = ["Puesta en común: cada grupo cuenta cómo lo resolvió. Registramos una idea nueva en el afiche.", "Compartimos las producciones y comparamos distintas formas de resolver.", "Cierre oral: ¿qué fue lo más fácil y lo más difícil? ¿Qué aprendimos hoy?", "Autoevaluación con caritas: cómo me sentí trabajando hoy.", "Exponemos los trabajos en el aula y completamos el afiche con lo aprendido."];
+  return { tema: E.nombre, fecha, grado, N, min: IS.pd.min, acts: A, cont,
+    fundamentacion: `${E.nombre}${fecha ? ` (${fecha})` : ""} es una oportunidad para que ${edad} se acerquen al pasado y al presente de su comunidad con propuestas significativas. Esta secuencia toma la fecha como eje y la articula con contenidos de ${cont.map((c) => c[0]).filter((x) => x !== "Juego y repaso").join(", ").replace(/, ([^,]*)$/, " y $1")}, combinando trabajo individual, en parejas y en pequeños grupos, y cerrando con juegos que permiten repasar lo aprendido.`,
+    propositos: [`Acercar a ${edad} al sentido de ${E.nombre} a través de propuestas variadas y accesibles.`, "Ofrecer situaciones de lectura, escritura y resolución de problemas contextualizadas en la fecha.", "Promover el trabajo colaborativo, el respeto por los turnos y la escucha de las ideas de los demás."],
+    objetivos: [`Reconocer por qué recordamos ${E.nombre} y nombrar sus elementos y protagonistas principales.`, ...cont.filter((c) => c[0] !== "Juego y repaso").slice(0, 3).map((c) => `Avanzar en ${c[0]}: ${c[1].slice(0, 2).map((x) => x[0].toLowerCase() + x.slice(1)).join("; ")}.`), "Participar de juegos reglados respetando las consignas."],
+    clases: clases.map((L, i) => ({ n: i + 1, titulo: i === 0 ? "Nos acercamos a la fecha" : i === N - 1 ? "Cerramos y jugamos" : L.some((x) => x.a === "mate") && !L.some((x) => x.a === "lengua") ? "Números y problemas de la fecha" : L.some((x) => x.a === "lengua") && !L.some((x) => x.a === "mate") ? "Palabras de la fecha" : "Seguimos aprendiendo", inicio: inicios[i % inicios.length], acts: L.map((x) => ({ nom: x.nom, cons: x.cons, a: PD_AREA[x.a], hojas: x.hojas })), cierre: cierres[i % cierres.length], recursos: ["Cuadernillo impreso", "Lápices y colores", ...(L.some((x) => /recort/i.test(x.cons) || ["juegos", "arte"].includes(x.a)) ? ["Tijera y plasticola"] : []), ...(i === 0 ? ["Afiche y marcador"] : [])] })),
+    evaluacion: ["Participa de los intercambios orales y aporta lo que sabe sobre la fecha.", "Resuelve las actividades con creciente autonomía y pide ayuda cuando la necesita.", "Explica cómo resolvió una consigna y escucha cómo lo hicieron los demás.", "Respeta las reglas y los turnos en los juegos."],
+    adecuaciones: ["Usar la versión adaptada de las actividades (letra más grande, menos opciones y consignas con pictogramas).", "Leer las consignas en voz alta y mostrar un ejemplo resuelto antes de empezar.", "Permitir resolver en parejas o con material concreto, y dar más tiempo cuando haga falta.", "Ofrecer las hojas con nivel Fácil, Medio o Difícil según cada estudiante."] }; }
+async function pdMejorar(P) { const sf = await getSample(); if (!sf) return P;
+  try { const r = await sf.json(`Sos asesor pedagógico de primaria en Argentina. Mejorá la redacción de esta planificación sobre "${P.tema}" para ${P.grado}, en español rioplatense, clara y profesional, sin inventar datos históricos. Actividades del cuadernillo, clase por clase:\n${P.clases.map((c) => `Clase ${c.n}: ${c.acts.map((a) => `${a.nom} (${a.a})`).join("; ") || "sin actividades"}`).join("\n")}\nDevolvé SOLO un JSON: {"fundamentacion":"un párrafo de 60 a 90 palabras","propositos":["3 propósitos del docente"],"objetivos":["4 objetivos de aprendizaje que empiecen con un verbo en infinitivo"],"clases":[{"titulo":"título corto","inicio":"1 o 2 oraciones de inicio","cierre":"1 o 2 oraciones de cierre"}],"evaluacion":["4 criterios de evaluación"]}. La lista "clases" tiene que tener exactamente ${P.N} elementos, en orden.`, { modelTier: "default" });
+    const txt = (v, d) => (typeof v === "string" && v.trim().length > 10 ? v.trim() : d), lst = (v, d, n) => (Array.isArray(v) && v.filter((x) => typeof x === "string" && x.trim()).length >= 2 ? v.filter((x) => typeof x === "string" && x.trim()).slice(0, n).map((x) => x.trim()) : d);
+    P.fundamentacion = txt(r.fundamentacion, P.fundamentacion); P.propositos = lst(r.propositos, P.propositos, 4); P.objetivos = lst(r.objetivos, P.objetivos, 5); P.evaluacion = lst(r.evaluacion, P.evaluacion, 5);
+    if (Array.isArray(r.clases)) P.clases.forEach((c, i) => { const x = r.clases[i] || {}; c.titulo = txt(x.titulo, c.titulo).slice(0, 60); c.inicio = txt(x.inicio, c.inicio); c.cierre = txt(x.cierre, c.cierre); }); P.ia = true; }
+  catch (e) { toast(sampleErr(e) + " Usé la redacción base."); } return P; }
+function pdPaginas(P) { const W = 595, H = 842, mx = 46, top = 96, bot = 790, aw = W - mx * 2, pags = []; let y = 0, cur = "";
+  const cab = (n) => `<rect width="${W}" height="${H}" fill="#fff"/><rect x="0" y="0" width="${W}" height="64" fill="#1E5BB8"/>` + nwT(mx, 30, "PLANIFICACIÓN DOCENTE", 11, { c: "#CFE0FA" }) + nwT(mx, 50, P.tema, 19, { c: "#fff" }) + nwT(W - mx, 40, P.grado, 9.5, { a: "end", f: "b", c: "#fff", w: 700 }) + nwT(W / 2, 818, `Cofre Didáctico · Planificación · hoja ${n}`, 8, { a: "middle", f: "b", c: "#8A93A6", w: 600 });
+  const nueva = () => { if (cur) pags.push(cur); cur = cab(pags.length + 1); y = top; }, cabe = (h) => { if (y + h > bot) nueva(); };
+  const h2 = (t, col = "#1E5BB8") => { cabe(40); cur += `<rect x="${mx}" y="${j2f(y)}" width="4" height="16" rx="2" fill="${col}"/>` + nwT(mx + 11, y + 13, t, 13.5, { c: col }); y += 26; };
+  const par = (t, o = {}) => { const fs = o.fs || 10.2, x = mx + (o.ind || 0), L = isPartirAncho(t, aw - (o.ind || 0) - (o.vin ? 12 : 0), fs, "Nunito", o.w || 600); L.forEach((l, i) => { cabe(fs * 1.5); if (o.vin && i === 0) cur += `<circle cx="${j2f(x + 3)}" cy="${j2f(y + fs * 0.62)}" r="2.2" fill="${o.col || "#F28C28"}"/>`; cur += nwT(x + (o.vin ? 12 : 0), y + fs, l, fs, { f: "b", c: o.c || "#1A2744", w: o.w || 600 }); y += fs * 1.48; }); y += o.esp != null ? o.esp : 4; };
+  const lista = (L, col) => { L.forEach((t) => par(t, { vin: true, col, esp: 1.5 })); y += 6; };
+  nueva();
+  cur += nwBox(mx, y, aw, 44, { rx: 12, fill: "#FFF6E8", st: "#F2C58F" }) + [["Tema", P.tema + (P.fecha ? ` · ${P.fecha}` : "")], ["Destinatarios", P.grado], ["Duración", `${P.N} clases de ${P.min} minutos`]].map(([k, v], i) => nwT(mx + 14 + i * (aw / 3), y + 17, k.toUpperCase(), 7.5, { f: "b", c: "#B5781C", w: 800 }) + nwT(mx + 14 + i * (aw / 3), y + 33, v.slice(0, 46), 9.5, { f: "b", c: "#1A2744", w: 700 })).join(""); y += 60;
+  h2("Fundamentación"); par(P.fundamentacion, { esp: 10 }); cabe(90); h2("Propósitos"); lista(P.propositos, "#1E5BB8"); cabe(110); h2("Objetivos de aprendizaje"); lista(P.objetivos, "#4AAE4F");
+  h2("Contenidos"); P.cont.forEach(([a, L]) => { cabe(22 + L.length * 17); par(a, { w: 800, c: "#1E5BB8", esp: 1 }); lista(L, "#F28C28"); });
+  P.clases.forEach((c) => { cabe(120); cur += nwBox(mx, y, aw, 26, { rx: 9, fill: "#1E5BB8", st: "#1E5BB8" }) + nwT(mx + 12, y + 17.5, `CLASE ${c.n}`, 11, { c: "#fff" }) + nwT(mx + 78, y + 17.5, c.titulo, 11, { f: "b", c: "#fff", w: 800 }) + nwT(W - mx - 12, y + 17.5, `${P.min} min`, 9, { a: "end", f: "b", c: "#CFE0FA", w: 700 }); y += 36;
+    par("Inicio", { w: 800, c: "#B5781C", esp: 0 }); par(c.inicio, { ind: 10 }); cabe(60); par("Desarrollo", { w: 800, c: "#B5781C", esp: 0 });
+    if (c.acts.length) c.acts.forEach((a) => { cabe(a.cons ? 46 : 18); par(`${a.nom} (${a.a}${a.hojas > 1 ? `, ${a.hojas} hojas` : ""})`, { ind: 10, vin: true, w: 800, esp: 0 }); if (a.cons) par(a.cons, { ind: 22, fs: 9.2, c: "#4A5568", esp: 3 }); }); else par("Repaso de lo trabajado con las producciones de las clases anteriores.", { ind: 10 });
+    cabe(62); par("Cierre", { w: 800, c: "#B5781C", esp: 0 }); par(c.cierre, { ind: 10 }); par(`Recursos: ${c.recursos.join(", ")}.`, { fs: 9, c: "#6B7385", esp: 12 }); });
+  cabe(130); h2("Evaluación", "#7B4FD0"); par("Se evalúa el proceso, a través de la observación directa y de las producciones del cuadernillo. Criterios:", { esp: 3 }); lista(P.evaluacion, "#7B4FD0");
+  cabe(120); h2("Adecuaciones y accesibilidad", "#0EA5A4"); lista(P.adecuaciones, "#0EA5A4");
+  if (cur) pags.push(cur);
+  return pags.map((b) => `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${b}</svg>`); }
+async function pdArmar(btn, conIA) { const K = IS.pd; if (!pdActs().length) { toast("Primero sumá actividades al cuadernillo.", "err"); return; } K.busy = true; if (btn) btn.disabled = true; isRender(); await new Promise((r) => setTimeout(r, 40));
+  try { let P = pdPlan(); if (conIA) P = await pdMejorar(P); const S = pdPaginas(P), grupo = "plan" + Date.now().toString(36);
+    IS.cuad.items = IS.cuad.items.filter((x) => !x.plan); IS.cuad.items.unshift(...S.map((svg, i) => ({ id: grupo + i, grupo, act: "Planificación docente", tema: P.tema, tipo: "svg", svg, sol: false, etiqueta: `Planificación ${i + 1}`, plan: true, cat: "plan" })));
+    await isCuadGuardar(); K.hecho = { hojas: S.length, clases: P.N, ia: !!P.ia }; toast(`🧑‍🏫 Planificación lista: ${P.N} clases en ${S.length} hoja${S.length > 1 ? "s" : ""}, al principio del cuadernillo`, "ok"); }
+  catch (e) { console.error(e); toast("No se pudo armar la planificación: " + (e.message || e)); } finally { K.busy = false; isRender(); } }
+function pdCard() { const K = IS.pd, A = pdActs(), tiene = IS.cuad.items.some((x) => x.plan), auto = Math.max(2, Math.min(10, Math.ceil(A.length / 2.5)));
+  return `<div class="cc pd"><div class="jk-h"><span>🧑‍🏫</span><div><b>Planificación docente</b><small>La secuencia didáctica que acompaña el cuadernillo: fundamentación, propósitos, objetivos, contenidos, clase por clase, evaluación y adecuaciones.</small></div></div>
+    <div class="cc-o"><div class="jg-m"><small>Cantidad de clases</small><div class="jg-p">${[[0, `Automática (${auto})`], [3, "3"], [4, "4"], [5, "5"], [6, "6"], [8, "8"]].map(([k, n]) => `<button type="button" class="${(+K.clases || 0) === k ? "on" : ""}" data-pdclases="${k}">${n}</button>`).join("")}</div></div>
+      <div class="jg-m"><small>Duración de cada clase</small><div class="jg-p">${[40, 60, 80].map((m) => `<button type="button" class="${K.min === m ? "on" : ""}" data-pdmin="${m}">${m} min</button>`).join("")}</div></div></div>
+    ${K.hecho ? `<p class="jk-r">✓ ${K.hecho.clases} clases en ${K.hecho.hojas} hoja${K.hecho.hojas > 1 ? "s" : ""}${K.hecho.ia ? ", redactada con Claude" : ""}. Está al principio del cuadernillo y sale en el PDF.</p>` : ""}
+    <div class="jk-b"><button type="button" class="btn primary" data-pdarmar="${MODE.cloud ? "ia" : "base"}" ${K.busy ? "disabled" : ""}>${K.busy ? "⏳ Armando la planificación…" : MODE.cloud ? "✨ Armar la planificación con Claude" : tiene ? "🧑‍🏫 Volver a armar la planificación" : "🧑‍🏫 Armar la planificación"}</button>${MODE.cloud ? `<button type="button" class="btn" data-pdarmar="base" ${K.busy ? "disabled" : ""}>Armarla sin IA</button>` : ""}${tiene ? `<button type="button" class="btn ghost" data-pdquitar>Quitarla del cuadernillo</button>` : ""}</div></div>`; }
+const _ccCuad = isRenderCuad;
+isRenderCuad = function () { let h = _ccCuad.apply(this, arguments); if (typeof h !== "string") return h; const k = h.indexOf('<div class="is-sec"><h3>📚 Tu cuadernillo</h3>'); const cards = `<div class="cc-wrap">${ccCard()}${IS.cuad.items.some((x) => !x.plan) ? pdCard() : ""}</div>`;
+  return k < 0 ? cards + h : h.slice(0, k) + cards + h.slice(k); };
+document.addEventListener("click", async (e) => { const d = $("#isDlg"); if (!d || !d.contains(e.target)) return; let b; const stop = () => { e.preventDefault(); e.stopPropagation(); };
+  if ((b = e.target.closest("[data-cctam]"))) { stop(); IS.cc.tam = b.dataset.cctam; IS.cc.conf = false; isRender(); return; }
+  if ((b = e.target.closest("[data-ccarmar]"))) { stop(); await ccArmar(b); return; }
+  if ((b = e.target.closest("[data-pdclases]"))) { stop(); IS.pd.clases = +b.dataset.pdclases; isRender(); return; }
+  if ((b = e.target.closest("[data-pdmin]"))) { stop(); IS.pd.min = +b.dataset.pdmin; isRender(); return; }
+  if ((b = e.target.closest("[data-pdarmar]"))) { stop(); await pdArmar(b, b.dataset.pdarmar === "ia"); return; }
+  if ((b = e.target.closest("[data-pdquitar]"))) { stop(); IS.cuad.items = IS.cuad.items.filter((x) => !x.plan); IS.pd.hecho = null; await isCuadGuardar(); isRender(); return; } }, true);
+document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset) return; if (t.dataset.ccarea != null) { e.stopPropagation(); IS.cc.areas[t.dataset.ccarea] = t.checked; isRender(); return; } if (t.dataset.ccreempl != null) { e.stopPropagation(); IS.cc.reemplazar = t.checked; IS.cc.conf = false; isRender(); } }, true);
+
+// ---------- PANEL PRO · (20) celular: menú rápido en el botón flotante y pantallas más limpias ----------
+const _ppSV = showView;
+showView = function (v) { const r = _ppSV.apply(this, arguments); try { document.body.dataset.ppv = v; } catch {} return r; };
+function ppMenuHtml() { let hoy = { n: 0, tot: 0 }, pend = 0; try { const t = startOfDay(new Date()), L = sx().ok.filter((x) => x.d >= t); hoy = { n: L.length, tot: L.reduce((s, x) => s + x.tot, 0) }; pend = typeof tpPendientes === "function" && MODE.supa ? tpPendientes().length : 0; } catch {}
+  const A = [["verificar", "🔎", "Verificar una compra", "¿Compró? ¿Qué contraseña le toca?"], ["entregar", "📦", "Entregar venta directa", "Transferencia o Instagram"], ["clave", "🔑", "Enviar una contraseña", "Buscá a la docente y mandale el mensaje"], ["ventas", "💰", "Ventas de hoy", hoy.n ? `${hoy.n} ${hoy.n === 1 ? "venta" : "ventas"} · ${money(hoy.tot)}${pend ? ` · ${pend} por confirmar` : ""}` : pend ? `${pend} transferencia${pend > 1 ? "s" : ""} por confirmar` : "Todavía sin ventas hoy"], ["lanzar", "🚀", "Lanzar un material", "Textos para tienda, redes y correo"]];
+  return ppHead("⚡", "Acciones rápidas", "") + `<div class="pp-menu">${A.map(([k, ic, t, d]) => `<button type="button" data-ppmenu="${k}"><span>${ic}</span><div><b>${t}</b><small>${d}</small></div></button>`).join("")}</div>`; }
+function ppMenu() { ppDlg("ppMenuD", ppMenuHtml(), 460).classList.add("pp-sheet"); }
+function ppFab() { const f = document.getElementById("fab"); if (!f || f.dataset.pp) return; f.dataset.pp = "1"; f.setAttribute("aria-label", "Acciones rápidas"); f.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>`;
+  f.addEventListener("click", (e) => { e.stopImmediatePropagation(); e.preventDefault(); ppMenu(); }, true); try { document.body.dataset.ppv = currentView; } catch {} }
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ppFab); else setTimeout(ppFab, 0);
+document.addEventListener("click", (e) => { const b = e.target.closest("[data-ppmenu]"); if (!b) return; const k = b.dataset.ppmenu, d = document.getElementById("ppMenuD"); if (d && d.open) d.close();
+  if (k === "clave") { showView("inicio"); setTimeout(() => { const i = $("#mqIn"), q = $("#mQuick"); if (q) q.scrollIntoView({ block: "start" }); if (i) i.focus(); }, 80); return; }
+  if (k === "ventas") { showView("ventas"); return; } ppAccion(k); });
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
