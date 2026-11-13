@@ -699,6 +699,11 @@ dialog.pp-dlg{max-height:calc(100dvh - 20px);overflow:auto}
   .pl-tabs button{flex:1 1 30%}
 }
 
+#isDlg .so-max{font-style:normal;font-weight:800;color:#F28C28}
+#isDlg .so-av{margin:0 0 8px;padding:8px 11px;border-radius:10px;font-size:12.5px;font-weight:700;background:color-mix(in srgb,#E1A100 16%,var(--surface))}
+#isDlg .el-it:not(.on) .el-im:not([disabled]) img{opacity:.38;filter:grayscale(.6)}
+#isDlg .el-it.on .el-im:not([disabled]){outline:3px solid #F28C28;outline-offset:-3px}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -20599,7 +20604,7 @@ function nvSilabas() { const c = nvCfg(), its = nvPal().slice(0, c.n); if (its.l
   return nvPag({ contar: "Contá las sílabas", separar: "Separá en sílabas", inicial: "¿Con qué sílaba empieza?" }[c.v], cons, act, sol); }
 function nvSilClasif(its, c) { const n = its.length, C = Math.min(n, n <= 6 ? n : Math.ceil(n / 2)), R = Math.ceil(n / C), cw = 515 / C, ih = Math.min(74, cw - 18), y0 = 172; let act = "", sol = "";
   its.forEach((it, i) => { const x = 40 + (i % C) * cw, y = y0 + Math.floor(i / C) * (ih + 30); act += `<rect x="${j2f(x + 4)}" y="${j2f(y)}" width="${j2f(cw - 8)}" height="${j2f(ih + 24)}" rx="12" fill="${i % 2 ? "#EEF6FF" : "#FFF6E8"}"/>` + j2im(it.url, x + cw / 2 - ih / 2, y + 4, ih, ih) + nvT(x + cw / 2, y + ih + 18, it.W, Math.min(14, (cw - 14) / (it.W.length * 0.62)), { a: "middle" }); });
-  const ty = y0 + R * (ih + 30) + 16, cols = [1, 2, 3, 4], tw = 515 / 4, th = 776 - ty, hh = 44, rows = Math.max(3, Math.ceil(n / 2) + 1), rh = (th - hh) / rows, cs = ["#1E5BB8", "#4AAE4F", "#F28C28", "#7B4FD0"];
+  const ty = y0 + R * (ih + 30) + 16, cols = [1, 2, 3, 4], tw = 515 / 4, th = 776 - ty, hh = 44, rows = Math.max(3, Math.ceil(n / 2) + 1, ...[1, 2, 3, 4].map((k) => its.filter((it) => Math.min(4, it.s.length) === k).length + 1)), rh = (th - hh) / rows, cs = ["#1E5BB8", "#4AAE4F", "#F28C28", "#7B4FD0"];
   cols.forEach((k, j) => { const x = 40 + j * tw; act += `<rect x="${j2f(x + 3)}" y="${j2f(ty)}" width="${j2f(tw - 6)}" height="${j2f(th)}" rx="12" fill="#fff" stroke="${cs[j]}" stroke-width="1.6"/><rect x="${j2f(x + 3)}" y="${j2f(ty)}" width="${j2f(tw - 6)}" height="${hh}" rx="12" fill="${cs[j]}"/>` + nvT(x + tw / 2, ty + 19, `${k} ${k === 1 ? "SÍLABA" : "SÍLABAS"}`, 12, { a: "middle", c: "#fff", b: true }) + Array.from({ length: k }, (_, q) => `<circle cx="${j2f(x + tw / 2 + (q - (k - 1) / 2) * 12)}" cy="${j2f(ty + 33)}" r="4" fill="#fff"/>`).join("");
     for (let q = 1; q < rows; q++) act += `<line x1="${j2f(x + 12)}" y1="${j2f(ty + hh + q * rh)}" x2="${j2f(x + tw - 12)}" y2="${j2f(ty + hh + q * rh)}" stroke="#C9D3E3"/>`;
     its.filter((it) => Math.min(4, it.s.length) === k).forEach((it, q) => { sol += nvT(x + tw / 2, ty + hh + (q + 1) * rh - 6, it.W, Math.min(15, (tw - 18) / (it.W.length * 0.62)), { a: "middle", c: "#D7263D" }); }); });
@@ -22689,7 +22694,9 @@ function jdCaras(c) { const nk = isNivK(), [r, rn] = nwRn(IS.seed * 61 + 1), n =
   if (c.v === "fraccion") { const F = []; for (const d of [2, 3, 4, 5, 6, 8]) for (let k = 1; k < d; k++) F.push([k, d]); return isMezclar(F, IS.seed + 5).slice(0, n).map(([k, d]) => [["frac", k, d], ["pie", k, d]]); }
   const its = nwItems().slice(0, n); nwNeed(its, 5); const nums = isMezclar([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], IS.seed).slice(0, its.length);
   return its.map((it, q) => [c.v === "palabra" ? ["txt", nwCase(c, it.n)] : c.v === "silaba" ? ["txt", nwCase(c, isSilabas(it.n.toLowerCase())[0])] : c.v === "inicial" ? ["txt", nwCase(c, it.n[0])] : ["txt", String(nums[q])], c.v === "cantidad" ? ["grp", it, nums[q]] : ["img", it]]); }
-function jdLado(L, x, y, w, h, c) { if (L[0] === "txt") { const big = L[1].length <= 3, fs = nwFit(L[1], big ? 34 : 22, w - 16); return nwT(x + w / 2, y + h / 2 + fs * 0.36, L[1], fs, { a: "middle" }); }
+function jdLado(L, x, y, w, h, c) { if (L[0] === "txt") { const T = String(L[1]), W = T.split(" ");
+    if (W.length > 1 && T.length > 9) { let best = 1, dif = 1e9; for (let i = 1; i < W.length; i++) { const d = Math.abs(W.slice(0, i).join(" ").length - W.slice(i).join(" ").length); if (d < dif) { dif = d; best = i; } } const R = [W.slice(0, best).join(" "), W.slice(best).join(" ")], fs = Math.min(18, nwFit(R[0], 18, w - 14), nwFit(R[1], 18, w - 14)); return R.map((t, i) => nwT(x + w / 2, y + h / 2 + (i - 0.5) * fs * 1.15 + fs * 0.36, t, fs, { a: "middle" })).join(""); }
+    const big = T.length <= 3, fs = nwFit(T, big ? 34 : 22, w - 16); return nwT(x + w / 2, y + h / 2 + fs * 0.36, T, fs, { a: "middle" }); }
   if (L[0] === "img") return j2im(L[1].url, x + 8, y + 8, w - 16, h - 16); if (L[0] === "grp") return nvGrupo(L[1].url, L[2], x + 4, y + 4, w - 8, h - 8);
   if (L[0] === "frac") return nwFrac(x + w / 2, y + h / 2 + 4, L[1], L[2], Math.min(28, h * 0.3)); if (L[0] === "pie") return nwFrFig("circ", L[2], L[1], x + w / 2, y + h / 2, Math.min(w, h) - 22); return ""; }
 nwDomino = function () { const c = nvCfg(); if (!JD_SIN_PACK.includes(c.v) && !(isBanco().items || []).length) nwErr("Esta variante usa los dibujos de tu pack. Cargá un pack o elegí «Cuenta y resultado», «Mayúscula y minúscula» o «Fracción y dibujo».");
@@ -23307,6 +23314,38 @@ if (document.readyState === "loading") document.addEventListener("DOMContentLoad
 document.addEventListener("click", (e) => { const b = e.target.closest("[data-ppmenu]"); if (!b) return; const k = b.dataset.ppmenu, d = document.getElementById("ppMenuD"); if (d && d.open) d.close();
   if (k === "clave") { showView("inicio"); setTimeout(() => { const i = $("#mqIn"), q = $("#mQuick"); if (q) q.scrollIntoView({ block: "start" }); if (i) i.focus(); }, 80); return; }
   if (k === "ventas") { showView("ventas"); return; } ppAccion(k); });
+
+// ---------- SOMBRAS (y pintar por código / simetría): elegir los dibujos desde «Elementos de esta actividad» ----------
+{ const i = IS_BK_SIN_SEL.indexOf("sombras"); if (i >= 0) IS_BK_SIN_SEL.splice(i, 1); }
+const soDef = (n) => Array.from({ length: Math.min(n, [3, 5, 6][isNivK()]) }, (_, i) => i);
+function soSel(n) { const key = `${IS.tema}|sombras`, max = isSombMax(isSombCfg().modo); IS.bkSel = IS.bkSel || {}; let S = IS.bkSel[key];
+  if (!S || S.n !== n) { const viejo = IS.somSel && IS.somSel[IS.tema]; S = IS.bkSel[key] = { n, sel: (viejo && viejo.length ? viejo.filter((i) => i < n) : soDef(n)) }; }
+  if (S.sel.length > max) S.sel = S.sel.slice(0, max); return S.sel; }
+// la actividad recibe todo el pack (para usar otros dibujos como distractores) y toma solo los elegidos, en su orden
+const _soBancoSel = isBancoSel;
+isBancoSel = function (t, items) { if (t === "sombras") return items; return _soBancoSel.apply(this, arguments); };
+isSombSel = function (B) { return soSel(B.length).map((i) => B[i]).filter(Boolean); };
+const _soOpc = isSombOpciones;
+isSombOpciones = function () { let h = _soOpc.apply(this, arguments); const k = h.indexOf('<div class="field"><label>Elegí los dibujos'); if (k >= 0) h = h.slice(0, k) + `<div class="is-tip">🖼️ Los dibujos se eligen en <b>«Elementos de esta actividad»</b>: tocá los que querés y quedan numerados en el orden en que aparecen en la hoja.</div>`; return h; };
+const _soClick = isBkClick;
+isBkClick = function (t) { if (IS.tipo !== "sombras") return _soClick.apply(this, arguments); const e = t.closest("[data-isbksel],[data-isbktodos]"); if (!e) return false;
+  const n = isBanco().items.length, max = isSombMax(isSombCfg().modo), cur = soSel(n), key = `${IS.tema}|sombras`;
+  if (e.dataset.isbktodos != null) { IS.bkSel[key] = { n, sel: e.dataset.isbktodos === "1" ? Array.from({ length: Math.min(n, max) }, (_, i) => i) : [] }; if (e.dataset.isbktodos === "1" && n > max) toast(`Esta modalidad lleva hasta ${max} dibujos: marqué los primeros ${max}.`); IW.pages = null; isRender(); return true; }
+  const i = +e.dataset.isbksel; if (!cur.includes(i) && cur.length >= max) { toast(`Esta modalidad lleva hasta ${max} dibujos. Sacá uno para sumar otro.`); return true; }
+  IS.bkSel[key] = { n, sel: cur.includes(i) ? cur.filter((v) => v !== i) : [...cur, i] }; IW.pages = null; isRender(); return true; };
+const _soGrilla = elGrilla;
+elGrilla = function () { const t = IS.tipo, L = isBanco().items || []; if (t === "sombras" && L.length) soSel(L.length); let h = _soGrilla.apply(this, arguments); if (typeof h !== "string" || !L.length) return h;
+  if (t === "sombras") { const max = isSombMax(isSombCfg().modo), n = soSel(L.length).length; h = h.replace("Tocá un dibujo para sumarlo o sacarlo", `Tocá los dibujos que querés en la hoja <em class="so-max">(${n} de ${max} como máximo en esta modalidad)</em>`).replace(/ · <b>\d+<\/b> en la actividad/, "").replace('data-isbktodos="1">Todos<', `data-isbktodos="1">Los primeros ${Math.min(max, L.length)}<`);
+    if (n < 2) h = h.replace('<div class="el-g">', `<p class="so-av">⚠️ Elegí al menos 2 dibujos para armar la actividad.</p><div class="el-g">`); }
+  if (t === "pixel" || t === "simetria") { const cur = Math.min(L.length - 1, +IS.j2Item || 0); let i = 0;
+    h = h.replace(/<figure class="el-it( on)?([^"]*)">(\s*)<button type="button" class="el-im" disabled aria-pressed="true"/g, (m, on, resto, sp) => { const k = i++, s = k === cur; return `<figure class="el-it${s ? " on" : ""}${resto}">${sp}<button type="button" class="el-im" data-sosolo="${k}" aria-pressed="${s}"`; })
+      .replace("Esta actividad usa todos los dibujos del pack.", "Tocá el dibujo que querés usar: la hoja se arma con ese."); }
+  return h; };
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-sosolo]"); if (!b || !b.closest("#isDlg")) return; e.preventDefault(); e.stopPropagation(); IS.j2Item = +b.dataset.sosolo; IS.j2Fuente = "banco"; IW.pages = null; isRender(); }, true);
+// las actividades que usan los dibujos como apoyo (ta-te-ti, carrera, rompecabezas, comparar…) también respetan los elegidos
+const _soImgsOpc = nwImgsOpc;
+nwImgsOpc = function () { const all = (isBanco().items || []).filter((it) => it && it.url), S = IS_BK_SIN_SEL.includes(IS.tipo) ? null : isBkSelIdx(IS.tipo, (isBanco().items || []).length); if (!S) return _soImgsOpc.apply(this, arguments);
+  return S.map((i) => isBanco().items[i]).filter((it) => it && it.url).map((it) => ({ n: String(it.n || "").trim(), url: it.url })); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
