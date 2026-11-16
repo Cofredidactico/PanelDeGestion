@@ -704,6 +704,30 @@ dialog.pp-dlg{max-height:calc(100dvh - 20px);overflow:auto}
 #isDlg .el-it:not(.on) .el-im:not([disabled]) img{opacity:.38;filter:grayscale(.6)}
 #isDlg .el-it.on .el-im:not([disabled]){outline:3px solid #F28C28;outline-offset:-3px}
 
+/* venta por transferencia */
+.vx2-sec{display:grid;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2)}
+.vx2-sec h4{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px}.vx2-sec h4 span{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--navy);color:var(--on-navy);font-size:12px}
+.vx2-cli{margin:0;font-size:12.5px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--blue) 10%,var(--surface))}
+.vx2-items{display:grid;gap:6px}.vx2-it{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:11px;background:var(--surface);border:1px solid var(--line)}
+.vx2-in{display:grid;gap:1px;min-width:0;flex:1 1 auto}.vx2-it>.vx2-pr{flex:0 0 132px;box-sizing:border-box}.vx2-it>.iconbtn{flex:none}.vx2-in b{font-size:13.5px;overflow-wrap:anywhere}.vx2-in small{font-size:11.5px}.vx2-ya{color:var(--ok);font-weight:700}
+.vx2-pr{display:flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--surface)}.vx2-pr span{color:var(--muted);font-weight:800}.vx2-pr input{border:0!important;background:transparent!important;box-shadow:none!important;padding:8px 0!important;width:100%;min-width:0;font:inherit;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.vx2-pr.big input{font-size:18px}.vx2-vacio{margin:0;font-size:13px}
+.vx2-tot{display:grid;gap:8px;padding-top:10px;border-top:1px dashed var(--line)}.vx2-tot>div:first-child{display:flex;justify-content:space-between;font-size:13px}.vx2-tot>div:first-child b{font-variant-numeric:tabular-nums}
+.vx2-tc{display:grid;grid-template-columns:1fr 190px;align-items:center;gap:10px}.vx2-tc label{font-weight:800;font-size:14px}
+.vx2-dif{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:12.5px;font-weight:700}.vx2-dif.desc span{color:var(--ok)}.vx2-dif.rec span{color:color-mix(in srgb,var(--star) 70%,var(--ink))}
+.vx2-tot>small{font-size:12px}.vx2-bib{padding:10px 12px;border-radius:12px;border:1.5px solid color-mix(in srgb,var(--blue) 40%,var(--line));background:color-mix(in srgb,var(--blue) 7%,var(--surface))}
+.vx2-nota{margin:0;font-size:12.5px}.vx2-hist li.on{background:color-mix(in srgb,var(--star) 14%,var(--surface));border-radius:8px;padding:4px 6px}.vx2-acc{display:flex;gap:10px}
+/* publicidad */
+.vt-pub{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:6px 0 2px;font-size:13px}.vt-pub b{font-variant-numeric:tabular-nums}.vt-pub>span:first-child b{color:var(--danger)}
+.ma-box{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px;margin-bottom:12px;border-radius:12px;border:1.5px dashed color-mix(in srgb,var(--blue) 45%,var(--line));background:color-mix(in srgb,var(--blue) 6%,var(--surface))}.ma-box>div{display:grid;gap:2px;min-width:0}.ma-box small{font-size:12px;color:var(--muted)}
+.ma-drop{display:grid;justify-items:center;gap:4px;text-align:center;padding:22px 14px;border-radius:14px;border:2px dashed var(--line);cursor:pointer;background:var(--surface-2)}.ma-drop:hover{border-color:var(--blue)}.ma-drop>span{font-size:30px}.ma-drop small{color:var(--muted)}
+.ma-pasos{margin:0;padding-left:20px;display:grid;gap:4px;font-size:13px}
+.ma-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}.ma-res>div{display:grid;gap:2px;padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}.ma-res span{font-size:11.5px;color:var(--muted);font-weight:700}.ma-res b{font-size:15px;font-variant-numeric:tabular-nums}
+.ma-t{width:100%;border-collapse:collapse;font-size:13px}.ma-t th,.ma-t td{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}.ma-t th{font-size:11.5px;color:var(--muted);text-transform:uppercase}.ma-t .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.ma-t select{width:100%;max-width:280px;font:inherit;font-size:12.5px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.ma-nota{font-size:12.5px;line-height:1.5;margin:0}.ma-cot{max-width:360px}
+@media (max-width:560px){.vx2-it>.vx2-pr{flex-basis:108px}.vx2-tc{grid-template-columns:1fr}.ma-box{flex-wrap:wrap}.ma-t td:nth-child(3){min-width:150px}}
+.vt-acts{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-bottom:10px}@media (max-width:560px){.vt-acts .btn{flex:1 1 auto;justify-content:center}}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -22971,7 +22995,7 @@ function ppBuscar(q) { const T = fold(q).replace(/@(?=\w)/g, " ").split(/\s+/).f
   return D.clients.filter((c) => { if (mail) return fold(c.e) === mail || fold(c.e).includes(mail); const h = c._idx + " " + fold(c.ig || ""); return T.every((t) => h.includes(t)); })
     .sort((a, b) => (b._ok - a._ok) || ((b._last || 0) - (a._last || 0))).slice(0, 8); }
 function ppVerifHtml() { const q = PPV.q.trim(); if (q.length < 2) return `<div class="pp-vacio"><span>🔎</span><p>Escribí el <b>nombre</b>, el <b>correo</b>, el <b>teléfono</b> o el <b>usuario de Instagram</b> de la docente.</p><small class="muted">Busca en tus ${nf((D ? D.clients : []).length)} clientes: Empretienda y ventas directas.</small></div>`;
-  const L = ppBuscar(q); if (!L.length) return `<div class="pp-vacio no"><span>🚫</span><p><b>No figura ninguna compra</b> con “${esc(q)}”.</p><small class="muted">Probá con el correo exacto o con el apellido. Si te compró por transferencia y no la cargaste, registrala ahora.</small><button type="button" class="btn small" data-ppentregar="${esc(q)}">📦 Registrar una venta directa</button></div>`;
+  const L = ppBuscar(q); if (!L.length) return `<div class="pp-vacio no"><span>🚫</span><p><b>No figura ninguna compra</b> con “${esc(q)}”.</p><small class="muted">Probá con el correo exacto o con el apellido. Si te compró por transferencia y no la cargaste, registrala ahora.</small><button type="button" class="btn small" data-ppentregar="${esc(q)}">➕ Cargar una venta por transferencia</button></div>`;
   return L.map((c) => { const ci = D.clients.indexOf(c), ok = c.o.filter((o) => o.pg === "Finalizado"), mal = c.o.filter((o) => o.pg !== "Finalizado");
     const filas = ok.flatMap((o) => (o.i || []).map(([q2, n]) => ({ o, n }))), datos = [c.e, c.t, c.ig ? "@" + String(c.ig).replace(/^@/, "") : "", [c.c, c.p].filter(Boolean).join(", ")].filter(Boolean);
     return `<article class="pp-cli"><div class="pp-cli-h"><div><b>${esc(c.n || c.e || "Sin nombre")}</b><small class="muted">${datos.map(esc).join(" · ")}</small></div>${ok.length ? `<span class="pill ok">✅ ${ok.length === 1 ? "1 compra paga" : ok.length + " compras pagas"} · ${money(c._spent)}</span>` : `<span class="pill no">Sin compras pagas</span>`}</div>
@@ -23031,7 +23055,7 @@ function ppAccion(k) { if (k === "verificar") return ppVerificar(); if (k === "e
   if (k === "cuadernillo") { showView("motor"); setTimeout(() => { try { isOpen("cuad"); } catch {} }, 150); } }
 function ppMontar() { const v = document.getElementById("view-inicio"); if (v && !document.getElementById("ppAcc")) { const s = document.createElement("section"); s.id = "ppAcc"; s.className = "pp-acc"; s.setAttribute("aria-label", "Acciones rápidas");
     s.innerHTML = PP_ACC.map(([k, ic, t, d]) => `<button type="button" data-ppacc="${k}"><span>${ic}</span><b>${t}</b><small>${d}</small></button>`).join(""); const ref = v.querySelector("#mQuick") || v.firstElementChild; ref.parentNode.insertBefore(s, ref); }
-  const vh = document.querySelector("#view-ventas .view-h"); if (vh && !vh.querySelector("[data-ppacc]")) { const w = document.createElement("div"); w.className = "pp-vh"; w.innerHTML = `<button type="button" class="btn" data-ppacc="verificar">🔎 Verificar compra</button><button type="button" class="btn primary" data-ppacc="entregar">📦 Venta directa</button>`; vh.appendChild(w); } }
+  const vh = document.querySelector("#view-ventas .view-h"); if (vh && !vh.querySelector("[data-ppacc]")) { const w = document.createElement("div"); w.className = "pp-vh"; w.innerHTML = `<button type="button" class="btn" data-ppacc="verificar">🔎 Verificar compra</button><button type="button" class="btn primary" data-ppacc="entregar">➕ Venta por transferencia</button>`; vh.appendChild(w); } }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ppMontar); else setTimeout(ppMontar, 0);
 document.addEventListener("click", async (e) => { const t = e.target; let b;
   if ((b = t.closest("[data-ppacc]"))) { e.preventDefault(); ppAccion(b.dataset.ppacc); return; }
@@ -23305,7 +23329,7 @@ document.addEventListener("change", (e) => { const t = e.target; if (!t.dataset)
 const _ppSV = showView;
 showView = function (v) { const r = _ppSV.apply(this, arguments); try { document.body.dataset.ppv = v; } catch {} return r; };
 function ppMenuHtml() { let hoy = { n: 0, tot: 0 }, pend = 0; try { const t = startOfDay(new Date()), L = sx().ok.filter((x) => x.d >= t); hoy = { n: L.length, tot: L.reduce((s, x) => s + x.tot, 0) }; pend = typeof tpPendientes === "function" && MODE.supa ? tpPendientes().length : 0; } catch {}
-  const A = [["verificar", "🔎", "Verificar una compra", "¿Compró? ¿Qué contraseña le toca?"], ["entregar", "📦", "Entregar venta directa", "Transferencia o Instagram"], ["clave", "🔑", "Enviar una contraseña", "Buscá a la docente y mandale el mensaje"], ["ventas", "💰", "Ventas de hoy", hoy.n ? `${hoy.n} ${hoy.n === 1 ? "venta" : "ventas"} · ${money(hoy.tot)}${pend ? ` · ${pend} por confirmar` : ""}` : pend ? `${pend} transferencia${pend > 1 ? "s" : ""} por confirmar` : "Todavía sin ventas hoy"], ["lanzar", "🚀", "Lanzar un material", "Textos para tienda, redes y correo"]];
+  const A = [["verificar", "🔎", "Verificar una compra", "¿Compró? ¿Qué contraseña le toca?"], ["entregar", "🧾", "Venta por transferencia", "Cargala y habilitala en Mi biblioteca"], ["clave", "🔑", "Enviar una contraseña", "Buscá a la docente y mandale el mensaje"], ["ventas", "💰", "Ventas de hoy", hoy.n ? `${hoy.n} ${hoy.n === 1 ? "venta" : "ventas"} · ${money(hoy.tot)}${pend ? ` · ${pend} por confirmar` : ""}` : pend ? `${pend} transferencia${pend > 1 ? "s" : ""} por confirmar` : "Todavía sin ventas hoy"], ["lanzar", "🚀", "Lanzar un material", "Textos para tienda, redes y correo"]];
   return ppHead("⚡", "Acciones rápidas", "") + `<div class="pp-menu">${A.map(([k, ic, t, d]) => `<button type="button" data-ppmenu="${k}"><span>${ic}</span><div><b>${t}</b><small>${d}</small></div></button>`).join("")}</div>`; }
 function ppMenu() { ppDlg("ppMenuD", ppMenuHtml(), 460).classList.add("pp-sheet"); }
 function ppFab() { const f = document.getElementById("fab"); if (!f || f.dataset.pp) return; f.dataset.pp = "1"; f.setAttribute("aria-label", "Acciones rápidas"); f.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>`;
@@ -23346,6 +23370,169 @@ document.addEventListener("click", (e) => { const b = e.target.closest && e.targ
 const _soImgsOpc = nwImgsOpc;
 nwImgsOpc = function () { const all = (isBanco().items || []).filter((it) => it && it.url), S = IS_BK_SIN_SEL.includes(IS.tipo) ? null : isBkSelIdx(IS.tipo, (isBanco().items || []).length); if (!S) return _soImgsOpc.apply(this, arguments);
   return S.map((i) => isBanco().items[i]).filter((it) => it && it.url).map((it) => ({ n: String(it.n || "").trim(), url: it.url })); };
+
+// ---------- VENTAS · venta por transferencia profesional: precio por material, total automático, Mi biblioteca y edición ----------
+Object.assign(PPE, { precios: {}, totManual: false, editId: null, nota: "" });
+const vtNum = (v) => +String(v == null ? "" : v).replace(/[^\d]/g, "") || 0;
+const vtPrecio = (n) => PPE.precios[n] != null && PPE.precios[n] !== "" ? vtNum(PPE.precios[n]) : ppeMat(n).precio || 0;
+const vtSub = () => PPE.mats.reduce((s, n) => s + vtPrecio(n), 0);
+const vtTotal = () => PPE.totManual ? vtNum(PPE.tot) : vtSub();
+function vtCliente() { const e = fold(PPE.e.trim()), ig = fold(PPE.ig.replace(/^@/, "").trim()); if (!D || (!e && !ig)) return null; return D.clients.find((c) => (e && fold(c.e) === e) || (ig && fold(String(c.ig || "").replace(/^@/, "")) === ig)) || null; }
+function vtDirectas() { return (envios || []).filter((e) => e.directa).sort((a, b) => String(b.fecha || b.at).localeCompare(String(a.fecha || a.at))); }
+ppeHtml = function () { const L = D ? D.matList.filter((m) => (m.doc.estado || "Activo") !== "Archivado") : [], q = fold(PPE.q), sug = L.filter((m) => !PPE.mats.includes(m.name) && (!q || fold(m.name).includes(q))).sort((a, b) => b.sold - a.sold).slice(0, q ? 12 : 6);
+  const dir = vtDirectas(), av = ppeAvisos(), sub = vtSub(), tot = vtTotal(), dif = tot - sub, cli = vtCliente(), ya = cli ? new Set(cli.o.filter((o) => o.pg === "Finalizado").flatMap((o) => (o.i || []).map((x) => matUnir(slug(x[1]))))) : new Set(), ed = PPE.editId ? dir.find((x) => x.id === PPE.editId) : null;
+  return ppHead(ed ? "✏️" : "🧾", ed ? "Editar venta por transferencia" : "Nueva venta por transferencia", ed ? `Estás cambiando la venta del ${esc(fmtD(new Date((ed.fecha || "") + "T12:00")))}. Guardá para actualizarla.` : "Para quien te pagó por transferencia o te compró por Instagram. Queda como venta en el panel, le habilita los materiales en Mi biblioteca y te arma el mensaje.") + `
+    <section class="vx2-sec"><h4><span>1</span>Docente</h4>
+      <div class="pp-grid2"><div class="field"><label for="ppeN">Nombre y apellido</label><input id="ppeN" data-ppe="n" value="${esc(PPE.n)}" placeholder="Ej.: Laura Gómez" autocomplete="off"></div>
+        <div class="field"><label for="ppeE">Correo <small class="muted">(con este entra a Mi biblioteca)</small></label><input id="ppeE" data-ppe="e" type="email" inputmode="email" value="${esc(PPE.e)}" placeholder="correo@ejemplo.com" autocomplete="off"></div>
+        <div class="field"><label for="ppeIg">Instagram <small class="muted">(opcional)</small></label><input id="ppeIg" data-ppe="ig" value="${esc(PPE.ig)}" placeholder="@usuario" autocomplete="off"></div>
+        <div class="field"><label for="ppeT">WhatsApp <small class="muted">(opcional)</small></label><input id="ppeT" data-ppe="t" value="${esc(PPE.t)}" placeholder="Ej.: 387 555 1234" autocomplete="off"></div></div>
+      ${cli ? `<p class="vx2-cli">👤 <b>${esc(cli.n || cli.e)}</b> ya es clienta: ${cli._ok} ${cli._ok === 1 ? "compra" : "compras"} por ${money(cli._spent)}${ya.size ? ` · los materiales que ya tiene aparecen marcados` : ""}.</p>` : ""}</section>
+    <section class="vx2-sec"><h4><span>2</span>Materiales y precios</h4>
+      ${PPE.mats.length ? `<div class="vx2-items">${PPE.mats.map((n, i) => { const ref = ppeMat(n).precio, tiene = ya.has(matUnir(slug(n))); return `<div class="vx2-it"><div class="vx2-in"><b>${esc(n)}</b>${tiene ? `<small class="vx2-ya">✓ ya lo había comprado</small>` : ref ? `<small class="muted">Precio de lista ${money(ref)}</small>` : `<small class="muted">Sin precio cargado</small>`}</div><span class="vx2-pr"><span>$</span><input data-ppeprecio="${esc(n)}" inputmode="numeric" value="${esc(PPE.precios[n] != null ? PPE.precios[n] : ref || "")}" placeholder="0" aria-label="Precio de ${esc(n)}"></span><button type="button" class="iconbtn" data-ppequitar="${i}" aria-label="Quitar ${esc(n)}">✕</button></div>`; }).join("")}</div>` : `<p class="muted vx2-vacio">Todavía no sumaste materiales.</p>`}
+      <div class="field"><input id="ppeQ" data-ppe="q" value="${esc(PPE.q)}" placeholder="🔎 Buscá un material para sumarlo…" autocomplete="off" aria-label="Buscar material"></div>
+      <div class="pp-sug">${sug.map((m) => `<button type="button" data-ppeadd="${esc(m.name)}">＋ ${esc(m.name)}${ya.has(m.k) ? " ✓" : ""}</button>`).join("") || `<small class="muted">No hay materiales con ese nombre.</small>`}</div>
+      <div class="vx2-tot"><div><span>Suma de los materiales</span><b>${money(sub)}</b></div>
+        <div class="vx2-tc"><label for="ppeTot">Total cobrado</label><span class="vx2-pr big"><span>$</span><input id="ppeTot" data-ppe="tot" inputmode="numeric" value="${PPE.totManual ? esc(PPE.tot) : sub || ""}" placeholder="0"></span></div>
+        ${PPE.totManual && dif ? `<div class="vx2-dif ${dif < 0 ? "desc" : "rec"}"><span>${dif < 0 ? `Descuento de ${money(-dif)} (${Math.round(-dif / Math.max(1, sub) * 100)}%)` : `${money(dif)} más que la lista`}</span><button type="button" class="linkish" data-ppesuma>Usar la suma</button></div>` : `<small class="muted">El total se calcula solo con el precio de cada material. Si le hiciste un descuento, escribí lo que cobraste.</small>`}</div></section>
+    <section class="vx2-sec"><h4><span>3</span>Pago</h4>
+      <div class="pp-grid3"><div class="field"><label for="ppeM">Medio de pago</label><select id="ppeM" data-ppe="medio">${["Transferencia", "Mercado Pago", "Efectivo", "Otro"].map((m) => `<option${PPE.medio === m ? " selected" : ""}>${m}</option>`).join("")}</select></div>
+        <div class="field"><label for="ppeF">Fecha del pago</label><input id="ppeF" data-ppe="fecha" type="date" max="${iso(new Date())}" value="${esc(PPE.fecha || iso(new Date()))}"></div>
+        <div class="field"><label for="ppeNo">Nota <small class="muted">(solo para vos)</small></label><input id="ppeNo" data-ppe="nota" value="${esc(PPE.nota)}" maxlength="200" placeholder="Ej.: pagó por alias"></div></div></section>
+    ${!ed && MODE.supa ? `<label class="check vx2-bib"><input type="checkbox" data-ppe="bib" ${PPE.bib ? "checked" : ""}> <span>📚 Registrarla también en <b>Mi biblioteca</b> y habilitarle los materiales <small class="muted">(necesita el correo)</small></span></label>` : ""}
+    ${ed ? `<p class="muted vx2-nota">Los cambios se guardan en el panel. Si cambiaste materiales o el correo y ya estaba en Mi biblioteca, ajustalo también ahí.</p>` : ""}
+    <details class="pp-det"${PPE.tocado ? " open" : ""}><summary>💬 Mensaje para enviarle</summary><textarea id="ppeTxt" class="msgbox" data-ppe="txt" rows="8">${esc(PPE.tocado ? PPE.txt : ppeTexto())}</textarea>${av.length ? `<p class="pp-mal">⚠️ ${av.join("<br>")}</p>` : ""}</details>
+    <p class="muted pp-ok" id="ppeOk"></p>
+    <div class="dlg-actions">${ed ? `<button type="button" class="btn ghost" data-ppecancel>Cancelar</button>` : waPhone(PPE.t) ? `<a class="btn" target="_blank" rel="noopener" href="https://wa.me/${waPhone(PPE.t)}?text=${encodeURIComponent(PPE.tocado ? PPE.txt : ppeTexto())}">WhatsApp</a>` : ""}<span class="spacer"></span>${ed ? "" : `<button type="button" class="btn" data-ppecopy>Copiar mensaje</button>`}<button type="button" class="btn primary" data-ppereg ${PPE.busy ? "disabled" : ""}>${PPE.busy ? "Guardando…" : ed ? "💾 Guardar cambios" : `✅ Registrar venta${tot ? " · " + money(tot) : ""}`}</button></div>
+    ${dir.length ? `<details class="pp-det vx2-hist"${PPE.editId ? " open" : ""}><summary>🧾 Ventas por transferencia cargadas en el panel (${dir.length} · ${money(dir.reduce((s, e) => s + (+e.tot || 0), 0))})</summary><ul class="pp-dir">${dir.slice(0, 30).map((e) => `<li class="${PPE.editId === e.id ? "on" : ""}"><div><b>${esc(e.n || e.e)}</b><small class="muted">${esc((e.items || [e.m]).join(" · "))} · ${fmtD(new Date(e.fecha ? e.fecha + "T12:00" : e.at))} · ${esc(e.medio || "")}${e.bib ? " · 📚 en Mi biblioteca" : ""}</small></div><b>${money(+e.tot || 0)}</b><span class="vx2-acc"><button type="button" class="linkish" data-ppeedit="${esc(e.id)}">Editar</button><button type="button" class="linkish" data-ppeborrar="${esc(e.id)}">Quitar</button></span></li>`).join("")}</ul></details>` : ""}`; };
+function vtEditar(id) { const e = (envios || []).find((x) => x.id === id); if (!e) return; const its = (e.items && e.items.length ? e.items : [e.m]).filter(Boolean), pr = {};
+  its.forEach((n, i) => { if (e.precios && e.precios[i] != null) pr[n] = String(e.precios[i]); });
+  Object.assign(PPE, { editId: id, n: e.n || "", e: e.e || "", ig: e.ig ? "@" + e.ig : "", t: e.t || "", mats: its, precios: pr, tot: String(+e.tot || ""), totManual: !e.precios || its.reduce((s, n, i) => s + (+((e.precios || [])[i]) || 0), 0) !== (+e.tot || 0), medio: e.medio || "Transferencia", fecha: e.fecha || iso(new Date(e.at)), nota: e.nota || "", txt: "", tocado: false, q: "" }); ppeRepintar("#ppeN"); }
+function vtLimpiar() { Object.assign(PPE, { n: "", e: "", ig: "", t: "", mats: [], tot: "", totManual: false, precios: {}, txt: "", tocado: false, q: "", busy: false, editId: null, nota: "", fecha: iso(new Date()) }); }
+const _vtEntregar = ppEntregar;
+ppEntregar = function (pre) { if (pre != null) vtLimpiar(); return _vtEntregar.apply(this, arguments); };
+ppeRegistrar = async function (btn) { const txt = PPE.tocado ? PPE.txt : ppeTexto(), msg = (m, mal) => { const ok = document.getElementById("ppeOk"); if (ok) { ok.innerHTML = m; ok.classList.toggle("err", !!mal); } };
+  const email = PPE.e.trim().toLowerCase(), tot = vtTotal(), fecha = PPE.fecha || iso(new Date());
+  if (!PPE.n.trim() && !email) return msg("Escribí el nombre o el correo de la docente.", true); if (!PPE.mats.length) return msg("Sumá al menos un material.", true);
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return msg("Revisá el correo: no parece válido.", true);
+  if (fecha > iso(new Date())) return msg("La fecha del pago no puede ser futura.", true); if (!needDb()) return;
+  const usaBib = !PPE.editId && MODE.supa && PPE.bib && !!email && typeof tpMateriales === "function";
+  if (!PPE.editId && MODE.supa && PPE.bib && !email) return msg("Para registrarla en Mi biblioteca hace falta el correo. Escribilo o destildá la opción de Mi biblioteca.", true);
+  PPE.busy = true; btn.disabled = true; btn.textContent = "Guardando…"; if (!PPE.editId) { try { await navigator.clipboard.writeText(txt); } catch {} }
+  const precios = PPE.mats.map(vtPrecio), cuerpo = { e: email, n: PPE.n.trim(), m: PPE.mats[0], k: slug(PPE.mats[0]), pedido: "", directa: true, items: PPE.mats.slice(), precios, tot, medio: PPE.medio, ig: PPE.ig.trim().replace(/^@/, ""), t: PPE.t.trim(), fecha, nota: PPE.nota.trim() };
+  try {
+    if (PPE.editId) { const { id: _id, ...prev } = (envios || []).find((x) => x.id === PPE.editId) || {}; await db.collection("envios").doc(PPE.editId).set({ ...prev, ...cuerpo, at: prev.at || new Date().toISOString(), editado: new Date().toISOString() }); toast("💾 Venta actualizada", "ok"); vtLimpiar(); ppeRepintar("#ppeN"); return; }
+    let enBib = false, aviso = "";
+    if (usaBib) { const { ids, sin } = await tpMateriales(PPE.mats.map((n) => [1, n]));
+      if (!ids.length) aviso = "Ninguno de esos materiales está vinculado en Mi biblioteca (vinculalos en Mi biblioteca → Materiales). La venta quedó guardada en el panel.";
+      else if (sin.length) { await tpBiblioteca({ accion: "dar", email, materiales: ids }); aviso = `Habilité ${ids.length === 1 ? "1 material" : ids.length + " materiales"} en Mi biblioteca. Sin vincular: ${sin.join(", ")}. La venta quedó guardada en el panel.`; cuerpo.bibDar = true; }
+      else { try { await tpBiblioteca({ accion: "registrar", email, nombre: cuerpo.n, instagram: cuerpo.ig, fecha, total: tot, nota: cuerpo.nota || "Cargada desde el panel", materiales: ids }); enBib = true; }
+        catch (err) { await tpBiblioteca({ accion: "dar", email, materiales: ids }); cuerpo.bibDar = true; aviso = `Le habilité los materiales en Mi biblioteca, pero la biblioteca no aceptó registrar la venta desde el panel (${esc(err.message || "error")}). La venta quedó guardada en el panel.`; } } }
+    if (enBib) { // la venta vive en Mi biblioteca y entra sola a Ventas: acá solo queda el historial de envío
+      for (const n of PPE.mats) await db.collection("envios").add({ e: email, n: cuerpo.n, m: n, k: slug(n), pedido: "", at: new Date().toISOString() });
+      try { await ventasDesdeGmail(); } catch {}
+      toast(`✅ Venta de ${cuerpo.n || email} registrada en Mi biblioteca y en Ventas · ${money(tot)} · mensaje copiado`, "ok"); }
+    else { await db.collection("envios").add({ ...cuerpo, bib: !!cuerpo.bibDar, oid: 9e9 + Math.floor(Date.now() / 1000) % 1e9, at: new Date().toISOString() });
+      for (const n of PPE.mats.slice(1)) await db.collection("envios").add({ e: email, n: cuerpo.n, m: n, k: slug(n), pedido: "", at: new Date().toISOString() });
+      toast(`✅ Venta de ${cuerpo.n || email} registrada · ${money(tot)} · mensaje copiado`, "ok"); }
+    vtLimpiar(); ppeRepintar("#ppeN"); if (aviso) msg("⚠️ " + aviso, true); }
+  catch (e) { PPE.busy = false; btn.disabled = false; btn.textContent = "Reintentar"; msg(`No se pudo registrar la venta: ${esc(e.message || "error")}. Probá de nuevo.`, true); } };
+document.addEventListener("click", (e) => { const t = e.target; if (!t.closest || !t.closest("#ppEnt")) return; let b;
+  if ((b = t.closest("[data-ppesuma]"))) { PPE.totManual = false; PPE.tot = ""; ppeRepintar(); return; }
+  if ((b = t.closest("[data-ppeedit]"))) { vtEditar(b.dataset.ppeedit); return; }
+  if ((b = t.closest("[data-ppecancel]"))) { vtLimpiar(); ppeRepintar(); return; } }, true);
+document.addEventListener("input", (e) => { const t = e.target; if (!t.closest || !t.closest("#ppEnt")) return;
+  if (t.dataset.ppeprecio != null) { PPE.precios[t.dataset.ppeprecio] = t.value; const s = document.querySelector("#ppEnt .vx2-tot b"); if (s) s.textContent = money(vtSub()); if (!PPE.totManual) { const x = document.getElementById("ppeTot"); if (x) x.value = vtSub() || ""; } const r = document.querySelector("[data-ppereg]"); if (r && !PPE.editId) r.textContent = `✅ Registrar venta${vtTotal() ? " · " + money(vtTotal()) : ""}`; return; }
+  if (t.dataset.ppe === "tot") { PPE.totManual = t.value.trim() !== "" && vtNum(t.value) !== vtSub(); }
+  if (t.dataset.ppe === "nota") { PPE.nota = t.value; } }, true);
+let vtRep = 0;
+document.addEventListener("change", (e) => { const t = e.target; if (!t.closest || !t.closest("#ppEnt")) return; if (t.dataset.ppeprecio != null || t.dataset.ppe === "tot" || t.dataset.ppe === "e" || t.dataset.ppe === "ig") { clearTimeout(vtRep); vtRep = setTimeout(() => ppeRepintar(), 0); } }, true);
+{ const _rep = ppeRepintar; let dentro = false; ppeRepintar = function () { if (dentro) return; dentro = true; try { return _rep.apply(this, arguments); } finally { dentro = false; } }; }
+// textos de los accesos
+PP_ACC[1] = ["entregar", "🧾", "Venta por transferencia", "Cargala y habilitala en Mi biblioteca"];
+{ const fix = () => { document.querySelectorAll('[data-ppacc="entregar"]').forEach((b) => { if (b.closest("#ppAcc")) b.innerHTML = `<span>🧾</span><b>Venta por transferencia</b><small>Cargala y habilitala en Mi biblioteca</small>`; else b.textContent = "➕ Venta por transferencia"; }); };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => setTimeout(fix, 50)); else setTimeout(fix, 50); }
+
+// ---------- VENTAS · importar el CSV de Meta Ads como gasto de publicidad (se descuenta solo de lo facturado) ----------
+const MA = { filas: null, err: "", archivo: "", moneda: "ARS", cot: "", asig: {}, busy: false, hecho: null };
+function maCSV(txt) { txt = String(txt || "").replace(/^﻿/, ""); const pl = txt.split(/\r?\n/).find((l) => l.trim()) || "", sep = [",", ";", "\t"].map((c) => [c, (pl.match(new RegExp(c === "\t" ? "\t" : "\\" + c, "g")) || []).length]).sort((a, b) => b[1] - a[1])[0][0];
+  const R = []; let row = [], cur = "", q = false; for (let i = 0; i < txt.length; i++) { const ch = txt[i];
+    if (q) { if (ch === '"') { if (txt[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; continue; }
+    if (ch === '"') q = true; else if (ch === sep) { row.push(cur); cur = ""; } else if (ch === "\n" || ch === "\r") { if (ch === "\r" && txt[i + 1] === "\n") i++; row.push(cur); cur = ""; if (row.some((c) => c.trim())) R.push(row); row = []; } else cur += ch; }
+  row.push(cur); if (row.some((c) => c.trim())) R.push(row); return R; }
+function maNum(v) { let s = String(v || "").replace(/[^\d.,-]/g, ""); if (!s) return null; const c = s.lastIndexOf(","), d = s.lastIndexOf(".");
+  if (c >= 0 && d >= 0) s = c > d ? s.replace(/\./g, "").replace(",", ".") : s.replace(/,/g, "");
+  else if (c >= 0) s = /,\d{1,2}$/.test(s) && (s.match(/,/g) || []).length === 1 ? s.replace(",", ".") : s.replace(/,/g, "");
+  else if (d >= 0 && /^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
+  const n = parseFloat(s); return isFinite(n) ? n : null; }
+function maFecha(v) { const s = String(v || "").trim(); let m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(s); if (m) return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
+  m = /^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s); if (m) { const y = m[3].length === 2 ? "20" + m[3] : m[3]; return `${y}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}`; } return ""; }
+const maDias = (a, b) => { const out = []; let d = new Date(a + "T12:00"); const fin = new Date(b + "T12:00"); for (let i = 0; d <= fin && i < 800; i++) { out.push(iso(d)); d = new Date(+d + DAY); } return out; };
+function maLeer(txt) { const R = maCSV(txt); if (R.length < 2) throw new Error("El archivo no tiene filas de datos."); const H = R[0].map((h) => fold(h).trim()), col = (re) => H.findIndex((h) => re.test(h));
+  const cC = [col(/nombre de la campana|campaign name/), col(/nombre del conjunto|ad set name/), col(/nombre del anuncio|^ad name/)].find((x) => x >= 0) ?? -1, cG = col(/importe gastado|amount spent|^gasto|spend/), cD = col(/^dia$|^day$|^fecha$|^date$/), cI = col(/inicio del informe|reporting starts|^inicio|start/), cF = col(/fin del informe|reporting ends|^fin\b|end/), cR = col(/^resultados$|^results$/);
+  if (cG < 0) throw new Error("No encontré la columna «Importe gastado». Exportá el informe desde el Administrador de anuncios con esa columna.");
+  if (cD < 0 && (cI < 0 || cF < 0)) throw new Error("No encontré las fechas. El informe tiene que traer la columna «Día» (desglose por día) o «Inicio del informe» y «Fin del informe».");
+  const mon = (/\(([a-z]{3})\)/.exec(H[cG]) || [, "ars"])[1].toUpperCase(), filas = [];
+  R.slice(1).forEach((r) => { const g = maNum(r[cG]); if (!g || g <= 0) return; const camp = cC >= 0 ? String(r[cC] || "").trim() : "Meta Ads", a = maFecha(cD >= 0 ? r[cD] : r[cI]), b = maFecha(cD >= 0 ? r[cD] : r[cF]);
+    if (!a || !b) return; if (cC >= 0 && !camp) return; filas.push({ camp: camp || "Meta Ads", a, b: b < a ? a : b, g, res: cR >= 0 ? maNum(r[cR]) : null }); });
+  if (!filas.length) throw new Error("No encontré filas con gasto mayor a cero."); return { filas, mon, porDia: cD >= 0 }; }
+function maGrupos() { return [...new Set((D ? D.matList : []).map((m) => m.group).filter(Boolean))].sort((a, b) => a.localeCompare(b)); }
+function maAdivinar(camp) { const G = maGrupos(), f = fold(camp), ef = efeFor(camp, null); if (ef) { const g = G.find((x) => fold(x) === fold(ef[1]) || fold(x).includes(fold(ef[1]))); if (g) return g; }
+  let best = "", pts = 0; G.forEach((g) => { const T = fold(g).split(/[^a-z0-9]+/).filter((w) => w.length > 3 && !["cuadernillo", "plataforma", "interactiva", "dia", "para"].includes(w)), n = T.filter((w) => f.includes(w)).length; if (n > pts) { pts = n; best = g; } }); return best; }
+// gasto por campaña y por mes, con el detalle por día (así reimportar el mismo período lo reemplaza en vez de duplicarlo)
+function maPlan() { const P = {}, k = MA.moneda === "ARS" ? 1 : vtNum(MA.cot); (MA.filas || []).forEach((f) => { const D2 = maDias(f.a, f.b), x = f.g * k / D2.length; D2.forEach((d) => { const key = f.camp + "|" + d.slice(0, 7), p = P[key] = P[key] || { camp: f.camp, mes: d.slice(0, 7), dias: {} }; p.dias[d] = (p.dias[d] || 0) + x; }); });
+  return Object.values(P).map((p) => { const id = "meta-" + slug(p.camp).slice(0, 70) + "-" + p.mes, prev = (gastos || []).find((g) => g.id === id), dias = { ...((prev && prev.dias) || {}) }; let pis = 0; Object.entries(p.dias).forEach(([d, v]) => { if (dias[d] != null) pis++; dias[d] = Math.round(v * 100) / 100; });
+    return { ...p, id, prev, dias, pis, monto: Math.round(Object.values(dias).reduce((s, v) => s + v, 0)), nuevo: Math.round(Object.values(p.dias).reduce((s, v) => s + v, 0)) }; }).sort((a, b) => a.mes.localeCompare(b.mes) || a.camp.localeCompare(b.camp)); }
+function maHtml() { const F = MA.filas, G = maGrupos();
+  let cuerpo = `<label class="ma-drop" id="maDrop"><input type="file" accept=".csv,text/csv" data-mafile hidden><span>📥</span><b>${MA.archivo ? esc(MA.archivo) : "Elegí o arrastrá el CSV de Meta"}</b><small>Administrador de anuncios → Informes → Exportar → CSV</small></label>
+    <details class="pp-det"><summary>¿Cómo lo descargo de Meta?</summary><ol class="ma-pasos"><li>Entrá al <b>Administrador de anuncios</b> y elegí el período (por ejemplo, el mes pasado).</li><li>En <b>Desglose → Por tiempo → Día</b> (recomendado: así el gasto cae en el día justo).</li><li>Tocá <b>Exportar → Exportar datos de la tabla → CSV</b>.</li><li>Subilo acá. Si lo volvés a subir con el mismo período, se actualiza sin duplicar.</li></ol></details>`;
+  if (MA.err) cuerpo += `<p class="pp-mal">⚠️ ${esc(MA.err)}</p>`;
+  if (F && F.length) { const camps = [...new Set(F.map((f) => f.camp))], P = maPlan(), tot = P.reduce((s, p) => s + p.nuevo, 0), rep = P.filter((p) => p.pis).length, meses = [...new Set(P.map((p) => p.mes))], a = F.reduce((m, f) => f.a < m ? f.a : m, F[0].a), b = F.reduce((m, f) => f.b > m ? f.b : m, F[0].b), res = F.reduce((s, f) => s + (f.res || 0), 0), falta = MA.moneda !== "ARS" && !vtNum(MA.cot);
+    cuerpo += `<div class="ma-res"><div><span>Período</span><b>${esc(a.split("-").reverse().join("/"))} al ${esc(b.split("-").reverse().join("/"))}</b></div><div><span>Campañas</span><b>${camps.length}</b></div><div><span>Gasto total</span><b>${falta ? `${MA.moneda} ${nf(Math.round(F.reduce((s, f) => s + f.g, 0)))}` : money(tot)}</b></div>${res ? `<div><span>Resultados</span><b>${nf(res)}</b></div>` : ""}</div>
+      ${MA.moneda !== "ARS" ? `<div class="field ma-cot"><label for="maCot">El informe está en <b>${esc(MA.moneda)}</b>. Cotización para pasarlo a pesos</label><span class="vx2-pr"><span>$</span><input id="maCot" data-macot inputmode="numeric" value="${esc(MA.cot)}" placeholder="Ej.: 1200"></span></div>` : ""}
+      <div class="table-wrap"><table class="ma-t"><thead><tr><th>Campaña</th><th class="num">Gasto</th><th>¿A qué material corresponde?</th></tr></thead><tbody>${camps.map((c) => { const g = F.filter((f) => f.camp === c).reduce((s, f) => s + f.g, 0) * (MA.moneda === "ARS" ? 1 : vtNum(MA.cot) || 0), v = MA.asig[c] != null ? MA.asig[c] : maAdivinar(c);
+        return `<tr><td><b>${esc(c)}</b></td><td class="num">${g ? money(g) : "—"}</td><td><select data-maasig="${esc(c)}"><option value="">Repartir entre todos los materiales</option>${G.map((x) => `<option${x === v ? " selected" : ""}>${esc(x)}</option>`).join("")}</select></td></tr>`; }).join("")}</tbody></table></div>
+      <p class="muted ma-nota">Se guarda como gasto de <b>Publicidad</b>, uno por campaña y por mes (${meses.length === 1 ? "1 mes" : meses.length + " meses"}), y se descuenta solo de lo que facturaste en Ventas, en Ganancia y en la Rentabilidad por material.${rep ? ` <b>${rep} ${rep === 1 ? "gasto ya estaba importado" : "gastos ya estaban importados"}</b> con días de este período: esos días se actualizan con los valores nuevos, sin duplicar.` : ""}</p>
+      ${MA.hecho ? `<p class="jk-r">✓ ${esc(MA.hecho)}</p>` : ""}
+      <div class="dlg-actions"><button type="button" class="btn ghost" data-ppclose>Cerrar</button><span class="spacer"></span><button type="button" class="btn primary" data-maok ${MA.busy || falta ? "disabled" : ""}>${MA.busy ? "Importando…" : `📥 Importar ${money(tot)} de publicidad`}</button></div>`; }
+  return ppHead("📣", "Importar gasto de Meta Ads", "Subí el CSV que te da Meta y el gasto en publicidad se descuenta solo de tus ventas.") + cuerpo; }
+function maAbrir() { Object.assign(MA, { filas: null, err: "", archivo: "", asig: {}, hecho: null, busy: false }); ppDlg("ppMeta", maHtml(), 760); }
+function maPintar() { const d = document.getElementById("ppMeta"); if (d && d.open) { const sc = d.scrollTop; d.innerHTML = `<div class="dlg pp">${maHtml()}</div>`; d.scrollTop = sc; } }
+async function maArchivo(f) { if (!f) return; MA.archivo = f.name; MA.err = ""; MA.filas = null; MA.hecho = null;
+  try { const txt = await f.text(); const r = maLeer(txt); MA.filas = r.filas; MA.moneda = r.mon; MA.porDia = r.porDia; } catch (e) { MA.err = e.message || "No pude leer el archivo."; } maPintar(); }
+async function maImportar(btn) { if (!needDb() || !MA.filas) return; const P = maPlan(); if (!P.length) return; MA.busy = true; maPintar(); let n = 0;
+  try { for (const p of P) { const ds = Object.keys(p.dias).sort(), grupo = MA.asig[p.camp] != null ? MA.asig[p.camp] : maAdivinar(p.camp), { id: _id, ...prev } = p.prev || {};
+      await db.collection("gastos").doc(p.id).set({ ...prev, fecha: ds[0], monto: p.monto, concepto: `Meta Ads · ${p.camp}`.slice(0, 80), cat: "Publicidad", rec: false, fuente: "meta", camp: p.camp, mes: p.mes, dias: p.dias, grupo: grupo || "", moneda: MA.moneda, actualizado: new Date().toISOString(), creado: prev.creado || new Date().toISOString() }); n++; }
+    const tot = P.reduce((s, p) => s + p.nuevo, 0); MA.hecho = `Listo: ${n} ${n === 1 ? "gasto guardado" : "gastos guardados"} por ${money(tot)}. Ya se descuentan de tus ventas.`; toast(`📣 Publicidad de Meta importada: ${money(tot)}`, "ok"); }
+  catch (e) { MA.err = "No se pudo guardar: " + (e.message || "error"); } MA.busy = false; maPintar(); }
+// publicidad dentro de un rango de días (Meta por día; los gastos manuales por su fecha)
+function maPub(a, b) { let t = 0; (gastos || []).forEach((g) => { if (!/publicidad/i.test(g.cat || "")) return; const amt = +g.monto || 0;
+    if (g.dias) { Object.entries(g.dias).forEach(([d, v]) => { const x = new Date(d + "T12:00"); if (x >= a && x < b) t += +v || 0; }); return; }
+    if (!g.fecha) return; if (g.rec) { let d = new Date(g.fecha + "T12:00"); const fin = g.hasta ? new Date(+new Date(g.hasta + "-28T12:00") + 4 * DAY) : b; for (let i = 0; i < 240 && d < b && d <= fin; i++) { if (d >= a) t += amt; d = new Date(d.getFullYear(), d.getMonth() + 1, Math.min(d.getDate(), 28), 12); } return; }
+    const x = new Date(g.fecha + "T12:00"); if (x >= a && x < b) t += amt; }); return t; }
+// en el resumen de Ventas: cuánto se fue en publicidad y cuánto queda
+const _maHero = vtHero;
+vtHero = function () { const r = _maHero.apply(this, arguments); try { const box = document.getElementById("vtHero"); if (box && !box.querySelector(".vt-acts")) { const ac = document.createElement("div"); ac.className = "vt-acts"; ac.innerHTML = `<button type="button" class="btn primary" data-ppacc="entregar">➕ Venta por transferencia</button><button type="button" class="btn" data-ppacc="verificar">🔎 Verificar compra</button><button type="button" class="btn" data-maabrir>📣 Importar gasto de Meta</button>`; box.insertBefore(ac, box.firstChild); }
+    const sub = box && box.querySelector(".vt-sub"); if (!sub || !D || !D.items.length) return r;
+    const R = vxRange(), all = vxOrders(), L = VX.per === "todo" ? all : all.filter((x) => inR(x.d, R.a, R.b)), fact = vxStats(L).fact, a = VX.per === "todo" ? new Date(2000, 0, 1) : R.a, b = VX.per === "todo" ? new Date(2100, 0, 1) : new Date(+startOfDay(R.b) + DAY), pub = maPub(a, b);
+    const el = document.createElement("div"); el.className = "vt-pub"; el.innerHTML = pub ? `<span>📣 Publicidad <b>−${money(pub)}</b></span><span>Te queda <b>${money(fact - pub)}</b></span><span class="muted">${fact ? `la publicidad fue el ${Math.round(pub / fact * 100)}% de lo facturado` : ""}</span><button type="button" class="linkish" data-maabrir>Importar de Meta</button>` : `<span class="muted">📣 Sin gasto de publicidad cargado en este período.</span><button type="button" class="linkish" data-maabrir>Importar el CSV de Meta</button>`;
+    sub.insertAdjacentElement("afterend", el); } catch (e) { console.warn(e); } return r; };
+// botón en Ganancia, junto a «Registrar un gasto»
+const _maFin = renderFin;
+renderFin = function () { const r = _maFin.apply(this, arguments); try { const f = document.getElementById("gForm"); if (f && !document.getElementById("maBox")) { const d = document.createElement("div"); d.id = "maBox"; d.className = "ma-box"; d.innerHTML = `<div><b>📣 Publicidad de Meta Ads</b><small>Subí el CSV del Administrador de anuncios y el gasto se carga solo, por campaña y por día.</small></div><button type="button" class="btn small primary" data-maabrir>Importar CSV</button>`; f.parentNode.insertBefore(d, f.previousElementSibling || f); }
+    const box = document.getElementById("maBox"); if (box) { const M = (gastos || []).filter((g) => g.fuente === "meta"), ult = M.map((g) => g.actualizado || "").sort().pop(), tot = M.reduce((s, g) => s + (+g.monto || 0), 0); const sm = box.querySelector("small"); if (sm && M.length) sm.textContent = `${M.length} ${M.length === 1 ? "gasto importado" : "gastos importados"} · ${money(tot)} en total${ult ? ` · última importación ${fmtD(new Date(ult))}` : ""}.`; } } catch (e) { console.warn(e); } return r; };
+// rentabilidad: la publicidad asignada a un material se carga a ese material
+const _maPrFilas = prFilas;
+prFilas = function () { const R = _maPrFilas.apply(this, arguments); if (!R || !R.L.length) return R; try { const [f, e] = prRango(), porG = {};
+    (gastos || []).forEach((g) => { if (!g.grupo || !/publicidad/i.test(g.cat || "")) return; const v = g.dias ? Object.entries(g.dias).reduce((s, [d, x]) => { const t = new Date(d + "T12:00"); return t >= f && t < e ? s + (+x || 0) : s; }, 0) : (g.fecha && new Date(g.fecha + "T12:00") >= f && new Date(g.fecha + "T12:00") < e && !g.rec ? +g.monto || 0 : 0); if (v) porG[g.grupo] = (porG[g.grupo] || 0) + v; });
+    const asign = Object.values(porG).reduce((s, v) => s + v, 0); if (!asign) return R; const grupoDe = (r) => PR.ver === "grupo" ? r.key : (D.mats[r.key] || {}).group, libre = Math.max(0, R.G.pub - asign);
+    let usado = 0; R.L.forEach((r) => { r.pub = 0; }); Object.entries(porG).forEach(([g, v]) => { const L = R.L.filter((r) => grupoDe(r) === g), s = L.reduce((q, r) => q + r.rev, 0); if (s) { L.forEach((r) => { r.pub += v * r.rev / s; }); usado += v; } });
+    const resto = libre + (asign - usado); R.L.forEach((r) => { r.pub += R.tot ? resto * r.rev / R.tot : 0; r.net = r.rev - r.comm - r.pub - r.otros; r.mg = r.rev ? r.net / r.rev : 0; r.xu = r.u ? r.net / r.u : 0; });
+    R.L.sort((a, b) => b.net - a.net); R.net = R.L.reduce((s, r) => s + r.net, 0); R.asignada = usado; } catch (e) { console.warn(e); } return R; };
+document.addEventListener("click", async (e) => { const t = e.target; let b; if ((b = t.closest("[data-maabrir]"))) { e.preventDefault(); maAbrir(); return; } if (!t.closest("#ppMeta")) return; if ((b = t.closest("[data-maok]"))) { await maImportar(b); } });
+document.addEventListener("change", (e) => { const t = e.target; if (!t.closest || !t.closest("#ppMeta")) return; if (t.dataset.mafile != null && t.files && t.files[0]) { maArchivo(t.files[0]); return; } if (t.dataset.maasig != null) { MA.asig[t.dataset.maasig] = t.value; MA.hecho = null; } });
+document.addEventListener("input", (e) => { const t = e.target; if (t.dataset && t.dataset.macot != null && t.closest("#ppMeta")) { MA.cot = t.value; clearTimeout(MA.tm); MA.tm = setTimeout(() => { maPintar(); const i = document.getElementById("maCot"); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }, 450); } });
+["dragover", "drop"].forEach((ev) => document.addEventListener(ev, (e) => { const z = e.target.closest && e.target.closest("#maDrop"); if (!z) return; e.preventDefault(); if (ev === "drop" && e.dataTransfer && e.dataTransfer.files[0]) maArchivo(e.dataTransfer.files[0]); }));
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
