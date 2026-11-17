@@ -1007,6 +1007,16 @@ b.neg{color:var(--v3r)}
 
 [data-theme="light"] .in-res{background:#fff}
 
+/* aviso de carga global */
+#uiBar{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s}
+#uiBar.on{opacity:1}#uiBar i{position:absolute;top:0;bottom:0;left:-40%;width:40%;background:linear-gradient(90deg,transparent,var(--v3a,#4cb4f2),var(--v3v,#9b7cf8),transparent);animation:uibar 1.1s ease-in-out infinite}
+@keyframes uibar{to{left:100%}}
+#uiPill{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:9999;padding:10px 16px;border-radius:99px;background:var(--solid,#1a2130);color:var(--ink);border:1px solid var(--line);box-shadow:0 14px 40px -12px rgba(0,0,0,.55);font-size:13.5px;font-weight:700;animation:v3in .2s ease;max-width:calc(100vw - 32px)}
+.ui-busy{position:relative;cursor:progress!important;opacity:.9}
+.ui-busy::after{content:"";display:inline-block;width:12px;height:12px;margin-left:8px;vertical-align:-2px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:uispin .7s linear infinite}
+@keyframes uispin{to{transform:rotate(360deg)}}
+@media (max-width:720px){#uiPill{bottom:84px}}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -24301,6 +24311,42 @@ pnClaude = async function (n, btn) { const sf = await getSample(); if (sf) { con
       alt: `${plat ? "Plataforma interactiva" : "Material didáctico"} de ${tema} para primaria, de Cofre Didáctico`.slice(0, 140) }; });
   toast(sf ? "Claude no respondió: te dejé textos base para revisar" : "Textos base con plantillas: revisalos y ajustalos. Claude los escribe en el panel dentro de Claude.", sf ? "err" : "");
   return { tablero: `${tema} · recursos para primaria`, pines }; };
+
+// ---------- UX · cada botón avisa que está trabajando (barra arriba + ruedita en el botón) ----------
+const UI = { armed: null, ses: null };
+function uiBar() { let b = document.getElementById("uiBar"); if (!b) { b = document.createElement("div"); b.id = "uiBar"; b.innerHTML = `<i></i>`; document.body.appendChild(b); const p = document.createElement("div"); p.id = "uiPill"; p.setAttribute("role", "status"); p.setAttribute("aria-live", "polite"); p.hidden = true; document.body.appendChild(p); } return b; }
+function uiStart() { const now = Date.now(); let s = UI.ses;
+  if (!s) { const a = UI.armed; if (!a || now - a.t > 1500) return () => {}; s = UI.ses = { btn: a.btn, n: 0, t0: now, shown: false, end: null, lab: a.lab }; UI.armed = null;
+    s.show = setTimeout(() => { if (UI.ses !== s) return; s.shown = true; uiBar().classList.add("on"); if (s.btn && s.btn.isConnected) { s.btn.classList.add("ui-busy"); s.btn.setAttribute("aria-busy", "true"); } }, 120);
+    s.pill = setTimeout(() => { if (UI.ses !== s) return; const p = document.getElementById("uiPill"); if (p) { p.textContent = `⏳ ${s.lab ? s.lab + "… " : ""}trabajando, esperá un momento`; p.hidden = false; } }, 1400);
+    s.max = setTimeout(() => uiFin(s), 90e3); }
+  clearTimeout(s.end); s.end = null; s.n++; let done = false;
+  return () => { if (done) return; done = true; s.n = Math.max(0, s.n - 1); if (!s.n) { clearTimeout(s.end); s.end = setTimeout(() => { if (!s.n) uiFin(s); }, 300); } }; }
+function uiFin(s) { if (UI.ses !== s) return; UI.ses = null; [s.show, s.pill, s.max, s.end].forEach(clearTimeout);
+  const wait = s.shown ? Math.max(0, 350 - (Date.now() - s.t0)) : 0;
+  setTimeout(() => { if (UI.ses) return; const b = document.getElementById("uiBar"); if (b) b.classList.remove("on"); const p = document.getElementById("uiPill"); if (p) p.hidden = true; }, wait);
+  setTimeout(() => { if (s.btn) { s.btn.classList.remove("ui-busy"); s.btn.removeAttribute("aria-busy"); } }, wait); }
+const uiTrack = (pr) => { const end = uiStart(); return Promise.resolve(pr).finally(end); };
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("button, [role=button], a.btn"); if (!b || b.disabled) return; if (b.closest(".tab, nav, [role=tablist]") && !b.closest("dialog")) return;
+  const lab = (b.getAttribute("aria-label") || b.textContent || "").replace(/[\u{1F000}-\u{1FFFF}☀-➿✨↺⬇➕]/gu, "").replace(/\s+/g, " ").trim().slice(0, 40);
+  UI.armed = { btn: b, t: Date.now(), lab }; }, true);
+(function () { if (window.__uiFetch) return; window.__uiFetch = 1; const f = window.fetch.bind(window); window.fetch = function () { return uiTrack(f.apply(window, arguments)); }; })();
+function uiEnvolver(ns) { if (!ns || ns.__ui) return ns; const w = typeof ns === "function" ? function () { return uiTrack(ns.apply(this, arguments)); } : {};
+  for (const k of Object.keys(ns)) { const v = ns[k]; w[k] = typeof v === "function" ? function () { const r = v.apply(ns, arguments); return r && typeof r.then === "function" ? uiTrack(r) : r; } : v; }
+  try { Object.defineProperty(w, "__ui", { value: true }); } catch { w.__ui = true; } return w; }
+const _uiPnMcp = pnMcp;
+pnMcp = async function () { const end = uiStart(); try { const M = await _uiPnMcp.apply(this, arguments); if (M && !M.__ui) { mcp = uiEnvolver(M); return mcp; } return M; } finally { end(); } };
+const _uiGetSample = getSample;
+getSample = async function () { const sf = await _uiGetSample.apply(this, arguments); if (sf && !sf.__ui) { sampleFn = uiEnvolver(sf); return sampleFn; } return sf; };
+// Pinterest: avisos visibles al programar
+const _uiPlProg = plProgramar;
+plProgramar = async function () { if (!MODE.cloud) { toast("📌 Programar en Pinterest funciona en el panel dentro de Claude (usa tu Metricool). Acá podés descargar los pines y subirlos a mano.", "err"); }
+  else { PL.est = "🔌 Conectando con Metricool…"; plPintar(); }
+  const r = await _uiPlProg.apply(this, arguments); if (PL.est === "🔌 Conectando con Metricool…") { PL.est = ""; plPintar(); }
+  const el = document.querySelector("#plBody .pn-est"); if (el && PL.est) el.scrollIntoView({ block: "center", behavior: "smooth" }); return r; };
+const _uiPnPub = pnPublicar;
+pnPublicar = async function (btn) { if (!MODE.cloud) toast("📌 Publicar en Pinterest funciona en el panel dentro de Claude (usa tu Metricool). Acá podés diseñar y descargar el pin.", "err"); else pnEstado("🔌 Conectando con Metricool…");
+  const r = await _uiPnPub.apply(this, arguments); const el = document.getElementById("pnEst"); if (el && !el.hidden) el.scrollIntoView({ block: "center", behavior: "smooth" }); return r; };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
