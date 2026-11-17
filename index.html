@@ -728,6 +728,176 @@ dialog.pp-dlg{max-height:calc(100dvh - 20px);overflow:auto}
 @media (max-width:560px){.vx2-it>.vx2-pr{flex-basis:108px}.vx2-tc{grid-template-columns:1fr}.ma-box{flex-wrap:wrap}.ma-t td:nth-child(3){min-width:150px}}
 .vt-acts{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-bottom:10px}@media (max-width:560px){.vt-acts .btn{flex:1 1 auto;justify-content:center}}
 
+/* ventas 3.0 */
+:root{--v3a:#4cb4f2;--v3g:#2fc58d;--v3r:#f0616d;--v3y:#f5b53f;--v3p:#ec5d9a;--v3v:#9b7cf8;--v3sh:0 1px 0 rgba(255,255,255,.03) inset,0 10px 30px -18px rgba(0,0,0,.55)}
+[data-theme="light"]{--v3a:#1f7fd1;--v3g:#13935f;--v3r:#d33f4b;--v3y:#b97a06;--v3p:#c42e70;--v3v:#6a4fd8;--v3sh:0 1px 2px rgba(15,23,42,.05),0 10px 26px -18px rgba(15,23,42,.25)}
+.v3-off{display:none!important}.grid2:has(>.v3-off){grid-template-columns:1fr}
+.v3,.v3 *{font-variant-numeric:tabular-nums}.vt.v3{min-width:0;max-width:100%;grid-template-columns:minmax(0,1fr)}.vt.v3>*,.v3-top>*,.vt-pan>*{min-width:0}
+.v3 .v3-card{box-shadow:var(--v3sh);animation:v3in .35s ease both}
+@keyframes v3in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.v3-top{display:grid;gap:16px;margin-bottom:18px}
+.v3-hd{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.v3-hd h1{margin:0;font-size:30px;letter-spacing:-.02em}.v3-hd p{margin:4px 0 0;font-size:14px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.v3-live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);padding:3px 9px;border-radius:99px;border:1px solid var(--line)}
+.v3-live i{width:7px;height:7px;border-radius:50%;background:var(--v3g);box-shadow:0 0 0 0 var(--v3g);animation:v3pul 2s infinite}
+@keyframes v3pul{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--v3g) 60%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.v3-acts{display:flex;gap:8px;flex-wrap:wrap}
+.v3-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:5;padding:8px 0;background:linear-gradient(var(--bg) 70%,transparent)}
+.v3-seg{display:inline-flex;padding:3px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);gap:2px;flex-wrap:wrap}
+.v3-seg button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:700;padding:7px 12px;border-radius:9px;cursor:pointer;transition:background .15s,color .15s}
+.v3-seg button:hover{color:var(--ink)}.v3-seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.v3-seg.sm button{padding:5px 10px;font-size:12px}
+.v3-cus{display:flex;gap:8px;flex-wrap:wrap}.v3-cus label{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--muted)}
+.v3-bell{margin-left:auto;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:6px 10px;cursor:pointer;font-size:15px}
+.v3-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.v3-k{position:relative;overflow:hidden;padding:16px 18px 14px;border-radius:18px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--v3sh);display:grid;gap:6px;min-height:132px;--c:var(--v3a);animation:v3in .35s ease both}
+.v3-k.k-net{--c:var(--v3g)}.v3-k.k-ped{--c:var(--v3v)}.v3-k.k-tic{--c:var(--v3y)}
+.v3-k:nth-child(2){animation-delay:.04s}.v3-k:nth-child(3){animation-delay:.08s}.v3-k:nth-child(4){animation-delay:.12s}
+.v3-kl{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.v3-kl i{width:8px;height:8px;border-radius:3px;background:var(--c)}
+.v3-kv{font-size:30px;font-weight:900;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.v3-kf{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);position:relative;z-index:1}
+.v3-k{padding-bottom:46px!important}.v3-k .v3-sp{position:absolute;left:0;right:0;bottom:0;width:100%;height:40px}
+.v3-sp polyline{fill:none;stroke:var(--c,var(--v3a));stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}.v3-sp polygon{fill:color-mix(in srgb,var(--c,var(--v3a)) 16%,transparent);stroke:none}
+.v3-sk{position:relative;overflow:hidden;background:var(--surface-2)!important}.v3-sk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ink) 7%,transparent),transparent);animation:v3sk 1.3s infinite;transform:translateX(-100%)}
+@keyframes v3sk{to{transform:translateX(100%)}}
+.v3-k.v3-sk i,.v3-k.v3-sk b,.v3-k.v3-sk s{display:block;border-radius:6px;background:color-mix(in srgb,var(--ink) 8%,transparent);height:12px;width:40%}.v3-k.v3-sk b{height:28px;width:70%}.v3-k.v3-sk s{width:55%}
+.v3-skc{height:320px;border-radius:14px}.v3-skt{height:420px;border-radius:14px}
+.v3-meta{display:grid;grid-template-columns:auto 1fr auto;gap:8px 16px;align-items:center;padding:12px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.v3-meta.vacia,.v3-meta.ed{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}.v3-meta.ed{justify-content:flex-start}
+.v3-mt{display:flex;flex-direction:column;gap:2px;font-size:13px}.v3-mt span,.v3-mt small{color:var(--muted)}.v3-mt:last-child{align-items:flex-end}
+.v3-mb{position:relative;height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}.v3-mb i{position:absolute;inset:0 auto 0 0;width:var(--p);background:linear-gradient(90deg,var(--v3g),color-mix(in srgb,var(--v3g) 70%,var(--v3a)));border-radius:99px;transition:width .6s}.v3-mb s{position:absolute;top:-2px;bottom:-2px;left:var(--q);width:2px;background:var(--ink);opacity:.5}
+/* gráfico */
+.v3-ch{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start;margin-bottom:6px}
+.v3-ch h2{margin:0;font-size:15px}.v3-ch p{margin:4px 0 0;font-size:13.5px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}.v3-ch p>b{font-size:20px}
+.v3-cc{display:flex;gap:8px;flex-wrap:wrap}
+.v3-cw{position:relative;margin:0 -4px}.v3-cw svg{display:block;max-width:100%;height:auto;touch-action:pan-y}
+.v3-gl{stroke:var(--line);stroke-dasharray:3 4}.v3-ax{font-size:11px;fill:var(--muted)}
+.v3-ar{fill:url(#v3G)}.v3-ln{fill:none;stroke:var(--v3a);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;animation:v3draw .9s ease-out both}
+@keyframes v3draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.v3-pl{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-dasharray:5 5;opacity:.75}
+.v3-best{fill:var(--surface);stroke:var(--v3a);stroke-width:2.4}
+.v3-lane{stroke:var(--line)}.v3-mk.ig{fill:var(--v3p);stroke:var(--surface);stroke-width:1.5}.v3-mk.efe{fill:var(--v3y);stroke:var(--surface);stroke-width:1.2}.v3-mk.lz{fill:var(--v3v);stroke:var(--surface);stroke-width:1.2}
+.v3-cross{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3;transition:opacity .12s}.v3-dot{fill:var(--v3a);stroke:var(--surface);stroke-width:2.5;transition:opacity .12s}.v3-dot.pv{fill:var(--muted)}
+.v3-tt{position:absolute;top:8px;min-width:190px;max-width:290px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);box-shadow:0 12px 30px -10px rgba(0,0,0,.45);font-size:12.5px;pointer-events:none;display:grid;gap:5px;z-index:3}
+.v3-tt>b{font-size:13px}.v3-tr{display:flex;justify-content:space-between;gap:12px}.v3-tr span{color:var(--muted);display:flex;align-items:center;gap:6px}
+.v3-tm{font-size:12px;padding-top:5px;border-top:1px dashed var(--line);color:var(--ink)}
+.v3-lg i{display:inline-block;flex:none;font-style:normal}.v3-lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:4px}.v3-lg span{display:inline-flex;gap:6px;align-items:center}
+.v3 i.ln,.v3-tt i.ln{width:14px;height:3px;border-radius:2px;background:var(--v3a);display:inline-block}.v3 i.pl,.v3-tt i.pl{width:14px;height:0;border-top:2px dashed var(--muted);display:inline-block}
+.v3 .v3-lg i.v3i{width:9px;height:9px;border-radius:50%;background:var(--v3p)}.v3 .v3-lg i.v3e{width:8px;height:8px;background:var(--v3y);transform:rotate(45deg)}.v3-lg i.v3l{width:0;height:0;border:5px solid transparent;border-bottom:8px solid var(--v3v);border-top:0}
+.v3-lg i.f{width:10px;height:10px;border-radius:3px;background:color-mix(in srgb,var(--v3a) 55%,transparent)}.v3-lg i.n{width:10px;height:10px;border-radius:3px;background:var(--v3g)}
+/* bandeja */
+.v3-g2{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:start;margin:16px 0}
+.v3-g2>.vx-pulse{margin:0}
+.v3-sh{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}.v3-sh h2{margin:0;font-size:15px}.v3-sh p{margin:3px 0 0;font-size:12.5px}
+.v3-pill{font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px}.v3-pill.warn{background:color-mix(in srgb,var(--v3y) 18%,transparent);color:var(--v3y)}.v3-pill.ok{background:color-mix(in srgb,var(--v3g) 18%,transparent);color:var(--v3g)}
+.v3-ig{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);margin-bottom:10px;overflow:hidden}
+.v3-ig summary{list-style:none;display:flex;gap:10px;align-items:center;padding:11px 14px;cursor:pointer;flex-wrap:wrap}.v3-ig summary::-webkit-details-marker{display:none}
+.v3-ig summary b{font-size:14px}.v3-ig summary em{font-style:normal;font-size:12px;font-weight:800;min-width:22px;text-align:center;padding:2px 7px;border-radius:99px;background:var(--surface);border:1px solid var(--line)}.v3-ig summary small{color:var(--muted);font-size:12px;flex-basis:100%;padding-left:30px;margin-top:-4px}
+.v3-ig summary small{order:5}.v3-ig summary::after{order:4;content:"›";margin-left:auto;color:var(--muted);transition:transform .2s;font-size:18px}.v3-ig[open] summary::after{transform:rotate(90deg)}
+.v3-il{display:grid;gap:8px;padding:0 10px 10px}
+.v3-ib{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:8px 10px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.v3-ib.late{border-color:color-mix(in srgb,var(--v3r) 45%,var(--line))}
+.v3-ibm{display:flex;gap:12px;align-items:center;flex:1 1 320px;min-width:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:0}
+.v3-age{display:grid;place-items:center;width:42px;height:42px;border-radius:11px;background:var(--surface-2);flex:none;line-height:1}.v3-age b{font-size:16px}.v3-age small{font-size:9.5px;color:var(--muted)}
+.v3-ib.late .v3-age{background:color-mix(in srgb,var(--v3r) 16%,transparent);color:var(--v3r)}
+.v3-ibt{display:grid;gap:2px;min-width:0;flex:1}.v3-ibt small{color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.v3-ibt .v3-why{white-space:normal;color:var(--ink)}
+.v3-ibm>strong{font-size:14px;white-space:nowrap}
+.v3-iba{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.v3-empty{display:grid;place-items:center;text-align:center;gap:4px;padding:26px 10px}.v3-empty span{font-size:28px}.v3-empty p{margin:0;color:var(--muted);font-size:13px}
+.v3-note{font-size:11.5px;color:var(--muted);margin:8px 0 0}
+/* tabla */
+.v3-pt{display:grid;gap:12px}
+.v3-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.v3-chip{display:grid;grid-template-columns:1fr auto;gap:2px 8px;text-align:left;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:inherit;font:inherit;cursor:pointer;transition:border-color .15s,transform .15s;--c:var(--v3a)}
+.v3-chip.ok{--c:var(--v3g)}.v3-chip.pend{--c:var(--v3y)}.v3-chip.no{--c:var(--v3r)}
+.v3-chip span{font-size:12.5px;font-weight:800;color:var(--muted)}.v3-chip b{font-size:20px;grid-row:span 2;align-self:center}.v3-chip small{font-size:12px;color:var(--muted)}
+.v3-chip:hover{transform:translateY(-1px)}.v3-chip[aria-pressed="true"]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c);background:color-mix(in srgb,var(--c) 8%,var(--surface))}
+.v3-fl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.v3-fl .sel{max-width:210px}
+.v3-q{display:flex;align-items:center;gap:6px;flex:1 1 280px;min-width:200px;padding:0 12px;border-radius:11px;border:1px solid var(--line);background:var(--surface)}.v3-q input{border:0!important;background:transparent!important;box-shadow:none!important;padding:9px 0!important;width:100%;font:inherit;color:var(--ink);outline:none}
+.v3-q:focus-within{border-color:var(--v3a);box-shadow:0 0 0 3px color-mix(in srgb,var(--v3a) 22%,transparent)}.v3-q.sm{flex:0 1 260px}
+.v3-sp1{flex:1}
+.v3-flag{font-size:13px;padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--v3a) 12%,transparent)}
+.v3-bulk{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--v3a) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--v3a) 40%,var(--line));position:sticky;top:56px;z-index:4;animation:v3in .2s ease}
+.v3-bulk span{color:var(--muted);font-size:13px}
+.v3-tw{overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.v3-t{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px}
+.v3-t th{position:sticky;top:0;z-index:1;background:var(--surface-2);text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:0;border-bottom:1px solid var(--line);white-space:nowrap}
+.v3-t th>button{all:unset;cursor:pointer;display:block;padding:10px 12px}.v3-t th>button.on{color:var(--ink)}.v3-t th.num>button,.v3-t th.num{text-align:right}.v3-t th:not(:has(button)){padding:10px 12px}
+.v3-t td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}.v3-t tbody tr:last-child td{border-bottom:0}
+.v3-t td small{display:block;color:var(--muted);font-size:11.5px;margin-top:1px}.v3-t td.num{text-align:right;white-space:nowrap}
+.v3-t tbody tr[data-v3o],.v3-t tbody tr[data-v3m]{cursor:pointer;transition:background .12s}.v3-t tbody tr[data-v3o]:hover,.v3-t tbody tr[data-v3m]:hover{background:color-mix(in srgb,var(--v3a) 6%,transparent)}
+.v3-t tbody tr.sel{background:color-mix(in srgb,var(--v3a) 11%,transparent)}
+.v3-t td.ck,.v3-t th.ck{width:38px;text-align:center;padding:0 6px}.v3-t th.ck input,.v3-t td.ck input{pointer-events:none;width:16px;height:16px;accent-color:var(--v3a)}.v3-t th.ck{cursor:pointer}
+.v3-t td.pid b{white-space:nowrap}.v3-t td.cli{max-width:230px}.v3-t td.cli b,.v3-t td.cli small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.v3-t td.mat{min-width:220px}.v3-mw{display:flex;align-items:center;gap:10px;min-width:0}.v3-mn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px}.v3-mn em{font-style:normal;color:var(--muted);font-weight:800}
+.v3-covs{display:flex;flex:none}.v3-covs>*{width:30px;height:30px;border-radius:8px;object-fit:cover;border:2px solid var(--surface);margin-left:-10px;background:var(--surface-2);display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--muted)}.v3-covs>*:first-child{margin-left:0}
+.v3-med{font-size:12px;font-weight:700;padding:3px 8px;border-radius:7px;background:var(--surface-2);white-space:nowrap}.v3-med.mp{color:#2aa8ea;background:color-mix(in srgb,#009EE3 13%,transparent)}.v3-med.tr{color:var(--v3g);background:color-mix(in srgb,var(--v3g) 13%,transparent)}
+.v3-st{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;padding:3px 9px;border-radius:99px;white-space:nowrap;vertical-align:middle}.v3-st::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.v3-st.ok{color:var(--v3g);background:color-mix(in srgb,var(--v3g) 14%,transparent)}.v3-st.wait{color:var(--v3y);background:color-mix(in srgb,var(--v3y) 15%,transparent)}.v3-st.no{color:var(--v3r);background:color-mix(in srgb,var(--v3r) 13%,transparent)}
+.v3-t td.tot{font-weight:800}
+.v3-tf{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+/* ficha lateral */
+.v3-drw{position:fixed;inset:0;z-index:300}.v3-ov{position:absolute;inset:0;background:rgba(5,10,20,.5);opacity:0;transition:opacity .2s}
+.v3-dr{position:absolute;top:0;right:0;bottom:0;width:min(520px,100vw);background:var(--bg);border-left:1px solid var(--line);box-shadow:-20px 0 50px -20px rgba(0,0,0,.6);transform:translateX(102%);transition:transform .22s cubic-bezier(.2,.8,.2,1);display:flex}
+.v3-drw.on .v3-ov{opacity:1}.v3-drw.on .v3-dr{transform:none}
+.v3-drc{overflow:auto;padding:20px 22px 40px;display:grid;gap:14px;align-content:start;width:100%;font-variant-numeric:tabular-nums}
+.v3-drh{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;position:sticky;top:-20px;background:var(--bg);padding:6px 0 10px;z-index:2;border-bottom:1px solid var(--line)}
+.v3-drh small{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:800}.v3-drh h2{margin:2px 0;font-size:22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.v3-drh p{margin:0;color:var(--muted);font-size:13px;text-transform:none}
+.v3-ds{display:grid;gap:10px;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}.v3-ds h3{margin:0;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.v3-cl{display:flex;gap:12px;align-items:center}.v3-cl small{display:block;color:var(--muted);font-size:12.5px}
+.v3-av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:17px;color:#fff;background:linear-gradient(135deg,var(--v3a),var(--v3v))}
+.v3-dl{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:0;font-size:13px}.v3-dl dt{color:var(--muted)}.v3-dl dd{margin:0;overflow-wrap:anywhere}
+.v3-da{display:flex;gap:6px;flex-wrap:wrap}
+.v3-it{display:flex;gap:10px;align-items:center}.v3-it>div{flex:1;min-width:0}.v3-it small{display:block;color:var(--muted);font-size:12px}
+.v3-ic{flex:none;width:40px;height:40px;border-radius:9px;overflow:hidden;background:var(--surface-2);display:grid;place-items:center;font-weight:800;color:var(--muted)}.v3-ic img{width:100%;height:100%;object-fit:cover}
+.v3-sum{display:grid;grid-template-columns:1fr auto;gap:5px;padding-top:10px;border-top:1px dashed var(--line);font-size:13px}.v3-sum span{color:var(--muted)}.v3-sum b{text-align:right}.v3-sum .big{font-size:18px}
+.v3-ok,.v3-warn{font-size:13px;padding:9px 12px;border-radius:10px;margin:0}.v3-ok{background:color-mix(in srgb,var(--v3g) 12%,transparent)}.v3-warn{background:color-mix(in srgb,var(--v3y) 14%,transparent)}
+.v3-ds textarea{width:100%;box-sizing:border-box;resize:vertical;font:inherit;font-size:13.5px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink)}
+.v3-op{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;text-align:left;width:100%;padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:inherit;font:inherit;font-size:13px;cursor:pointer}.v3-op small{color:var(--muted);grid-column:1;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.v3-op b{grid-row:1;grid-column:2;text-align:right}.v3-op .v3-st{grid-column:2;justify-self:end}
+.v3-op:hover{border-color:var(--v3a)}
+.v3-mcov{width:100%;max-height:220px;object-fit:cover;border-radius:14px;border:1px solid var(--line)}
+.v3-mk4,.v3-m4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.v3-mk4>div,.v3-m4>div{padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);display:grid;gap:2px}.v3-mk4 small,.v3-m4 small{font-size:11.5px;color:var(--muted);font-weight:700}.v3-mk4 b,.v3-m4 b{font-size:20px}.v3-mk4 span,.v3-m4 span{font-size:12px;color:var(--muted)}
+.v3-mbars{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;height:120px;align-items:end}.v3-mbars div{display:grid;grid-template-rows:1fr auto;height:100%;align-items:end;text-align:center}.v3-mbars i{display:block;background:linear-gradient(var(--v3a),color-mix(in srgb,var(--v3a) 55%,transparent));border-radius:5px 5px 2px 2px;transition:height .4s}.v3-mbars small{font-size:10.5px;color:var(--muted);text-transform:uppercase}
+.v3-fun2{display:grid;gap:6px}.v3-fun2>div{display:flex;justify-content:space-between;width:var(--w);min-width:150px;box-sizing:border-box;padding:8px 10px;border-radius:9px;background:color-mix(in srgb,var(--v3a) 16%,var(--surface-2));font-size:13px}
+.v3-pr{display:grid;grid-template-columns:130px 1fr auto;gap:10px;align-items:center;font-size:13px}.v3-pr i{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}.v3-pr s{display:block;height:100%;background:var(--v3v);border-radius:99px}
+/* materiales */
+.v3-mt2 td.mname{min-width:240px}.v3-mt2 td.mname b{display:block}
+.v3-bar2{display:block;width:110px;height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden}.v3-bar2 i{display:block;height:100%;background:var(--v3a);border-radius:99px}
+.v3-mt2 td.spk .v3-sp{width:110px;height:30px;--c:var(--v3v)}
+.v3-fun{font-size:12.5px;white-space:nowrap;color:var(--muted)}.v3-fun b{color:var(--ink);margin:0 2px}
+.v3-mt2 small.good{color:var(--v3g)}.v3-mt2 small.bad{color:var(--v3r)}
+/* estado de resultados */
+.v3-plg{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+.v3-wfs{display:grid;gap:8px}
+.v3-wf{display:grid;grid-template-columns:200px 1fr 120px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}.v3-wf:last-child{border-bottom:0;border-top:2px solid var(--line);padding-top:12px}
+.v3-wf span{display:grid}.v3-wf small{color:var(--muted);font-size:11.5px}.v3-wf strong{text-align:right;font-size:15px}.v3-wf.net strong{font-size:20px;color:var(--v3g)}
+.v3-wb{position:relative;height:22px;border-radius:6px;background:var(--surface-2)}.v3-wb i{position:absolute;top:0;bottom:0;border-radius:6px;background:var(--v3a);transition:all .5s}
+.v3-wf.out i{background:var(--v3r);opacity:.85}.v3-wf.net i{background:var(--v3g)}
+.v3-h3{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:22px 0 10px}
+.v3-roas{font-weight:900;padding:2px 8px;border-radius:7px;background:var(--surface-2)}.v3-roas.good{color:var(--v3g);background:color-mix(in srgb,var(--v3g) 14%,transparent)}.v3-roas.bad{color:var(--v3r);background:color-mix(in srgb,var(--v3r) 13%,transparent)}
+.v3-pbs{display:flex;gap:8px;align-items:stretch;height:170px;padding:8px 0}
+.v3-pb{flex:1;display:grid;grid-template-rows:1fr auto;gap:4px;text-align:center;min-width:0}.v3-pbc{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:3px}
+.v3-pbc i{display:block;width:44%;max-width:22px;border-radius:5px 5px 2px 2px;transition:height .5s}.v3-pbc i.f{background:color-mix(in srgb,var(--v3a) 55%,transparent)}.v3-pbc i.n{background:var(--v3g)}.v3-pbc i.n.neg{background:var(--v3r)}
+.v3-pb small{font-size:11px;color:var(--muted);text-transform:capitalize}
+b.neg{color:var(--v3r)}
+/* celular y tablet */
+@media (max-width:1100px){.v3-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.v3-g2,.v3-plg{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .v3-hd h1{font-size:24px}.v3-acts{width:100%}.v3-acts .btn{flex:1 1 auto;justify-content:center}
+  .v3-bar{margin:0 -4px;padding:6px 4px}.v3-seg{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none}.v3-seg button{white-space:nowrap}
+  .v3-k{min-height:0;padding:13px 14px}.v3-kv{font-size:22px}.v3-k{padding-bottom:38px!important}.v3-k .v3-sp{height:32px}
+  .v3-meta{grid-template-columns:1fr}.v3-mt:last-child{align-items:flex-start}
+  .v3-chips{grid-template-columns:repeat(2,minmax(0,1fr))}.v3-fl .sel{max-width:none;flex:1 1 45%}
+  .v3-tw{border:0;background:transparent;overflow:visible}.v3-tw:has(.v3-ct){overflow:auto;border:1px solid var(--line);background:var(--surface)}
+  .v3-t:not(.v3-ct) thead{display:none}
+  .v3-t:not(.v3-ct) tbody tr{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;padding:12px;margin-bottom:8px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+  .v3-t:not(.v3-ct) td{border:0;padding:0}
+  .v3-pt .v3-t td.ck{grid-row:span 3;align-self:start;padding-top:2px}.v3-pt .v3-t td.pid{grid-column:2}.v3-pt .v3-t td.tot{grid-column:3;grid-row:1}.v3-pt .v3-t td.cli{grid-column:2/4;max-width:none}.v3-pt .v3-t td.mat{grid-column:2/4;min-width:0}.v3-pt .v3-t td.prov{display:none}.v3-pt .v3-t td.med{grid-column:2}.v3-pt .v3-t td.est{grid-column:3;text-align:right}
+  .v3-mt2 tbody tr{grid-template-columns:1fr auto!important}.v3-mt2 td.mname{grid-column:1/3;min-width:0}.v3-mt2 td.spk,.v3-mt2 td.shc{display:none}.v3-mt2 td.web{grid-column:1}.v3-mt2 td.num{text-align:left}
+  .v3-wf{grid-template-columns:1fr auto}.v3-wb{grid-column:1/3;grid-row:2}
+  .v3-pbs{height:140px;gap:4px}
+}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -23533,6 +23703,318 @@ document.addEventListener("click", async (e) => { const t = e.target; let b; if 
 document.addEventListener("change", (e) => { const t = e.target; if (!t.closest || !t.closest("#ppMeta")) return; if (t.dataset.mafile != null && t.files && t.files[0]) { maArchivo(t.files[0]); return; } if (t.dataset.maasig != null) { MA.asig[t.dataset.maasig] = t.value; MA.hecho = null; } });
 document.addEventListener("input", (e) => { const t = e.target; if (t.dataset && t.dataset.macot != null && t.closest("#ppMeta")) { MA.cot = t.value; clearTimeout(MA.tm); MA.tm = setTimeout(() => { maPintar(); const i = document.getElementById("maCot"); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }, 450); } });
 ["dragover", "drop"].forEach((ev) => document.addEventListener(ev, (e) => { const z = e.target.closest && e.target.closest("#maDrop"); if (!z) return; e.preventDefault(); if (ev === "drop" && e.dataTransfer && e.dataTransfer.files[0]) maArchivo(e.dataTransfer.files[0]); }));
+
+// ---------- VENTAS 3.0 · cabecera con KPIs, gráfico interactivo, bandeja, tabla de pedidos, ficha lateral, estado de resultados y ficha de materiales ----------
+const V3 = { gran: "auto", met: "fact", q: "", est: "todos", m: "", mat: "", prov: "", sort: "d", dir: -1, sel: new Set(), lim: 50, dr: null, notas: {}, sub: false, montado: false, mq: "", ms: "rev", md: -1, tq: null,
+  ok: (() => { try { return JSON.parse(localStorage.getItem("cofre-v3-ok") || "[]"); } catch { return []; } })() };
+const v3Pct = () => parseFloat(String((typeof finCfg !== "undefined" && finCfg && finCfg.mpPct) || "0").replace(",", ".")) || 0;
+const v3Tel = (t) => { let d = String(t || "").replace(/\D/g, ""); if (d.length < 8) return ""; if (!d.startsWith("54")) d = "54" + d.replace(/^0/, ""); return d; };
+const v3Hora = (d) => d.toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit", hour12: false });
+const v3Fecha = (d, y) => d.toLocaleDateString("es-AR", { day: "numeric", month: "short", ...(y ? { year: "numeric" } : {}) }).replace(".", "");
+const v3Est = (o) => o.pg === "Finalizado" ? ["ok", "Pagado"] : o.pg === "Pendiente" ? ["wait", "Pendiente"] : ["no", o.pg === "Rechazado" ? "Rechazado" : "Cancelado"];
+const v3Ck = (c) => c.e || c.n;
+const v3OkGuardar = () => { try { localStorage.setItem("cofre-v3-ok", JSON.stringify(V3.ok.slice(-400))); } catch {} };
+const v3Cov = (n) => { const cv = (typeof matDocs !== "undefined" && matDocs[slug(n)] || {}).cover; return cv ? `<img src="${esc(cv)}" alt="" loading="lazy">` : `<span>${esc((fold(n).charAt(0) || "?").toUpperCase())}</span>`; };
+const v3Entregado = (id) => (typeof envios !== "undefined" ? envios : []).find((e) => String(e.pedido || "") === String(id));
+function v3R() { const R = vxRange(), todo = VX.per === "todo"; return { R, a: R.a, b: R.b || new Date(), pa: todo ? null : R.pa, pb: todo ? null : R.pb, todo }; }
+const v3Fin2 = (b) => new Date(+sod(b) + DAY);
+function v3Otros(a, b) { let t = 0, d = new Date(a.getFullYear(), a.getMonth(), 1);
+  for (let i = 0; i < 300 && d < b; i++) { const n = new Date(d.getFullYear(), d.getMonth() + 1, 1), o = prGastos(d, n).otros; if (o) { const s = Math.max(+d, +a), e = Math.min(+n, +b); if (e > s) t += o * (e - s) / (n - d); } d = n; } return t; }
+function v3Fin(L, a, b) { const s = vxStats(L), comm = vxOk(L).filter((x) => /mercado/i.test(x.o.m || "")).reduce((t, x) => t + (x.o.tot || 0), 0) * v3Pct() / 100, e = v3Fin2(b), pub = maPub(a, e), otros = v3Otros(a, e);
+  return { ...s, comm, pub, otros, net: s.fact - comm - pub - otros }; }
+function v3Gran(a, b) { const span = (b - a) / DAY; if (span <= 1.05) return "hora"; if (V3.gran !== "auto") return V3.gran === "dia" && span > 400 ? "sem" : V3.gran; return span <= 45 ? "dia" : span <= 210 ? "sem" : "mes"; }
+function v3Buckets(a, b, g) { const out = []; let d = sod(a); if (g === "sem") d = addD(d, -((d.getDay() + 6) % 7)); if (g === "mes") d = new Date(d.getFullYear(), d.getMonth(), 1);
+  for (let i = 0; i < 420 && d <= b; i++) { const n = g === "hora" ? new Date(+d + 3600e3) : g === "dia" ? addD(d, 1) : g === "sem" ? addD(d, 7) : new Date(d.getFullYear(), d.getMonth() + 1, 1); out.push({ a: d, b: n, v: 0, c: 0, pv: 0, pc: 0 }); d = n; } return out; }
+function v3Serie(a, b, g, prev) { const B = v3Buckets(a, b, g), all = vxOk(vxOrders()), idx = (d) => { if (d < B[0].a) return -1; for (let i = 0; i < B.length; i++) if (d < B[i].b) return i; return -1; };
+  all.forEach((x) => { if (x.d < a || x.d > b) return; const i = idx(x.d); if (i >= 0) { B[i].v += x.o.tot || 0; B[i].c++; } });
+  if (prev && prev.pa) { const off = a - prev.pa; all.forEach((x) => { if (x.d < prev.pa || x.d > prev.pb) return; const i = idx(new Date(+x.d + off)); if (i >= 0) { B[i].pv += x.o.tot || 0; B[i].pc++; } }); }
+  return B; }
+function v3Lab(r, g, largo) { const d = r.a; if (g === "hora") return `${String(d.getHours()).padStart(2, "0")}:00`; if (g === "mes") return d.toLocaleDateString("es-AR", { month: largo ? "long" : "short", year: largo ? "numeric" : "2-digit" }).replace(".", "");
+  if (g === "sem") return (largo ? "Semana del " : "") + v3Fecha(d); return largo ? d.toLocaleDateString("es-AR", { weekday: "long", day: "numeric", month: "long" }) : `${d.getDate()}/${d.getMonth() + 1}`; }
+function v3Spark(vals, cls) { const n = vals.length; if (n < 2) return ""; const W = 120, H = 34, mx = Math.max(1, ...vals.map((v) => Math.abs(v))), mn = Math.min(0, ...vals), x = (i) => (W - 4) * i / (n - 1) + 2, y = (v) => H - 3 - (H - 8) * (v - mn) / (mx - mn || 1);
+  const p = vals.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  return `<svg class="v3-sp ${cls || ""}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><polygon points="2,${H - 2} ${p} ${W - 2},${H - 2}"/><polyline points="${p}"/></svg>`; }
+
+// ---------- 1 · cabecera: período, acciones, cuatro números grandes y meta del mes ----------
+function v3Top() { const box = document.getElementById("vtHero"); if (!box) return; box.className = "v3-top";
+  if (!D || !D.items || !D.items.length) { box.innerHTML = `<div class="v3-hd"><div><h1>Ventas</h1><p class="muted">Cargando tus ventas…</p></div></div><div class="v3-kpis">${[0, 1, 2, 3].map(() => `<div class="v3-k v3-sk"><i></i><b></b><s></s></div>`).join("")}</div>`; return; }
+  const { R, a, b, pa, pb, todo } = v3R(), all = vxOrders(), L = all.filter((x) => inR(x.d, a, b)), cur = v3Fin(L, a, b), prv = todo ? null : v3Fin(all.filter((x) => inR(x.d, pa, pb)), pa, pb);
+  const g = v3Gran(a, b), B = v3Serie(a, b, g === "hora" ? "hora" : (b - a) / DAY <= 62 ? "dia" : g === "mes" ? "mes" : "sem");
+  const auto = typeof salesMeta !== "undefined" && salesMeta && salesMeta.auto ? new Date(salesMeta.auto) : null;
+  const pend = L.filter((x) => x.o.pg === "Pendiente"), pendT = pend.reduce((s, x) => s + (x.o.tot || 0), 0);
+  const K = (cls, lab, val, d, foot, sp, tip) => `<div class="v3-k ${cls}"${tip ? ` title="${esc(tip)}"` : ""}><div class="v3-kl"><i></i>${lab}</div><div class="v3-kv">${val}</div><div class="v3-kf">${d || ""}<span>${foot}</span></div>${sp}</div>`;
+  const netTip = `Facturado ${money(cur.fact)} − comisión ${money(cur.comm)} − publicidad ${money(cur.pub)} − otros gastos ${money(cur.otros)}`;
+  const kp = [
+    K("k-fact", "Facturado", money(cur.fact), prv && vxDelta(cur.fact, prv.fact), pend.length ? `+ ${money(pendT)} pendiente` : "con pago aprobado", v3Spark(B.map((r) => r.v))),
+    K("k-net", "Ganancia neta", money(cur.net), prv && vxDelta(cur.net, prv.net), cur.fact ? `margen ${Math.round(cur.net / cur.fact * 100)} %` : "sin ventas", v3Spark(B.map((r) => r.v * (cur.fact ? cur.net / cur.fact : 0))), netTip),
+    K("k-ped", "Pedidos aprobados", nf(cur.n), prv && vxDelta(cur.n, prv.n), `${nf(cur.units)} materiales · ${nf(cur.buyers)} clientas`, v3Spark(B.map((r) => r.c))),
+    K("k-tic", "Ticket promedio", money(cur.ticket), prv && vxDelta(cur.ticket, prv.ticket), "por pedido", v3Spark(B.map((r) => r.c ? r.v / r.c : 0)))];
+  // meta del mes
+  const now = new Date(), m0 = new Date(now.getFullYear(), now.getMonth(), 1), dim = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate(), mes = vxStats(all.filter((x) => x.d >= m0)), dia = now.getDate() - 1 + now.getHours() / 24, proy = dia > 0.5 ? mes.fact / dia * dim : 0;
+  const mesNom = now.toLocaleDateString("es-AR", { month: "long" }), pct = VT.meta ? Math.min(100, mes.fact / VT.meta * 100) : 0, falta = Math.max(0, VT.meta - mes.fact), dRest = Math.max(1, dim - now.getDate() + 1);
+  const meta = VT.editMeta ? `<div class="v3-meta ed"><label for="vtMetaIn">🎯 Meta de ${esc(mesNom)}</label><span class="vt-mi">$ <input id="vtMetaIn" inputmode="numeric" value="${VT.meta || ""}" placeholder="Ej.: 500000" autofocus></span><button type="button" class="btn small primary" data-vtmetaok>Guardar</button><button type="button" class="btn small" data-vtmetax>Cancelar</button></div>`
+    : VT.meta ? `<div class="v3-meta"><div class="v3-mt"><b>🎯 Meta de ${esc(mesNom)}: ${money(VT.meta)}</b><span>${pct >= 100 ? "¡Meta cumplida! 🎉" : `faltan ${money(falta)} · ${money(falta / dRest)} por día`}</span></div><div class="v3-mb" style="--p:${pct.toFixed(1)}%;--q:${VT.meta ? Math.min(100, proy / VT.meta * 100).toFixed(1) : 0}%"><i></i><s></s></div><div class="v3-mt"><small>${Math.round(pct)} % · a este ritmo cerrás en ${money(proy)}</small><button type="button" class="linkish" data-vtmeta>Cambiar</button></div></div>`
+    : `<div class="v3-meta vacia"><span>🎯 Poné una meta para ${esc(mesNom)}: a este ritmo cerrás en <b>${money(proy)}</b>.</span><button type="button" class="btn small" data-vtmeta>Poner meta</button></div>`;
+  box.innerHTML = `<div class="v3-hd"><div><h1>Ventas</h1><p>${esc(R.lab)}${todo ? "" : ` <span class="muted">· comparado con ${esc(R.cmp)}</span>`}${auto ? `<span class="v3-live" title="Se actualiza sola con tus avisos de Empretienda"><i></i>Última venta sumada ${esc(v3Fecha(auto))} ${esc(v3Hora(auto))}</span>` : ""}</p></div>
+    <div class="v3-acts"><button type="button" class="btn primary" data-ppacc="entregar">➕ Venta por transferencia</button><button type="button" class="btn" data-ppacc="verificar">🔎 Verificar compra</button><button type="button" class="btn" data-maabrir>📣 Gasto de Meta</button><button type="button" class="btn" data-v3exp="periodo">⬇ Exportar</button></div></div>
+    <div class="v3-bar"><div class="v3-seg" role="group" aria-label="Período">${VX_PER.map(([k, t]) => `<button type="button" data-vxper="${k}" aria-pressed="${VX.per === k}">${t}</button>`).join("")}</div>
+      ${VX.per === "custom" ? `<div class="v3-cus"><label>Desde <input type="date" id="vxFrom" value="${esc(VX.from || isoD(a))}"></label><label>Hasta <input type="date" id="vxTo" value="${esc(VX.to || isoD(b))}"></label></div>` : ""}
+      <button class="v3-bell" type="button" id="vxBell" aria-pressed="${VX.sonido}" title="Sonido al entrar una venta">${VX.sonido ? "🔔" : "🔕"}</button></div>
+    <div class="v3-kpis">${kp.join("")}</div>${meta}`; }
+
+// ---------- 2 · gráfico principal interactivo ----------
+function v3Marcas(a, b) { const M = [];
+  ((typeof igposts !== "undefined" && igposts && igposts.posts) || []).forEach((p) => { const m = /^(\d{4})(\d\d)(\d\d)(\d\d)?(\d\d)?/.exec(p.dt || ""); if (!m) return; const d = new Date(+m[1], +m[2] - 1, +m[3], +(m[4] || 12), +(m[5] || 0)); if (d >= a && d <= b) M.push({ t: "ig", d, txt: `${p.tipo === "reel" ? "Reel" : p.tipo === "carousel" || p.tipo === "carrusel" ? "Carrusel" : "Publicación"} · ${String(p.t || "").slice(0, 46)}`, n: p.reach || 0 }); });
+  for (let y = a.getFullYear(); y <= b.getFullYear(); y++) (typeof EFEMERIDES !== "undefined" ? EFEMERIDES : []).forEach((e) => { const [mm, dd] = e[0].split("-").map(Number), d = new Date(y, mm - 1, dd, 12); if (d >= a && d <= b) M.push({ t: "efe", d, txt: e[1] }); });
+  ((typeof lanz !== "undefined" && Array.isArray(lanz)) ? lanz : []).forEach((l) => { if (!l.due || !l.titulo) return; const d = new Date(l.due + "T12:00"); if (d >= a && d <= b) M.push({ t: "lz", d, txt: `${l.titulo} (lanzamiento previsto)` }); });
+  return M; }
+function v3Chart() { const box = document.getElementById("v3Chart"); if (!box) return; if (!D || !D.items || !D.items.length) { box.innerHTML = `<div class="v3-sk v3-skc"></div>`; return; }
+  const { a, b, pa, pb, todo } = v3R(), g = v3Gran(a, b), B = v3Serie(a, b, g, todo ? null : { pa, pb }), n = B.length, ped = V3.met === "ped";
+  const val = (r) => ped ? r.c : r.v, pval = (r) => ped ? r.pc : r.pv, fmt = (v) => ped ? nf(v) : money(v), fmtK = (v) => ped ? nf(v) : moneyK(v);
+  const tot = B.reduce((s, r) => s + val(r), 0), ptot = B.reduce((s, r) => s + pval(r), 0), best = B.reduce((m, r, i) => val(r) > val(B[m]) ? i : m, 0);
+  const W = Math.max(320, (box.clientWidth || 900) - 4), mob = W < 620, H = mob ? 250 : 320, pl = mob ? 46 : 62, pr = 16, pt = 16, pbm = 58, iw = W - pl - pr, ih = H - pt - pbm;
+  const max = Math.max(1, ...B.map(val), ...(todo ? [] : B.map(pval))), st = niceStep(max / 4), top = Math.ceil(max / st) * st || 1;
+  const x = (i) => pl + (n === 1 ? iw / 2 : iw * i / (n - 1)), y = (v) => pt + ih * (1 - v / top), base = pt + ih;
+  const pts = B.map((r, i) => `${x(i).toFixed(1)},${y(val(r)).toFixed(1)}`), ppts = B.map((r, i) => `${x(i).toFixed(1)},${y(pval(r)).toFixed(1)}`);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${ped ? "Pedidos" : "Facturado"} por ${g === "hora" ? "hora" : g === "dia" ? "día" : g === "sem" ? "semana" : "mes"}"><defs><linearGradient id="v3G" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--v3a)" stop-opacity=".34"/><stop offset="1" stop-color="var(--v3a)" stop-opacity="0"/></linearGradient></defs>`;
+  for (let v = 0; v <= top + 1e-6; v += st) s += `<line class="v3-gl" x1="${pl}" x2="${W - pr}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}"/><text class="v3-ax" x="${pl - 8}" y="${(y(v) + 4).toFixed(1)}" text-anchor="end">${esc(fmtK(v))}</text>`;
+  const every = Math.max(1, Math.ceil(n / (mob ? 4 : 8)));
+  B.forEach((r, i) => { if (i % every === 0 || i === n - 1 && (n - 1) % every > every / 2) s += `<text class="v3-ax" x="${x(i).toFixed(1)}" y="${base + 17}" text-anchor="middle">${esc(v3Lab(r, g))}</text>`; });
+  if (!todo && ptot) s += `<polyline class="v3-pl" points="${ppts.join(" ")}"/>`;
+  s += `<polygon class="v3-ar" points="${x(0).toFixed(1)},${base} ${pts.join(" ")} ${x(n - 1).toFixed(1)},${base}"/><polyline class="v3-ln" points="${pts.join(" ")}" pathLength="1"/>`;
+  if (val(B[best])) s += `<circle class="v3-best" cx="${x(best).toFixed(1)}" cy="${y(val(B[best])).toFixed(1)}" r="4.5"/>`;
+  // carril de marcas
+  const M = v3Marcas(a, b), idx = (d) => { for (let i = 0; i < n; i++) if (d < B[i].b) return d >= B[0].a ? i : -1; return -1; }, porI = {};
+  M.forEach((m) => { const i = idx(m.d); if (i < 0) return; (porI[i] = porI[i] || []).push(m); });
+  const ly = base + 38; s += `<line class="v3-lane" x1="${pl}" x2="${W - pr}" y1="${ly}" y2="${ly}"/>`;
+  Object.entries(porI).forEach(([i, L]) => { const cx = x(+i); const tipos = [...new Set(L.map((m) => m.t))]; tipos.forEach((t, k) => { const yy = ly + (k - (tipos.length - 1) / 2) * 9;
+    s += t === "ig" ? `<circle class="v3-mk ig" cx="${cx.toFixed(1)}" cy="${yy}" r="${Math.min(7, 3.5 + Math.sqrt(L.filter((m) => m.t === "ig").reduce((q, m) => q + m.n, 0)) / 30).toFixed(1)}"/>` : t === "efe" ? `<rect class="v3-mk efe" x="${(cx - 4).toFixed(1)}" y="${yy - 4}" width="8" height="8" transform="rotate(45 ${cx.toFixed(1)} ${yy})"/>` : `<path class="v3-mk lz" d="M${cx.toFixed(1)} ${yy - 5} L${(cx + 5).toFixed(1)} ${yy + 4} L${(cx - 5).toFixed(1)} ${yy + 4}Z"/>`; }); });
+  s += `<line class="v3-cross" id="v3X" x1="0" x2="0" y1="${pt}" y2="${ly + 8}" style="opacity:0"/><circle class="v3-dot" id="v3D" r="5" cx="0" cy="0" style="opacity:0"/><circle class="v3-dot pv" id="v3DP" r="4" cx="0" cy="0" style="opacity:0"/><rect id="v3H" x="${pl - 10}" y="0" width="${iw + 20}" height="${H}" fill="transparent"/></svg>`;
+  const G = [["auto", "Auto"], ["dia", "Día"], ["sem", "Semana"], ["mes", "Mes"]];
+  box.innerHTML = `<div class="v3-ch"><div><h2>${ped ? "Pedidos aprobados" : "Facturado"} por ${g === "hora" ? "hora" : g === "dia" ? "día" : g === "sem" ? "semana" : "mes"}</h2><p><b>${fmt(tot)}</b>${!todo && ptot ? ` ${vxDelta(tot, ptot)} <span class="muted">vs. ${fmt(ptot)} en el período anterior</span>` : ""}${val(B[best]) ? ` <span class="muted">· mejor ${g === "hora" ? "hora" : g === "dia" ? "día" : g === "sem" ? "semana" : "mes"}: ${esc(v3Lab(B[best], g, true))} (${fmt(val(B[best]))})</span>` : ""}</p></div>
+    <div class="v3-cc"><div class="v3-seg sm" role="group" aria-label="Qué mostrar"><button type="button" data-v3met="fact" aria-pressed="${!ped}">Facturado</button><button type="button" data-v3met="ped" aria-pressed="${ped}">Pedidos</button></div>${g === "hora" ? "" : `<div class="v3-seg sm" role="group" aria-label="Agrupar por">${G.map(([k, t]) => `<button type="button" data-v3gran="${k}" aria-pressed="${V3.gran === k}">${t}</button>`).join("")}</div>`}</div></div>
+    <div class="v3-cw">${s}<div class="v3-tt" id="v3T" hidden></div></div>
+    <div class="v3-lg"><span><i class="ln"></i>Este período</span>${!todo && ptot ? `<span><i class="pl"></i>Período anterior</span>` : ""}<span><i class="v3i"></i>Publicación de Instagram</span><span><i class="v3e"></i>Efeméride</span>${M.some((m) => m.t === "lz") ? `<span><i class="v3l"></i>Lanzamiento previsto</span>` : ""}</div>`;
+  const svg = box.querySelector("svg"), tt = box.querySelector("#v3T"), cw = box.querySelector(".v3-cw");
+  const pos = (ev) => { const r = svg.getBoundingClientRect(), mx = (ev.clientX - r.left) * W / r.width; const i = Math.max(0, Math.min(n - 1, Math.round(n === 1 ? 0 : (mx - pl) / iw * (n - 1)))); return i; };
+  const show = (i) => { const r = B[i], cx = x(i); const X = svg.querySelector("#v3X"), Dd = svg.querySelector("#v3D"), DP = svg.querySelector("#v3DP");
+    X.setAttribute("x1", cx); X.setAttribute("x2", cx); X.style.opacity = 1; Dd.setAttribute("cx", cx); Dd.setAttribute("cy", y(val(r))); Dd.style.opacity = 1;
+    if (!todo && ptot) { DP.setAttribute("cx", cx); DP.setAttribute("cy", y(pval(r))); DP.style.opacity = 1; }
+    const mk = porI[i] || [];
+    tt.innerHTML = `<b>${esc((t => t.charAt(0).toUpperCase() + t.slice(1))(v3Lab(r, g, true)))}</b><div class="v3-tr"><span><i class="ln"></i>${ped ? "Pedidos" : "Facturado"}</span><strong>${fmt(val(r))}</strong></div>${ped ? "" : `<div class="v3-tr"><span>Pedidos</span><strong>${nf(r.c)}</strong></div>`}${!todo && ptot ? `<div class="v3-tr"><span><i class="pl"></i>Período anterior</span><strong>${fmt(pval(r))}</strong></div>` : ""}${mk.slice(0, 4).map((m) => `<div class="v3-tm">${m.t === "ig" ? "📸" : m.t === "efe" ? "📅" : "🚀"} ${esc(m.txt)}${m.t === "ig" && m.n ? ` · <b>${nf(m.n)}</b> de alcance` : ""}</div>`).join("")}`;
+    tt.hidden = false; const tw = tt.offsetWidth, sx = cx * svg.getBoundingClientRect().width / W; tt.style.left = Math.max(4, Math.min(cw.clientWidth - tw - 4, sx + 14 + tw > cw.clientWidth ? sx - tw - 14 : sx + 14)) + "px"; };
+  const hide = () => { tt.hidden = true; ["#v3X", "#v3D", "#v3DP"].forEach((q) => { const el = svg.querySelector(q); if (el) el.style.opacity = 0; }); };
+  svg.addEventListener("mousemove", (ev) => show(pos(ev))); svg.addEventListener("mouseleave", hide); svg.addEventListener("touchstart", (ev) => show(pos(ev.touches[0])), { passive: true });
+  svg.addEventListener("click", (ev) => { const i = pos(ev), r = B[i]; if (!r.c && !r.pc) return; V3.desde = r.a; V3.hasta = r.b; V3.est = "todos"; vtTab("ped"); }); }
+
+// ---------- 6 · bandeja "Por resolver" ----------
+function v3Inbox() { const box = document.getElementById("v3Inbox"); if (!box || !D) return; const all = vxOrders(), now = Date.now(), ok = new Set(V3.ok.map(String));
+  let ocultos = []; try { ocultos = JSON.parse(localStorage.getItem("cofre-vx-pend-ok") || "[]").map(String); } catch {}
+  const vis = (x) => !ok.has(String(x.o.id)) && !ocultos.includes(String(x.o.id));
+  const trP = all.filter((x) => x.o.pg === "Pendiente" && /transfer/i.test(x.o.m || "") && now - x.d < 30 * DAY && vis(x)).sort((p, q) => p.d - q.d);
+  const mpP = all.filter((x) => x.o.pg === "Pendiente" && !/transfer/i.test(x.o.m || "") && now - x.d < 10 * DAY && vis(x)).sort((p, q) => q.d - p.d);
+  const ent = all.filter((x) => x.o.pg === "Finalizado" && /transfer/i.test(x.o.m || "") && now - x.d < 30 * DAY && !v3Entregado(x.o.id) && !ok.has("e" + x.o.id)).sort((p, q) => p.d - q.d);
+  const sig = (x) => (x.o.i || []).map((i) => fold(i[1])).sort().join("|"), porC = {}; all.forEach((x) => { if (now - x.d > 45 * DAY) return; (porC[v3Ck(x.c)] = porC[v3Ck(x.c)] || []).push(x); });
+  const dup = []; Object.values(porC).forEach((L) => { L.sort((p, q) => p.d - q.d); for (let i = 1; i < L.length; i++) { const p = L[i - 1], q = L[i]; if (sig(p) !== sig(q) || q.d - p.d > 3 * DAY) continue; const k = "d" + p.o.id + "-" + q.o.id; if (ok.has(k)) continue;
+    if (p.o.pg === "Finalizado" && q.o.pg === "Finalizado") dup.push({ k, x: q, y: p, t: "Pagó dos veces lo mismo", d: "Dos pedidos aprobados con los mismos materiales. Revisá si corresponde devolver uno." });
+    else if ((p.o.pg === "Pendiente" && q.o.pg === "Finalizado" || q.o.pg === "Pendiente" && p.o.pg === "Finalizado")) { const pe = p.o.pg === "Pendiente" ? p : q; if (!vis(pe)) continue; dup.push({ k, x: pe, y: pe === p ? q : p, t: "Pendiente que ya se pagó", d: `El pedido #${pe.o.id} quedó pendiente pero después pagó el #${(pe === p ? q : p).o.id}. Podés darlo por resuelto.`, auto: true }); } } });
+  const edad = (x) => { const d = Math.floor((now - x.d) / DAY); return d === 0 ? "hoy" : d === 1 ? "ayer" : `hace ${d} días`; };
+  const wa = (x, t) => { const tel = v3Tel(x.c.t); return tel ? `<a class="btn small" href="https://wa.me/${tel}?text=${encodeURIComponent(t)}" target="_blank" rel="noopener" title="Abre WhatsApp con el mensaje armado; lo enviás vos">WhatsApp</a>` : ""; };
+  const nom = (x) => String(x.c.n || "").split(" ")[0];
+  const row = (x, cls, txt, acts) => `<div class="v3-ib ${cls}"><button type="button" class="v3-ibm" data-v3o="${esc(x.o.id)}"><span class="v3-age"><b>${Math.floor((now - x.d) / DAY)}</b><small>días</small></span><span class="v3-ibt"><b>${esc(x.c.n || x.c.e || "Clienta")}</b><small>#${esc(x.o.id)} · ${esc(edad(x))} · ${esc((x.o.i || []).map((i) => i[1]).join(" · "))}</small>${txt ? `<small class="v3-why">${txt}</small>` : ""}</span><strong>${money(x.o.tot || 0)}</strong></button><div class="v3-iba">${acts}</div></div>`;
+  const grp = (ic, t, sub, L, html, abierto) => L.length ? `<details class="v3-ig"${abierto ? " open" : ""}><summary><span>${ic}</span><b>${t}</b><em>${L.length}</em><small>${sub}</small></summary><div class="v3-il">${html}</div></details>` : "";
+  const H = [
+    grp("💸", "Transferencias por cobrar", `${money(trP.reduce((s, x) => s + (x.o.tot || 0), 0))} en total`, trP, trP.map((x) => row(x, Math.floor((now - x.d) / DAY) >= 5 ? "late" : "", "", `<button type="button" class="btn small" data-vxrec="${esc(x.o.id)}">Copiar recordatorio</button>${wa(x, `¡Hola ${nom(x)}! 😊 Te escribo de Cofre Didáctico por tu pedido #${x.o.id}. ¿Pudiste hacer la transferencia? Si ya la hiciste, mandame el comprobante y te lo acredito enseguida.`)}<button type="button" class="linkish" data-v3ok="${esc(x.o.id)}">Listo</button>`)).join(""), true),
+    grp("📦", "Transferencias pagadas: confirmá la entrega", "Si Empretienda ya le mandó el enlace, marcalo como entregado", ent, ent.map((x) => row(x, "", "", `<button type="button" class="btn small primary" data-v3ent="${esc(x.o.id)}">Ya está entregado</button><button type="button" class="linkish" data-v3ok="e${esc(x.o.id)}">Ocultar</button>`)).join(""), ent.length <= 6),
+    grp("🔁", "Posibles pedidos duplicados", "Mismos materiales y misma clienta en pocos días", dup, dup.map((z) => row(z.x, z.auto ? "" : "late", esc(z.d), `<button type="button" class="btn small" data-v3o="${esc(z.y.o.id)}">Ver #${esc(z.y.o.id)}</button><button type="button" class="linkish" data-v3ok="${esc(z.k)}">Resuelto</button>`)).join(""), dup.some((z) => !z.auto)),
+    grp("🛒", "Mercado Pago sin completar", "Empezaron a pagar y no terminaron (últimos 10 días)", mpP, mpP.map((x) => row(x, "", "", `<button type="button" class="btn small" data-vxrec="${esc(x.o.id)}">Copiar recordatorio</button>${wa(x, `¡Hola ${nom(x)}! 😊 Vi que tu compra #${x.o.id} en Cofre Didáctico quedó sin completar. Si tuviste algún problema con el pago, avisame y te ayudo.`)}<button type="button" class="linkish" data-v3ok="${esc(x.o.id)}">Listo</button>`)).join(""), false)].join("");
+  const n = trP.length + ent.length + dup.length + mpP.length;
+  box.innerHTML = `<div class="v3-sh"><h2>Por resolver</h2><span class="v3-pill ${n ? "warn" : "ok"}">${n ? `${n} ${n === 1 ? "tema" : "temas"}` : "Todo al día"}</span></div>${H || `<div class="v3-empty"><span>✨</span><b>No hay nada pendiente</b><p>Cobros, entregas y duplicados están al día.</p></div>`}<p class="v3-note">“Listo” y “Ocultar” solo lo sacan de esta lista en este dispositivo. “Ya está entregado” queda registrado en tu historial de envíos.</p>`; }
+
+// ---------- 4 · tabla de pedidos ----------
+function v3Base() { const { a, b, todo } = v3R(); let L = vxOrders(); if (V3.desde) L = L.filter((x) => x.d >= V3.desde && x.d < V3.hasta); else if (!todo) L = L.filter((x) => inR(x.d, a, b)); return L; }
+function v3Filt(L, sinEst) { const q = fold(V3.q.trim());
+  return L.filter((x) => (sinEst || V3.est === "todos" || (V3.est === "ok" && x.o.pg === "Finalizado") || (V3.est === "pend" && x.o.pg === "Pendiente") || (V3.est === "no" && (x.o.pg === "Cancelado" || x.o.pg === "Rechazado")))
+    && (!V3.m || (x.o.m || "Sin dato") === V3.m) && (!V3.prov || provKey(x.c.p) === V3.prov) && (!V3.mat || (x.o.i || []).some((i) => i[1] === V3.mat))
+    && (!q || fold([x.o.id, x.c.n, x.c.e, x.c.t, x.c.p, x.c.c, ...(x.o.i || []).map((i) => i[1])].join(" ")).includes(q))); }
+function v3Orden(L) { const k = V3.sort, d = V3.dir, f = { d: (x) => +x.d, id: (x) => +x.o.id || 0, cli: (x) => fold(x.c.n || x.c.e || ""), prov: (x) => fold(x.c.p || ""), tot: (x) => x.o.tot || 0, est: (x) => x.o.pg || "", m: (x) => x.o.m || "" }[k] || ((x) => +x.d);
+  return L.slice().sort((p, q) => { const a = f(p), b = f(q); return (a < b ? -1 : a > b ? 1 : 0) * d || (q.d - p.d); }); }
+vtPed = function () { const box = document.getElementById("vtPed"); if (!box) return;
+  if (!D || !D.items || !D.items.length) { box.innerHTML = `<div class="v3-sk v3-skt"></div>`; return; }
+  const base = v3Base(), sinE = v3Filt(base, true), L = v3Orden(v3Filt(base)), tot = (A) => A.reduce((s, x) => s + (x.o.tot || 0), 0);
+  const cnt = { todos: sinE, ok: sinE.filter((x) => x.o.pg === "Finalizado"), pend: sinE.filter((x) => x.o.pg === "Pendiente"), no: sinE.filter((x) => x.o.pg === "Cancelado" || x.o.pg === "Rechazado") };
+  const opt = (arr, cur, todos) => `<option value="">${todos}</option>` + arr.map(([v, t]) => `<option value="${esc(v)}"${v === cur ? " selected" : ""}>${esc(t)}</option>`).join("");
+  const metodos = [...new Set(base.map((x) => x.o.m || "Sin dato"))].sort().map((m) => [m, m]);
+  const provs = Object.entries(base.reduce((m, x) => { const k = provKey(x.c.p); if (k) m[k] = m[k] || x.c.p; return m; }, {})).sort((p, q) => p[1].localeCompare(q[1]));
+  const mats = Object.entries(base.reduce((m, x) => { (x.o.i || []).forEach((i) => m[i[1]] = (m[i[1]] || 0) + 1); return m; }, {})).sort((p, q) => q[1] - p[1]).map(([n]) => [n, n]);
+  const sel = [...V3.sel].filter((id) => base.some((x) => String(x.o.id) === id)); V3.sel = new Set(sel);
+  const selL = base.filter((x) => V3.sel.has(String(x.o.id))), shown = L.slice(0, V3.lim), allOn = shown.length && shown.every((x) => V3.sel.has(String(x.o.id)));
+  const th = (k, t, cls) => `<th class="${cls || ""}"><button type="button" data-v3sort="${k}" class="${V3.sort === k ? "on" : ""}">${t}${V3.sort === k ? (V3.dir < 0 ? " ↓" : " ↑") : ""}</button></th>`;
+  const chip = (k, t) => `<button type="button" data-v3est="${k}" aria-pressed="${V3.est === k}" class="v3-chip ${k}"><span>${t}</span><b>${nf(cnt[k].length)}</b><small>${money(tot(k === "todos" ? cnt.ok : cnt[k]))}</small></button>`;
+  const rows = shown.map((x) => { const o = x.o, c = x.c, [ec, et] = v3Est(o), id = String(o.id), its = o.i || [], on = V3.sel.has(id);
+    return `<tr class="${on ? "sel" : ""}" data-v3o="${esc(id)}" tabindex="0"><td class="ck" data-v3ck="${esc(id)}"><input type="checkbox" aria-label="Elegir pedido ${esc(id)}"${on ? " checked" : ""}></td>
+      <td class="pid"><b>#${esc(id)}</b><small>${esc(v3Fecha(x.d, x.d.getFullYear() !== new Date().getFullYear()))} · ${esc(v3Hora(x.d))}</small></td>
+      <td class="cli"><b>${esc(c.n || "—")}</b><small>${esc(c.e || "")}</small></td>
+      <td class="mat"><div class="v3-mw"><span class="v3-covs">${its.slice(0, 3).map((i) => v3Cov(i[1])).join("")}</span><span class="v3-mn">${esc(its[0] ? its[0][1] : "—")}${its.length > 1 ? ` <em>+${its.length - 1}</em>` : ""}</span></div></td>
+      <td class="prov">${esc(c.p || "—")}<small>${esc(c.c || "")}</small></td><td class="med"><span class="v3-med ${/mercado/i.test(o.m || "") ? "mp" : /transfer/i.test(o.m || "") ? "tr" : ""}">${esc(o.m || "Sin dato")}</span></td>
+      <td class="est"><span class="v3-st ${ec}">${et}</span></td><td class="num tot">${money(o.tot || 0)}${o.cup ? `<small>cupón</small>` : ""}</td></tr>`; }).join("");
+  const filtrando = V3.q || V3.m || V3.prov || V3.mat || V3.desde;
+  box.innerHTML = `<div class="v3-pt">
+    <div class="v3-chips">${chip("todos", "Todos")}${chip("ok", "Pagados")}${chip("pend", "Pendientes")}${chip("no", "Cancelados")}</div>
+    <div class="v3-fl"><label class="v3-q"><span>🔎</span><input id="v3Pq" type="search" placeholder="Buscar por clienta, correo, teléfono, material o número…" value="${esc(V3.q)}" autocomplete="off"></label>
+      <select id="v3Fm" class="sel" aria-label="Medio de pago">${opt(metodos, V3.m, "Todos los medios")}</select><select id="v3Fmat" class="sel" aria-label="Material">${opt(mats, V3.mat, "Todos los materiales")}</select><select id="v3Fp" class="sel" aria-label="Provincia">${opt(provs, V3.prov, "Todas las provincias")}</select>
+      ${filtrando ? `<button type="button" class="linkish" data-v3clr>Limpiar filtros</button>` : ""}<span class="v3-sp1"></span><button type="button" class="btn small" data-v3exp="tabla">⬇ Exportar ${L.length === base.length ? "todo" : "lo filtrado"} (${nf(L.length)})</button></div>
+    ${V3.desde ? `<div class="v3-flag">Mostrando ${esc(v3Fecha(V3.desde))}${V3.hasta - V3.desde > DAY + 1e3 ? ` al ${esc(v3Fecha(new Date(+V3.hasta - 1)))}` : ""} (desde el gráfico) <button type="button" class="linkish" data-v3clr>ver todo el período</button></div>` : ""}
+    ${V3.sel.size ? `<div class="v3-bulk"><b>${V3.sel.size} ${V3.sel.size === 1 ? "pedido elegido" : "pedidos elegidos"}</b><span>${money(tot(selL.filter((x) => x.o.pg === "Finalizado")))} aprobado</span><span class="v3-sp1"></span><button type="button" class="btn small" data-v3exp="sel">⬇ Exportar</button><button type="button" class="btn small" data-v3mails>✉ Copiar correos</button>${selL.some((x) => x.o.pg === "Finalizado" && /transfer/i.test(x.o.m || "") && !v3Entregado(x.o.id)) ? `<button type="button" class="btn small" data-v3entsel>📦 Marcar entregados</button>` : ""}<button type="button" class="linkish" data-v3selx>Quitar selección</button></div>` : ""}
+    <div class="v3-tw"><table class="v3-t"><thead><tr><th class="ck" data-v3ckall><input type="checkbox" aria-label="Elegir todos los que se ven"${allOn ? " checked" : ""}></th>${th("id", "Pedido")}${th("cli", "Clienta")}<th>Materiales</th>${th("prov", "Provincia")}${th("m", "Medio")}${th("est", "Estado")}${th("tot", "Total", "num")}</tr></thead>
+      <tbody>${rows || `<tr><td colspan="8"><div class="v3-empty"><span>🔍</span><b>No hay pedidos con esos filtros</b><p>Probá con otro período o limpiá los filtros.</p></div></td></tr>`}</tbody></table></div>
+    <div class="v3-tf"><span>Mostrando ${nf(shown.length)} de ${nf(L.length)} pedidos · ${money(tot(L.filter((x) => x.o.pg === "Finalizado")))} aprobado</span>${L.length > shown.length ? `<button type="button" class="btn small" data-v3mas>Mostrar ${nf(Math.min(100, L.length - shown.length))} más</button>` : ""}</div></div>`; };
+
+// ---------- exportar ----------
+async function v3Exportar(L, nombre) { if (!L.length) { toast("No hay pedidos para exportar", "err"); return; }
+  const q = (v) => { const s = String(v == null ? "" : v); return /[;"\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+  const H = ["Pedido", "Fecha", "Hora", "Estado", "Medio de pago", "Clienta", "Correo", "Teléfono", "Ciudad", "Provincia", "Materiales", "Cantidad", "Total", "Cupón"];
+  const R = L.slice().sort((a, b) => a.d - b.d).map((x) => [x.o.id, isoD(x.d), v3Hora(x.d), v3Est(x.o)[1], x.o.m || "", x.c.n || "", x.c.e || "", x.c.t || "", x.c.c || "", x.c.p || "", (x.o.i || []).map((i) => (i[0] > 1 ? i[0] + "× " : "") + i[1]).join(" + "), (x.o.i || []).reduce((s, i) => s + i[0], 0), String(x.o.tot || 0), x.o.cup ? String(x.o.cup) : ""]);
+  const txt = "﻿" + [H, ...R].map((r) => r.map(q).join(";")).join("\r\n");
+  try { await saveFile(`${nombre} ${isoD(new Date())}.csv`, new Blob([txt], { type: "text/csv;charset=utf-8" })); toast(`⬇ ${nf(L.length)} pedidos exportados (se abre con Excel)`, "ok"); } catch (e) { toast(e.message || "No se pudo descargar", "err"); } }
+
+// ---------- 5 · ficha lateral ----------
+function v3Dr() { let d = document.getElementById("v3Dr"); if (d) return d; d = document.createElement("div"); d.id = "v3Dr"; d.className = "v3-drw"; d.hidden = true;
+  d.innerHTML = `<div class="v3-ov" data-v3drx></div><aside class="v3-dr" role="dialog" aria-modal="true" aria-label="Detalle"><div class="v3-drc"></div></aside>`; document.body.appendChild(d); return d; }
+function v3Cerrar() { const d = document.getElementById("v3Dr"); if (!d || d.hidden) return; d.classList.remove("on"); setTimeout(() => { d.hidden = true; }, 220); V3.dr = null; }
+function v3Abrir(tipo, id) { const d = v3Dr(), c = d.querySelector(".v3-drc"); V3.dr = { tipo, id };
+  c.innerHTML = tipo === "o" ? v3FichaPed(id) : v3FichaMat(id); c.scrollTop = 0;
+  if (d.hidden) { d.hidden = false; requestAnimationFrame(() => d.classList.add("on")); } const f = c.querySelector(".v3-x"); if (f) f.focus({ preventScroll: true }); }
+function v3FichaPed(id) { const x = vxOrders().find((y) => String(y.o.id) === String(id)); if (!x) return `<div class="v3-drh"><h2>Pedido no encontrado</h2><button type="button" class="iconbtn v3-x" data-v3drx aria-label="Cerrar">✕</button></div>`;
+  const o = x.o, c = x.c, [ec, et] = v3Est(o), its = o.i || [], uds = its.reduce((s, i) => s + i[0], 0) || 1, otros = c.o.filter((y) => y !== o && y._d).sort((p, q) => q._d - p._d), okO = c.o.filter((y) => y.pg === "Finalizado");
+  const tel = v3Tel(c.t), nom = String(c.n || "").split(" ")[0], env = v3Entregado(o.id), tr = /transfer/i.test(o.m || "");
+  const msg = o.pg === "Finalizado" ? `¡Hola ${nom}! 😊 Te escribo de Cofre Didáctico por tu compra #${o.id} (${its.map((i) => i[1]).join(", ")}). ¿Pudiste descargar todo bien?` : `¡Hola ${nom}! 😊 Te escribo de Cofre Didáctico por tu pedido #${o.id}, que figura pendiente de pago. ¿Te puedo ayudar en algo?`;
+  const entrega = o.pg !== "Finalizado" ? `<p class="muted">Se entrega cuando el pago esté aprobado.</p>` : env ? `<div class="v3-ok">✅ Entregado${env.at ? ` el ${esc(v3Fecha(new Date(env.at), true))}` : ""}${env.marcado ? " (marcado a mano)" : ""}</div>`
+    : tr ? `<div class="v3-warn">📦 Pagado por transferencia. Si ya le llegó el material, marcalo.</div><button type="button" class="btn small primary" data-v3ent="${esc(o.id)}">Ya está entregado</button>` : `<div class="v3-ok">✅ Empretienda le envía el enlace automáticamente al aprobarse el pago.</div>`;
+  return `<div class="v3-drh"><div><small>Pedido</small><h2>#${esc(o.id)} <span class="v3-st ${ec}">${et}</span></h2><p>${esc(x.d.toLocaleDateString("es-AR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }))} · ${esc(v3Hora(x.d))} h</p></div><button type="button" class="iconbtn v3-x" data-v3drx aria-label="Cerrar">✕</button></div>
+  <section class="v3-ds"><h3>Clienta</h3><div class="v3-cl"><span class="v3-av">${esc((fold(c.n || c.e || "?").charAt(0) || "?").toUpperCase())}</span><div><b>${esc(c.n || "Sin nombre")}</b><small>${esc([c.c, c.p].filter(Boolean).join(", ") || "Sin localidad")}</small></div></div>
+    <dl class="v3-dl">${c.e ? `<dt>Correo</dt><dd>${esc(c.e)}</dd>` : ""}${c.t ? `<dt>Teléfono</dt><dd>${esc(c.t)}</dd>` : ""}${c.d ? `<dt>DNI</dt><dd>${esc(c.d)}</dd>` : ""}<dt>Compras</dt><dd>${nf(okO.length)} ${okO.length === 1 ? "pedido aprobado" : "pedidos aprobados"} · ${money(okO.reduce((s, y) => s + (y.tot || 0), 0))}</dd></dl>
+    <div class="v3-da">${tel ? `<a class="btn small primary" href="https://wa.me/${tel}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">💬 WhatsApp</a>` : ""}${c.e ? `<button type="button" class="btn small" data-v3copy="${esc(c.e)}">✉ Copiar correo</button>` : ""}<button type="button" class="btn small" data-v3msg="${esc(o.id)}">📝 Mensaje con contraseña</button><button type="button" class="btn small" data-goclient="${esc(v3Ck(c))}" data-v3drx>👩‍🏫 Ficha completa</button></div></section>
+  <section class="v3-ds"><h3>Materiales</h3>${its.map((i) => `<div class="v3-it"><span class="v3-ic">${v3Cov(i[1])}</span><div><b>${esc(i[1])}</b><small>${i[0] > 1 ? `${i[0]} unidades · ` : ""}${money((o.tot || 0) * i[0] / uds)}</small></div><button type="button" class="linkish" data-v3m="${esc(slug(i[1]))}">Ver material</button></div>`).join("") || `<p class="muted">Sin detalle.</p>`}
+    <div class="v3-sum"><span>Medio de pago</span><b>${esc(o.m || "Sin dato")}</b>${o.cup ? `<span>Cupón</span><b>${money(o.cup)}</b>` : ""}<span>Total</span><b class="big">${money(o.tot || 0)}</b></div></section>
+  <section class="v3-ds"><h3>Entrega</h3>${entrega}</section>
+  <section class="v3-ds"><h3>Notas</h3><textarea id="v3Nota" data-v3nota="${esc(o.id)}" rows="3" placeholder="Ej.: pidió factura, le reenvié el enlace por WhatsApp…">${esc(V3.notas[String(o.id)] || "")}</textarea><small class="muted" id="v3NotaE">Se guardan en tu panel.</small></section>
+  ${otros.length ? `<section class="v3-ds"><h3>Otros pedidos de ${esc(nom || "esta clienta")}</h3>${otros.slice(0, 6).map((y) => { const [cc, tt] = v3Est(y); return `<button type="button" class="v3-op" data-v3o="${esc(y.id)}"><span>#${esc(y.id)} · ${esc(v3Fecha(y._d, true))}</span><small>${esc((y.i || []).map((i) => i[1]).join(" · "))}</small><b>${money(y.tot || 0)}</b><span class="v3-st ${cc}">${tt}</span></button>`; }).join("")}</section>` : ""}`; }
+
+// ---------- 10 · materiales ----------
+function v3MatDatos() { const { a, b, pa, pb, todo } = v3R(), M = {}, now = new Date(), w0 = addD(sod(now), -7 * 12 + 1);
+  const vis = {}; try { visRows(30).forEach((r) => { (r.it.ks && r.it.ks.length ? r.it.ks : [r.it.k]).forEach((k) => vis[k] = r); }); } catch {}
+  let efe = {}; try { const E = vxEfeData(vxOrders()); (Array.isArray(E) ? E : Object.values(E)).forEach((r) => { if (r && r.key) efe[r.key] = r; }); } catch {}
+  D.items.forEach((it) => { if (!it.ok || !it.d) return; const r = M[it.k] = M[it.k] || { k: it.k, name: (D.mats[it.k] || {}).name || it.name, group: (D.mats[it.k] || {}).group || "", u: 0, rev: 0, pu: 0, prev: 0, ped: new Set(), w: Array(12).fill(0), tu: 0, trev: 0 };
+    r.tu += it.q; r.trev += it.rev; if (inR(it.d, a, b) || todo) { r.u += it.q; r.rev += it.rev; r.ped.add(it.o.id); } if (!todo && inR(it.d, pa, pb)) { r.prev += it.rev; r.pu += it.q; }
+    if (it.d >= w0) { const i = Math.floor((sod(it.d) - w0) / (7 * DAY)); if (i >= 0 && i < 12) r.w[i] += it.q; } });
+  const L = Object.values(M), tot = L.reduce((s, r) => s + r.rev, 0);
+  L.forEach((r) => { r.sh = tot ? r.rev / tot : 0; r.ped = r.ped.size; r.vis = vis[r.k] || null; const e = efeFor(r.name, null); const er = e ? efe[e[0]] : null;
+    if (er && er.ant && er.ant.length) { const s = er.ant.slice().sort((p, q) => p - q); r.ant = s[Math.floor(s.length / 2)]; r.efe = e[1]; } });
+  return { L, tot, todo }; }
+function v3Mat() { const box = document.getElementById("v3Mat"); if (!box || !D) return; const { L, tot, todo } = v3MatDatos(), q = fold(V3.mq.trim());
+  const key = { rev: (r) => r.rev, u: (r) => r.u, sh: (r) => r.sh, tr: (r) => r.prev ? (r.rev - r.prev) / r.prev : r.rev ? 9 : 0, conv: (r) => r.vis && r.vis.v ? r.vis.sold / r.vis.v : -1, ant: (r) => r.ant == null ? -1 : r.ant, name: (r) => fold(r.name) }[V3.ms] || ((r) => r.rev);
+  const F = L.filter((r) => (r.u || V3.mq) && (!q || fold(r.name + " " + r.group).includes(q))).sort((p, s) => { const a = key(p), b = key(s); return (a < b ? -1 : a > b ? 1 : 0) * V3.md || s.trev - p.trev; });
+  const mx = Math.max(0.0001, ...F.map((r) => r.sh)), th = (k, t, cls) => `<th class="${cls || ""}"><button type="button" data-v3ms="${k}" class="${V3.ms === k ? "on" : ""}">${t}${V3.ms === k ? (V3.md < 0 ? " ↓" : " ↑") : ""}</button></th>`;
+  const rows = F.map((r) => { const v = r.vis, conv = v && v.v ? v.sold / v.v * 100 : null, d = todo ? "" : vxDelta(r.rev, r.prev);
+    return `<tr data-v3m="${esc(r.k)}" tabindex="0"><td class="mname"><div class="v3-mw"><span class="v3-ic">${v3Cov(r.name)}</span><span><b>${esc(r.name)}</b><small>${esc(r.group && fold(r.group) !== fold(r.name) ? r.group : "")}</small></span></div></td>
+      <td class="num">${nf(r.u)}<small>${nf(r.ped)} ped.</small></td><td class="num"><b>${money(r.rev)}</b></td><td class="shc"><span class="v3-bar2"><i style="width:${(r.sh / mx * 100).toFixed(1)}%"></i></span><small>${(r.sh * 100).toFixed(1).replace(".", ",")} %</small></td>
+      ${todo ? "" : `<td class="num">${d || "—"}</td>`}<td class="spk">${v3Spark(r.w, "u")}</td>
+      <td class="web">${v ? `<span class="v3-fun"><b>${nf(v.v)}</b>→<b>${nf(v.b)}</b>→<b>${nf(v.sold)}</b></span><small class="${conv >= 3 ? "good" : conv != null && conv < 1 && v.v >= 30 ? "bad" : ""}">${conv != null ? conv.toFixed(1).replace(".", ",") + " % compra" : ""}</small>` : `<small class="muted">sin datos</small>`}</td>
+      <td class="num ant">${r.ant != null ? `<b>${r.ant > 0 ? r.ant : 0} días</b><small>antes</small>` : `<small class="muted">—</small>`}</td></tr>`; }).join("");
+  box.innerHTML = `<div class="v3-sh"><div><h2>Rendimiento por material</h2><p class="muted">${esc(v3R().R.lab)} · tocá un material para ver su ficha</p></div><label class="v3-q sm"><span>🔎</span><input id="v3Mq" type="search" placeholder="Buscar material…" value="${esc(V3.mq)}"></label></div>
+    <div class="v3-tw"><table class="v3-t v3-mt2"><thead><tr>${th("name", "Material")}${th("u", "Ventas", "num")}${th("rev", "Ingresos", "num")}${th("sh", "% del total")}${todo ? "" : th("tr", "vs. anterior", "num")}<th>Últimas 12 semanas</th>${th("conv", "Web · 30 días")}${th("ant", "Anticipación", "num")}</tr></thead><tbody>${rows || `<tr><td colspan="8"><div class="v3-empty"><span>📚</span><b>Sin ventas de materiales en este período</b></div></td></tr>`}</tbody></table></div>
+    <p class="v3-note">Web: vistas → clics en “Comprar” → ventas (Umami, últimos 30 días). Anticipación: cuántos días antes de su efeméride compra la mitad de las clientas.</p>`; }
+function v3FichaMat(k) { const { L } = v3MatDatos(), r = L.find((x) => x.k === k) || { k, name: (D.mats[k] || {}).name || k, group: "", u: 0, rev: 0, tu: 0, trev: 0, w: Array(12).fill(0), ped: 0 };
+  const items = D.items.filter((it) => it.k === k && it.ok && it.d), now = new Date(), meses = [];
+  for (let i = 11; i >= 0; i--) { const m = new Date(now.getFullYear(), now.getMonth() - i, 1), n = new Date(m.getFullYear(), m.getMonth() + 1, 1), I = items.filter((it) => it.d >= m && it.d < n); meses.push({ m, u: I.reduce((s, it) => s + it.q, 0), rev: I.reduce((s, it) => s + it.rev, 0) }); }
+  const mxm = Math.max(1, ...meses.map((x) => x.rev)), prov = {}; items.forEach((it) => { const p = it.c.p || "Sin dato"; prov[p] = (prov[p] || 0) + it.q; }); const P = Object.entries(prov).sort((a, b) => b[1] - a[1]).slice(0, 5), pmx = P.length ? P[0][1] : 1;
+  const pct = v3Pct(), y0 = new Date(now.getFullYear(), now.getMonth() - 11, 1), I12 = items.filter((it) => it.d >= y0), rev12 = I12.reduce((s, it) => s + it.rev, 0), comm12 = I12.filter((it) => /mercado/i.test(it.o.m || "")).reduce((s, it) => s + it.rev, 0) * pct / 100;
+  let pub12 = 0; (gastos || []).forEach((g) => { if (!/publicidad/i.test(g.cat || "") || !g.grupo || fold(g.grupo) !== fold(r.group || "")) return; if (g.dias) Object.entries(g.dias).forEach(([d, v]) => { if (new Date(d + "T12:00") >= y0) pub12 += +v || 0; }); });
+  const v = r.vis, ultimos = items.slice().sort((a, b) => b.d - a.d).slice(0, 6), cv = (typeof matDocs !== "undefined" && matDocs[k] || {}).cover;
+  return `<div class="v3-drh"><div><small>Material</small><h2>${esc(r.name)}</h2><p>${esc(r.group && fold(r.group) !== fold(r.name) ? r.group : "")}${r.efe ? ` · 📅 ${esc(r.efe)}` : ""}</p></div><button type="button" class="iconbtn v3-x" data-v3drx aria-label="Cerrar">✕</button></div>
+   ${cv ? `<img class="v3-mcov" src="${esc(cv)}" alt="">` : ""}
+   <div class="v3-mk4"><div><small>Desde el comienzo</small><b>${nf(r.tu)}</b><span>${money(r.trev)}</span></div><div><small>${esc(v3R().R.lab)}</small><b>${nf(r.u)}</b><span>${money(r.rev)}</span></div><div><small>Neto 12 meses</small><b>${money(rev12 - comm12 - pub12)}</b><span>${pub12 ? `publicidad −${money(pub12)}` : "sin publicidad propia"}</span></div><div><small>Anticipación</small><b>${r.ant != null ? r.ant + " días" : "—"}</b><span>${r.ant != null ? "antes de la fecha" : "sin efeméride"}</span></div></div>
+   <section class="v3-ds"><h3>Ventas de los últimos 12 meses</h3><div class="v3-mbars">${meses.map((x) => `<div title="${esc(x.m.toLocaleDateString("es-AR", { month: "long", year: "numeric" }))}: ${nf(x.u)} ventas · ${esc(money(x.rev))}"><i style="height:${Math.max(2, x.rev / mxm * 100).toFixed(1)}%"></i><small>${esc(x.m.toLocaleDateString("es-AR", { month: "narrow" }))}</small></div>`).join("")}</div></section>
+   ${v ? `<section class="v3-ds"><h3>En la web (30 días)</h3><div class="v3-fun2">${[["👀", "Vieron", v.v], ["👉", "Tocaron Comprar", v.b], ["🛒", "Compraron", v.sold]].map(([ic, t, nn], i, A) => `<div style="--w:${Math.max(14, nn / Math.max(1, A[0][2]) * 100).toFixed(1)}%"><span>${ic} ${t}</span><b>${nf(nn)}</b></div>`).join("")}</div>${v.dx ? `<p class="${v.lvl === "warn" ? "v3-warn" : "v3-ok"}">${esc(v.dx)}</p>` : ""}</section>` : ""}
+   ${P.length ? `<section class="v3-ds"><h3>Dónde se vende más</h3>${P.map(([p, nn]) => `<div class="v3-pr"><span>${esc(p)}</span><i><s style="width:${(nn / pmx * 100).toFixed(1)}%"></s></i><b>${nf(nn)}</b></div>`).join("")}</section>` : ""}
+   ${ultimos.length ? `<section class="v3-ds"><h3>Últimas ventas</h3>${ultimos.map((it) => `<button type="button" class="v3-op" data-v3o="${esc(it.o.id)}"><span>#${esc(it.o.id)} · ${esc(v3Fecha(it.d, true))}</span><small>${esc(it.c.n || it.c.e || "")} · ${esc(it.c.p || "")}</small><b>${money(it.rev)}</b></button>`).join("")}</section>` : ""}`; }
+
+// ---------- 8 · estado de resultados ----------
+function v3Pl() { const box = document.getElementById("v3Pl"); if (!box || !D) return; const { R, a, b, todo } = v3R(), all = vxOrders(), L = all.filter((x) => inR(x.d, a, b)), F = v3Fin(L, a, b), mx = Math.max(1, F.fact);
+  const W = [["Ingresos", F.fact, "in", `${nf(F.n)} pedidos aprobados`], ["Comisión Mercado Pago", -F.comm, "out", v3Pct() ? `${String(v3Pct()).replace(".", ",")} % de lo cobrado por Mercado Pago` : "Cargá tu tasa más abajo"], ["Publicidad", -F.pub, "out", F.pub ? `${Math.round(F.pub / mx * 100)} % de los ingresos` : "Sin gasto cargado"], ["Otros gastos", -F.otros, "out", "Prorrateados por día"], ["Ganancia neta", F.net, "net", F.fact ? `margen ${Math.round(F.net / F.fact * 100)} %` : ""]];
+  let acc = 0; const wf = W.map(([t, v, cls, sub], i) => { let from, to; if (cls === "in" || cls === "net") { from = 0; to = Math.max(0, v); acc = v; } else { to = acc; from = acc + v; acc = from; }
+    return `<div class="v3-wf ${cls}"><span><b>${t}</b><small>${esc(sub)}</small></span><div class="v3-wb"><i style="left:${(Math.max(0, from) / mx * 100).toFixed(2)}%;width:${(Math.max(0.4, Math.abs(to - from) / mx * 100)).toFixed(2)}%"></i></div><strong>${v < 0 ? "−" : ""}${money(Math.abs(v))}</strong></div>`; }).join("");
+  const roas = F.pub ? F.fact / F.pub : null, cpv = F.pub && F.n ? F.pub / F.n : null;
+  // campañas de Meta
+  const e = v3Fin2(b), C = {}; (gastos || []).forEach((g) => { if (!/publicidad/i.test(g.cat || "") || !g.dias) return; const k = g.camp || g.concepto || "Campaña"; const c = C[k] = C[k] || { k, grupo: g.grupo || "", gasto: 0, dias: new Set() };
+    Object.entries(g.dias).forEach(([d, v]) => { const x = new Date(d + "T12:00"); if ((todo || (x >= a && x < e)) && +v > 0) { c.gasto += +v; c.dias.add(d); } }); if (!c.grupo && g.grupo) c.grupo = g.grupo; });
+  const camps = Object.values(C).filter((c) => c.gasto > 0).map((c) => { const ds = [...c.dias].sort(), d0 = new Date(ds[0] + "T00:00"), d1 = new Date(+new Date(ds[ds.length - 1] + "T00:00") + 2 * DAY), its = D.items.filter((it) => it.ok && it.d && it.d >= d0 && it.d < d1 && (!c.grupo || fold((D.mats[it.k] || {}).group || it.name) === fold(c.grupo)));
+    const ventas = its.reduce((s, it) => s + it.rev, 0), ped = new Set(its.map((it) => it.o.id)).size; return { ...c, ventas, ped, d0, d1: new Date(ds[ds.length - 1] + "T12:00"), roas: ventas / c.gasto, cpv: ped ? c.gasto / ped : null }; }).sort((p, q) => q.gasto - p.gasto);
+  // 12 meses
+  const now = new Date(), M = []; for (let i = 11; i >= 0; i--) { const m = new Date(now.getFullYear(), now.getMonth() - i, 1), n = new Date(m.getFullYear(), m.getMonth() + 1, 1), O = all.filter((x) => x.d >= m && x.d < n), f = v3Fin(O, m, new Date(+n - 1)); M.push({ m, ...f }); }
+  const M2 = M.filter((r, i) => r.fact || r.pub || r.otros || i === 11), mmx = Math.max(1, ...M2.map((r) => Math.max(r.fact, r.net))), mmn = Math.min(0, ...M2.map((r) => r.net));
+  const bars = M2.map((r) => `<div class="v3-pb" title="${esc(r.m.toLocaleDateString("es-AR", { month: "long", year: "numeric" }))}: ingresos ${esc(money(r.fact))} · ganancia ${esc(money(r.net))}"><div class="v3-pbc"><i class="f" style="height:${(r.fact / mmx * 100).toFixed(1)}%"></i><i class="n ${r.net < 0 ? "neg" : ""}" style="height:${(Math.abs(r.net) / (mmx - mmn) * 100).toFixed(1)}%"></i></div><small>${esc(r.m.toLocaleDateString("es-AR", { month: "short" }).replace(".", ""))}</small></div>`).join("");
+  const rowsM = M2.slice().reverse().map((r) => `<tr><td>${esc((t => t[0].toUpperCase() + t.slice(1))(r.m.toLocaleDateString("es-AR", { month: "long", year: "numeric" })))}</td><td class="num">${money(r.fact)}</td><td class="num">${r.comm ? "−" + money(r.comm) : "—"}</td><td class="num">${r.pub ? "−" + money(r.pub) : "—"}</td><td class="num">${r.otros ? "−" + money(r.otros) : "—"}</td><td class="num"><b class="${r.net < 0 ? "neg" : ""}">${money(r.net)}</b></td><td class="num">${r.fact ? Math.round(r.net / r.fact * 100) + " %" : "—"}</td></tr>`).join("");
+  box.innerHTML = `<div class="v3-sh"><div><h2>Estado de resultados</h2><p class="muted">${esc(R.lab)} · lo que entra, lo que se va y lo que te queda</p></div></div>
+    <div class="v3-plg"><div class="v3-wfs">${wf}</div><div class="v3-m4"><div><small>Margen neto</small><b>${F.fact ? Math.round(F.net / F.fact * 100) + " %" : "—"}</b><span>de cada $100 te quedan $${F.fact ? Math.max(0, Math.round(F.net / F.fact * 100)) : 0}</span></div><div><small>Retorno de publicidad</small><b>${roas ? "×" + roas.toFixed(1).replace(".", ",") : "—"}</b><span>${roas ? `cada $1 en anuncios acompañó $${roas.toFixed(1).replace(".", ",")} en ventas` : "cargá el gasto de Meta"}</span></div><div><small>Costo por venta</small><b>${cpv ? money(cpv) : "—"}</b><span>publicidad ÷ pedidos</span></div><div><small>Ganancia por pedido</small><b>${F.n ? money(F.net / F.n) : "—"}</b><span>ticket ${money(F.ticket)}</span></div></div></div>
+    ${camps.length ? `<h3 class="v3-h3">Campañas de Meta ${todo ? "" : "en este período"}</h3><div class="v3-tw"><table class="v3-t v3-ct"><thead><tr><th>Campaña</th><th>Material</th><th class="num">Gasto</th><th class="num">Ventas del material</th><th class="num">Retorno</th><th class="num">Costo por venta</th></tr></thead><tbody>${camps.map((c) => `<tr><td><b>${esc(c.k)}</b><small>${esc(v3Fecha(c.d0))} al ${esc(v3Fecha(c.d1))} · ${c.dias.size} días</small></td><td>${esc(c.grupo || "Todos")}</td><td class="num">${money(c.gasto)}</td><td class="num">${money(c.ventas)}<small>${nf(c.ped)} pedidos</small></td><td class="num"><span class="v3-roas ${c.roas >= 3 ? "good" : c.roas < 1 ? "bad" : ""}">×${c.roas.toFixed(1).replace(".", ",")}</span></td><td class="num">${c.cpv ? money(c.cpv) : "—"}</td></tr>`).join("")}</tbody></table></div><p class="v3-note">Estimado: cuenta las ventas del material de cada campaña mientras estuvo activa (y 2 días después). No es atribución exacta por clic.</p>` : ""}
+    <h3 class="v3-h3">Últimos 12 meses</h3><div class="v3-pbs">${bars}</div><div class="v3-lg"><span><i class="f"></i>Ingresos</span><span><i class="n"></i>Ganancia neta</span></div>
+    <div class="v3-tw"><table class="v3-t v3-ct"><thead><tr><th>Mes</th><th class="num">Ingresos</th><th class="num">Comisión</th><th class="num">Publicidad</th><th class="num">Otros gastos</th><th class="num">Ganancia</th><th class="num">Margen</th></tr></thead><tbody>${rowsM}</tbody></table></div>`; }
+
+// ---------- montaje, pintado y eventos ----------
+function v3Montar() { const v = document.getElementById("view-ventas"), w = v && v.querySelector(".vt"); if (!w) return; const P = (k) => w.querySelector(`[data-vtpan="${k}"]`); if (!P("res")) return;
+  const off = (el) => { if (el) el.classList.add("v3-off"); };
+  if (!document.getElementById("v3Chart")) { const ch = document.createElement("section"); ch.className = "card v3-card"; ch.id = "v3Chart"; P("res").insertBefore(ch, P("res").firstChild);
+    const g = document.createElement("div"); g.className = "v3-g2"; g.innerHTML = `<section class="card v3-card" id="v3Inbox"></section>`; ch.insertAdjacentElement("afterend", g); const pu = document.getElementById("vxPulse"); if (pu) g.appendChild(pu); }
+  off(document.getElementById("vStats")); off(w.querySelector(".vx-top2")); const oc = document.getElementById("monthChart"); off(oc && oc.closest("section")); const pe = document.getElementById("vxPend"); off(pe && pe.closest("section")); off(document.getElementById("vxPer"));
+  if (P("mat") && !document.getElementById("v3Mat")) { const m = document.createElement("section"); m.className = "card v3-card"; m.id = "v3Mat"; P("mat").insertBefore(m, P("mat").firstChild); const rk = document.getElementById("rankRows"); off(rk && rk.closest("section")); }
+  if (P("fin") && !document.getElementById("v3Pl")) { const f = document.createElement("section"); f.className = "card v3-card"; f.id = "v3Pl"; P("fin").insertBefore(f, P("fin").firstChild); off(document.getElementById("finStats")); const fr = document.getElementById("finRows"); off(fr && fr.closest(".tbl-wrap")); }
+  w.classList.add("v3");
+  if (!V3.sub && typeof db !== "undefined" && db && db.doc) { V3.sub = true; try { db.doc("panel/pednotas").onSnapshot((s) => { V3.notas = s.exists ? ((s.data() || {}).n || {}) : {}; }, () => {}); } catch {} } }
+function v3Pintar() { try { v3Montar(); } catch (e) { console.error(e); } [v3Chart, v3Inbox, v3Mat, v3Pl].forEach((f) => { try { f(); } catch (e) { console.error(e); } }); }
+vxToolbar = function () { const b = document.getElementById("vxPer"); if (b) b.innerHTML = ""; };
+vtHero = function () { try { v3Top(); } catch (e) { console.error(e); } };
+const _v3Pin = vtPintar;
+vtPintar = function () { const r = _v3Pin.apply(this, arguments); v3Pintar(); return r; };
+async function v3Entregar(ids) { const xs = vxOrders().filter((x) => ids.includes(String(x.o.id)) && !v3Entregado(x.o.id)); if (!xs.length) return;
+  try { for (const x of xs) { await db.collection("envios").add({ e: x.c.e || "", n: x.c.n || "", m: (x.o.i || [])[0] ? x.o.i[0][1] : "", k: (x.o.i || [])[0] ? slug(x.o.i[0][1]) : "", pedido: String(x.o.id), marcado: true, at: new Date().toISOString() }); }
+    toast(`📦 ${xs.length === 1 ? "Pedido marcado como entregado" : xs.length + " pedidos marcados como entregados"}`, "ok"); } catch (e) { toast("No se pudo guardar: " + (e.message || e), "err"); return; }
+  setTimeout(() => { v3Inbox(); vtPed(); if (V3.dr && V3.dr.tipo === "o") v3Abrir("o", V3.dr.id); }, 400); }
+document.addEventListener("click", (e) => { const t = e.target;
+  if (t.closest("[data-v3drx]")) { v3Cerrar(); return; }
+  const ck = t.closest("[data-v3ck]"); if (ck) { const id = ck.dataset.v3ck; V3.sel.has(id) ? V3.sel.delete(id) : V3.sel.add(id); vtPed(); return; }
+  if (t.closest("[data-v3ckall]")) { const L = v3Orden(v3Filt(v3Base())).slice(0, V3.lim), on = L.every((x) => V3.sel.has(String(x.o.id))); L.forEach((x) => on ? V3.sel.delete(String(x.o.id)) : V3.sel.add(String(x.o.id))); vtPed(); return; }
+  if (t.closest("a[href^='https://wa.me']")) return;
+  const ok = t.closest("[data-v3ok]"); if (ok) { V3.ok.push(ok.dataset.v3ok); v3OkGuardar(); v3Inbox(); return; }
+  const en = t.closest("[data-v3ent]"); if (en) { en.disabled = true; v3Entregar([en.dataset.v3ent]); return; }
+  if (t.closest("[data-v3entsel]")) { v3Entregar([...V3.sel]); return; }
+  const o = t.closest("[data-v3o]"); if (o && !t.closest("[data-vxrec],[data-v3ok]")) { v3Abrir("o", o.dataset.v3o); return; }
+  const m = t.closest("[data-v3m]"); if (m) { v3Abrir("m", m.dataset.v3m); return; }
+  const s = t.closest("[data-v3sort]"); if (s) { const k = s.dataset.v3sort; V3.dir = V3.sort === k ? -V3.dir : (k === "cli" || k === "prov" || k === "m" ? 1 : -1); V3.sort = k; vtPed(); return; }
+  const ms = t.closest("[data-v3ms]"); if (ms) { const k = ms.dataset.v3ms; V3.md = V3.ms === k ? -V3.md : (k === "name" ? 1 : -1); V3.ms = k; v3Mat(); return; }
+  const es = t.closest("[data-v3est]"); if (es) { V3.est = es.dataset.v3est; V3.lim = 50; vtPed(); return; }
+  if (t.closest("[data-v3clr]")) { V3.q = ""; V3.m = ""; V3.prov = ""; V3.mat = ""; V3.desde = null; V3.hasta = null; V3.lim = 50; vtPed(); return; }
+  if (t.closest("[data-v3mas]")) { V3.lim += 100; vtPed(); return; }
+  if (t.closest("[data-v3selx]")) { V3.sel.clear(); vtPed(); return; }
+  if (t.closest("[data-v3mails]")) { const L = vxOrders().filter((x) => V3.sel.has(String(x.o.id))), M = [...new Set(L.map((x) => x.c.e).filter(Boolean))]; copyText(t.closest("button"), M.join(", "), `${M.length} correos copiados`); return; }
+  const cp = t.closest("[data-v3copy]"); if (cp) { copyText(cp, cp.dataset.v3copy, "¡Copiado!"); return; }
+  const mg = t.closest("[data-v3msg]"); if (mg) { const x = vxOrders().find((y) => String(y.o.id) === mg.dataset.v3msg); if (!x) return; v3Cerrar(); openSend(x.c, String(x.o.id), (x.o.i || [])[0] ? x.o.i[0][1] : "", x.o.pg === "Finalizado" ? "t-pass" : "t-pendiente"); return; }
+  const ex = t.closest("[data-v3exp]"); if (ex) { const k = ex.dataset.v3exp; const L = k === "sel" ? vxOrders().filter((x) => V3.sel.has(String(x.o.id))) : k === "tabla" ? v3Filt(v3Base()) : (() => { const { a, b, todo } = v3R(); return vxOrders().filter((x) => todo || inR(x.d, a, b)); })(); v3Exportar(L, k === "sel" ? "Pedidos elegidos" : "Ventas"); return; }
+  const mt = t.closest("[data-v3met]"); if (mt) { V3.met = mt.dataset.v3met; v3Chart(); return; }
+  const gr = t.closest("[data-v3gran]"); if (gr) { V3.gran = gr.dataset.v3gran; v3Chart(); return; }
+});
+document.addEventListener("click", (e) => { if (e.target.closest("[data-vxpok]")) setTimeout(v3Inbox, 50); if (e.target.closest("[data-vxper]")) { V3.desde = null; V3.hasta = null; V3.sel.clear(); } }, true);
+document.addEventListener("change", (e) => { if (e.target.id === "vxFrom" || e.target.id === "vxTo") { V3.desde = null; V3.hasta = null; } }, true);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && V3.dr) { v3Cerrar(); return; }
+  if (e.key === "Enter" && e.target.matches && e.target.matches("tr[data-v3o],tr[data-v3m]")) { e.preventDefault(); e.target.click(); } });
+document.addEventListener("input", (e) => { const id = e.target.id;
+  if (id === "v3Pq") { V3.q = e.target.value; V3.lim = 50; clearTimeout(V3.tq); V3.tq = setTimeout(() => { const p = e.target.selectionStart; vtPed(); const n = document.getElementById("v3Pq"); if (n) { n.focus(); try { n.setSelectionRange(p, p); } catch {} } }, 180); }
+  if (id === "v3Mq") { V3.mq = e.target.value; clearTimeout(V3.tq); V3.tq = setTimeout(() => { const p = e.target.selectionStart; v3Mat(); const n = document.getElementById("v3Mq"); if (n) { n.focus(); try { n.setSelectionRange(p, p); } catch {} } }, 180); }
+  if (e.target.dataset && e.target.dataset.v3nota) { const k = e.target.dataset.v3nota, val = e.target.value; clearTimeout(V3.tn); const st = document.getElementById("v3NotaE"); if (st) st.textContent = "Guardando…";
+    V3.tn = setTimeout(async () => { if (val.trim()) V3.notas[k] = val; else delete V3.notas[k]; try { await db.doc("panel/pednotas").set({ n: V3.notas, updated: new Date().toISOString() }); const s2 = document.getElementById("v3NotaE"); if (s2) s2.textContent = "Guardado ✓"; } catch { const s2 = document.getElementById("v3NotaE"); if (s2) s2.textContent = "No se pudo guardar"; } }, 700); } });
+document.addEventListener("change", (e) => { const id = e.target.id; if (id === "v3Fm") { V3.m = e.target.value; V3.lim = 50; vtPed(); } if (id === "v3Fp") { V3.prov = e.target.value; V3.lim = 50; vtPed(); } if (id === "v3Fmat") { V3.mat = e.target.value; V3.lim = 50; vtPed(); } });
+let v3Rs = null, v3W = 0; addEventListener("resize", () => { clearTimeout(v3Rs); v3Rs = setTimeout(() => { const el = document.getElementById("v3Chart"); const w = el ? el.clientWidth : 0; if (el && Math.abs(w - v3W) > 30 && typeof currentView !== "undefined" && currentView === "ventas") { v3W = w; v3Chart(); } }, 180); });
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
