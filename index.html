@@ -898,6 +898,8 @@ b.neg{color:var(--v3r)}
   .v3-pbs{height:140px;gap:4px}
 }
 
+.v3-nada{display:flex;gap:12px;align-items:center;padding:12px 16px;border-radius:14px;border:1px dashed var(--line);background:color-mix(in srgb,var(--v3a) 8%,var(--surface))}.v3-nada>span{font-size:20px}.v3-nada>div{flex:1;display:grid;gap:2px}.v3-nada small{color:var(--muted);font-size:12.5px}
+
 /* inicio 2.0 */
 .in2 .in-off,.in2 #ppAcc,.in2 #mxBrief,.in2 [data-home="mquick"],.in2 [data-home="alertas"],.in2 [data-home="hoy"]{display:none!important}
 .in2,.in2 *{font-variant-numeric:tabular-nums}.in2>*,.in-c>*,.in-feed>li,.in-rk>li,.in-tl>li{min-width:0}.in-fi,.in-rk button,.in-tl button{min-width:0}
@@ -23814,6 +23816,8 @@ document.addEventListener("input", (e) => { const t = e.target; if (t.dataset &&
 // ---------- VENTAS 3.0 · cabecera con KPIs, gráfico interactivo, bandeja, tabla de pedidos, ficha lateral, estado de resultados y ficha de materiales ----------
 const V3 = { gran: "auto", met: "fact", q: "", est: "todos", m: "", mat: "", prov: "", sort: "d", dir: -1, sel: new Set(), lim: 50, dr: null, notas: {}, sub: false, montado: false, mq: "", ms: "rev", md: -1, tq: null,
   ok: (() => { try { return JSON.parse(localStorage.getItem("cofre-v3-ok") || "[]"); } catch { return []; } })() };
+// "Hoy" es una vista del momento: al abrir el panel se arranca siempre en "Este mes" para no ver todo en cero de madrugada
+try { if (VX.per === "hoy") VX.per = "mes"; } catch {}
 const v3Pct = () => parseFloat(String((typeof finCfg !== "undefined" && finCfg && finCfg.mpPct) || "0").replace(",", ".")) || 0;
 const v3Tel = (t) => { let d = String(t || "").replace(/\D/g, ""); if (d.length < 8) return ""; if (!d.startsWith("54")) d = "54" + d.replace(/^0/, ""); return d; };
 const v3Hora = (d) => d.toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit", hour12: false });
@@ -23868,7 +23872,9 @@ function v3Top() { const box = document.getElementById("vtHero"); if (!box) retu
     <div class="v3-bar"><div class="v3-seg" role="group" aria-label="Período">${VX_PER.map(([k, t]) => `<button type="button" data-vxper="${k}" aria-pressed="${VX.per === k}">${t}</button>`).join("")}</div>
       ${VX.per === "custom" ? `<div class="v3-cus"><label>Desde <input type="date" id="vxFrom" value="${esc(VX.from || isoD(a))}"></label><label>Hasta <input type="date" id="vxTo" value="${esc(VX.to || isoD(b))}"></label></div>` : ""}
       <button class="v3-bell" type="button" id="vxBell" aria-pressed="${VX.sonido}" title="Sonido al entrar una venta">${VX.sonido ? "🔔" : "🔕"}</button></div>
+    ${!cur.n ? (() => { const ay = addD(sod(new Date()), -1), A = vxOk(all).filter((x) => x.d >= ay && x.d < sod(new Date())), U = vxOk(all).reduce((m, x) => x.d > m ? x.d : m, new Date(0)); return `<div class="v3-nada"><span>🕒</span><div><b>Todavía no hay ventas aprobadas en este período</b><small>${A.length ? `Ayer vendiste ${money(inSumV3(A))} en ${A.length} ${A.length === 1 ? "pedido" : "pedidos"}. ` : ""}${+U ? `La última venta fue el ${esc(v3Fecha(U, U.getFullYear() !== new Date().getFullYear()))} a las ${esc(v3Hora(U))}.` : ""}</small></div>${VX.per !== "mes" ? `<button type="button" class="btn small" data-vxper="mes">Ver este mes</button>` : ""}</div>`; })() : ""}
     <div class="v3-kpis">${kp.join("")}</div>${meta}`; }
+const inSumV3 = (L) => L.reduce((s, x) => s + (x.o.tot || 0), 0);
 
 // ---------- 2 · gráfico principal interactivo ----------
 function v3Marcas(a, b) { const M = [];
@@ -24168,7 +24174,7 @@ function inHoy() { const box = document.getElementById("inHoy"); if (!box) retur
   const mini = (t, L, P) => `<div><small>${t}</small><b>${money(inSum(L))}</b>${vxDelta(inSum(L), inSum(P))}</div>`;
   box.innerHTML = `<div class="in-ch"><span class="in-lbl"><i style="--k:var(--v3a,#4cb4f2)"></i>Hoy</span><button type="button" class="linkish" data-ingo="ventas">Ver ventas →</button></div>
     <div class="in-big">${money(inSum(hoy))}<small>${hoy.length} ${hoy.length === 1 ? "venta" : "ventas"}</small></div>
-    <p class="in-sub">${ant.length || hoy.length ? (dif >= 0 ? `<b class="up">▲ ${money(dif)}</b> más` : `<b class="down">▼ ${money(-dif)}</b> menos`) + ` que el ${esc(lw.toLocaleDateString("es-AR", { weekday: "long" }))} pasado a esta hora` : "Todavía sin ventas hoy ni el mismo día de la semana pasada."}</p>
+    <p class="in-sub">${ant.length || hoy.length ? (dif >= 0 ? `<b class="up">▲ ${money(dif)}</b> más` : `<b class="down">▼ ${money(-dif)}</b> menos`) + ` que el ${esc(lw.toLocaleDateString("es-AR", { weekday: "long" }))} pasado a esta hora` : `Todavía sin ventas hoy${antDia.length ? ` · el ${esc(lw.toLocaleDateString("es-AR", { weekday: "long" }))} pasado terminó con ${money(inSum(antDia))}` : ""}.`}</p>
     <svg class="in-spk" viewBox="0 0 ${W} ${Hh}" preserveAspectRatio="none" aria-hidden="true"><polyline class="b" points="${pB}"/><polygon class="a" points="${X(0)},${Hh - 6} ${pA} ${X(Math.min(24, hN)).toFixed(1)},${Hh - 6}"/><polyline class="l" points="${pA}"/><circle cx="${X(Math.min(24, hN)).toFixed(1)}" cy="${Y(A[Math.min(24, cut)]).toFixed(1)}" r="3.5"/></svg>
     <div class="in-leg"><span><i class="l"></i>hoy</span><span><i class="b"></i>${esc(lw.toLocaleDateString("es-AR", { weekday: "short" }).replace(".", ""))} pasado (${money(B[24])})</span></div>
     <div class="in-mini">${mini("Últimos 7 días", w, wp)}${mini("Este mes", mes, pmes)}</div>
