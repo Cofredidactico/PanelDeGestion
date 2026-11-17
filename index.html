@@ -24274,6 +24274,34 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "/" && typeof currentView !== "undefined" && currentView === "inicio" && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) && !document.querySelector("dialog[open]")) { const i = document.getElementById("inQ"); if (i) { e.preventDefault(); e.stopImmediatePropagation(); i.focus(); } } }, true);
 (function () { const go = () => setTimeout(() => { try { inMontar(); if (typeof currentView === "undefined" || currentView === "inicio") inPintar(); } catch (e) { console.error(e); } }, 0); if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go(); })();
 
+// ---------- PINTEREST · textos aunque no haya Claude (panel web) y respaldo si Claude falla ----------
+const pnCap = (s) => { s = String(s || "").trim(); return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; };
+const pnTag = (s) => "#" + fold(s).replace(/[^a-z0-9 ]/g, "").split(/\s+/).filter((w) => w.length > 2 && !/^(del|las|los|una|para|con|por)$/.test(w)).slice(0, 3).map((w, i) => (i ? w.charAt(0).toUpperCase() + w.slice(1) : w)).join("");
+function pnTipoDe(txt) { const f = fold(txt); return /infograf/.test(f) ? "infografía" : /lamina/.test(f) ? "lámina" : /juego|ruleta|memotest|bingo|loteria/.test(f) ? "juego" : /cuento|lectura/.test(f) ? "lectura" : /portada|tapa/.test(f) ? "cuadernillo" : /plataforma|interactiv/.test(f) ? "plataforma interactiva" : "actividad"; }
+function pnTema(nombre, archivo) { const ef = nombre ? efeFor(nombre, null) : (archivo ? efeFor(String(archivo).replace(/[-_]+/g, " "), null) : null); if (ef) return ef[1]; if (nombre) return String(nombre).replace(/^\d{1,2} de [a-záéíóú]+\s*[-–:]\s*/i, "").trim(); const a = String(archivo || "").replace(/\.[a-z0-9]+$/i, "").replace(/[-_]+/g, " ").replace(/\b(img|image|imagen|foto|captura|whatsapp|copia|final|infograf[ií]as?|l[aá]minas?|actividad(es)?|juegos?|fichas?|hojas?|para|imprimir|pin|\d{3,})\b/gi, " ").replace(/\s+/g, " ").trim(); return pnCap(a) || "Efemérides escolares"; }
+function plTxtLocal(it) { const p = plProd(it.prod || PL.prod), nom = p ? p.n : "", tema = pnTema(nom, it.n), tipo = pnTipoDe(`${it.n} ${p ? p.tipo + " " + p.tem : ""}`), nivel = (p && p.nivel) || "primaria", grat = p && p.gratis;
+  const titulo = `${tema}: ${tipo} para imprimir | ${pnCap(nivel)}`.slice(0, 95);
+  const desc = `${pnCap(tipo)} sobre ${tema} para docentes de ${nivel}. Lista para imprimir o proyectar en la pizarra digital y trabajar la fecha en el aula de forma simple y atractiva. ${p ? `Es parte de “${nom}”${grat ? ", un material gratuito" : ""}: encontralo completo en cofredidactico.com.ar.` : "Encontrá el material completo y más recursos en cofredidactico.com.ar."} ${[pnTag(tema), "#efemerides", "#primaria", "#docentes", "#recursoseducativos"].filter((x, i, A) => x.length > 2 && A.indexOf(x) === i).join(" ")}`.slice(0, 500);
+  return { titulo, desc, alt: `${pnCap(tipo)} de ${tema} para nivel ${nivel}, de Cofre Didáctico`.slice(0, 140), corto: tema.split(" ").slice(0, 5).join(" "), badge: grat ? "GRATIS" : tipo === "juego" ? "JUEGO EDUCATIVO" : "PARA IMPRIMIR" }; }
+const _pnPlClaude = plClaude;
+plClaude = async function (lista) { const sf = await getSample();
+  if (!sf) { let n = 0; lista.forEach((it) => { if (it.st === "ok") return; it.t = plTxtLocal(it); it.st = ""; it.msg = ""; n++; }); if (!PL.tablero) { const p = plProd(PL.prod); PL.tablero = p ? `${pnTema(p.n, "")} · actividades para primaria` : "Efemérides para primaria"; }
+    PL.est = `✍️ Escribí los textos de ${n} ${n === 1 ? "pin" : "pines"} con plantillas, usando el material elegido y el nombre de cada archivo. Revisalos y ajustalos a mano. La redacción de Claude mirando cada imagen funciona en el panel dentro de Claude.`; return plPintar(); }
+  const r = await _pnPlClaude.apply(this, arguments); let fb = 0;
+  lista.forEach((it) => { if (it.st === "err") { if (!(it.t && it.t.titulo)) it.t = plTxtLocal(it); it.st = ""; it.msg = ""; fb++; } });
+  if (fb) { PL.est = `⚠️ Claude no pudo escribir ${fb} ${fb === 1 ? "pin" : "pines"}: les dejé textos base con plantillas para que los revises (o tocá “Reescribir” en cada uno).`; plPintar(); } return r; };
+const _pnClaude1 = pnClaude;
+pnClaude = async function (n, btn) { const sf = await getSample(); if (sf) { const r = await _pnClaude1.apply(this, arguments); if (r) return r; }
+  const D = PN.D, m = D && D.meta, tema = m ? (m.efemeride || m.nombreCorto || m.nombreCompleto) : pnTema(PN.txt.titulo, ""), prod = m ? (m.nombreCompleto || m.nombreCorto) : PN.txt.titulo || tema, plat = !!D;
+  const ang = [["", "beneficio"], ["fecha", "fecha"], ["tiempo", "tiempo"]].slice(0, Math.max(1, n));
+  const pines = ang.map(([k]) => { const titulo = k === "fecha" ? `${tema} en el aula` : k === "tiempo" ? "Clase lista en minutos" : (plat ? `${tema}: juegos interactivos` : `${tema} para primaria`);
+    return { badge: plat ? "PLATAFORMA INTERACTIVA" : "PARA IMPRIMIR", titulo: titulo.split(" ").length <= 7 ? titulo : tema.split(" ").slice(0, 7).join(" "), sub: plat ? "Para celular, compu y pizarra digital" : "Listo para imprimir y usar", beneficios: plat ? ["Juegos listos para jugar en clase", "Funciona en pizarra digital", "Ideal para repasar la fecha", "Sin instalar nada"] : ["Actividades listas para imprimir", "Pensado para docentes de primaria", "Ideal para trabajar la efeméride", "Ahorra tiempo de planificación"],
+      pinTitle: `${tema}: ${plat ? "plataforma interactiva con juegos" : "actividades para imprimir"} | Primaria`.slice(0, 95),
+      descripcion: `${plat ? `Plataforma interactiva “${prod}” con juegos para trabajar ${tema} en el aula: funciona en celular, compu y pizarra digital.` : `“${prod}”: actividades sobre ${tema} para docentes de primaria, listas para imprimir.`} Ahorrá tiempo de planificación y hacé la clase más dinámica. Conocelo en cofredidactico.com.ar. ${pnTag(tema)} #efemerides #primaria #docentes #recursoseducativos`.slice(0, 500),
+      alt: `${plat ? "Plataforma interactiva" : "Material didáctico"} de ${tema} para primaria, de Cofre Didáctico`.slice(0, 140) }; });
+  toast(sf ? "Claude no respondió: te dejé textos base para revisar" : "Textos base con plantillas: revisalos y ajustalos. Claude los escribe en el panel dentro de Claude.", sf ? "err" : "");
+  return { tablero: `${tema} · recursos para primaria`, pines }; };
+
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
 function adForMat(m){ return autodm.find(a=>{ const x=matForAd(a); return x&&x.k===m.k; })||null; }
