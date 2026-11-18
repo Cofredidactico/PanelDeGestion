@@ -1506,6 +1506,121 @@ body[data-orv]:not([data-orv="inicio"]) .hero-wrap{display:none}
 .vc-none{display:flex;gap:10px;align-items:center;padding:8px}.vc-none span{font-size:22px}.vc-none div{display:grid}.vc-none b{font-size:14px}.vc-none small{font-size:12px;color:var(--muted)}
 @media (max-width:600px){.vc-st small{display:none}}
 
+/* ===== Mi biblioteca (administración) ===== */
+#view-biblio{--bb-a:#8b5cf6;--bb-b:var(--blue,#4cb4f2);grid-template-columns:minmax(0,1fr)}
+#view-biblio>*,#bbBody>*{min-width:0;max-width:100%}
+#view-biblio .bb-h{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+#view-biblio .bb-hacts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#view-biblio a.btn{text-decoration:none;display:inline-flex;align-items:center}
+.bb-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bb-pill.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 35%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.bb-pill.warn{color:var(--orange);border-color:color-mix(in srgb,var(--orange) 35%,transparent)}
+.bb-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px;min-width:0}
+.bb-kp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+.bb-kp>div{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;display:grid;gap:2px;min-width:0;overflow:hidden}
+.bb-kp>div::after{content:"";position:absolute;inset:auto -30% -60% auto;width:120px;height:120px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--bb-a) 18%,transparent),transparent);pointer-events:none}
+.bb-kp small{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.bb-kp b{font-size:24px;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15}
+.bb-kp em{font-style:normal;font-size:12px;color:var(--muted)}
+.bb-kpi{position:absolute;right:12px;top:10px;font-size:18px;opacity:.8}
+.bb-tabs{display:flex;gap:6px;margin-top:16px;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);width:max-content;max-width:100%;overflow-x:auto}
+.bb-tab{display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:800;font-size:14px;padding:9px 14px;border-radius:10px;cursor:pointer;white-space:nowrap}
+.bb-tab:hover{color:var(--ink);background:var(--hover)}
+.bb-tab.on{background:var(--solid);color:var(--ink);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.bb-tab i{font-style:normal;font-size:11px;font-weight:900;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--bb-a) 20%,transparent);color:var(--bb-a)}
+.bb-inp{width:100%;box-sizing:border-box;font:inherit;font-size:14px;color:var(--ink);background:var(--solid);border:1px solid var(--line);border-radius:11px;padding:9px 12px;min-width:0}
+.bb-inp:focus{outline:2px solid color-mix(in srgb,var(--bb-b) 55%,transparent);outline-offset:1px;border-color:transparent}
+textarea.bb-inp{resize:vertical;line-height:1.45}
+.bb-acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn.bb-sm{font-size:12.5px;padding:5px 10px;min-height:0}
+.btn.bb-dan{color:var(--danger)}.btn.bb-dan.conf{background:var(--danger);color:#fff;border-color:var(--danger)}
+.bb-msg{padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--danger) 10%,transparent);border:1px solid color-mix(in srgb,var(--danger) 30%,transparent);color:var(--ink);font-size:13.5px;margin:8px 0}
+.bb-ok{padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--ok) 11%,transparent);border:1px solid color-mix(in srgb,var(--ok) 32%,transparent);display:grid;gap:10px;margin-top:12px;font-size:14px}
+.bb-empty{color:var(--muted);font-size:13.5px;padding:10px 4px}
+.bb-warn{color:var(--orange)}
+/* web-only / login */
+.bb-web,.bb-login{display:flex;gap:18px;align-items:flex-start;padding:24px}
+.bb-web-ic,.bb-login-ic{font-size:40px;line-height:1;flex:none;width:64px;height:64px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--bb-a) 30%,transparent),color-mix(in srgb,var(--bb-b) 26%,transparent))}
+.bb-web h2,.bb-login h2{margin:0 0 6px;font-size:20px}.bb-web p,.bb-login p{margin:0 0 14px;color:var(--muted);max-width:62ch}
+.bb-login-b{flex:1;min-width:0}
+.bb-lg{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:6px}
+.bb-lg label{display:grid;gap:5px;font-weight:800;font-size:13px;flex:1 1 260px;max-width:380px}
+.bb-code{font-size:22px;letter-spacing:.4em;text-align:center;font-weight:900}
+/* docentes */
+.bb-doc{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:14px;align-items:start}
+.bb-doc .bb-card{margin-top:14px}
+.bb-lista{position:sticky;top:12px;display:grid;gap:8px;max-height:calc(100vh - 40px);overflow:auto;padding:12px}
+.bb-q{display:flex;gap:8px}
+.bb-lh{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:6px 4px 2px}
+.bb-lh small{text-transform:none;font-weight:700}
+.bb-dr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid transparent;background:transparent;color:var(--ink);font:inherit;padding:8px;border-radius:12px;cursor:pointer}
+.bb-dr:hover{background:var(--hover)}.bb-dr.on{background:color-mix(in srgb,var(--bb-a) 12%,transparent);border-color:color-mix(in srgb,var(--bb-a) 35%,transparent)}
+.bb-av{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,hsl(var(--h,260) 70% 58%),hsl(calc(var(--h,260) + 40) 75% 55%));color:#fff;font-weight:900;font-size:13px;flex:none}
+.bb-av.lg{width:58px;height:58px;font-size:20px;--h:265}
+.bb-dt{display:grid;min-width:0}.bb-dt b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bb-dt small{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bb-ds{display:grid;justify-items:end;text-align:right}.bb-ds em{font-style:normal;font-size:12.5px;font-weight:900;color:var(--ink);white-space:nowrap}.bb-ds small{font-size:11px;color:var(--muted)}
+.bb-como{margin-top:8px;padding:12px;border-radius:14px;border:1px dashed var(--line);display:grid;gap:6px}
+.bb-como small{color:var(--muted);font-size:12px}
+.bb-ficha{min-height:360px}
+.bb-fvac{text-align:center;padding:50px 20px;color:var(--muted)}.bb-fvac>div{font-size:46px}.bb-fvac h3{color:var(--ink);margin:6px 0}.bb-fvac p{max-width:46ch;margin:0 auto}
+.bb-ftop{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.bb-fn{flex:1 1 220px;min-width:0}.bb-fn h2{margin:0;font-size:21px;overflow-wrap:anywhere}.bb-fn .muted{overflow-wrap:anywhere}
+.bb-fkp{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:16px 0 10px}
+.bb-fkp>div{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:2px;min-width:0}
+.bb-fkp b{font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bb-fkp span{font-size:11.5px;color:var(--muted)}
+.bb-tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.bb-tags span{font-size:12.5px;padding:4px 10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line)}
+.bb-nota{display:grid;gap:5px;font-weight:800;font-size:13.5px;margin:12px 0}.bb-nota small{font-weight:600;color:var(--muted)}
+.bb-h3{font-size:15px;margin:18px 0 8px;display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}.bb-h3 small{font-size:12px;color:var(--muted);font-weight:700}
+.bb-tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.bb-t{width:100%;border-collapse:collapse;font-size:13.5px}
+.bb-t th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);font-weight:800;padding:9px 10px;background:var(--surface-2);white-space:nowrap}
+.bb-t td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:top}
+.bb-t .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bb-t tr.rev td{opacity:.55}.bb-t tr.rev td.bb-acc{opacity:1}
+.bb-acc{white-space:nowrap;text-align:right}.bb-acc .btn{margin-left:4px}
+.bb-st.no{font-size:11px;font-weight:800;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--danger) 16%,transparent);color:var(--danger)}
+.bb-dar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
+.bb-dar>span{font-weight:800;font-size:13.5px;flex:1 1 100%}.bb-dar>span small{font-weight:600;color:var(--muted)}.bb-dar select{flex:1 1 220px;width:auto}
+.bb-stars{color:var(--star)}.bb-op{font-size:13.5px;margin:4px 0}
+/* ventas */
+.bb-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bb-g label{display:block;font-weight:800;font-size:13px;min-width:0}.bb-g label small{font-weight:600;color:var(--muted);margin-left:4px}.bb-g label>.bb-inp{display:block;margin-top:6px}.bb-g .full{grid-column:1/-1}
+.bb-rel{position:relative}
+.bb-sug{position:absolute;z-index:30;left:0;right:0;top:100%;margin-top:4px;background:var(--solid);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.3);padding:5px;display:grid;gap:2px;max-height:300px;overflow:auto}
+.bb-sh{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;padding:4px 8px}
+.bb-si{display:grid;text-align:left;border:0;background:transparent;color:var(--ink);font:inherit;padding:7px 9px;border-radius:9px;cursor:pointer}.bb-si:hover{background:var(--hover)}.bb-si small{color:var(--muted);font-size:12px;font-weight:600}
+.bb-edban{padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--orange) 12%,transparent);border:1px solid color-mix(in srgb,var(--orange) 35%,transparent);margin-bottom:12px;font-size:13.5px}
+.bb-cli{margin-top:12px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--bb-b) 10%,transparent);border:1px solid color-mix(in srgb,var(--bb-b) 30%,transparent);font-size:13.5px}
+.bb-cli.nueva{background:color-mix(in srgb,var(--orange) 9%,transparent);border-color:color-mix(in srgb,var(--orange) 30%,transparent)}
+.bb-mh{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 8px}.bb-mh b{font-size:14px}.bb-mh .bb-inp{flex:1 1 200px;width:auto;max-width:320px}
+.bb-mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px;max-height:330px;overflow:auto;padding:2px}
+.bb-mc{display:flex;gap:8px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--surface-2);font-size:13.5px;min-width:0}
+.bb-mc input{margin-top:3px;accent-color:var(--bb-a);flex:none}.bb-mc span{display:grid;min-width:0}.bb-mc em{font-style:normal;font-size:12px;color:var(--muted);font-weight:700}
+.bb-mc.on{border-color:color-mix(in srgb,var(--bb-a) 55%,transparent);background:color-mix(in srgb,var(--bb-a) 11%,transparent)}
+.bb-mc.ya em{color:var(--ok)}
+.bb-desg{margin-top:12px;padding:12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);display:grid;gap:8px}
+.bb-dl{display:grid;gap:4px}.bb-dl span{display:flex;justify-content:space-between;gap:10px;font-size:13px}.bb-dl b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bb-dtot{display:flex;justify-content:space-between;border-top:1px dashed var(--line);padding-top:8px;font-weight:900}
+.bb-dd{font-size:13px;color:var(--muted)}.bb-dd.desc{color:var(--ok);font-weight:700}
+.bb-vf>.bb-acts{margin-top:16px}
+.bb-chk{display:inline-flex;gap:7px;align-items:center;font-size:13px;color:var(--muted);font-weight:700}
+.bb-lhead{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-bottom:10px}.bb-lhead .bb-inp{width:180px}
+/* masiva */
+.bb-mint h2{margin:0 0 6px;font-size:18px}.bb-mint p{margin:0;color:var(--muted);font-size:13.5px;max-width:90ch}
+.bb-mta{margin:12px 0 10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.bb-mres{display:grid;gap:6px;margin-top:12px}
+.bb-mr{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,1.4fr) auto;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);font-size:13px}
+.bb-mr b,.bb-mr span{overflow-wrap:anywhere;min-width:0}.bb-mr em{font-style:normal;font-weight:700;display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.bb-mr.mal{border-color:color-mix(in srgb,var(--danger) 40%,transparent);background:color-mix(in srgb,var(--danger) 7%,transparent)}.bb-mr.mal em{color:var(--danger)}
+.bb-mr.ok{border-color:color-mix(in srgb,var(--ok) 40%,transparent);background:color-mix(in srgb,var(--ok) 8%,transparent)}
+@media (max-width:1100px){.bb-fkp{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:980px){.bb-doc{grid-template-columns:minmax(0,1fr)}.bb-lista{position:static;max-height:none}.bb-kp{grid-template-columns:repeat(2,minmax(0,1fr))}.bb-g{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.bb-g{grid-template-columns:1fr}.bb-fkp{grid-template-columns:repeat(2,minmax(0,1fr))}.bb-mr{grid-template-columns:1fr}.bb-mr em{justify-content:flex-start}.bb-web,.bb-login{flex-direction:column;padding:18px}.bb-kp b{font-size:20px}.bb-card{padding:14px}.bb-lhead .bb-inp{width:100%}.bb-acc{white-space:normal}}
+
+.bb-link{border:0;background:none;padding:0;font:inherit;font-weight:700;color:var(--blue);cursor:pointer;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere;text-align:left}.bb-link:hover{opacity:.8}
+.bb-st.no{white-space:nowrap}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -26957,6 +27072,333 @@ document.addEventListener("keydown", (e) => { const t = e.target; if (!t || t.id
   else if (e.key === "Escape") box.hidden = true; });
 
 { const _vl = vtLimpiar; vtLimpiar = function () { PPE.vcPick = null; return _vl.apply(this, arguments); }; }
+
+// =====================================================================
+// MI BIBLIOTECA (administración desde el panel) · Etapa 1
+// Docentes y fichas · habilitar/quitar materiales · ventas a mano · carga masiva · ver como
+// Usa la misma función "biblioteca" de Supabase que la página de la biblioteca.
+// =====================================================================
+const BB_SES = "cofre-panel-bib", BB_URL = "https://cofredidactico.com.ar/biblioteca.html", BB_WEB = "https://cofredidactico.github.io/PanelDeGestion/#biblio";
+const BB_ORIGEN = { tienda: "🛒 Empretienda", transferencia: "💸 Transferencia", manual: "✋ A mano", historial: "📦 Antes de la biblioteca" };
+const BB = { tab: (() => { try { return localStorage.getItem("cofre-bb-tab") || "docentes"; } catch { return "docentes"; } })(), cx: null, need: false, probando: false, res: null, top: null, q: "", resultados: null, ficha: null, cli: null, fichaErr: "", precios: null,
+  sel: new Set(), msel: new Set(), vCli: null, montoTocado: false, edit: null, lista: null, listaQ: "", borrar: null, quitar: null, masiva: null, mBusy: false, login: { paso: "email", email: "", msg: "", busy: false } };
+const bbEmailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || "").trim());
+const bbFd = (x) => { if (!x) return "—"; const d = new Date(x); return isNaN(d) ? "—" : d.toLocaleDateString("es-AR", { day: "numeric", month: "short", year: "numeric" }); };
+const bbHoy = () => new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
+const bbNum = (v) => { const t = String(v ?? "").replace(/[^\d,.]/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", "."); return t === "" ? null : Number(t); };
+const bbIni = (n, e) => { const p = String(n || e || "?").trim().split(/\s+/); return ((p[0] || "?")[0] + (p[1] ? p[1][0] : "")).toUpperCase(); };
+const bbFold = (t) => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+function bbSes() { try { return JSON.parse(localStorage.getItem(BB_SES) || "null"); } catch { return null; } }
+function bbSesPut(s) { try { s ? localStorage.setItem(BB_SES, JSON.stringify(s)) : localStorage.removeItem(BB_SES); } catch {} }
+function bbCfg() { try { return typeof supaCfg === "function" ? supaCfg() : null; } catch { return null; } }
+const bbDisponible = () => !!bbCfg() && !(typeof MODE !== "undefined" && MODE.cloud);
+
+// ---------- conexión ----------
+async function bbFetch(body, bearer) { const cfg = bbCfg(); if (!cfg) throw new Error("Falta la conexión con Supabase.");
+  const h = { apikey: cfg.key, "Content-Type": "application/json" }; if (bearer) h.Authorization = "Bearer " + bearer;
+  let r; try { r = await fetch(`${cfg.url}/functions/v1/biblioteca`, { method: "POST", headers: h, body: JSON.stringify(body) }); } catch { throw new Error("No hay conexión. Revisá internet y probá de nuevo."); }
+  let j = {}; try { j = await r.json(); } catch {}
+  if (!r.ok) { const e = new Error(j.mensaje || j.error || "Error " + r.status); e.status = r.status; e.code = j.error; throw e; } return j; }
+const bbAuthErr = (e) => !!e && (e.status === 401 || e.status === 403 || /sesi[oó]n|token|admin|autoriz|permiso/i.test(e.message || ""));
+async function bbApi(body) {
+  const s = bbSes();
+  if (s && s.token) { try { const j = await bbFetch({ ...body, token: s.token }); BB.cx = "tok"; return j; }
+    catch (e) { if (e.status === 401 || (e.status === 403 && /admin|permiso/i.test(e.message))) { bbSesPut(null); BB.cx = null; BB.need = true; setTimeout(bbPintar, 0); throw new Error("La conexión con la biblioteca venció. Volvé a conectarla."); } throw e; } }
+  if (BB.cx !== "need" && typeof supaToken === "function") { const tok = await supaToken(bbCfg()).catch(() => null);
+    if (tok) { try { const j = await bbFetch(body, tok); BB.cx = "jwt"; return j; } catch (e) { if (!bbAuthErr(e)) throw e; } } }
+  BB.cx = "need"; BB.need = true; setTimeout(bbPintar, 0); throw new Error("Conectá la biblioteca para seguir.");
+}
+async function bbProbar() { if (BB.probando) return; BB.probando = true; bbPintar();
+  try { BB.res = await bbApi({ accion: "resumen" }); BB.need = false; } catch (e) { if (!BB.need) BB.fichaErr = e.message; }
+  BB.probando = false; bbPintar(); if (BB.res) { bbPrecios(); if (BB.tab === "ventas" && !BB.lista) bbCargarLista(); } }
+async function bbPedirCodigo() { const L = BB.login, v = String((document.getElementById("bbLgE") || {}).value || L.email).trim().toLowerCase();
+  if (!bbEmailOk(v)) { L.msg = "Escribí el correo de administradora de la biblioteca."; return bbPintar(); }
+  L.busy = true; L.email = v; L.msg = ""; bbPintar();
+  try { await bbFetch({ accion: "codigo", email: v }); L.paso = "codigo"; L.msg = ""; } catch (e) { L.msg = e.message; }
+  L.busy = false; bbPintar(); setTimeout(() => { const c = document.getElementById("bbLgC"); if (c) c.focus(); }, 60); }
+async function bbEntrar() { const L = BB.login, c = String((document.getElementById("bbLgC") || {}).value || "").replace(/\D/g, "");
+  if (c.length !== 6) { L.msg = "El código tiene 6 números."; return bbPintar(); }
+  L.busy = true; L.msg = ""; bbPintar();
+  try { const r = await bbFetch({ accion: "entrar", email: L.email, codigo: c });
+    if (!r || !r.token) throw new Error("La biblioteca no devolvió la sesión. Probá de nuevo.");
+    let res; try { res = await bbFetch({ accion: "resumen", token: r.token }); } catch (e) { throw new Error("Ese correo no tiene permisos de administradora en la biblioteca."); }
+    bbSesPut({ token: r.token, email: r.email || L.email, at: Date.now() }); BB.cx = "tok"; BB.need = false; BB.res = res; L.paso = "email"; L.msg = ""; toast("📚 Biblioteca conectada", "ok"); bbPrecios();
+  } catch (e) { L.msg = e.message; }
+  L.busy = false; bbPintar(); }
+function bbDesconectar() { bbSesPut(null); Object.assign(BB, { cx: null, need: false, res: null, top: null, ficha: null, cli: null, lista: null, resultados: null }); toast("Biblioteca desconectada del panel"); bbProbar(); }
+
+// ---------- datos ----------
+async function bbPrecios() { if (BB.precios) return BB.precios; try { const j = await fetch("https://cofredidactico.com.ar/productos.json?v=" + Math.floor(Date.now() / 60000)).then((r) => r.json()); const P = {}; (j.productos || []).forEach((p) => { if (p.id) P[p.id] = Number(p.precio) || 0; }); BB.precios = P; } catch { BB.precios = {}; } bbRepintarParte(); return BB.precios; }
+const bbMats = () => ((BB.res && BB.res.materiales) || []).filter((m) => m.tipo !== "regalo");
+const bbNomMat = (id) => ((BB.res && BB.res.materiales || []).find((m) => m.id === id) || {}).nombre || id;
+const bbPrecio = (id) => (BB.precios && BB.precios[id]) || 0;
+async function bbCargarTop(forzar) { if (BB.top && !forzar) return; try { BB.top = await bbApi({ accion: "ficha_top" }); } catch (e) { BB.top = { top: [], total: 0, error: e.message }; } bbPintarDocLista(); }
+let bbQT = null;
+function bbBuscar(q) { BB.q = q; clearTimeout(bbQT); if (q.trim().length < 2) { BB.resultados = null; bbPintarDocLista(); return; }
+  bbQT = setTimeout(async () => { const qq = BB.q.trim(); try { const j = await bbApi({ accion: "buscar_docente", q: qq }); if (BB.q.trim() !== qq) return; BB.resultados = j.resultados || []; } catch (e) { BB.resultados = { error: e.message }; } bbPintarDocLista(); }, 320); }
+async function bbAbrirFicha(email) { email = String(email || "").trim().toLowerCase(); if (!email) return;
+  BB.tab = "docentes"; BB.ficha = { cargando: true, email }; BB.cli = null; BB.quitar = null; bbPintar();
+  const box = document.getElementById("bbFicha"); if (box && innerWidth < 980) box.scrollIntoView({ behavior: "smooth", block: "start" });
+  try { const [F, C] = await Promise.all([bbApi({ accion: "ficha", email }), bbApi({ accion: "cliente", email }).catch(() => null)]); BB.ficha = F; BB.cli = C; }
+  catch (e) { BB.ficha = { error: e.message, email }; }
+  bbPintarFicha(); }
+
+// ---------- vista ----------
+function bbView() { let v = document.getElementById("view-biblio"); if (v) return v;
+  v = document.createElement("main"); v.className = "wrap view"; v.id = "view-biblio"; v.hidden = true;
+  const ref = document.getElementById("view-clientes"); if (ref) ref.insertAdjacentElement("afterend", v); else document.body.appendChild(v); return v; }
+const BB_IC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h4v18H6a2 2 0 0 1-2-1.5Z"/><path d="M10 3h4v18h-4"/><path d="m14 4.5 3.6-1 3.4 16.5-3.7.9"/></svg>';
+function bbNav() { if (typeof NAV_GRUPOS !== "undefined") { const g = NAV_GRUPOS.find((x) => x[0] === "ventas"); if (g && !g[2].includes("biblio")) { const i = g[2].indexOf("clientes"); g[2].splice(i >= 0 ? i + 1 : g[2].length, 0, "biblio"); } }
+  let b = document.querySelector('.side-nav .tab[data-view="biblio"]');
+  if (!b) { b = document.createElement("button"); b.className = "tab"; b.setAttribute("role", "tab"); b.dataset.view = "biblio"; b.setAttribute("aria-selected", "false"); b.innerHTML = `${BB_IC}<span>Mi biblioteca</span>`; }
+  const cl = document.querySelector('.side-nav .tab[data-view="clientes"]'); if (cl && cl.nextElementSibling !== b) cl.insertAdjacentElement("afterend", b);
+  const cnt = document.querySelector('.nav-g[data-g="ventas"] .nav-gh i'), gb = document.querySelector('.nav-g[data-g="ventas"] .nav-gb'); if (cnt && gb) cnt.textContent = gb.querySelectorAll(".tab").length; }
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest('.tab[data-view="biblio"]'); if (!b) return; e.preventDefault(); e.stopImmediatePropagation(); showView("biblio"); try { const sn = document.querySelector(".side-nav"); if (sn && sn.classList.contains("open")) sn.classList.remove("open"); } catch {} }, true);
+
+function bbKpis() { const R = BB.res || {}, T = R.tablero || {}, n = (x) => Number(x || 0).toLocaleString("es-AR");
+  const K = [["💰", "Ventas · 30 días", T.monto30 != null ? money(T.monto30) : "—", T.ventas30 != null ? `${n(T.ventas30)} compra${T.ventas30 === 1 ? "" : "s"}` : ""], ["🆕", "Docentes nuevas · 30 días", T.nuevas30 != null ? n(T.nuevas30) : "—", R.compradores != null ? `${n(R.compradores)} en total` : ""],
+    ["⬇", "Descargas · 30 días", T.desc30 != null ? n(T.desc30) : "—", R.copias != null ? `${n(R.copias)} copias personalizadas` : ""], ["📚", "Materiales", n(bbMats().length), R.sinVincular && R.sinVincular.length ? `⚠️ ${R.sinVincular.length} sin vincular` : "todos vinculados"]];
+  return `<div class="bb-kp">${K.map(([i, t, v, s]) => `<div><span class="bb-kpi">${i}</span><small>${t}</small><b>${v}</b><em>${esc(s)}</em></div>`).join("")}</div>`; }
+function bbPintar() { const v = bbView(); if (v.hidden && currentView !== "biblio") return;
+  const head = `<div class="view-h bb-h"><div><h1>📚 Mi biblioteca</h1><p class="lead">Administrá la biblioteca de tus docentes sin entrar a ella: fichas, accesos, ventas por transferencia y cargas masivas.</p></div>`;
+  if (!bbDisponible()) { v.innerHTML = `${head}</div><div class="bb-card bb-web"><div class="bb-web-ic">🌐</div><div><h2>Esta sección se usa en la versión web del panel</h2><p>Para cuidar los datos de tus docentes, la administración de la biblioteca se conecta solo desde la versión web, donde ya iniciaste sesión con tu cuenta.</p><div class="bb-acts"><a class="btn primary" href="${BB_WEB}" target="_blank" rel="noopener">Abrir el panel web ↗</a><a class="btn" href="${BB_URL}" target="_blank" rel="noopener">Abrir Mi biblioteca ↗</a></div></div></div>`; return; }
+  const s = bbSes(), estado = BB.res && !BB.need ? `<span class="bb-pill ok">🟢 Conectada${BB.cx === "tok" && s ? " · " + esc(s.email) : ""}</span>` : BB.probando ? '<span class="bb-pill">⏳ Conectando…</span>' : '<span class="bb-pill warn">🔌 Sin conectar</span>';
+  const acts = `<div class="bb-hacts">${estado}<a class="btn" href="${BB_URL}" target="_blank" rel="noopener">Abrir Mi biblioteca ↗</a>${BB.res ? '<button class="btn" type="button" data-bb="refrescar" title="Actualizar datos">↻</button>' : ""}${BB.res && BB.cx === "tok" ? '<button class="btn" type="button" data-bb="desconectar">Desconectar</button>' : ""}</div></div>`;
+  if (!BB.res || BB.need) { if (!BB.need && !BB.probando) { v.innerHTML = head + acts + '<div class="bb-card"><div class="skel" style="height:120px"></div></div>'; bbProbar(); return; }
+    if (BB.probando) { v.innerHTML = head + acts + '<div class="bb-card bb-load"><div class="skel" style="height:90px"></div><div class="skel" style="height:240px"></div></div>'; return; }
+    v.innerHTML = head + acts + bbLoginHtml(); bbLoginBind(); return; }
+  const T = [["docentes", "👩‍🏫", "Docentes"], ["ventas", "💸", "Ventas a mano"], ["masiva", "📋", "Carga masiva"]];
+  v.innerHTML = `${head}${acts}${bbKpis()}<div class="bb-tabs" role="tablist">${T.map(([k, i, t]) => `<button type="button" role="tab" class="bb-tab${BB.tab === k ? " on" : ""}" aria-selected="${BB.tab === k}" data-bbtab="${k}"><span>${i}</span>${t}${k === "ventas" && BB.lista && BB.lista.registros ? `<i>${BB.lista.registros.length}</i>` : ""}</button>`).join("")}</div><div id="bbBody"></div>`;
+  bbPintarCuerpo(); }
+function bbPintarCuerpo() { const b = document.getElementById("bbBody"); if (!b) return;
+  if (BB.tab === "docentes") { b.innerHTML = `<div class="bb-doc"><aside class="bb-card bb-lista"><form id="bbQF" class="bb-q" novalidate autocomplete="off"><input class="bb-inp" id="bbQ" type="search" placeholder="Buscá por correo, nombre o @instagram…" aria-label="Buscar docente" value="${esc(BB.q)}"></form><div id="bbDocL"></div>
+      <div class="bb-como"><b>👁 Ver como una docente</b><small>Abre su biblioteca tal como la ve ella (tenés que haber entrado a la biblioteca como administradora en este navegador).</small><form id="bbComoF" class="bb-q" novalidate><input class="bb-inp" id="bbComoE" type="email" placeholder="correo de la docente"><button class="btn" type="submit">Abrir ↗</button></form></div></aside>
+      <section class="bb-card bb-ficha" id="bbFicha"></section></div>`;
+    bbPintarDocLista(); bbPintarFicha(); bbCargarTop(); }
+  else if (BB.tab === "ventas") { b.innerHTML = bbVentasHtml(); bbVentasBind(); bbPintarLista(); if (!BB.lista) bbCargarLista(); }
+  else { b.innerHTML = bbMasivaHtml(); bbMasivaBind(); }
+}
+function bbRepintarParte() { if (currentView !== "biblio" || !BB.res) return; if (BB.tab === "ventas") { bbPicker("bbMats", BB.sel, bbSug); bbSug(); } else if (BB.tab === "masiva") bbPicker("bbMMats", BB.msel, () => { BB.masiva = null; bbMPintar(); }); }
+
+// ---------- conectar ----------
+function bbLoginHtml() { const L = BB.login, sug = (typeof SupaSes !== "undefined" && SupaSes.get() && SupaSes.get().email) || "";
+  return `<div class="bb-card bb-login"><div class="bb-login-ic">🔐</div><div class="bb-login-b"><h2>Conectá tu biblioteca</h2><p>Una sola vez en esta computadora: entrás con tu correo de administradora y el código de 6 números que te manda la biblioteca. La sesión queda guardada solo en este navegador.</p>
+    ${L.paso === "email" ? `<form id="bbLgF" class="bb-lg" novalidate><label>Correo de administradora<input class="bb-inp" id="bbLgE" type="email" inputmode="email" autocomplete="email" value="${esc(L.email || sug)}" placeholder="tu correo"></label><button class="btn primary" type="submit" ${L.busy ? "disabled" : ""}>${L.busy ? "Enviando…" : "Enviarme el código"}</button></form>`
+      : `<form id="bbLgF2" class="bb-lg" novalidate><label>Código que te llegó a ${esc(L.email)}<input class="bb-inp bb-code" id="bbLgC" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••"></label><button class="btn primary" type="submit" ${L.busy ? "disabled" : ""}>${L.busy ? "Entrando…" : "Conectar"}</button><button class="bb-link" type="button" data-bb="otro">Usar otro correo</button></form><small class="muted">Mirá también en Spam o Promociones.</small>`}
+    ${L.msg ? `<div class="bb-msg">⚠️ ${esc(L.msg)}</div>` : ""}</div></div>`; }
+function bbLoginBind() { const f = document.getElementById("bbLgF"), f2 = document.getElementById("bbLgF2");
+  if (f) f.onsubmit = (e) => { e.preventDefault(); bbPedirCodigo(); };
+  if (f2) { f2.onsubmit = (e) => { e.preventDefault(); bbEntrar(); }; const c = document.getElementById("bbLgC"); c.oninput = () => { c.value = c.value.replace(/\D/g, "").slice(0, 6); if (c.value.length === 6) bbEntrar(); }; } }
+
+// ---------- docentes ----------
+const bbFila = (x, i) => `<button class="bb-dr${BB.ficha && BB.ficha.email === x.email ? " on" : ""}" type="button" data-bbdoc="${esc(x.email)}"><span class="bb-av" style="--h:${(i * 47) % 360}">${esc(bbIni(x.nombre, x.email))}</span><span class="bb-dt"><b>${esc(x.nombre || x.email)}</b><small>${esc(x.email)}${x.instagram ? " · @" + esc(x.instagram) : ""}</small></span><span class="bb-ds"><em>${money(x.gastado)}</em><small>${x.materiales} mat.</small></span></button>`;
+function bbPintarDocLista() { const box = document.getElementById("bbDocL"); if (!box) return; const R = BB.resultados;
+  if (R) { box.innerHTML = R.error ? `<div class="bb-msg">⚠️ ${esc(R.error)}</div>` : R.length ? `<div class="bb-lh">${R.length} resultado${R.length === 1 ? "" : "s"}</div>${R.map(bbFila).join("")}` : `<div class="bb-empty">No encontré docentes con eso.${bbEmailOk(BB.q) ? ` <button class="bb-link" type="button" data-bbdoc="${esc(BB.q.trim().toLowerCase())}">Abrir la ficha de ${esc(BB.q.trim())}</button>` : " Probá con el correo completo."}</div>`; return; }
+  const T = BB.top; if (!T) { box.innerHTML = '<div class="skel" style="height:58px"></div>'.repeat(5); return; }
+  box.innerHTML = T.error ? `<div class="bb-msg">⚠️ ${esc(T.error)}</div>` : T.top.length ? `<div class="bb-lh">⭐ Tus mejores clientas <small>de ${Number(T.total || 0).toLocaleString("es-AR")}</small></div>${T.top.map(bbFila).join("")}` : '<div class="bb-empty">Todavía no hay docentes registradas.</div>'; }
+function bbAccesoDe(m) { const L = (BB.cli && BB.cli.accesos) || [], k = bbFold(m.nombre); return L.find((a) => bbFold(a.nombre) === k && (!m.origen || a.origen === m.origen)) || L.find((a) => bbFold(a.nombre) === k) || null; }
+function bbPintarFicha() { const v = document.getElementById("bbFicha"); if (!v) return; const F = BB.ficha;
+  if (!F) { v.innerHTML = `<div class="bb-fvac"><div>👩‍🏫</div><h3>Elegí una docente</h3><p>Tocá una clienta de la lista o buscala por correo, nombre o Instagram para ver su ficha: qué tiene, qué compró, cuánto descarga y tu nota interna.</p></div>`; return; }
+  if (F.cargando) { v.innerHTML = '<div class="skel" style="height:90px"></div><div class="skel" style="height:80px;margin-top:12px"></div><div class="skel" style="height:220px;margin-top:12px"></div>'; return; }
+  if (F.error) { v.innerHTML = `<div class="bb-msg">⚠️ ${esc(F.error)}</div><button class="btn" type="button" data-bbdoc="${esc(F.email)}">Reintentar</button>`; return; }
+  const dias = F.ultimaActividad ? Math.round((Date.now() - new Date(F.ultimaActividad)) / 864e5) : null, mats = F.materiales || [], act = mats.filter((m) => !m.revocado);
+  const tags = [F.ciudad && "📍 " + F.ciudad, F.cumple && "🎂 " + String(F.cumple).split("-").reverse().join("/"), F.recordatorio && "🔔 Recibe recordatorios", F.cofres && `🎁 Abrió ${F.cofres} cofre${F.cofres > 1 ? "s" : ""}`, F.llaves && F.llaves.n && `🗝️ ${F.llaves.n}/${F.llaves.meta} llaves`, (F.cupones || []).some((c) => c.copiado) && "🎟️ Usó un cupón", dias != null && dias > 90 && "😴 Hace más de 3 meses que no descarga"].filter(Boolean);
+  const filasM = mats.map((m, i) => { const a = bbAccesoDe(m), k = a ? a.material_id : "", conf = BB.quitar === k + "|" + i;
+    const btn = a ? (m.revocado ? `<button class="btn bb-sm" type="button" data-bbacc="${esc(k)}" data-hab="1" data-i="${i}">↩ Devolver</button>` : `<button class="btn bb-sm bb-dan${conf ? " conf" : ""}" type="button" data-bbacc="${esc(k)}" data-hab="0" data-i="${i}">${conf ? "¿Seguro? Tocá de nuevo" : "Quitar acceso"}</button>`) : "";
+    return `<tr class="${m.revocado ? "rev" : ""}"><td><b>${esc(m.nombre)}</b>${m.revocado ? ' <span class="bb-st no">sin acceso</span>' : ""}</td><td>${esc(BB_ORIGEN[m.origen] || m.origen || "")}</td><td class="muted">${bbFd(m.fecha)}</td><td class="num">${m.descargas || 0}</td><td class="muted">${m.ultima ? bbFd(m.ultima) : "—"}</td><td class="bb-acc">${btn}</td></tr>`; }).join("");
+  const filasO = (F.ordenes || []).map((o) => `<tr><td class="muted">${bbFd(o.fecha)}</td><td>${esc(o.metodo || "")}<div class="muted">#${esc(o.orden)}</div></td><td>${esc((o.productos || []).join(" · "))}${o.nota ? `<div class="muted">📝 ${esc(o.nota)}</div>` : ""}</td><td class="num">${o.total != null ? money(o.total) : "—"}</td></tr>`).join("");
+  const tiene = new Set(((BB.cli && BB.cli.accesos) || []).filter((a) => !a.revocado).map((a) => a.material_id)), dar = bbMats().filter((m) => !tiene.has(m.id));
+  const bv = esc(JSON.stringify({ e: F.email, n: F.nombre || "", m: act.map((m) => m.nombre) }));
+  v.innerHTML = `<div class="bb-ftop"><span class="bb-av lg">${esc(bbIni(F.nombre, F.email))}</span><div class="bb-fn"><h2>${esc(F.nombre || F.email)}</h2><div class="muted">${esc(F.email)}${F.instagram ? ` · <a href="https://instagram.com/${encodeURIComponent(F.instagram)}" target="_blank" rel="noopener">@${esc(F.instagram)}</a>` : ""}</div></div>
+      <div class="bb-acts"><a class="btn primary" href="${BB_URL}#como=${encodeURIComponent(F.email)}" target="_blank" rel="noopener">👁 Ver su biblioteca</a><button class="btn" type="button" data-bb="vender">💸 Registrar venta</button><button class="btn" type="button" data-bbbv="${bv}">💬 Mensaje de bienvenida</button><button class="btn" type="button" data-bbcopy="${esc(F.email)}">Copiar correo</button></div></div>
+    <div class="bb-fkp"><div><b>${money(F.gastado)}</b><span>gastó en total</span></div><div><b>${act.length}</b><span>materiales</span></div><div><b>${F.compras || 0}</b><span>compras</span></div><div><b>${(F.descargas && F.descargas.total) || 0}</b><span>descargas</span></div><div><b>${F.desde ? new Date(F.desde).toLocaleDateString("es-AR", { month: "short", year: "numeric" }) : "—"}</b><span>clienta desde</span></div><div><b>${dias == null ? "—" : dias === 0 ? "hoy" : `hace ${dias} d`}</b><span>última descarga</span></div></div>
+    ${tags.length ? `<div class="bb-tags">${tags.map((t) => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
+    <label class="bb-nota">📝 Nota interna <small>solo la ves vos · se guarda sola</small><textarea class="bb-inp" id="bbNota" maxlength="1000" rows="3" placeholder="Ej.: trabaja en 2.º grado, prefiere pagar por transferencia, le gustan las plataformas…">${esc(F.nota || "")}</textarea><small class="muted" id="bbNotaSt"></small></label>
+    <h3 class="bb-h3">📚 Materiales <small>${act.length} con acceso${mats.length - act.length ? ` · ${mats.length - act.length} quitado${mats.length - act.length > 1 ? "s" : ""}` : ""}</small></h3>
+    ${mats.length ? `<div class="bb-tw"><table class="bb-t"><thead><tr><th>Material</th><th>Cómo lo obtuvo</th><th>Desde</th><th class="num">Descargas</th><th>Última</th><th></th></tr></thead><tbody>${filasM}</tbody></table></div>` : '<div class="bb-empty">Sin materiales.</div>'}
+    ${dar.length ? `<form class="bb-dar" id="bbDarF" novalidate><span>🎁 Darle acceso a un material <small>(regalo o reposición, sin registrar venta)</small></span><select class="bb-inp" id="bbDarS"><option value="">Elegí un material…</option>${dar.map((m) => `<option value="${esc(m.id)}">${esc(m.nombre)}</option>`).join("")}</select><button class="btn" type="submit">Darle acceso</button></form>` : ""}
+    <h3 class="bb-h3">🧾 Compras</h3>${filasO ? `<div class="bb-tw"><table class="bb-t"><thead><tr><th>Fecha</th><th>Medio</th><th>Productos</th><th class="num">Monto</th></tr></thead><tbody>${filasO}</tbody></table></div>` : '<div class="bb-empty">Sin compras registradas (puede ser de antes de la biblioteca).</div>'}
+    ${(F.opiniones || []).length ? `<h3 class="bb-h3">💬 Opiniones</h3>${F.opiniones.map((o) => `<div class="bb-op"><span class="bb-stars">${"★".repeat(o.estrellas || 0)}${"☆".repeat(5 - (o.estrellas || 0))}</span> <b>${esc(o.nombre)}</b>${o.texto ? ` — <span class="muted">${esc(o.texto)}</span>` : ""}</div>`).join("")}` : ""}
+    ${(F.votos || []).length || (F.ideas || []).length ? `<h3 class="bb-h3">🗳️ Pedidos de materiales</h3><div class="bb-tags">${(F.votos || []).map((i) => `<span>♡ ${esc(i.titulo)}</span>`).join("")}${(F.ideas || []).map((i) => `<span>💡 ${esc(i.titulo)} (${esc(i.estado)})</span>`).join("")}</div>` : ""}
+    ${(F.copias || []).length ? `<h3 class="bb-h3">🔏 Copias personalizadas</h3><div class="bb-tags">${F.copias.map((c) => `<span>${esc(c.codigo)} · ${esc(c.nombre)} · ${c.descargas} desc.</span>`).join("")}</div>` : ""}
+    ${F.descargas && (F.descargas.recientes || []).length ? `<h3 class="bb-h3">⬇ Últimas descargas</h3><div class="bb-tags">${F.descargas.recientes.map((x) => `<span>${bbFd(x.fecha)} · ${esc(x.nombre)}</span>`).join("")}</div>` : ""}`;
+  const nota = document.getElementById("bbNota"); let orig = nota.value;
+  const guardar = async () => { if (nota.value === orig) return; const st = document.getElementById("bbNotaSt"); st.textContent = "Guardando…"; const val = nota.value;
+    try { await bbApi({ accion: "ficha_nota", email: F.email, nota: val }); orig = val; F.nota = val; st.textContent = "✓ Guardada"; } catch (e) { st.textContent = "⚠️ " + e.message; } };
+  nota.onblur = guardar; let tm = null; nota.oninput = () => { clearTimeout(tm); tm = setTimeout(guardar, 1500); };
+  const df = document.getElementById("bbDarF"); if (df) df.onsubmit = async (e) => { e.preventDefault(); const id = document.getElementById("bbDarS").value; if (!id) return toast("Elegí un material.", "warn"); const b = df.querySelector("button"); b.disabled = true; b.textContent = "Dando acceso…";
+    try { try { await bbApi({ accion: "dar", email: F.email, materiales: [id] }); } catch (err) { if (bbAuthErr(err) && !/desconocida|no existe/i.test(err.message)) throw err; await bbApi({ accion: "acceso", email: F.email, material: id, habilitar: true }); }
+      toast(`🎁 ${bbNomMat(id)} habilitado para ${F.nombre || F.email}`, "ok"); BB.top = null; bbAbrirFicha(F.email); } catch (err) { toast(err.message, "warn"); b.disabled = false; b.textContent = "Darle acceso"; } }; }
+async function bbAcceso(b) { const F = BB.ficha, k = b.dataset.bbacc, hab = b.dataset.hab === "1", key = k + "|" + b.dataset.i;
+  if (!hab && BB.quitar !== key) { BB.quitar = key; bbPintarFicha(); setTimeout(() => { if (BB.quitar === key) { BB.quitar = null; bbPintarFicha(); } }, 4000); return; }
+  BB.quitar = null; b.disabled = true; b.textContent = hab ? "Devolviendo…" : "Quitando…";
+  try { await bbApi({ accion: "acceso", email: F.email, material: k, habilitar: hab }); toast(hab ? "Acceso devuelto ✓" : "Acceso quitado", "ok"); bbAbrirFicha(F.email); } catch (e) { toast(e.message, "warn"); bbPintarFicha(); } }
+
+// ---------- selector de materiales (reutilizable) ----------
+const BB_PQ = {};
+function bbPicker(id, set, onChange) { const box = document.getElementById(id); if (!box) return; const q = bbFold(BB_PQ[id] || ""), ya = id === "bbMats" ? new Set(((BB.vCli && BB.vCli.accesos) || []).filter((a) => !a.revocado).map((a) => a.material_id)) : new Set();
+  const L = bbMats().filter((m) => !q || bbFold(m.nombre + " " + m.id).includes(q));
+  box.innerHTML = L.length ? L.map((m) => `<label class="bb-mc${set.has(m.id) ? " on" : ""}${ya.has(m.id) ? " ya" : ""}"><input type="checkbox" data-bbm="${esc(m.id)}" ${set.has(m.id) ? "checked" : ""}><span>${esc(m.nombre)}<em>${ya.has(m.id) ? "✓ ya lo tiene" : bbPrecio(m.id) ? money(bbPrecio(m.id)) : m.tipo === "plataforma" ? "Plataforma" : "sin precio"}</em></span></label>`).join("") : '<div class="bb-empty">No hay materiales con ese nombre.</div>';
+  box.onchange = (e) => { const c = e.target.closest("input[data-bbm]"); if (!c) return; c.checked ? set.add(c.dataset.bbm) : set.delete(c.dataset.bbm); c.closest(".bb-mc").classList.toggle("on", c.checked); const n = document.getElementById(id + "N"); if (n) n.textContent = set.size ? `${set.size} elegido${set.size > 1 ? "s" : ""}` : ""; onChange && onChange(); };
+  const n = document.getElementById(id + "N"); if (n) n.textContent = set.size ? `${set.size} elegido${set.size > 1 ? "s" : ""}` : ""; }
+const bbPickerHtml = (id, titulo) => `<div class="bb-mh"><b>${titulo}</b><input class="bb-inp" data-bbpq="${id}" placeholder="Buscar material…" aria-label="Buscar material" value="${esc(BB_PQ[id] || "")}"><span class="muted" id="${id}N"></span></div><div class="bb-mg" id="${id}"></div>`;
+document.addEventListener("input", (e) => { const t = e.target; if (!t || !t.dataset || !t.dataset.bbpq) return; BB_PQ[t.dataset.bbpq] = t.value; if (t.dataset.bbpq === "bbMats") bbPicker("bbMats", BB.sel, bbSug); else bbPicker("bbMMats", BB.msel, () => { BB.masiva = null; bbMPintar(); }); });
+
+// ---------- ventas a mano ----------
+function bbVentasHtml() { const hoy = bbHoy();
+  return `<div class="bb-card"><form class="bb-vf" id="bbVF" novalidate autocomplete="off"><div id="bbEdBan" class="bb-edban" hidden></div>
+    <div class="bb-g"><label>Correo de la docente *<input class="bb-inp" id="bbVE" type="email" inputmode="email" placeholder="docente@gmail.com"></label>
+      <label class="bb-rel">Nombre y apellido <small>se imprime en su copia del PDF</small><input class="bb-inp" id="bbVN" maxlength="80" placeholder="Ej.: María López"><div id="bbVSug" class="bb-sug" hidden></div></label>
+      <label>Usuario de Instagram<input class="bb-inp" id="bbVI" maxlength="40" placeholder="@usuario"></label>
+      <label>Fecha de la compra<input class="bb-inp" id="bbVD" type="date" value="${hoy}" max="${hoy}"></label>
+      <label>Monto total <small id="bbVSugM"></small><input class="bb-inp" id="bbVM" inputmode="decimal" placeholder="Ej.: 7500"></label>
+      <label class="full">Nota <small>solo la ves vos</small><input class="bb-inp" id="bbVNo" maxlength="300" placeholder="Ej.: pagó por alias el 3/10, pidió también la versión en blanco y negro"></label></div>
+    <div id="bbVCli" class="bb-cli" hidden></div>
+    ${bbPickerHtml("bbMats", "Materiales que compró *")}
+    <div id="bbDesg" class="bb-desg" hidden></div>
+    <div class="bb-acts"><button class="btn primary" type="submit" id="bbVGo">Registrar y darle acceso</button><button class="btn" type="button" id="bbVCan" hidden>Cancelar la edición</button><label class="bb-chk" id="bbVMantL"><input type="checkbox" id="bbVMant"> Dejar elegidos los mismos materiales para la próxima</label></div>
+    <div id="bbVRes"></div></form></div>
+    <div class="bb-card"><div id="bbLista"></div></div>`; }
+function bbVentasBind() { const F = document.getElementById("bbVF"); F.onsubmit = bbRegistrar;
+  const E = document.getElementById("bbVE"); E.onchange = E.onblur = () => bbBuscarCli();
+  document.getElementById("bbVM").oninput = () => { const v = bbNum(document.getElementById("bbVM").value); BB.montoTocado = document.getElementById("bbVM").value.trim() !== "" && v !== bbSuma(BB.sel); bbSug(); };
+  document.getElementById("bbVCan").onclick = () => bbSalirEd(true);
+  const N = document.getElementById("bbVN"); N.oninput = () => bbSugNom(N); N.onblur = () => setTimeout(() => { const s = document.getElementById("bbVSug"); if (s) s.hidden = true; }, 180);
+  bbPicker("bbMats", BB.sel, bbSug); bbSug(); if (BB.edit) bbEdBan();
+  if (BB.pre) { const x = BB.pre; BB.pre = null; E.value = x.email; if (x.nombre) N.value = x.nombre; if (x.instagram) document.getElementById("bbVI").value = "@" + String(x.instagram).replace(/^@/, ""); bbBuscarCli(); setTimeout(() => { const q = document.querySelector('[data-bbpq="bbMats"]'); if (q) q.focus(); }, 300); } }
+// sugerencias de docentes por nombre (de las ventas del panel)
+function bbSugNom(inp) { const box = document.getElementById("bbVSug"); if (!box) return; const q = inp.value.trim(); if (q.length < 2 || typeof vcBuscar !== "function") { box.hidden = true; return; }
+  const L = vcBuscar(q).filter((x) => x.c.e); if (!L.length) { box.hidden = true; return; }
+  box.innerHTML = `<div class="bb-sh">👤 Posibles compradoras</div>${L.map((x, i) => `<button type="button" class="bb-si" data-bbsug="${i}"><b>${esc(x.c.n || x.c.e)}</b><small>${esc([x.c.e, x.c.ig ? "@" + String(x.c.ig).replace(/^@/, "") : ""].filter(Boolean).join(" · "))}</small></button>`).join("")}`; box.hidden = false; box._L = L; }
+document.addEventListener("mousedown", (e) => { const b = e.target.closest && e.target.closest("[data-bbsug]"); if (!b) return; e.preventDefault(); const box = document.getElementById("bbVSug"), x = box && box._L && box._L[+b.dataset.bbsug]; if (!x) return;
+  document.getElementById("bbVN").value = x.c.n || ""; document.getElementById("bbVE").value = String(x.c.e || "").toLowerCase(); if (x.c.ig) document.getElementById("bbVI").value = "@" + String(x.c.ig).replace(/^@/, ""); box.hidden = true; bbBuscarCli(); }, true);
+const bbSuma = (set) => [...set].reduce((a, id) => a + bbPrecio(id), 0);
+function bbSug() { const s = bbSuma(BB.sel), el = document.getElementById("bbVSugM"), m = document.getElementById("bbVM"), dg = document.getElementById("bbDesg"); if (!m) return;
+  if (!BB.montoTocado) m.value = s ? String(s) : ""; if (el) el.textContent = s ? (BB.montoTocado ? `lista: ${money(s)}` : "suma de los materiales") : "";
+  const L = [...BB.sel].map((id) => ({ n: bbNomMat(id), p: bbPrecio(id) })), sin = L.filter((x) => !x.p), cob = bbNum(m.value), dif = cob != null ? cob - s : 0;
+  dg.hidden = !L.length;
+  dg.innerHTML = L.length ? `<div class="bb-dl">${L.map((x) => `<span>${esc(x.n)}<b>${x.p ? money(x.p) : "sin precio"}</b></span>`).join("")}</div><div class="bb-dtot"><span>Suma de los materiales</span><b>${money(s)}</b></div>${BB.montoTocado && cob != null && dif ? `<div class="bb-dd ${dif < 0 ? "desc" : ""}">${dif < 0 ? `Descuento de ${money(-dif)}${s ? ` (${Math.round((-dif / s) * 100)}%)` : ""}` : `${money(dif)} más que la lista`} · <button type="button" class="bb-link" data-bb="usarsuma">Usar la suma</button></div>` : ""}${sin.length ? `<div class="bb-dd">⚠️ ${sin.length === 1 ? "Un material no tiene" : sin.length + " materiales no tienen"} precio en la web: sumalo a mano en el monto.</div>` : ""}` : ""; }
+async function bbBuscarCli() { const E = document.getElementById("bbVE"), box = document.getElementById("bbVCli"); if (!E || !box) return; const v = E.value.trim().toLowerCase();
+  if (!bbEmailOk(v)) { BB.vCli = null; box.hidden = true; bbPicker("bbMats", BB.sel, bbSug); return; } if (BB.vCli && BB.vCli.email === v) return;
+  try { BB.vCli = await bbApi({ accion: "cliente", email: v }); } catch { BB.vCli = null; box.hidden = true; return; }
+  if (E.value.trim().toLowerCase() !== v) return; const C = BB.vCli, act = (C.accesos || []).filter((a) => !a.revocado), N = document.getElementById("bbVN"), I = document.getElementById("bbVI");
+  if (!N.value && C.nombre) N.value = C.nombre; if (!I.value && C.instagram) I.value = "@" + C.instagram;
+  box.innerHTML = act.length ? `👤 <b>${esc(C.nombre || v)}</b> ya tiene ${act.length} ${act.length === 1 ? "material" : "materiales"}: ${act.map((a) => esc(a.nombre)).join(" · ")}. Están marcados abajo con “✓ ya lo tiene”. <button class="bb-link" type="button" data-bbdoc="${esc(v)}">Ver su ficha</button>` : `🆕 <b>${esc(v)}</b> todavía no tiene materiales en la biblioteca. Revisá que el correo esté bien escrito: es con el que va a entrar.`;
+  box.className = "bb-cli" + (act.length ? "" : " nueva"); box.hidden = false; bbPicker("bbMats", BB.sel, bbSug); }
+const bbBvBtn = (e, n, m, txt) => `<button type="button" class="btn" data-bbbv="${esc(JSON.stringify({ e, n, m }))}">${txt || "📋 Copiar mensaje de bienvenida"}</button>`;
+function bbBienvenida(email, nombre, mats) { const n = String(nombre || "").trim().split(" ")[0];
+  return `¡Hola${n ? " " + n : ""}! 💛 Ya tenés tus materiales de Cofre Didáctico en *Mi biblioteca*, para descargarlos cuando quieras:\n\n${(mats || []).map((m) => "📚 " + m).join("\n")}\n\n1️⃣ Entrá a ${BB_URL}\n2️⃣ Escribí tu correo: ${email}\n3️⃣ Te llega un código de 6 números (mirá también en Spam o Promociones). Lo ponés y listo: no hace falta contraseña.\n\nCualquier duda me escribís 😊`; }
+function bbVForm() { const g = (id) => document.getElementById(id).value; return { email: g("bbVE").trim().toLowerCase(), nombre: g("bbVN").trim(), instagram: g("bbVI").trim(), fecha: g("bbVD") || bbHoy(), total: bbNum(g("bbVM")), nota: g("bbVNo").trim(), materiales: [...BB.sel] }; }
+function bbVLimpiar() { ["bbVE", "bbVN", "bbVI", "bbVM", "bbVNo"].forEach((id) => (document.getElementById(id).value = "")); document.getElementById("bbVD").value = bbHoy(); BB.vCli = null; document.getElementById("bbVCli").hidden = true; BB.montoTocado = false; }
+async function bbRegistrar(e) { e.preventDefault(); if (BB.edit) return bbGuardarEd(); const d = bbVForm();
+  if (!bbEmailOk(d.email)) { toast("Escribí un correo válido.", "warn"); document.getElementById("bbVE").focus(); return; }
+  if (!d.materiales.length) { toast("Elegí al menos un material.", "warn"); return; }
+  if (d.fecha > bbHoy()) { toast("La fecha no puede ser futura.", "warn"); return; }
+  const b = document.getElementById("bbVGo"); b.disabled = true; b.textContent = "Registrando…";
+  try { const r = await bbApi({ accion: "registrar", ...d }); const todos = [...(r.materiales || []), ...(r.yaTenia || [])];
+    document.getElementById("bbVRes").innerHTML = `<div class="bb-ok">✅ Listo: <b>${esc(r.email)}</b> ya tiene ${esc((r.materiales || []).join(", ") || "sus materiales")} en su biblioteca.${r.yaTenia && r.yaTenia.length ? ` <span class="muted">(${esc(r.yaTenia.join(", "))}: ya lo tenía)</span>` : ""}<div class="bb-acts">${bbBvBtn(r.email, d.nombre, todos)}<button class="btn" type="button" data-bbdoc="${esc(r.email)}">Ver su ficha</button></div></div>`;
+    toast("Venta registrada ✓", "ok"); bbVLimpiar(); if (!document.getElementById("bbVMant").checked) BB.sel.clear(); bbPicker("bbMats", BB.sel, bbSug); bbSug(); document.getElementById("bbVE").focus();
+    BB.lista = null; BB.top = null; bbCargarLista(); bbRefRes(); }
+  catch (err) { document.getElementById("bbVRes").innerHTML = `<div class="bb-msg">⚠️ ${esc(err.message)}</div>`; toast(err.message, "warn"); }
+  b.disabled = false; b.textContent = BB.edit ? "Guardar cambios" : "Registrar y darle acceso"; }
+async function bbRefRes() { try { BB.res = await bbApi({ accion: "resumen" }); const k = document.querySelector("#view-biblio .bb-kp"); if (k) k.outerHTML = bbKpis(); } catch {} }
+// editar una venta: se deshace y se vuelve a registrar (si falla, se restaura la original)
+function bbIdsDe(o) { if (Array.isArray(o.materiales) && o.materiales.length) return { ids: o.materiales.slice(), sin: [] }; const M = (BB.res && BB.res.materiales) || [], ids = [], sin = [];
+  (o.productos || []).forEach((n) => { const k = bbFold(n), m = M.find((x) => bbFold(x.nombre) === k) || M.find((x) => bbFold(x.id) === k); m ? ids.push(m.id) : sin.push(n); }); return { ids: [...new Set(ids)], sin }; }
+const bbFechaISO = (o) => { const d = new Date(o.fecha_orden || o.fecha); return isNaN(d) ? bbHoy() : new Date(+d - 3 * 3600e3).toISOString().slice(0, 10); };
+function bbEditar(o) { const { ids, sin } = bbIdsDe(o); BB.edit = { o, ids, sin }; BB.sel = new Set(ids); BB.vCli = null;
+  const s = (id, v) => (document.getElementById(id).value = v); s("bbVE", o.email || ""); s("bbVN", o.nombre || ""); s("bbVI", o.instagram ? "@" + o.instagram : ""); s("bbVD", bbFechaISO(o)); s("bbVNo", o.nota || ""); s("bbVM", o.total != null ? String(o.total) : "");
+  BB.montoTocado = o.total != null && Number(o.total) !== bbSuma(BB.sel); document.getElementById("bbVRes").innerHTML = ""; bbPicker("bbMats", BB.sel, bbSug); bbSug(); bbEdBan();
+  document.getElementById("bbVF").scrollIntoView({ behavior: "smooth", block: "start" }); }
+function bbEdBan() { const b = document.getElementById("bbEdBan"); if (!b || !BB.edit) return; const { o, sin } = BB.edit; b.hidden = false;
+  b.innerHTML = `✏️ <b>Editando la venta de ${esc(o.nombre || o.email)}</b> del ${esc(bbFd(o.fecha_orden || o.fecha))}. Cambiá lo que necesites y tocá «Guardar cambios».${sin.length ? `<br><span class="bb-warn">⚠️ No encontré en la biblioteca: ${esc(sin.join(", "))}. Si los querés mantener, marcalos de nuevo abajo.</span>` : ""}`;
+  document.getElementById("bbVGo").textContent = "Guardar cambios"; document.getElementById("bbVCan").hidden = false; document.getElementById("bbVMantL").hidden = true; }
+function bbSalirEd(limpiar) { BB.edit = null; const b = document.getElementById("bbEdBan"); if (!b) return; b.hidden = true; b.innerHTML = ""; document.getElementById("bbVGo").textContent = "Registrar y darle acceso"; document.getElementById("bbVCan").hidden = true; document.getElementById("bbVMantL").hidden = false;
+  if (limpiar) { bbVLimpiar(); BB.sel.clear(); bbPicker("bbMats", BB.sel, bbSug); bbSug(); } }
+async function bbGuardarEd() { const { o, ids } = BB.edit, d = bbVForm();
+  if (!bbEmailOk(d.email)) { toast("Escribí un correo válido.", "warn"); return; } if (!d.materiales.length) { toast("Elegí al menos un material.", "warn"); return; }
+  const b = document.getElementById("bbVGo"), res = document.getElementById("bbVRes"); b.disabled = true; b.textContent = "Guardando…";
+  try { await bbApi({ accion: "deshacer_registro", orden: o.orden }); } catch (err) { toast(err.message, "warn"); b.disabled = false; b.textContent = "Guardar cambios"; return; }
+  try { const r = await bbApi({ accion: "registrar", ...d }); res.innerHTML = `<div class="bb-ok">✅ Venta actualizada: <b>${esc(r.email)}</b> tiene ${esc((r.materiales || []).join(", "))}${d.total != null ? ` · ${money(d.total)}` : ""}.<div class="bb-acts">${bbBvBtn(r.email, d.nombre, [...(r.materiales || []), ...(r.yaTenia || [])])}</div></div>`; toast("Venta actualizada ✓", "ok"); b.disabled = false; bbSalirEd(true); }
+  catch (err) { let rest = false; if (ids.length) { try { await bbApi({ accion: "registrar", email: o.email, nombre: o.nombre || "", instagram: o.instagram || "", fecha: bbFechaISO(o), total: o.total, nota: o.nota || "", materiales: ids }); rest = true; } catch {} }
+    res.innerHTML = `<div class="bb-msg">⚠️ No se pudieron guardar los cambios: ${esc(err.message)}. ${rest ? "Dejé la venta como estaba." : "<b>La venta original quedó deshecha</b>: registrala de nuevo con los datos del formulario."}</div>`; b.disabled = false; if (!rest) bbSalirEd(false); else b.textContent = "Guardar cambios"; }
+  BB.lista = null; BB.top = null; bbCargarLista(); bbRefRes(); }
+async function bbCargarLista() { try { BB.lista = await bbApi({ accion: "manuales" }); } catch (e) { BB.lista = { registros: [], total: 0, error: e.message }; } bbPintarLista(); const t = document.querySelector('[data-bbtab="ventas"]'); if (t && BB.lista.registros) { let i = t.querySelector("i"); if (!i) { i = document.createElement("i"); t.appendChild(i); } i.textContent = BB.lista.registros.length; } }
+function bbPintarLista() { const box = document.getElementById("bbLista"); if (!box) return; if (!BB.lista) { box.innerHTML = '<div class="skel" style="height:160px"></div>'; return; }
+  if (BB.lista.error) { box.innerHTML = `<div class="bb-msg">⚠️ No se pudo cargar la lista: ${esc(BB.lista.error)}</div>`; return; }
+  const all = BB.lista.registros || [], q = bbFold(BB.listaQ), L = q ? all.filter((o) => bbFold([o.nombre, o.email, o.instagram, (o.productos || []).join(" "), o.nota].join(" ")).includes(q)) : all;
+  const mes = new Date().toISOString().slice(0, 7), delMes = all.filter((o) => String(bbFechaISO(o)).slice(0, 7) === mes), totMes = delMes.reduce((a, o) => a + (Number(o.total) || 0), 0);
+  const filas = L.map((o) => `<tr><td class="muted">${esc(bbFd(o.fecha_orden || o.fecha))}</td><td><b>${esc(o.nombre || "—")}</b>${o.instagram ? ` <span class="muted">@${esc(String(o.instagram).replace(/^@/, ""))}</span>` : ""}<div><button class="bb-link" type="button" data-bbdoc="${esc(o.email)}" title="Ver su ficha">${esc(o.email)}</button></div>${o.nota ? `<div class="muted">📝 ${esc(o.nota)}</div>` : ""}</td><td>${esc((o.productos || []).join(" · "))}</td><td class="num">${o.total != null ? money(o.total) : '<span class="muted">—</span>'}</td>
+    <td class="bb-acc">${bbBvBtn(o.email, o.nombre || "", o.productos || [], "💬")}<button class="btn bb-sm" type="button" data-bbed="${esc(o.orden)}">✏️ Editar</button><button class="btn bb-sm bb-dan${BB.borrar === String(o.orden) ? " conf" : ""}" type="button" data-bbdes="${esc(o.orden)}">${BB.borrar === String(o.orden) ? "¿Seguro? Tocá de nuevo" : "Deshacer"}</button></td></tr>`).join("");
+  box.innerHTML = `<div class="bb-lhead"><div><h3 class="bb-h3" style="margin:0">Registradas a mano <small>${all.length} · ${money(BB.lista.total)} en total · este mes ${delMes.length} (${money(totMes)})</small></h3></div><div class="bb-acts"><input class="bb-inp" id="bbLQ" type="search" placeholder="Filtrar…" value="${esc(BB.listaQ)}" aria-label="Filtrar ventas">${all.length ? '<button class="btn" type="button" data-bb="csv">⬇ Planilla (CSV)</button>' : ""}</div></div>
+    ${L.length ? `<div class="bb-tw"><table class="bb-t"><thead><tr><th>Fecha</th><th>Docente</th><th>Materiales</th><th class="num">Monto</th><th></th></tr></thead><tbody>${filas}</tbody></table></div>` : `<div class="bb-empty">${all.length ? "Ninguna venta coincide con el filtro." : "Todavía no registraste ventas por transferencia."}</div>`}`;
+  const lq = document.getElementById("bbLQ"); lq.oninput = () => { BB.listaQ = lq.value; const p = lq.selectionStart; bbPintarLista(); const n = document.getElementById("bbLQ"); n.focus(); try { n.setSelectionRange(p, p); } catch {} }; }
+async function bbDeshacer(b) { const o = b.dataset.bbdes; if (BB.borrar !== o) { BB.borrar = o; bbPintarLista(); setTimeout(() => { if (BB.borrar === o) { BB.borrar = null; bbPintarLista(); } }, 4000); return; }
+  BB.borrar = null; b.disabled = true; b.textContent = "Deshaciendo…";
+  try { await bbApi({ accion: "deshacer_registro", orden: o }); toast("Registro deshecho: se quitaron esos accesos", "ok"); BB.top = null; await bbCargarLista(); bbRefRes(); } catch (e) { toast(e.message, "warn"); bbPintarLista(); } }
+async function bbCsv() { const q = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`, L = (BB.lista && BB.lista.registros) || [];
+  const txt = "﻿" + [["Fecha", "Nombre", "Correo", "Instagram", "Materiales", "Monto", "Nota", "Registro"].map(q).join(";"), ...L.map((o) => [new Date(o.fecha_orden || o.fecha).toLocaleDateString("es-AR"), o.nombre, o.email, o.instagram ? "@" + o.instagram : "", (o.productos || []).join(" + "), o.total ?? "", o.nota, o.orden].map(q).join(";"))].join("\r\n");
+  try { await saveFile("ventas-por-transferencia.csv", new Blob([txt], { type: "text/csv;charset=utf-8" }), "text/csv"); } catch (e) { toast(e.message, "warn"); } }
+
+// ---------- carga masiva ----------
+function bbMasivaHtml() { return `<div class="bb-card"><div class="bb-mint"><h2>📋 Carga masiva</h2><p>Pegá varias docentes de una vez, una por renglón: <b>correo ; nombre ; @instagram ; monto ; fecha</b>. Solo el correo es obligatorio. Si no ponés el monto, se usa la suma de los precios. A todas se les dan los <b>materiales marcados</b>; si alguna compró otros, agregá al final una columna con los nombres separados por «|».</p></div>
+  ${bbPickerHtml("bbMMats", "Materiales para todas")}
+  <textarea class="bb-inp bb-mta" id="bbMT" rows="7" spellcheck="false" placeholder="maria@gmail.com; María López; @seno.maria; 7500; 03/10/2026&#10;laura@hotmail.com; Laura Gómez&#10;ana@gmail.com; Ana Ruiz; ; 12000; ; Malvinas | Día de la Bandera">${esc(BB.mTxt || "")}</textarea>
+  <div class="bb-acts"><button class="btn" type="button" data-bb="mrevisar">Revisar la lista</button><button class="btn primary" type="button" id="bbMGo" hidden></button><button class="btn" type="button" id="bbMBv" hidden>📋 Copiar todas las bienvenidas</button></div><div id="bbMRes"></div></div>`; }
+function bbMasivaBind() { bbPicker("bbMMats", BB.msel, () => { BB.masiva = null; bbMPintar(); }); const t = document.getElementById("bbMT"); t.oninput = () => { BB.mTxt = t.value; BB.masiva = null; bbMPintar(); }; document.getElementById("bbMGo").onclick = bbMRegistrar; document.getElementById("bbMBv").onclick = bbMBvTodas; bbMPintar(); }
+function bbMParse(txt) { const hoy = bbHoy(), mats = bbMats(), vistos = new Set();
+  return String(txt || "").split(/\n+/).map((l) => l.trim()).filter(Boolean).map((l) => { const c = (/[;\t]/.test(l) ? l.split(/[;\t]/) : l.split(",")).map((x) => x.trim());
+    const f = { email: (c[0] || "").toLowerCase(), nombre: c[1] || "", instagram: (c[2] || "").replace(/^@/, ""), total: null, fecha: hoy, materiales: [...BB.msel], nombres: [], err: "" };
+    if (c[3]) { const n = bbNum(c[3]); if (c[3].replace(/\D/g, "") && n != null && !isNaN(n)) f.total = n; }
+    if (c[4]) { const m = /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/.exec(c[4]), i = /^(\d{4})-(\d{2})-(\d{2})$/.exec(c[4]); if (m) f.fecha = `${m[3].length === 2 ? "20" + m[3] : m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}`; else if (i) f.fecha = c[4]; else f.err = "fecha no reconocida (usá día/mes/año)"; if (!f.err && f.fecha > hoy) f.err = "la fecha es futura"; }
+    if (c[5]) { const ids = [], sin = []; c[5].split("|").map((x) => x.trim()).filter(Boolean).forEach((q) => { const k = bbFold(q), L = mats.filter((m) => bbFold(m.nombre).includes(k) || bbFold(m.id) === k); if (L.length === 1) ids.push(L[0].id); else sin.push(q + (L.length > 1 ? ` (coincide con ${L.length})` : "")); }); f.materiales = [...new Set(ids)]; if (sin.length) f.err = "no encontré el material: " + sin.join(", "); }
+    f.nombres = f.materiales.map(bbNomMat);
+    if (f.total == null) { const sm = bbSuma(new Set(f.materiales)); if (sm) { f.total = sm; f.auto = true; } }
+    if (!bbEmailOk(f.email)) f.err = "correo no válido"; else if (vistos.has(f.email)) f.err = "correo repetido en la lista"; else if (!f.materiales.length && !f.err) f.err = "sin materiales: marcalos arriba o sumá la columna";
+    vistos.add(f.email); return f; }); }
+function bbMPintar() { const box = document.getElementById("bbMRes"); if (!box) return; const L = BB.masiva || [], ok = L.filter((f) => !f.err && !f.hecho), go = document.getElementById("bbMGo"), bv = document.getElementById("bbMBv");
+  box.innerHTML = L.length ? `<div class="bb-mres">${L.map((f) => `<div class="bb-mr ${f.err ? "mal" : f.hecho ? "ok" : ""}"><b>${esc(f.email || "(sin correo)")}</b><span>${esc([f.nombre, f.instagram ? "@" + f.instagram : "", f.total != null ? money(f.total) + (f.auto ? " (suma de lista)" : "") : "", f.fecha.split("-").reverse().join("/")].filter(Boolean).join(" · "))}</span><span class="muted">${esc(f.nombres.join(", "))}</span><em>${f.err ? "⚠️ " + esc(f.err) : f.hecho ? "✅ " + esc(f.hecho) + " " + bbBvBtn(f.email, f.nombre, f.nombres, "💬 Bienvenida") : esc(f.estado || "Lista para registrar")}</em></div>`).join("")}</div>` : '<div class="bb-empty">Pegá la lista y tocá «Revisar la lista».</div>';
+  go.hidden = !ok.length; go.disabled = BB.mBusy; go.textContent = BB.mBusy ? "Registrando…" : `Registrar ${ok.length} docente${ok.length === 1 ? "" : "s"} y darles acceso`; bv.hidden = !L.some((f) => f.hecho); }
+async function bbMRegistrar() { if (BB.mBusy || !BB.masiva) return; const L = BB.masiva.filter((f) => !f.err && !f.hecho); if (!L.length) return; BB.mBusy = true; bbMPintar(); let n = 0;
+  for (const f of L) { f.estado = "Registrando…"; bbMPintar();
+    try { const r = await bbApi({ accion: "registrar", email: f.email, nombre: f.nombre, instagram: f.instagram, fecha: f.fecha, total: f.total, nota: "Carga masiva", materiales: f.materiales }); f.hecho = r.yaTenia && r.yaTenia.length && !(r.materiales || []).length ? "ya los tenía" : "registrada"; n++; }
+    catch (err) { f.err = err.message || "no se pudo registrar"; } f.estado = ""; bbMPintar(); }
+  BB.mBusy = false; bbMPintar(); toast(`${n} docente${n === 1 ? "" : "s"} registrada${n === 1 ? "" : "s"} ✓`, "ok"); BB.lista = null; BB.top = null; bbRefRes(); }
+async function bbMBvTodas(e) { const L = (BB.masiva || []).filter((f) => f.hecho); const txt = L.map((f) => `— ${f.nombre || f.email} —\n${bbBienvenida(f.email, f.nombre, f.nombres)}`).join("\n\n"); await copyText(e.currentTarget, txt, "¡Copiadas!"); }
+
+// ---------- eventos ----------
+document.addEventListener("click", async (e) => { const v = document.getElementById("view-biblio"); if (!v || !v.contains(e.target)) return; const t = e.target.closest("button,a"); if (!t) return;
+  if (t.dataset.bbtab) { BB.tab = t.dataset.bbtab; try { localStorage.setItem("cofre-bb-tab", BB.tab); } catch {} v.querySelectorAll(".bb-tab").forEach((x) => { const on = x.dataset.bbtab === BB.tab; x.classList.toggle("on", on); x.setAttribute("aria-selected", String(on)); }); bbPintarCuerpo(); return; }
+  if (t.dataset.bbdoc) { e.preventDefault(); const em = t.dataset.bbdoc; if (BB.tab !== "docentes") { BB.tab = "docentes"; bbPintar(); } bbAbrirFicha(em); return; }
+  if (t.dataset.bbacc != null && t.dataset.bbacc !== "") { bbAcceso(t); return; }
+  if (t.dataset.bbbv) { e.preventDefault(); try { const d = JSON.parse(t.dataset.bbbv); await copyText(null, bbBienvenida(d.e, d.n, d.m)); toast("💬 Mensaje de bienvenida copiado", "ok"); } catch { toast("No se pudo copiar el mensaje.", "warn"); } return; }
+  if (t.dataset.bbcopy) { copyText(t, t.dataset.bbcopy); return; }
+  if (t.dataset.bbed) { const o = ((BB.lista && BB.lista.registros) || []).find((x) => String(x.orden) === t.dataset.bbed); if (o) bbEditar(o); return; }
+  if (t.dataset.bbdes) { bbDeshacer(t); return; }
+  const a = t.dataset.bb; if (!a) return;
+  if (a === "refrescar") { Object.assign(BB, { top: null, lista: null, resultados: null }); BB.res = null; BB.precios = null; bbProbar(); }
+  else if (a === "desconectar") bbDesconectar();
+  else if (a === "otro") { BB.login.paso = "email"; BB.login.msg = ""; bbPintar(); }
+  else if (a === "vender") { const F = BB.ficha; BB.pre = { email: F.email, nombre: F.nombre, instagram: F.instagram }; BB.edit = null; BB.tab = "ventas"; bbPintar(); }
+  else if (a === "usarsuma") { BB.montoTocado = false; bbSug(); }
+  else if (a === "csv") bbCsv();
+  else if (a === "mrevisar") { if (!BB.res) return; BB.mTxt = document.getElementById("bbMT").value; BB.masiva = bbMParse(BB.mTxt); if (!BB.masiva.length) toast("Pegá al menos un renglón.", "warn"); bbMPintar(); }
+});
+document.addEventListener("input", (e) => { if (e.target && e.target.id === "bbQ") bbBuscar(e.target.value); });
+document.addEventListener("submit", (e) => { const f = e.target; if (!f) return;
+  if (f.id === "bbQF") { e.preventDefault(); const v = document.getElementById("bbQ").value.trim().toLowerCase(); if (bbEmailOk(v)) bbAbrirFicha(v); else bbBuscar(v); }
+  else if (f.id === "bbComoF") { e.preventDefault(); const v = document.getElementById("bbComoE").value.trim().toLowerCase(); if (!bbEmailOk(v)) return toast("Escribí un correo válido.", "warn"); window.open(`${BB_URL}#como=${encodeURIComponent(v)}`, "_blank", "noopener"); } });
+
+// ---------- integración con la navegación ----------
+bbNav();
+{ const _sv = showView; showView = function (v) {
+    if (v !== "biblio") { const r = _sv.apply(this, arguments); const b = document.getElementById("view-biblio"); if (b) b.hidden = true; const t = document.querySelector('.side-nav .tab[data-view="biblio"]'); if (t) t.setAttribute("aria-selected", "false"); return r; }
+    bbView(); bbNav(); currentView = "biblio";
+    document.querySelectorAll(".view").forEach((m) => (m.hidden = m.id !== "view-biblio"));
+    document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t.dataset.view === "biblio")));
+    try { if (location.hash.slice(1) !== "biblio") history.replaceState(null, "", "#biblio"); } catch {}
+    window.scrollTo(0, 0); try { navAbrir("biblio"); } catch {} try { document.body.dataset.ppv = "biblio"; } catch {}
+    bbPintar(); }; }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
