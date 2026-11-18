@@ -1468,6 +1468,31 @@ body[data-orv]:not([data-orv="inicio"]) .hero-wrap{display:none}
   .ca-row{grid-template-columns:auto minmax(0,1fr);gap:10px}.ca-cd{grid-column:2;justify-self:start}.ca-rt>small{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   .ca-grid{gap:3px}.ca-day{min-height:58px;padding:4px;border-radius:9px}.ca-evs{display:none}.ca-dots{display:flex}.ca-dn{font-size:11.5px;min-width:20px;height:20px}.ca-dow{font-size:10px;padding:2px;text-align:center}
   .ca-ano{grid-template-columns:1fr}.ca-ig{grid-template-columns:1fr}.ca-calh h2{min-width:0;font-size:17px}}
+.ca-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.ca-tabs .ca-t-paises{--tc:#8B5CF6}
+.ca-paises{display:grid;gap:10px}
+.ca-pchips{display:flex;gap:8px;flex-wrap:wrap}
+.ca-pchips button{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:14px;padding:8px 14px;border-radius:99px;cursor:pointer}
+.ca-pchips button span{font-size:18px}.ca-pchips small{font-size:11.5px;color:var(--muted);background:var(--surface-2);border-radius:99px;padding:1px 7px}
+.ca-pchips button[aria-pressed="true"]{border-color:var(--cc,#8B5CF6);background:color-mix(in srgb,var(--cc,#8B5CF6) 12%,var(--surface));box-shadow:0 0 0 3px color-mix(in srgb,var(--cc,#8B5CF6) 18%,transparent)}
+.ca-merc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:14px 16px;border-radius:18px;border:1px solid color-mix(in srgb,var(--cc,#8B5CF6) 35%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--cc,#8B5CF6) 12%,var(--surface)),var(--surface) 70%)}
+.ca-mf{font-size:34px;line-height:1}.ca-merc b{font-size:15px}.ca-merc p{margin:3px 0;font-size:13.5px;line-height:1.45}.ca-merc small{font-size:12.5px;color:var(--muted)}
+.ca-dem{font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.ca-dem.alta{background:color-mix(in srgb,#F97316 18%,transparent);color:#F97316}.ca-dem.media{background:color-mix(in srgb,#EAB308 16%,transparent);color:#CA8A04}.ca-dem.baja{background:var(--surface-2);color:var(--muted)}
+.ca-st.prep{background:color-mix(in srgb,#F97316 14%,transparent);color:#EA7317}
+.ca-mcl em.hot{background:transparent;width:auto}.ca-mcl em.fl{background:transparent;width:auto;font-size:12px}
+.ca-box.pais{background:color-mix(in srgb,var(--pc) 8%,var(--surface-2));border:1px solid color-mix(in srgb,var(--pc) 30%,var(--line))}
+.ca-tl{list-style:none;margin:6px 0 4px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ca-tl li{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.ca-tl li>span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--surface-2);flex:none;font-size:14px}
+.ca-tl li div{display:grid;min-width:0}.ca-tl b{font-size:12.5px}.ca-tl small{font-size:11.5px;color:var(--muted)}
+.ca-tl li.on{border-color:var(--pc);box-shadow:0 0 0 2px color-mix(in srgb,var(--pc) 25%,transparent)}.ca-tl li.ok>span{background:#22A35A;color:#fff}
+@media (max-width:1100px){.ca-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.ca-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.ca-tabs b{font-size:11.5px}.ca-tl{grid-template-columns:1fr}.ca-pchips button{padding:7px 11px;font-size:13px}}
+
+.ca-mcl button{display:flex}.ca-mcl button>span{flex:1}.ca-mcl button>b{width:22px;flex:none}.ca-mcl em{flex:none}
+.ca-mcl button{min-width:0;width:100%}.ca-mcl button>span{min-width:0}
+.ca-mcl em.fl,.ca-mcl em.hot{background:transparent!important;border:0;width:auto;height:auto;font-size:12px;padding:0}
+@media (max-width:760px){.ca-pchips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.ca-pchips button{flex:none}}
 
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
@@ -26528,12 +26553,75 @@ const CA_INT=[
   ["12-11","Día Internacional de las Montañas","ambiente","Las montañas, fuentes de agua y biodiversidad (ONU)."],
   ["12-18","Día Internacional del Migrante","derechos","Derechos de las personas migrantes (ONU)."],
 ];
-const CA_TABS=[["ar","🇦🇷","Argentina","Fechas patrias y efemérides nacionales"],["int","🌎","Mundiales e internacionales","Días de la ONU, la UNESCO y la OMS"],["todas","📌","Todas","Las dos juntas, en un solo calendario"]];
+// ---------- otros países: fechas fuertes para vender afuera ----------
+// [mm-dd, nombre, categoría, descripción, feriado (1 fijo · 2 se mueve), demanda (3 alta · 2 media · 1 baja)]
+const CA_PAISES={
+  mx:{f:"🇲🇽",n:"México",c:"#16A34A",tono:"Tuteo y vocabulario mexicano (salón, maestra, alumnos, primaria).",
+    mercado:"El mercado más grande en español. Lo más vendido son las planeaciones de la Nueva Escuela Mexicana y el material de Día de Muertos. Precios bajos y mucha competencia: conviene vender en paquetes.",
+    L:[["01-06","Día de Reyes","familia","Llegada de los Reyes Magos y la rosca de Reyes.",0,2],
+      ["02-05","Día de la Constitución Mexicana","patria","Promulgación de la Constitución de 1917. El feriado se pasa al primer lunes de febrero.",2,1],
+      ["02-24","Día de la Bandera de México","patria","Homenaje a la bandera nacional: honores y juramento en las escuelas.",0,2],
+      ["03-18","Expropiación Petrolera","patria","Lázaro Cárdenas nacionaliza el petróleo (1938).",0,1],
+      ["03-21","Natalicio de Benito Juárez","patria","Nacimiento del Benemérito de las Américas (1806). El feriado se pasa al tercer lunes de marzo.",2,2],
+      ["04-30","Día del Niño","familia","Uno de los festejos escolares más grandes del año en México.",0,3],
+      ["05-05","Batalla de Puebla","patria","Triunfo del ejército mexicano sobre el francés (1862).",0,2],
+      ["05-10","Día de las Madres","familia","Fecha fija en México: festivales, tarjetas y manualidades.",0,3],
+      ["05-15","Día del Maestro","escuela","Reconocimiento a las maestras y los maestros de México.",0,2],
+      ["09-13","Día de los Niños Héroes","patria","Defensa del Castillo de Chapultepec (1847).",0,2],
+      ["09-16","Independencia de México","patria","Grito de Dolores (1810). Las escuelas celebran la noche mexicana del 15.",1,3],
+      ["10-12","Día de la Nación Pluricultural","america","Reflexión sobre la diversidad cultural y los pueblos originarios.",0,1],
+      ["11-02","Día de Muertos","cultura","Altares, calaveritas literarias y catrinas (1 y 2 de noviembre). Patrimonio de la UNESCO.",0,3],
+      ["11-20","Revolución Mexicana","patria","Inicio de la Revolución (1910). El feriado se pasa al tercer lunes de noviembre.",2,3],
+      ["12-16","Las Posadas","familia","Festejos navideños del 16 al 24 de diciembre: piñatas y villancicos.",0,2]]},
+  cl:{f:"🇨🇱",n:"Chile",c:"#E11D48",tono:"Tuteo y vocabulario chileno (curso, apoderados, colegio, básica).",
+    mercado:"Fiestas Patrias es la gran fecha del año: decoración, juegos típicos, cueca y actos. Hay menos oferta digital que en México.",
+    L:[["04-07","Natalicio de Gabriela Mistral","escuela","Nace la poeta y maestra, Premio Nobel de Literatura (1889).",0,2],
+      ["05-11","Día del Estudiante","escuela","Celebración de las y los estudiantes en los colegios.",0,1],
+      ["05-21","Día de las Glorias Navales","patria","Combate Naval de Iquique y homenaje a Arturo Prat (1879).",1,2],
+      ["06-21","Día de los Pueblos Indígenas","america","Feriado en el solsticio de invierno (20 o 21 de junio): We Tripantu y año nuevo andino.",1,2],
+      ["08-20","Natalicio de Bernardo O'Higgins","patria","Nace el Padre de la Patria (1778).",0,1],
+      ["09-18","Fiestas Patrias","patria","Primera Junta Nacional de Gobierno (1810): fondas, cueca, juegos típicos y empanadas.",1,3],
+      ["09-19","Día de las Glorias del Ejército","patria","Parada militar y homenaje al Ejército.",1,1],
+      ["10-12","Encuentro de Dos Mundos","america","Reflexión sobre el encuentro de culturas en América.",2,1],
+      ["10-16","Día del Profesor","escuela","Reconocimiento a las y los docentes de Chile.",0,2],
+      ["11-22","Día de la Educación Parvularia","escuela","Celebración de la educación inicial en Chile.",0,1]],
+    mov:[["Día del Niño","familia","Segundo domingo de agosto.",y=>caDomingo(y,7,2),3]]},
+  uy:{f:"🇺🇾",n:"Uruguay",c:"#2563EB",tono:"Voseo, como en Argentina: tus materiales se adaptan casi sin cambios.",
+    mercado:"El más parecido a tu público: voseo y mismo estilo de cuadernillo, con poca competencia. Ideal para empezar a vender afuera.",
+    L:[["01-06","Día de los Niños","familia","En Uruguay el 6 de enero se festeja a los niños (Reyes).",0,2],
+      ["04-19","Desembarco de los Treinta y Tres Orientales","patria","Inicio de la Cruzada Libertadora (1825). El feriado puede moverse.",2,3],
+      ["05-18","Batalla de Las Piedras","patria","Triunfo de Artigas sobre los españoles (1811). El feriado puede moverse.",2,2],
+      ["06-19","Natalicio de Artigas","patria","Nace José Gervasio Artigas (1764). También Día del Nunca Más.",1,3],
+      ["07-18","Jura de la Constitución","patria","Se jura la primera Constitución de la República (1830).",1,3],
+      ["08-25","Declaratoria de la Independencia","patria","Asamblea de la Florida (1825).",1,3],
+      ["09-22","Día del Maestro","escuela","Reconocimiento a las maestras y los maestros uruguayos.",0,1],
+      ["10-12","Día de la Diversidad Cultural","america","Reflexión sobre los pueblos originarios y la diversidad. El feriado puede moverse.",2,1]]},
+  es:{f:"🇪🇸",n:"España",c:"#F59E0B",tono:"Tuteo y vocabulario peninsular (cole, ficha, rotulador, Primaria, alumnado).",
+    mercado:"Se vende por Instagram y en Gumroad o Eduki a 1–5 €. Funcionan la Paz, el Libro, Halloween, Navidad, las situaciones de aprendizaje y el material adaptado para NEAE y TEA.",
+    L:[["01-06","Reyes Magos","familia","Gran fiesta familiar: cartas a los Reyes y roscón.",1,2],
+      ["01-30","Día Escolar de la No Violencia y la Paz","derechos","El DENIP, una de las fechas más trabajadas en los coles.",0,3],
+      ["02-28","Día de Andalucía","cultura","Fiesta autonómica muy trabajada en los colegios andaluces.",0,2],
+      ["03-19","Día del Padre","familia","En España es fijo, el 19 de marzo (San José).",0,2],
+      ["04-23","Sant Jordi","escuela","En Cataluña, libros y rosas el Día del Libro.",0,2],
+      ["09-11","Diada de Cataluña","cultura","Fiesta autonómica de Cataluña.",0,1],
+      ["10-12","Fiesta Nacional de España","patria","Fiesta Nacional, también Día de la Hispanidad.",1,1],
+      ["10-31","Halloween","cultura","Muy celebrado en los coles: decoración, disfraces y fichas temáticas.",0,3],
+      ["11-27","Día del Maestro","escuela","Reconocimiento a los docentes en España.",0,2],
+      ["12-06","Día de la Constitución Española","patria","Referéndum de la Constitución de 1978.",1,3],
+      ["12-22","Navidad (fin del primer trimestre)","familia","Festivales, villancicos y decoración antes de las vacaciones.",0,3]],
+    mov:[["Día de la Madre","familia","En España, primer domingo de mayo.",y=>caDomingo(y,4,1),2]]}
+};
+const CA_PK=Object.keys(CA_PAISES), caEsPais=t=>!!CA_PAISES[t];
+const CA_DEM={3:["🔥 Alta demanda","alta"],2:["Demanda media","media"],1:["Demanda baja","baja"]};
+function caPrep(e){ const ant=e.op===3?75:60, pub=e.op===3?40:30, pr=new Date(+e.f-ant*DAY), pu=new Date(+e.f-pub*DAY), h=caHoy(); return {pr,pu,ya:h>=pr&&h<pu,vender:h>=pu&&h<=e.f}; }
+function caPrepHtml(e){ if(!caEsPais(e.t)) return ""; const p=caPrep(e), dm=CA_DEM[e.op]||CA_DEM[1];
+  return `<span class="ca-dem ${dm[1]}">${dm[0]}</span>${p.vender?`<span class="ca-st go">📣 Época de venta</span>`:p.ya?`<span class="ca-st prep">🛠 Prepará el material ya</span>`:`<span class="ca-orig">🛠 Preparar desde el ${esc(fmtDM(p.pr))}</span>`}`; }
+const CA_TABS=[["ar","🇦🇷","Argentina","Fechas patrias y efemérides nacionales"],["int","🌎","Mundiales e internacionales","Días de la ONU, la UNESCO y la OMS"],["paises","🗺️","Otros países","México, Chile, Uruguay y España"],["todas","📌","Todas","Argentina y mundiales juntas"]];
 const CA_VISTAS=[["prox","Próximas"],["mes","Mes"],["ano","Año"]];
 const CA_MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-const CA={tab:"ar",vista:"prox",cat:"",q:"",fer:false,sinMat:false,mes:null,on:false,ideas:{}};
-try{ const s=JSON.parse(localStorage.getItem("cofre-ca-v1")||"{}"); if(s.tab) CA.tab=s.tab; if(s.vista) CA.vista=s.vista; CA.ideas=JSON.parse(localStorage.getItem("cofre-ca-ideas")||"{}"); }catch{}
-const caGuardar=()=>{ try{ localStorage.setItem("cofre-ca-v1",JSON.stringify({tab:CA.tab,vista:CA.vista})); }catch{} };
+const CA={pais:"uy",tab:"ar",vista:"prox",cat:"",q:"",fer:false,sinMat:false,mes:null,on:false,ideas:{}};
+try{ const s=JSON.parse(localStorage.getItem("cofre-ca-v1")||"{}"); if(s.tab) CA.tab=s.tab; if(s.vista) CA.vista=s.vista; if(s.pais) CA.pais=s.pais; CA.ideas=JSON.parse(localStorage.getItem("cofre-ca-ideas")||"{}"); }catch{}
+const caGuardar=()=>{ try{ localStorage.setItem("cofre-ca-v1",JSON.stringify({tab:CA.tab,vista:CA.vista,pais:CA.pais})); }catch{} };
 const caHoy=()=>startOfDay(new Date());
 const caIdOf=e=>e.t+":"+e.k+":"+fold(e.n).slice(0,24);
 
@@ -26542,38 +26630,42 @@ function caFechas(y){ const L=[];
   CA_AR.forEach(([k,n,cat,d,fer])=>{ const [m,dd]=k.split("-").map(Number); L.push({t:"ar",k,n,cat,d,fer:fer||0,f:new Date(y,m-1,dd)}); });
   CA_MOV.forEach(([n,cat,d,fn])=>{ const f=fn(y); L.push({t:"ar",k:`${String(f.getMonth()+1).padStart(2,"0")}-${String(f.getDate()).padStart(2,"0")}`,n,cat,d,fer:0,mov:true,f}); });
   CA_INT.forEach(([k,n,cat,d])=>{ const [m,dd]=k.split("-").map(Number); L.push({t:"int",k,n,cat,d,fer:0,f:new Date(y,m-1,dd)}); });
+  CA_PK.forEach(t=>{ const P=CA_PAISES[t]; P.L.forEach(([k,n,cat,d,fer,op])=>{ const [m,dd]=k.split("-").map(Number); L.push({t,k,n,cat,d,fer:fer||0,op:op||1,f:new Date(y,m-1,dd)}); });
+    (P.mov||[]).forEach(([n,cat,d,fn,op])=>{ const f=fn(y); L.push({t,k:`${String(f.getMonth()+1).padStart(2,"0")}-${String(f.getDate()).padStart(2,"0")}`,n,cat,d,fer:0,op:op||1,mov:true,f}); }); });
   L.forEach(e=>e.id=caIdOf(e)); return L; }
-function caEfe(e){ if(typeof EFEMERIDES==="undefined") return null; const n=fold(e.n);
+function caEfe(e){ if(typeof EFEMERIDES==="undefined"||caEsPais(e.t)) return null; const n=fold(e.n);
   return EFEMERIDES.find(x=>x[0]===e.k&&(e.t==="ar"||fold(x[1])===n||(x[2]||[]).some(kw=>n.includes(fold(kw)))))||null; }
 function caMat(e){ if(e._m!==undefined) return e._m; const x=caEfe(e); let r=null; try{ if(x&&typeof efeInfo==="function"&&D) r={e:x,...efeInfo(x)}; else if(x) r={e:x,rel:[],units:0}; }catch{ r=x?{e:x,rel:[],units:0}:null; } return e._m=r; }
-function caFiltro(L){ const q=fold(CA.q.trim()); return L.filter(e=>(CA.tab==="todas"||e.t===CA.tab)&&(!CA.cat||e.cat===CA.cat)&&(!CA.fer||e.fer)&&(!q||fold(e.n+" "+e.d+" "+CA_CAT[e.cat][0]).includes(q))&&(!CA.sinMat||!(caMat(e)&&caMat(e).rel.length))); }
+const caTabOk=(e,tab)=>tab==="todas"?(e.t==="ar"||e.t==="int"):tab==="paises"?caEsPais(e.t)&&(CA.pais==="todos"||e.t===CA.pais):e.t===tab;
+function caFiltro(L){ const q=fold(CA.q.trim()); return L.filter(e=>caTabOk(e,CA.tab)&&(!CA.alta||e.op===3)&&(!CA.cat||e.cat===CA.cat)&&(!CA.fer||e.fer)&&(!q||fold(e.n+" "+e.d+" "+CA_CAT[e.cat][0]).includes(q))&&(!CA.sinMat||!(caMat(e)&&caMat(e).rel.length))); }
 function caProximas(dias){ const h=caHoy(), y=h.getFullYear(); return caFiltro([...caFechas(y),...caFechas(y+1)]).map(e=>({...e,diff:Math.round((e.f-h)/DAY)})).filter(e=>e.diff>=0&&e.diff<=dias).sort((a,b)=>a.diff-b.diff||(a.t===b.t?0:a.t==="ar"?-1:1)); }
 function caPorDia(y,m){ const M={}; caFiltro(caFechas(y)).filter(e=>e.f.getMonth()===m).forEach(e=>{ (M[e.f.getDate()]=M[e.f.getDate()]||[]).push(e); }); return M; }
 
 // ---------- piezas visuales ----------
-const caChip=(cat,sm)=>{ const [n,ic,c]=CA_CAT[cat]; return `<span class="ca-cat${sm?" sm":""}" style="--cc:${c}">${ic} ${esc(n)}</span>`; };
+const caChip=(cat,sm,t)=>{ let [n,ic,c]=CA_CAT[cat]; if(cat==="patria"&&t&&CA_PAISES[t]) ic=CA_PAISES[t].f; return `<span class="ca-cat${sm?" sm":""}" style="--cc:${c}">${ic} ${esc(n)}</span>`; };
 const caDiasTxt=d=>d===0?"Hoy":d===1?"Mañana":`En ${d} días`;
-function caEstado(e,full){ if(e.t!=="ar"&&!caEfe(e)) return ""; const m=caMat(e); if(!m) return e.t==="ar"&&full!==false?`<span class="ca-st no">Sin material</span>`:"";
+function caEstado(e,full){ if(caEsPais(e.t)) return full?caPrepHtml(e):""; if(e.t!=="ar"&&!caEfe(e)) return ""; const m=caMat(e); if(!m) return e.t==="ar"&&full!==false?`<span class="ca-st no">Sin material</span>`:"";
   if(!m.rel.length) return `<span class="ca-st no">Sin material</span>`; const promo=e.f&&m.lead?new Date(+e.f-m.lead*DAY):null, ya=promo&&caHoy()>=promo&&e.f>=caHoy();
   return `<span class="ca-st ok">✓ ${m.rel.length} material${m.rel.length>1?"es":""}</span>${full&&ya?`<span class="ca-st go">📣 Promocionar ahora</span>`:""}`; }
 function caFila(e){ const c=CA_CAT[e.cat][2], wd=e.f.toLocaleDateString("es-AR",{weekday:"short"}).replace(".","");
   return `<button type="button" class="ca-row ca-k-${e.t}" data-caid="${esc(e.id)}" data-cay="${e.f.getFullYear()}" style="--cc:${c}"><span class="ca-dd"><b>${e.f.getDate()}</b><small>${esc(wd)}</small></span>
-    <span class="ca-rt"><b>${esc(e.n)}</b><small>${esc(e.d)}</small><span class="ca-tags">${caChip(e.cat,1)}${CA.tab==="todas"?`<span class="ca-orig">${e.t==="ar"?"🇦🇷 Nacional":"🌎 Mundial"}</span>`:""}${e.fer?`<span class="ca-fer">Feriado${e.fer===2?" trasladable":""}</span>`:""}${e.mov?`<span class="ca-orig">Fecha móvil</span>`:""}${caEstado(e,true)}</span></span>
+    <span class="ca-rt"><b>${esc(e.n)}</b><small>${esc(e.d)}</small><span class="ca-tags">${caChip(e.cat,1,e.t)}${CA.tab==="todas"?`<span class="ca-orig">${e.t==="ar"?"🇦🇷 Nacional":"🌎 Mundial"}</span>`:caEsPais(e.t)&&CA.pais==="todos"?`<span class="ca-orig">${CA_PAISES[e.t].f} ${CA_PAISES[e.t].n}</span>`:""}${e.fer?`<span class="ca-fer">Feriado${e.fer===2?" trasladable":""}</span>`:""}${e.mov?`<span class="ca-orig">Fecha móvil</span>`:""}${caEstado(e,true)}</span></span>
     <span class="ca-cd ${e.diff<=7?"pr":""}">${caDiasTxt(e.diff)}</span></button>`; }
 
 // ---------- vistas ----------
 function caHero(){ const P=caProximas(400), h=caHoy(); const p=P[0]; if(!p) return "";
   const sig=P.slice(1,5), m=caMat(p), promo=m&&m.rel.length&&m.lead?new Date(+p.f-m.lead*DAY):null, mes=caFiltro(caFechas(h.getFullYear())).filter(e=>e.f.getMonth()===h.getMonth()), sinM=P.filter(e=>e.diff<=60&&e.t==="ar"&&!(caMat(e)&&caMat(e).rel.length)).length;
+  const prepYa=P.filter(e=>caEsPais(e.t)&&(caPrep(e).ya||caPrep(e).vender)).length;
   const pubs=(typeof posts!=="undefined"?posts:[]).filter(x=>(x.fecha||"").slice(0,7)===iso(h).slice(0,7)).length;
   return `<section class="ca-hero"><button type="button" class="ca-next" data-caid="${esc(p.id)}" data-cay="${p.f.getFullYear()}" style="--cc:${CA_CAT[p.cat][2]}">
       <span class="ca-nl">Próxima fecha</span><span class="ca-nbig"><b>${p.diff===0?"¡Hoy!":p.diff}</b>${p.diff?`<small>día${p.diff===1?"":"s"}</small>`:""}</span>
-      <span class="ca-nt"><b>${esc(p.n)}</b><small>${esc((t=>t.charAt(0).toUpperCase()+t.slice(1))(p.f.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"})))}</small><span class="ca-tags">${caChip(p.cat,1)}${p.fer?`<span class="ca-fer">Feriado</span>`:""}${caEstado(p,true)}</span>${promo?`<em>${caHoy()>=promo?"Ya es momento de promocionar tu material.":`Conviene empezar a promocionar el ${esc(fmtDM(promo))}.`}</em>`:""}</span></button>
+      <span class="ca-nt"><b>${esc(p.n)}</b><small>${esc((t=>t.charAt(0).toUpperCase()+t.slice(1))(p.f.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"})))}</small><span class="ca-tags">${caChip(p.cat,1,p.t)}${p.fer?`<span class="ca-fer">Feriado</span>`:""}${caEstado(p,true)}</span>${promo?`<em>${caHoy()>=promo?"Ya es momento de promocionar tu material.":`Conviene empezar a promocionar el ${esc(fmtDM(promo))}.`}</em>`:""}${caEsPais(p.t)?`<em>${CA_PAISES[p.t].f} ${esc(CA_PAISES[p.t].n)} · publicá desde el ${esc(fmtDM(caPrep(p).pu))}</em>`:""}</span></button>
     <div class="ca-sig"><span class="ca-nl">Después</span>${sig.map(e=>`<button type="button" data-caid="${esc(e.id)}" data-cay="${e.f.getFullYear()}" style="--cc:${CA_CAT[e.cat][2]}"><i></i><span><b>${esc(e.n)}</b><small>${esc(e.f.toLocaleDateString("es-AR",{day:"numeric",month:"short"}))} · ${caDiasTxt(e.diff).toLowerCase()}</small></span></button>`).join("")}</div>
-    <div class="ca-kpis"><div><b>${mes.length}</b><small>fechas en ${CA_MESES[h.getMonth()]}</small></div><div><b>${mes.filter(e=>e.fer).length}</b><small>feriados este mes</small></div>${CA.tab!=="int"?`<div class="${sinM?"warn":""}"><b>${sinM}</b><small>sin material en 60 días</small></div>`:`<div><b>${CA_INT.length}</b><small>días mundiales en el año</small></div>`}<div><b>${pubs}</b><small>publicaciones este mes</small></div></div></section>`; }
-function caFiltrosHtml(){ const cats=[...new Set((CA.tab==="ar"?CA_AR:CA.tab==="int"?CA_INT:[...CA_AR,...CA_INT]).map(e=>e[2]).concat(CA.tab!=="int"?["familia"]:[]))];
-  return `<div class="ca-fil"><label class="ca-q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" id="caQ" placeholder="Buscar una fecha: agua, bandera, lectura…" value="${esc(CA.q)}" aria-label="Buscar efeméride"></label>
+    <div class="ca-kpis"><div><b>${mes.length}</b><small>fechas en ${CA_MESES[h.getMonth()]}</small></div><div><b>${mes.filter(e=>e.fer).length}</b><small>feriados este mes</small></div>${CA.tab==="paises"?`<div class="${prepYa?"warn":""}"><b>${prepYa}</b><small>para preparar ya</small></div>`:CA.tab!=="int"?`<div class="${sinM?"warn":""}"><b>${sinM}</b><small>sin material en 60 días</small></div>`:`<div><b>${CA_INT.length}</b><small>días mundiales en el año</small></div>`}<div><b>${pubs}</b><small>publicaciones este mes</small></div></div></section>`; }
+function caFiltrosHtml(){ const src=CA.tab==="ar"?CA_AR:CA.tab==="int"?CA_INT:CA.tab==="paises"?(CA.pais==="todos"?CA_PK:[CA.pais]).flatMap(t=>CA_PAISES[t].L.concat((CA_PAISES[t].mov||[]).map(m=>["",m[0],m[1]]))):[...CA_AR,...CA_INT]; const cats=[...new Set(src.map(e=>e[2]).concat(CA.tab==="ar"||CA.tab==="todas"?["familia"]:[]))];
+  return `${CA.tab==="paises"?caPaisesHtml():""}<div class="ca-fil"><label class="ca-q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" id="caQ" placeholder="Buscar una fecha: agua, bandera, lectura…" value="${esc(CA.q)}" aria-label="Buscar efeméride"></label>
     <div class="ca-cats"><button type="button" data-cacat="" class="${CA.cat?"":"on"}">Todas las categorías</button>${cats.map(k=>`<button type="button" data-cacat="${k}" class="${CA.cat===k?"on":""}" style="--cc:${CA_CAT[k][2]}">${CA_CAT[k][1]} ${esc(CA_CAT[k][0])}</button>`).join("")}</div>
-    <div class="ca-tg">${CA.tab!=="int"?`<label class="ca-sw"><input type="checkbox" data-cafer ${CA.fer?"checked":""}> Solo feriados</label><label class="ca-sw"><input type="checkbox" data-casinmat ${CA.sinMat?"checked":""}> Solo sin material</label>`:""}</div></div>`; }
+    <div class="ca-tg">${CA.tab!=="int"?`<label class="ca-sw"><input type="checkbox" data-cafer ${CA.fer?"checked":""}> Solo feriados</label>`:""}${CA.tab==="paises"?`<label class="ca-sw"><input type="checkbox" data-caalta ${CA.alta?"checked":""}> Solo alta demanda 🔥</label>`:CA.tab!=="int"?`<label class="ca-sw"><input type="checkbox" data-casinmat ${CA.sinMat?"checked":""}> Solo sin material</label>`:""}</div></div>`; }
 function caProx(){ const P=caProximas(366); if(!P.length) return `<div class="ca-vacio">No hay fechas con esos filtros.</div>`; const G={};
   P.forEach(e=>{ const k=e.f.getFullYear()+"-"+e.f.getMonth(); (G[k]=G[k]||[]).push(e); });
   return Object.entries(G).map(([k,L])=>{ const [y,m]=k.split("-").map(Number); return `<section class="ca-mg"><h3>${CA_MESES[m]} <small>${y}</small><span>${L.length} fecha${L.length===1?"":"s"}</span></h3><div class="ca-list">${L.map(caFila).join("")}</div></section>`; }).join(""); }
@@ -26590,10 +26682,10 @@ function caMes(){ const b=CA.mes, y=b.getFullYear(), m=b.getMonth(), M=caPorDia(
 function caAno(){ const y=CA.anio||new Date().getFullYear(), L=caFiltro(caFechas(y)), h=caHoy(), ventas={};
   try{ if(D&&D.items) D.items.forEach(i=>{ if(i.ok&&i.d){ const mm=i.d.getMonth(); ventas[mm]=(ventas[mm]||0)+i.q; } }); }catch{}
   const mx=Math.max(1,...Object.values(ventas));
-  return `<div class="ca-anoh"><button type="button" class="btn small" data-caanio="-1" aria-label="Año anterior">‹</button><h2>${y}</h2><button type="button" class="btn small" data-caanio="1" aria-label="Año siguiente">›</button><span class="muted small">${L.length} fechas${CA.tab!=="int"&&Object.keys(ventas).length?" · la barra muestra los materiales vendidos en cada mes":""}</span></div>
+  return `<div class="ca-anoh"><button type="button" class="btn small" data-caanio="-1" aria-label="Año anterior">‹</button><h2>${y}</h2><button type="button" class="btn small" data-caanio="1" aria-label="Año siguiente">›</button><span class="muted small">${L.length} fechas${(CA.tab==="ar"||CA.tab==="todas")&&Object.keys(ventas).length?" · la barra muestra los materiales vendidos en cada mes":""}</span></div>
     <div class="ca-ano">${CA_MESES.map((nm,m)=>{ const E=L.filter(e=>e.f.getMonth()===m).sort((a,b)=>a.f-b.f), act=y===h.getFullYear()&&m===h.getMonth(), v=ventas[m]||0;
-    return `<section class="ca-mc ${act?"now":""}"><header><b>${nm}</b><small>${E.length||"—"}</small></header>${CA.tab!=="int"&&v?`<div class="ca-vb" title="${nf(v)} materiales vendidos en ${nm}"><i style="width:${(v/mx*100).toFixed(0)}%"></i><span>${nf(v)} vendidos</span></div>`:""}
-      <div class="ca-mcl">${E.map(e=>`<button type="button" class="${e.f<h?"pas":""}" data-caid="${esc(e.id)}" data-cay="${y}" style="--cc:${CA_CAT[e.cat][2]}"><i></i><b>${e.f.getDate()}</b><span>${esc(e.n)}</span>${e.fer?`<em title="Feriado">F</em>`:""}${e.t==="ar"&&caMat(e)&&caMat(e).rel.length?`<em class="ok" title="Tenés material">✓</em>`:""}</button>`).join("")||`<p class="muted small">Sin fechas con estos filtros.</p>`}</div></section>`; }).join("")}</div>`; }
+    return `<section class="ca-mc ${act?"now":""}"><header><b>${nm}</b><small>${E.length||"—"}</small></header>${(CA.tab==="ar"||CA.tab==="todas")&&v?`<div class="ca-vb" title="${nf(v)} materiales vendidos en ${nm}"><i style="width:${(v/mx*100).toFixed(0)}%"></i><span>${nf(v)} vendidos</span></div>`:""}
+      <div class="ca-mcl">${E.map(e=>`<button type="button" class="${e.f<h?"pas":""}" data-caid="${esc(e.id)}" data-cay="${y}" style="--cc:${CA_CAT[e.cat][2]}"><i></i><b>${e.f.getDate()}</b><span>${esc(e.n)}</span>${e.fer?`<em title="Feriado">F</em>`:""}${e.op===3?`<em class="hot" title="Alta demanda">🔥</em>`:""}${CA.tab==="paises"&&CA.pais==="todos"?`<em class="fl">${CA_PAISES[e.t].f}</em>`:""}${e.t==="ar"&&caMat(e)&&caMat(e).rel.length?`<em class="ok" title="Tenés material">✓</em>`:""}</button>`).join("")||`<p class="muted small">Sin fechas con estos filtros.</p>`}</div></section>`; }).join("")}</div>`; }
 
 // ---------- ficha de una fecha ----------
 function caBuscar(id,y){ return caFechas(+y||new Date().getFullYear()).find(e=>e.id===id); }
@@ -26603,21 +26695,22 @@ function caFicha(e){ let d=document.getElementById("caDlg"); if(!d){ d=document.
       if(b.hasAttribute("data-calanz")){ d.close(); return openLanz(null,caEfe(x)||[x.k,x.n,[]]); }
       if(b.hasAttribute("data-camats")){ d.close(); const m=caMat(x); showView("materiales"); try{ setMView("mat"); $("#mq").value=m.rel[0].group||x.n; renderMats(); }catch{} return; }
       if(b.hasAttribute("data-caidea")) return caIdeas(x,b);
+      if(b.hasAttribute("data-caadapt")) return caIdeas(x,b,true);
       if(b.hasAttribute("data-cacopy")) return copyText(b,b.dataset.cacopy); }); }
   d._e=e; const h=caHoy(); let f=e.f; if(f<h){ const n=caFechas(f.getFullYear()+1).find(x=>x.id===e.id); if(n) f=n.f; } const diff=Math.round((f-h)/DAY), m=caMat(e), c=CA_CAT[e.cat], I=CA.ideas[e.id];
   d.style.setProperty("--cc",c[2]);
-  d.innerHTML=`<div class="ca-dh"><span class="ca-dic">${c[1]}</span><div><small>${e.t==="ar"?"🇦🇷 Efeméride nacional":"🌎 Día mundial / internacional"}</small><h2>${esc(e.n)}</h2><p>${esc(f.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long",year:"numeric"}))} · <b>${caDiasTxt(diff).toLowerCase()}</b></p></div><button type="button" class="ca-x" data-cax aria-label="Cerrar">✕</button></div>
-    <div class="ca-db"><div class="ca-tags">${caChip(e.cat)}${e.fer?`<span class="ca-fer">Feriado${e.fer===2?" trasladable: puede moverse a un lunes":" nacional"}</span>`:""}${e.mov?`<span class="ca-orig">Fecha móvil: cambia cada año</span>`:""}</div>
+  d.innerHTML=`<div class="ca-dh"><span class="ca-dic">${e.cat==="patria"&&caEsPais(e.t)?CA_PAISES[e.t].f:c[1]}</span><div><small>${e.t==="ar"?"🇦🇷 Efeméride nacional":caEsPais(e.t)?`${CA_PAISES[e.t].f} Efeméride de ${esc(CA_PAISES[e.t].n)}`:"🌎 Día mundial / internacional"}</small><h2>${esc(e.n)}</h2><p>${esc(f.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long",year:"numeric"}))} · <b>${caDiasTxt(diff).toLowerCase()}</b></p></div><button type="button" class="ca-x" data-cax aria-label="Cerrar">✕</button></div>
+    <div class="ca-db"><div class="ca-tags">${caChip(e.cat,0,e.t)}${e.fer?`<span class="ca-fer">Feriado${e.fer===2?(caEsPais(e.t)?" (se puede mover)":" trasladable: puede moverse a un lunes"):" nacional"}</span>`:""}${caEsPais(e.t)?`<span class="ca-dem ${(CA_DEM[e.op]||CA_DEM[1])[1]}">${(CA_DEM[e.op]||CA_DEM[1])[0]}</span>`:""}${e.mov?`<span class="ca-orig">Fecha móvil: cambia cada año</span>`:""}</div>
       <p class="ca-desc">${esc(e.d)}</p>
-      ${m&&m.rel.length?`<div class="ca-box ok"><b>✓ Tenés material para esta fecha</b><ul>${m.rel.slice(0,5).map(x=>`<li>${esc(x.name)}</li>`).join("")}</ul>${m.units?`<small>Vendiste ${nf(m.units)} unidades${m.p80!=null?`; el 80 % llegó en los ${Math.round(m.p80)} días previos`:""}. ${m.lead?`Conviene promocionar desde el ${esc(fmtDM(new Date(+f-m.lead*DAY)))}.`:""}</small>`:""}</div>`
+      ${caEsPais(e.t)?caVentaPais(e,f):m&&m.rel.length?`<div class="ca-box ok"><b>✓ Tenés material para esta fecha</b><ul>${m.rel.slice(0,5).map(x=>`<li>${esc(x.name)}</li>`).join("")}</ul>${m.units?`<small>Vendiste ${nf(m.units)} unidades${m.p80!=null?`; el 80 % llegó en los ${Math.round(m.p80)} días previos`:""}. ${m.lead?`Conviene promocionar desde el ${esc(fmtDM(new Date(+f-m.lead*DAY)))}.`:""}</small>`:""}</div>`
         :`<div class="ca-box no"><b>Todavía no tenés material para esta fecha</b><small>${e.t==="int"?"Los días mundiales son una buena oportunidad para materiales transversales (ambiente, salud, ESI, inclusión) que se usan todo el año.":"Es una oportunidad para crear un material nuevo."}</small></div>`}
       <div class="ca-ideas">${I?caIdeasHtml(I):`<p class="muted small">Pedile a Claude ideas de actividades para el aula y de publicaciones para esta fecha.</p>`}</div></div>
-    <div class="ca-df"><button type="button" class="btn primary" data-capub>📅 Agendar publicación</button>${m&&m.rel.length?`<button type="button" class="btn" data-camats>📦 Ver mis materiales</button>`:`<button type="button" class="btn" data-calanz>💡 Anotar idea de material</button>`}<button type="button" class="btn" data-caidea>${I?"↺ Otras ideas":"✨ Ideas con Claude"}</button></div>`;
+    <div class="ca-df"><button type="button" class="btn primary" data-capub>📅 Agendar publicación</button>${m&&m.rel.length?`<button type="button" class="btn" data-camats>📦 Ver mis materiales</button>`:`<button type="button" class="btn" data-calanz>💡 Anotar idea de material</button>`}${caEsPais(e.t)?`<button type="button" class="btn" data-caadapt>🔁 Cómo adaptar mis materiales</button>`:""}<button type="button" class="btn" data-caidea>${I?"↺ Otras ideas":"✨ Ideas con Claude"}</button></div>`;
   if(!d.open) d.showModal(); }
 function caIdeasHtml(I){ return `<div class="ca-ig"><div><h4>🧑‍🏫 Para el aula</h4><ol>${(I.aula||[]).map(x=>`<li><b>${esc(x.t||"")}</b> ${esc(x.d||"")}</li>`).join("")}</ol></div><div><h4>📣 Para tus redes</h4><ul>${(I.redes||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${I.frase?`<blockquote>“${esc(I.frase)}”<button type="button" class="btn small" data-cacopy="${esc(I.frase)}">Copiar</button></blockquote>`:""}</div></div>`; }
-async function caIdeas(e,btn){ const sf=await getSample(); if(!sf){ toast("Las ideas las escribe Claude desde el panel dentro de Claude","err"); return; } const t0=btn.textContent; btn.disabled=true; btn.textContent="✨ Pensando…";
-  try{ const r=await sf.json(`Sos asesora pedagógica de Cofre Didáctico (materiales para docentes de primaria de Argentina; voseo rioplatense, tono cálido). Fecha: "${e.n}" (${e.k.split("-").reverse().join("/")}). Contexto: ${e.d}
-Proponé ideas concretas, realistas para una escuela primaria argentina, sin inventar datos históricos dudosos.
+async function caIdeas(e,btn,adapt){ const sf=await getSample(); if(!sf){ toast("Las ideas las escribe Claude desde el panel dentro de Claude","err"); return; } const t0=btn.textContent; btn.disabled=true; btn.textContent="✨ Pensando…";
+  try{ const r=await sf.json(`Sos asesora pedagógica de Cofre Didáctico (materiales para docentes de primaria de Argentina; voseo rioplatense, tono cálido). Fecha: "${e.n}" (${e.k.split("-").reverse().join("/")}${caEsPais(e.t)?`, efeméride de ${CA_PAISES[e.t].n}`:""}). Contexto: ${e.d}
+${caEsPais(e.t)?`Cofre Didáctico quiere vender materiales a docentes de ${CA_PAISES[e.t].n}. Las ideas para el aula y la frase tienen que estar escritas como allá: ${CA_PAISES[e.t].tono} Las ideas para redes, pensadas para docentes de ese país.${adapt?" En \"aula\" poné 4 consejos concretos para adaptar un cuadernillo argentino a ese país (vocabulario, grados o niveles, currículo, formato de hoja A4/carta, moneda, fechas): t = qué cambiar, d = cómo.":""}`:"Proponé ideas concretas, realistas para una escuela primaria argentina."} Sin inventar datos históricos dudosos.
 Respondé SOLO JSON: {"aula":[{"t":"título corto","d":"actividad en 1 o 2 frases, con grado sugerido"}] (4 ideas: una para primer ciclo, una para segundo ciclo, una inclusiva o con apoyos visuales, una para el acto o la cartelera),"redes":["3 ideas de publicación para Instagram de una tienda de materiales didácticos"],"frase":"una frase breve para cartelera o redes"}`,{modelTier:"default",cache:false});
     if(!r||!r.aula) throw {code:"invalid_json"}; CA.ideas[e.id]=r; try{ localStorage.setItem("cofre-ca-ideas",JSON.stringify(CA.ideas)); }catch{} caFicha(e); }
   catch(err){ toast(sampleErr(err),"err"); btn.disabled=false; btn.textContent=t0; } }
@@ -26626,27 +26719,28 @@ Respondé SOLO JSON: {"aula":[{"t":"título corto","d":"actividad en 1 o 2 frase
 async function caIcs(btn){ const y=new Date().getFullYear(), L=caFiltro([...caFechas(y),...caFechas(y+1)]), seen=new Set(), out=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Cofre Didactico//Efemerides//ES","CALSCALE:GREGORIAN","X-WR-CALNAME:Efemérides · Cofre Didáctico"];
   const f=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`, txt=s=>String(s).replace(/[\\,;]/g,m=>"\\"+m).replace(/\n/g,"\\n");
   L.forEach(e=>{ const key=e.mov?e.id+e.f.getFullYear():e.id; if(seen.has(key)||(!e.mov&&e.f.getFullYear()!==y)) return; seen.add(key); const fin=new Date(+e.f+DAY);
-    out.push("BEGIN:VEVENT",`UID:${slug(key)}@cofredidactico.com.ar`,`DTSTAMP:${f(new Date())}T000000Z`,`DTSTART;VALUE=DATE:${f(e.f)}`,`DTEND;VALUE=DATE:${f(fin)}`,...(e.mov?[]:["RRULE:FREQ=YEARLY"]),`SUMMARY:${txt((e.t==="ar"?"🇦🇷 ":"🌎 ")+e.n)}`,`DESCRIPTION:${txt(e.d+(e.fer?" (Feriado)":""))}`,"TRANSP:TRANSPARENT","END:VEVENT"); });
+    out.push("BEGIN:VEVENT",`UID:${slug(key)}@cofredidactico.com.ar`,`DTSTAMP:${f(new Date())}T000000Z`,`DTSTART;VALUE=DATE:${f(e.f)}`,`DTEND;VALUE=DATE:${f(fin)}`,...(e.mov?[]:["RRULE:FREQ=YEARLY"]),`SUMMARY:${txt((e.t==="ar"?"🇦🇷 ":caEsPais(e.t)?CA_PAISES[e.t].f+" ":"🌎 ")+e.n)}`,`DESCRIPTION:${txt(e.d+(e.fer?" (Feriado)":""))}`,"TRANSP:TRANSPARENT","END:VEVENT"); });
   out.push("END:VCALENDAR"); const t0=btn.textContent;
-  try{ const ok=await saveFile(`Efemérides ${CA_TABS.find(t=>t[0]===CA.tab)[2]} - Cofre Didáctico.ics`,new Blob([out.join("\r\n")],{type:"text/calendar"}),"text/calendar"); btn.textContent=ok?"Descargado ✓":t0; }catch(e){ toast(e.message||"No se pudo descargar.","err"); }
+  try{ const ok=await saveFile(`Efemérides ${CA.tab==="paises"?(CA.pais==="todos"?"otros países":CA_PAISES[CA.pais].n):CA_TABS.find(t=>t[0]===CA.tab)[2]} - Cofre Didáctico.ics`,new Blob([out.join("\r\n")],{type:"text/calendar"}),"text/calendar"); btn.textContent=ok?"Descargado ✓":t0; }catch(e){ toast(e.message||"No se pudo descargar.","err"); }
   setTimeout(()=>btn.textContent=t0,1800); }
 
 // ---------- armar la vista ----------
 function caPintar(){ const v=$("#view-calendario"); if(!v||!CA.on) return; const b=$("#caBody"); if(!b) return;
   v.querySelectorAll("[data-catab]").forEach(x=>x.setAttribute("aria-selected",String(x.dataset.catab===CA.tab))); v.querySelectorAll("[data-cavista]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.cavista===CA.vista)));
-  const tn=t=>{ const y=new Date().getFullYear(); return caFechas(y).filter(e=>t==="todas"||e.t===t).length; }; v.querySelectorAll("[data-catab] small").forEach(s=>{ s.textContent=tn(s.parentNode.dataset.catab)+" fechas"; });
+  const tn=t=>{ const y=new Date().getFullYear(); return caFechas(y).filter(e=>t==="todas"?(e.t==="ar"||e.t==="int"):t==="paises"?caEsPais(e.t):e.t===t).length; }; v.querySelectorAll("[data-catab] small").forEach(s=>{ s.textContent=tn(s.parentNode.dataset.catab)+" fechas"; });
   const foco=document.activeElement&&document.activeElement.id==="caQ"?document.activeElement.selectionStart:null;
   b.innerHTML=caHero()+caFiltrosHtml()+`<div class="ca-pane">${CA.vista==="mes"?caMes():CA.vista==="ano"?caAno():caProx()}</div>`;
   if(foco!=null){ const q=$("#caQ"); q.focus(); q.setSelectionRange(foco,foco); } }
 function caInit(){ const v=$("#view-calendario"); if(!v||CA.on) return; CA.on=true; CA.mes=new Date(new Date().getFullYear(),new Date().getMonth(),1);
   [...v.children].forEach(x=>{ if(!x.classList.contains("view-h")) x.classList.add("ca-old"); });
   const h=v.querySelector(".view-h"), np=$("#newPost");
-  h.innerHTML=`<div><h1>Calendario</h1><p class="lead">Efemérides de Argentina y días mundiales, con tus materiales, el momento para promocionar y tus publicaciones.</p></div><div class="actions"><button type="button" class="btn small" id="caIcs" title="Para importar en Google Calendar o en el celular">⬇ Exportar a Google Calendar</button></div>`;
+  h.innerHTML=`<div><h1>Calendario</h1><p class="lead">Efemérides de Argentina, días mundiales y fechas fuertes de otros países, con tus materiales, el momento para promocionar y tus publicaciones.</p></div><div class="actions"><button type="button" class="btn small" id="caIcs" title="Para importar en Google Calendar o en el celular">⬇ Exportar a Google Calendar</button></div>`;
   if(np){ np.textContent="+ Nueva publicación"; h.querySelector(".actions").appendChild(np); }
   h.insertAdjacentHTML("afterend",`<div class="ca-top"><div class="ca-tabs" role="tablist" aria-label="Tipo de efemérides">${CA_TABS.map(([k,ic,t,d])=>`<button type="button" role="tab" data-catab="${k}" class="ca-t-${k}"><span>${ic}</span><b>${t}</b><small></small><em>${d}</em></button>`).join("")}</div>
     <div class="ca-vis" role="group" aria-label="Vista">${CA_VISTAS.map(([k,t])=>`<button type="button" data-cavista="${k}">${t}</button>`).join("")}</div></div><div id="caBody" class="ca-body"></div>`);
   v.addEventListener("click",e=>{ const b=e.target.closest("button"), d=b?b.dataset:{};
-    if(b&&d.catab){ CA.tab=d.catab; CA.cat=""; if(CA.tab==="int"){ CA.fer=false; CA.sinMat=false; } caGuardar(); return caPintar(); }
+    if(b&&d.catab){ CA.tab=d.catab; CA.cat=""; if(CA.tab==="int"){ CA.fer=false; CA.sinMat=false; } if(CA.tab!=="paises") CA.alta=false; else CA.sinMat=false; caGuardar(); return caPintar(); }
+    if(b&&d.capais){ CA.pais=d.capais; CA.cat=""; caGuardar(); return caPintar(); }
     if(b&&d.cavista){ CA.vista=d.cavista; caGuardar(); return caPintar(); }
     if(b&&d.cacat!=null){ CA.cat=d.cacat; return caPintar(); }
     if(b&&d.camov!=null){ const n=+d.camov; CA.mes=n?new Date(CA.mes.getFullYear(),CA.mes.getMonth()+n,1):new Date(new Date().getFullYear(),new Date().getMonth(),1); return caPintar(); }
@@ -26658,10 +26752,17 @@ function caInit(){ const v=$("#view-calendario"); if(!v||CA.on) return; CA.on=tr
     const day=e.target.closest("[data-caday]"); if(day&&!b&&!day.classList.contains("out")){ const ev=day.querySelector("[data-caid]"); if(ev&&matchMedia("(max-width:760px)").matches){ const x=caBuscar(ev.dataset.caid,ev.dataset.cay); if(x) return caFicha(x); } openPost(null,day.dataset.caday); } });
   v.addEventListener("keydown",e=>{ const day=e.target.closest&&e.target.closest("[data-caday]"); if(day&&e.target===day&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); openPost(null,day.dataset.caday); } });
   v.addEventListener("input",e=>{ if(e.target.id==="caQ"){ CA.q=e.target.value; clearTimeout(CA._t); CA._t=setTimeout(caPintar,180); } });
-  v.addEventListener("change",e=>{ const t=e.target; if(t.hasAttribute("data-cafer")){ CA.fer=t.checked; caPintar(); } if(t.hasAttribute("data-casinmat")){ CA.sinMat=t.checked; caPintar(); } });
+  v.addEventListener("change",e=>{ const t=e.target; if(t.hasAttribute("data-cafer")){ CA.fer=t.checked; caPintar(); } if(t.hasAttribute("data-casinmat")){ CA.sinMat=t.checked; caPintar(); } if(t.hasAttribute("data-caalta")){ CA.alta=t.checked; caPintar(); } });
   caPintar(); }
 const _caRenderCal=renderCal; renderCal=function(){ try{ _caRenderCal.apply(this,arguments); }catch(e){} if(currentView==="calendario"){ caInit(); caPintar(); } };
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",caInit); else caInit();
+
+function caPaisesHtml(){ const P=CA.pais==="todos"?null:CA_PAISES[CA.pais], y=new Date().getFullYear();
+  return `<div class="ca-paises"><div class="ca-pchips" role="group" aria-label="País">${CA_PK.map(t=>`<button type="button" data-capais="${t}" aria-pressed="${CA.pais===t}" style="--cc:${CA_PAISES[t].c}"><span>${CA_PAISES[t].f}</span>${esc(CA_PAISES[t].n)}<small>${caFechas(y).filter(e=>e.t===t).length}</small></button>`).join("")}<button type="button" data-capais="todos" aria-pressed="${CA.pais==="todos"}"><span>🗺️</span>Todos<small>${caFechas(y).filter(e=>caEsPais(e.t)).length}</small></button></div>
+    ${P?`<div class="ca-merc" style="--cc:${P.c}"><span class="ca-mf">${P.f}</span><div><b>Vender en ${esc(P.n)}</b><p>${esc(P.mercado)}</p><small>✍️ ${esc(P.tono)}</small></div></div>`:`<div class="ca-merc"><span class="ca-mf">🗺️</span><div><b>Fechas fuertes de otros países</b><p>Cada fecha te dice cuándo empezar a preparar el material y desde cuándo publicarlo para vender allá. Las de alta demanda 🔥 son las que más se venden.</p></div></div>`}</div>`; }
+function caVentaPais(e,f){ const P=CA_PAISES[e.t], h=caHoy(), ant=e.op===3?75:60, pub=e.op===3?40:30, pr=new Date(+f-ant*DAY), pu=new Date(+f-pub*DAY);
+  const paso=(ic,t,d,on,ok)=>`<li class="${ok?"ok":on?"on":""}"><span>${ok?"✓":ic}</span><div><b>${t}</b><small>${d}</small></div></li>`;
+  return `<div class="ca-box pais" style="--pc:${P.c}"><b>${P.f} Para vender en ${esc(P.n)}</b><ol class="ca-tl">${paso("🛠","Preparar el material",`desde el ${esc(fmtDM(pr))}`,h>=pr&&h<pu,h>=pu)}${paso("📣","Publicar y promocionar",`desde el ${esc(fmtDM(pu))}`,h>=pu&&h<=f,h>f)}${paso("🎉",esc(e.n),esc(fmtDM(f)),false,h>f)}</ol><small>✍️ ${esc(P.tono)}</small></div>`; }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
