@@ -1376,6 +1376,99 @@ body[data-orv]:not([data-orv="inicio"]) .hero-wrap{display:none}
 .cp-fout{grid-template-columns:repeat(2,minmax(0,1fr))}
 .rs2-card{align-content:start}
 
+#view-calendario .ca-old{display:none!important}
+.ca-top{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;margin:4px 0 14px}
+.ca-tabs{flex:1 1 560px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ca-tabs button{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:12px;align-items:center;text-align:left;padding:12px 16px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.ca-tabs button:hover{transform:translateY(-1px)}
+.ca-tabs button span{grid-row:1/4;font-size:28px;line-height:1}.ca-tabs b{font-size:15.5px}.ca-tabs small{font-size:12px;color:var(--muted);font-weight:700}.ca-tabs em{font-style:normal;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ca-tabs button{--tc:#3B8FE0}.ca-tabs .ca-t-int{--tc:#14A39B}.ca-tabs .ca-t-todas{--tc:#E8833A}
+.ca-tabs button[aria-selected="true"]{border-color:var(--tc);box-shadow:0 0 0 3px color-mix(in srgb,var(--tc) 20%,transparent);background:color-mix(in srgb,var(--tc) 9%,var(--surface))}
+.ca-vis{display:flex;align-self:center;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.ca-vis button{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:13.5px;padding:9px 16px;border-radius:10px;cursor:pointer}
+.ca-vis button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.ca-body{display:grid;gap:14px}
+.ca-hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,.9fr);gap:12px}
+.ca-next{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:18px;text-align:left;padding:18px 20px;border-radius:20px;border:1px solid color-mix(in srgb,var(--cc) 45%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--cc) 22%,var(--surface)),var(--surface) 70%);color:var(--ink);font:inherit;cursor:pointer;overflow:hidden}
+.ca-next::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:color-mix(in srgb,var(--cc) 14%,transparent)}
+.ca-nl{grid-column:1/-1;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.ca-nbig{align-self:center;display:grid;justify-items:center;align-content:center;min-width:86px;padding:10px 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);line-height:1}
+.ca-nbig b{font-size:40px;color:var(--cc);font-variant-numeric:tabular-nums}.ca-nbig small{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px}
+.ca-nt{display:grid;gap:5px;align-content:center;position:relative;z-index:1;min-width:0}.ca-nt>b{font-size:20px;line-height:1.2}.ca-nt>small{color:var(--muted);font-size:13px}.ca-nt em{font-style:normal;font-size:12.5px;color:var(--muted)}
+.ca-sig{display:grid;align-content:start;gap:6px;padding:14px 16px;border-radius:20px;border:1px solid var(--line);background:var(--surface)}
+.ca-sig button{display:flex;gap:10px;align-items:center;text-align:left;border:0;background:transparent;color:var(--ink);font:inherit;padding:6px 6px;border-radius:10px;cursor:pointer}.ca-sig button:hover{background:var(--surface-2)}
+.ca-sig i{width:10px;height:10px;border-radius:50%;background:var(--cc);flex:none}.ca-sig span{display:grid;min-width:0}.ca-sig b{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ca-sig small{font-size:12px;color:var(--muted)}
+.ca-kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ca-kpis div{display:grid;align-content:center;padding:10px 14px;border-radius:16px;border:1px solid var(--line);background:var(--surface)}.ca-kpis b{font-size:24px;font-variant-numeric:tabular-nums;line-height:1.1}.ca-kpis small{font-size:12px;color:var(--muted)}
+.ca-kpis .warn b{color:#E05A47}
+.ca-tags{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.ca-cat{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:color-mix(in srgb,var(--cc) 15%,transparent);color:color-mix(in srgb,var(--cc) 75%,var(--ink));white-space:nowrap}
+.ca-cat.sm{font-size:11px;padding:2px 8px}
+.ca-fer,.ca-st,.ca-orig{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.ca-fer{background:color-mix(in srgb,#E05A47 15%,transparent);color:#E05A47}
+.ca-st.ok{background:color-mix(in srgb,#22A35A 15%,transparent);color:#22A35A}.ca-st.no{background:var(--surface-2);color:var(--muted);border:1px dashed var(--line)}.ca-st.go{background:color-mix(in srgb,#8B5CF6 16%,transparent);color:#9F7AEA}
+.ca-orig{background:var(--surface-2);color:var(--muted)}
+.ca-fil{display:grid;gap:10px;padding:12px 14px;border-radius:18px;border:1px solid var(--line);background:var(--surface)}
+.ca-q{display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2)}.ca-q svg{width:17px;height:17px;color:var(--muted);flex:none}
+.ca-q input{flex:1;border:0!important;background:transparent!important;box-shadow:none!important;padding:10px 0!important;font:inherit;color:var(--ink);outline:none;min-width:0}
+.ca-cats{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.ca-cats button{flex:none;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:6px 12px;font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.ca-cats button.on{border-color:var(--cc,var(--ink));background:color-mix(in srgb,var(--cc,var(--ink)) 14%,var(--surface-2));font-weight:700}
+.ca-tg{display:flex;gap:16px;flex-wrap:wrap}.ca-tg:empty{display:none}.ca-sw{display:inline-flex;gap:7px;align-items:center;font-size:13px;cursor:pointer}
+.ca-mg h3{display:flex;align-items:baseline;gap:8px;margin:6px 4px 8px;font-size:17px;text-transform:capitalize}.ca-mg h3 small{color:var(--muted);font-weight:600;font-size:13px}.ca-mg h3 span{margin-left:auto;font-size:12px;color:var(--muted);font-weight:600;text-transform:none}
+.ca-list{display:grid;gap:8px}
+.ca-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;text-align:left;width:100%;padding:10px 14px 10px 10px;border-radius:16px;border:1px solid var(--line);border-left:4px solid var(--cc);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;transition:transform .12s,box-shadow .12s}
+.ca-row:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.ca-dd{display:grid;justify-items:center;width:52px;padding:6px 0;border-radius:12px;background:color-mix(in srgb,var(--cc) 13%,var(--surface-2));line-height:1.05}.ca-dd b{font-size:22px;font-variant-numeric:tabular-nums}.ca-dd small{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700}
+.ca-rt{display:grid;gap:4px;min-width:0}.ca-rt>b{font-size:15px}.ca-rt>small{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ca-cd{font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap}.ca-cd.pr{color:var(--cc)}
+.ca-vacio{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+.ca-cal{padding:14px}.ca-calh,.ca-anoh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}.ca-calh h2,.ca-anoh h2{margin:0 6px;font-size:20px;text-transform:capitalize;min-width:150px;text-align:center}.ca-calh h2 small{color:var(--muted);font-weight:600}.ca-sp{flex:1}
+.ca-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.ca-dow{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:2px 6px}
+.ca-day{position:relative;min-height:112px;display:flex;flex-direction:column;gap:4px;padding:6px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;min-width:0;transition:border-color .12s}
+.ca-day:hover{border-color:color-mix(in srgb,var(--ink) 35%,var(--line))}.ca-day.fin{background:color-mix(in srgb,var(--surface-2) 55%,var(--surface))}
+.ca-day.out{opacity:.35;cursor:default}.ca-day.fer{background:color-mix(in srgb,#E05A47 7%,var(--surface))}
+.ca-day.hoy{border:2px solid #F97316}.ca-day.hoy .ca-dn{background:#F97316;color:#fff}
+.ca-dn{align-self:flex-start;font-size:12.5px;font-weight:800;min-width:24px;height:24px;display:grid;place-items:center;border-radius:99px;font-variant-numeric:tabular-nums}
+.ca-evs{display:grid;gap:3px;min-width:0}
+.ca-ev,.ca-post,.ca-more{display:flex;align-items:center;gap:5px;min-width:0;border:0;font:inherit;font-size:11px;font-weight:700;text-align:left;padding:3px 6px;border-radius:7px;cursor:pointer}
+.ca-ev{background:color-mix(in srgb,var(--cc) 15%,transparent);color:color-mix(in srgb,var(--cc) 70%,var(--ink))}.ca-ev i{width:6px;height:6px;border-radius:50%;background:var(--cc);flex:none}.ca-ev span,.ca-post{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ca-ev.ca-k-int{background:transparent;border:1px solid color-mix(in srgb,var(--cc) 45%,transparent)}
+.ca-post{display:block;background:var(--surface-2);color:var(--ink);border-left:3px solid var(--pc)}.ca-post.done{opacity:.6;text-decoration:line-through}
+.ca-more{background:transparent;color:var(--muted);padding:1px 6px}
+.ca-dots{display:none;gap:3px;flex-wrap:wrap;margin-top:auto}.ca-dots i{width:7px;height:7px;border-radius:50%;background:var(--cc)}.ca-dots i.p{background:transparent;border:1.5px solid var(--muted)}
+.ca-leg{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:12px;color:var(--muted);margin-top:10px}.ca-leg span{display:inline-flex;gap:6px;align-items:center}
+.ca-lf{width:12px;height:12px;border-radius:4px;background:color-mix(in srgb,#E05A47 30%,var(--surface))}.ca-lp{width:12px;height:12px;border-radius:3px;background:var(--surface-2);border-left:3px solid var(--c-sitio,#3B8FE0)}
+.ca-ano{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.ca-mc{display:grid;align-content:start;gap:6px;padding:12px;border-radius:16px;border:1px solid var(--line);background:var(--surface);min-width:0}
+.ca-mc.now{border-color:#F97316;box-shadow:0 0 0 3px color-mix(in srgb,#F97316 18%,transparent)}
+.ca-mc header{display:flex;justify-content:space-between;align-items:baseline}.ca-mc header b{text-transform:capitalize;font-size:15px}.ca-mc header small{color:var(--muted);font-weight:700}
+.ca-vb{position:relative;height:18px;border-radius:6px;background:var(--surface-2);overflow:hidden}.ca-vb i{position:absolute;inset:0 auto 0 0;background:color-mix(in srgb,#22A35A 35%,transparent)}.ca-vb span{position:relative;font-size:10.5px;font-weight:700;padding:0 6px;line-height:18px;color:var(--ink)}
+.ca-mcl{display:grid;gap:2px}
+.ca-mcl button{display:grid;grid-template-columns:auto 22px minmax(0,1fr) auto auto;gap:6px;align-items:center;border:0;background:transparent;color:var(--ink);font:inherit;font-size:12.5px;text-align:left;padding:4px 4px;border-radius:8px;cursor:pointer}
+.ca-mcl button:hover{background:var(--surface-2)}.ca-mcl button.pas{opacity:.5}
+.ca-mcl i{width:7px;height:7px;border-radius:50%;background:var(--cc)}.ca-mcl b{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}.ca-mcl span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ca-mcl em{font-style:normal;font-size:10px;font-weight:800;width:16px;height:16px;display:grid;place-items:center;border-radius:5px;background:color-mix(in srgb,#E05A47 18%,transparent);color:#E05A47}.ca-mcl em.ok{background:color-mix(in srgb,#22A35A 18%,transparent);color:#22A35A}
+.ca-dlg{width:min(640px,calc(100vw - 24px));max-height:calc(100vh - 40px);padding:0;border:1px solid var(--line);border-radius:22px;background:var(--solid,var(--bg));color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:auto}
+.ca-dlg::backdrop{background:rgba(5,8,15,.55);backdrop-filter:blur(3px)}
+.ca-dh{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:start;padding:20px 20px 14px;background:linear-gradient(135deg,color-mix(in srgb,var(--cc) 20%,var(--solid,var(--bg))),var(--solid,var(--bg)) 75%)}
+.ca-dic{display:grid;place-items:center;width:54px;height:54px;border-radius:16px;font-size:28px;background:var(--surface);border:1px solid var(--line)}
+.ca-dh small{font-size:12px;font-weight:700;color:var(--muted)}.ca-dh h2{margin:2px 0 4px;font-size:21px;line-height:1.2}.ca-dh p{margin:0;font-size:13.5px;color:var(--muted)}.ca-dh p::first-letter{text-transform:uppercase}
+.ca-x{border:0;background:var(--surface-2);color:var(--ink);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:14px}
+.ca-db{display:grid;gap:12px;padding:6px 20px 16px}.ca-desc{margin:0;font-size:14.5px;line-height:1.5}
+.ca-box{display:grid;gap:4px;padding:12px 14px;border-radius:14px;font-size:13.5px}.ca-box ul{margin:2px 0;padding-left:18px}.ca-box small{color:var(--muted)}
+.ca-box.ok{background:color-mix(in srgb,#22A35A 10%,var(--surface-2));border:1px solid color-mix(in srgb,#22A35A 30%,var(--line))}.ca-box.no{background:var(--surface-2);border:1px dashed var(--line)}
+.ca-ig{display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:13px}.ca-ig h4{margin:0 0 6px;font-size:13.5px}.ca-ig ol,.ca-ig ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.ca-ig blockquote{margin:10px 0 0;padding:10px 12px;border-left:3px solid var(--cc);background:var(--surface-2);border-radius:0 10px 10px 0;font-style:italic;display:grid;gap:6px;justify-items:start}
+.ca-df{position:sticky;bottom:0;display:flex;flex-wrap:wrap;gap:8px;padding:12px 20px 16px;background:var(--solid,var(--bg));border-top:1px solid var(--line)}
+@media (max-width:1100px){.ca-hero{grid-template-columns:1fr 1fr}.ca-next{grid-column:1/-1}.ca-ano{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.ca-tabs{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.ca-tabs button{grid-template-columns:1fr;grid-template-rows:auto;justify-items:center;text-align:center;padding:10px 6px;row-gap:2px}.ca-tabs button span{grid-row:auto;font-size:22px}.ca-tabs b{font-size:12.5px}.ca-tabs em{display:none}
+  .ca-vis{width:100%}.ca-vis button{flex:1}.ca-hero{grid-template-columns:1fr}.ca-kpis{grid-template-columns:repeat(2,1fr)}.ca-nbig b{font-size:32px}.ca-nt>b{font-size:17px}
+  .ca-row{grid-template-columns:auto minmax(0,1fr);gap:10px}.ca-cd{grid-column:2;justify-self:start}.ca-rt>small{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .ca-grid{gap:3px}.ca-day{min-height:58px;padding:4px;border-radius:9px}.ca-evs{display:none}.ca-dots{display:flex}.ca-dn{font-size:11.5px;min-width:20px;height:20px}.ca-dow{font-size:10px;padding:2px;text-align:center}
+  .ca-ano{grid-template-columns:1fr}.ca-ig{grid-template-columns:1fr}.ca-calh h2{min-width:0;font-size:17px}}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -26307,6 +26400,268 @@ const _cp3Paso2=cpPaso2;
 cpPaso2=function(){ const h=_cp3Paso2.apply(this,arguments), K=Object.keys(CP_PZ), on=K.filter(k=>CP.inc[k]), falta=K.filter(k=>!CP.inc[k]).map(k=>`${CP_PZ[k].t.toLowerCase()} de ${CP_PZ[k].sub}`);
   const tip=on.length===K.length?"Combinación completa: los videos llegan a gente nueva en Instagram, TikTok, Facebook y YouTube, el carrusel se guarda y los pines traen visitas durante meses.":on.length?`Sumá ${falta.slice(0,3).join(", ")}${falta.length>3?" y más":""} para que la campaña llegue a más lugares.`:"Elegí al menos una pieza.";
   return h.replace(/<p class="cp-tipb">💡 [\s\S]*?<\/p>/,`<p class="cp-tipb">💡 ${tip}</p>`); };
+
+// =====================================================================
+// CALENDARIO PRO: efemérides de Argentina y mundiales/internacionales, con vistas Próximas · Mes · Año
+// =====================================================================
+const CA_CAT={patria:["Fecha patria","🇦🇷","#3B8FE0"],memoria:["Memoria y democracia","🕊️","#8B7CF6"],cultura:["Cultura y tradición","🎭","#E8833A"],escuela:["Escuela y lectura","📚","#22A867"],
+  ambiente:["Ambiente","🌱","#3E9F4F"],salud:["Salud","🩺","#E5484D"],derechos:["Derechos y paz","🤝","#A855F7"],inclusion:["Inclusión","♿","#0EA5E9"],ciencia:["Ciencia","🔬","#14B8A6"],
+  america:["América y pueblos","🌎","#C98500"],familia:["Familia y comunidad","💛","#D9A400"]};
+// [mm-dd, nombre, categoría, descripción, feriado: 1 inamovible · 2 trasladable]
+const CA_AR=[
+  ["02-22","Día de la Antártida Argentina","patria","Se recuerda el izamiento de la bandera en la base Orcadas (1904), presencia argentina ininterrumpida en la Antártida."],
+  ["02-27","Creación de la Bandera","patria","Belgrano iza por primera vez la bandera celeste y blanca a orillas del Paraná, en Rosario (1812)."],
+  ["03-12","Día del Escudo Nacional","patria","La Asamblea del Año XIII aprueba el sello que dio origen al Escudo Nacional (1813)."],
+  ["03-24","Día de la Memoria por la Verdad y la Justicia","memoria","Se recuerda el golpe de Estado de 1976: memoria, derechos humanos y valor de la democracia.",1],
+  ["04-02","Día del Veterano y de los Caídos en Malvinas","patria","Homenaje a quienes combatieron en la Guerra de Malvinas (1982) y reafirmación de la soberanía.",1],
+  ["04-29","Día del Animal","ambiente","En memoria de Ignacio Albarracín, impulsor de la ley de protección animal en Argentina."],
+  ["05-01","Día de la Constitución Nacional","patria","Se sanciona la Constitución Nacional en Santa Fe (1853). Coincide con el Día del Trabajador.",1],
+  ["05-11","Día del Himno Nacional Argentino","patria","La Asamblea del Año XIII aprueba la Marcha Patriótica de Vicente López y Planes y Blas Parera (1813)."],
+  ["05-18","Día de la Escarapela","patria","Se recuerda la escarapela celeste y blanca, primer símbolo patrio, aprobada en 1812."],
+  ["05-25","Revolución de Mayo","patria","Se forma el Primer Gobierno Patrio en Buenos Aires (1810).",1],
+  ["05-28","Día de los Jardines de Infantes y de la Maestra Jardinera","escuela","En homenaje a Rosario Vera Peñaloza, pionera de la educación inicial."],
+  ["06-02","Día del Bombero Voluntario","familia","Se recuerda la fundación del primer cuartel de bomberos voluntarios, en La Boca (1884)."],
+  ["06-10","Día de la Afirmación de los Derechos sobre Malvinas","patria","Se recuerda la creación de la Comandancia Política y Militar de Malvinas (1829)."],
+  ["06-15","Día del Libro","escuela","Fecha argentina para celebrar la lectura y los libros (desde 1908)."],
+  ["06-17","Paso a la Inmortalidad de Güemes","patria","Muere Martín Miguel de Güemes, defensor de la frontera norte junto a sus gauchos (1821).",2],
+  ["06-20","Día de la Bandera","patria","Paso a la inmortalidad de Manuel Belgrano, creador de la bandera (1820).",1],
+  ["07-09","Día de la Independencia","patria","El Congreso de Tucumán declara la independencia de las Provincias Unidas (1816).",1],
+  ["07-20","Día del Amigo","familia","Inspirado en la llegada del hombre a la Luna (1969), idea del argentino Enrique Febbraro."],
+  ["08-01","Día de la Pachamama","america","Ceremonia andina de agradecimiento a la Madre Tierra, muy viva en el norte argentino."],
+  ["08-17","Paso a la Inmortalidad de San Martín","patria","Muere el general José de San Martín, Libertador de Argentina, Chile y Perú (1850).",2],
+  ["08-22","Día del Folklore","cultura","Coincide con el nacimiento de Juan Bautista Ambrosetti, pionero del estudio del folklore argentino."],
+  ["08-24","Día del Lector","escuela","Nacimiento de Jorge Luis Borges (1899): una invitación a leer por placer."],
+  ["08-29","Día del Árbol","ambiente","Fecha impulsada por Sarmiento para promover el cuidado y la plantación de árboles."],
+  ["09-04","Día del Inmigrante","cultura","Homenaje a quienes llegaron de otros países y ayudaron a construir la Argentina."],
+  ["09-11","Día del Maestro","escuela","Paso a la inmortalidad de Domingo Faustino Sarmiento (1888)."],
+  ["09-13","Día del Bibliotecario","escuela","Se recuerda la creación de la Biblioteca Pública de Buenos Aires (1810)."],
+  ["09-16","La Noche de los Lápices","memoria","Día de los Derechos de los Estudiantes Secundarios: memoria de los estudiantes desaparecidos en 1976."],
+  ["09-17","Día del Profesor","escuela","En memoria de José Manuel Estrada, educador y escritor."],
+  ["09-21","Día del Estudiante y de la Primavera","escuela","Llegada de la primavera y homenaje a los estudiantes."],
+  ["10-12","Día del Respeto a la Diversidad Cultural","america","Reflexión sobre los pueblos originarios y la diversidad cultural de América.",2],
+  ["11-06","Día de los Parques Nacionales","ambiente","El Perito Moreno dona tierras que darán origen al primer parque nacional (1903)."],
+  ["11-10","Día de la Tradición","cultura","Nacimiento de José Hernández, autor del Martín Fierro (1834)."],
+  ["11-20","Día de la Soberanía Nacional","patria","Combate de la Vuelta de Obligado (1845), defensa del Paraná frente a la escuadra anglo-francesa.",2],
+  ["11-22","Día de la Música","cultura","Día de Santa Cecilia, patrona de los músicos."],
+  ["12-08","Día de la Inmaculada Concepción","familia","Feriado nacional; tradicionalmente se arma el árbol de Navidad.",1],
+  ["12-10","Día de la Restauración de la Democracia","memoria","Asume Raúl Alfonsín y se recupera la democracia (1983)."],
+  ["12-11","Día Nacional del Tango","cultura","Nacimientos de Carlos Gardel y Julio De Caro."],
+  ["12-25","Navidad","familia","Celebración navideña y cierre del año.",1],
+];
+// fechas móviles (se calculan para cada año)
+const caDomingo=(y,m,n)=>{ const d=new Date(y,m,1); d.setDate(1+((7-d.getDay())%7)+(n-1)*7); return d; };
+const CA_MOV=[["Día del Padre","familia","Tercer domingo de junio.",y=>caDomingo(y,5,3)],["Día de las Infancias","familia","Tercer domingo de agosto: el día de los chicos y las chicas.",y=>caDomingo(y,7,3)],["Día de la Madre","familia","Tercer domingo de octubre.",y=>caDomingo(y,9,3)]];
+const CA_INT=[
+  ["01-04","Día Mundial del Braille","inclusion","Reconoce el braille como medio de comunicación y la inclusión de las personas ciegas (ONU)."],
+  ["01-24","Día Internacional de la Educación","escuela","La educación como derecho humano y bien común (ONU)."],
+  ["01-27","Día de Conmemoración del Holocausto","memoria","Memoria de las víctimas del Holocausto y prevención de los genocidios (ONU)."],
+  ["02-02","Día Mundial de los Humedales","ambiente","Valor de los humedales para el agua, la biodiversidad y el clima."],
+  ["02-11","Día de la Mujer y la Niña en la Ciencia","ciencia","Promueve que más chicas se acerquen a la ciencia y la tecnología (ONU)."],
+  ["02-13","Día Mundial de la Radio","cultura","La radio como medio para informar, educar y acompañar (UNESCO)."],
+  ["02-21","Día Internacional de la Lengua Materna","cultura","Diversidad lingüística y lenguas originarias (UNESCO)."],
+  ["03-03","Día Mundial de la Vida Silvestre","ambiente","Cuidado de la fauna y la flora silvestres (ONU)."],
+  ["03-08","Día Internacional de la Mujer","derechos","Igualdad de derechos y oportunidades para las mujeres (ONU)."],
+  ["03-14","Día Internacional de las Matemáticas","ciencia","También “Día de Pi” (3,14): la matemática está en todas partes (UNESCO)."],
+  ["03-20","Día Internacional de la Felicidad","salud","El bienestar y la felicidad como objetivos humanos (ONU)."],
+  ["03-21","Día Mundial del Síndrome de Down","inclusion","Inclusión, derechos y autonomía de las personas con síndrome de Down (ONU)."],
+  ["03-21","Día Internacional de los Bosques","ambiente","Importancia de los bosques para la vida en el planeta (ONU)."],
+  ["03-21","Día Mundial de la Poesía","cultura","Celebra la poesía y la diversidad de lenguas (UNESCO)."],
+  ["03-21","Día contra la Discriminación Racial","derechos","Por la eliminación de toda forma de discriminación racial (ONU)."],
+  ["03-22","Día Mundial del Agua","ambiente","Cuidado y acceso al agua potable para todos (ONU)."],
+  ["03-23","Día Meteorológico Mundial","ciencia","El tiempo, el clima y el agua (Organización Meteorológica Mundial)."],
+  ["03-27","Día Mundial del Teatro","cultura","Celebra el teatro y las artes escénicas."],
+  ["04-02","Día Mundial de Concienciación sobre el Autismo","inclusion","Comprensión, aceptación e inclusión de las personas autistas (ONU)."],
+  ["04-02","Día Internacional del Libro Infantil","escuela","Nacimiento de Hans Christian Andersen: promueve la lectura en la infancia."],
+  ["04-06","Día del Deporte para el Desarrollo y la Paz","salud","El deporte como herramienta de inclusión y convivencia (ONU)."],
+  ["04-07","Día Mundial de la Salud","salud","Aniversario de la Organización Mundial de la Salud (1948)."],
+  ["04-14","Día de las Américas","america","Unión y cooperación entre los países del continente americano."],
+  ["04-19","Día de los Pueblos Indígenas de América","america","Día del Aborigen Americano, desde el Congreso de Pátzcuaro (1940)."],
+  ["04-21","Día Mundial de la Creatividad y la Innovación","ciencia","La creatividad para resolver problemas (ONU)."],
+  ["04-22","Día Internacional de la Madre Tierra","ambiente","Día de la Tierra: cuidado del planeta y del ambiente (ONU)."],
+  ["04-23","Día Mundial del Libro y del Derecho de Autor","escuela","Fecha de Cervantes, Shakespeare y el Inca Garcilaso (UNESCO). También Día del Idioma Español."],
+  ["04-29","Día Internacional de la Danza","cultura","Celebra la danza en todas sus formas (UNESCO)."],
+  ["05-01","Día Internacional de los Trabajadores","derechos","Homenaje a los Mártires de Chicago y a los derechos laborales."],
+  ["05-03","Día Mundial de la Libertad de Prensa","derechos","Importancia de la información libre (ONU)."],
+  ["05-15","Día Internacional de las Familias","familia","Las familias en toda su diversidad (ONU)."],
+  ["05-17","Día Mundial del Reciclaje","ambiente","Reducir, reutilizar y reciclar."],
+  ["05-18","Día Internacional de los Museos","cultura","Los museos como espacios de aprendizaje y memoria."],
+  ["05-20","Día Mundial de las Abejas","ambiente","Las abejas y los polinizadores, claves para los alimentos (ONU)."],
+  ["05-21","Día de la Diversidad Cultural para el Diálogo","derechos","La diversidad cultural como riqueza (UNESCO)."],
+  ["05-22","Día Internacional de la Diversidad Biológica","ambiente","Biodiversidad: la variedad de la vida en la Tierra (ONU)."],
+  ["05-31","Día Mundial Sin Tabaco","salud","Concientización sobre los daños del tabaco (OMS)."],
+  ["06-05","Día Mundial del Medio Ambiente","ambiente","La fecha ambiental más importante del calendario de la ONU."],
+  ["06-08","Día Mundial de los Océanos","ambiente","Cuidado de los mares y océanos (ONU)."],
+  ["06-11","Día Internacional del Juego","derechos","El juego como derecho de la infancia (ONU, desde 2024)."],
+  ["06-12","Día Mundial contra el Trabajo Infantil","derechos","Por una infancia libre de trabajo (OIT)."],
+  ["06-14","Día Mundial del Donante de Sangre","salud","Agradecimiento a quienes donan sangre (OMS)."],
+  ["06-20","Día Mundial de los Refugiados","derechos","Solidaridad con las personas que debieron dejar su país (ONU)."],
+  ["07-11","Día Mundial de la Población","ciencia","Desafíos de la población mundial (ONU)."],
+  ["07-18","Día Internacional de Nelson Mandela","derechos","Su legado de paz, igualdad y reconciliación (ONU)."],
+  ["07-30","Día Internacional de la Amistad","familia","La amistad entre personas y pueblos (ONU)."],
+  ["08-09","Día Internacional de los Pueblos Indígenas","america","Derechos y culturas de los pueblos indígenas del mundo (ONU)."],
+  ["08-12","Día Internacional de la Juventud","derechos","Participación de los jóvenes (ONU)."],
+  ["08-19","Día Mundial de la Fotografía","cultura","La fotografía como arte y como memoria."],
+  ["08-22","Día Mundial del Folklore","cultura","Saberes, costumbres y tradiciones populares de los pueblos."],
+  ["09-08","Día Internacional de la Alfabetización","escuela","La lectura y la escritura como derecho (UNESCO)."],
+  ["09-16","Día de la Preservación de la Capa de Ozono","ambiente","Protección de la capa que nos cuida de los rayos UV (ONU)."],
+  ["09-21","Día Internacional de la Paz","derechos","Jornada mundial de no violencia y alto el fuego (ONU)."],
+  ["09-23","Día Internacional de las Lenguas de Señas","inclusion","Derechos lingüísticos de las personas sordas (ONU)."],
+  ["09-27","Día Mundial del Turismo","cultura","El turismo y el conocimiento de otros lugares (ONU Turismo)."],
+  ["10-01","Día Internacional de las Personas Mayores","familia","Valor y derechos de las personas mayores (ONU)."],
+  ["10-04","Día Mundial de los Animales","ambiente","Día de San Francisco de Asís: bienestar y protección animal."],
+  ["10-05","Día Mundial de los Docentes","escuela","Reconocimiento a la tarea docente (UNESCO)."],
+  ["10-10","Día Mundial de la Salud Mental","salud","Bienestar emocional y salud mental (OMS)."],
+  ["10-15","Día Mundial del Lavado de Manos","salud","Un hábito simple que previene enfermedades."],
+  ["10-15","Día Internacional del Bastón Blanco","inclusion","Autonomía y derechos de las personas ciegas y con baja visión."],
+  ["10-16","Día Mundial de la Alimentación","salud","Alimentación saludable y acceso a los alimentos (FAO)."],
+  ["10-24","Día de las Naciones Unidas","derechos","Aniversario de la ONU (1945)."],
+  ["10-31","Día Mundial de las Ciudades","ambiente","Ciudades más sostenibles e inclusivas (ONU)."],
+  ["11-10","Día Mundial de la Ciencia para la Paz","ciencia","La ciencia al servicio de la sociedad (UNESCO)."],
+  ["11-13","Día Mundial de la Bondad","familia","Pequeños gestos amables que cambian el día de otros."],
+  ["11-14","Día Mundial de la Diabetes","salud","Prevención y cuidados de la diabetes (OMS)."],
+  ["11-16","Día Internacional para la Tolerancia","derechos","Respeto y convivencia en la diversidad (UNESCO)."],
+  ["11-20","Día Universal del Niño","derechos","Aniversario de la Convención sobre los Derechos del Niño (1989)."],
+  ["11-25","Día contra la Violencia hacia la Mujer","derechos","Por la eliminación de la violencia contra las mujeres (ONU)."],
+  ["12-03","Día Internacional de las Personas con Discapacidad","inclusion","Inclusión y derechos de las personas con discapacidad (ONU)."],
+  ["12-05","Día Internacional del Voluntariado","familia","Reconocimiento a quienes ayudan a su comunidad (ONU)."],
+  ["12-10","Día de los Derechos Humanos","derechos","Aniversario de la Declaración Universal de los Derechos Humanos (1948)."],
+  ["12-11","Día Internacional de las Montañas","ambiente","Las montañas, fuentes de agua y biodiversidad (ONU)."],
+  ["12-18","Día Internacional del Migrante","derechos","Derechos de las personas migrantes (ONU)."],
+];
+const CA_TABS=[["ar","🇦🇷","Argentina","Fechas patrias y efemérides nacionales"],["int","🌎","Mundiales e internacionales","Días de la ONU, la UNESCO y la OMS"],["todas","📌","Todas","Las dos juntas, en un solo calendario"]];
+const CA_VISTAS=[["prox","Próximas"],["mes","Mes"],["ano","Año"]];
+const CA_MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const CA={tab:"ar",vista:"prox",cat:"",q:"",fer:false,sinMat:false,mes:null,on:false,ideas:{}};
+try{ const s=JSON.parse(localStorage.getItem("cofre-ca-v1")||"{}"); if(s.tab) CA.tab=s.tab; if(s.vista) CA.vista=s.vista; CA.ideas=JSON.parse(localStorage.getItem("cofre-ca-ideas")||"{}"); }catch{}
+const caGuardar=()=>{ try{ localStorage.setItem("cofre-ca-v1",JSON.stringify({tab:CA.tab,vista:CA.vista})); }catch{} };
+const caHoy=()=>startOfDay(new Date());
+const caIdOf=e=>e.t+":"+e.k+":"+fold(e.n).slice(0,24);
+
+// ---------- datos ----------
+function caFechas(y){ const L=[];
+  CA_AR.forEach(([k,n,cat,d,fer])=>{ const [m,dd]=k.split("-").map(Number); L.push({t:"ar",k,n,cat,d,fer:fer||0,f:new Date(y,m-1,dd)}); });
+  CA_MOV.forEach(([n,cat,d,fn])=>{ const f=fn(y); L.push({t:"ar",k:`${String(f.getMonth()+1).padStart(2,"0")}-${String(f.getDate()).padStart(2,"0")}`,n,cat,d,fer:0,mov:true,f}); });
+  CA_INT.forEach(([k,n,cat,d])=>{ const [m,dd]=k.split("-").map(Number); L.push({t:"int",k,n,cat,d,fer:0,f:new Date(y,m-1,dd)}); });
+  L.forEach(e=>e.id=caIdOf(e)); return L; }
+function caEfe(e){ if(typeof EFEMERIDES==="undefined") return null; const n=fold(e.n);
+  return EFEMERIDES.find(x=>x[0]===e.k&&(e.t==="ar"||fold(x[1])===n||(x[2]||[]).some(kw=>n.includes(fold(kw)))))||null; }
+function caMat(e){ if(e._m!==undefined) return e._m; const x=caEfe(e); let r=null; try{ if(x&&typeof efeInfo==="function"&&D) r={e:x,...efeInfo(x)}; else if(x) r={e:x,rel:[],units:0}; }catch{ r=x?{e:x,rel:[],units:0}:null; } return e._m=r; }
+function caFiltro(L){ const q=fold(CA.q.trim()); return L.filter(e=>(CA.tab==="todas"||e.t===CA.tab)&&(!CA.cat||e.cat===CA.cat)&&(!CA.fer||e.fer)&&(!q||fold(e.n+" "+e.d+" "+CA_CAT[e.cat][0]).includes(q))&&(!CA.sinMat||!(caMat(e)&&caMat(e).rel.length))); }
+function caProximas(dias){ const h=caHoy(), y=h.getFullYear(); return caFiltro([...caFechas(y),...caFechas(y+1)]).map(e=>({...e,diff:Math.round((e.f-h)/DAY)})).filter(e=>e.diff>=0&&e.diff<=dias).sort((a,b)=>a.diff-b.diff||(a.t===b.t?0:a.t==="ar"?-1:1)); }
+function caPorDia(y,m){ const M={}; caFiltro(caFechas(y)).filter(e=>e.f.getMonth()===m).forEach(e=>{ (M[e.f.getDate()]=M[e.f.getDate()]||[]).push(e); }); return M; }
+
+// ---------- piezas visuales ----------
+const caChip=(cat,sm)=>{ const [n,ic,c]=CA_CAT[cat]; return `<span class="ca-cat${sm?" sm":""}" style="--cc:${c}">${ic} ${esc(n)}</span>`; };
+const caDiasTxt=d=>d===0?"Hoy":d===1?"Mañana":`En ${d} días`;
+function caEstado(e,full){ if(e.t!=="ar"&&!caEfe(e)) return ""; const m=caMat(e); if(!m) return e.t==="ar"&&full!==false?`<span class="ca-st no">Sin material</span>`:"";
+  if(!m.rel.length) return `<span class="ca-st no">Sin material</span>`; const promo=e.f&&m.lead?new Date(+e.f-m.lead*DAY):null, ya=promo&&caHoy()>=promo&&e.f>=caHoy();
+  return `<span class="ca-st ok">✓ ${m.rel.length} material${m.rel.length>1?"es":""}</span>${full&&ya?`<span class="ca-st go">📣 Promocionar ahora</span>`:""}`; }
+function caFila(e){ const c=CA_CAT[e.cat][2], wd=e.f.toLocaleDateString("es-AR",{weekday:"short"}).replace(".","");
+  return `<button type="button" class="ca-row ca-k-${e.t}" data-caid="${esc(e.id)}" data-cay="${e.f.getFullYear()}" style="--cc:${c}"><span class="ca-dd"><b>${e.f.getDate()}</b><small>${esc(wd)}</small></span>
+    <span class="ca-rt"><b>${esc(e.n)}</b><small>${esc(e.d)}</small><span class="ca-tags">${caChip(e.cat,1)}${CA.tab==="todas"?`<span class="ca-orig">${e.t==="ar"?"🇦🇷 Nacional":"🌎 Mundial"}</span>`:""}${e.fer?`<span class="ca-fer">Feriado${e.fer===2?" trasladable":""}</span>`:""}${e.mov?`<span class="ca-orig">Fecha móvil</span>`:""}${caEstado(e,true)}</span></span>
+    <span class="ca-cd ${e.diff<=7?"pr":""}">${caDiasTxt(e.diff)}</span></button>`; }
+
+// ---------- vistas ----------
+function caHero(){ const P=caProximas(400), h=caHoy(); const p=P[0]; if(!p) return "";
+  const sig=P.slice(1,5), m=caMat(p), promo=m&&m.rel.length&&m.lead?new Date(+p.f-m.lead*DAY):null, mes=caFiltro(caFechas(h.getFullYear())).filter(e=>e.f.getMonth()===h.getMonth()), sinM=P.filter(e=>e.diff<=60&&e.t==="ar"&&!(caMat(e)&&caMat(e).rel.length)).length;
+  const pubs=(typeof posts!=="undefined"?posts:[]).filter(x=>(x.fecha||"").slice(0,7)===iso(h).slice(0,7)).length;
+  return `<section class="ca-hero"><button type="button" class="ca-next" data-caid="${esc(p.id)}" data-cay="${p.f.getFullYear()}" style="--cc:${CA_CAT[p.cat][2]}">
+      <span class="ca-nl">Próxima fecha</span><span class="ca-nbig"><b>${p.diff===0?"¡Hoy!":p.diff}</b>${p.diff?`<small>día${p.diff===1?"":"s"}</small>`:""}</span>
+      <span class="ca-nt"><b>${esc(p.n)}</b><small>${esc((t=>t.charAt(0).toUpperCase()+t.slice(1))(p.f.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"})))}</small><span class="ca-tags">${caChip(p.cat,1)}${p.fer?`<span class="ca-fer">Feriado</span>`:""}${caEstado(p,true)}</span>${promo?`<em>${caHoy()>=promo?"Ya es momento de promocionar tu material.":`Conviene empezar a promocionar el ${esc(fmtDM(promo))}.`}</em>`:""}</span></button>
+    <div class="ca-sig"><span class="ca-nl">Después</span>${sig.map(e=>`<button type="button" data-caid="${esc(e.id)}" data-cay="${e.f.getFullYear()}" style="--cc:${CA_CAT[e.cat][2]}"><i></i><span><b>${esc(e.n)}</b><small>${esc(e.f.toLocaleDateString("es-AR",{day:"numeric",month:"short"}))} · ${caDiasTxt(e.diff).toLowerCase()}</small></span></button>`).join("")}</div>
+    <div class="ca-kpis"><div><b>${mes.length}</b><small>fechas en ${CA_MESES[h.getMonth()]}</small></div><div><b>${mes.filter(e=>e.fer).length}</b><small>feriados este mes</small></div>${CA.tab!=="int"?`<div class="${sinM?"warn":""}"><b>${sinM}</b><small>sin material en 60 días</small></div>`:`<div><b>${CA_INT.length}</b><small>días mundiales en el año</small></div>`}<div><b>${pubs}</b><small>publicaciones este mes</small></div></div></section>`; }
+function caFiltrosHtml(){ const cats=[...new Set((CA.tab==="ar"?CA_AR:CA.tab==="int"?CA_INT:[...CA_AR,...CA_INT]).map(e=>e[2]).concat(CA.tab!=="int"?["familia"]:[]))];
+  return `<div class="ca-fil"><label class="ca-q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" id="caQ" placeholder="Buscar una fecha: agua, bandera, lectura…" value="${esc(CA.q)}" aria-label="Buscar efeméride"></label>
+    <div class="ca-cats"><button type="button" data-cacat="" class="${CA.cat?"":"on"}">Todas las categorías</button>${cats.map(k=>`<button type="button" data-cacat="${k}" class="${CA.cat===k?"on":""}" style="--cc:${CA_CAT[k][2]}">${CA_CAT[k][1]} ${esc(CA_CAT[k][0])}</button>`).join("")}</div>
+    <div class="ca-tg">${CA.tab!=="int"?`<label class="ca-sw"><input type="checkbox" data-cafer ${CA.fer?"checked":""}> Solo feriados</label><label class="ca-sw"><input type="checkbox" data-casinmat ${CA.sinMat?"checked":""}> Solo sin material</label>`:""}</div></div>`; }
+function caProx(){ const P=caProximas(366); if(!P.length) return `<div class="ca-vacio">No hay fechas con esos filtros.</div>`; const G={};
+  P.forEach(e=>{ const k=e.f.getFullYear()+"-"+e.f.getMonth(); (G[k]=G[k]||[]).push(e); });
+  return Object.entries(G).map(([k,L])=>{ const [y,m]=k.split("-").map(Number); return `<section class="ca-mg"><h3>${CA_MESES[m]} <small>${y}</small><span>${L.length} fecha${L.length===1?"":"s"}</span></h3><div class="ca-list">${L.map(caFila).join("")}</div></section>`; }).join(""); }
+function caMes(){ const b=CA.mes, y=b.getFullYear(), m=b.getMonth(), M=caPorDia(y,m), first=new Date(y,m,1), sh=(first.getDay()+6)%7, nd=new Date(y,m+1,0).getDate(), hoy=iso(new Date()), P={};
+  (typeof posts!=="undefined"?posts:[]).forEach(p=>{ (P[p.fecha]=P[p.fecha]||[]).push(p); });
+  const cel=[]; for(let i=0;i<Math.ceil((sh+nd)/7)*7;i++){ const d=new Date(y,m,1-sh+i), ds=iso(d), fuera=d.getMonth()!==m, L=fuera?[]:(M[d.getDate()]||[]), ps=P[ds]||[], fer=L.some(e=>e.fer);
+    cel.push(`<div class="ca-day ${fuera?"out":""} ${ds===hoy?"hoy":""} ${fer?"fer":""} ${d.getDay()%6===0?"fin":""}" data-caday="${ds}" tabindex="${fuera?-1:0}" role="button" aria-label="${esc(d.toLocaleDateString("es-AR",{day:"numeric",month:"long"}))}${L.length?": "+esc(L.map(e=>e.n).join(", ")):""}"><span class="ca-dn">${d.getDate()}</span>
+      <div class="ca-evs">${L.slice(0,3).map(e=>`<button type="button" class="ca-ev ca-k-${e.t}" data-caid="${esc(e.id)}" data-cay="${y}" style="--cc:${CA_CAT[e.cat][2]}" title="${esc(e.n)}"><i></i><span>${esc(e.n)}</span></button>`).join("")}${L.length>3?`<button type="button" class="ca-more" data-camore="${ds}">+${L.length-3} más</button>`:""}
+      ${ps.map(p=>`<button type="button" class="ca-post ${p.estado==="Publicada"?"done":""}" data-capost="${esc(p.id)}" style="--pc:var(${POST_COLORS[p.tipo]||"--c-sitio"})" title="${esc(p.tipo+" · "+p.estado)}">${p.tipo==="Reel"?"🎬":p.tipo==="Historia"?"⭕":"🖼️"} ${esc(p.tema||p.tipo)}</button>`).join("")}</div><span class="ca-dots">${L.map(e=>`<i style="--cc:${CA_CAT[e.cat][2]}"></i>`).join("")}${ps.map(()=>`<i class="p"></i>`).join("")}</span></div>`); }
+  const cnt=Object.values(M).flat();
+  return `<section class="card ca-cal"><div class="ca-calh"><button type="button" class="btn small" data-camov="-1" aria-label="Mes anterior">‹</button><h2>${CA_MESES[m]} <small>${y}</small></h2><button type="button" class="btn small" data-camov="1" aria-label="Mes siguiente">›</button><button type="button" class="btn small ghost" data-camov="0">Hoy</button><span class="ca-sp"></span><span class="muted small">${cnt.length} fecha${cnt.length===1?"":"s"} · ${cnt.filter(e=>e.fer).length} feriado${cnt.filter(e=>e.fer).length===1?"":"s"}</span></div>
+    <div class="ca-grid">${["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map(d=>`<div class="ca-dow">${d}</div>`).join("")}${cel.join("")}</div>
+    <div class="ca-leg"><span><i class="ca-lf"></i>Feriado</span><span><i class="ca-lp"></i>Publicación planificada</span><span class="muted">Tocá un día vacío para agendar una publicación, o una fecha para ver su ficha.</span></div></section>`; }
+function caAno(){ const y=CA.anio||new Date().getFullYear(), L=caFiltro(caFechas(y)), h=caHoy(), ventas={};
+  try{ if(D&&D.items) D.items.forEach(i=>{ if(i.ok&&i.d){ const mm=i.d.getMonth(); ventas[mm]=(ventas[mm]||0)+i.q; } }); }catch{}
+  const mx=Math.max(1,...Object.values(ventas));
+  return `<div class="ca-anoh"><button type="button" class="btn small" data-caanio="-1" aria-label="Año anterior">‹</button><h2>${y}</h2><button type="button" class="btn small" data-caanio="1" aria-label="Año siguiente">›</button><span class="muted small">${L.length} fechas${CA.tab!=="int"&&Object.keys(ventas).length?" · la barra muestra los materiales vendidos en cada mes":""}</span></div>
+    <div class="ca-ano">${CA_MESES.map((nm,m)=>{ const E=L.filter(e=>e.f.getMonth()===m).sort((a,b)=>a.f-b.f), act=y===h.getFullYear()&&m===h.getMonth(), v=ventas[m]||0;
+    return `<section class="ca-mc ${act?"now":""}"><header><b>${nm}</b><small>${E.length||"—"}</small></header>${CA.tab!=="int"&&v?`<div class="ca-vb" title="${nf(v)} materiales vendidos en ${nm}"><i style="width:${(v/mx*100).toFixed(0)}%"></i><span>${nf(v)} vendidos</span></div>`:""}
+      <div class="ca-mcl">${E.map(e=>`<button type="button" class="${e.f<h?"pas":""}" data-caid="${esc(e.id)}" data-cay="${y}" style="--cc:${CA_CAT[e.cat][2]}"><i></i><b>${e.f.getDate()}</b><span>${esc(e.n)}</span>${e.fer?`<em title="Feriado">F</em>`:""}${e.t==="ar"&&caMat(e)&&caMat(e).rel.length?`<em class="ok" title="Tenés material">✓</em>`:""}</button>`).join("")||`<p class="muted small">Sin fechas con estos filtros.</p>`}</div></section>`; }).join("")}</div>`; }
+
+// ---------- ficha de una fecha ----------
+function caBuscar(id,y){ return caFechas(+y||new Date().getFullYear()).find(e=>e.id===id); }
+function caFicha(e){ let d=document.getElementById("caDlg"); if(!d){ d=document.createElement("dialog"); d.id="caDlg"; d.className="ca-dlg"; document.body.appendChild(d);
+    d.addEventListener("click",ev=>{ if(ev.target===d) return d.close(); const b=ev.target.closest("button"); if(!b) return; const x=d._e; if(b.hasAttribute("data-cax")) return d.close();
+      if(b.hasAttribute("data-capub")){ d.close(); return openPost(null,iso(x.f)); }
+      if(b.hasAttribute("data-calanz")){ d.close(); return openLanz(null,caEfe(x)||[x.k,x.n,[]]); }
+      if(b.hasAttribute("data-camats")){ d.close(); const m=caMat(x); showView("materiales"); try{ setMView("mat"); $("#mq").value=m.rel[0].group||x.n; renderMats(); }catch{} return; }
+      if(b.hasAttribute("data-caidea")) return caIdeas(x,b);
+      if(b.hasAttribute("data-cacopy")) return copyText(b,b.dataset.cacopy); }); }
+  d._e=e; const h=caHoy(); let f=e.f; if(f<h){ const n=caFechas(f.getFullYear()+1).find(x=>x.id===e.id); if(n) f=n.f; } const diff=Math.round((f-h)/DAY), m=caMat(e), c=CA_CAT[e.cat], I=CA.ideas[e.id];
+  d.style.setProperty("--cc",c[2]);
+  d.innerHTML=`<div class="ca-dh"><span class="ca-dic">${c[1]}</span><div><small>${e.t==="ar"?"🇦🇷 Efeméride nacional":"🌎 Día mundial / internacional"}</small><h2>${esc(e.n)}</h2><p>${esc(f.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long",year:"numeric"}))} · <b>${caDiasTxt(diff).toLowerCase()}</b></p></div><button type="button" class="ca-x" data-cax aria-label="Cerrar">✕</button></div>
+    <div class="ca-db"><div class="ca-tags">${caChip(e.cat)}${e.fer?`<span class="ca-fer">Feriado${e.fer===2?" trasladable: puede moverse a un lunes":" nacional"}</span>`:""}${e.mov?`<span class="ca-orig">Fecha móvil: cambia cada año</span>`:""}</div>
+      <p class="ca-desc">${esc(e.d)}</p>
+      ${m&&m.rel.length?`<div class="ca-box ok"><b>✓ Tenés material para esta fecha</b><ul>${m.rel.slice(0,5).map(x=>`<li>${esc(x.name)}</li>`).join("")}</ul>${m.units?`<small>Vendiste ${nf(m.units)} unidades${m.p80!=null?`; el 80 % llegó en los ${Math.round(m.p80)} días previos`:""}. ${m.lead?`Conviene promocionar desde el ${esc(fmtDM(new Date(+f-m.lead*DAY)))}.`:""}</small>`:""}</div>`
+        :`<div class="ca-box no"><b>Todavía no tenés material para esta fecha</b><small>${e.t==="int"?"Los días mundiales son una buena oportunidad para materiales transversales (ambiente, salud, ESI, inclusión) que se usan todo el año.":"Es una oportunidad para crear un material nuevo."}</small></div>`}
+      <div class="ca-ideas">${I?caIdeasHtml(I):`<p class="muted small">Pedile a Claude ideas de actividades para el aula y de publicaciones para esta fecha.</p>`}</div></div>
+    <div class="ca-df"><button type="button" class="btn primary" data-capub>📅 Agendar publicación</button>${m&&m.rel.length?`<button type="button" class="btn" data-camats>📦 Ver mis materiales</button>`:`<button type="button" class="btn" data-calanz>💡 Anotar idea de material</button>`}<button type="button" class="btn" data-caidea>${I?"↺ Otras ideas":"✨ Ideas con Claude"}</button></div>`;
+  if(!d.open) d.showModal(); }
+function caIdeasHtml(I){ return `<div class="ca-ig"><div><h4>🧑‍🏫 Para el aula</h4><ol>${(I.aula||[]).map(x=>`<li><b>${esc(x.t||"")}</b> ${esc(x.d||"")}</li>`).join("")}</ol></div><div><h4>📣 Para tus redes</h4><ul>${(I.redes||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${I.frase?`<blockquote>“${esc(I.frase)}”<button type="button" class="btn small" data-cacopy="${esc(I.frase)}">Copiar</button></blockquote>`:""}</div></div>`; }
+async function caIdeas(e,btn){ const sf=await getSample(); if(!sf){ toast("Las ideas las escribe Claude desde el panel dentro de Claude","err"); return; } const t0=btn.textContent; btn.disabled=true; btn.textContent="✨ Pensando…";
+  try{ const r=await sf.json(`Sos asesora pedagógica de Cofre Didáctico (materiales para docentes de primaria de Argentina; voseo rioplatense, tono cálido). Fecha: "${e.n}" (${e.k.split("-").reverse().join("/")}). Contexto: ${e.d}
+Proponé ideas concretas, realistas para una escuela primaria argentina, sin inventar datos históricos dudosos.
+Respondé SOLO JSON: {"aula":[{"t":"título corto","d":"actividad en 1 o 2 frases, con grado sugerido"}] (4 ideas: una para primer ciclo, una para segundo ciclo, una inclusiva o con apoyos visuales, una para el acto o la cartelera),"redes":["3 ideas de publicación para Instagram de una tienda de materiales didácticos"],"frase":"una frase breve para cartelera o redes"}`,{modelTier:"default",cache:false});
+    if(!r||!r.aula) throw {code:"invalid_json"}; CA.ideas[e.id]=r; try{ localStorage.setItem("cofre-ca-ideas",JSON.stringify(CA.ideas)); }catch{} caFicha(e); }
+  catch(err){ toast(sampleErr(err),"err"); btn.disabled=false; btn.textContent=t0; } }
+
+// ---------- exportar a Google Calendar (.ics) ----------
+async function caIcs(btn){ const y=new Date().getFullYear(), L=caFiltro([...caFechas(y),...caFechas(y+1)]), seen=new Set(), out=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Cofre Didactico//Efemerides//ES","CALSCALE:GREGORIAN","X-WR-CALNAME:Efemérides · Cofre Didáctico"];
+  const f=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`, txt=s=>String(s).replace(/[\\,;]/g,m=>"\\"+m).replace(/\n/g,"\\n");
+  L.forEach(e=>{ const key=e.mov?e.id+e.f.getFullYear():e.id; if(seen.has(key)||(!e.mov&&e.f.getFullYear()!==y)) return; seen.add(key); const fin=new Date(+e.f+DAY);
+    out.push("BEGIN:VEVENT",`UID:${slug(key)}@cofredidactico.com.ar`,`DTSTAMP:${f(new Date())}T000000Z`,`DTSTART;VALUE=DATE:${f(e.f)}`,`DTEND;VALUE=DATE:${f(fin)}`,...(e.mov?[]:["RRULE:FREQ=YEARLY"]),`SUMMARY:${txt((e.t==="ar"?"🇦🇷 ":"🌎 ")+e.n)}`,`DESCRIPTION:${txt(e.d+(e.fer?" (Feriado)":""))}`,"TRANSP:TRANSPARENT","END:VEVENT"); });
+  out.push("END:VCALENDAR"); const t0=btn.textContent;
+  try{ const ok=await saveFile(`Efemérides ${CA_TABS.find(t=>t[0]===CA.tab)[2]} - Cofre Didáctico.ics`,new Blob([out.join("\r\n")],{type:"text/calendar"}),"text/calendar"); btn.textContent=ok?"Descargado ✓":t0; }catch(e){ toast(e.message||"No se pudo descargar.","err"); }
+  setTimeout(()=>btn.textContent=t0,1800); }
+
+// ---------- armar la vista ----------
+function caPintar(){ const v=$("#view-calendario"); if(!v||!CA.on) return; const b=$("#caBody"); if(!b) return;
+  v.querySelectorAll("[data-catab]").forEach(x=>x.setAttribute("aria-selected",String(x.dataset.catab===CA.tab))); v.querySelectorAll("[data-cavista]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.cavista===CA.vista)));
+  const tn=t=>{ const y=new Date().getFullYear(); return caFechas(y).filter(e=>t==="todas"||e.t===t).length; }; v.querySelectorAll("[data-catab] small").forEach(s=>{ s.textContent=tn(s.parentNode.dataset.catab)+" fechas"; });
+  const foco=document.activeElement&&document.activeElement.id==="caQ"?document.activeElement.selectionStart:null;
+  b.innerHTML=caHero()+caFiltrosHtml()+`<div class="ca-pane">${CA.vista==="mes"?caMes():CA.vista==="ano"?caAno():caProx()}</div>`;
+  if(foco!=null){ const q=$("#caQ"); q.focus(); q.setSelectionRange(foco,foco); } }
+function caInit(){ const v=$("#view-calendario"); if(!v||CA.on) return; CA.on=true; CA.mes=new Date(new Date().getFullYear(),new Date().getMonth(),1);
+  [...v.children].forEach(x=>{ if(!x.classList.contains("view-h")) x.classList.add("ca-old"); });
+  const h=v.querySelector(".view-h"), np=$("#newPost");
+  h.innerHTML=`<div><h1>Calendario</h1><p class="lead">Efemérides de Argentina y días mundiales, con tus materiales, el momento para promocionar y tus publicaciones.</p></div><div class="actions"><button type="button" class="btn small" id="caIcs" title="Para importar en Google Calendar o en el celular">⬇ Exportar a Google Calendar</button></div>`;
+  if(np){ np.textContent="+ Nueva publicación"; h.querySelector(".actions").appendChild(np); }
+  h.insertAdjacentHTML("afterend",`<div class="ca-top"><div class="ca-tabs" role="tablist" aria-label="Tipo de efemérides">${CA_TABS.map(([k,ic,t,d])=>`<button type="button" role="tab" data-catab="${k}" class="ca-t-${k}"><span>${ic}</span><b>${t}</b><small></small><em>${d}</em></button>`).join("")}</div>
+    <div class="ca-vis" role="group" aria-label="Vista">${CA_VISTAS.map(([k,t])=>`<button type="button" data-cavista="${k}">${t}</button>`).join("")}</div></div><div id="caBody" class="ca-body"></div>`);
+  v.addEventListener("click",e=>{ const b=e.target.closest("button"), d=b?b.dataset:{};
+    if(b&&d.catab){ CA.tab=d.catab; CA.cat=""; if(CA.tab==="int"){ CA.fer=false; CA.sinMat=false; } caGuardar(); return caPintar(); }
+    if(b&&d.cavista){ CA.vista=d.cavista; caGuardar(); return caPintar(); }
+    if(b&&d.cacat!=null){ CA.cat=d.cacat; return caPintar(); }
+    if(b&&d.camov!=null){ const n=+d.camov; CA.mes=n?new Date(CA.mes.getFullYear(),CA.mes.getMonth()+n,1):new Date(new Date().getFullYear(),new Date().getMonth(),1); return caPintar(); }
+    if(b&&d.caanio){ CA.anio=(CA.anio||new Date().getFullYear())+(+d.caanio); return caPintar(); }
+    if(b&&d.caid){ const x=caBuscar(d.caid,d.cay); if(x) caFicha(x); return; }
+    if(b&&d.capost){ const p=(posts||[]).find(x=>x.id===d.capost); if(p) openPost(p); return; }
+    if(b&&d.camore){ CA.q=""; const [yy,mm,dd]=d.camore.split("-").map(Number), L=caPorDia(yy,mm-1)[dd]||[]; if(L[0]) caFicha(L[3]||L[0]); return; }
+    if(b&&b.id==="caIcs") return caIcs(b);
+    const day=e.target.closest("[data-caday]"); if(day&&!b&&!day.classList.contains("out")){ const ev=day.querySelector("[data-caid]"); if(ev&&matchMedia("(max-width:760px)").matches){ const x=caBuscar(ev.dataset.caid,ev.dataset.cay); if(x) return caFicha(x); } openPost(null,day.dataset.caday); } });
+  v.addEventListener("keydown",e=>{ const day=e.target.closest&&e.target.closest("[data-caday]"); if(day&&e.target===day&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); openPost(null,day.dataset.caday); } });
+  v.addEventListener("input",e=>{ if(e.target.id==="caQ"){ CA.q=e.target.value; clearTimeout(CA._t); CA._t=setTimeout(caPintar,180); } });
+  v.addEventListener("change",e=>{ const t=e.target; if(t.hasAttribute("data-cafer")){ CA.fer=t.checked; caPintar(); } if(t.hasAttribute("data-casinmat")){ CA.sinMat=t.checked; caPintar(); } });
+  caPintar(); }
+const _caRenderCal=renderCal; renderCal=function(){ try{ _caRenderCal.apply(this,arguments); }catch(e){} if(currentView==="calendario"){ caInit(); caPintar(); } };
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",caInit); else caInit();
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
