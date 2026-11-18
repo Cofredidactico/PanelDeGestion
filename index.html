@@ -26439,6 +26439,21 @@ const _cp3Paso2=cpPaso2;
 cpPaso2=function(){ const h=_cp3Paso2.apply(this,arguments), K=Object.keys(CP_PZ), on=K.filter(k=>CP.inc[k]), falta=K.filter(k=>!CP.inc[k]).map(k=>`${CP_PZ[k].t.toLowerCase()} de ${CP_PZ[k].sub}`);
   const tip=on.length===K.length?"Combinación completa: los videos llegan a gente nueva en Instagram, TikTok, Facebook y YouTube, el carrusel se guarda y los pines traen visitas durante meses.":on.length?`Sumá ${falta.slice(0,3).join(", ")}${falta.length>3?" y más":""} para que la campaña llegue a más lugares.`:"Elegí al menos una pieza.";
   return h.replace(/<p class="cp-tipb">💡 [\s\S]*?<\/p>/,`<p class="cp-tipb">💡 ${tip}</p>`); };
+// ---------- Facebook y TikTok visibles en el menú "Redes" ----------
+const RS3_NAVIC = { fb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M13.5 21v-7h2.5l.4-3h-2.9V9.3c0-.9.3-1.5 1.6-1.5h1.4V5.2c-.3 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.6V11H8.4v3h2.5v7"/></svg>',
+  tt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2 4.2 4.5 4.5"/></svg>' };
+function rs3Nav() { const gb = document.querySelector('.nav-g[data-g="redes"] .nav-gb'), yt = gb && gb.querySelector('.tab[data-view="youtube"]'), rs = document.querySelector('.side-nav .tab[data-view="redstats"]'); if (!gb || !yt) return;
+  try { delete OR.padre.redstats; } catch {}
+  let ancla = yt; [["fb", "Facebook"], ["tt", "TikTok"]].forEach(([k, n]) => { let b = gb.querySelector(`[data-rsgo="${k}"]`); if (!b) { b = document.createElement("button"); b.type = "button"; b.className = "tab tab-extra rs3-nav"; b.setAttribute("role", "tab"); b.dataset.rsgo = k; b.innerHTML = `${RS3_NAVIC[k]}<span>${n}</span>`; } ancla.insertAdjacentElement("afterend", b); ancla = b; });
+  if (rs) { rs.classList.remove("hidden"); rs.hidden = false; const sp = rs.querySelector("span"); if (sp) sp.textContent = "Estadísticas de redes"; ancla.insertAdjacentElement("afterend", rs); }
+  const cnt = document.querySelector('.nav-g[data-g="redes"] .nav-gh i'); if (cnt) cnt.textContent = gb.querySelectorAll(".tab").length; rs3NavSel(); }
+function rs3NavSel() { const v = typeof currentView !== "undefined" ? currentView : ""; document.querySelectorAll("[data-rsgo]").forEach((b) => b.setAttribute("aria-selected", String(v === "redstats" && RS2.red === b.dataset.rsgo)));
+  const rs = document.querySelector('.side-nav .tab[data-view="redstats"]'); if (rs && v === "redstats" && (RS2.red === "fb" || RS2.red === "tt")) rs.setAttribute("aria-selected", "false"); }
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-rsgo]"); if (!b) return; e.preventDefault(); RS2.red = b.dataset.rsgo; showView("redstats"); try { rs2Pintar(); } catch {} rs3NavSel(); try { const sn = document.querySelector(".side-nav"); if (sn && sn.classList.contains("open")) sn.classList.remove("open"); } catch {} });
+{ const _sv = showView; showView = function () { const r = _sv.apply(this, arguments); setTimeout(rs3NavSel, 0); return r; }; }
+document.addEventListener("click", (e) => { if (e.target.closest && e.target.closest("[data-rs2red]")) setTimeout(rs3NavSel, 0); });
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => setTimeout(rs3Nav, 0)); else setTimeout(rs3Nav, 0);
+setTimeout(rs3Nav, 1500);
 
 // =====================================================================
 // CALENDARIO PRO: efemérides de Argentina y mundiales/internacionales, con vistas Próximas · Mes · Año
