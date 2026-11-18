@@ -25224,7 +25224,7 @@ function psColores(src, max = 8) { return psMemo(`col|${max}|${psKey(src)}`, () 
 function psGeo(R, C, J, coord, max = 40) { const m = coord ? 16 : 0, s = Math.min((J.w - m) / C, (J.h - m) / R, max), ox = J.x + (J.w - (m + s * C)) / 2 + m, oy = J.y + m; return { s, ox, oy, fin: oy + s * R, der: ox + s * C }; }
 function psGrilla(grid, o) { const R = grid.length, C = grid[0].length, G = psGeo(R, C, o.J, o.coord, o.max), { s, ox, oy } = G, forma = o.forma || "cuadrado"; let h = "";
   if (forma !== "cuadrado") { h += `<rect x="${j2f(ox)}" y="${j2f(oy)}" width="${j2f(s * C)}" height="${j2f(s * R)}" fill="#fff"/>`; for (let x = 1; x < C; x++) h += `<line x1="${j2f(ox + x * s)}" y1="${j2f(oy)}" x2="${j2f(ox + x * s)}" y2="${j2f(oy + R * s)}" stroke="#E4E8EF" stroke-width="0.5"/>`; for (let y = 1; y < R; y++) h += `<line x1="${j2f(ox)}" y1="${j2f(oy + y * s)}" x2="${j2f(ox + C * s)}" y2="${j2f(oy + y * s)}" stroke="#E4E8EF" stroke-width="0.5"/>`; }
-  for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) { const v = grid[y][x], X = ox + x * s, Y = oy + y * s, pint = o.color ? o.color(x, y, v) : null; const dc = ` data-c="${x + (o.c0 || 0)},${y + (o.r0 || 0)}"`;
+  for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) { const v = grid[y][x], X = ox + x * s, Y = oy + y * s, pint = (o.color ? o.color(x, y, v) : null) || (o.zebra && y % 2 ? "#F4F7FC" : null); const dc = ` data-c="${x + (o.c0 || 0)},${y + (o.r0 || 0)}"`;
     if (forma === "cuadrado") h += `<rect x="${j2f(X)}" y="${j2f(Y)}" width="${j2f(s)}" height="${j2f(s)}" fill="${pint || "#fff"}" stroke="#A9B0BD" stroke-width="0.5"${dc}/>`;
     else if (forma === "redondo") h += `<rect x="${j2f(X + s * 0.07)}" y="${j2f(Y + s * 0.07)}" width="${j2f(s * 0.86)}" height="${j2f(s * 0.86)}" rx="${j2f(s * 0.24)}" fill="${pint || "#fff"}" stroke="#8C95A6" stroke-width="0.6"${dc}/>`;
     else h += `<circle cx="${j2f(X + s / 2)}" cy="${j2f(Y + s / 2)}" r="${j2f(s * 0.43)}" fill="${pint || "#fff"}" stroke="#8C95A6" stroke-width="0.6"${dc}/>`;
@@ -25291,12 +25291,12 @@ function psPxCodigo(src) {
   const cf = isPx2Cfg(), P = psPxCfg(), { RR, grid, usados0 } = psPxBase(src, cf), ocultar = !!IS.pintOcultar, usados = ocultar ? [...usados0, "blanco"] : usados0, PC = isPintCod(), cuenta = {};
   usados0.forEach((n) => (cuenta[n] = RR.uso[n])); if (ocultar) cuenta.blanco = grid.flat().filter(psBlanco).length;
   const num = (v) => { const c = psBlanco(v) ? (ocultar ? "blanco" : null) : v; return c ? PC.celda(usados.indexOf(c) + 1) : ""; };
-  const legH = Math.ceil(usados.length / isLeyPer(usados)) * ((cf.cuenta ? 40 : 34) + 8), top = P.ficha ? 200 : 172, adH = P.adivina ? 52 : 0, alto = Math.min(520, 784 - adH - legH - 14 - top);
+  const legH = Math.ceil(usados.length / isLeyPer(usados)) * ((cf.cuenta ? 40 : 34) + 8), top = P.ficha ? 214 : 172, adH = (P.adivina ? 52 : 0) + 40, alto = Math.min(520, 784 - adH - legH - 14 - top);
   const base = { J: { x: 40, y: top, w: 515, h: alto }, guia: cf.guia, coord: cf.coord, forma: P.forma };
-  const A = psGrilla(grid, { ...base, num: (x, y, v) => num(v), punto: P.punto && !ocultar ? (x, y, v) => psBlanco(v) : null }), S = psGrilla(grid, { ...base, color: (x, y, v) => (psBlanco(v) ? null : isGHex(v)) });
+  const A = psGrilla(grid, { ...base, zebra: P.forma === "cuadrado", num: (x, y, v) => num(v), punto: P.punto && !ocultar ? (x, y, v) => psBlanco(v) : null }), S = psGrilla(grid, { ...base, color: (x, y, v) => (psBlanco(v) ? null : isGHex(v)) });
   const ley = psLeyenda(usados, A.fin + 14, { cod: (i) => PC.ley(i + 1), cuenta: cf.cuenta ? cuenta : null, tilde: P.tilde });
   const pintar = usados0.reduce((a, n) => a + cuenta[n], 0) + (ocultar ? cuenta.blanco : 0), min = Math.max(10, Math.round(pintar / [7, 11, 15][isNivK()] / 5) * 5);
-  const ficha = P.ficha ? psFicha(174, [["pal", psNCol(usados.length)], ["cel", `${pintar} cuadraditos para pintar`], ["rel", `${min} min aprox.`]]) : "", adiv = P.adivina ? psAdivina(ley.fin + 6) : "";
+  const ficha = P.ficha ? prPasos(172, [["lupa", "Mirá el número de cada cuadradito"], ["pincel", "Pintalo con el color del crayón"], ["pregunta", `Descubrí el dibujo (${min} min)`]]) : "", adiv = (P.adivina ? psAdivina(ley.fin + 6) : "") + prAutoeval((P.adivina ? ley.fin + 58 : ley.fin + 6));
   let ref = ""; if (isPxCfg().ref) { const libreD = 555 - S.der - 12, libreA = 774 - S.fin - 16; if (libreD >= 110) ref = psRefCard(src, S.der + 12, S.oy, Math.min(170, libreD), Math.min(210, S.fin - S.oy), psRotulo(src.n)); else if (libreA >= 120) ref = psRefCard(src, 297.5 - 85, S.fin + 16, 170, Math.min(200, libreA), psRotulo(src.n)); }
   IS.j2Info = `Cuadrícula de ${RR.cols} × ${RR.rows} con la forma del dibujo · ${psNCol(usados0.length)}: ${usados0.join(", ")} · unos ${min} minutos de trabajo`;
   const consP = PC.cons ? `${PC.cons} ¡DESCUBRÍ el dibujo escondido!` : "PINTÁ cada cuadradito con el color de su número y DESCUBRÍ el dibujo escondido.";
@@ -25316,14 +25316,15 @@ function psPxCoord(src) {
   const cab = (y, t) => `<rect x="40" y="${j2f(y)}" width="515" height="20" rx="10" fill="#EAF3FF"/><text x="52" y="${j2f(y + 14)}" font-size="10.5" font-weight="900" fill="#1E5BB8" letter-spacing=".5" ${J2B}>${t}</text>`;
   const ley = (y) => psLeyenda(usados, y, { cod: (i) => i + 1, tilde: false }), legH = Math.ceil(usados.length / isLeyPer(usados)) * 42;
   // ¿entra todo en una hoja?
-  const Lc = armar(515 / 2), J1 = { x: 40, y: 172, w: 515, h: 300 }, G1 = psGeo(R, C, J1, true, 26), yI = G1.fin + 12 + legH + 28, porCol1 = Math.floor((800 - yI) / lh), una = Lc.length <= porCol1 * 2;
+  const Lc = armar(515 / 2), J1 = { x: 40, y: 220, w: 515, h: 270 }, G1 = psGeo(R, C, J1, true, 26), yI = G1.fin + 12 + legH + 28, porCol1 = Math.floor((800 - yI) / lh), una = Lc.length <= porCol1 * 2;
   const consA = "LEÉ cada fila y PINTÁ los casilleros que se indican con el color de su número. ¡DESCUBRÍ el dibujo!";
+  const pasosC = prPasos(172, [["lupa", "Leé la fila y las letras"], ["dedo", "Buscá los casilleros"], ["pincel", "Pintalos del color indicado"]]);
   const S = psGrilla(grid, { J: una ? J1 : { x: 40, y: 172, w: 515, h: 470 }, coord: true, letras: true, max: una ? 26 : 34, color: (x, y, v) => (psBlanco(v) ? null : isGHex(v)) });
   let pags;
   if (una) { const A = psGrilla(grid, { J: J1, coord: true, letras: true, max: 26, forma: P.forma }), lg = ley(A.fin + 12);
-    pags = [["actividad", "Actividad", isMarco("Pintá por coordenadas", consA, A.o + lg.o + cab(lg.fin + 2, "INSTRUCCIONES · FILA POR FILA") + pintarLineas(Lc, 44, lg.fin + 36, 2, 515 / 2, Math.max(1, Math.ceil(Lc.length / 2))), "")]]; }
-  else { const A = psGrilla(grid, { J: { x: 40, y: 172, w: 515, h: 560 - legH }, coord: true, letras: true, max: 34, forma: P.forma }), lg = ley(A.fin + 14), L3 = armar(515 / 3), cols = L3.length > 34 ? 3 : 2, L = cols === 3 ? L3 : armar(515 / 2), porCol = Math.ceil(L.length / cols);
-    pags = [["actividad", "Actividad", isMarco("Pintá por coordenadas", consA, A.o + lg.o, "")], ["instrucciones", "Instrucciones", isMarco("Instrucciones", "LEÉ cada fila y PINTÁ en la cuadrícula los casilleros que se indican.", ley(176).o + cab(176 + legH + 4, "FILA POR FILA") + pintarLineas(L, 44, 176 + legH + 40, cols, 515 / cols, porCol), "")]]; }
+    pags = [["actividad", "Actividad", isMarco("Pintá por coordenadas", consA, pasosC + A.o + lg.o + cab(lg.fin + 2, "INSTRUCCIONES · FILA POR FILA") + pintarLineas(Lc, 44, lg.fin + 36, 2, 515 / 2, Math.max(1, Math.ceil(Lc.length / 2))), "")]]; }
+  else { const A = psGrilla(grid, { J: { x: 40, y: 220, w: 515, h: 520 - legH }, coord: true, letras: true, max: 34, forma: P.forma }), lg = ley(A.fin + 14), L3 = armar(515 / 3), cols = L3.length > 34 ? 3 : 2, L = cols === 3 ? L3 : armar(515 / 2), porCol = Math.ceil(L.length / cols);
+    pags = [["actividad", "Actividad", isMarco("Pintá por coordenadas", consA, pasosC + A.o + lg.o, "")], ["instrucciones", "Instrucciones", isMarco("Instrucciones", "LEÉ cada fila y PINTÁ en la cuadrícula los casilleros que se indican.", ley(176).o + cab(176 + legH + 4, "FILA POR FILA") + pintarLineas(L, 44, 176 + legH + 40, cols, 515 / cols, porCol), "")]]; }
   IS.j2Info = `Pintá por coordenadas: cuadrícula de ${C} × ${R} con letras y números · ${filas.length} filas de instrucciones · ${psNCol(usados.length)}${una ? "" : " · las instrucciones van en una hoja aparte"}`;
   return [...pags, ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo pintado.", S.o, "")]];
 }
@@ -25358,7 +25359,7 @@ function psSimetria() {
   const dado = (x, y) => { const lx = lado === "b" ? x >= C / 2 : x < C / 2, ly = lado === "b" && !cuatro ? y >= R / 2 : y < R / 2; return cuatro ? lx && y < R / 2 : hz ? ly : lx; };
   const r = isRand(IS.seed * 31 + 5), pista = new Set(); if (va === "pistas") for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) if (!dado(x, y) && sol[y][x] && r() < 0.22) pista.add(y * C + x);
   const usados = [...new Set(sol.flat().filter(Boolean))], ref = S2.ref && !!isPxSrc(), per = Math.max(1, isLeyPer(usados, ref ? 3 : 4)), legH = Math.ceil(usados.length / per) * 42, autoH = S2.auto ? 30 : 0;
-  const top = 192, alto = Math.min(500, 798 - Math.max(legH, ref ? 112 : 0) - autoH - 26 - top), J = { x: 40, y: top, w: 515, h: alto }, coord = S2.coord && va !== "puntos";
+  const top = 234, alto = Math.min(500, 798 - Math.max(legH, ref ? 112 : 0) - autoH - 26 - top), J = { x: 40, y: top, w: 515, h: alto }, coord = S2.coord && va !== "puntos";
   let A, Sg;
   if (va === "puntos") { const G = psGeo(R, C, J, false, 34), val = (x, y) => (x < 0 || y < 0 || x >= C || y >= R ? null : sol[y][x]);
     const dadoC = (mx, my) => { const lx = lado === "b" ? mx > C / 2 : mx < C / 2, ly = lado === "b" ? my > R / 2 : my < R / 2; return hz ? ly : lx; };
@@ -25381,14 +25382,15 @@ function psSimetria() {
     : va === "codigo" ? `PINTÁ la ${mitadTxt} con el color de cada número y COMPROBÁ que quede igual que en un espejo.`
     : `PINTÁ la ${mitadTxt} para que el dibujo quede igual a los dos lados del eje, como en un espejo.${va === "pistas" ? " Algunos ya están pintados como pista." : ""}`;
   IS.j2Info = `${va === "puntos" ? "Trama de puntos" : "Cuadrícula"} de ${C} × ${R}${isPxSrc() ? " con la forma real del dibujo (eje buscado automáticamente)" : ""} · ${psNCol(usados.length)}: ${usados.join(", ")}`;
-  return [["actividad", "Actividad", isMarco(va === "puntos" ? "Simetría en puntos" : "Simetría", cons, A.o + eje + L.o + refI + autoS, "")], ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo completo.", Sg.o + eje + L.o + refI, "")]];
+  const pasosS = cuatro ? [["eje", "Mirá las dos líneas rojas"], ["dedo", "Contá desde cada eje"], ["espejo", "Pintá las otras tres partes"]] : va === "puntos" ? [["eje", "Mirá el eje rojo"], ["puntos", "Uní los puntos igual"], ["pincel", "Pintá con los mismos colores"]] : va === "codigo" ? [["eje", "Mirá el eje rojo"], ["lupa", "Leé el número de cada cuadradito"], ["espejo", "Pintá y comprobá el espejo"]] : [["eje", "Mirá el eje rojo"], ["dedo", "Contá los cuadraditos desde el eje"], ["espejo", "Pintá igual del otro lado"]];
+  return [["actividad", "Actividad", isMarco(va === "puntos" ? "Simetría en puntos" : "Simetría", cons, prPasos(172, pasosS) + A.o + eje + L.o + refI + autoS, "")], ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo completo.", Sg.o + eje + L.o + refI, "")]];
 }
 // ---------- DIBUJÁ LA OTRA MITAD: media imagen real, el chico dibuja y pinta la otra ----------
 function psMitad() {
   const S2 = psSimCfg(), nk = isNivK(), src = psSrcSim(); if (!src) throw new Error("Elegí un dibujo para partirlo a la mitad.");
   const M = isPxMascara(src); if (!M.caja) throw new Error("El dibujo quedó vacío: probá con otro.");
   const hz = IS.j2Modo === "horizontal", lado = S2.lado, { x0, y0, bw, bh } = M.caja, a = psEje(src, hz), ini = hz ? y0 : x0, fin = ini + (hz ? bh : bw), wk = Math.max(1, lado === "a" ? a - ini : fin - a), largo = hz ? bw : bh;
-  const cols = S2.colores && S2.modelo !== "lineas" ? psColores(src, 8) : [], top = hz ? 186 : 206, extra = (cols.length ? 46 : 0) + (S2.auto ? 30 : 0), bot = 796 - extra, AW = 500, AH = bot - top - 28;
+  const cols = S2.colores && S2.modelo !== "lineas" ? psColores(src, 8) : [], top = hz ? 220 : 244, extra = (cols.length ? 46 : 0) + (S2.auto ? 30 : 0), bot = 796 - extra, AW = 500, AH = bot - top - 28;
   const kk = Math.min(hz ? AW / largo : AW / (2 * wk), hz ? AH / (2 * wk) : AH / largo), AX = 297.5, AY0 = top + 16 + (hz ? wk * kk : (bh * kk) / 2), AY = AY0 + Math.max(0, (796 - top - ((hz ? 2 * wk : bh) * kk + 42 + extra)) / 2);
   const ix = hz ? AX - (x0 + bw / 2) * kk : AX - a * kk, iy = hz ? AY - a * kk : AY - (y0 + bh / 2) * kk, iw = M.w * kk, ih = M.h * kk;
   const box = hz ? { x: AX - (bw * kk) / 2 - 16, y: AY - wk * kk - 16, w: bw * kk + 32, h: 2 * wk * kk + 32 } : { x: AX - wk * kk - 16, y: AY - (bh * kk) / 2 - 16, w: 2 * wk * kk + 32, h: bh * kk + 32 };
@@ -25417,7 +25419,7 @@ function psMitad() {
   const actividad = clip + marco + modelo + sobreModelo + ayuda + ejeL + tags + chips + autoS;
   const solucion = clip + `<rect x="${j2f(box.x)}" y="${j2f(box.y)}" width="${j2f(box.w)}" height="${j2f(box.h)}" rx="18" fill="#fff" stroke="#C9D3E3" stroke-width="1.4"/>` + img(hi.url) + reflejo(hi.url) + ejeL + chips;
   IS.j2Info = `Media imagen de “${src.n || "la figura"}” partida por su eje${S2.ejeAuto ? " (buscado automáticamente)" : ""} · ayuda: ${{ contorno: "contorno punteado", cuadricula: `cuadrícula de ${S2.cel} por mitad`, puntos: `trama de puntos de ${S2.cel} por mitad`, libre: "ninguna, a mano alzada" }[S2.ayuda]} · modelo ${S2.modelo === "lineas" ? "en líneas" : "a color"}`;
-  return [["actividad", "Actividad", isMarco("Dibujá la otra mitad", cons, actividad, "")], ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo completo: igual a los dos lados del eje.", solucion, "")]];
+  return [["actividad", "Actividad", isMarco("Dibujá la otra mitad", cons, prPasos(172, [["ojo", "Observá la mitad del modelo"], ["lapiz", S2.ayuda === "libre" ? "Dibujá la otra mitad" : S2.ayuda === "contorno" ? "Repasá el contorno punteado" : "Copiá cuadradito por cuadradito"], ["pincel", S2.modelo === "lineas" ? "Pintala como quieras" : "Pintá con los mismos colores"]]) + actividad, "")], ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo completo: igual a los dos lados del eje.", solucion, "")]];
 }
 
 // ---------- reemplazos en el motor ----------
@@ -26763,6 +26765,130 @@ function caPaisesHtml(){ const P=CA.pais==="todos"?null:CA_PAISES[CA.pais], y=ne
 function caVentaPais(e,f){ const P=CA_PAISES[e.t], h=caHoy(), ant=e.op===3?75:60, pub=e.op===3?40:30, pr=new Date(+f-ant*DAY), pu=new Date(+f-pub*DAY);
   const paso=(ic,t,d,on,ok)=>`<li class="${ok?"ok":on?"on":""}"><span>${ok?"✓":ic}</span><div><b>${t}</b><small>${d}</small></div></li>`;
   return `<div class="ca-box pais" style="--pc:${P.c}"><b>${P.f} Para vender en ${esc(P.n)}</b><ol class="ca-tl">${paso("🛠","Preparar el material",`desde el ${esc(fmtDM(pr))}`,h>=pr&&h<pu,h>=pu)}${paso("📣","Publicar y promocionar",`desde el ${esc(fmtDM(pu))}`,h>=pu&&h<=f,h>f)}${paso("🎉",esc(e.n),esc(fmtDM(f)),false,h>f)}</ol><small>✍️ ${esc(P.tono)}</small></div>`; }
+
+// =====================================================================
+// ACTIVIDADES PRO: paso a paso, secciones numeradas, autoevaluación y "Contá y graficá" rehecho
+// =====================================================================
+const PR_COL = ["#1E5BB8", "#D7263D", "#3E9F4F", "#F28C28", "#7B4FD0"], PR_CRAY = ["azul", "rojo", "verde", "naranja", "violeta"];
+// íconos vectoriales simples (se imprimen bien y no dependen de emojis)
+function prIcon(k, x, y, c = "#1A2744") { x = Math.round(+x * 10) / 10; y = Math.round(+y * 10) / 10; const sw = (w) => `stroke="${c}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round"`, s = sw(1.7);
+  switch (k) {
+    case "ojo": return `<path d="M${x - 8} ${y}q8-8 16 0q-8 8-16 0z" ${s}/><circle cx="${x}" cy="${y}" r="2.6" fill="${c}"/>`;
+    case "lapiz": return `<path d="M${x - 6} ${y + 6}l2-6 8-8 4 4-8 8z M${x + 2} ${y - 6}l4 4" ${s}/>`;
+    case "pincel": return `<path d="M${x + 6} ${y - 7}l-7 8" ${s}/><path d="M${x - 2} ${y + 1}q-5 1-5 6q4 1 6-2q1-2-1-4z" fill="${c}" stroke="${c}" stroke-width="1"/>`;
+    case "lupa": return `<circle cx="${x - 2}" cy="${y - 2}" r="5" ${s}/><path d="M${x + 2} ${y + 2}l5 5" ${s}/>`;
+    case "barras": return `<path d="M${x - 7} ${y + 7}h14" ${s}/><rect x="${x - 6}" y="${y - 1}" width="3.5" height="7" fill="${c}"/><rect x="${x - 1.5}" y="${y - 6}" width="3.5" height="12" fill="${c}"/><rect x="${x + 3}" y="${y - 3}" width="3.5" height="9" fill="${c}"/>`;
+    case "palitos": return `<path d="M${x - 6} ${y - 6}v12M${x - 3} ${y - 6}v12M${x} ${y - 6}v12M${x + 3} ${y - 6}v12M${x - 8} ${y + 4}l13-9" ${s}/>`;
+    case "dedo": return `<circle cx="${x}" cy="${y}" r="7" ${s}/><text x="${x}" y="${y + 3.4}" text-anchor="middle" font-size="9" font-weight="900" fill="${c}" ${J2B}>1,2</text>`;
+    case "check": return `<path d="M${x - 6} ${y}l4 4 8-9" ${sw(2.2)}/>`;
+    case "eje": return `<path d="M${x} ${y - 8}v16" stroke="#D7263D" stroke-width="2.2" stroke-dasharray="3 2"/><path d="M${x - 7} ${y - 3}l4 3-4 3M${x + 7} ${y - 3}l-4 3 4 3" ${s}/>`;
+    case "espejo": return `<path d="M${x} ${y - 8}v16" stroke="#D7263D" stroke-width="2" stroke-dasharray="3 2"/><rect x="${x - 8}" y="${y - 4}" width="5" height="8" fill="${c}"/><rect x="${x + 3}" y="${y - 4}" width="5" height="8" ${s}/>`;
+    case "pregunta": return `<text x="${x}" y="${y + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="${c}" ${J2F}>?</text>`;
+    case "puntos": return [-6, 0, 6].map((a) => [-5, 5].map((b) => `<circle cx="${x + a}" cy="${y + b}" r="1.6" fill="${c}"/>`).join("")).join("") + `<path d="M${x - 6} ${y - 5}L${x} ${y + 5}L${x + 6} ${y - 5}" ${sw(1.3)}/>`;
+    case "voto": return `<rect x="${x - 7}" y="${y - 2}" width="14" height="9" rx="1.5" ${s}/><path d="M${x - 3} ${y - 8}h6v6h-6z" ${s}/>`;
+    default: return `<circle cx="${x}" cy="${y}" r="4" fill="${c}"/>`; } }
+// tira "paso a paso" con números grandes y flechas: le ordena el trabajo al chico
+function prPasos(y, pasos, o = {}) { const n = pasos.length, gap = 14, w = (515 - gap * (n - 1)) / n, h = o.h || 36; let s = "";
+  pasos.forEach(([ic, t], i) => { const x = 40 + i * (w + gap), c = PR_COL[i % PR_COL.length]; const one = isMedir(t, 10.5, "Nunito", 800) <= w - 62; let fs = one ? 10.5 : 10; if (!one) { const W = t.split(" "), mid = Math.ceil(W.length / 2), lw = Math.max(isMedir(W.slice(0, mid).join(" "), fs, "Nunito", 800), isMedir(W.slice(mid).join(" "), fs, "Nunito", 800)); while (fs > 7.5 && lw * fs / 10 > w - 62) fs -= 0.5; } const two = !one;
+    s += `<rect x="${j2f(x)}" y="${j2f(y)}" width="${j2f(w)}" height="${h}" rx="12" fill="#fff" stroke="${c}" stroke-width="1.3"/><rect x="${j2f(x)}" y="${j2f(y)}" width="${j2f(w)}" height="${h}" rx="12" fill="${c}" opacity=".07"/>`
+      + `<circle cx="${j2f(x + 16)}" cy="${j2f(y + h / 2)}" r="10.5" fill="${c}"/><text x="${j2f(x + 16)}" y="${j2f(y + h / 2 + 5)}" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" ${J2F}>${i + 1}</text>`
+      + prIcon(ic, j2f(x + 40), j2f(y + h / 2), c);
+    if (!two) s += `<text x="${j2f(x + 54)}" y="${j2f(y + h / 2 + fs * 0.36)}" font-size="${fs}" font-weight="800" fill="#1A2744" ${J2B}>${svgEsc(t)}</text>`;
+    else { const W = t.split(" "), mid = Math.ceil(W.length / 2); [W.slice(0, mid).join(" "), W.slice(mid).join(" ")].forEach((ln, k) => { s += `<text x="${j2f(x + 54)}" y="${j2f(y + h / 2 - 2 + (k ? fs + 1 : 0) - fs * 0.15)}" font-size="${fs}" font-weight="800" fill="#1A2744" ${J2B}>${svgEsc(ln)}</text>`; }); }
+    if (i < n - 1) s += `<path d="M${j2f(x + w + 3)} ${j2f(y + h / 2 - 5)}l6 5-6 5" fill="none" stroke="#9AA3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`; });
+  return s; }
+// encabezado de sección: ① CONTÁ ...
+function prSec(n, t, y, c, tip) { const w = isMedir(t, 11.5, "Nunito", 900) + 44; let s = `<rect x="40" y="${j2f(y)}" width="${j2f(w)}" height="22" rx="11" fill="${c}"/><circle cx="51" cy="${j2f(y + 11)}" r="8" fill="#fff"/><text x="51" y="${j2f(y + 15.2)}" text-anchor="middle" font-size="11.5" font-weight="700" fill="${c}" ${J2F}>${n}</text><text x="64" y="${j2f(y + 15.4)}" font-size="11.5" font-weight="900" fill="#fff" letter-spacing=".5" ${J2B}>${svgEsc(t)}</text>`;
+  if (tip) s += `<text x="555" y="${j2f(y + 15)}" text-anchor="end" font-size="9.5" font-weight="700" fill="#5B6475" ${J2B}>${svgEsc(tip)}</text>`; return s; }
+// autoevaluación con caritas
+function prCara(cx, cy, r, tipo, c) { const boca = tipo === 2 ? `M${cx - r * 0.45} ${cy + r * 0.2}q${r * 0.45} ${r * 0.45} ${r * 0.9} 0` : tipo === 1 ? `M${cx - r * 0.4} ${cy + r * 0.32}h${r * 0.8}` : `M${cx - r * 0.42} ${cy + r * 0.45}q${r * 0.42}-${r * 0.38} ${r * 0.84} 0`;
+  return `<circle cx="${j2f(cx)}" cy="${j2f(cy)}" r="${r}" fill="${c}" stroke="#1A2744" stroke-width="1.2"/><circle cx="${j2f(cx - r * 0.33)}" cy="${j2f(cy - r * 0.2)}" r="${j2f(r * 0.12)}" fill="#1A2744"/><circle cx="${j2f(cx + r * 0.33)}" cy="${j2f(cy - r * 0.2)}" r="${j2f(r * 0.12)}" fill="#1A2744"/><path d="${boca}" stroke="#1A2744" stroke-width="1.4" fill="none" stroke-linecap="round"/>`; }
+function prAutoeval(y, txt = "¿CÓMO ME FUE? PINTÁ UNA CARITA") { const L = [[2, "#FFE08A", "¡Muy bien!"], [1, "#FFF2C4", "Más o menos"], [0, "#FDE1E1", "Me costó"]];
+  let s = `<rect x="40" y="${j2f(y)}" width="515" height="34" rx="14" fill="#F7FAFF" stroke="#D5DDEA"/><text x="54" y="${j2f(y + 21)}" font-size="10.5" font-weight="900" fill="#1E5BB8" letter-spacing=".4" ${J2B}>${svgEsc(txt)}</text>`;
+  L.forEach(([t, c, lab], i) => { const x = 300 + i * 88; s += prCara(x, y + 17, 11, t, c) + `<text x="${x + 15}" y="${j2f(y + 21)}" font-size="9" font-weight="700" fill="#5B6475" ${J2B}>${lab}</text>`; }); return s; }
+// palitos de conteo agrupados de a 5
+function prPalitos(x, y, h, n, c = "#D7263D") { let s = ""; for (let v = 0; v < n; v++) { const g = Math.floor(v / 5), m = v % 5, xx = x + g * 42 + m * 7.5; s += m === 4 ? `<line x1="${j2f(xx - 33)}" y1="${j2f(y + h - 2)}" x2="${j2f(xx + 3)}" y2="${j2f(y + 2)}" stroke="${c}" stroke-width="2.4" stroke-linecap="round"/>` : `<line x1="${j2f(xx)}" y1="${j2f(y)}" x2="${j2f(xx)}" y2="${j2f(y + h)}" stroke="${c}" stroke-width="2.4" stroke-linecap="round"/>`; } return s; }
+
+// ---------- CONTÁ Y GRAFICÁ PRO ----------
+try { NV_VAR.grafico = [["completo", "🧩", "Paso a paso", "Contá, registrá, graficá y respondé"], ["barras", "📊", "Gráfico de barras", "Escena grande y gráfico"], ["conteo", "🖐️", "Tabla de conteo", "Palitos y número"], ["pictograma", "🔵", "Pictograma", "Un círculo por cada dibujo"], ["leer", "🔎", "Leé el gráfico", "El gráfico ya está: respondé"], ["encuesta", "🗳️", "Encuesta del aula", "Preguntá, anotá y graficá"]]; NV_INFO.grafico[2] = "Escena, conteo, gráfico y preguntas"; } catch (e) { console.warn(e); }
+// escena: los dibujos repartidos sin pisarse, todos del mismo tamaño
+function prEscena(J, tipos, cnt, seed, nk) { const N = cnt.reduce((a, b) => a + b, 0), r = isRand(seed); let best = null;
+  for (let cols = 3; cols <= 14; cols++) { const rows = Math.ceil((N * 1.35) / cols), cw = J.w / cols, ch = J.h / rows, s = Math.min(cw, ch); if (!best || s > best.s) best = { cols, rows, cw, ch, s }; }
+  const { cols, rows, cw, ch } = best, sz = Math.min(54, Math.min(cw, ch) * 0.8), celdas = isMezclar(Array.from({ length: cols * rows }, (_, q) => q), seed + 3); let s = "", q = 0;
+  tipos.forEach((it, t) => { for (let k = 0; k < cnt[t]; k++) { const cel = celdas[q++], x = J.x + (cel % cols) * cw + (cw - sz) / 2 + (r() - 0.5) * (cw - sz) * 0.7, y = J.y + Math.floor(cel / cols) * ch + (ch - sz) / 2 + (r() - 0.5) * (ch - sz) * 0.7, rot = nk ? Math.round((r() - 0.5) * 16) : 0;
+    s += rot ? `<g transform="rotate(${rot} ${j2f(x + sz / 2)} ${j2f(y + sz / 2)})">${j2im(it.url, x, y, sz, sz)}</g>` : j2im(it.url, x, y, sz, sz); } });
+  return s; }
+function prMarcoEscena(y, h) { return `<rect x="40" y="${j2f(y)}" width="515" height="${j2f(h)}" rx="18" fill="#F4F9FF" stroke="#BFD4F0" stroke-width="1.4"/><path d="M40 ${j2f(y + h - 26)}q60-14 120 0t120 0 120 0 155 0v8a18 18 0 0 1-18 18H58a18 18 0 0 1-18-18z" fill="#E3F1DD"/>`; }
+// gráfico de barras vertical: columnas centradas, eje con título y crayón sugerido debajo de cada dibujo
+function prBarras(J, tipos, cnt, mx, o = {}) { const K = tipos.length, aw = 30, bw = Math.min(78, (J.w - aw - 10) / K), ic = Math.min(bw - 14, 40), cray = o.cray !== false, pieH = ic + (cray ? 22 : 10), cellH = Math.min(bw * 0.72, (J.h - pieH - 14) / mx), H = cellH * mx, base = J.y + 8 + H, ox = J.x + aw + (J.w - aw - K * bw) / 2;
+  let a = "", s = "";
+  a += `<text transform="translate(${j2f(Math.max(J.x + 8, ox - 30))} ${j2f(base - H / 2)}) rotate(-90)" text-anchor="middle" font-size="9" font-weight="900" fill="#5B6475" letter-spacing=".8" ${J2B}>CANTIDAD</text>`;
+  for (let v = 1; v <= mx; v++) a += nvT(ox - 8, base - (v - 0.5) * cellH + 4, String(v), Math.min(11, cellH * 0.7), { a: "end", c: "#5B6475", b: true }) + `<line x1="${j2f(ox - 4)}" y1="${j2f(base - v * cellH)}" x2="${j2f(ox + K * bw + 4)}" y2="${j2f(base - v * cellH)}" stroke="#E6EBF3"/>`;
+  tipos.forEach((it, t) => { const x = ox + t * bw, c = PR_COL[t % 5];
+    for (let v = 0; v < mx; v++) { const cell = `<rect x="${j2f(x + 6)}" y="${j2f(base - (v + 1) * cellH)}" width="${j2f(bw - 12)}" height="${j2f(cellH)}"`; a += `${cell} fill="#fff" stroke="#9AA3B5" stroke-width=".9"/>`; if (v < cnt[t]) { const f = `${cell} fill="${c}" opacity=".85" stroke="#1A2744" stroke-width=".6"/>`; if (o.lleno) a += f; else s += f; } }
+    a += j2im(it.url, x + (bw - ic) / 2, base + 6, ic, ic);
+    if (cray) a += `<path d="M${j2f(x + bw / 2 - 14)} ${j2f(base + ic + 10)}h22l6 4-6 4h-22z" fill="${c}" stroke="#1A2744" stroke-width=".7"/>`; });
+  a += `<line x1="${j2f(ox - 4)}" y1="${j2f(base)}" x2="${j2f(ox + K * bw + 6)}" y2="${j2f(base)}" stroke="#1A2744" stroke-width="1.6"/><line x1="${j2f(ox - 4)}" y1="${j2f(base + 1)}" x2="${j2f(ox - 4)}" y2="${j2f(base - H - 6)}" stroke="#1A2744" stroke-width="1.6"/>`;
+  return { a, s, fin: base + pieH }; }
+// tabla de conteo: dibujo · palitos · número
+function prConteo(J, tipos, cnt, o = {}) { const K = tipos.length, rh = Math.min(o.rhMax || 58, J.h / K), ic = Math.min(rh - 12, 40), nw = 54; let a = "", s = "";
+  a += `<text x="${j2f(J.x + 8 + ic / 2)}" y="${j2f(J.y - 4)}" text-anchor="middle" font-size="8.5" font-weight="900" fill="#5B6475" ${J2B}>DIBUJO</text><text x="${j2f(J.x + 16 + ic + (J.w - ic - nw - 28) / 2)}" y="${j2f(J.y - 4)}" text-anchor="middle" font-size="8.5" font-weight="900" fill="#5B6475" ${J2B}>PALITOS</text><text x="${j2f(J.x + J.w - 4 - nw / 2)}" y="${j2f(J.y - 4)}" text-anchor="middle" font-size="8.5" font-weight="900" fill="#5B6475" ${J2B}>TOTAL</text>`;
+  tipos.forEach((it, t) => { const y = J.y + t * rh, px = J.x + 16 + ic, pw = J.w - ic - nw - 28;
+    a += `<rect x="${j2f(J.x)}" y="${j2f(y + 2)}" width="${j2f(J.w)}" height="${j2f(rh - 4)}" rx="12" fill="${t % 2 ? "#EEF6FF" : "#FFF6E8"}"/>` + j2im(it.url, J.x + 8, y + (rh - ic) / 2, ic, ic)
+      + `<rect x="${j2f(px)}" y="${j2f(y + 7)}" width="${j2f(pw)}" height="${j2f(rh - 14)}" rx="9" fill="#fff" stroke="#C9D3E3"/><rect x="${j2f(J.x + J.w - 6 - nw)}" y="${j2f(y + 7)}" width="${nw}" height="${j2f(rh - 14)}" rx="9" fill="#fff" stroke="#1A2744" stroke-width="1.2"/>`;
+    s += prPalitos(px + 12, y + 13, rh - 26, cnt[t]) + nvT(J.x + J.w - 6 - nw / 2, y + rh / 2 + 8, String(cnt[t]), Math.min(22, rh * 0.45), { a: "middle", c: "#D7263D" }); });
+  return { a, s, fin: J.y + K * rh }; }
+// pictograma: un círculo por cada dibujo
+function prPicto(J, tipos, cnt, mx) { const K = tipos.length, rh = Math.min(62, J.h / K), ic = Math.min(rh - 12, 42), rc = Math.min((J.w - ic - 30) / mx / 2 - 3, rh / 2 - 9); let a = "", s = "";
+  tipos.forEach((it, t) => { const y = J.y + t * rh, c = PR_COL[t % 5]; a += `<rect x="${j2f(J.x)}" y="${j2f(y + 2)}" width="${j2f(J.w)}" height="${j2f(rh - 4)}" rx="12" fill="${t % 2 ? "#EEF6FF" : "#FFF6E8"}"/>` + j2im(it.url, J.x + 8, y + (rh - ic) / 2, ic, ic);
+    for (let v = 0; v < mx; v++) { const cx = J.x + 22 + ic + rc + v * (rc * 2 + 6); a += `<circle cx="${j2f(cx)}" cy="${j2f(y + rh / 2)}" r="${j2f(rc)}" fill="#fff" stroke="#1A2744" stroke-width="1.1"/>`; if (v < cnt[t]) s += `<circle cx="${j2f(cx)}" cy="${j2f(y + rh / 2)}" r="${j2f(rc - 2.5)}" fill="${c}" opacity=".85"/>`; } });
+  return { a, s, fin: J.y + K * rh }; }
+// preguntas con dibujos adentro (sirven aunque el chico todavía no lea)
+function prPreguntas(tipos, cnt, nk, n) { const M = Math.max(...cnt), m = Math.min(...cnt), iM = cnt.indexOf(M), im = cnt.indexOf(m), tot = cnt.reduce((a, b) => a + b, 0), A = 0, B = Math.min(1, tipos.length - 1);
+  const Q = [{ t: "¿De qué hay MÁS?", tipo: "rodear", ok: iM }, { t: "¿De qué hay MENOS?", tipo: "rodear", ok: im }];
+  if (nk === 0) Q.push({ t: "¿Cuántos hay de", ic: [A], tipo: "num", r: cnt[A] });
+  else { Q.push({ t: "¿Cuántos hay de", ic: [A, B], y: true, tipo: "num", r: cnt[A] + cnt[B] }); Q.push({ t: "¿Cuántos más hay de", ic: [iM], que: im, tipo: "num", r: M - m }); }
+  if (nk === 2) { Q.push({ t: "¿Cuántos dibujos hay en total?", tipo: "num", r: tot }); Q.push({ t: "Si llegan 3 más de", ic: [im], cola: "¿cuántos habrá?", tipo: "num", r: m + 3 }); }
+  if (M === m) Q.splice(0, 2);
+  return Q.slice(0, n); }
+function prPregHtml(Q, tipos, y0, h, x0 = 40, w = 515) { const qh = h / Q.length; let a = "", s = "";
+  Q.forEach((q, k) => { const y = y0 + k * qh, cy = y + qh / 2, ic = Math.min(26, qh - 12); let x = x0 + 30;
+    a += `<rect x="${x0}" y="${j2f(y + 3)}" width="${w}" height="${j2f(qh - 6)}" rx="12" fill="${k % 2 ? "#FFFFFF" : "#F7FAFF"}" stroke="#E1E7F0"/><circle cx="${x0 + 15}" cy="${j2f(cy)}" r="9" fill="#1E5BB8"/><text x="${x0 + 15}" y="${j2f(cy + 4.5)}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" ${J2F}>${k + 1}</text>`;
+    const txt = (t) => { const fs = 11.5; a += nvT(x, cy + 4, t, fs, { b: true, w: 800 }); x += isMedir(t, fs, "Nunito", 800) + 6; };
+    const icono = (i) => { a += j2im(tipos[i].url, x, cy - ic / 2, ic, ic); x += ic + 6; };
+    txt(q.t); if (q.ic) { q.ic.forEach((i, j) => { if (j) txt("y"); icono(i); }); if (q.que != null) { txt("que de"); icono(q.que); } txt(q.cola || "?"); }
+    if (q.tipo === "rodear") { const os = Math.min(30, qh - 10), gap = 10, tw = tipos.length * (os + gap), sx = x0 + w - tw - 8; tipos.forEach((it, i) => { const ox = sx + i * (os + gap); a += j2im(it.url, ox, cy - os / 2, os, os); if (i === q.ok) s += `<ellipse cx="${j2f(ox + os / 2)}" cy="${j2f(cy)}" rx="${j2f(os / 2 + 5)}" ry="${j2f(os / 2 + 4)}" fill="none" stroke="#D7263D" stroke-width="2.6"/>`; }); a += nvT(sx - 8, cy + 4, "Rodealo:", 9.5, { a: "end", c: "#5B6475", b: true, w: 700 }); }
+    else { const bw = 58, bx = x0 + w - bw - 10; a += `<rect x="${j2f(bx)}" y="${j2f(cy - (qh - 16) / 2)}" width="${bw}" height="${j2f(qh - 16)}" rx="9" fill="#fff" stroke="#1A2744" stroke-width="1.3"/>`; s += nvT(bx + bw / 2, cy + 8, String(q.r), Math.min(22, qh * 0.5), { a: "middle", c: "#D7263D" }); } });
+  return { a, s }; }
+nvGrafico = function () { const c = nvCfg(), I = nvImgs(); if (I.length < 2) throw new Error("Hacen falta al menos 2 dibujos."); const nk = isNivK(), v = c.v === "preguntas" ? "completo" : c.v, K = Math.min(c.n, I.length, 5), r = isRand(IS.seed * 23 + 1), mx = [5, 8, 10][nk];
+  const tipos = isMezclar(I.map((_, q) => q), IS.seed + 2).slice(0, K).map((q) => I[q]); let cnt = tipos.map(() => 1 + Math.floor(r() * mx)); cnt = cnt.map((x) => Math.max(nk ? 2 : 1, x)); if (new Set(cnt).size < Math.min(3, K)) cnt = cnt.map((x, i) => Math.max(1, Math.min(mx, ((x + i * 2) % mx) + 1)));
+  if (Math.max(...cnt) === Math.min(...cnt) && K > 1) cnt[0] = cnt[0] > 1 ? cnt[0] - 1 : cnt[0] + 1;
+  const seed = IS.seed * 7 + 4; let act = "", sol = "", tit = "", cons = "", pasos = [];
+  const esc = (y, h, tip) => prMarcoEscena(y, h) + prEscena({ x: 52, y: y + 10, w: 491, h: h - 34 }, tipos, cnt, seed, nk) + (tip ? `<text x="545" y="${j2f(y + h - 9)}" text-anchor="end" font-size="9" font-weight="800" fill="#3E7A35" ${J2B}>${svgEsc(tip)}</text>` : "");
+  const tipCuenta = "✓ Marcá cada dibujo cuando lo contás";
+  if (v === "completo") { tit = "Contá y graficá"; cons = "OBSERVÁ la escena, CONTÁ cada dibujo, REGISTRALO con palitos, PINTÁ el gráfico y RESPONDÉ."; pasos = [["ojo", "Observá y contá"], ["palitos", "Registrá con palitos"], ["barras", "Pintá el gráfico"], ["pregunta", "Respondé"]];
+    const y1 = 214; act += prSec(1, "OBSERVÁ Y CONTÁ", y1, PR_COL[0]) + esc(y1 + 28, 142, tipCuenta);
+    const y2 = y1 + 182; act += prSec(2, "REGISTRÁ", y2, PR_COL[1]); const T = prConteo({ x: 40, y: y2 + 40, w: 238, h: 196 }, tipos, cnt, { rhMax: 48 }); act += T.a; sol += T.s;
+    act += `<rect x="290" y="${y2}" width="1" height="236" fill="#E1E7F0"/><g transform="translate(262 0)">${prSec(3, "GRAFICÁ", y2, PR_COL[2])}</g>`; const G = prBarras({ x: 300, y: y2 + 26, w: 255, h: 214 }, tipos, cnt, mx); act += G.a; sol += G.s;
+    const y4 = 644; act += prSec(4, "RESPONDÉ", y4, PR_COL[4]); const Q = prPregHtml(prPreguntas(tipos, cnt, nk, 3), tipos, y4 + 26, 114); act += Q.a; sol += Q.s; }
+  else if (v === "barras") { tit = "Contá y graficá"; cons = "CONTÁ cuántos hay de cada dibujo y PINTÁ en el gráfico un cuadradito por cada uno, con el color del crayón."; pasos = [["ojo", "Observá la escena"], ["dedo", "Contá cada dibujo"], ["barras", "Pintá un cuadradito por cada uno"]];
+    act += prSec(1, "OBSERVÁ Y CONTÁ", 214, PR_COL[0]) + esc(242, 210, tipCuenta) + prSec(2, "PINTÁ EL GRÁFICO", 470, PR_COL[2], "Un cuadradito por cada dibujo"); const G = prBarras({ x: 60, y: 498, w: 470, h: 236 }, tipos, cnt, mx); act += G.a; sol += G.s; act += prAutoeval(748); }
+  else if (v === "conteo") { tit = "Tabla de conteo"; cons = "CONTÁ cada dibujo de la escena, HACÉ un palito por cada uno y ESCRIBÍ el total."; pasos = [["ojo", "Observá la escena"], ["palitos", "Un palito por cada dibujo"], ["lapiz", "Escribí el total"]];
+    act += prSec(1, "OBSERVÁ Y CONTÁ", 214, PR_COL[0]) + esc(242, 220, tipCuenta) + prSec(2, "HACÉ LOS PALITOS", 480, PR_COL[1], "Cada 5, uno cruzado"); const T = prConteo({ x: 40, y: 522, w: 515, h: 216 }, tipos, cnt); act += T.a; sol += T.s; act += prAutoeval(748); }
+  else if (v === "pictograma") { tit = "Pictograma"; cons = "CONTÁ cada dibujo de la escena y PINTÁ un círculo por cada uno."; pasos = [["ojo", "Observá la escena"], ["dedo", "Contá cada dibujo"], ["pincel", "Pintá un círculo por cada uno"]];
+    act += prSec(1, "OBSERVÁ Y CONTÁ", 214, PR_COL[0]) + esc(242, 220, tipCuenta) + prSec(2, "PINTÁ LOS CÍRCULOS", 480, PR_COL[2], "Un círculo = un dibujo"); const P = prPicto({ x: 40, y: 510, w: 515, h: 228 }, tipos, cnt, mx); act += P.a; sol += P.s; act += prAutoeval(748); }
+  else if (v === "leer") { tit = "Leé el gráfico"; cons = "OBSERVÁ el gráfico de barras y RESPONDÉ las preguntas."; pasos = [["lupa", "Mirá cada barra"], ["dedo", "Contá los cuadraditos"], ["lapiz", "Respondé"]];
+    act += prSec(1, "OBSERVÁ EL GRÁFICO", 214, PR_COL[0]); const G = prBarras({ x: 60, y: 244, w: 470, h: 280 }, tipos, cnt, mx, { lleno: true, cray: false }); act += `<rect x="40" y="238" width="515" height="${j2f(G.fin - 230)}" rx="16" fill="#FAFCFF" stroke="#E1E7F0"/>` + G.a;
+    const yq = G.fin + 22; act += prSec(2, "RESPONDÉ", yq, PR_COL[4]); const Q = prPregHtml(prPreguntas(tipos, cnt, Math.max(1, nk), 5), tipos, yq + 26, Math.min(250, 784 - yq - 26)); act += Q.a; sol += Q.s; }
+  else { tit = "Encuesta del aula"; cons = "PREGUNTALES a tus compañeros cuál les gusta más, ANOTÁ un palito por cada respuesta, PINTÁ el gráfico y RESPONDÉ."; pasos = [["voto", "Preguntá a tus compañeros"], ["palitos", "Anotá con palitos"], ["barras", "Pintá el gráfico"], ["pregunta", "Respondé"]];
+    const MX = [10, 15, 20][nk], z = tipos.map(() => 0);
+    act += prSec(1, "PREGUNTÁ Y ANOTÁ", 214, PR_COL[0], "¿Cuál te gusta más?"); const T = prConteo({ x: 40, y: 254, w: 515, h: Math.min(200, K * 44) }, tipos, z, { rhMax: 44 }); act += T.a;
+    const y3 = T.fin + 14; act += prSec(2, "PINTÁ EL GRÁFICO", y3, PR_COL[2]); const G = prBarras({ x: 60, y: y3 + 26, w: 470, h: 676 - y3 }, tipos, z, MX); act += G.a;
+    const y4 = Math.max(G.fin + 8, 700); act += prSec(3, "RESPONDÉ", y4, PR_COL[4]) + [["¿Cuál eligieron MÁS? Dibujalo:", 1], ["¿Cuántos compañeros votaron?", 0]].map(([t, d], k) => { const y = y4 + 26 + k * 30; return `<rect x="40" y="${y}" width="515" height="27" rx="10" fill="${k ? "#fff" : "#F7FAFF"}" stroke="#E1E7F0"/>` + nvT(54, y + 18, t, 11.5, { b: true, w: 800 }) + `<rect x="${d ? 440 : 480}" y="${y + 4}" width="${d ? 106 : 66}" height="20" rx="8" fill="#fff" stroke="#1A2744" stroke-width="1.2"/>`; }).join("");
+    IS.j2Info = `Encuesta del aula con ${K} opciones · gráfico hasta ${MX} votos · sin hoja de soluciones (depende de las respuestas)`;
+    return [["actividad", "Actividad", isMarco(tit, cons, prPasos(172, pasos) + act, "")]]; }
+  IS.j2Info = `${K} dibujos · cantidades: ${tipos.map((it, i) => `${it.n || "dibujo " + (i + 1)} ${cnt[i]}`).join(", ")} · máximo ${mx}`;
+  return [["actividad", "Actividad", isMarco(tit, cons, prPasos(172, pasos) + act, "")], ["soluciones", "Soluciones", isMarco("Soluciones", `${tit}: así queda resuelta.`, act + sol, "")]]; };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
