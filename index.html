@@ -1494,6 +1494,18 @@ body[data-orv]:not([data-orv="inicio"]) .hero-wrap{display:none}
 .ca-mcl em.fl,.ca-mcl em.hot{background:transparent!important;border:0;width:auto;height:auto;font-size:12px;padding:0}
 @media (max-width:760px){.ca-pchips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.ca-pchips button{flex:none}}
 
+#ppEnt .field:has(#ppeN){position:relative}
+.vc-box{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);background:var(--solid,var(--bg));border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.35);padding:6px;display:grid;gap:2px;max-height:360px;overflow:auto;min-width:min(420px,88vw)}
+.vc-h{font-size:11.5px;font-weight:800;color:var(--muted);padding:4px 8px 6px;text-transform:uppercase;letter-spacing:.04em}
+.vc-it{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;border:0;background:transparent;color:var(--ink);font:inherit;padding:8px;border-radius:10px;cursor:pointer}
+.vc-it:hover,.vc-it.on{background:color-mix(in srgb,#22A35A 12%,var(--surface-2))}
+.vc-av{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#d55181);color:#fff;font-weight:800;font-size:13px}
+.vc-tx{display:grid;min-width:0}.vc-tx b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.vc-tx small{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vc-st{display:grid;justify-items:end;text-align:right}.vc-st em{font-style:normal;font-size:11.5px;font-weight:800;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,#22A35A 16%,transparent);color:#22A35A;white-space:nowrap}.vc-st small{font-size:11px;color:var(--muted);white-space:nowrap}
+.vc-new{font-size:12px;color:var(--muted);padding:6px 8px 4px;border-top:1px dashed var(--line);margin-top:2px}
+.vc-none{display:flex;gap:10px;align-items:center;padding:8px}.vc-none span{font-size:22px}.vc-none div{display:grid}.vc-none b{font-size:14px}.vc-none small{font-size:12px;color:var(--muted)}
+@media (max-width:600px){.vc-st small{display:none}}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -26889,6 +26901,47 @@ nvGrafico = function () { const c = nvCfg(), I = nvImgs(); if (I.length < 2) thr
     return [["actividad", "Actividad", isMarco(tit, cons, prPasos(172, pasos) + act, "")]]; }
   IS.j2Info = `${K} dibujos · cantidades: ${tipos.map((it, i) => `${it.n || "dibujo " + (i + 1)} ${cnt[i]}`).join(", ")} · máximo ${mx}`;
   return [["actividad", "Actividad", isMarco(tit, cons, prPasos(172, pasos) + act, "")], ["soluciones", "Soluciones", isMarco("Soluciones", `${tit}: así queda resuelta.`, act + sol, "")]]; };
+
+// =====================================================================
+// VENTA POR TRANSFERENCIA: al escribir el nombre sugiere clientas que ya compraron y completa sus datos
+// =====================================================================
+const VC = { sel: -1, L: [] };
+function vcBuscar(q) { const T = fold(q).replace(/@/g, " ").split(/\s+/).filter((t) => t.length >= 2); if (!T.length || !D || !D.clients) return [];
+  const ult = (c) => (c.o || []).reduce((m, o) => { const d = parseF(o.f); return d && d > m ? d : m; }, new Date(0));
+  return D.clients.filter((c) => { const h = fold(`${c.n || ""} ${c.e || ""} ${c.ig || ""} ${c.t || ""}`); return T.every((t) => h.includes(t)); })
+    .map((c) => ({ c, u: ult(c), ini: fold(c.n || "").startsWith(T[0]) ? 1 : 0 }))
+    .sort((a, b) => b.ini - a.ini || (b.c._ok || 0) - (a.c._ok || 0) || b.u - a.u).slice(0, 6); }
+function vcIni(n) { const p = String(n || "?").trim().split(/\s+/); return ((p[0] || "?")[0] + (p[1] ? p[1][0] : "")).toUpperCase(); }
+function vcPintar(inp) { let box = document.getElementById("vcBox"); const q = inp.value.trim(), f = inp.closest(".field");
+  if (!box) { box = document.createElement("div"); box.id = "vcBox"; box.className = "vc-box"; box.setAttribute("role", "listbox"); }
+  if (box.parentNode !== f) f.appendChild(box);
+  if (q.length < 2) { box.hidden = true; VC.L = []; return; }
+  VC.L = vcBuscar(q); VC.sel = VC.L.length ? 0 : -1;
+  const fila = ({ c, u }, i) => { const mats = new Set((c.o || []).filter((o) => o.pg === "Finalizado").flatMap((o) => (o.i || []).map((x) => x[1]))).size;
+    return `<button type="button" role="option" class="vc-it ${i === VC.sel ? "on" : ""}" data-vcpick="${i}"><span class="vc-av">${esc(vcIni(c.n || c.e))}</span><span class="vc-tx"><b>${hl(c.n || c.e || "Sin nombre", fold(q.split(/\s+/)[0]))}</b><small>${esc([c.e, c.ig ? "@" + String(c.ig).replace(/^@/, "") : "", c.t].filter(Boolean).join(" · ") || "Sin datos de contacto")}</small></span>
+      <span class="vc-st"><em>${c._ok || 0} compra${c._ok === 1 ? "" : "s"}</em><small>${mats ? `${mats} material${mats === 1 ? "" : "es"}` : ""}${u && +u ? ` · últ. ${esc(u.toLocaleDateString("es-AR", { day: "numeric", month: "short", year: "2-digit" }))}` : ""}</small></span></button>`; };
+  box.innerHTML = VC.L.length ? `<div class="vc-h">👤 ${VC.L.length === 1 ? "Posible compradora" : "Posibles compradoras"} · tocá para usar sus datos</div>${VC.L.map(fila).join("")}<div class="vc-new">🆕 ¿Es otra persona? Seguí escribiendo y cargala como <b>docente nueva</b>.</div>`
+    : `<div class="vc-none"><span>🆕</span><div><b>Docente nueva</b><small>No hay ninguna clienta con ese nombre. Completá el correo y se guarda como nueva.</small></div></div>`;
+  box.hidden = false; }
+function vcElegir(i) { const it = VC.L[i]; if (!it) return; const c = it.c;
+  PPE.vcPick = { n: c.n || "", e: c.e || "" };
+  Object.assign(PPE, { n: c.n || PPE.n, e: c.e || PPE.e, ig: c.ig ? "@" + String(c.ig).replace(/^@/, "") : PPE.ig, t: c.t || PPE.t });
+  const box = document.getElementById("vcBox"); if (box) box.hidden = true; VC.L = [];
+  ppeRepintar("#ppeQ"); toast(`👤 Datos de ${c.n || c.e} cargados`, "ok"); }
+// si después de elegir una clienta se escribe otro nombre, se borran sus datos para no mezclar personas
+function vcSoltar(t) { const P = PPE.vcPick; if (!P) return; const v = fold(t.value.trim()), n = fold(P.n); if (v && (n.startsWith(v) || v.startsWith(n))) return;
+  PPE.vcPick = null; Object.assign(PPE, { e: "", ig: "", t: "" }); ["ppeE", "ppeIg", "ppeT"].forEach((id) => { const x = document.getElementById(id); if (x) x.value = ""; }); const cl = document.querySelector("#ppEnt .vx2-cli"); if (cl) cl.remove(); document.querySelectorAll('#ppEnt a[href^="https://wa.me"]').forEach((x) => x.remove()); }
+document.addEventListener("input", (e) => { const t = e.target; if (t && t.id === "ppeN" && t.closest("#ppEnt")) { vcSoltar(t); vcPintar(t); } });
+document.addEventListener("focusin", (e) => { const t = e.target; if (t && t.id === "ppeN" && t.closest("#ppEnt") && t.value.trim().length >= 2) vcPintar(t); });
+document.addEventListener("focusout", (e) => { const t = e.target; if (t && t.id === "ppeN") setTimeout(() => { const b = document.getElementById("vcBox"); if (b && !b.contains(document.activeElement)) b.hidden = true; }, 180); });
+document.addEventListener("mousedown", (e) => { const b = e.target.closest && e.target.closest("[data-vcpick]"); if (b) { e.preventDefault(); vcElegir(+b.dataset.vcpick); } }, true);
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-vcpick]"); if (b) { e.preventDefault(); e.stopPropagation(); } }, true);
+document.addEventListener("keydown", (e) => { const t = e.target; if (!t || t.id !== "ppeN") return; const box = document.getElementById("vcBox"); if (!box || box.hidden || !VC.L.length) return;
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); VC.sel = (VC.sel + (e.key === "ArrowDown" ? 1 : -1) + VC.L.length) % VC.L.length; box.querySelectorAll(".vc-it").forEach((x, i) => x.classList.toggle("on", i === VC.sel)); }
+  else if (e.key === "Enter" && VC.sel >= 0) { e.preventDefault(); vcElegir(VC.sel); }
+  else if (e.key === "Escape") box.hidden = true; });
+
+{ const _vl = vtLimpiar; vtLimpiar = function () { PPE.vcPick = null; return _vl.apply(this, arguments); }; }
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
