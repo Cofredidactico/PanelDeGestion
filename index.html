@@ -1125,6 +1125,9 @@ body[data-orv]:not([data-orv="inicio"]) .hero-wrap{display:none}
 .pk-cerrar{justify-self:start}
 .rp-src{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
 
+.ps-nota{padding:10px 12px;border-radius:12px;font-size:12.5px;line-height:1.45;background:color-mix(in srgb,#f5b53f 10%,var(--surface));border:1px solid color-mix(in srgb,#f5b53f 35%,var(--line));margin:2px 0 10px}
+.ps-nota b{color:var(--ink)}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -24772,6 +24775,330 @@ document.addEventListener("click", (e) => { const d = document.getElementById("i
   if (t.closest("[data-pkcambiar]")) { e.stopPropagation(); PKV.abierto = true; isRender(); return; }
   if (t.closest("[data-pkcerrar]")) { e.stopPropagation(); PKV.abierto = false; isRender(); return; } }, true);
 document.addEventListener("input", (e) => { if (e.target.id !== "pkQ") return; PKV.q = e.target.value; const g = document.getElementById("pkGrid"); if (g) g.innerHTML = pkTarjetas(); });
+
+// ---------- PIXEL Y SIMETRÍA PRO · hojas de nivel profesional, nuevas formas de jugar y "Dibujá la otra mitad" ----------
+const PS = { id: 0, cache: new Map() };
+function psMemo(key, fn) { if (PS.cache.has(key)) return PS.cache.get(key); const v = fn(); PS.cache.set(key, v); if (PS.cache.size > 80) PS.cache.delete(PS.cache.keys().next().value); return v; }
+const psKey = (src) => src.url.length + "|" + src.url.slice(-60);
+const psLetra = (i) => (i < 26 ? String.fromCharCode(65 + i) : String.fromCharCode(64 + Math.floor(i / 26)) + String.fromCharCode(65 + (i % 26)));
+const psLum = (hex) => { const [r, g, b] = isHexRgb(hex); return 0.299 * r + 0.587 * g + 0.114 * b; };
+const psCtx = (w, h) => { const c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w)); c.height = Math.max(1, Math.round(h)); return [c, c.getContext("2d", { willReadFrequently: true })]; };
+const PS_SIM_DET = [["simple", "Simple", 12], ["medio", "Medio", 16], ["detallado", "Detallado", 22], ["muy", "Muy detallado", 28]];
+const psPxCfg = () => { const P = IS.px || {}; return { juego: P.juego || "codigo", partes: +P.partes === 2 ? 2 : 4, forma: P.forma || "cuadrado", ficha: P.ficha !== false, adivina: P.adivina !== false, punto: !!P.punto, tilde: P.tilde !== false }; };
+const psSimCfg = () => { const S = IS.sim || {}, nk = isNivK(); return { var: S.var || "espejo", lado: S.lado === "b" ? "b" : "a", det: S.det || ["simple", "medio", "detallado"][nk], modelo: S.modelo || "color", ayuda: S.ayuda || ["contorno", "cuadricula", "puntos"][nk], cel: +S.cel || [5, 7, 9][nk], colores: S.colores !== false, auto: S.auto !== false, ejeAuto: S.ejeAuto !== false, coord: S.coord == null ? nk === 2 : !!S.coord, ref: !!S.ref }; };
+
+// ---------- el dibujo: el del pack o una figura del panel convertida en imagen ----------
+function psBaseSrc() { const k = IS.j2Base in IS_GRID_BASE ? IS.j2Base : "corazon", B = IS_GRID_BASE[k];
+  return psMemo("base|" + k, () => { const N = 640, [c, x] = psCtx(N, N), im = x.createImageData(N, N), col = new Array(N * N);
+    for (let y = 0; y < N; y++) for (let xx = 0; xx < N; xx++) col[y * N + xx] = B[1]((xx + 0.5) / N, (y + 0.5) / N);
+    for (let i = 0; i < N * N; i++) { const v = col[i]; if (!v) continue; const xx = i % N, y = (i / N) | 0;
+      const borde = PS_BORDE.some(([a, b]) => { const X = xx + a, Y = y + b; return X < 0 || Y < 0 || X >= N || Y >= N || col[Y * N + X] !== v; });
+      const [r, g, b] = borde ? [26, 39, 68] : isHexRgb(isHex(v)); im.data.set([r, g, b, 255], i * 4); }
+    x.putImageData(im, 0, 0); return { n: B[0], cv: c, url: c.toDataURL("image/png") }; }); }
+const PS_BORDE = (() => { const L = []; for (let a = -7; a <= 7; a++) for (let b = -7; b <= 7; b++) if ((a || b) && a * a + b * b <= 49) L.push([a, b]); return L; })();
+const psSrcSim = () => (IS.j2Fuente === "banco" ? isPxSrc() : psBaseSrc());
+const psSrcPx = () => isPxSrc() || psBaseSrc();
+
+// ---------- el eje del dibujo: busca la línea donde las dos mitades más se parecen ----------
+function psEje(src, hz) { const M = isPxMascara(src); if (!M.caja) return 0; const { x0, y0, bw, bh } = M.caja;
+  if ((IS.sim || {}).ejeAuto === false) return hz ? y0 + bh / 2 : x0 + bw / 2;
+  return psMemo(`eje|${hz ? 1 : 0}|${psKey(src)}`, () => { const d = M.mc.getContext("2d").getImageData(0, 0, M.w, M.h).data, fg = (x, y) => x >= 0 && y >= 0 && x < M.w && y < M.h && d[(y * M.w + x) * 4 + 3] > 128;
+    const L = hz ? bh : bw, ini = hz ? y0 : x0, o0 = hz ? x0 : y0, o1 = hz ? x0 + bw : y0 + bh, paso = Math.max(1, Math.floor((o1 - o0) / 90)), pk = Math.max(1, Math.floor(L / 160)); let best = ini + L / 2, bv = Infinity;
+    for (let a2 = Math.round((ini + L * 0.36) * 2); a2 <= Math.round((ini + L * 0.64) * 2); a2++) { const a = a2 / 2, ext = Math.max(a - ini, ini + L - a); let mis = 0, tot = 0;
+      for (let o = o0; o < o1; o += paso) for (let k = 0; k < ext; k += pk) { const p1 = Math.floor(a - 0.5 - k), p2 = Math.ceil(a - 0.5 + k), f1 = hz ? fg(o, p1) : fg(p1, o), f2 = hz ? fg(o, p2) : fg(p2, o); if (f1 || f2) { tot++; if (f1 !== f2) mis++; } }
+      const v = mis / Math.max(1, tot) + 0.12 * Math.abs(a - (ini + L / 2)) / L; if (v < bv) { bv = v; best = a; } }
+    return best; }); }
+
+// ---------- imagen simétrica: una mitad del dibujo + su reflejo ----------
+function psEspejarImg(src, hz, lado) { const M = isPxMascara(src); if (!M.caja) return src; const { x0, y0, bw, bh } = M.caja, a = psEje(src, hz), f = 1 / M.sc, pad = 6;
+  const ini = hz ? y0 : x0, fin = ini + (hz ? bh : bw), wk = Math.max(1, lado === "b" ? fin - a : a - ini), Wm = hz ? bw : 2 * wk, Hm = hz ? 2 * wk : bh, [c, x] = psCtx(Wm * f + pad * 2, Hm * f + pad * 2);
+  const dx = hz ? pad - x0 * f : c.width / 2 - a * f, dy = hz ? c.height / 2 - a * f : pad - y0 * f;
+  const keep = hz ? (lado === "b" ? [0, c.height / 2, c.width, c.height / 2] : [0, 0, c.width, c.height / 2]) : lado === "b" ? [c.width / 2, 0, c.width / 2, c.height] : [0, 0, c.width / 2, c.height];
+  x.save(); x.beginPath(); x.rect(...keep); x.clip(); x.drawImage(src.cv, dx, dy); x.restore();
+  x.save(); if (hz) { x.translate(0, c.height); x.scale(1, -1); } else { x.translate(c.width, 0); x.scale(-1, 1); } x.beginPath(); x.rect(...keep); x.clip(); x.drawImage(src.cv, dx, dy); x.restore();
+  return { n: src.n, cv: c, url: c.toDataURL("image/png") }; }
+function psSimetrica(src, modo, lado) { return psMemo(`sym|${modo}|${lado}|${(IS.sim || {}).ejeAuto === false ? 0 : 1}|${psKey(src)}`, () => { let cur = src;
+  for (const hz of modo === "vh" ? [false, true] : [modo === "h"]) cur = psEspejarImg(cur, hz, modo === "vh" && hz ? "a" : lado); return cur; }); }
+// garantiza simetría exacta en la cuadrícula copiando la mitad elegida
+function psEspejar(g, hz, cuatro, lado) { const hc = Math.ceil(g[0].length / 2); let out = g;
+  if (!hz || cuatro) out = out.map((row) => { const half = lado === "b" ? row.slice(row.length - hc) : row.slice(0, hc); return lado === "b" ? [...half.slice().reverse(), ...half] : [...half, ...half.slice().reverse()]; });
+  if (hz || cuatro) { const hr = Math.ceil(out.length / 2), deAbajo = lado === "b" && !cuatro, half = deAbajo ? out.slice(out.length - hr) : out.slice(0, hr); out = deAbajo ? [...half.slice().reverse(), ...half] : [...half, ...half.slice().reverse()]; }
+  return out.map((r) => r.map((v) => v || null)); }
+function psSimSol(hz, cuatro, lado) { const src = isPxSrc();
+  if (!src) { const G = Math.max(6, Math.round((IS.j2N || [8, 12, 16][isNivK()]) / 2) * 2); return psEspejar(isGridDe(G), hz, cuatro, "a"); }
+  const C = psSimCfg(), L = (PS_SIM_DET.find((d) => d[0] === C.det) || PS_SIM_DET[1])[2], sym = psSimetrica(src, cuatro ? "vh" : hz ? "h" : "v", lado);
+  const RR = isGridReal2(sym, L, { cont: "auto", limpiar: true, lim: { c: 44, r: 38 } }); IS._gridHex = RR.hex; return psEspejar(RR.grid, hz, cuatro, lado); }
+
+// ---------- versión en líneas (para pintar todo), contorno punteado y colores del dibujo ----------
+// versión para imprimir: agranda el dibujo con suavizado para que no salga pixelado en la hoja
+function psHi(src, wUnits) { const f = Math.min(4, (175 * wUnits) / 72 / src.cv.width); if (f <= 1.05) return src; const ff = Math.ceil(f * 4) / 4;
+  return psMemo(`hi|${ff}|${psKey(src)}`, () => { let cur = src.cv; const W = Math.round(src.cv.width * ff), H = Math.round(src.cv.height * ff);
+    while (cur.width < W) { const t = Math.min(W / cur.width, 2), [c, x] = psCtx(cur.width * t, cur.height * t); x.imageSmoothingEnabled = true; x.imageSmoothingQuality = "high"; x.drawImage(cur, 0, 0, c.width, c.height); cur = c; }
+    return { n: src.n, cv: cur, url: cur.toDataURL("image/png") }; }); }
+function psLineArt(src) { return psMemo("la|" + psKey(src), () => { const M = isPxMascara(src), cv = src.cv, sc = Math.min(1, 2000 / Math.max(cv.width, cv.height)), w = Math.round(cv.width * sc), h = Math.round(cv.height * sc);
+  const [c, x] = psCtx(w, h); x.drawImage(cv, 0, 0, w, h); const d = x.getImageData(0, 0, w, h).data, [, xm] = psCtx(w, h); xm.drawImage(M.mc, 0, 0, w, h); const dm = xm.getImageData(0, 0, w, h).data;
+  const N = w * h, fg = new Uint8Array(N); let ed = new Uint8Array(N); for (let i = 0; i < N; i++) fg[i] = dm[i * 4 + 3] > 128 && d[i * 4 + 3] > 90 ? 1 : 0;
+  const lum = (i) => d[i * 4] * 0.299 + d[i * 4 + 1] * 0.587 + d[i * 4 + 2] * 0.114, dif = (i, j) => Math.abs(d[i * 4] - d[j * 4]) + Math.abs(d[i * 4 + 1] - d[j * 4 + 1]) + Math.abs(d[i * 4 + 2] - d[j * 4 + 2]);
+  for (let y = 1; y < h - 1; y++) for (let xx = 1; xx < w - 1; xx++) { const i = y * w + xx; if (!fg[i]) continue; if (lum(i) < 92 || !fg[i - 1] || !fg[i + 1] || !fg[i - w] || !fg[i + w] || dif(i, i + 1) > 95 || dif(i, i + w) > 95) ed[i] = 1; }
+  for (let k = 1; k < Math.max(1, Math.round(w / 330)); k++) { const e2 = ed.slice(); for (let i = w; i < N - w; i++) if (!ed[i] && (ed[i - 1] || ed[i + 1] || ed[i - w] || ed[i + w])) e2[i] = 1; ed = e2; }
+  const o = x.createImageData(w, h); for (let i = 0; i < N; i++) if (ed[i]) o.data.set([26, 39, 68, 255], i * 4); x.clearRect(0, 0, w, h); x.putImageData(o, 0, 0); return c.toDataURL("image/png"); }); }
+function psGhost(src) { return psMemo("gh|" + psKey(src), () => { const M = isPxMascara(src), cv = src.cv, sc = Math.min(1, 2000 / Math.max(cv.width, cv.height)), w = Math.round(cv.width * sc), h = Math.round(cv.height * sc);
+  const [c, x] = psCtx(w, h), [, xm] = psCtx(w, h); xm.drawImage(M.mc, 0, 0, w, h); const dm = xm.getImageData(0, 0, w, h).data, N = w * h, fg = new Uint8Array(N); let ed = new Uint8Array(N);
+  for (let i = 0; i < N; i++) fg[i] = dm[i * 4 + 3] > 128 ? 1 : 0;
+  for (let y = 1; y < h - 1; y++) for (let xx = 1; xx < w - 1; xx++) { const i = y * w + xx; if (fg[i] && (!fg[i - 1] || !fg[i + 1] || !fg[i - w] || !fg[i + w])) ed[i] = 1; }
+  for (let k = 0; k < Math.max(1, Math.round(w / 200)); k++) { const e2 = ed.slice(); for (let i = w; i < N - w; i++) if (!ed[i] && (ed[i - 1] || ed[i + 1] || ed[i - w] || ed[i + w])) e2[i] = 1; ed = e2; }
+  const o = x.createImageData(w, h); for (let i = 0; i < N; i++) if (ed[i]) o.data.set([150, 166, 192, 255], i * 4);
+  x.putImageData(o, 0, 0); return c.toDataURL("image/png"); }); }
+function psColores(src, max = 8) { return psMemo(`col|${max}|${psKey(src)}`, () => { const M = isPxMascara(src), cv = src.cv, sc = Math.min(1, 120 / Math.max(cv.width, cv.height)), w = Math.max(1, Math.round(cv.width * sc)), h = Math.max(1, Math.round(cv.height * sc));
+  const [, x] = psCtx(w, h); x.drawImage(cv, 0, 0, w, h); const d = x.getImageData(0, 0, w, h).data, [, xm] = psCtx(w, h); xm.drawImage(M.mc, 0, 0, w, h); const dm = xm.getImageData(0, 0, w, h).data, cnt = {}; let tot = 0;
+  for (let i = 0; i < w * h; i++) { if (dm[i * 4 + 3] < 128 || d[i * 4 + 3] < 100) continue; const n = isColNombre([d[i * 4], d[i * 4 + 1], d[i * 4 + 2]]); cnt[n] = (cnt[n] || 0) + 1; tot++; }
+  return Object.entries(cnt).filter(([, v]) => v / Math.max(1, tot) >= 0.025).sort((a, b) => b[1] - a[1]).slice(0, max).map(([n]) => ({ n, hex: (IS_COL_NOM.find((c) => c[0] === n) || [0, "#999"])[1] })); }); }
+
+// ---------- piezas de diseño de la hoja ----------
+function psGeo(R, C, J, coord, max = 40) { const m = coord ? 16 : 0, s = Math.min((J.w - m) / C, (J.h - m) / R, max), ox = J.x + (J.w - (m + s * C)) / 2 + m, oy = J.y + m; return { s, ox, oy, fin: oy + s * R, der: ox + s * C }; }
+function psGrilla(grid, o) { const R = grid.length, C = grid[0].length, G = psGeo(R, C, o.J, o.coord, o.max), { s, ox, oy } = G, forma = o.forma || "cuadrado"; let h = "";
+  if (forma !== "cuadrado") { h += `<rect x="${j2f(ox)}" y="${j2f(oy)}" width="${j2f(s * C)}" height="${j2f(s * R)}" fill="#fff"/>`; for (let x = 1; x < C; x++) h += `<line x1="${j2f(ox + x * s)}" y1="${j2f(oy)}" x2="${j2f(ox + x * s)}" y2="${j2f(oy + R * s)}" stroke="#E4E8EF" stroke-width="0.5"/>`; for (let y = 1; y < R; y++) h += `<line x1="${j2f(ox)}" y1="${j2f(oy + y * s)}" x2="${j2f(ox + C * s)}" y2="${j2f(oy + y * s)}" stroke="#E4E8EF" stroke-width="0.5"/>`; }
+  for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) { const v = grid[y][x], X = ox + x * s, Y = oy + y * s, pint = o.color ? o.color(x, y, v) : null;
+    if (forma === "cuadrado") h += `<rect x="${j2f(X)}" y="${j2f(Y)}" width="${j2f(s)}" height="${j2f(s)}" fill="${pint || "#fff"}" stroke="#A9B0BD" stroke-width="0.5"/>`;
+    else if (forma === "redondo") h += `<rect x="${j2f(X + s * 0.07)}" y="${j2f(Y + s * 0.07)}" width="${j2f(s * 0.86)}" height="${j2f(s * 0.86)}" rx="${j2f(s * 0.24)}" fill="${pint || "#fff"}" stroke="#8C95A6" stroke-width="0.6"/>`;
+    else h += `<circle cx="${j2f(X + s / 2)}" cy="${j2f(Y + s / 2)}" r="${j2f(s * 0.43)}" fill="${pint || "#fff"}" stroke="#8C95A6" stroke-width="0.6"/>`;
+    if (o.num) { const t = o.num(x, y, v); if (t) { const fs = isPintFs(t, forma === "circulo" ? s * 0.86 : s, s * 0.5); h += `<text x="${j2f(X + s / 2)}" y="${j2f(Y + s / 2 + fs * 0.36)}" text-anchor="middle" font-size="${j2f(fs)}" font-weight="700" fill="#1A2744" ${J2B}>${svgEsc(String(t))}</text>`; } }
+    if (o.punto && o.punto(x, y, v)) h += `<circle cx="${j2f(X + s / 2)}" cy="${j2f(Y + s / 2)}" r="${j2f(Math.max(0.8, s * 0.08))}" fill="#B3BAC7"/>`; }
+  if (o.guia) { for (let x = 5; x < C; x += 5) h += `<line x1="${j2f(ox + x * s)}" y1="${j2f(oy)}" x2="${j2f(ox + x * s)}" y2="${j2f(oy + R * s)}" stroke="#5B6475" stroke-width="1.1"/>`; for (let y = 5; y < R; y += 5) h += `<line x1="${j2f(ox)}" y1="${j2f(oy + y * s)}" x2="${j2f(ox + C * s)}" y2="${j2f(oy + y * s)}" stroke="#5B6475" stroke-width="1.1"/>`; }
+  if (o.coord) { const fs = Math.min(8.5, s * 0.62), c0 = o.c0 || 0, r0 = o.r0 || 0;
+    for (let x = 0; x < C; x++) { const t = o.letras ? psLetra(x + c0) : String(x + 1 + c0); h += `<text x="${j2f(ox + x * s + s / 2)}" y="${j2f(oy - 4)}" text-anchor="middle" font-size="${j2f(Math.min(fs, (s * 0.95) / (t.length * 0.62)))}" font-weight="800" fill="#5B6475" ${J2B}>${t}</text>`; }
+    for (let y = 0; y < R; y++) h += `<text x="${j2f(ox - 3)}" y="${j2f(oy + y * s + s / 2 + fs * 0.36)}" text-anchor="end" font-size="${j2f(fs)}" font-weight="800" fill="#5B6475" ${J2B}>${y + 1 + r0}</text>`; }
+  h += `<rect x="${j2f(ox)}" y="${j2f(oy)}" width="${j2f(s * C)}" height="${j2f(s * R)}" fill="none" stroke="#1A2744" stroke-width="1.8" rx="${forma === "cuadrado" ? 0 : 3}"/>`;
+  return { ...G, o: h }; }
+// referencias con forma de crayón: color, código adentro, nombre, cuántos lleva y casilla para tildar
+function psLeyenda(nombres, y, o = {}) { const per = o.per || isLeyPer(nombres), x0 = o.x0 || 40, W = o.w || 515, cw = W / per, h = o.cuenta ? 40 : 34; let s = "";
+  nombres.forEach((n, i) => { const x = x0 + (i % per) * cw, yy = y + Math.floor(i / per) * (h + 8), hex = isGHex(n), cod = o.cod ? String(o.cod(i)) : "", sw = cod ? Math.max(26, Math.min(44, 12 + cod.length * 8)) : 20, sx = x + 12, sy = yy + 6, sh = h - 12;
+    s += `<rect x="${j2f(x + 5)}" y="${j2f(yy)}" width="${j2f(cw - 10)}" height="${h}" rx="11" fill="#fff" stroke="#1A2744" stroke-width="1.1"/>`;
+    s += `<path d="M${j2f(sx)} ${j2f(sy + 3)}q0-3 3-3h${j2f(sw - 3)}l7 ${j2f(sh / 2)}-7 ${j2f(sh / 2)}h${j2f(3 - sw)}q-3 0-3-3z" fill="${hex}" stroke="#1A2744" stroke-width="1"/><path d="M${j2f(sx + sw)} ${j2f(sy)}v${j2f(sh)}" stroke="#1A2744" stroke-width=".6" opacity=".5"/>`;
+    if (cod) s += `<text x="${j2f(sx + sw / 2)}" y="${j2f(sy + sh / 2 + 5.2)}" text-anchor="middle" font-size="${j2f(isPintFs(cod, sw - 4, 15))}" font-weight="800" fill="${psLum(hex) < 150 ? "#fff" : "#1A2744"}" ${J2F}>${svgEsc(cod)}</text>`;
+    const tx = sx + sw + 12, tw = cw - (tx - x) - (o.tilde ? 26 : 10);
+    s += `<text x="${j2f(tx)}" y="${j2f(yy + (o.cuenta ? 17 : h / 2 + 4.5))}" font-size="${j2f(Math.max(7.5, Math.min(12.5, tw / (n.length * 0.6))))}" font-weight="800" fill="#1A2744" ${J2B}>${svgEsc(n)}</text>`;
+    if (o.cuenta) s += `<text x="${j2f(tx)}" y="${j2f(yy + 31)}" font-size="${j2f(Math.max(7, Math.min(9.5, tw / 14 / 0.55)))}" font-weight="600" fill="#5B6475" ${J2B}>${o.cuenta[n] || 0} cuadradito${o.cuenta[n] === 1 ? "" : "s"}</text>`;
+    if (o.tilde) s += `<rect x="${j2f(x + cw - 23)}" y="${j2f(yy + h / 2 - 6)}" width="12" height="12" rx="3" fill="#fff" stroke="#1A2744" stroke-width="1"/>`; });
+  return { o: s, fin: y + Math.ceil(nombres.length / per) * (h + 8) }; }
+function psIcono(k, x, y) {
+  if (k === "pal") return `<circle cx="${j2f(x - 4)}" cy="${j2f(y + 2.5)}" r="3.3" fill="#D7263D"/><circle cx="${j2f(x + 4)}" cy="${j2f(y + 2.5)}" r="3.3" fill="#1E5BB8"/><circle cx="${j2f(x)}" cy="${j2f(y - 3.5)}" r="3.3" fill="#F6B40E"/>`;
+  if (k === "cel") return `<rect x="${j2f(x - 6)}" y="${j2f(y - 6)}" width="12" height="12" rx="2" fill="#4AAE4F" stroke="#1A2744" stroke-width=".8"/><path d="M${j2f(x)} ${j2f(y - 6)}v12M${j2f(x - 6)} ${j2f(y)}h12" stroke="#1A2744" stroke-width=".6"/>`;
+  if (k === "rel") return `<circle cx="${j2f(x)}" cy="${j2f(y)}" r="6.2" fill="#fff" stroke="#1A2744" stroke-width="1.2"/><path d="M${j2f(x)} ${j2f(y - 3.6)}V${j2f(y)}l2.6 1.8" stroke="#1A2744" stroke-width="1.2" fill="none" stroke-linecap="round"/>`;
+  return `<path d="M${j2f(x)} ${j2f(y - 7)}v14" stroke="#D7263D" stroke-width="2" stroke-dasharray="3 2"/>`; }
+function psFicha(y, items) { const fs = 10.5, w = items.map(([, t]) => 26 + isMedir(t, fs, "Nunito", 700) + 12), tot = w.reduce((a, b) => a + b, 0) + (items.length - 1) * 8; let x = 297.5 - tot / 2, s = "";
+  items.forEach(([k, t], i) => { s += `<rect x="${j2f(x)}" y="${y}" width="${j2f(w[i])}" height="20" rx="10" fill="#F3F6FB" stroke="#D5DDEA"/>` + psIcono(k, x + 14, y + 10) + `<text x="${j2f(x + 25)}" y="${y + 14}" font-size="${fs}" font-weight="700" fill="#1A2744" ${J2B}>${svgEsc(t)}</text>`; x += w[i] + 8; });
+  return s; }
+const psCaja = (x, y, t, fs = 10) => `<rect x="${j2f(x)}" y="${j2f(y - 9)}" width="11" height="11" rx="2.5" fill="#fff" stroke="#1A2744" stroke-width="1"/><text x="${j2f(x + 16)}" y="${j2f(y)}" font-size="${fs}" font-weight="700" fill="#1A2744" ${J2B}>${svgEsc(t)}</text>`;
+function psAdivina(y) { return `<rect x="40" y="${j2f(y)}" width="515" height="44" rx="14" fill="#FFF8E6" stroke="#F2C14E" stroke-width="1.3"/><circle cx="64" cy="${j2f(y + 22)}" r="14" fill="#F6B40E"/><text x="64" y="${j2f(y + 29)}" text-anchor="middle" font-size="20" font-weight="700" fill="#fff" ${J2F}>?</text>`
+  + `<text x="88" y="${j2f(y + 17)}" font-size="11" font-weight="800" fill="#1A2744" ${J2B}>¿QUÉ DIBUJO SE ESCONDE?</text><text x="88" y="${j2f(y + 34)}" font-size="9.5" font-weight="700" fill="#5B6475" ${J2B}>Mi idea:</text><line x1="128" y1="${j2f(y + 35)}" x2="372" y2="${j2f(y + 35)}" stroke="#1A2744" stroke-width="1" stroke-dasharray="3 3"/>`
+  + `<text x="392" y="${j2f(y + 17)}" font-size="9.5" font-weight="700" fill="#5B6475" ${J2B}>Al terminar, ¿acertaste?</text>` + psCaja(392, y + 35, "SÍ") + psCaja(440, y + 35, "NO") + psCaja(490, y + 35, "CASI"); }
+function psAuto(y, items) { let fs = 10, s = `<text x="40" y="${j2f(y + 14)}" font-size="10" font-weight="900" fill="#D7263D" ${J2B}>ME CONTROLO:</text>`, ws;
+  for (;;) { ws = items.map((t) => 22 + isMedir(t, fs, "Nunito", 700)); if (ws.reduce((a, b) => a + b, 0) + 120 <= 515 || fs <= 8) break; fs -= 0.5; }
+  let x = 125; items.forEach((t, i) => { s += psCaja(x, y + 14, t, fs); x += ws[i] + 10; });
+  return `<rect x="36" y="${j2f(y)}" width="523" height="22" rx="11" fill="#FFF1F2" stroke="#F6C1C7"/>` + s; }
+function psMedalla(cx, cy, r) { const st = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((j) => { const a = -Math.PI / 2 + (j * Math.PI) / 5, rr = j % 2 ? r * 0.28 : r * 0.62; return `${j2f(cx + rr * Math.cos(a))},${j2f(cy + rr * Math.sin(a))}`; }).join(" ");
+  return `<path d="M${j2f(cx - r * 0.7)} ${j2f(cy + r * 0.4)}l${j2f(-r * 0.35)} ${j2f(r * 1.3)} ${j2f(r * 0.5)}-${j2f(r * 0.28)} ${j2f(r * 0.28)} ${j2f(r * 0.42)} ${j2f(r * 0.3)}-${j2f(r * 1.2)}z" fill="#1E5BB8"/><path d="M${j2f(cx + r * 0.7)} ${j2f(cy + r * 0.4)}l${j2f(r * 0.35)} ${j2f(r * 1.3)} ${j2f(-r * 0.5)}-${j2f(r * 0.28)} ${j2f(-r * 0.28)} ${j2f(r * 0.42)} ${j2f(-r * 0.3)}-${j2f(r * 1.2)}z" fill="#D7263D"/>`
+    + `<circle cx="${j2f(cx)}" cy="${j2f(cy)}" r="${j2f(r)}" fill="#F6B40E" stroke="#B9830B" stroke-width="1.4"/><polygon points="${st}" fill="#fff"/>`; }
+function psRefCard(src, x, y, w, h, rot) { const s = Math.min(w - 16, h - (rot ? 30 : 14)); if (s < 40) return "";
+  return `<rect x="${j2f(x)}" y="${j2f(y)}" width="${j2f(w)}" height="${j2f(h)}" rx="14" fill="#FFF8EA" stroke="#F2D9A6" stroke-width="1.2"/>` + j2im(src.url, x + (w - s) / 2, y + 10, s, s)
+    + (rot ? `<text x="${j2f(x + w / 2)}" y="${j2f(y + h - 9)}" text-anchor="middle" font-size="${j2f(Math.min(12, (w - 10) / (rot.length * 0.62)))}" font-weight="700" fill="#1A2744" ${J2F}>${svgEsc(rot)}</text>` : "") + psMedalla(x + w - 8, y + 8, 13); }
+const psRotulo = (n) => (n ? `¡ES ${String(n).toUpperCase()}!` : "¡LO DESCUBRISTE!");
+function psChipsCol(cols, y) { if (!cols.length) return ""; let fs = 10.5, ws; for (;;) { ws = cols.map((c) => 30 + isMedir(c.n, fs, "Nunito", 700)); if (ws.reduce((a, b) => a + b, 0) + (cols.length - 1) * 8 <= 515 || fs <= 7.5) break; fs -= 0.5; }
+  let x = 40, s = `<text x="40" y="${j2f(y + 9)}" font-size="9.5" font-weight="900" fill="#5B6475" letter-spacing=".6" ${J2B}>COLORES QUE VAS A USAR</text>`;
+  cols.forEach((c, i) => { const yy = y + 16; s += `<rect x="${j2f(x)}" y="${j2f(yy)}" width="${j2f(ws[i])}" height="22" rx="11" fill="#fff" stroke="#C9D3E3"/><path d="M${j2f(x + 7)} ${j2f(yy + 7)}h12l5 4-5 4h-12z" fill="${c.hex}" stroke="#1A2744" stroke-width=".8"/><text x="${j2f(x + 28)}" y="${j2f(yy + 15)}" font-size="${fs}" font-weight="700" fill="#1A2744" ${J2B}>${svgEsc(c.n)}</text>`; x += ws[i] + 8; });
+  return s; }
+const psPill = (attr, L, cur) => `<div class="is-opts">${L.map(([k, nm]) => `<button type="button" class="${String(cur) === String(k) ? "on" : ""}" data-${attr}="${k}">${nm}</button>`).join("")}</div>`;
+const psField = (lab, html) => `<div class="field"><label>${lab}</label>${html}</div>`;
+const psCheck = (attr, key, on, txt) => `<label class="check"><input type="checkbox" data-${attr}="${key}" ${on ? "checked" : ""}> ${txt}</label>`;
+const psEjePill = (x, y, hz) => hz ? `<rect x="${j2f(x - 30)}" y="${j2f(y - 8)}" width="26" height="16" rx="8" fill="#D7263D"/><text x="${j2f(x - 17)}" y="${j2f(y + 3.4)}" text-anchor="middle" font-size="8.5" font-weight="900" fill="#fff" ${J2B}>EJE</text>`
+  : `<rect x="${j2f(x - 15)}" y="${j2f(y - 8)}" width="30" height="16" rx="8" fill="#D7263D"/><text x="${j2f(x)}" y="${j2f(y + 3.4)}" text-anchor="middle" font-size="8.5" font-weight="900" fill="#fff" ${J2B}>EJE</text>`;
+
+// =====================================================================
+// PINTÁ POR CÓDIGO PRO
+// =====================================================================
+function psPxBase(src, cf) { const RR = isGridReal2(src, cf.lado, cf); IS._gridHex = RR.hex; const grid = RR.grid, usados0 = Object.keys(RR.uso).filter((v) => v !== "blanco").sort((a, b) => RR.uso[b] - RR.uso[a]);
+  if (!usados0.length) throw new Error("El dibujo quedó vacío: probá con otro dibujo o con más detalle."); return { RR, grid, usados0 }; }
+const psBlanco = (v) => !v || v === "blanco";
+const psNCol = (n) => `${n} color${n === 1 ? "" : "es"}`;
+function psPxCodigo(src) {
+  const cf = isPx2Cfg(), P = psPxCfg(), { RR, grid, usados0 } = psPxBase(src, cf), ocultar = !!IS.pintOcultar, usados = ocultar ? [...usados0, "blanco"] : usados0, PC = isPintCod(), cuenta = {};
+  usados0.forEach((n) => (cuenta[n] = RR.uso[n])); if (ocultar) cuenta.blanco = grid.flat().filter(psBlanco).length;
+  const num = (v) => { const c = psBlanco(v) ? (ocultar ? "blanco" : null) : v; return c ? PC.celda(usados.indexOf(c) + 1) : ""; };
+  const legH = Math.ceil(usados.length / isLeyPer(usados)) * ((cf.cuenta ? 40 : 34) + 8), top = P.ficha ? 200 : 172, adH = P.adivina ? 52 : 0, alto = Math.min(520, 798 - adH - legH - 14 - top);
+  const base = { J: { x: 40, y: top, w: 515, h: alto }, guia: cf.guia, coord: cf.coord, forma: P.forma };
+  const A = psGrilla(grid, { ...base, num: (x, y, v) => num(v), punto: P.punto && !ocultar ? (x, y, v) => psBlanco(v) : null }), S = psGrilla(grid, { ...base, color: (x, y, v) => (psBlanco(v) ? null : isGHex(v)) });
+  const ley = psLeyenda(usados, A.fin + 14, { cod: (i) => PC.ley(i + 1), cuenta: cf.cuenta ? cuenta : null, tilde: P.tilde });
+  const pintar = usados0.reduce((a, n) => a + cuenta[n], 0) + (ocultar ? cuenta.blanco : 0), min = Math.max(10, Math.round(pintar / [7, 11, 15][isNivK()] / 5) * 5);
+  const ficha = P.ficha ? psFicha(174, [["pal", psNCol(usados.length)], ["cel", `${pintar} cuadraditos para pintar`], ["rel", `${min} min aprox.`]]) : "", adiv = P.adivina ? psAdivina(ley.fin + 6) : "";
+  let ref = ""; if (isPxCfg().ref) { const libreD = 555 - S.der - 12, libreA = 774 - S.fin - 16; if (libreD >= 110) ref = psRefCard(src, S.der + 12, S.oy, Math.min(170, libreD), Math.min(210, S.fin - S.oy), psRotulo(src.n)); else if (libreA >= 120) ref = psRefCard(src, 297.5 - 85, S.fin + 16, 170, Math.min(200, libreA), psRotulo(src.n)); }
+  IS.j2Info = `Cuadrícula de ${RR.cols} × ${RR.rows} con la forma del dibujo · ${psNCol(usados0.length)}: ${usados0.join(", ")} · unos ${min} minutos de trabajo`;
+  const consP = PC.cons ? `${PC.cons} ¡DESCUBRÍ el dibujo escondido!` : "PINTÁ cada cuadradito con el color de su número y DESCUBRÍ el dibujo escondido.";
+  const tit = isPintModo() === "numero" ? "Pintá por código" : { suma: "Sumá y pintá", resta: "Restá y pintá", mult: "Multiplicá y pintá", letra: "Pintá por letras", silaba: "Pintá por sílabas" }[isPintModo()];
+  return [["actividad", "Actividad", isMarco(tit, `${consP}${!ocultar && grid.flat().some(psBlanco) ? " Los vacíos quedan blancos." : ""}`, ficha + A.o + ley.o + adiv, "")], ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo pintado.", S.o + ref, "")]];
+}
+// ---------- pintá por coordenadas: instrucciones fila por fila (C–F con el color 2) ----------
+function psPxCoord(src) {
+  const cf0 = isPx2Cfg(), lado = Math.min(cf0.lado, 20), cf = { ...cf0, lado, lim: { c: 26, r: 30 } }, { RR, grid, usados0: usados } = psPxBase(src, cf), R = grid.length, C = grid[0].length, P = psPxCfg();
+  const filas = []; grid.forEach((row, y) => { const T = []; let x = 0; while (x < C) { const v = row[x]; if (psBlanco(v)) { x++; continue; } let e = x; while (e + 1 < C && row[e + 1] === v) e++; T.push({ t: e > x ? `${psLetra(x)} a ${psLetra(e)}` : psLetra(x), c: usados.indexOf(v) + 1 }); x = e + 1; } if (T.length) filas.push({ y: y + 1, T }); });
+  const fs = 10, lh = 17, tokW = (k) => 19 + isMedir(k.t, fs, "Nunito", 700) + 9;
+  const armar = (colW) => { const L = []; filas.forEach((f) => { let cur = { lab: `Fila ${f.y}`, T: [] }, w = 46; f.T.forEach((k) => { const tw = tokW(k); if (cur.T.length && w + tw > colW - 6) { L.push(cur); cur = { lab: "", T: [] }; w = 46; } cur.T.push(k); w += tw; }); L.push(cur); }); return L; };
+  const pintarLineas = (L, x0, y0, cols, colW, porCol) => { let s = ""; L.forEach((ln, i) => { const c = Math.floor(i / porCol), x = x0 + c * colW, y = y0 + (i % porCol) * lh;
+    if (ln.lab) s += `<text x="${j2f(x)}" y="${j2f(y)}" font-size="${fs}" font-weight="900" fill="#1E5BB8" ${J2B}>${ln.lab}</text>`; let xx = x + 46;
+    ln.T.forEach((k) => { const hex = isGHex(usados[k.c - 1]); s += `<circle cx="${j2f(xx + 7)}" cy="${j2f(y - 3.5)}" r="7" fill="${hex}" stroke="#1A2744" stroke-width=".8"/><text x="${j2f(xx + 7)}" y="${j2f(y - 0.6)}" text-anchor="middle" font-size="8.5" font-weight="900" fill="${psLum(hex) < 150 ? "#fff" : "#1A2744"}" ${J2B}>${k.c}</text><text x="${j2f(xx + 19)}" y="${j2f(y)}" font-size="${fs}" font-weight="700" fill="#1A2744" ${J2B}>${svgEsc(k.t)}</text>`; xx += tokW(k); }); });
+    for (let c = 1; c < cols; c++) s += `<line x1="${j2f(x0 + c * colW - 8)}" y1="${j2f(y0 - 12)}" x2="${j2f(x0 + c * colW - 8)}" y2="${j2f(y0 + porCol * lh - 10)}" stroke="#D5DDEA"/>`; return s; };
+  const cab = (y, t) => `<rect x="40" y="${j2f(y)}" width="515" height="20" rx="10" fill="#EAF3FF"/><text x="52" y="${j2f(y + 14)}" font-size="10.5" font-weight="900" fill="#1E5BB8" letter-spacing=".5" ${J2B}>${t}</text>`;
+  const ley = (y) => psLeyenda(usados, y, { cod: (i) => i + 1, tilde: false }), legH = Math.ceil(usados.length / isLeyPer(usados)) * 42;
+  // ¿entra todo en una hoja?
+  const Lc = armar(515 / 2), J1 = { x: 40, y: 172, w: 515, h: 300 }, G1 = psGeo(R, C, J1, true, 26), yI = G1.fin + 12 + legH + 28, porCol1 = Math.floor((800 - yI) / lh), una = Lc.length <= porCol1 * 2;
+  const consA = "LEÉ cada fila y PINTÁ los casilleros que se indican con el color de su número. ¡DESCUBRÍ el dibujo!";
+  const S = psGrilla(grid, { J: una ? J1 : { x: 40, y: 172, w: 515, h: 470 }, coord: true, letras: true, max: una ? 26 : 34, color: (x, y, v) => (psBlanco(v) ? null : isGHex(v)) });
+  let pags;
+  if (una) { const A = psGrilla(grid, { J: J1, coord: true, letras: true, max: 26, forma: P.forma }), lg = ley(A.fin + 12);
+    pags = [["actividad", "Actividad", isMarco("Pintá por coordenadas", consA, A.o + lg.o + cab(lg.fin + 2, "INSTRUCCIONES · FILA POR FILA") + pintarLineas(Lc, 44, lg.fin + 36, 2, 515 / 2, Math.max(1, Math.ceil(Lc.length / 2))), "")]]; }
+  else { const A = psGrilla(grid, { J: { x: 40, y: 172, w: 515, h: 560 - legH }, coord: true, letras: true, max: 34, forma: P.forma }), lg = ley(A.fin + 14), L3 = armar(515 / 3), cols = L3.length > 34 ? 3 : 2, L = cols === 3 ? L3 : armar(515 / 2), porCol = Math.ceil(L.length / cols);
+    pags = [["actividad", "Actividad", isMarco("Pintá por coordenadas", consA, A.o + lg.o, "")], ["instrucciones", "Instrucciones", isMarco("Instrucciones", "LEÉ cada fila y PINTÁ en la cuadrícula los casilleros que se indican.", ley(176).o + cab(176 + legH + 4, "FILA POR FILA") + pintarLineas(L, 44, 176 + legH + 40, cols, 515 / cols, porCol), "")]]; }
+  IS.j2Info = `Pintá por coordenadas: cuadrícula de ${C} × ${R} con letras y números · ${filas.length} filas de instrucciones · ${psNCol(usados.length)}${una ? "" : " · las instrucciones van en una hoja aparte"}`;
+  return [...pags, ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo pintado.", S.o, "")]];
+}
+// ---------- mural en equipo: cada chico pinta una parte y entre todos arman el póster ----------
+function psPxMural(src) {
+  const cf0 = isPx2Cfg(), P = psPxCfg(), np = P.partes, lado = Math.round(cf0.lado * (np === 4 ? 1.5 : 1.25)), cf = { ...cf0, lado, lim: { c: cf0.lim.c * 2, r: cf0.lim.r * 2 } }, { RR, grid, usados0: usados } = psPxBase(src, cf), R = grid.length, C = grid[0].length, PC = isPintCod();
+  const cc = Math.ceil(C / 2), rr = Math.ceil(R / 2), porCols = np === 4 || C >= R;
+  const partes = np === 4 ? [[0, cc, 0, rr, "arriba a la izquierda"], [cc, C, 0, rr, "arriba a la derecha"], [0, cc, rr, R, "abajo a la izquierda"], [cc, C, rr, R, "abajo a la derecha"]] : porCols ? [[0, cc, 0, R, "a la izquierda"], [cc, C, 0, R, "a la derecha"]] : [[0, C, 0, rr, "arriba"], [0, C, rr, R, "abajo"]];
+  const mapa = (x, y, act) => { const mw = 70 * (C / Math.max(C, R)), mh = 70 * (R / Math.max(C, R)); let s = `<rect x="${j2f(x)}" y="${j2f(y)}" width="${j2f(mw)}" height="${j2f(mh)}" fill="#fff" stroke="#1A2744" stroke-width="1.2" rx="3"/>`;
+    partes.forEach(([c0, c1, r0, r1], i) => { const X = x + (c0 / C) * mw, Y = y + (r0 / R) * mh, W = ((c1 - c0) / C) * mw, H = ((r1 - r0) / R) * mh; s += `<rect x="${j2f(X + 1.5)}" y="${j2f(Y + 1.5)}" width="${j2f(W - 3)}" height="${j2f(H - 3)}" rx="2" fill="${i === act ? "#F6B40E" : "#EEF2F8"}"/><text x="${j2f(X + W / 2)}" y="${j2f(Y + H / 2 + 4.5)}" text-anchor="middle" font-size="12" font-weight="700" fill="#1A2744" ${J2F}>${i + 1}</text>`; });
+    return { s, mw, mh }; };
+  const pags = partes.map(([c0, c1, r0, r1, pos], i) => { const sub = grid.slice(r0, r1).map((r) => r.slice(c0, c1)), cuenta = {}; sub.flat().forEach((v) => { if (!psBlanco(v)) cuenta[v] = (cuenta[v] || 0) + 1; });
+    const M = mapa(40, 170, i), cabT = `<text x="${j2f(52 + M.mw)}" y="187" font-size="20" font-weight="700" fill="#1A2744" ${J2F}>PARTE ${i + 1} DE ${np}</text><text x="${j2f(52 + M.mw)}" y="205" font-size="10.5" font-weight="700" fill="#5B6475" ${J2B}>Tu parte va ${pos} del mural. Escribí tu nombre:</text><line x1="${j2f(52 + M.mw)}" y1="${j2f(170 + M.mh)}" x2="555" y2="${j2f(170 + M.mh)}" stroke="#1A2744" stroke-dasharray="3 3"/>`;
+    const nom = usados.filter((n) => cuenta[n]), legH = Math.ceil(nom.length / isLeyPer(nom)) * ((cf.cuenta ? 40 : 34) + 8), top = 170 + M.mh + 16, alto = Math.min(540, 790 - legH - 18 - top);
+    const A = psGrilla(sub, { J: { x: 40, y: top, w: 515, h: alto }, coord: true, c0, r0, guia: cf.guia, forma: P.forma, num: (x, y, v) => (psBlanco(v) ? "" : PC.celda(usados.indexOf(v) + 1)) });
+    const corte = `<rect x="${j2f(A.ox - 22)}" y="${j2f(A.oy - 22)}" width="${j2f(A.der - A.ox + 30)}" height="${j2f(A.fin - A.oy + 30)}" rx="6" fill="none" stroke="#9AA3B5" stroke-width="1" stroke-dasharray="6 4"/>`;
+    const lg = psLeyenda(nom, A.fin + 18, { cod: (k) => PC.ley(usados.indexOf(nom[k]) + 1), cuenta: cf.cuenta ? cuenta : null, tilde: P.tilde });
+    return ["parte" + (i + 1), `Parte ${i + 1}`, isMarco("Mural en equipo", `${PC.cons || "PINTÁ cada cuadradito con el color de su número."} Después RECORTÁ tu parte y ARMEN el mural entre todos.`, M.s + cabT + corte + A.o + lg.o, "")]; });
+  const S = psGrilla(grid, { J: { x: 40, y: 176, w: 515, h: 560 }, coord: true, color: (x, y, v) => (psBlanco(v) ? null : isGHex(v)) });
+  let sep = ""; if (np === 4 || porCols) sep += `<line x1="${j2f(S.ox + cc * S.s)}" y1="${j2f(S.oy - 6)}" x2="${j2f(S.ox + cc * S.s)}" y2="${j2f(S.fin + 6)}" stroke="#1A2744" stroke-width="3" stroke-dasharray="8 5"/>`; if (np === 4 || !porCols) sep += `<line x1="${j2f(S.ox - 6)}" y1="${j2f(S.oy + rr * S.s)}" x2="${j2f(S.der + 6)}" y2="${j2f(S.oy + rr * S.s)}" stroke="#1A2744" stroke-width="3" stroke-dasharray="8 5"/>`;
+  partes.forEach(([c0, c1, r0, r1], i) => { const X = S.ox + ((c0 + c1) / 2) * S.s, Y = S.oy + ((r0 + r1) / 2) * S.s; sep += `<circle cx="${j2f(X)}" cy="${j2f(Y)}" r="17" fill="#fff" fill-opacity=".88" stroke="#1A2744" stroke-width="1.6"/><text x="${j2f(X)}" y="${j2f(Y + 7)}" text-anchor="middle" font-size="19" font-weight="700" fill="#1A2744" ${J2F}>${i + 1}</text>`; });
+  IS.j2Info = `Mural de ${C} × ${R} cuadraditos en ${np} partes (una hoja por chico) · ${psNCol(usados.length)}: ${usados.join(", ")}`;
+  return [...pags, ["solucion", "Mural armado", isMarco("Mural armado", "Así queda el mural cuando se unen las partes. Cada número muestra dónde va cada hoja.", S.o + sep, "")]];
+}
+
+// =====================================================================
+// SIMETRÍA PRO
+// =====================================================================
+function psSimetria() {
+  const S2 = psSimCfg(), nk = isNivK(), va = S2.var, cuatro = va === "cuatro", hz = !cuatro && IS.j2Modo === "horizontal", lado = isPxSrc() ? S2.lado : "a", sol = psSimSol(hz, cuatro, lado), R = sol.length, C = sol[0].length;
+  if (!sol.flat().some(Boolean)) throw new Error("El dibujo quedó vacío: probá con otro dibujo u otra cuadrícula.");
+  const dado = (x, y) => { const lx = lado === "b" ? x >= C / 2 : x < C / 2, ly = lado === "b" && !cuatro ? y >= R / 2 : y < R / 2; return cuatro ? lx && y < R / 2 : hz ? ly : lx; };
+  const r = isRand(IS.seed * 31 + 5), pista = new Set(); if (va === "pistas") for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) if (!dado(x, y) && sol[y][x] && r() < 0.22) pista.add(y * C + x);
+  const usados = [...new Set(sol.flat().filter(Boolean))], ref = S2.ref && !!isPxSrc(), per = Math.max(1, isLeyPer(usados, ref ? 3 : 4)), legH = Math.ceil(usados.length / per) * 42, autoH = S2.auto ? 30 : 0;
+  const top = 192, alto = Math.min(500, 798 - Math.max(legH, ref ? 112 : 0) - autoH - 26 - top), J = { x: 40, y: top, w: 515, h: alto }, coord = S2.coord && va !== "puntos";
+  let A, Sg;
+  if (va === "puntos") { const G = psGeo(R, C, J, false, 34), val = (x, y) => (x < 0 || y < 0 || x >= C || y >= R ? null : sol[y][x]);
+    const dadoC = (mx, my) => { const lx = lado === "b" ? mx > C / 2 : mx < C / 2, ly = lado === "b" ? my > R / 2 : my < R / 2; return hz ? ly : lx; };
+    const dib = (todo) => { let s = ""; for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) { const v = sol[y][x]; if (v && (todo || dado(x, y))) s += `<rect x="${j2f(G.ox + x * G.s)}" y="${j2f(G.oy + y * G.s)}" width="${j2f(G.s + 0.3)}" height="${j2f(G.s + 0.3)}" fill="${isGHex(v)}"/>`; }
+      let d = ""; for (let y = 0; y <= R; y++) for (let x = 0; x < C; x++) if (val(x, y - 1) !== val(x, y) && (todo || dadoC(x + 0.5, y))) d += `M${j2f(G.ox + x * G.s)} ${j2f(G.oy + y * G.s)}h${j2f(G.s)}`;
+      for (let y = 0; y < R; y++) for (let x = 0; x <= C; x++) if (val(x - 1, y) !== val(x, y) && (todo || dadoC(x, y + 0.5))) d += `M${j2f(G.ox + x * G.s)} ${j2f(G.oy + y * G.s)}v${j2f(G.s)}`;
+      s += `<path d="${d}" stroke="#1A2744" stroke-width="${j2f(Math.max(1.6, G.s * 0.11))}" stroke-linecap="round" fill="none"/>`;
+      for (let y = 0; y <= R; y++) for (let x = 0; x <= C; x++) s += `<circle cx="${j2f(G.ox + x * G.s)}" cy="${j2f(G.oy + y * G.s)}" r="${j2f(Math.max(1.1, G.s * 0.075))}" fill="#47546B"/>`; return s; };
+    A = { ...G, o: dib(false) }; Sg = { ...G, o: dib(true) }; }
+  else { const base = { J, coord, letras: true };
+    A = psGrilla(sol, { ...base, color: (x, y, v) => (v && (dado(x, y) || pista.has(y * C + x)) ? isGHex(v) : null), num: va === "codigo" ? (x, y, v) => (!dado(x, y) && v ? usados.indexOf(v) + 1 : "") : null });
+    Sg = psGrilla(sol, { ...base, color: (x, y, v) => (v ? isGHex(v) : null) }); }
+  const ax = A.ox + (A.s * C) / 2, ay = A.oy + (A.s * R) / 2, ejeV = `<line x1="${j2f(ax)}" y1="${j2f(A.oy - 14)}" x2="${j2f(ax)}" y2="${j2f(A.fin + 10)}" stroke="#D7263D" stroke-width="3.5" stroke-dasharray="10 6"/>` + psEjePill(ax, A.oy - 20 - (coord ? 0 : 0), false);
+  const ejeH = `<line x1="${j2f(A.ox - 12)}" y1="${j2f(ay)}" x2="${j2f(A.der + 12)}" y2="${j2f(ay)}" stroke="#D7263D" stroke-width="3.5" stroke-dasharray="10 6"/>` + (A.der + 40 <= 557 ? psEjePill(A.der + 38, ay, true) : A.ox - (coord ? 16 : 0) - 34 >= 38 ? psEjePill(A.ox - (coord ? 16 : 0) - 4, ay, true) : psEjePill(A.der - 2, ay - 12, true));
+  const eje = cuatro ? ejeV + ejeH : hz ? ejeH : ejeV, ly = A.fin + 18, L = psLeyenda(usados, ly, { per, w: ref ? 400 : 515, cod: va === "codigo" ? (i) => i + 1 : null }), refI = ref ? psRefCard(isPxSrc(), 448, ly, 107, 104, "") : "";
+  const autoS = S2.auto ? psAuto(Math.max(L.fin, ref ? ly + 112 : 0) + 4, va === "puntos" ? ["Uní los puntos igual que del otro lado", "Usé los mismos colores", "Quedó como un espejo"] : ["Conté los cuadraditos desde el eje", "Usé los mismos colores", "Quedó como un espejo"]) : "";
+  const mitadTxt = cuatro ? "" : hz ? (lado === "b" ? "mitad de arriba" : "mitad de abajo") : lado === "b" ? "mitad de la izquierda" : "mitad de la derecha";
+  const cons = cuatro ? "PINTÁ las otras tres partes para que el dibujo quede igual a los dos lados de cada línea roja, como en un espejo."
+    : va === "puntos" ? `UNÍ los puntos para dibujar la ${mitadTxt} como en un espejo y después PINTALA.`
+    : va === "codigo" ? `PINTÁ la ${mitadTxt} con el color de cada número y COMPROBÁ que quede igual que en un espejo.`
+    : `PINTÁ la ${mitadTxt} para que el dibujo quede igual a los dos lados del eje, como en un espejo.${va === "pistas" ? " Algunos ya están pintados como pista." : ""}`;
+  IS.j2Info = `${va === "puntos" ? "Trama de puntos" : "Cuadrícula"} de ${C} × ${R}${isPxSrc() ? " con la forma real del dibujo (eje buscado automáticamente)" : ""} · ${psNCol(usados.length)}: ${usados.join(", ")}`;
+  return [["actividad", "Actividad", isMarco(va === "puntos" ? "Simetría en puntos" : "Simetría", cons, A.o + eje + L.o + refI + autoS, "")], ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo completo.", Sg.o + eje + L.o + refI, "")]];
+}
+// ---------- DIBUJÁ LA OTRA MITAD: media imagen real, el chico dibuja y pinta la otra ----------
+function psMitad() {
+  const S2 = psSimCfg(), nk = isNivK(), src = psSrcSim(); if (!src) throw new Error("Elegí un dibujo para partirlo a la mitad.");
+  const M = isPxMascara(src); if (!M.caja) throw new Error("El dibujo quedó vacío: probá con otro.");
+  const hz = IS.j2Modo === "horizontal", lado = S2.lado, { x0, y0, bw, bh } = M.caja, a = psEje(src, hz), ini = hz ? y0 : x0, fin = ini + (hz ? bh : bw), wk = Math.max(1, lado === "a" ? a - ini : fin - a), largo = hz ? bw : bh;
+  const cols = S2.colores && S2.modelo !== "lineas" ? psColores(src, 8) : [], top = hz ? 186 : 206, extra = (cols.length ? 46 : 0) + (S2.auto ? 30 : 0), bot = 796 - extra, AW = 500, AH = bot - top - 28;
+  const kk = Math.min(hz ? AW / largo : AW / (2 * wk), hz ? AH / (2 * wk) : AH / largo), AX = 297.5, AY0 = top + 16 + (hz ? wk * kk : (bh * kk) / 2), AY = AY0 + Math.max(0, (796 - top - ((hz ? 2 * wk : bh) * kk + 42 + extra)) / 2);
+  const ix = hz ? AX - (x0 + bw / 2) * kk : AX - a * kk, iy = hz ? AY - a * kk : AY - (y0 + bh / 2) * kk, iw = M.w * kk, ih = M.h * kk;
+  const box = hz ? { x: AX - (bw * kk) / 2 - 16, y: AY - wk * kk - 16, w: bw * kk + 32, h: 2 * wk * kk + 32 } : { x: AX - wk * kk - 16, y: AY - (bh * kk) / 2 - 16, w: 2 * wk * kk + 32, h: bh * kk + 32 };
+  box.x = Math.max(38, box.x); box.w = Math.min(557 - box.x, box.w); box.y = Math.max(top, box.y); box.h = Math.min(bot - 6 - box.y, box.h);
+  const kept = hz ? (lado === "a" ? { x: box.x, y: box.y, w: box.w, h: AY - box.y } : { x: box.x, y: AY, w: box.w, h: box.y + box.h - AY }) : lado === "a" ? { x: box.x, y: box.y, w: AX - box.x, h: box.h } : { x: AX, y: box.y, w: box.x + box.w - AX, h: box.h };
+  const otra = hz ? (lado === "a" ? { x: box.x, y: AY, w: box.w, h: box.y + box.h - AY } : { x: box.x, y: box.y, w: box.w, h: AY - box.y }) : lado === "a" ? { x: AX, y: box.y, w: box.x + box.w - AX, h: box.h } : { x: box.x, y: box.y, w: AX - box.x, h: box.h };
+  const id = "psc" + ++PS.id, id2 = id + "o", clip = `<defs><clipPath id="${id}" clipPathUnits="userSpaceOnUse"><rect x="${j2f(kept.x)}" y="${j2f(kept.y)}" width="${j2f(kept.w)}" height="${j2f(kept.h)}"/></clipPath><clipPath id="${id2}" clipPathUnits="userSpaceOnUse"><rect x="${j2f(otra.x)}" y="${j2f(otra.y)}" width="${j2f(otra.w)}" height="${j2f(otra.h)}"/></clipPath></defs>`;
+  const hi = psHi(src, iw), espejo = hz ? `matrix(1 0 0 -1 0 ${j2f(2 * AY)})` : `matrix(-1 0 0 1 ${j2f(2 * AX)} 0)`, img = (url) => j2im(url, ix, iy, iw, ih, ` clip-path="url(#${id})"`), reflejo = (url, extra = "") => `<g transform="${espejo}"${extra}>${img(url)}</g>`;
+  const marco = `<rect x="${j2f(box.x)}" y="${j2f(box.y)}" width="${j2f(box.w)}" height="${j2f(box.h)}" rx="18" fill="#fff" stroke="#C9D3E3" stroke-width="1.4"/><rect x="${j2f(box.x)}" y="${j2f(box.y)}" width="${j2f(box.w)}" height="${j2f(box.h)}" rx="18" fill="#F3F8FF" clip-path="url(#${id2})"/><rect x="${j2f(box.x)}" y="${j2f(box.y)}" width="${j2f(box.w)}" height="${j2f(box.h)}" rx="18" fill="none" stroke="#C9D3E3" stroke-width="1.4"/>`;
+  // ayuda: cuadrícula o puntos alineados con el eje, contorno punteado para repasar
+  let ayuda = "", sobreModelo = ""; const paso = (wk * kk) / S2.cel;
+  if (S2.ayuda === "cuadricula" || S2.ayuda === "puntos") { const xs = [], ys = [];
+    if (hz) { for (let v = AY; v >= box.y; v -= paso) ys.push(v); for (let v = AY + paso; v <= box.y + box.h; v += paso) ys.push(v); const c0 = AX - Math.floor((AX - box.x) / paso) * paso; for (let v = c0; v <= box.x + box.w; v += paso) xs.push(v); }
+    else { for (let v = AX; v >= box.x; v -= paso) xs.push(v); for (let v = AX + paso; v <= box.x + box.w; v += paso) xs.push(v); const c0 = AY - Math.floor((AY - box.y) / paso) * paso; for (let v = c0; v <= box.y + box.h; v += paso) ys.push(v); }
+    const g = (R0) => { let s = ""; if (S2.ayuda === "cuadricula") { xs.forEach((x) => { if (x >= R0.x - 0.1 && x <= R0.x + R0.w + 0.1) s += `M${j2f(x)} ${j2f(R0.y)}V${j2f(R0.y + R0.h)}`; }); ys.forEach((y) => { if (y >= R0.y - 0.1 && y <= R0.y + R0.h + 0.1) s += `M${j2f(R0.x)} ${j2f(y)}H${j2f(R0.x + R0.w)}`; }); return `<path d="${s}" stroke="#93A6C2" stroke-width=".8" fill="none"/>`; }
+      xs.forEach((x) => ys.forEach((y) => { if (x >= R0.x - 0.1 && x <= R0.x + R0.w + 0.1 && y >= R0.y - 0.1 && y <= R0.y + R0.h + 0.1) s += `<circle cx="${j2f(x)}" cy="${j2f(y)}" r="${j2f(Math.max(1.3, paso * 0.06))}" fill="#4D5B73"/>`; })); return s; };
+    ayuda = g(otra); sobreModelo = `<g opacity=".6">${g(kept)}</g>`; }
+  if (S2.ayuda === "contorno") ayuda = reflejo(psGhost(hi));
+  const modelo = img(S2.modelo === "lineas" ? psLineArt(hi) : hi.url);
+  const ejeL = hz ? `<line x1="${j2f(box.x - 10)}" y1="${j2f(AY)}" x2="${j2f(box.x + box.w + 10)}" y2="${j2f(AY)}" stroke="#D7263D" stroke-width="3.5" stroke-dasharray="10 6"/>` + psEjePill(box.x + box.w - 6, AY, true) : `<line x1="${j2f(AX)}" y1="${j2f(box.y - 12)}" x2="${j2f(AX)}" y2="${j2f(box.y + box.h + 10)}" stroke="#D7263D" stroke-width="3.5" stroke-dasharray="10 6"/>` + psEjePill(AX, box.y - 18, false);
+  const tag = (R0, t, c) => { const w = isMedir(t, 9, "Nunito", 900) + 18, x = hz ? R0.x + 12 : R0.x + R0.w / 2 - w / 2, y = hz ? (R0.y < AY - 1 ? R0.y + 10 : R0.y + R0.h - 26) : box.y - 26; return `<rect x="${j2f(x)}" y="${j2f(y)}" width="${j2f(w)}" height="16" rx="8" fill="${c}"/><text x="${j2f(x + w / 2)}" y="${j2f(y + 11.4)}" text-anchor="middle" font-size="9" font-weight="900" fill="#fff" letter-spacing=".5" ${J2B}>${t}</text>`; };
+  const tags = tag(kept, "MODELO", "#8A94A6") + tag(otra, "TU MITAD", "#1E5BB8");
+  const chips = cols.length ? psChipsCol(cols, box.y + box.h + 10) : "", autoS = S2.auto ? psAuto(box.y + box.h + 10 + (cols.length ? 46 : 0), ["Mi mitad tiene el mismo tamaño", "Copié todos los detalles", "Usé los mismos colores"]) : "";
+  const queMitad = hz ? (lado === "a" ? "la mitad de abajo" : "la mitad de arriba") : lado === "a" ? "la mitad derecha" : "la mitad izquierda";
+  const cons = `DIBUJÁ ${queMitad} del dibujo como en un espejo y PINTALA ${S2.modelo === "lineas" ? "toda con los colores que quieras" : "con los mismos colores"}.`;
+  const actividad = clip + marco + modelo + sobreModelo + ayuda + ejeL + tags + chips + autoS;
+  const solucion = clip + `<rect x="${j2f(box.x)}" y="${j2f(box.y)}" width="${j2f(box.w)}" height="${j2f(box.h)}" rx="18" fill="#fff" stroke="#C9D3E3" stroke-width="1.4"/>` + img(hi.url) + reflejo(hi.url) + ejeL + chips;
+  IS.j2Info = `Media imagen de “${src.n || "la figura"}” partida por su eje${S2.ejeAuto ? " (buscado automáticamente)" : ""} · ayuda: ${{ contorno: "contorno punteado", cuadricula: `cuadrícula de ${S2.cel} por mitad`, puntos: `trama de puntos de ${S2.cel} por mitad`, libre: "ninguna, a mano alzada" }[S2.ayuda]} · modelo ${S2.modelo === "lineas" ? "en líneas" : "a color"}`;
+  return [["actividad", "Actividad", isMarco("Dibujá la otra mitad", cons, actividad, "")], ["solucion", "Solución", isMarco("Soluciones", "Así queda el dibujo completo: igual a los dos lados del eje.", solucion, "")]];
+}
+
+// ---------- reemplazos en el motor ----------
+try { IS_SIM_VAR.push(["puntos", "📍 Trama de puntos"], ["mitad", "✏️ Dibujá la otra mitad"]); IS_J2.simetria[2] = "Espejo, puntos o la otra mitad"; IS_J2.pixel[2] = "Código, coordenadas o mural"; } catch (e) { console.warn(e); }
+j2Simetria2 = function () { return psSimCfg().var === "mitad" ? psMitad() : psSimetria(); };
+j2Pixel2 = function () { const src = psSrcPx(), j = psPxCfg().juego; return j === "coord" ? psPxCoord(src) : j === "mural" ? psPxMural(src) : psPxCodigo(src); };
+try {
+  VR_EXIST.simetria = [["mitad", "✏️", "Dibujá la otra mitad", "Media imagen real para completar y pintar"], ["espejo", "🪞", "Copiá en espejo", "Pintá los cuadraditos del otro lado"], ["pistas", "💡", "Con pistas", "Algunos ya vienen pintados"], ["codigo", "🔢", "Con código", "Números que dicen el color"], ["cuatro", "✳️", "Dos ejes", "Completá las 4 partes"], ["puntos", "📍", "Trama de puntos", "Uní los puntos en espejo"]].map((v) => [...v, [["issimvar", v[0]]]]);
+  VR_EXIST.pixel = [["codigo", "🔢", "Pintá por código", "Cada número es un color"], ["coord", "🗺️", "Por coordenadas", "Leé: fila 3, de C a F con el 2"], ["mural", "🧩", "Mural en equipo", "Partes que se unen en un póster"]].map((v) => [...v, [["pspx", "juego:" + v[0]]]]);
+} catch (e) { console.warn(e); }
+function psSimOpciones() { const S = psSimCfg(), banco = !!isPxSrc(), hz = IS.j2Modo === "horizontal", P = isPxCfg(), va = S.var;
+  let h = psField("Manera de trabajar", psPill("issimvar", IS_SIM_VAR, va));
+  const ladoPill = psField("Mitad que se ve", psPill("pssim", [["lado:a", hz ? "⬆️ La de arriba" : "⬅️ La izquierda"], ["lado:b", hz ? "⬇️ La de abajo" : "➡️ La derecha"]], "lado:" + S.lado));
+  if (va === "mitad") {
+    h += `<div class="ps-nota">✂️ Partimos ${banco ? "el dibujo elegido" : "la figura"} justo por su eje de simetría: el chico ve una mitad real y <b>dibuja y pinta la otra</b>. Probá con dibujos de frente (mariposas, caras, casas, flores).</div>`;
+    h += ladoPill + psField("El modelo", psPill("pssim", [["modelo:color", "🎨 A color (copia los colores)"], ["modelo:lineas", "✏️ Solo líneas (pinta todo)"]], "modelo:" + S.modelo));
+    h += psField("Ayuda para dibujar", psPill("pssim", [["ayuda:contorno", "〰️ Contorno punteado para repasar"], ["ayuda:cuadricula", "▦ Cuadrícula para copiar"], ["ayuda:puntos", "⠿ Trama de puntos"], ["ayuda:libre", "🖐️ Sin ayuda"]], "ayuda:" + S.ayuda));
+    if (S.ayuda === "cuadricula" || S.ayuda === "puntos") h += psField("Tamaño de la ayuda (cuadraditos por mitad)", psPill("pssim", [["cel:4", "Muy grande · 4"], ["cel:5", "Grande · 5"], ["cel:7", "Mediana · 7"], ["cel:9", "Chica · 9"], ["cel:12", "Muy chica · 12"]], "cel:" + S.cel));
+    h += psCheck("pssimck", "colores", S.colores, "Mostrar los colores que va a necesitar") + psCheck("pssimck", "auto", S.auto, "Autocontrol al pie (“me controlo”)") + psCheck("pssimck", "ejeAuto", S.ejeAuto, "Buscar el eje del dibujo automáticamente");
+    return h; }
+  if (banco) { h += psField("Colores", psPill("ispxcol", [["real", "🎨 Los del dibujo (reales)"], ["lapices", "🖍️ De lápices (colores básicos)"]], P.col)) + psField("Cantidad de colores", psPill("ispxn", [[0, "Automática"], [3, "3"], [4, "4"], [5, "5"], [6, "6"], [8, "8"]], P.n));
+    h += psField("Nivel de detalle (la cuadrícula toma la forma del dibujo)", psPill("pssim", PS_SIM_DET.map(([k, n]) => ["det:" + k, n]), "det:" + S.det)); if (va !== "cuatro") h += ladoPill; }
+  h += psCheck("pssimck", "auto", S.auto, "Autocontrol al pie (“me controlo”)") + (va !== "puntos" ? psCheck("pssimck", "coord", S.coord, "Letras y números en los bordes (para ubicarse)") : "") + (banco ? psCheck("pssimck", "ejeAuto", S.ejeAuto, "Buscar el eje del dibujo automáticamente") + `<label class="check"><input type="checkbox" id="isSimRef" ${S.ref ? "checked" : ""}> Mostrar el dibujo original como modelo</label>` : "");
+  return h; }
+function psPxOpciones() { const cf = isPx2Cfg(), P = psPxCfg(), src = psSrcPx(), dim = (l) => { try { const R = isGridReal2(src, l, { ...cf, lado: l }); return ` · ${R.cols}×${R.rows}`; } catch { return ""; } };
+  let h = psField("Forma de jugar", psPill("pspx", [["juego:codigo", "🔢 Pintá por código"], ["juego:coord", "🗺️ Por coordenadas"], ["juego:mural", "🧩 Mural en equipo"]], "juego:" + P.juego));
+  if (P.juego === "mural") h += psField("Partes del mural (una hoja por chico)", psPill("pspx", [["partes:2", "2 partes"], ["partes:4", "4 partes"]], "partes:" + P.partes));
+  if (P.juego === "coord") h += `<div class="ps-nota">🗺️ Ideal para segundo ciclo: cada fila dice qué casilleros pintar (por ejemplo “C a F” con el color 2). Uso hasta 26 columnas para que entren las letras.</div>`;
+  h += psField("Nivel de detalle (la cuadrícula toma la forma del dibujo)", psPill("ispxdet", IS_PX_DET.map(([k, n, l]) => [k, n + (P.juego === "codigo" ? dim(l) : "")]), cf.det));
+  h += psField("Forma de los cuadraditos", psPill("pspx", [["forma:cuadrado", "⬜ Cuadrados"], ["forma:redondo", "▢ Redondeados"], ["forma:circulo", "⚪ Círculos (mosaico)"]], "forma:" + P.forma));
+  h += psField("Contorno del dibujo", psPill("ispxcont", [["auto", "Automático"], ["con", "Marcar el contorno"], ["sin", "Solo rellenos"]], cf.cont));
+  if (P.juego !== "coord") h += `<label class="check"><input type="checkbox" id="isPxGuia" ${cf.guia ? "checked" : ""}> Líneas guía cada 5 cuadraditos</label>` + (P.juego === "codigo" ? `<label class="check"><input type="checkbox" id="isPxCoord" ${cf.coord ? "checked" : ""}> Números de fila y columna</label>` : "") + `<label class="check"><input type="checkbox" id="isPxCuenta" ${cf.cuenta ? "checked" : ""}> Cuántos cuadraditos lleva cada color (para autocorregirse)</label>`;
+  h += `<label class="check"><input type="checkbox" id="isPxLimpiar" ${cf.limpiar ? "checked" : ""}> Limpiar cuadraditos sueltos</label>`;
+  if (P.juego !== "coord") h += psCheck("pspxck", "tilde", P.tilde, "Casilla para tildar cada color terminado");
+  if (P.juego === "codigo") h += psCheck("pspxck", "ficha", P.ficha, "Ficha de la actividad arriba (colores, cuadraditos y tiempo)") + psCheck("pspxck", "adivina", P.adivina, "“¿Qué dibujo se esconde?” para anticipar antes de pintar") + psCheck("pspxck", "punto", P.punto, "Un puntito en los cuadraditos que quedan blancos");
+  return h; }
+const _psPxOpc = isPxOpciones; isPxOpciones = function (t) { return t === "simetria" ? psSimOpciones() : _psPxOpc.apply(this, arguments); };
+isPx2Opciones = psPxOpciones;
+const _psJ2Opc = isJ2Opciones;
+isJ2Opciones = function () { const t = IS.tipo, h = _psJ2Opc.apply(this, arguments); if ((t !== "pixel" && t !== "simetria") || typeof h !== "string") return h;
+  return dfConSync(t, () => { const num = /<div class="field"><label for="isJ2N">[\s\S]*?<\/div>/;
+    if (t === "pixel") return isPxSrc() ? h : h.replace(num, psPxOpciones());
+    return isPxSrc() || psSimCfg().var === "mitad" ? h.replace(num, "") : h; }); };
+const _psPxClick = isPxClick; isPxClick = function (t) { const e = t.closest("[data-pspx],[data-pssim]"); if (e) { const px = e.dataset.pspx != null, [k, v] = (px ? e.dataset.pspx : e.dataset.pssim).split(":"), o = px ? "px" : "sim"; IS[o] = { ...(IS[o] || {}), [k]: v !== "" && !isNaN(+v) ? +v : v }; IS.j2Ver = 0; isRender(); return true; } return _psPxClick.apply(this, arguments); };
+const _psPxChange = isPxChange; isPxChange = function (t) { const d = t.dataset || {}, k = d.pspxck || d.pssimck; if (k) { const o = d.pspxck ? "px" : "sim"; IS[o] = { ...(IS[o] || {}), [k]: !!t.checked }; isRender(); return true; } return _psPxChange.apply(this, arguments); };
+// el cambio de manera de trabajar vuelve a la primera hoja
+document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-issimvar]"); if (b && b.closest("#isDlg")) IS.j2Ver = 0; }, true);
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
