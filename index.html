@@ -1356,6 +1356,26 @@ body[data-orv]:not([data-orv="inicio"]) .hero-wrap{display:none}
 .kt-zb{flex:1;min-height:0;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--bg) 70%,#000)}.kt-zb img{max-width:100%;max-height:100%;background:#fff;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 @media (max-width:980px){.kt{grid-template-columns:minmax(0,1fr)}.kt-side{position:static;max-height:none}}
 
+:root{--rs2-fb:#3B82F6;--rs2-tt:#25D9D2}
+:root[data-theme="light"]{--rs2-fb:#1667D9;--rs2-tt:#0A8F89}
+.rs2-tabs.rs3-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.rs2-tabs .rs3-tf[aria-selected="true"]{border-color:var(--rs2-fb);box-shadow:0 0 0 3px color-mix(in srgb,var(--rs2-fb) 18%,transparent);background:color-mix(in srgb,var(--rs2-fb) 9%,var(--surface-2))}
+.rs2-tabs .rs3-tt[aria-selected="true"]{border-color:var(--rs2-tt);box-shadow:0 0 0 3px color-mix(in srgb,var(--rs2-tt) 18%,transparent);background:color-mix(in srgb,var(--rs2-tt) 9%,var(--surface-2))}
+.rs3-it img,.rs3-it .pn-ph{width:44px;height:44px;border-radius:8px;object-fit:cover;display:grid;place-items:center;background:var(--surface-2)}
+.rs3-tag{font-style:normal;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:1px 6px;border-radius:99px;margin-right:4px;background:color-mix(in srgb,var(--rs2-fb) 14%,transparent);color:var(--rs2-fb)}
+.rs3-tag.reel{background:color-mix(in srgb,var(--rs2-tt) 16%,transparent);color:var(--rs2-tt)}
+.rs3-nota{margin:0}
+@media (max-width:900px){.rs2-tabs.rs3-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cp-seg.fb{background:#1877F2;border-color:#1877F2;border-radius:6px}
+.cp-ov.tt .cp-ovt{left:50%;transform:translateX(-50%)}.cp-ov.tt .cp-ovr{gap:12px}.cp3-snd{font-size:10.5px;opacity:.9}
+.cp3-fbt{margin:2px 8px 6px;font-size:11px;line-height:1.35}
+.cp3-alb{display:grid;gap:2px;grid-template-columns:1fr 1fr;margin-bottom:6px}.cp3-alb img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.cp3-alb.n1{grid-template-columns:1fr}.cp3-alb.n1 img{aspect-ratio:4/5}.cp3-alb.n3 img:first-child,.cp3-alb.n5 img:first-child{grid-column:1/-1;aspect-ratio:16/10}
+.cp3-alb{position:relative}.cp3-alb b{position:absolute;right:0;bottom:0;width:calc(50% - 1px);aspect-ratio:1;display:grid;place-items:center;background:rgba(0,0,0,.5);color:#fff;font-size:20px}
+.cp-pz2{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.cp-fout{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rs2-card{align-content:start}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -26065,6 +26085,228 @@ document.addEventListener("input", (e) => { const t = e.target; if (!t.closest |
   else if (ds.ktdatos != null) ktEditTx("datos", t.value.split("\n").map((x) => x.trim()).filter(Boolean)); else hit = false;
   if (hit) { ktGuardar(); ktRefrescar(); } }, true);
 document.addEventListener("keydown", (e) => { if (!KT.zoom) return; if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); KT.zoom = null; ktZoomPintar(); } else if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const b = document.querySelector(`[data-ktzgo="${e.key === "ArrowRight" ? 1 : -1}"]`); if (b && !b.disabled) b.click(); } }, true);
+
+// =====================================================================
+// FACEBOOK + TIKTOK: estadísticas (Metricool) y piezas en la Campaña multi-red
+// =====================================================================
+const RS3_FB_EV=["FBEV49","FBEV17","FBEV47","FBEV48","FBEV03","FBEV33","FBEV34","FBEV22"],
+  RS3_FB_PO=["FBPO02","FBPO03","FBPO05","FBPO06","FBPO11","FBPO12","FBPO13","FBPO08","FBPO14","FBPO23"],
+  RS3_FB_RE=["FBRE02","FBRE04","FBRE05","FBRE06","FBRE10","FBRE11","FBRE08","FBRE07"],
+  RS3_TT_EV=["TKEV02","TKEV06","TKEV07","TKEV08","TKEV09","TKEV11","TKEV01","TKEV03","TKEV04","TKEV05"],
+  RS3_TT_PO=["TKPO02","TKPO03","TKPO04","TKPO05","TKPO07","TKPO08","TKPO09","TKPO10","TKPO13","TKPO15"];
+const RS3_SRC={"for you":"Para ti (recomendados)",foryou:"Para ti (recomendados)",follow:"Siguiendo",following:"Siguiendo",hashtag:"Hashtags",sound:"Sonidos",search:"Búsqueda","personal profile":"Tu perfil",profile:"Tu perfil",personal_profile:"Tu perfil"};
+const RS3_RED={pin:"Pinterest",yt:"YouTube",fb:"Facebook",tt:"TikTok"};
+Object.assign(RS2.met,{fb:"views",tt:"views"}); Object.assign(RS2.orden,{fb:"vis",tt:"views"});
+const rs3Fecha=f=>{ const s=String(f||""); return /^\d{8}/.test(s)?`${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}`:s.slice(0,10); };
+const rs3Txt=t=>String(t||"").replace(/\s+/g," ").trim();
+const rs3Titulo=t=>{ const s=rs3Txt(t); return s.length>90?s.slice(0,88).trimEnd()+"…":s||"Publicación"; };
+const rs3Dem=rows=>(rows||[]).map(r=>({c:r[0],v:rs2Num(r[1])||0})).filter(x=>x.v>0&&x.c!=null&&x.c!=="");
+
+// ---------- traer de Metricool ----------
+async function rs3Traer(M){ const hoy=new Date(), d0=new Date(+hoy-179*864e5), d90=new Date(+hoy-89*864e5), d30=new Date(+hoy-29*864e5), errs=[];
+  const pide=async met=>{ try{ return await rs2Pedir(M,met,met[0].startsWith("FBEV")||met[0].startsWith("TKEV")?d0:/DP|DC|DG|DS/.test(met[0])?d30:d0,hoy); }catch(e){ errs.push(e); return null; } };
+  const [fe,fp,fr,fc,te,tp,tc,tg,ts]=await Promise.all([pide(RS3_FB_EV),pide(RS3_FB_PO),pide(RS3_FB_RE),pide(["FBDP03","FBDP04"]),pide(RS3_TT_EV),pide(RS3_TT_PO),pide(["TKDC01","TKDC02"]),pide(["TKDG01","TKDG02"]),pide(["TKDS01","TKDS02"])]);
+  if(!fe&&!te&&errs.length) throw errs[0];
+  const ev=(rows,L)=>(rows||[]).map(r=>[String(r[r.length-1]),...L.map((_,i)=>rs2Num(r[i]))]);
+  return { fb:{ev:ev(fe,RS3_FB_EV),
+      posts:(fp||[]).map(r=>({tipo:"post",f:r[0],t:r[1]||"",img:r[2]||"",url:r[3]||"",vis:rs2Num(r[4])||0,alc:rs2Num(r[5])||0,reac:rs2Num(r[6])||0,com:rs2Num(r[7])||0,sh:rs2Num(r[8])||0,clk:rs2Num(r[9])||0})),
+      reels:(fr||[]).map(r=>({tipo:"reel",f:r[0],img:r[1]||"",t:r[2]||"",url:r[3]||"",vis:rs2Num(r[4])||0,alc:rs2Num(r[5])||0,reac:rs2Num(r[6])||0,com:0,sh:0,clk:0})),
+      pais:rs3Dem(fc)},
+    tt:{ev:ev(te,RS3_TT_EV),
+      vids:(tp||[]).map(r=>({f:r[0],url:r[1]||"",img:r[2]||"",t:r[3]||"",views:rs2Num(r[4])||0,likes:rs2Num(r[5])||0,com:rs2Num(r[6])||0,sh:rs2Num(r[7])||0,full:rs2Num(r[8]),avg:rs2Num(r[9])})),
+      pais:rs3Dem(tc),gen:rs3Dem(tg),src:rs3Dem(ts)} }; }
+const _rs3Cargar=rs2Cargar;
+rs2Cargar=async function(force){ if(RS2.cargando) return; const M=await pnMcp(); const p=M?rs3Traer(M).catch(e=>({err:e})):null;
+  await _rs3Cargar.apply(this,arguments); if(!p) return;
+  RS2.cargando=true; rs2Pintar(); try{ const r=await p;
+    if(r.err){ if(!RS2.msg) RS2.msg="Facebook y TikTok: "+(typeof pnErr==="function"?pnErr(r.err,"Metricool"):"no se pudieron traer los datos."); return; }
+    if(!RS2.data){ RS2.data={gen:new Date().toISOString(),pin:{ev:[],pins:[]},yt:{ev:[],vids:[],pais:[],traf:[],edad:[],gen:[]}}; RS2.gen=new Date(); }
+    RS2.data.fb=r.fb; RS2.data.tt=r.tt; if(db) db.doc("panel/redes").set(RS2.data).catch(()=>{}); }
+  finally{ RS2.cargando=false; rs2Pintar(); } };
+
+// ---------- Facebook ----------
+function rs3PorDia(serie){ const dias=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"]; return dias.map((nm,i)=>{ const v=serie.filter(x=>((x.d.getDay()+6)%7)===i&&x.v!=null).map(x=>x.v); return {n:nm,v:v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):0}; }); }
+const RS3_DIAL={Lun:"lunes",Mar:"martes","Mié":"miércoles",Jue:"jueves",Vie:"viernes","Sáb":"sábados",Dom:"domingos"};
+function rs3Chart(red,MET){ const met=RS2.met[red]; return `<section class="card rs2-card"><div class="rs2-ch"><h3>Evolución por día</h3><div class="rs2-chips">${Object.entries(MET).map(([k,[t]])=>`<button type="button" data-rs2met="${k}" class="${met===k?"on":""}">${t}</button>`).join("")}</div></div><div class="rs2-leg"><span><i style="background:var(--rs2-${red})"></i>Últimos ${RS2.dias} días</span><span><i class="rs2-ant-i"></i>Período anterior</span></div><div class="rs2-plot" id="rs2Plot" data-c="${MET[met][1]}" data-l="${MET[met][0]}"></div>${red==="tt"?`<p class="muted small rs3-nota">ℹ️ TikTok suma las vistas de cada video al día en que lo publicaste: por eso los picos caen en los días de publicación.</p>`:""}</section>`; }
+function rs3Th(red,cols){ return cols.map(([k,t])=>`<th><button type="button" data-rs2ord="${red}:${k}" class="${RS2.orden[red]===k?"on":""}">${t}${RS2.orden[red]===k?" ▼":""}</button></th>`).join(""); }
+function rs3Ins(red,ins){ return `<section class="card rs2-card rs2-ins"><div class="rs2-ch"><h3>Lo que dicen tus números</h3><button type="button" class="btn small primary" data-rs2ia="${red}">✨ Qué hacer con estos números</button></div><ul>${ins.map(x=>`<li>${x}</li>`).join("")||"<li>Todavía hay pocos datos.</li>"}</ul>${RS2.ia&&RS2.ia.red===red?rs2IaHtml():""}</section>`; }
+function rs3Fb(){ const D=RS2.data.fb, n=RS2.dias, ev=D.ev||[], C=(D.posts||[]).concat(D.reels||[]);
+  if(!ev.some(r=>r.slice(1).some(v=>v))&&!C.length) return rs3Vacio("fb");
+  const S=c=>rs2Serie(ev,c,n,0), A=c=>rs2Serie(ev,c,n,n), okP=rs2Completo(A(1));
+  const vis=S(1), pv=S(5), inter=S(7), reel=S(8), fol=rs2Ult(rs2Serie(ev,2,180,0)), gan=rs2Suma(S(3)), per=rs2Suma(S(4));
+  const tot={vis:rs2Suma(vis),pv:rs2Suma(pv),inter:rs2Suma(inter),reel:rs2Suma(reel)}, prev=okP?{vis:rs2Suma(A(1)),pv:rs2Suma(A(5)),inter:rs2Suma(A(7)),reel:rs2Suma(A(8))}:{};
+  const corte=rs2Ymd(new Date(Date.now()-(n-1)*864e5)), enP=C.filter(x=>String(x.f).slice(0,8)>=corte);
+  const prom=t=>{ const L=enP.filter(x=>x.tipo===t); return L.length?L.reduce((a,x)=>a+x.vis,0)/L.length:0; }, pR=prom("reel"), pP=prom("post");
+  const top=C.slice().sort((a,b)=>b.vis-a.vis)[0], porDia=rs3PorDia(vis), bdia=porDia.reduce((a,x)=>x.v>a.v?x:a,porDia[0]);
+  const tP=(D.pais||[]).reduce((a,x)=>a+x.v,0), pais=(D.pais||[]).slice().sort((a,b)=>b.v-a.v).slice(0,8).map(x=>{ const f=rs2Flag(x.c); return {n:f.n,f:f.f,v:x.v}; });
+  const ins=[tot.vis?`👀 Tu página tuvo <b>${rs2Fmt(tot.vis)}</b> visualizaciones en ${n} días${prev.vis?` (${rs2Delta(tot.vis,prev.vis)>=0?"+":""}${rs2Delta(tot.vis,prev.vis).toFixed(0)} % que el período anterior)`:""}.`:"",
+    fol!=null?`❤️ Tenés <b>${rs2Fmt(fol)}</b> seguidores${gan||per?`: ganaste ${gan}${per?` y perdiste ${per}`:""} en el período`:""}.`:"",
+    top?`🏆 Lo que más se vio: <b>“${esc(rs3Titulo(top.t).slice(0,70))}”</b> (${top.tipo==="reel"?"reel":"publicación"}, ${rs2Fmt(top.vis)} ${top.tipo==="reel"?"reproducciones":"impresiones"}).`:"",
+    pR&&pP?`🎬 Tus reels promedian <b>${rs2Fmt(pR)}</b> reproducciones y tus publicaciones <b>${rs2Fmt(pP)}</b> impresiones: ${pR>pP*1.2?"los reels te dan más alcance, conviene sumar reels.":pP>pR*1.2?"las publicaciones con imagen rinden mejor que los reels en tu página.":"rinden parecido, alterná los dos formatos."}`:"",
+    tP&&pais[0]?`🌎 El ${Math.round(pais[0].v/tP*100)} % de tu audiencia es de <b>${esc(pais[0].n)}</b>.`:"",
+    bdia&&bdia.v?`📅 Los <b>${RS3_DIAL[bdia.n]}</b> son tu mejor día en promedio.`:""].filter(Boolean);
+  const MET={views:["Visualizaciones",1],pv:["Visitas a la página",5],inter:["Interacciones",7],reel:["Vistas de reels",8],gan:["Seguidores nuevos",3]};
+  const L=C.slice().sort((a,b)=>(b[RS2.orden.fb]||0)-(a[RS2.orden.fb]||0));
+  return `<div class="rs2-kpis">${rs2Kpi("Visualizaciones",tot.vis,rs2Delta(tot.vis,prev.vis),rs2Spark(vis.map(x=>x.v)),"","👀")}${rs2Kpi("Seguidores",fol,null,"",gan||per?`+${gan} / −${per} en el período`:"Total actual","❤️")}${rs2Kpi("Visitas a la página",tot.pv,rs2Delta(tot.pv,prev.pv),rs2Spark(pv.map(x=>x.v)),"","🏠")}${rs2Kpi("Interacciones",tot.inter,rs2Delta(tot.inter,prev.inter),rs2Spark(inter.map(x=>x.v)),"","💬")}${rs2Kpi("Vistas de reels",tot.reel,rs2Delta(tot.reel,prev.reel),rs2Spark(reel.map(x=>x.v)),"","🎬")}${rs2Kpi("Publicaciones",enP.length,null,"",`${enP.filter(x=>x.tipo==="reel").length} reels · ${enP.filter(x=>x.tipo!=="reel").length} con imagen`,"📝")}</div>
+    ${rs3Chart("fb",MET)}
+    <div class="rs2-g2"><section class="card rs2-card"><h3>📍 ¿Desde dónde te ven?</h3><p class="muted small">Audiencia de tu página por país.</p>${pais.length?rs2Barras(pais,tP,"--rs2-s1"):`<p class="muted">Facebook muestra los países cuando la página junta más seguidores.</p>`}</section>
+      <section class="card rs2-card"><h3>Mejores días de la semana</h3><p class="muted small">Promedio de visualizaciones por día.</p>${rs2Barras(porDia,0,"--rs2-fb")}</section></div>
+    ${rs3Ins("fb",ins)}
+    <section class="card rs2-card"><h3>Tus publicaciones y reels <small class="muted">(últimos 180 días)</small></h3>${L.length?`<div class="rs2-tab-w"><table class="rs2-t"><thead><tr><th>Contenido</th>${rs3Th("fb",[["vis","Vistas"],["reac","Reacciones"],["com","Coment."],["sh","Compart."],["clk","Clics"]])}</tr></thead><tbody>${L.slice(0,15).map(x=>`<tr><td><a href="${esc(x.url)}" target="_blank" rel="noopener" class="rs2-it rs3-it">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'pn-ph',textContent:'${x.tipo==="reel"?"🎬":"📝"}'}))">`:`<span class="pn-ph">${x.tipo==="reel"?"🎬":"📝"}</span>`}<span><b>${esc(rs3Titulo(x.t))}</b><small><em class="rs3-tag ${x.tipo}">${x.tipo==="reel"?"Reel":"Publicación"}</em> ${esc(rs3Fecha(x.f))}</small></span></a></td><td>${rs2Fmt(x.vis)}</td><td>${rs2Fmt(x.reac)}</td><td>${x.tipo==="reel"?"—":rs2Fmt(x.com)}</td><td>${x.tipo==="reel"?"—":rs2Fmt(x.sh)}</td><td>${x.tipo==="reel"?"—":rs2Fmt(x.clk)}</td></tr>`).join("")}</tbody></table></div><p class="muted small">Vistas: impresiones en las publicaciones y reproducciones en los reels.</p>`:`<p class="muted">Tus publicaciones aparecen acá unas horas después de que Metricool las lee.</p>`}</section>`; }
+
+// ---------- TikTok ----------
+function rs3Tt(){ const D=RS2.data.tt, n=RS2.dias, ev=D.ev||[], V=D.vids||[];
+  if(!ev.some(r=>r.slice(1).some(v=>v))&&!V.length) return rs3Vacio("tt");
+  const S=c=>rs2Serie(ev,c,n,0), A=c=>rs2Serie(ev,c,n,n), okP=rs2Completo(A(1));
+  const views=S(1), inter=S(2), prof=S(5), alc=S(6), fol=rs2Ult(rs2Serie(ev,3,180,0)), nue=rs2Suma(S(4)), vids=rs2Suma(S(7));
+  const tot={views:rs2Suma(views),inter:rs2Suma(inter),prof:rs2Suma(prof),alc:rs2Suma(alc),likes:rs2Suma(S(8)),com:rs2Suma(S(9)),sh:rs2Suma(S(10))}, prev=okP?{views:rs2Suma(A(1)),inter:rs2Suma(A(2)),prof:rs2Suma(A(5)),alc:rs2Suma(A(6))}:{};
+  const er=tot.views?tot.inter/tot.views*100:0, top=V.slice().sort((a,b)=>b.views-a.views)[0], pm=V.length?V.reduce((a,v)=>a+v.views,0)/V.length:0;
+  const tP=(D.pais||[]).reduce((a,x)=>a+x.v,0), tG=(D.gen||[]).reduce((a,x)=>a+x.v,0), tS=(D.src||[]).reduce((a,x)=>a+x.v,0);
+  const pais=(D.pais||[]).slice().sort((a,b)=>b.v-a.v).slice(0,8).map(x=>{ const f=rs2Flag(x.c); return {n:f.n,f:f.f,v:x.v}; });
+  const gen=(D.gen||[]).map(x=>({n:/fem|mujer|female/i.test(x.c)?"Mujeres":/masc|hombre|male/i.test(x.c)?"Hombres":"Otro",v:x.v}));
+  const src=(D.src||[]).slice().sort((a,b)=>b.v-a.v).slice(0,7).map(x=>({n:RS3_SRC[String(x.c).toLowerCase().trim()]||String(x.c).replace(/_/g," "),v:x.v}));
+  const ins=[tot.views?`▶ Tus videos sumaron <b>${rs2Fmt(tot.views)}</b> vistas en ${n} días${prev.views?` (${rs2Delta(tot.views,prev.views)>=0?"+":""}${rs2Delta(tot.views,prev.views).toFixed(0)} %)`:""}.`:"",
+    fol!=null?`❤️ Tenés <b>${rs2Fmt(fol)}</b> seguidores${nue?` (+${rs2Fmt(nue)} en el período)`:""}.`:"",
+    top?`🏆 Tu video más visto: <b>“${esc(rs3Titulo(top.t).slice(0,70))}”</b> con ${rs2Fmt(top.views)} vistas${pm&&top.views>pm*2?`, ${Math.round(top.views/pm)} veces tu promedio: repetí ese tema y ese gancho`:""}.`:"",
+    tot.views?`💬 De cada 100 vistas, <b>${er.toFixed(1).replace(".",",")}</b> terminan en un me gusta, comentario o compartido${er>=4?" (muy buena tasa para TikTok)":er<2?" (subila con una pregunta o un “comentá la palabra” al final)":""}.`:"",
+    tot.prof&&tot.views?`👤 <b>${rs2Fmt(tot.prof)}</b> personas entraron a tu perfil: asegurate de tener el enlace a la tienda en la bio.`:"",
+    vids?`📅 Publicaste <b>${vids}</b> video${vids===1?"":"s"} en el período${vids<n/7?": en TikTok la constancia pesa mucho, probá con 3 por semana.":"."}`:""].filter(Boolean);
+  const MET={views:["Vistas",1],inter:["Interacciones",2],prof:["Visitas al perfil",5],nue:["Seguidores nuevos",4]};
+  const L=V.slice().sort((a,b)=>(b[RS2.orden.tt]||0)-(a[RS2.orden.tt]||0)), seg=s=>s==null?"—":`${Math.floor(s/60)}:${String(Math.round(s%60)).padStart(2,"0")}`;
+  return `<div class="rs2-kpis">${rs2Kpi("Vistas",tot.views,rs2Delta(tot.views,prev.views),rs2Spark(views.map(x=>x.v)),"","▶")}${rs2Kpi("Seguidores",fol,null,"",nue?`+${rs2Fmt(nue)} en el período`:"Total actual","❤️")}${rs2Kpi("Interacciones",tot.inter,rs2Delta(tot.inter,prev.inter),rs2Spark(inter.map(x=>x.v)),`${rs2Fmt(tot.likes)} me gusta · ${rs2Fmt(tot.com)} coment.`,"💬")}${rs2Kpi("Alcance",tot.alc,rs2Delta(tot.alc,prev.alc),rs2Spark(alc.map(x=>x.v)),"Personas distintas","📡")}${rs2Kpi("Visitas al perfil",tot.prof,rs2Delta(tot.prof,prev.prof),rs2Spark(prof.map(x=>x.v)),"","👤")}${rs2Kpi("Compartidos",tot.sh,null,"",vids?`${vids} video${vids===1?"":"s"} publicados`:"En el período","↪")}</div>
+    ${rs3Chart("tt",MET)}
+    <div class="rs2-g2"><section class="card rs2-card"><h3>📍 ¿Desde dónde te ven?</h3><p class="muted small">Audiencia por país.</p>${pais.length?rs2Barras(pais,tP,"--rs2-s1"):`<p class="muted">TikTok comparte el país de tu audiencia cuando la cuenta junta más vistas; va a aparecer acá solo.</p>`}</section>
+      <section class="card rs2-card"><h3>🔎 ¿Cómo llegan a tus videos?</h3><p class="muted small">De dónde salen las vistas.</p>${src.length?rs2Barras(src,tS,"--rs2-s2"):`<p class="muted">Aparece cuando TikTok lo comparte con Metricool (cuentas con más vistas).</p>`}</section></div>
+    ${gen.length?`<section class="card rs2-card"><h3>Género</h3>${rs2Barras(gen,tG,"--rs2-s4")}</section>`:""}
+    ${rs3Ins("tt",ins)}
+    <section class="card rs2-card"><h3>Tus videos <small class="muted">(últimos 180 días)</small></h3>${L.length?`<div class="rs2-tab-w"><table class="rs2-t"><thead><tr><th>Video</th>${rs3Th("tt",[["views","Vistas"],["likes","Me gusta"],["com","Coment."],["sh","Compart."],["full","Vistos completos"],["avg","Tiempo medio"]])}</tr></thead><tbody>${L.slice(0,15).map(v=>`<tr><td><a href="${esc(v.url)}" target="_blank" rel="noopener" class="rs2-it rs3-it">${v.img?`<img src="${esc(v.img)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'pn-ph',textContent:'▶'}))">`:`<span class="pn-ph">▶</span>`}<span><b>${esc(rs3Titulo(v.t))}</b><small>${esc(rs3Fecha(v.f))}</small></span></a></td><td>${rs2Fmt(v.views)}</td><td>${rs2Fmt(v.likes)}</td><td>${rs2Fmt(v.com)}</td><td>${rs2Fmt(v.sh)}</td><td>${v.full==null?"—":(v.full>1?v.full:v.full*100).toFixed(0)+" %"}</td><td>${seg(v.avg)}</td></tr>`).join("")}</tbody></table></div>`:`<p class="muted">Tus videos aparecen acá unas horas después de que Metricool los lee.</p>`}</section>`; }
+function rs3Vacio(red){ return red==="fb"?`<section class="card rs2-vacio"><span>📘</span><h3>Tu página de Facebook se conectó hace poco</h3><p>Metricool guarda las estadísticas desde el día en que conectaste la página. En uno o dos días vas a ver acá las visualizaciones, los seguidores, tus publicaciones y reels más vistos y desde qué países te ven.</p><div class="rs2-prev"><span>👀 Visualizaciones</span><span>❤️ Seguidores</span><span>🎬 Reels</span><span>🌎 Países</span></div></section>`
+  :`<section class="card rs2-vacio"><span>🎵</span><h3>Tu cuenta de TikTok se conectó hace poco</h3><p>En uno o dos días vas a ver acá las vistas, los seguidores, tus videos más vistos y cuánto los miran hasta el final.</p><div class="rs2-prev"><span>▶ Vistas</span><span>❤️ Seguidores</span><span>🏆 Videos más vistos</span><span>⏱️ Tiempo de visualización</span></div></section>`; }
+
+// ---------- pintar, pestañas y análisis ----------
+const rs3Hay=r=>RS2.data&&RS2.data[r]&&(RS2.data[r].ev||[]).length;
+const _rs3Pintar=rs2Pintar;
+rs2Pintar=function(){ const v=$("#view-redstats"); if(!v||!RS2.on) return; const D=RS2.data;
+  if(D){ if(!D.pin) D.pin={ev:[],pins:[]}; if(!D.yt) D.yt={ev:[],vids:[],pais:[],traf:[],edad:[],gen:[]}; ["pais","traf","edad","gen"].forEach(k=>{ if(!D.yt[k]) D.yt[k]=[]; }); }
+  if(RS2.red!=="fb"&&RS2.red!=="tt"){ _rs3Pintar.apply(this,arguments); }
+  else { const b=$("#rs2Body"); v.querySelectorAll("[data-rs2red]").forEach(x=>x.setAttribute("aria-selected",String(x.dataset.rs2red===RS2.red))); v.querySelectorAll("[data-rs2dias]").forEach(x=>x.classList.toggle("on",+x.dataset.rs2dias===RS2.dias));
+    const m=$("#rs2Meta"); if(m) m.textContent=RS2.cargando?"Trayendo datos de Metricool…":RS2.gen?`Datos de Metricool · actualizado ${RS2.gen.toLocaleString("es-AR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}`:"";
+    if(!D||!D[RS2.red]){ b.innerHTML=RS2.cargando?`<div class="rs2-sk"><i></i><i></i><i></i><i></i><i></i><i></i></div>`:`<p class="banner">${esc(RS2.msg||"Todavía no hay estadísticas guardadas. Se cargan al abrir esta sección en el panel dentro de Claude.")}</p>`; }
+    else { b.innerHTML=(RS2.msg?`<p class="banner">${esc(RS2.msg)}</p>`:"")+(RS2.red==="fb"?rs3Fb():rs3Tt());
+      const pl=$("#rs2Plot"); if(pl){ const c=+pl.dataset.c, ev=D[RS2.red].ev||[], an=rs2Serie(ev,c,RS2.dias,RS2.dias); rs2Area(pl,rs2Serie(ev,c,RS2.dias,0),rs2Completo(an)?an:an.map(x=>({...x,v:null})),pl.dataset.l,getComputedStyle(v).getPropertyValue("--rs2-"+RS2.red).trim()||"#1877F2"); } } }
+  if(D){ const f=$("#rs2TotFb"), t=$("#rs2TotTt"); if(f) f.textContent=rs3Hay("fb")?rs2Fmt(rs2Suma(rs2Serie(D.fb.ev,1,RS2.dias,0)))+" visualizaciones":D.fb?"Sin datos todavía":""; if(t) t.textContent=rs3Hay("tt")?rs2Fmt(rs2Suma(rs2Serie(D.tt.ev,1,RS2.dias,0)))+" vistas":D.tt?"Sin datos todavía":""; } };
+const _rs3Init=rs2Init;
+rs2Init=async function(){ const v=$("#view-redstats"), nuevo=v&&!RS2.on; await _rs3Init.apply(this,arguments);
+  if(!nuevo||!v) return; const h=v.querySelector(".view-h h1"); if(h) h.textContent="Estadísticas de redes";
+  const lead=v.querySelector(".view-h .lead"); if(lead) lead.textContent="Pinterest, YouTube, Facebook y TikTok en un solo lugar: cuánta gente ve tu contenido, qué funciona y desde dónde te miran. Datos de Metricool.";
+  const tabs=v.querySelector(".rs2-tabs"); if(tabs&&!tabs.querySelector('[data-rs2red="fb"]')){ tabs.classList.add("rs3-4"); tabs.insertAdjacentHTML("beforeend",`<button type="button" role="tab" data-rs2red="fb" class="rs3-tf" aria-selected="false"><span>📘</span><b>Facebook</b><small id="rs2TotFb"></small></button><button type="button" role="tab" data-rs2red="tt" class="rs3-tt" aria-selected="false"><span>🎵</span><b>TikTok</b><small id="rs2TotTt"></small></button>`); }
+  rs2Pintar(); };
+rs2IA=async function(red,btn){ const sf=await getSample(); if(!sf){ toast("El análisis con Claude se hace en el panel dentro de Claude","err"); return; } const v=$("#view-redstats"), txt=(v.querySelector(".rs2-kpis")||{}).innerText||"", ins=(v.querySelector(".rs2-ins ul")||{}).innerText||"", tabla=(v.querySelector(".rs2-t tbody")||{}).innerText||"";
+  const t0=btn.textContent; btn.disabled=true; btn.textContent="✨ Analizando…"; const nom=RS3_RED[red]||red;
+  try{ const r=await sf.json(`Sos estratega de redes para Cofre Didáctico (materiales didácticos y plataformas interactivas para docentes de primaria, Argentina). Analizá estas estadísticas de ${nom} de los últimos ${RS2.dias} días y decí qué hacer${red==="tt"?" (tené en cuenta cómo funciona el feed Para ti, los ganchos de los primeros segundos y la constancia)":red==="fb"?" (tené en cuenta que en Facebook los reels llegan a gente que no te sigue y que los grupos docentes son clave)":""}. Sé concreto y honesto; no inventes números que no estén acá.
+INDICADORES:\n${txt.slice(0,1500)}\nOBSERVACIONES:\n${ins.slice(0,1200)}\n${tabla?"TOP DE CONTENIDOS:\n"+tabla.slice(0,1500):""}
+Respondé SOLO JSON: {"resumen":"2 frases","bien":["2 a 3 cosas que funcionan"],"mejorar":["2 a 3 problemas"],"acciones":[{"accion":"qué hacer esta semana","porque":""}]}`,{modelTier:"default",cache:false});
+    if(!r||!r.resumen) throw {code:"invalid_json"}; RS2.ia={red,...r}; rs2Pintar(); }
+  catch(e){ toast(sampleErr(e),"err"); } finally{ btn.disabled=false; btn.textContent=t0; } };
+// nombres en la navegación
+(function(){ const ren=()=>{ const t=document.querySelector('.tab[data-view="redstats"] span'); if(t) t.textContent="Estadísticas de redes"; try{ if(typeof OR!=="undefined") OR.fam.forEach(g=>g.forEach(x=>{ if(x[0]==="redstats") x[1]="Estadísticas de redes"; })); }catch{} };
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",ren); else ren(); setTimeout(ren,0); })();
+
+// =====================================================================
+// CAMPAÑA MULTI-RED: Reel de Facebook, video de TikTok y publicación de Facebook
+// =====================================================================
+CP_RED.facebook={n:"Facebook",c:"#1877F2",g:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M13.4 21v-6.9h2.3l.4-2.7h-2.7V9.7c0-.8.2-1.3 1.4-1.3h1.4V6c-.3 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.6v2h-2.3v2.7h2.3V21z" fill="#fff"/></svg>'};
+CP_RED.tiktok={n:"TikTok",c:"#14B8B0",g:'<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6" fill="currentColor"/><path d="M14.6 5.5c.3 1.6 1.4 2.8 3 3v2.3c-1.1 0-2.1-.3-3-.9v4.6c0 2.4-2 4.2-4.4 4-2-.2-3.6-1.9-3.6-3.9 0-2.4 2.1-4.3 4.5-4v2.4c-1-.3-2 .4-2 1.5 0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6V5.5z" fill="#fff"/></svg>'};
+Object.assign(CP_PZ,{fbreel:{red:"facebook",ic:"🎬",t:"Reel",sub:"Facebook",d:"El mismo video vertical, con un texto pensado para Facebook y los grupos docentes.",gana:"Llega a docentes que no te siguen",fmt:"9:16"},
+  tt:{red:"tiktok",ic:"🎵",t:"Video",sub:"TikTok",d:"El video vertical con un texto corto y hashtags que funcionan en TikTok.",gana:"El feed Para ti lo muestra a gente nueva",fmt:"9:16"},
+  fbcar:{red:"facebook",ic:"🖼️",t:"Publicación",sub:"Facebook",d:"Las láminas del carrusel como álbum de fotos, con enlace directo a tu web.",gana:"Se comparte en grupos y trae visitas",fmt:"4:5"}});
+Object.assign(CP.inc,{fbreel:1,tt:1,fbcar:1});
+CP_PG.video[2]="Se graba cuadro por cuadro con tu plataforma: sirve para los Reels, el Short y TikTok.";
+CP_PG.car[2]="Portada, capturas reales de las actividades y cierre: va al carrusel de Instagram y al álbum de Facebook.";
+const cp3NecVideo=()=>!!(CP.inc.reel||CP.inc.short||CP.inc.fbreel||CP.inc.tt), cp3NecCar=()=>!!(CP.inc.car||CP.inc.fbcar), cp3EsVideo=k=>k==="reel"||k==="short"||k==="fbreel"||k==="tt";
+const _cp3Hora=cpHora; cpHora=function(red,dia){ return red==="facebook"?"20:00":red==="tiktok"?"18:00":_cp3Hora.apply(this,arguments); };
+const _cp3Plan=cpArmarPlan;
+cpArmarPlan=function(){ _cp3Plan.apply(this,arguments); const base=new Date((CP.inicio||pnAhora(60*24).f)+"T12:00"), dia=n=>new Date(+base+n*864e5), P=CP.plan, add=(k,red,t,n)=>P.push({k,red,t,d:ngYmd(dia(n)),h:cpHora(red,dia(n)),on:true});
+  if(CP.inc.tt) add("tt","tiktok","TikTok",1); if(CP.inc.fbreel) add("fbreel","facebook","Reel de Facebook",1); if(CP.inc.fbcar) add("fbcar","facebook","Publicación de Facebook",3); };
+const _cp3Lista=cpPiezaLista; cpPiezaLista=function(x){ const P=CP.piezas; if(x.k==="fbreel"||x.k==="tt") return !!P.video; if(x.k==="fbcar") return !!(P.car&&P.car.length); return _cp3Lista.apply(this,arguments); };
+cpPasos=function(){ return ["txt",...(cp3NecVideo()?["video"]:[]),...(cp3NecCar()?["car"]:[]),...(CP.inc.pin?["pin"]:[])]; };
+const _cp3Textos=cpTextos;
+cpTextos=async function(){ const r=await _cp3Textos.apply(this,arguments); if(!(CP.inc.fbreel||CP.inc.tt||CP.inc.fbcar)) return r;
+  const D=CP.D, m=D.meta, url=(D.pub&&D.pub.url)||"https://cofredidactico.com.ar", pal=((D.lanz&&D.lanz.palabra)||"PLATAFORMA").toUpperCase();
+  try{ const sf=await getSample(); const x=await sf.json(`Sos la community manager de Cofre Didáctico (materiales didácticos y plataformas interactivas para docentes de primaria, Argentina). Voseo rioplatense, tono cálido, sin inventar precios ni datos.
+Producto: plataforma interactiva "${m.nombreCompleto||m.nombreCorto}"${m.efemeride?` (efeméride ${m.efemeride})`:""}. Funciona en celu, compu y pizarra digital. Web: ${url}. Palabra para comentar: ${pal}.
+Texto base de Instagram (para no repetirlo igual): """${String(r.reel||"").slice(0,900)}"""
+Escribí:
+- facebook: texto para Facebook (reel y álbum de fotos). Primera línea con gancho, 2 o 3 beneficios, pedí que lo compartan con compañeras del grado o en su grupo de docentes, incluí el enlace ${url} (en Facebook los enlaces funcionan), 3 hashtags como máximo. 500 a 900 caracteres.
+- tiktok: texto para TikTok. Muy corto: gancho + "Comentá ${pal}" + 4 a 6 hashtags (#docentes #maestras #primaria y de la efeméride). 150 a 300 caracteres, sin enlaces.
+Respondé SOLO JSON: {"facebook":"","tiktok":""}`,{modelTier:"default",cache:false});
+    r.facebook=(x&&x.facebook)||r.facebook; r.tiktok=(x&&x.tiktok)||r.tiktok; }catch(e){ console.warn(e); }
+  if(!r.facebook) r.facebook=`${String(r.reel||"").trim()}\n\n👉 ${url}`; if(!r.tiktok) r.tiktok=String(r.reel||"").split("\n")[0].slice(0,150)+` Comentá ${pal} 👇 #docentes #maestras #primaria`;
+  return r; };
+
+// preparar: igual que antes, pero el video y el carrusel también se crean si solo van a Facebook o TikTok
+cpPreparar=async function(){ if(CP.busy) return; if(!CP.D) return cpEstado("⚠️ Elegí una plataforma."); if(!MODE.cloud) return cpEstado("⚠️ La campaña se arma y programa desde el panel dentro de Claude.");
+  CP.busy=true; CP.piezas={}; CP.res=[]; CP.cid=null; CP.vUrl=null; CP.carUrls=null; CP.fin=false; CP.plan.forEach(x=>{ x.st=""; x.msg=""; x.pl=""; }); CP.prog={}; cpPasos().forEach(k=>CP.prog[k]={st:"wait",p:0}); cpEstado(""); cpPintar();
+  let fallo=false;
+  try{ cpProgSet("txt","run"); try{ CP.txt=await cpTextos(); if(!CP.tablero&&CP.txt.tablero) CP.tablero=CP.txt.tablero; cpProgSet("txt","ok",1); }catch(e){ cpProgSet("txt","err"); throw e; }
+    if(cp3NecVideo()){ cpProgSet("video","run",0); rcCargar(CP.D); const fm=RC.fmt; RC.fmt="9x16"; if(RC.dur>25) RC.dur=20;
+      try{ const r=await rcRender(CP.D,CP.R,{fps:30,br:4.5e6,onProg:f=>{ const b=document.querySelector('[data-cppg="video"] .cp-pgb i'); if(b) b.style.width=Math.round(f*100)+"%"; const t=document.querySelector('[data-cppg="video"] .cp-pgs'); if(t) t.textContent=Math.round(f*100)+" %"; CP.prog.video.p=f; }});
+        if(!r) throw new Error("Este navegador no puede crear el video. Probá desde Chrome."); CP.piezas.video={blob:r.blob,codec:r.video,url:URL.createObjectURL(r.blob)}; cpProgSet("video","ok",1); }
+      catch(e){ cpProgSet("video","err"); fallo=true; console.warn(e); CP.errVideo=(e&&e.message)||"No se pudo grabar el video."; } finally{ RC.fmt=fm; } }
+    if(cp3NecCar()){ cpProgSet("car","run"); try{ CP.piezas.car=(await cpCarrusel()).map(s=>({...s,url:s.c.toDataURL("image/jpeg",.82)})); cpProgSet("car","ok",1); }catch(e){ console.warn(e); cpProgSet("car","err"); fallo=true; } }
+    if(CP.inc.pin){ cpProgSet("pin","run"); try{ CP.piezas.pins=cpPines().map(p=>({...p,url:p.c.toDataURL("image/jpeg",.82)})); cpProgSet("pin","ok",1); }catch(e){ console.warn(e); cpProgSet("pin","err"); fallo=true; } }
+    CP.paso=5; cpEstado(fallo?"⚠️ Algunas piezas no se pudieron preparar: podés programar las que quedaron listas o volver a intentar.":(CP.piezas.video&&CP.piezas.video.codec==="vp9"?"⚠️ Este navegador generó el video en formato VP9: si Instagram o TikTok no lo aceptan, armá la campaña desde Chrome en Windows o Mac.":"")); }
+  catch(e){ console.warn(e); cpEstado("⚠️ "+((e&&e.message)||"No se pudo preparar la campaña.")); }
+  finally{ CP.busy=false; cpPintar(); } };
+
+// programar: suma Facebook (reel y álbum) y TikTok, siempre con la confirmación previa
+cpProgramar=async function(){ const M=await pnMcp(); if(!M) return cpEstado("⚠️ Se programa desde el panel dentro de Claude."); const D=CP.D;
+  if(CP.piezas.video&&CP.piezas.video.blob.size>CP_MAX) CP.plan.forEach(x=>{ if(cp3EsVideo(x.k)&&x.on&&x.st!=="ok"){ x.st="manual"; x.msg=""; } });
+  const P=CP.plan.filter(x=>x.on&&cpPiezaLista(x)&&x.st!=="ok"&&x.st!=="manual");
+  if(!P.length) return cpEstado("⚠️ No hay publicaciones listas para programar.");
+  if(P.some(x=>x.red==="pinterest")&&!CP.tablero.trim()){ CP.paso=3; cpPintar(); return cpEstado("⚠️ Escribí el nombre exacto de tu tablero de Pinterest (paso 3)."); }
+  if(P.some(x=>new Date(x.d+"T"+x.h+":00-03:00")<new Date(Date.now()+5*60000))){ CP.paso=3; cpPintar(); return cpEstado("⚠️ Hay piezas con fecha u hora en el pasado: movelas en el calendario (paso 3)."); }
+  if(!await pcConfirm(`Se va${P.length===1?"":"n"} a programar ${P.length} publicaci${P.length===1?"ón":"ones"} en tus redes (${[...new Set(P.map(x=>CP_RED[x.red].n))].join(", ")}) a través de Metricool. ¿Seguimos?`)) return;
+  CP.busy=true; cpEstado(""); const btn=$("#cpProg"); if(btn) btn.disabled=true; let vUrl=CP.vUrl||null, carUrls=CP.carUrls||null;
+  const fila=(x)=>{ const i=CP.plan.indexOf(x), el=document.querySelector(`[data-cprow="${i}"]`); if(el) el.outerHTML=cpRowHtml(x,i); const r=$("#cpProgRes"); if(r) r.innerHTML=cpProgResHtml(); };
+  const subirCar=async x=>{ if(carUrls) return carUrls; const u=[]; for(const [i,s] of CP.piezas.car.entries()){ x.msg=`Subiendo la lámina ${i+1} de ${CP.piezas.car.length}…`; fila(x); const bl=await jpgBajo(s.c); u.push(await cpSubir(M,bl,`Carrusel ${i+1} - ${D.meta.nombreCorto||"plataforma"}.jpg`,"image/jpeg")); } return carUrls=CP.carUrls=u; };
+  const fbTxt=()=>utmTexto(CP.txt.facebook||CP.txt.reel,"facebook","campana",D.meta.nombreCorto);
+  for(const x of P){ const fh=`${x.d}T${x.h}:00`; x.st="run"; x.msg=""; fila(x);
+    try{ let pl="";
+      if(cp3EsVideo(x.k)){ if(!vUrl){ x.msg="Subiendo el video a tu Google Drive…"; fila(x); vUrl=CP.vUrl=await cpSubir(M,CP.piezas.video.blob,`Reel - ${D.meta.nombreCorto||D.meta.nombreCompleto}.mp4`,"video/mp4"); }
+        if(x.k==="reel") pl=await cpMc(M,{media:[vUrl],providers:[{network:"instagram"}],text:CP.txt.reel,instagramData:{type:"REEL",showReelOnFeed:true}},fh);
+        else if(x.k==="short") pl=await cpMc(M,{media:[vUrl],providers:[{network:"youtube"}],text:utmTexto(CP.txt.short.descripcion,"youtube","short",D.meta.nombreCorto),youtubeData:{title:String(CP.txt.short.titulo||D.meta.nombreCompleto).slice(0,100),type:"short",privacy:"public",tags:(CP.txt.short.etiquetas||[]).slice(0,18),category:"EDUCATION",madeForKids:false,isAiGeneratedContent:false}},fh);
+        else if(x.k==="fbreel") pl=await cpMc(M,{media:[vUrl],providers:[{network:"facebook"}],text:fbTxt(),facebookData:{type:"REEL"}},fh);
+        else pl=await cpMc(M,{media:[vUrl],providers:[{network:"tiktok"}],text:String(CP.txt.tiktok||"").slice(0,2200),tiktokData:{privacyOption:"PUBLIC_TO_EVERYONE",disableComment:false,disableDuet:false,disableStitch:false,commercialContentOwnBrand:false,autoAddMusic:false,isAigc:false}},fh); }
+      else if(x.k==="car"){ await subirCar(x); pl=await cpMc(M,{media:carUrls,providers:[{network:"instagram"}],text:CP.txt.carrusel,instagramData:{type:"POST"}},fh); }
+      else if(x.k==="fbcar"){ await subirCar(x); pl=await cpMc(M,{media:carUrls,providers:[{network:"facebook"}],text:fbTxt(),facebookData:{type:"POST"}},fh); }
+      else { const p=CP.piezas.pins[+x.k.slice(3)]; x.msg="Subiendo el pin…"; fila(x); const url=await pnSubirDrive(M,p.c,p.meta.pinTitle); const r=await pnProgramar(M,{url,meta:{...p.meta,tablero:CP.tablero},fecha:fh}); pl=r.planner; }
+      x.st="ok"; x.msg=""; x.pl=pl||""; }
+    catch(e){ x.st="err"; x.msg=e.msg||pnErr(e); }
+    fila(x); if(x.st==="err"&&/no está conectado|permiso|venció/.test(x.msg||"")) break; }
+  const hechas=CP.plan.filter(x=>x.st==="ok");
+  try{ if(db){ CP.cid=CP.cid||Date.now(); const ent={cid:CP.cid,plat:D.meta.nombreCompleto,id:CP.id,gen:new Date().toISOString(),n:hechas.length,plan:hechas.map(x=>({t:x.t,red:x.red,d:x.d,h:x.h}))}; CP.hist=[ent,...(CP.hist||[]).filter(h=>h.cid!==ent.cid)].slice(0,10); await db.doc("panel/campanas").set({ult:ent,hist:CP.hist}); } }catch{}
+  const falt=CP.plan.filter(x=>x.on&&x.st!=="ok"&&x.st!=="manual").length;
+  CP.busy=false; if(typeof pnProgramados==="function") PN.prog=null; CP.fin=!falt; cpPintar();
+  cpEstado(!falt?"":`⚠️ Quedaron ${falt} sin programar. Revisá el motivo en cada una y tocá “Reintentar”.`); };
+
+// revisar: vistas previas de Facebook y TikTok
+function cp3RevFB(){ const P=CP.piezas, car=P.car||[], av=`<span class="cp-av">🎓</span>`, T=CP.txt.facebook||"";
+  return `<div class="cp-rev">${P.video&&CP.inc.fbreel?`<div class="cp-rcol"><div class="cp-phone"><video src="${P.video.url}" muted loop playsinline autoplay></video><div class="cp-ov fb"><span class="cp-ovt">Reels</span><div class="cp-ovb"><div class="cp-ovu">${av}<b>Cofre Didáctico</b><span class="cp-seg fb">Seguir</span></div><p>${cpCaption(T,90)}</p></div><div class="cp-ovr"><span>👍</span><span>💬</span><span>↪</span></div></div></div><span class="cp-lbl">🎬 Reel de Facebook</span></div>`:""}
+    ${car.length&&CP.inc.fbcar?`<div class="cp-rcol"><div class="cp-phone feed cp3-fbf"><div class="cp-fh">${av}<b>Cofre Didáctico</b><span>···</span></div><p class="cp3-fbt">${cpCaption(T,120)}</p><div class="cp3-alb n${Math.min(car.length,5)}">${car.slice(0,5).map((s,i)=>`<img src="${s.url}" alt="${esc(s.n)}">${i===4&&car.length>5?`<b>+${car.length-5}</b>`:""}`).join("")}</div><div class="cp-fa"><span>👍 Me gusta</span><span>💬 Comentar</span><span>↪ Compartir</span></div></div><span class="cp-lbl">🖼️ Álbum de ${car.length} fotos</span></div>`:""}
+    <div class="cp-ed"><label>Texto de Facebook ${cpCnt(T,5000)}<textarea data-cptxt="facebook" rows="10">${esc(T)}</textarea></label><p class="muted small">🔗 En Facebook los enlaces sí se pueden tocar: el de tu web sale marcado para saber cuántas visitas trae. El mismo texto va al reel y al álbum.</p></div></div>`; }
+function cp3RevTT(){ const P=CP.piezas, T=CP.txt.tiktok||"";
+  return `<div class="cp-rev"><div class="cp-rcol"><div class="cp-phone"><video src="${P.video.url}" muted loop playsinline autoplay></video><div class="cp-ov tt"><span class="cp-ovt">Para ti</span><div class="cp-ovb"><div class="cp-ovu"><b>@cofredidactico</b></div><p>${cpCaption(T,110)}</p><small class="cp3-snd">♪ sonido original · Cofre Didáctico</small></div><div class="cp-ovr"><span class="cp-av">🎓</span><span>♥</span><span>💬</span><span>🔖</span><span>↪</span></div></div></div><span class="cp-lbl">🎵 Video de TikTok</span></div>
+    <div class="cp-ed"><label>Texto de TikTok ${cpCnt(T,2200)}<textarea data-cptxt="tiktok" rows="6">${esc(T)}</textarea></label><p class="muted small">En TikTok los textos cortos rinden más: gancho, la palabra para comentar y unos pocos hashtags. Se publica como público, con comentarios, dúos y stitch habilitados.</p><p class="muted small">🎶 El video sale con la música del panel. Si querés un sonido en tendencia, agregalo desde la app de TikTok antes de que se publique.</p></div></div>`; }
+const _cp3RevIG=cpRevIG; cpRevIG=function(){ if(CP.vred==="facebook") return cp3RevFB(); if(CP.vred==="tiktok") return cp3RevTT(); return _cp3RevIG.apply(this,arguments); };
+const _cp3Paso5=cpPaso5;
+cpPaso5=function(){ let h=_cp3Paso5.apply(this,arguments); if(!CP.fin||!CP.txt) return h; const man=k=>CP.plan.some(x=>x.k===k&&x.st==="manual"); let extra="";
+  if(man("fbreel")) extra+=`<h4>Reel de Facebook</h4><textarea rows="5" readonly>${esc(CP.txt.facebook||"")}</textarea>`; if(man("tt")) extra+=`<h4>TikTok</h4><textarea rows="3" readonly>${esc(CP.txt.tiktok||"")}</textarea>`;
+  return extra?h.replace("</details>",extra+"</details>"):h; };
+const _cp3Paso2=cpPaso2;
+cpPaso2=function(){ const h=_cp3Paso2.apply(this,arguments), K=Object.keys(CP_PZ), on=K.filter(k=>CP.inc[k]), falta=K.filter(k=>!CP.inc[k]).map(k=>`${CP_PZ[k].t.toLowerCase()} de ${CP_PZ[k].sub}`);
+  const tip=on.length===K.length?"Combinación completa: los videos llegan a gente nueva en Instagram, TikTok, Facebook y YouTube, el carrusel se guarda y los pines traen visitas durante meses.":on.length?`Sumá ${falta.slice(0,3).join(", ")}${falta.length>3?" y más":""} para que la campaña llegue a más lugares.`:"Elegí al menos una pieza.";
+  return h.replace(/<p class="cp-tipb">💡 [\s\S]*?<\/p>/,`<p class="cp-tipb">💡 ${tip}</p>`); };
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
