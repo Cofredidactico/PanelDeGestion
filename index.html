@@ -1621,6 +1621,75 @@ textarea.bb-inp{resize:vertical;line-height:1.45}
 .bb-link{border:0;background:none;padding:0;font:inherit;font-weight:700;color:var(--blue);cursor:pointer;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere;text-align:left}.bb-link:hover{opacity:.8}
 .bb-st.no{white-space:nowrap}
 
+/* ===== Mi biblioteca · etapa 2 ===== */
+.bb-tab i.w{background:color-mix(in srgb,var(--orange) 22%,transparent);color:var(--orange)}
+.bb-tip{font-size:13.5px;line-height:1.55}
+.bb-sub{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+.bb-ch{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:10px}.bb-ch h2{margin:0;font-size:17px}.bb-ch small{color:var(--muted);font-weight:700}
+.bb-st.ok{font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok);white-space:nowrap}
+.bb-st.warn{font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--orange) 16%,transparent);color:var(--orange);white-space:nowrap}
+.bb-st.na{font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+/* interruptor */
+.bb-sw{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:800;font-size:13px;flex:none}
+.bb-sw input{position:absolute;opacity:0;pointer-events:none}
+.bb-sw-k{width:40px;height:23px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);position:relative;transition:background .2s}
+.bb-sw-k::after{content:"";position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:var(--muted);transition:transform .2s,background .2s}
+.bb-sw input:checked+.bb-sw-k{background:color-mix(in srgb,var(--ok) 35%,transparent);border-color:color-mix(in srgb,var(--ok) 55%,transparent)}
+.bb-sw input:checked+.bb-sw-k::after{transform:translateX(17px);background:var(--ok)}
+.bb-sw input:focus-visible+.bb-sw-k{outline:2px solid var(--blue);outline-offset:2px}
+.bb-sw em{font-style:normal;color:var(--muted);min-width:56px}
+/* cupones */
+.bb-cups{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:12px;margin-top:14px}
+.bb-cup{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px;min-width:0;transition:border-color .2s}
+.bb-cup.on{border-color:color-mix(in srgb,var(--ok) 45%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ok) 18%,transparent) inset}
+.bb-cup-h{display:flex;gap:10px;align-items:center}.bb-cup-ic{font-size:26px;flex:none}.bb-cup-t{font-weight:800;font-size:15px}
+.bb-cup-st{font-size:12.5px;color:var(--muted)}
+.bb-g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bb-dm{display:flex;gap:6px;margin-top:6px}.bb-dm select{flex:1}
+.bb-fijo{display:block;margin-top:6px;padding:9px 12px;border-radius:11px;background:var(--surface-2);color:var(--muted);font-weight:700;font-size:13px}
+.bb-cupv{display:grid;gap:6px}.bb-cupv>small{color:var(--muted);font-size:12px}
+.bb-cupv-c{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px;background:linear-gradient(135deg,#fff4dc,#ffe3ec);color:#3a2a1a;border:1px dashed #e7a54a}
+.bb-cupv-ic{font-size:30px}.bb-cupv-c b{font-size:15px}.bb-cupv-c p{margin:2px 0 8px;font-size:13px}.bb-cupv-c small{font-size:11.5px;opacity:.8}
+.bb-cupv-k{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.bb-cupv-k code{font:800 14px ui-monospace,monospace;padding:4px 10px;border-radius:8px;background:#fff;border:1px dashed #c98a2e;letter-spacing:.06em}.bb-cupv-k em{font-style:normal;font-weight:900;color:#d4502a}
+/* comunidad */
+.bb-com{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.bb-idea{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);margin-bottom:8px}
+.bb-idea.pend{border-color:color-mix(in srgb,var(--orange) 45%,transparent);background:color-mix(in srgb,var(--orange) 7%,transparent)}
+.bb-idea-v{display:grid;justify-items:center;align-content:start;gap:2px;position:relative}.bb-idea-v b{font-size:22px;font-weight:900;line-height:1}.bb-idea-v small{font-size:11px;color:var(--muted)}
+.bb-idea-v span{display:block;width:44px;height:5px;border-radius:9px;background:var(--line);margin-top:4px;overflow:hidden;position:relative}.bb-idea-v span::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:linear-gradient(90deg,var(--bb-a),var(--blue));border-radius:9px}
+.bb-idea-b{display:grid;gap:4px;min-width:0}.bb-idea-b p{margin:0;font-size:13px;color:var(--muted)}.bb-idea-b .bb-acts{margin-top:6px}
+.bb-sel{width:auto;padding:5px 8px;font-size:12.5px}
+.bb-inueva{margin-top:12px;padding:12px;border-radius:14px;border:1px dashed var(--line);display:grid;gap:10px}
+.bb-inueva .bb-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bb-opres{display:flex;gap:8px;align-items:center;margin-bottom:10px}.bb-opres b{font-size:26px;font-weight:900}.bb-opres .bb-stars{font-size:18px}.bb-opres small{color:var(--muted)}
+.bb-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.bb-chip{border:1px solid var(--line);background:var(--surface-2);color:var(--muted);font:inherit;font-size:12.5px;font-weight:800;padding:5px 11px;border-radius:99px;cursor:pointer}
+.bb-chip i{font-style:normal;opacity:.75;margin-left:2px}.bb-chip.on{background:color-mix(in srgb,var(--bb-a) 16%,transparent);color:var(--ink);border-color:color-mix(in srgb,var(--bb-a) 45%,transparent)}
+.bb-op2{padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);margin-bottom:8px;display:grid;gap:6px}
+.bb-op2.pend{border-color:color-mix(in srgb,var(--orange) 45%,transparent)}
+.bb-op2-h{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.bb-op2-h small{margin-left:auto}.bb-op2 p{margin:0;font-size:14px}
+/* cofres */
+.bb-rgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:12px;margin-top:14px}
+.bb-rg{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px;min-width:0}
+.bb-rg.on{border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.bb-rg.gran{background:linear-gradient(135deg,color-mix(in srgb,#f6c445 14%,var(--surface)),var(--surface));border-color:color-mix(in srgb,#f6c445 45%,transparent)}
+.bb-rg-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.bb-rg-h>div{flex:1 1 200px;display:grid;min-width:0}.bb-rg-h b{font-size:15px}.bb-rg-h small{color:var(--muted);font-size:12px}
+.bb-rg-chips{display:flex;gap:4px;flex-wrap:wrap}
+.bb-rg-f{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.bb-rg-files{flex:1 1 200px;display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px;min-width:0}.bb-rg-files span{overflow-wrap:anywhere}
+.bb-up{cursor:pointer}.bb-up.busy{opacity:.7;pointer-events:none}
+/* seguridad */
+.bb-rast{display:flex;gap:16px;align-items:flex-start}.bb-rast h2{margin:0 0 4px;font-size:18px}
+.bb-rast-ic{font-size:30px;width:56px;height:56px;flex:none;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--bb-b) 28%,transparent),color-mix(in srgb,var(--bb-a) 22%,transparent))}
+.bb-cod{font:800 16px ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;max-width:240px}
+.bb-rres{margin-top:12px;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);display:grid;gap:10px}
+.bb-rres.no{display:grid;gap:4px}.bb-rres.raro{border-color:color-mix(in srgb,var(--orange) 50%,transparent)}
+.bb-rres-h{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.bb-rres-h b{font-size:16px}
+.bb-rres dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:0;font-size:13.5px}.bb-rres dt{color:var(--muted);font-weight:700}.bb-rres dd{margin:0;overflow-wrap:anywhere}
+@media (max-width:980px){.bb-com{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:620px){.bb-g4,.bb-inueva .bb-g{grid-template-columns:1fr}.bb-rast{flex-direction:column}.bb-rres dl{grid-template-columns:1fr}.bb-rres dt{margin-top:4px}.bb-op2-h small{margin-left:0}}
+.bb-rg .bb-g{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+@media (max-width:620px){.bb-rg .bb-g{grid-template-columns:1fr}}
+
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
 #isDlg .me.drag{border-style:solid;border-color:#F2A100;background:color-mix(in srgb,#F2B705 18%,var(--surface))}
@@ -27078,6 +27147,7 @@ document.addEventListener("keydown", (e) => { const t = e.target; if (!t || t.id
 // Docentes y fichas · habilitar/quitar materiales · ventas a mano · carga masiva · ver como
 // Usa la misma función "biblioteca" de Supabase que la página de la biblioteca.
 // =====================================================================
+const BB_TABS = [["docentes", "👩‍🏫", "Docentes"], ["ventas", "💸", "Ventas a mano"], ["masiva", "📋", "Carga masiva"]], BB_EXTRA = {}, BB_BADGE = {};
 const BB_SES = "cofre-panel-bib", BB_URL = "https://cofredidactico.com.ar/biblioteca.html", BB_WEB = "https://cofredidactico.github.io/PanelDeGestion/#biblio";
 const BB_ORIGEN = { tienda: "🛒 Empretienda", transferencia: "💸 Transferencia", manual: "✋ A mano", historial: "📦 Antes de la biblioteca" };
 const BB = { tab: (() => { try { return localStorage.getItem("cofre-bb-tab") || "docentes"; } catch { return "docentes"; } })(), cx: null, need: false, probando: false, res: null, top: null, q: "", resultados: null, ficha: null, cli: null, fichaErr: "", precios: null,
@@ -27167,8 +27237,8 @@ function bbPintar() { const v = bbView(); if (v.hidden && currentView !== "bibli
   if (!BB.res || BB.need) { if (!BB.need && !BB.probando) { v.innerHTML = head + acts + '<div class="bb-card"><div class="skel" style="height:120px"></div></div>'; bbProbar(); return; }
     if (BB.probando) { v.innerHTML = head + acts + '<div class="bb-card bb-load"><div class="skel" style="height:90px"></div><div class="skel" style="height:240px"></div></div>'; return; }
     v.innerHTML = head + acts + bbLoginHtml(); bbLoginBind(); return; }
-  const T = [["docentes", "👩‍🏫", "Docentes"], ["ventas", "💸", "Ventas a mano"], ["masiva", "📋", "Carga masiva"]];
-  v.innerHTML = `${head}${acts}${bbKpis()}<div class="bb-tabs" role="tablist">${T.map(([k, i, t]) => `<button type="button" role="tab" class="bb-tab${BB.tab === k ? " on" : ""}" aria-selected="${BB.tab === k}" data-bbtab="${k}"><span>${i}</span>${t}${k === "ventas" && BB.lista && BB.lista.registros ? `<i>${BB.lista.registros.length}</i>` : ""}</button>`).join("")}</div><div id="bbBody"></div>`;
+  const T = BB_TABS;
+  v.innerHTML = `${head}${acts}${bbKpis()}<div class="bb-tabs" role="tablist">${T.map(([k, i, t]) => `<button type="button" role="tab" class="bb-tab${BB.tab === k ? " on" : ""}" aria-selected="${BB.tab === k}" data-bbtab="${k}"><span>${i}</span>${t}${k === "ventas" && BB.lista && BB.lista.registros ? `<i>${BB.lista.registros.length}</i>` : BB_BADGE[k] && BB_BADGE[k]() ? `<i class="${BB_BADGE[k]().w ? "w" : ""}">${BB_BADGE[k]().n}</i>` : ""}</button>`).join("")}</div><div id="bbBody"></div>`;
   bbPintarCuerpo(); }
 function bbPintarCuerpo() { const b = document.getElementById("bbBody"); if (!b) return;
   if (BB.tab === "docentes") { b.innerHTML = `<div class="bb-doc"><aside class="bb-card bb-lista"><form id="bbQF" class="bb-q" novalidate autocomplete="off"><input class="bb-inp" id="bbQ" type="search" placeholder="Buscá por correo, nombre o @instagram…" aria-label="Buscar docente" value="${esc(BB.q)}"></form><div id="bbDocL"></div>
@@ -27176,7 +27246,8 @@ function bbPintarCuerpo() { const b = document.getElementById("bbBody"); if (!b)
       <section class="bb-card bb-ficha" id="bbFicha"></section></div>`;
     bbPintarDocLista(); bbPintarFicha(); bbCargarTop(); }
   else if (BB.tab === "ventas") { b.innerHTML = bbVentasHtml(); bbVentasBind(); bbPintarLista(); if (!BB.lista) bbCargarLista(); }
-  else { b.innerHTML = bbMasivaHtml(); bbMasivaBind(); }
+  else if (BB_EXTRA[BB.tab]) BB_EXTRA[BB.tab](b);
+  else { BB.tab = "masiva"; b.innerHTML = bbMasivaHtml(); bbMasivaBind(); }
 }
 function bbRepintarParte() { if (currentView !== "biblio" || !BB.res) return; if (BB.tab === "ventas") { bbPicker("bbMats", BB.sel, bbSug); bbSug(); } else if (BB.tab === "masiva") bbPicker("bbMMats", BB.msel, () => { BB.masiva = null; bbMPintar(); }); }
 
@@ -27376,7 +27447,7 @@ document.addEventListener("click", async (e) => { const v = document.getElementB
   if (t.dataset.bbed) { const o = ((BB.lista && BB.lista.registros) || []).find((x) => String(x.orden) === t.dataset.bbed); if (o) bbEditar(o); return; }
   if (t.dataset.bbdes) { bbDeshacer(t); return; }
   const a = t.dataset.bb; if (!a) return;
-  if (a === "refrescar") { Object.assign(BB, { top: null, lista: null, resultados: null }); BB.res = null; BB.precios = null; bbProbar(); }
+  if (a === "refrescar") { Object.assign(BB, { top: null, lista: null, resultados: null, cup: null, ideas: null }); BB.res = null; BB.precios = null; bbProbar(); }
   else if (a === "desconectar") bbDesconectar();
   else if (a === "otro") { BB.login.paso = "email"; BB.login.msg = ""; bbPintar(); }
   else if (a === "vender") { const F = BB.ficha; BB.pre = { email: F.email, nombre: F.nombre, instagram: F.instagram }; BB.edit = null; BB.tab = "ventas"; bbPintar(); }
@@ -27399,6 +27470,173 @@ bbNav();
     try { if (location.hash.slice(1) !== "biblio") history.replaceState(null, "", "#biblio"); } catch {}
     window.scrollTo(0, 0); try { navAbrir("biblio"); } catch {} try { document.body.dataset.ppv = "biblio"; } catch {}
     bbPintar(); }; }
+
+// =====================================================================
+// MI BIBLIOTECA · Etapa 2: cupones, comunidad (ideas y opiniones), regalos de los cofres y seguridad (rastrear copias)
+// =====================================================================
+BB_TABS.push(["cupones", "🎟️", "Cupones"], ["comunidad", "💬", "Comunidad"], ["cofres", "🎁", "Cofres"], ["seguridad", "🛡️", "Seguridad"]);
+const BB_MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const BB_FNOM = { "03-22": "Día Mundial del Agua", "03-24": "Día de la Memoria", "04-02": "Malvinas", "04-07": "Día Mundial de la Salud", "04-14": "Día de las Américas", "04-22": "Día de la Tierra", "04-23": "Día del Libro", "04-29": "Día del Animal", "05-01": "Día del Trabajador", "05-18": "Día de la Escarapela", "05-25": "Revolución de Mayo", "06-17": "Paso a la Inmortalidad de Güemes", "06-20": "Día de la Bandera", "07-09": "Día de la Independencia", "08-17": "Paso a la Inmortalidad de San Martín", "08-22": "Día del Folklore", "09-11": "Día del Maestro", "09-21": "Día del Estudiante", "10-12": "Día de la Diversidad Cultural", "11-10": "Día de la Tradición", "11-20": "Día de la Soberanía Nacional" };
+const BB_FIC = { "03-22": "💧", "03-24": "🕯️", "04-02": "🕊️", "04-07": "🩺", "04-14": "🌎", "04-22": "🌱", "04-23": "📚", "04-29": "🐾", "05-01": "🛠️", "05-18": "🎗️", "05-25": "🎩", "06-17": "⭐", "06-20": "🇦🇷", "07-09": "🏛️", "08-17": "🐴", "08-22": "🪕", "09-11": "🍎", "09-21": "🌸", "10-12": "🌍", "11-10": "🧉", "11-20": "⚓" };
+const bbFLarga = (mmdd) => { const [m, d] = String(mmdd || "").split("-").map(Number); return m && d ? `${d} de ${BB_MESES[m - 1]}` : String(mmdd || ""); };
+const bbHace = (iso) => { const d = new Date(iso); if (isNaN(d)) return "—"; const m = Math.round((Date.now() - d) / 6e4); if (m < 60) return m <= 1 ? "recién" : `hace ${m} min`; const h = Math.round(m / 60); if (h < 24) return `hace ${h} h`; const dd = Math.round(h / 24); return dd < 30 ? `hace ${dd} d` : bbFd(iso); };
+const bbStars = (n) => `<span class="bb-stars">${"★".repeat(n || 0)}${"☆".repeat(5 - (n || 0))}</span>`;
+const bbDesconocida = (e) => /desconocida/i.test((e && e.message) || "") ? "Esta función todavía no está activa en la biblioteca (falta actualizar la función en Supabase)." : (e && e.message) || "Error";
+const bbConf = {}; // confirmaciones de dos toques: clave → timeout
+function bbDosToques(b, clave, texto) { if (bbConf[clave]) { clearTimeout(bbConf[clave]); delete bbConf[clave]; return true; } const t0 = b.textContent; b.textContent = texto || "¿Seguro? Tocá de nuevo"; b.classList.add("conf"); bbConf[clave] = setTimeout(() => { delete bbConf[clave]; b.textContent = t0; b.classList.remove("conf"); }, 4000); return false; }
+function bbBadgeRefresh() { document.querySelectorAll("#view-biblio .bb-tab").forEach((t) => { const f = BB_BADGE[t.dataset.bbtab]; if (!f) return; const r = f(); let i = t.querySelector("i"); if (!r) { if (i) i.remove(); return; } if (!i) { i = document.createElement("i"); t.appendChild(i); } i.textContent = r.n; i.className = r.w ? "w" : ""; }); }
+
+// ---------- 🎟️ Cupones ----------
+BB_BADGE.cupones = () => { const C = BB.cup && BB.cup.cupones; if (!C) return null; const n = C.filter((c) => c.activo).length; return n ? { n } : null; };
+BB_EXTRA.cupones = (b) => { b.innerHTML = '<div class="bb-card"><div class="skel" style="height:220px"></div></div>'; if (BB.cup) bbCupPintar(); else bbCupCargar(); };
+async function bbCupCargar() { try { BB.cup = await bbApi({ accion: "cupones_admin" }); BB.cupErr = ""; } catch (e) { BB.cup = null; BB.cupErr = bbDesconocida(e); } bbCupPintar(); bbBadgeRefresh(); }
+function bbCupPintar() { const b = document.getElementById("bbBody"); if (!b || BB.tab !== "cupones") return;
+  if (!BB.cup) { b.innerHTML = `<div class="bb-card"><div class="bb-msg">⚠️ ${esc(BB.cupErr || "No se pudieron cargar los cupones.")}</div><button class="btn" type="button" data-bbx="cupcargar">Reintentar</button></div>`; return; }
+  const C = BB.cup, act = C.cupones.filter((c) => c.activo).length;
+  const dSel = (v) => Array.from({ length: 31 }, (_, i) => { const x = String(i + 1).padStart(2, "0"); return `<option value="${x}" ${v === x ? "selected" : ""}>${i + 1}</option>`; }).join("");
+  const mSel = (v) => BB_MESES.map((m, i) => { const x = String(i + 1).padStart(2, "0"); return `<option value="${x}" ${v === x ? "selected" : ""}>${m}</option>`; }).join("");
+  const tarjeta = (c, i) => { const [mm, dd] = (c.mmdd || "-").split("-"), fijo = ["cumple", "maestro"].includes(c.id), ic = c.id === "cumple" ? "🎂" : c.id === "maestro" ? "🍎" : "🎉";
+    return `<form class="bb-cup${c.activo ? " on" : ""}" data-cupi="${i}" novalidate>
+      <div class="bb-cup-h"><span class="bb-cup-ic">${ic}</span><input class="bb-inp bb-cup-t" name="titulo" maxlength="60" value="${esc(c.titulo || "")}" placeholder="Nombre del cupón" ${c.id === "cumple" ? "readonly" : ""} aria-label="Nombre del cupón">
+        <label class="bb-sw"><input type="checkbox" name="activo" ${c.activo ? "checked" : ""}><span class="bb-sw-k" aria-hidden="true"></span><em>${c.activo ? "Activo" : "Apagado"}</em></label></div>
+      ${c.id ? `<div class="bb-cup-st">Este año: 👀 <b>${c.vistos || 0}</b> lo vieron · 📋 <b>${c.copiados || 0}</b> copiaron el código</div>` : '<div class="bb-cup-st">✨ Cupón nuevo: completalo y guardalo.</div>'}
+      <div class="bb-g bb-g4">${c.id === "cumple" ? '<label>Cuándo<span class="bb-fijo">El día del cumple de cada docente</span></label>' : `<label>Día y mes<span class="bb-dm"><select class="bb-inp" name="dd">${dSel(dd)}</select><select class="bb-inp" name="mm">${mSel(mm)}</select></span></label>`}
+        <label>Código<input class="bb-inp" name="codigo" maxlength="30" value="${esc(c.codigo || "")}" placeholder="Ej.: CUMPLECOFRE" style="text-transform:uppercase"></label>
+        <label>Descuento (%)<input class="bb-inp" name="porcentaje" inputmode="numeric" value="${c.porcentaje ?? ""}" placeholder="Ej.: 20"></label>
+        <label>Se ve desde… <small>días antes</small><input class="bb-inp" name="dias_antes" inputmode="numeric" value="${c.dias_antes ?? 3}"></label>
+        <label>…hasta <small>días después</small><input class="bb-inp" name="dias_despues" inputmode="numeric" value="${c.dias_despues ?? 7}"></label>
+        <label class="full">Mensaje para la docente<input class="bb-inp" name="mensaje" maxlength="240" value="${esc(c.mensaje || "")}" placeholder="¡Feliz cumple! Te regalamos un descuento…"></label></div>
+      <label class="bb-chk"><input type="checkbox" name="transferencia" ${c.transferencia !== false ? "checked" : ""}> También vale si te pagan por transferencia</label>
+      <div class="bb-cup-prev" data-cupprev></div>
+      <div class="bb-acts"><button class="btn primary" type="submit">Guardar</button>${c.id && !fijo ? '<button class="btn bb-dan" type="button" data-cupdel>Borrar</button>' : !c.id ? '<button class="btn" type="button" data-cupcancel>Descartar</button>' : ""}<span class="muted" data-cupmsg></span></div></form>`; };
+  b.innerHTML = `<div class="bb-card bb-tip">🛒 <b>Paso 1:</b> creá el cupón en Empretienda (Mi tienda → Cupones de descuento) con el <b>mismo código y porcentaje</b>. <b>Paso 2:</b> activalo acá: cada docente lo ve solo en su biblioteca, en su fecha. <span class="muted">${act} activo${act === 1 ? "" : "s"} · ${C.cumples || 0} cumpleaños cargados</span></div>
+    <div class="bb-cups">${C.cupones.map(tarjeta).join("")}</div>
+    <div class="bb-acts" style="margin-top:12px"><button class="btn" type="button" data-bbx="cupnuevo">➕ Agregar fecha especial</button></div>
+    <div class="bb-card"><h3 class="bb-h3" style="margin-top:0">🎂 Cumpleaños de los próximos 30 días</h3>${(C.proximos || []).length ? `<div class="bb-tags">${C.proximos.map((p) => `<span>${p.dias === 0 ? "🎉 Hoy" : `en ${p.dias} d`} · ${esc(String(p.cumple || "").split("-").reverse().join("/"))} · <button class="bb-link" type="button" data-bbdoc="${esc(p.email)}">${esc(p.nombre || p.email)}</button></span>`).join("")}</div>` : '<div class="bb-empty">Ninguna docente cumple años en los próximos 30 días (o todavía no lo cargaron).</div>'}</div>`;
+  b.querySelectorAll("form.bb-cup").forEach((f) => { bbCupPrev(f); f.oninput = () => bbCupPrev(f);
+    f.elements.activo.onchange = () => { f.classList.toggle("on", f.elements.activo.checked); f.querySelector(".bb-sw em").textContent = f.elements.activo.checked ? "Activo" : "Apagado"; };
+    f.onsubmit = async (e) => { e.preventDefault(); const d = bbCupDatos(f), m = f.querySelector("[data-cupmsg]");
+      if (d.activo && (!d.codigo || !(+d.porcentaje > 0))) { m.textContent = "⚠️ Para activarlo poné el código y el porcentaje."; return; }
+      m.textContent = "Guardando…"; try { await bbApi({ accion: "cupon_guardar", cupon: d }); toast("🎟️ Cupón guardado", "ok"); await bbCupCargar(); } catch (err) { m.textContent = "⚠️ " + err.message; } };
+    const del = f.querySelector("[data-cupdel]"); if (del) del.onclick = async () => { if (!bbDosToques(del, "cup" + f.dataset.cupi)) return; try { await bbApi({ accion: "cupon_borrar", id: BB.cup.cupones[+f.dataset.cupi].id }); toast("Cupón borrado"); bbCupCargar(); } catch (err) { toast(err.message, "warn"); } };
+    const can = f.querySelector("[data-cupcancel]"); if (can) can.onclick = () => { BB.cup.cupones.splice(+f.dataset.cupi, 1); bbCupPintar(); }; }); }
+function bbCupDatos(f) { const g = (n) => f.elements[n], c = BB.cup.cupones[+f.dataset.cupi];
+  return { id: c.id || "", titulo: g("titulo").value.trim(), mmdd: g("mm") ? g("mm").value + "-" + g("dd").value : null, codigo: g("codigo").value.trim().toUpperCase(), porcentaje: g("porcentaje").value, dias_antes: g("dias_antes").value, dias_despues: g("dias_despues").value, mensaje: g("mensaje").value.trim(), transferencia: g("transferencia").checked, activo: g("activo").checked }; }
+function bbCupPrev(f) { const c = bbCupDatos(f), box = f.querySelector("[data-cupprev]"); if (!box) return; const cum = c.id === "cumple";
+  box.innerHTML = `<div class="bb-cupv"><small>👀 Así lo ve la docente${cum ? " el día de su cumple" : c.mmdd ? ` (del ${bbFLarga(c.mmdd)}, ${c.dias_antes || 0} días antes y ${c.dias_despues || 0} después)` : ""}</small><div class="bb-cupv-c"><span class="bb-cupv-ic">${cum ? "🎂" : "🎁"}</span><div><b>${esc(c.titulo || (cum ? "¡Feliz cumple!" : "Cupón especial"))}</b><p>${esc(c.mensaje || "Te regalamos un descuento en la tienda.")}</p><div class="bb-cupv-k"><code>${esc(c.codigo || "CODIGO")}</code><em>${c.porcentaje ? c.porcentaje + "% OFF" : "—% OFF"}</em></div>${c.transferencia ? "<small>También vale pagando por transferencia</small>" : ""}</div></div></div>`; }
+
+// ---------- 💬 Comunidad: ideas para votar + opiniones ----------
+BB_BADGE.comunidad = () => { const op = ((BB.res && BB.res.opiniones) || []).filter((o) => o.estado === "pendiente").length, id = ((BB.ideas && BB.ideas.ideas) || []).filter((i) => i.estado === "pendiente").length; return op + id ? { n: op + id, w: 1 } : null; };
+BB_EXTRA.comunidad = (b) => { b.innerHTML = `<div class="bb-com"><div class="bb-card"><div class="bb-ch"><h2>💡 Ideas para votar</h2><small id="bbIdSum"></small></div><div id="bbIdeas"><div class="skel" style="height:200px"></div></div></div>
+    <div class="bb-card"><div class="bb-ch"><h2>💬 Opiniones de compradoras</h2><small id="bbOpSum"></small></div><div id="bbOps"></div></div></div>`;
+  bbOpPintar(); if (BB.ideas) bbIdPintar(); else bbIdCargar(); };
+async function bbIdCargar() { try { BB.ideas = await bbApi({ accion: "ideas_admin" }); BB.idErr = ""; } catch (e) { BB.ideas = null; BB.idErr = bbDesconocida(e); } bbIdPintar(); bbBadgeRefresh(); }
+const BB_IEST = [["pendiente", "⏳ Para revisar"], ["abierta", "🗳️ En votación"], ["en_camino", "🚧 En camino"], ["hecha", "✅ Hecha"], ["oculta", "🙈 Oculta"]];
+function bbIdPintar() { const box = document.getElementById("bbIdeas"); if (!box) return;
+  if (!BB.ideas) { box.innerHTML = `<div class="bb-msg">⚠️ ${esc(BB.idErr || "No se pudieron cargar las ideas.")}</div><button class="btn" type="button" data-bbx="idcargar">Reintentar</button>`; return; }
+  const L = BB.ideas.ideas || [], pend = L.filter((i) => i.estado === "pendiente").length, sm = document.getElementById("bbIdSum"); if (sm) sm.textContent = pend ? `${pend} nueva${pend > 1 ? "s" : ""} para revisar` : `${L.filter((i) => i.estado === "abierta").length} en votación`;
+  const maxV = Math.max(1, ...L.map((i) => i.votos || 0)), prods = bbMats();
+  const opts = (v) => BB_IEST.map(([k, n]) => `<option value="${k}" ${v === k ? "selected" : ""}>${n}</option>`).join("");
+  const orden = [...L].sort((a, b) => (a.estado === "pendiente" ? -1 : 0) - (b.estado === "pendiente" ? -1 : 0) || (b.votos || 0) - (a.votos || 0));
+  box.innerHTML = `<p class="bb-sub">Las docentes votan hasta 3 ideas. Las que proponen ellas quedan <b>para revisar</b> hasta que las aprobás. Cuando la hagas, marcala como <b>Hecha</b> y elegí el material: les aparece el botón para verlo.</p>
+    ${orden.length ? orden.map((i) => `<form class="bb-idea${i.estado === "pendiente" ? " pend" : ""}" data-idea="${i.id}" novalidate>
+      <div class="bb-idea-v" title="votos"><b>${i.votos || 0}</b><small>votos</small><span style="--w:${Math.round(((i.votos || 0) / maxV) * 100)}%"></span></div>
+      <div class="bb-idea-b"><b>${esc(i.titulo)}</b>${i.detalle ? `<p>${esc(i.detalle)}</p>` : ""}<small class="muted">${esc(bbFd(i.fecha))} · ${i.autor && !/^cofredidacticoo@/i.test(i.autor) ? `propuesta por <button class="bb-link" type="button" data-bbdoc="${esc(i.autor)}">${esc(i.autor)}</button>` : "agregada por vos"}</small>
+        <div class="bb-acts">${i.estado === "pendiente" ? '<button class="btn primary bb-sm" type="button" data-iest="abierta">Aprobar para votar</button><button class="btn bb-sm" type="button" data-iest="oculta">Ocultar</button>' : ""}
+          <select class="bb-inp bb-sel" name="estado" aria-label="Estado">${opts(i.estado)}</select><select class="bb-inp bb-sel" name="producto" aria-label="Material" ${i.estado === "hecha" ? "" : "hidden"}><option value="">Material…</option>${prods.map((m) => `<option value="${esc(m.id)}" ${i.producto === m.id ? "selected" : ""}>${esc(m.nombre)}</option>`).join("")}</select>
+          <button class="btn bb-sm" type="submit">Guardar</button><button class="btn bb-sm bb-dan" type="button" data-idel>Borrar</button></div></div></form>`).join("") : '<div class="bb-empty">Todavía no hay ideas. Sumá algunas para que las docentes empiecen a votar.</div>'}
+    <form class="bb-inueva" id="bbINueva" novalidate><b>➕ Agregar una idea para votar</b><div class="bb-g"><label>Título<input class="bb-inp" name="titulo" maxlength="90" placeholder="Ej.: Día de la Música (22/11)"></label><label class="bb-g2">Detalle <small>opcional</small><input class="bb-inp" name="detalle" maxlength="400" placeholder="Ej.: Primer ciclo, con canciones para colorear"></label></div><div class="bb-acts"><button class="btn primary" type="submit">Agregar</button></div></form>`;
+  const guardar = async (f, extra = {}) => { const id = +f.dataset.idea, i = L.find((x) => x.id === id); try { BB.ideas = await bbApi({ accion: "idea_guardar", idea: { id, titulo: i.titulo, detalle: i.detalle, estado: f.elements.estado.value, producto: f.elements.producto.value, ...extra } }); if (!BB.ideas || !BB.ideas.ideas) await bbIdCargar(); toast("💡 Idea guardada", "ok"); bbIdPintar(); bbBadgeRefresh(); } catch (e) { toast(e.message, "warn"); } };
+  box.querySelectorAll("form.bb-idea").forEach((f) => { f.onsubmit = (e) => { e.preventDefault(); if (f.elements.estado.value === "hecha" && !f.elements.producto.value) return toast("Elegí qué material es, así les aparece el botón para verlo.", "warn"); guardar(f); };
+    f.elements.estado.onchange = () => { f.elements.producto.hidden = f.elements.estado.value !== "hecha"; };
+    f.querySelectorAll("[data-iest]").forEach((x) => (x.onclick = () => guardar(f, { estado: x.dataset.iest })));
+    const d = f.querySelector("[data-idel]"); d.onclick = async () => { if (!bbDosToques(d, "idea" + f.dataset.idea)) return; try { BB.ideas = await bbApi({ accion: "idea_borrar", id: +f.dataset.idea }); if (!BB.ideas || !BB.ideas.ideas) await bbIdCargar(); toast("Idea borrada"); bbIdPintar(); bbBadgeRefresh(); } catch (e) { toast(e.message, "warn"); } }; });
+  document.getElementById("bbINueva").onsubmit = async (e) => { e.preventDefault(); const f = e.target; if (f.elements.titulo.value.trim().length < 3) return toast("Escribí un título.", "warn");
+    try { BB.ideas = await bbApi({ accion: "idea_guardar", idea: { titulo: f.elements.titulo.value.trim(), detalle: f.elements.detalle.value.trim(), estado: "abierta" } }); if (!BB.ideas || !BB.ideas.ideas) await bbIdCargar(); toast("💡 Idea agregada", "ok"); bbIdPintar(); } catch (err) { toast(err.message, "warn"); } }; }
+function bbOpPintar() { const box = document.getElementById("bbOps"); if (!box) return; const O = (BB.res && BB.res.opiniones) || [], pend = O.filter((o) => o.estado === "pendiente").length, sm = document.getElementById("bbOpSum"); if (sm) sm.textContent = pend ? `${pend} por revisar` : `${O.length} en total`;
+  const f = BB.opF || (pend ? "pendiente" : "todas"), L = O.filter((o) => f === "todas" || o.estado === f), prom = O.length ? O.reduce((a, o) => a + (o.estrellas || 0), 0) / O.length : 0;
+  const ESt = { pendiente: '<span class="bb-st no">Pendiente</span>', aprobada: '<span class="bb-st ok">Aprobada</span>', oculta: '<span class="bb-st na">Oculta</span>' };
+  box.innerHTML = `${O.length ? `<div class="bb-opres"><b>${prom.toFixed(1).replace(".", ",")}</b>${bbStars(Math.round(prom))}<small>${O.length} ${O.length === 1 ? "opinión" : "opiniones"}</small></div>` : ""}
+    <div class="bb-chips">${[["pendiente", "Por revisar"], ["aprobada", "Aprobadas"], ["oculta", "Ocultas"], ["todas", "Todas"]].map(([k, t]) => `<button type="button" class="bb-chip${f === k ? " on" : ""}" data-opf="${k}">${t} <i>${k === "todas" ? O.length : O.filter((o) => o.estado === k).length}</i></button>`).join("")}</div>
+    ${L.length ? L.map((o) => { const tm = JSON.stringify({ inicial: o.inicial || "", ciudad: o.ciudad || "", texto: o.texto || "" });
+      return `<div class="bb-op2${o.estado === "pendiente" ? " pend" : ""}"><div class="bb-op2-h">${bbStars(o.estrellas)}<b>${esc(bbNomMat(o.material_id))}</b>${ESt[o.estado] || ""}<small class="muted">${esc(bbHace(o.fecha))}</small></div>
+        <p>${o.texto ? esc(o.texto) : '<span class="muted">Sin comentario</span>'}</p>
+        <small class="muted">${esc([o.inicial && o.inicial + ".", o.ciudad].filter(Boolean).join(" · "))}${o.inicial || o.ciudad ? " · " : ""}<button class="bb-link" type="button" data-bbdoc="${esc(o.email)}">${esc(o.email)}</button>${o.texto ? (o.publicar ? " · ✅ autorizó publicarla" : " · 🔒 no autorizó publicarla") : ""}</small>
+        <div class="bb-acts">${o.estado !== "aprobada" ? `<button class="btn primary bb-sm" type="button" data-mod="aprobada" data-email="${esc(o.email)}" data-mat="${esc(o.material_id)}">Aprobar</button>` : ""}${o.estado !== "oculta" ? `<button class="btn bb-sm" type="button" data-mod="oculta" data-email="${esc(o.email)}" data-mat="${esc(o.material_id)}">Ocultar</button>` : ""}${o.estado === "aprobada" && o.publicar && o.texto ? `<button class="btn bb-sm" type="button" data-bbtesti="${esc(tm)}" title="Pegalo en Testimonios del producto, en el admin de tu web">📋 Copiar testimonio</button>` : ""}</div></div>`; }).join("")
+      : `<div class="bb-empty">${O.length ? "No hay opiniones en este grupo." : "Todavía no hay opiniones. Las docentes pueden calificar cada material desde su biblioteca."}</div>`}`; }
+
+// ---------- 🎁 Regalos de los cofres ----------
+BB_BADGE.cofres = () => { const L = (BB.res && BB.res.regalos) || []; const n = L.filter((g) => g.activo).length; return n ? { n } : null; };
+BB_EXTRA.cofres = (b) => { const R = BB.res || {}, L = R.regalos || [], meta = R.metaLlaves || 10;
+  if (!L.length) { b.innerHTML = '<div class="bb-card"><div class="bb-empty">La biblioteca todavía no tiene cofres configurados (o falta actualizar la función en Supabase).</div></div>'; return; }
+  const hoy = new Date(), mmddHoy = String(hoy.getMonth() + 1).padStart(2, "0") + "-" + String(hoy.getDate()).padStart(2, "0");
+  const ord = [...L].sort((a, b) => (a.fecha === "gran-cofre") - (b.fecha === "gran-cofre") || ((a.fecha >= mmddHoy ? 0 : 1) - (b.fecha >= mmddHoy ? 0 : 1)) || String(a.fecha).localeCompare(b.fecha));
+  const prox = ord.find((g) => g.fecha !== "gran-cofre");
+  const fila = (g) => { const gran = g.fecha === "gran-cofre", nom = gran ? `✨ Gran Cofre` : `${BB_FIC[g.fecha] || "📅"} ${BB_FNOM[g.fecha] || bbFLarga(g.fecha)}`, falta = !gran ? (() => { const [m, d] = g.fecha.split("-").map(Number); let t = new Date(hoy.getFullYear(), m - 1, d); if (t < new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate())) t = new Date(hoy.getFullYear() + 1, m - 1, d); return Math.round((t - new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate())) / 864e5); })() : null;
+    const listo = g.titulo && (g.archivos || []).length;
+    return `<div class="bb-rg${g.activo ? " on" : ""}${gran ? " gran" : ""}" data-rg="${esc(g.fecha)}">
+      <div class="bb-rg-h"><div><b>${esc(nom)}</b><small>${gran ? `Se abre al juntar ${meta} llaves` : `${bbFLarga(g.fecha)} · ${falta === 0 ? "¡hoy!" : `faltan ${falta} días`} · aparece 3 días antes`}</small></div>
+        <span class="bb-rg-chips">${g.abiertos ? `<span class="bb-st ok">${g.abiertos} ${g.abiertos === 1 ? "lo abrió" : "lo abrieron"}</span>` : ""}${!listo ? '<span class="bb-st warn">incompleto</span>' : ""}</span>
+        <label class="bb-sw"><input type="checkbox" data-rg-activo ${g.activo ? "checked" : ""}><span class="bb-sw-k" aria-hidden="true"></span><em>${g.activo ? "Activo" : "Apagado"}</em></label></div>
+      <div class="bb-g"><label>Título del regalo<input class="bb-inp" data-rg-titulo maxlength="120" placeholder="Ej.: Lámina para el acto" value="${esc(g.titulo || "")}"></label><label>Cupón <small>opcional</small><input class="bb-inp" data-rg-cupon maxlength="40" placeholder="Ej.: COFRE10" value="${esc(g.cupon || "")}" style="text-transform:uppercase"></label>
+        <label class="full">Mensaje para las docentes<textarea class="bb-inp" data-rg-mensaje rows="2" maxlength="600" placeholder="¡Sorpresa! Te dejamos este regalo para el acto…">${esc(g.mensaje || "")}</textarea></label></div>
+      <div class="bb-rg-f"><div class="bb-rg-files">${(g.archivos || []).length ? g.archivos.map((a) => `<span>📎 ${esc(a)}</span>`).join("") : '<span class="muted">Sin archivos todavía</span>'}</div>
+        <label class="btn bb-up" data-up="${esc(g.carpeta || "")}"><input type="file" accept=".pdf,.zip,.png,.jpg,.jpeg" multiple hidden><span>⬆ Subir archivo</span></label>
+        <button class="btn primary" type="button" data-rg-guardar>Guardar</button></div></div>`; };
+  b.innerHTML = `<div class="bb-card bb-tip">🎁 Cada cofre aparece en la biblioteca de tus compradoras <b>desde 3 días antes</b> de su efeméride. Las llaves se ganan usando materiales y abriendo cofres; con <b>${meta} llaves</b> se abre el Gran Cofre.${prox ? ` <span class="muted">Próximo: ${esc(BB_FNOM[prox.fecha] || bbFLarga(prox.fecha))} (${esc(bbFLarga(prox.fecha))}).</span>` : ""}</div><div class="bb-rgs">${ord.map(fila).join("")}</div>`;
+  b.querySelectorAll("[data-rg-activo]").forEach((x) => (x.onchange = () => { const r = x.closest(".bb-rg"); r.classList.toggle("on", x.checked); r.querySelector(".bb-sw em").textContent = x.checked ? "Activo" : "Apagado"; })); };
+async function bbRgGuardar(btn) { const fila = btn.closest("[data-rg]"), fecha = fila.dataset.rg, q = (s) => fila.querySelector(s);
+  const d = { fecha, titulo: q("[data-rg-titulo]").value.trim(), mensaje: q("[data-rg-mensaje]").value.trim(), cupon: q("[data-rg-cupon]").value.trim().toUpperCase(), activo: q("[data-rg-activo]").checked };
+  if (d.activo && !d.titulo) return toast("Poné un título antes de activarlo.", "warn");
+  btn.disabled = true; btn.textContent = "Guardando…";
+  try { await bbApi({ accion: "regalo_guardar", ...d }); const x = ((BB.res && BB.res.regalos) || []).find((r) => r.fecha === fecha); if (x) Object.assign(x, d); toast("🎁 Regalo guardado", "ok"); bbBadgeRefresh(); if (d.activo && !((x && x.archivos) || []).length) setTimeout(() => toast("Ojo: está activo pero todavía no tiene archivos. Subí el regalo antes de la fecha.", "warn"), 900); }
+  catch (e) { toast(e.message, "warn"); } btn.disabled = false; btn.textContent = "Guardar"; }
+function bbXHR(url, f, cab, alAvanzar) { return new Promise((ok, mal) => { const x = new XMLHttpRequest(); x.open("PUT", url); Object.entries(cab || {}).forEach(([k, v]) => x.setRequestHeader(k, v)); x.upload.onprogress = (e) => e.lengthComputable && alAvanzar(e.loaded / e.total); x.onload = () => (x.status >= 200 && x.status < 300 ? ok() : mal(new Error(x.status === 413 ? "El archivo supera el límite permitido." : "El almacén rechazó la subida (" + x.status + ")."))); x.onerror = () => mal(new Error("Se cortó la conexión durante la subida.")); x.send(f); }); }
+async function bbTieneClave(f) { const u = new Uint8Array(await f.arrayBuffer()), k = [47, 69, 110, 99, 114, 121, 112, 116]; outer: for (let i = 0, n = u.length - 8; i < n; i++) { if (u[i] !== 47 || u[i + 1] !== 69) continue; for (let j = 2; j < 8; j++) if (u[i + j] !== k[j]) continue outer; return true; } return false; }
+async function bbSubir(carpeta, files, zona) { if (!carpeta) return toast("Este cofre no tiene carpeta asignada.", "warn"); const t = zona.querySelector("span"), t0 = t.textContent; let n = 0; zona.classList.add("busy");
+  for (const f of files) { if (f.size > 200 * 1048576) { toast(`"${f.name}" pesa más de 200 MB.`, "warn"); continue; }
+    if (/\.pdf$/i.test(f.name)) { t.textContent = "Revisando…"; if (await bbTieneClave(f)) { toast(`"${f.name}" tiene contraseña: sacásela antes de subirlo.`, "warn"); continue; } }
+    try { const r = await bbApi({ accion: "subir", material: carpeta, archivo: f.name, tam: f.size }); await bbXHR(r.url, f, r.headers || { "Content-Type": f.type || "application/pdf", "x-upsert": "true" }, (p) => (t.textContent = `Subiendo ${Math.round(p * 100)}%`)); n++; toast(`${r.reemplaza ? "Reemplazado" : "Subido"}: ${r.nombre || f.name} ✓`, "ok"); }
+    catch (e) { toast(e.message, "warn"); } }
+  zona.classList.remove("busy"); t.textContent = t0; if (n) { await bbRefRes(); if (BB.tab === "cofres") bbPintarCuerpo(); } }
+document.addEventListener("change", (e) => { const inp = e.target; if (!inp || !inp.closest || !inp.closest("#view-biblio .bb-up") || !inp.files || !inp.files.length) return; const z = inp.closest(".bb-up"); bbSubir(z.dataset.up, [...inp.files], z); inp.value = ""; });
+
+// ---------- 🛡️ Seguridad: rastrear copias, avisos de uso raro y últimas descargas ----------
+BB_BADGE.seguridad = () => { const n = ((BB.res && BB.res.alertas) || []).length; return n ? { n, w: 1 } : null; };
+BB_EXTRA.seguridad = (b) => { const R = BB.res || {}, A = R.alertas || [], U = R.ultimasDescargas || [];
+  b.innerHTML = `<div class="bb-card bb-rast"><div class="bb-rast-ic">🔍</div><div style="flex:1;min-width:0"><h2>Rastrear una copia</h2><p class="bb-sub">¿Viste un PDF tuyo circulando? Cada copia lleva un código al pie de cada página (y en el QR). Escribilo y te digo de quién es, cuántas veces se descargó y si se escaneó.</p>
+      <form id="bbRastF" class="bb-q" novalidate><input class="bb-inp bb-cod" id="bbRastC" placeholder="Ej.: AB12CD" maxlength="20" autocomplete="off" value="${esc(BB.rastC || "")}"><button class="btn primary" type="submit">Rastrear</button></form><div id="bbRastR"></div></div></div>
+    <div class="bb-card"><div class="bb-ch"><h2>⚠️ Avisos de uso raro</h2><small>${A.length ? A.length + " para revisar" : "todo en orden"}</small></div>
+      ${A.length ? `<div class="bb-tw"><table class="bb-t"><thead><tr><th>Docente</th><th>Material</th><th>Motivo</th><th></th></tr></thead><tbody>${A.map((a) => `<tr><td><button class="bb-link" type="button" data-bbdoc="${esc(a.email)}">${esc(a.email)}</button></td><td>${a.material_id ? esc(bbNomMat(a.material_id)) : '<span class="muted">varios</span>'}</td><td><span class="bb-st warn">${esc(a.motivo)}</span></td><td class="bb-acc">${a.codigo ? `<button class="btn bb-sm" type="button" data-rast="${esc(a.codigo)}">Rastrear ${esc(a.codigo)}</button>` : ""}</td></tr>`).join("")}</tbody></table></div>` : '<div class="bb-empty">✅ Sin uso raro en los últimos 60 días. Te avisamos acá si una copia se descarga muchas veces o desde muchos dispositivos.</div>'}</div>
+    <div class="bb-card"><div class="bb-ch"><h2>⬇ Últimas descargas</h2><small>${U.length}</small></div>
+      ${U.length ? `<div class="bb-tw"><table class="bb-t"><thead><tr><th>Cuándo</th><th>Docente</th><th>Material</th></tr></thead><tbody>${U.map((d) => `<tr><td class="muted">${esc(bbHace(d.fecha))}</td><td><button class="bb-link" type="button" data-bbdoc="${esc(d.email)}">${esc(d.email)}</button></td><td>${esc(bbNomMat(d.material_id))}${d.archivo ? `<div class="muted">${esc(d.archivo)}</div>` : ""}</td></tr>`).join("")}</tbody></table></div>` : '<div class="bb-empty">Todavía nadie descargó. Tus propias descargas no se cuentan.</div>'}</div>`;
+  if (BB.rastT) bbRastPintar(); };
+async function bbRastrear(cod) { cod = String(cod || "").trim().toUpperCase(); if (!cod) return toast("Escribí el código de la copia.", "warn"); BB.rastC = cod; const box = document.getElementById("bbRastR"); if (box) box.innerHTML = '<div class="skel" style="height:140px;margin-top:12px"></div>';
+  try { BB.rastT = await bbApi({ accion: "rastrear", codigo: cod }); } catch (e) { BB.rastT = { error: e.message, codigo: cod }; } bbRastPintar(); }
+function bbRastPintar() { const box = document.getElementById("bbRastR"), t = BB.rastT; if (!box || !t) return; const fh = (x) => (x ? new Date(x).toLocaleString("es-AR", { day: "2-digit", month: "2-digit", year: "2-digit", hour: "2-digit", minute: "2-digit" }) : "—");
+  if (t.error) { box.innerHTML = `<div class="bb-msg">⚠️ No se pudo rastrear: ${esc(t.error)}</div>`; return; }
+  if (!t.encontrado) { box.innerHTML = `<div class="bb-rres no"><b>No hay ninguna copia con el código ${esc(t.codigo || BB.rastC)}.</b><span class="muted">Revisá que esté bien escrito: está al pie de cada página del PDF.</span></div>`; return; }
+  const rev = t.acceso && t.acceso.revocado, esc2 = t.escaneos || {}, raro = (esc2.personas || 0) > 3 || (t.descargas || 0) > 10;
+  box.innerHTML = `<div class="bb-rres${raro ? " raro" : ""}"><div class="bb-rres-h"><b>Copia ${esc(t.codigo)}</b>${rev ? '<span class="bb-st no">Acceso quitado</span>' : '<span class="bb-st ok">Acceso activo</span>'}${raro ? '<span class="bb-st warn">uso alto</span>' : ""}</div>
+    <dl><dt>Compradora</dt><dd>${esc(t.nombre || "—")}</dd><dt>Correo</dt><dd><button class="bb-link" type="button" data-bbdoc="${esc(t.email)}">${esc(t.email)}</button></dd><dt>Material</dt><dd>${esc(t.material || "")}</dd><dt>Orden</dt><dd>${t.orden ? "#" + esc(t.orden) : "—"}</dd>
+      <dt>Descargas</dt><dd>${Number(t.descargas || 0)} · primera ${fh(t.primera)} · última ${fh(t.ultima)}</dd><dt>QR escaneado</dt><dd>${esc2.total ? `${esc2.total} ${esc2.total === 1 ? "vez" : "veces"} · ${esc2.personas} ${esc2.personas === 1 ? "persona" : "personas distintas"} · último ${fh(esc2.ultimo)}` : "Nunca"}</dd></dl>
+    <div class="bb-acts"><button class="btn ${rev ? "" : "bb-dan"}" type="button" data-rastacc data-email="${esc(t.email)}" data-mat="${esc(t.material_id)}" data-hab="${rev ? 1 : 0}">${rev ? "↩ Devolver el acceso" : "Quitar el acceso a este material"}</button><button class="btn" type="button" data-bbdoc="${esc(t.email)}">Ver su ficha</button><a class="btn" href="${BB_URL}#como=${encodeURIComponent(t.email)}" target="_blank" rel="noopener">👁 Ver su biblioteca</a></div></div>`; }
+
+// ---------- eventos de la etapa 2 ----------
+document.addEventListener("click", async (e) => { const v = document.getElementById("view-biblio"); if (!v || !v.contains(e.target)) return; const t = e.target.closest("button"); if (!t) return;
+  const x = t.dataset.bbx;
+  if (x === "cupcargar") return bbCupCargar();
+  if (x === "idcargar") return bbIdCargar();
+  if (x === "cupnuevo") { BB.cup.cupones.push({ id: "", titulo: "", mmdd: "09-21", codigo: "", porcentaje: 15, dias_antes: 2, dias_despues: 3, mensaje: "", transferencia: true, activo: false }); bbCupPintar(); const fs = v.querySelectorAll("form.bb-cup"), f = fs[fs.length - 1]; f.scrollIntoView({ behavior: "smooth", block: "center" }); f.elements.titulo.focus(); return; }
+  if (t.dataset.opf) { BB.opF = t.dataset.opf; bbOpPintar(); return; }
+  if (t.dataset.mod) { t.disabled = true; try { await bbApi({ accion: "moderar", email: t.dataset.email, material: t.dataset.mat, estado: t.dataset.mod }); toast(t.dataset.mod === "aprobada" ? "💬 Opinión aprobada" : "Opinión oculta", "ok"); const o = ((BB.res && BB.res.opiniones) || []).find((y) => y.email === t.dataset.email && y.material_id === t.dataset.mat); if (o) o.estado = t.dataset.mod; bbOpPintar(); bbBadgeRefresh(); } catch (err) { toast(err.message, "warn"); t.disabled = false; } return; }
+  if (t.dataset.bbtesti) { await copyText(t, t.dataset.bbtesti, "¡Copiado!"); toast("Testimonio copiado: pegalo en el producto, en el admin de tu web", "ok"); return; }
+  if (t.hasAttribute("data-rg-guardar")) return bbRgGuardar(t);
+  if (t.dataset.rast) { BB.tab = "seguridad"; const inp = document.getElementById("bbRastC"); if (inp) inp.value = t.dataset.rast; bbRastrear(t.dataset.rast); const r = document.getElementById("bbRastF"); if (r) r.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+  if (t.hasAttribute("data-rastacc")) { const hab = t.dataset.hab === "1"; if (!hab && !bbDosToques(t, "rast" + t.dataset.mat, "¿Seguro? Tocá de nuevo para quitarlo")) return; t.disabled = true;
+    try { await bbApi({ accion: "acceso", email: t.dataset.email, material: t.dataset.mat, habilitar: hab }); toast(hab ? "Acceso devuelto ✓" : "Acceso quitado", "ok"); bbRastrear(BB.rastC); } catch (err) { toast(err.message, "warn"); t.disabled = false; } return; }
+});
+document.addEventListener("submit", (e) => { if (e.target && e.target.id === "bbRastF") { e.preventDefault(); bbRastrear(document.getElementById("bbRastC").value); } });
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
