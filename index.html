@@ -1759,6 +1759,39 @@ textarea.bb-inp{resize:vertical;line-height:1.45}
 .pf-hoja th,.pf-hoja td{text-transform:none;letter-spacing:0;font-size:inherit}
 .pf-hoja .pf-datos{table-layout:fixed}
 @media (max-width:820px){.pf-bar{position:static}.pf-bar .pf-acts .btn{flex:1 1 calc(50% - 8px);justify-content:center}.pf-datos th{width:40%}}
+/* v2: momentos, tablas, DUA y rúbrica */
+.pf-nota{color:var(--muted);font-size:12.5px;margin:4px 0 0}
+.pf-msg ul{margin:6px 0 0;padding-left:18px;font-weight:600}.pf-msg li{margin-bottom:2px}
+.pf-clase dl{border-top:0}
+.pf-mo{display:grid;grid-template-columns:150px 1fr;border-top:1px solid #D5DDEA}
+.pf-mo-l{padding:8px 10px;display:grid;align-content:start;gap:2px}
+.pf-mo-l b{font-size:12.5px;letter-spacing:.06em}.pf-mo-l small{color:#5B6476;font-size:12px}
+.pf-mo-c{padding:8px 10px;min-width:0}.pf-mo-c>p{margin:0 0 4px}
+.pf-mo-inicio .pf-mo-l{background:#E6F0FD}.pf-mo-inicio b{color:#2F6FE0}
+.pf-mo-desarrollo .pf-mo-l{background:#FDEEE4}.pf-mo-desarrollo b{color:#E8743B}
+.pf-mo-cierre .pf-mo-l{background:#E5F5EC}.pf-mo-cierre b{color:#2E9E6B}
+.pf-pag{font-style:normal;font-weight:800;color:#E8743B;font-size:12.5px;white-space:nowrap}
+.pf-q{margin-top:6px}.pf-q>b,.pf-int>b{display:block;font-size:12px;margin-bottom:2px}
+.pf-q li{font-style:italic}.pf-mo-inicio .pf-q>b{color:#2F6FE0}.pf-mo-cierre .pf-q>b{color:#2E9E6B}
+.pf-int{margin-top:6px;background:#FFF8F3;border-radius:4px;padding:6px 8px}.pf-int>b{color:#E8743B}
+.pf-mat{margin-top:3px;font-size:13px}
+.pf-clase .pf-dt-ap{background:#EFEAFE;color:#7A5AF8}.pf-clase .pf-dd-ap{background:#FAF8FF}
+.pf-clase .pf-dt-de{background:#FFF7DD;color:#9A6B00}.pf-clase .pf-dd-de{background:#FFFDF4}
+.pf-tb{width:100%;border-collapse:collapse;margin:4px 0 8px;font-size:13px}
+.pf-tb th{background:#1A2744;color:#fff;text-align:left;padding:6px 8px;font-weight:800}
+.pf-tb td{border:1px solid #D5DDEA;padding:6px 8px;vertical-align:top}
+.pf-tb tbody tr:nth-child(even) td{background:#F6F8FC}
+.pf-tb .pf-n{font-weight:800;color:#1A2744;white-space:nowrap}.pf-tb .pf-g{color:#5B6476}
+.pf-tb .pf-num{text-align:center;font-weight:800;color:#E8743B;font-size:17px}
+.pf-tb small{color:#5B6476}
+.pf-dua{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.pf-dua>div{border:1px solid #D5DDEA;border-radius:4px;overflow:hidden;background:#FAF8FF}
+.pf-dua h5{margin:0;background:#7A5AF8;color:#fff;padding:6px 8px;font-size:13px}.pf-dua .pf-ul{padding:6px 8px 4px 24px;font-size:13px}
+.pf-perf td:first-child{background:#EFEAFE;color:#7A5AF8;width:28%}
+.pf-rub th.l{background:#2E9E6B}.pf-rub th.p{background:#E8743B}.pf-rub th.a{background:#7A5AF8}
+.pf-rub td{font-size:12.5px}.pf-rub td:first-child{background:#EEF3FB;color:#1A2744;width:22%}
+@media (max-width:820px){.pf-mo{grid-template-columns:minmax(0,1fr)}.pf-dua{grid-template-columns:minmax(0,1fr)}.pf-tb{font-size:12px}.pf-papel{overflow-x:visible}}
+.pf-mo-c>p:empty{display:none}
 
 /* ===== mis imágenes (elementos propios) ===== */
 #isDlg .me{display:grid;gap:10px;padding:14px;margin-bottom:12px;border-radius:18px;border:1.5px dashed color-mix(in srgb,#F2B705 60%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,#F2B705 9%,var(--surface)),var(--surface));transition:border-color .15s,background .15s}
@@ -27732,12 +27765,14 @@ document.addEventListener("click", async (e) => { const b = e.target.closest && 
 
 // =====================================================================
 // PLANIFICACIONES: a partir del PDF de un cuadernillo, Claude arma una planificación didáctica
-// profesional (secuencia de clases, contenidos, inclusión y evaluación), se revisa y se descarga en PDF.
+// profesional y práctica (mapa del cuadernillo, clases con momentos, preguntas disparadoras,
+// intervenciones docentes, apoyos por clase, DUA y rúbrica), se revisa y se descarga en PDF.
 // =====================================================================
-const PF = { paso: "subir", file: null, nombreArchivo: "", paginas: 0, texto: [], datos: null, plan: null, id: null, lista: null, abort: null, etapa: "", err: "" };
+const PF = { paso: "subir", nombreArchivo: "", paginas: 0, texto: [], imgs: [], mini: "", datos: null, plan: null, id: null, lista: null, abort: null, etapa: "", err: "", vio: false };
 const PF_ART = "https://claude.ai/artifact/JWHj1W14d5x9TcGaAb4y5y";
 const PF_AREAS = ["Ciencias Sociales", "Prácticas del Lenguaje", "Matemática", "Ciencias Naturales", "Formación Ética y Ciudadana", "Educación Artística", "Áreas integradas"];
 const PF_JUR = ["Núcleos de Aprendizaje Prioritarios (NAP)", "Provincia de Buenos Aires", "Ciudad de Buenos Aires", "Córdoba", "Santa Fe", "Mendoza", "Otra jurisdicción"];
+const PF_MOD = ["Escuela común", "Escuela común con estudiantes con apoyos o PPI", "Escuela especial", "Plurigrado"];
 const PF_IC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M9 10h6M9 14h6M9 18h3"/></svg>';
 if (typeof COLLECTIONS !== "undefined" && Array.isArray(COLLECTIONS) && !COLLECTIONS.includes("planificaciones")) COLLECTIONS.push("planificaciones");
 
@@ -27756,91 +27791,179 @@ const pfEsc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;",
 const pfSlug = (t) => String(t || "planificacion").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "planificacion";
 // tipografía prolija: espacios, signos, comillas y mayúscula inicial
 function pfPulir(t) { let s = String(t ?? "").replace(/[​-‍﻿]/g, "").replace(/\s+/g, " ").trim();
-  s = s.replace(/\s+([,.;:!?)\]])/g, "$1").replace(/([¿¡(\[])\s+/g, "$1").replace(/\.{4,}/g, "…").replace(/\.\.\./g, "…").replace(/"([^"]+)"/g, "“$1”").replace(/ - /g, " – ").replace(/,(?=\S)(?!\d)/g, ", ").replace(/\s{2,}/g, " ");
+  s = s.replace(/\s+([,.;:!?)\]»”])/g, "$1").replace(/([¿¡(\[«“])\s+/g, "$1").replace(/\.{4,}/g, "…").replace(/\.\.\./g, "…").replace(/"([^"]+)"/g, "“$1”").replace(/ - /g, " – ").replace(/,(?=[^\s\d])/g, ", ").replace(/\s{2,}/g, " ");
   if (s && /^[a-záéíóúñü]/.test(s)) s = s[0].toUpperCase() + s.slice(1); return s; }
+const pfMin = (t) => { const m = String(t || "").match(/(\d+)\s*(?:min|’|')/i) || String(t || "").match(/^\s*(\d+)\s*$/); return m ? +m[1] : 0; };
+function pfDurMin(d) { const s = String(d || ""); const m = s.match(/(\d+)\s*m[oó]dulos?\s*de\s*(\d+)/i); if (m) return +m[1] * +m[2]; return pfMin(s) || (+(s.match(/\d+/) || [0])[0]); }
+// normaliza la respuesta (y planificaciones guardadas con el formato anterior)
 function pfLimpiarPlan(p, paginas) {
-  const S = (x) => pfPulir(x), L = (a) => (Array.isArray(a) ? a : a ? [a] : []).map(S).filter(Boolean);
-  const pags = (txt) => { const t = S(txt); if (!t) return ""; const nums = (t.match(/\d+/g) || []).map(Number); if (paginas && nums.some((n) => n < 1 || n > paginas)) { const ok = nums.filter((n) => n >= 1 && n <= paginas); const u = [...new Set(ok)].sort((a, b) => a - b); return !u.length ? "" : u.length === 1 ? "Página " + u[0] : "Páginas " + u.slice(0, -1).join(", ") + " y " + u[u.length - 1]; } return t.replace(/^Páginas (\d+)$/, "Página $1"); };
-  const out = { titulo: S(p.titulo), subtitulo: S(p.subtitulo), area: S(p.area), ciclo: S(p.ciclo), grado: S(p.grado), duracionClase: S(p.duracionClase), cantidadClases: 0,
+  p = p || {}; const S = (x) => pfPulir(typeof x === "object" && x ? x.texto || x.text || "" : x), L = (a) => (Array.isArray(a) ? a : a ? [a] : []).map(S).filter(Boolean);
+  const pags = (txt) => { let t = S(txt); if (!t) return ""; if (/^\d/.test(t)) t = "Páginas " + t; const nums = (t.match(/\d+/g) || []).map(Number);
+    if (paginas && nums.some((n) => n < 1 || n > paginas)) { const u = [...new Set(nums.filter((n) => n >= 1 && n <= paginas))].sort((a, b) => a - b); return !u.length ? "" : u.length === 1 ? "Página " + u[0] : "Páginas " + u.slice(0, -1).join(", ") + " y " + u[u.length - 1]; }
+    return t.replace(/^P[aá]g(?:inas?|s?\.)\s*/i, "Páginas ").replace(/^Páginas (\d+)$/, "Página $1"); };
+  const mom = (m, conPasos) => { if (typeof m === "string" || Array.isArray(m)) m = conPasos ? { pasos: Array.isArray(m) ? m : [m] } : { texto: m }; m = m || {};
+    const o = { tiempo: S(m.tiempo).replace(/^(\d+)$/, "$1 min").replace(/minutos?/i, "min"), texto: S(m.texto || m.descripcion), preguntas: L(m.preguntas) };
+    if (conPasos) { o.pasos = (Array.isArray(m.pasos) ? m.pasos : []).map((x) => (typeof x === "string" ? { texto: S(x), paginas: "" } : { texto: S(x && x.texto), paginas: pags(x && x.paginas) })).filter((x) => x.texto); o.intervenciones = L(m.intervenciones); }
+    return o; };
+  const out = { v: 2, titulo: S(p.titulo), subtitulo: S(p.subtitulo), area: S(p.area), areas: L(p.areas), ciclo: S(p.ciclo), grado: S(p.grado), duracionClase: S(p.duracionClase), cantidadClases: 0,
     fundamentacion: L(p.fundamentacion), propositos: L(p.propositos), objetivos: L(p.objetivos),
     contenidos: (Array.isArray(p.contenidos) ? p.contenidos : []).map((c) => (typeof c === "string" ? { eje: "", items: [S(c)] } : { eje: S(c && c.eje), items: L(c && c.items) })).filter((c) => c.items.length),
-    clases: (Array.isArray(p.clases) ? p.clases : []).slice(0, 12).map((c, i) => ({ numero: i + 1, titulo: S(c && c.titulo) || "Clase " + (i + 1), duracion: S(c && c.duracion), objetivo: S(c && c.objetivo), inicio: S(c && c.inicio), desarrollo: L(c && c.desarrollo), cierre: S(c && c.cierre), paginas: pags(c && c.paginas), recursos: L(c && c.recursos) })),
-    inclusion: L(p.inclusion), evaluacion: { criterios: L(p.evaluacion && p.evaluacion.criterios), instrumentos: L(p.evaluacion && p.evaluacion.instrumentos), indicadores: L(p.evaluacion && p.evaluacion.indicadores) },
-    recursos: L(p.recursos), referencias: L(p.referencias) };
+    mapa: (Array.isArray(p.mapa) ? p.mapa : []).map((m) => ({ paginas: pags(m && m.paginas), actividad: S(m && m.actividad), uso: S(m && m.uso) })).filter((m) => m.actividad),
+    clases: (Array.isArray(p.clases) ? p.clases : []).slice(0, 12).map((c, i) => { c = c || {}; return { numero: i + 1, titulo: S(c.titulo) || "Clase " + (i + 1), duracion: S(c.duracion), paginas: pags(c.paginas), objetivo: S(c.objetivo), agrupamiento: S(c.agrupamiento), materiales: L(c.materiales || c.recursos),
+      inicio: mom(c.inicio, false), desarrollo: mom(c.desarrollo, true), cierre: mom(c.cierre, false), evidencia: S(c.evidencia), apoyos: L(c.apoyos), desafio: S(c.desafio) }; }),
+    inclusion: { dua: [], perfiles: [] }, evaluacion: { criterios: L(p.evaluacion && p.evaluacion.criterios), instrumentos: L(p.evaluacion && p.evaluacion.instrumentos), rubrica: [] },
+    proyeccion: L(p.proyeccion), recursos: L(p.recursos), referencias: L(p.referencias) };
+  const inc = p.inclusion;
+  if (Array.isArray(inc)) out.inclusion.perfiles = L(inc).length ? [{ perfil: "Estrategias generales", apoyos: L(inc) }] : [];
+  else if (inc) { out.inclusion.dua = (Array.isArray(inc.dua) ? inc.dua : []).map((d) => ({ principio: S(d && d.principio), estrategias: L(d && d.estrategias) })).filter((d) => d.estrategias.length);
+    out.inclusion.perfiles = (Array.isArray(inc.perfiles) ? inc.perfiles : []).map((d) => ({ perfil: S(d && d.perfil), apoyos: L(d && d.apoyos) })).filter((d) => d.apoyos.length); }
+  const ev = p.evaluacion || {};
+  out.evaluacion.rubrica = (Array.isArray(ev.rubrica) ? ev.rubrica : []).map((r) => ({ criterio: S(r && r.criterio), logrado: S(r && r.logrado), enProceso: S(r && (r.enProceso || r.en_proceso)), conAyuda: S(r && (r.conAyuda || r.con_ayuda)) })).filter((r) => r.criterio);
+  if (!out.evaluacion.rubrica.length && Array.isArray(ev.indicadores)) out.evaluacion.rubrica = L(ev.indicadores).map((t) => ({ criterio: t, logrado: "", enProceso: "", conAyuda: "" }));
   out.cantidadClases = out.clases.length; return out; }
-function pfFaltas(p) { const f = []; if (!p.titulo) f.push("título"); if (!p.fundamentacion.length) f.push("fundamentación"); if (!p.objetivos.length) f.push("objetivos"); if (!p.contenidos.length) f.push("contenidos"); if (!p.clases.length) f.push("secuencia de clases");
-  p.clases.forEach((c) => { if (!c.inicio || !c.desarrollo.length || !c.cierre) f.push(`momentos de la clase ${c.numero}`); }); if (!p.evaluacion.criterios.length) f.push("criterios de evaluación"); return f; }
+// controles de calidad que se muestran antes de descargar
+function pfFaltas(p, paginas) { const f = [];
+  if (!p.titulo) f.push("Falta el título."); if (!p.fundamentacion.length) f.push("Falta la fundamentación."); if (!p.objetivos.length) f.push("Faltan los objetivos."); if (!p.contenidos.length) f.push("Faltan los contenidos."); if (!p.clases.length) f.push("Falta la secuencia de clases.");
+  const dur = pfDurMin(p.duracionClase);
+  p.clases.forEach((c) => { const n = c.numero;
+    if (!c.inicio.texto || !c.desarrollo.pasos.length || !c.cierre.texto) f.push(`Clase ${n}: le falta el inicio, el desarrollo o el cierre.`);
+    if (!c.inicio.preguntas.length) f.push(`Clase ${n}: no tiene preguntas disparadoras.`);
+    if (!c.paginas) f.push(`Clase ${n}: no indica qué páginas del cuadernillo usa.`);
+    const suma = pfMin(c.inicio.tiempo) + pfMin(c.desarrollo.tiempo) + pfMin(c.cierre.tiempo), dc = pfDurMin(c.duracion) || dur;
+    if (suma && dc && Math.abs(suma - dc) > 5) f.push(`Clase ${n}: los tiempos suman ${suma} min y la clase dura ${dc} min.`); });
+  if (!p.evaluacion.criterios.length) f.push("Faltan los criterios de evaluación.");
+  if (paginas && p.mapa.length) { const usadas = new Set(); p.clases.forEach((c) => [c.paginas, ...c.desarrollo.pasos.map((x) => x.paginas)].forEach((t) => pfRango(t).forEach((n) => usadas.add(n))));
+    const act = new Set(); p.mapa.forEach((m) => pfRango(m.paginas).forEach((n) => act.add(n))); const sin = [...act].filter((n) => !usadas.has(n)).sort((a, b) => a - b);
+    if (sin.length > 3) f.push(`Hay páginas del mapa que ninguna clase usa: ${sin.slice(0, 12).join(", ")}${sin.length > 12 ? "…" : ""}.`); }
+  return f; }
+function pfRango(t) { const s = String(t || ""), out = []; const re = /(\d+)\s*(?:a|al|-|–)\s*(\d+)|(\d+)/g; let m; while ((m = re.exec(s))) { if (m[1]) { for (let i = +m[1]; i <= +m[2] && i - m[1] < 80; i++) out.push(i); } else out.push(+m[3]); } return out; }
 
-// ---------- lectura del PDF ----------
+// ---------- lectura del PDF (texto + imagen de cada página) ----------
 async function pfLeerPDF(file) {
-  const lib = await lzPdfjs(); const buf = await file.arrayBuffer(); const pdf = await lib.getDocument({ data: buf }).promise; const T = [];
-  for (let i = 1; i <= pdf.numPages; i++) { const pg = await pdf.getPage(i); const tc = await pg.getTextContent(); let s = ""; tc.items.forEach((it) => { s += it.str + (it.hasEOL ? "\n" : " "); }); T.push(s.replace(/[ \t]+/g, " ").replace(/\n\s+/g, "\n").trim()); }
-  let mini = ""; try { const pg = await pdf.getPage(1), vp0 = pg.getViewport({ scale: 1 }), sc = 220 / vp0.width, vp = pg.getViewport({ scale: sc }), cv = document.createElement("canvas"); cv.width = vp.width; cv.height = vp.height; await pg.render({ canvasContext: cv.getContext("2d"), viewport: vp }).promise; mini = cv.toDataURL("image/jpeg", 0.8); } catch {}
+  const lib = await lzPdfjs(); const buf = await file.arrayBuffer(); const pdf = await lib.getDocument({ data: buf }).promise; const T = [], I = [];
+  for (let i = 1; i <= pdf.numPages; i++) { const pg = await pdf.getPage(i); const tc = await pg.getTextContent(); let s = ""; tc.items.forEach((it) => { s += it.str + (it.hasEOL ? "\n" : " "); }); T.push(s.replace(/\s*´\s*/g, "").replace(/[ \t]+/g, " ").replace(/\n\s+/g, "\n").trim());
+    try { const vp0 = pg.getViewport({ scale: 1 }), sc = 640 / vp0.width, vp = pg.getViewport({ scale: sc }), cv = document.createElement("canvas"); cv.width = Math.round(vp.width); cv.height = Math.round(vp.height); const cx = cv.getContext("2d"); cx.fillStyle = "#fff"; cx.fillRect(0, 0, cv.width, cv.height); await pg.render({ canvasContext: cx, viewport: vp }).promise; I.push(cv); } catch { I.push(null); }
+    PF.etapaLeer = `Página ${i} de ${pdf.numPages}`; const el = document.getElementById("pfLeerN"); if (el) el.textContent = PF.etapaLeer; }
+  let mini = ""; try { if (I[0]) { const c = document.createElement("canvas"); c.width = 260; c.height = Math.round(I[0].height * 260 / I[0].width); c.getContext("2d").drawImage(I[0], 0, 0, c.width, c.height); mini = c.toDataURL("image/jpeg", 0.82); } } catch {}
   let titulo = ""; try { const md = await pdf.getMetadata(); titulo = (md && md.info && md.info.Title) || ""; } catch {}
-  pdf.destroy(); return { paginas: T.length, texto: T, mini, titulo }; }
+  pdf.destroy(); return { paginas: T.length, texto: T, imgs: I, mini, titulo }; }
+// arma hojas de contacto numeradas (varias páginas por imagen) para que Claude vea todo el cuadernillo
+async function pfHojas(maxImgs) { const pgs = PF.imgs.map((c, i) => ({ c, n: i + 1 })).filter((x) => x.c); if (!pgs.length || !maxImgs) return [];
+  const pedido = Math.min(9, Math.max(1, Math.ceil(pgs.length / maxImgs))), cols = pedido === 1 ? 1 : pedido <= 4 ? 2 : 3, filas = Math.ceil(pedido / cols), porHoja = pedido === 1 ? 1 : cols * filas;
+  const W = cols === 1 ? 1100 : 1560, cw = Math.floor(W / cols), ch = Math.round(cw * 1.414) + 34, out = [];
+  for (let k = 0; k < pgs.length; k += porHoja) { const grupo = pgs.slice(k, k + porHoja), rows = Math.ceil(grupo.length / cols), cv = document.createElement("canvas"); cv.width = W; cv.height = rows * ch; const cx = cv.getContext("2d"); cx.fillStyle = "#fff"; cx.fillRect(0, 0, cv.width, cv.height);
+    grupo.forEach((g, j) => { const x = (j % cols) * cw, y = Math.floor(j / cols) * ch; cx.fillStyle = "#1A2744"; cx.fillRect(x, y, cw, 30); cx.fillStyle = "#fff"; cx.font = "bold 20px sans-serif"; cx.fillText("PÁGINA " + g.n, x + 10, y + 22);
+      const h = Math.min(ch - 34, Math.round(g.c.height * (cw - 8) / g.c.width)); cx.drawImage(g.c, x + 4, y + 32, cw - 8, h); cx.strokeStyle = "#999"; cx.strokeRect(x + 1, y + 1, cw - 2, ch - 2); });
+    out.push(await new Promise((ok) => cv.toBlob(ok, "image/jpeg", 0.8))); void filas; }
+  return out.filter(Boolean); }
 
 // ---------- generación con Claude ----------
-function pfPrompt(d, texto) {
-  const cuerpo = texto.map((t, i) => `[Página ${i + 1}]\n${t || "(página sin texto: probablemente ilustración o actividad gráfica)"}`).join("\n\n").slice(0, 60000);
-  return `Sos una especialista en didáctica y en diseño curricular de la escuela primaria argentina. Vas a escribir una PLANIFICACIÓN DIDÁCTICA profesional, lista para presentar a dirección, basada EXCLUSIVAMENTE en el cuadernillo cuyo texto está abajo.
-
-DATOS DE LA PLANIFICACIÓN
-- Material: ${d.material}
-- Área: ${d.area}
-- Ciclo: ${d.ciclo}
-- Grado o grados: ${d.grado}
-- Cantidad de clases: ${d.clases === "auto" ? "la que mejor se ajuste al material (entre 4 y 8)" : d.clases}
-- Duración de cada clase: ${d.duracion}
-- Marco curricular: ${d.jurisdiccion}
-- Adaptaciones para la inclusión: ${d.inclusion ? "sí, con propuestas concretas para estudiantes con discapacidad intelectual, dificultades de lectura o baja visión, usando las actividades del cuadernillo" : "no hace falta una sección extensa"}
-${d.notas ? "- Indicaciones de la docente: " + d.notas : ""}
-
-REGLAS
-1. Usá solo actividades que estén en el cuadernillo. Cada clase debe indicar las páginas que usa ("Páginas 3 a 5" o "Páginas 4, 6 y 7"); el cuadernillo tiene ${texto.length} páginas. Podés proponer un inicio y un cierre breves (conversación, lectura de imágenes, puesta en común) que acompañen esas actividades.
-2. Recorré el cuadernillo completo y en orden: entre todas las clases tienen que quedar usadas sus actividades principales.
-3. Redactá en español rioplatense formal, en tercera persona y con lenguaje propio de una planificación ("Se propone…", "Los estudiantes…"). Sin errores de ortografía, con tildes y signos correctos.
-4. Los contenidos tienen que ser coherentes con el marco curricular indicado y con el área, redactados como en los diseños curriculares, sin inventar códigos ni números de documentos.
-5. No inventes autores, libros, estadísticas ni citas. En "referencias" poné solo documentos oficiales reales y generales (por ejemplo "Núcleos de Aprendizaje Prioritarios – Ministerio de Educación de la Nación" o el Diseño Curricular de la jurisdicción indicada) y el propio cuadernillo.
-6. Objetivos con verbos observables (reconocer, identificar, describir, producir, comparar…). Indicadores de evaluación concretos y observables.
-7. En "desarrollo" escribí de 2 a 5 pasos claros. Cada texto, conciso y concreto, sin relleno.
-
-Respondé SOLO con un objeto JSON con esta forma exacta (sin texto antes ni después):
-{
+const PF_FORMATO = `{
  "titulo": "nombre de la propuesta",
  "subtitulo": "tema o efeméride y enfoque, en una línea",
- "area": "...", "ciclo": "...", "grado": "...", "duracionClase": "... minutos",
- "fundamentacion": ["párrafo 1", "párrafo 2", "párrafo 3 opcional"],
- "propositos": ["propósito de enseñanza (lo que se propone la docente)", "..."],
- "objetivos": ["objetivo de aprendizaje", "..."],
- "contenidos": [{"eje": "nombre del eje o bloque", "items": ["contenido", "..."]}],
- "clases": [{"titulo": "...", "duracion": "... minutos", "objetivo": "...", "inicio": "...", "desarrollo": ["paso", "..."], "cierre": "...", "paginas": "Páginas ...", "recursos": ["...", "..."]}],
- "inclusion": ["adaptación concreta", "..."],
- "evaluacion": {"criterios": ["..."], "instrumentos": ["..."], "indicadores": ["..."]},
+ "area": "área principal", "areas": ["otras áreas que se integran"],
+ "ciclo": "...", "grado": "...", "duracionClase": "60 minutos",
+ "fundamentacion": ["párrafo 1", "párrafo 2", "párrafo 3"],
+ "propositos": ["lo que se propone la docente al enseñar"],
+ "objetivos": ["lo que se espera que los estudiantes logren, con verbo observable"],
+ "contenidos": [{"eje": "eje o bloque del diseño curricular", "items": ["contenido"]}],
+ "mapa": [{"paginas": "Páginas 2 a 4", "actividad": "qué hay en esas páginas", "uso": "para qué sirve y en qué clase se usa"}],
+ "clases": [{
+   "titulo": "...", "duracion": "60 minutos", "paginas": "Páginas 2 a 5",
+   "objetivo": "objetivo específico de la clase",
+   "agrupamiento": "cómo se organiza el grupo en cada momento",
+   "materiales": ["..."],
+   "inicio": {"tiempo": "10 min", "texto": "qué hace la docente para abrir la clase, con la consigna textual entre comillas", "preguntas": ["pregunta disparadora abierta"]},
+   "desarrollo": {"tiempo": "40 min", "pasos": [{"texto": "paso concreto con la consigna", "paginas": "Página 6"}], "intervenciones": ["qué observa, qué pregunta o cómo ayuda la docente mientras trabajan"]},
+   "cierre": {"tiempo": "10 min", "texto": "cómo se cierra y se sistematiza lo aprendido", "preguntas": ["pregunta de cierre o metacognición"]},
+   "evidencia": "qué produce o hace cada estudiante que permite evaluar",
+   "apoyos": ["apoyo concreto para esta clase (inclusión)"],
+   "desafio": "propuesta extra para quienes terminan antes o necesitan más desafío"
+ }],
+ "inclusion": {
+   "dua": [{"principio": "Múltiples formas de representación", "estrategias": ["..."]}, {"principio": "Múltiples formas de acción y expresión", "estrategias": ["..."]}, {"principio": "Múltiples formas de implicación", "estrategias": ["..."]}],
+   "perfiles": [{"perfil": "Estudiantes con discapacidad intelectual", "apoyos": ["..."]}, {"perfil": "Estudiantes que todavía no leen de manera convencional", "apoyos": ["..."]}, {"perfil": "Estudiantes con baja visión", "apoyos": ["..."]}, {"perfil": "Estudiantes con dificultades de atención", "apoyos": ["..."]}]
+ },
+ "evaluacion": {"criterios": ["..."], "instrumentos": ["..."], "rubrica": [{"criterio": "...", "logrado": "descripción observable", "enProceso": "descripción", "conAyuda": "descripción"}]},
+ "proyeccion": ["propuestas para compartir con las familias, la escuela o el acto"],
  "recursos": ["..."],
  "referencias": ["..."]
-}
+}`;
+const PF_EJEMPLO = "{\"titulo\": \"La Vuelta de Obligado: el combate en el río Paraná\", \"duracion\": \"60 minutos\", \"paginas\": \"Páginas 4, 6, 7 y 8\", \"objetivo\": \"Identificar el lugar, los protagonistas y los elementos de la Vuelta de Obligado, y comprender qué sucedió y por qué es importante.\", \"agrupamiento\": \"Grupo total para observar la escena; parejas para las actividades de comprensión; puesta en común en grupo total.\", \"materiales\": [\"Escena de la página 4 proyectada o ampliada\", \"Una cadena o soga para la dramatización\", \"Tarjetas con las palabras PARANÁ, CADENAS, MANSILLA y FRANCIA\"], \"inicio\": {\"tiempo\": \"10 min\", \"texto\": \"La docente proyecta la escena de la Vuelta de Obligado y propone mirarla en silencio un minuto, «como si fuéramos detectives». Luego cruza una soga de lado a lado del aula y pregunta para qué podría servir en un río.\", \"preguntas\": [\"¿Qué ven en la imagen? ¿Dónde creen que está pasando?\", \"¿De qué países son las banderas de los barcos? ¿Cómo se dan cuenta?\", \"¿Para qué habrán puesto cadenas atravesando el río?\", \"¿Cómo se sentirían las personas que esperaban en la orilla?\"]}, \"desarrollo\": {\"tiempo\": \"40 min\", \"pasos\": [{\"texto\": \"Lectura guiada de las referencias de la escena: Mansilla, «jefe de la defensa argentina»; las tres cadenas sostenidas por 24 lanchones; los cañones, el bergantín Republicano y los barcos de Francia e Inglaterra. Se lee el recuadro «¿Qué sucedió?».\", \"paginas\": \"Página 4\"}, {\"texto\": \"En parejas, completan las oraciones con las palabras del recuadro (pueden escribirlas o recortarlas y pegarlas) y ordenan la oración «Mansilla era el jefe de la defensa».\", \"paginas\": \"Página 6\"}, {\"texto\": \"Pintan la opción correcta en cada pregunta, buscando la respuesta en la escena.\", \"paginas\": \"Página 7\"}, {\"texto\": \"Unen cada elemento con su nombre y resuelven el verdadero o falso. La docente lee cada afirmación en voz alta para todo el grupo.\", \"paginas\": \"Página 8\"}], \"intervenciones\": [\"Antes de resolver, preguntar «¿En qué parte de la escena podemos encontrar esa respuesta?» para que vuelvan a la imagen en lugar de adivinar.\", \"En el verdadero o falso, pedir que expliquen por qué es falsa la afirmación «la batalla ocurrió en 2026».\", \"Formar parejas que combinen a quien lee con más autonomía y a quien todavía no lee de manera convencional, con roles claros (uno lee, otro señala y pega).\"]}, \"cierre\": {\"tiempo\": \"10 min\", \"texto\": \"Dramatización breve: un grupo sostiene la soga como «las cadenas» y otro representa los barcos que intentan pasar. Después se lee en voz alta la conclusión de la infografía: aunque los barcos pasaron, la resistencia defendió nuestra soberanía.\", \"preguntas\": [\"¿Qué hicieron Mansilla y los soldados para defender el río?\", \"¿Por qué dicen que fue importante, si los barcos lograron pasar?\", \"¿Qué fue lo más difícil de las actividades de hoy y cómo lo resolvieron?\"]}, \"evidencia\": \"Páginas 6 a 8 resueltas en pareja y explicación oral de qué sucedió en la Vuelta de Obligado.\", \"apoyos\": [\"Entregar las palabras del recuadro de la página 6 ya recortadas para pegar en lugar de escribir.\", \"Reducir la cantidad de ítems por resolver y priorizar la página 8 (unir con el nombre).\", \"Leer cada consigna en voz alta y mostrar un ejemplo resuelto en el pizarrón.\", \"Ampliar la escena o permitir mirarla en una tablet para quienes tienen baja visión.\"], \"desafio\": \"Escribir en el cuaderno tres preguntas que le harían a un soldado que estuvo en la orilla del río Paraná.\"}";
+function pfPrompt(d, texto, conImgs) {
+  const cuerpo = texto.map((t, i) => `[Página ${i + 1}] ${t ? t.slice(0, 900) : "(sin texto: es una imagen; mirala en las hojas adjuntas)"}`).join("\n").slice(0, 70000);
+  return `Sos una docente y asesora pedagógica argentina con muchos años de experiencia en el nivel primario, especialista en planificación por secuencias didácticas, en educación inclusiva y en el Diseño Universal para el Aprendizaje (DUA). Vas a escribir una PLANIFICACIÓN DIDÁCTICA profesional y, sobre todo, PRÁCTICA: una herramienta que una docente pueda llevar al aula y usar tal cual, basada EXCLUSIVAMENTE en el cuadernillo de abajo.
 
-TEXTO DEL CUADERNILLO
+${conImgs ? "Te adjunto el cuadernillo completo en imágenes: cada hoja muestra varias páginas, cada una con su número en una franja azul («PÁGINA 7»). Miralas con atención: muchas páginas (infografías, escenas, juegos, recortables) tienen el contenido solo en la imagen. Usá los datos que aparecen ahí (fechas, nombres, hechos, consignas) y no inventes nada que no esté.\n\n" : ""}DATOS DE LA PLANIFICACIÓN
+- Material: ${d.material}
+- Área principal: ${d.area}
+- Ciclo: ${d.ciclo} · Grado o grados: ${d.grado}
+- Cantidad de clases: ${d.clases === "auto" ? "la que mejor aproveche el cuadernillo (entre 4 y 8)" : d.clases}
+- Duración de cada clase: ${d.duracion}
+- Marco curricular: ${d.jurisdiccion}
+- Contexto: ${d.modalidad}${d.grupo ? "\n- Características del grupo (según la docente): " + d.grupo : ""}
+- Apartado de inclusión: ${d.inclusion ? "completo (DUA, apoyos por perfil y apoyos dentro de cada clase)" : "breve"}
+${d.notas ? "- Indicaciones de la docente: " + d.notas : ""}
+
+CÓMO TIENE QUE SER
+1. Primero recorré todo el cuadernillo y armá el "mapa": agrupá las páginas por actividad (portada, infografías, comprensión, juegos, recortables, tapas, cierre) e indicá para qué sirve cada grupo y en qué clase se usa. Todas las páginas con actividades tienen que quedar usadas en alguna clase; las que no tienen actividad (portada, agradecimiento) se marcan como "Sin uso en clase". El cuadernillo tiene ${texto.length} páginas.
+2. Ordená las clases como una secuencia con sentido: primero se presenta el tema (infografías, conversación), después se comprende y se trabaja con el contenido, luego se integra con otras áreas (lengua, matemática, arte) y al final se juega, se produce y se comparte.
+3. Cada clase tiene tres momentos con tiempos que suman exactamente la duración de la clase:
+   - INICIO: cómo abre la docente, con la consigna textual entre comillas y 3 o 4 preguntas disparadoras abiertas, cercanas a la vida de los chicos y adecuadas a la edad (nada de preguntas de sí o no).
+   - DESARROLLO: de 3 a 5 pasos concretos, en orden, cada uno con la página exacta del cuadernillo que usa y la consigna. Variá el agrupamiento (grupo total, parejas, pequeños grupos, individual). Incluí de 2 a 4 intervenciones docentes: qué mirar mientras trabajan, qué preguntar si alguien se traba, cómo ayudar sin dar la respuesta.
+   - CIERRE: puesta en común o sistematización concreta (un afiche, un registro en el cuaderno, una ronda) y 2 o 3 preguntas de cierre o de reflexión sobre lo aprendido.
+4. Para cada clase indicá la evidencia (qué produce cada estudiante que permite evaluar), de 2 a 4 apoyos concretos de inclusión para ESA clase (por ejemplo: leer la consigna en voz alta, pictogramas, tarjetas con las palabras del recuadro, respuesta oral o señalando, letra ampliada, tutor par, recortes ya preparados, menos ítems por página) y un desafío para quienes terminan antes.
+5. Inclusión general: estrategias de los tres principios del DUA y apoyos por perfil, todo aplicado a las actividades de este cuadernillo (nada genérico).
+6. Evaluación formativa: criterios, instrumentos (registro de observación, lista de cotejo, producciones del cuadernillo) y una rúbrica de 3 a 5 criterios con descripciones observables para "Logrado", "En proceso" y "Con ayuda".
+7. Contenidos coherentes con el marco curricular y el área, redactados como en los diseños curriculares, sin inventar códigos.
+8. No inventes autores, libros, estadísticas, citas ni datos históricos. En "referencias" poné solo documentos oficiales reales y generales (por ejemplo, "Núcleos de Aprendizaje Prioritarios. Ministerio de Educación de la Nación", el Diseño Curricular de la jurisdicción indicada, "Resolución CFE N.º 311/16") y el propio cuadernillo.
+9. Español rioplatense formal, sin errores de ortografía, con tildes y signos de apertura. En la fundamentación y los propósitos, tercera persona ("Se propone…"). Las consignas para los chicos, en un lenguaje simple y cálido, entre comillas. Textos concretos y útiles, sin relleno ni frases vacías.
+
+EJEMPLO DEL NIVEL DE DETALLE ESPERADO PARA UNA CLASE (es de otro cuadernillo: tomalo solo como referencia de calidad, no copies su contenido):
+${PF_EJEMPLO}
+
+Respondé SOLO con un objeto JSON con esta forma exacta (sin texto antes ni después):
+${PF_FORMATO}
+
+TEXTO DE CADA PÁGINA
 ${cuerpo}`; }
-function pfPromptRevision(plan, d, paginas) {
-  return `Sos una correctora y asesora pedagógica. Revisá esta planificación didáctica (JSON) para el material "${d.material}" (${d.area}, ${d.ciclo}, ${d.grado}; el cuadernillo tiene ${paginas} páginas) y devolvela corregida, con la MISMA estructura JSON exacta.
+function pfPromptRevision(plan, d, texto) {
+  const guia = texto.map((t, i) => `[${i + 1}] ${(t || "(imagen)").replace(/\s+/g, " ").slice(0, 140)}`).join("\n").slice(0, 9000);
+  return `Sos una correctora de estilo y asesora pedagógica del nivel primario argentino. Revisá esta planificación didáctica (JSON) para el material "${d.material}" (${d.area}, ${d.ciclo}, ${d.grado}, clases de ${d.duracion}; el cuadernillo tiene ${texto.length} páginas) y devolvela corregida, con la MISMA estructura JSON exacta.
 
-Corregí: ortografía, tildes, puntuación, concordancia y redacción; repeticiones; incoherencias entre objetivos, contenidos, clases y evaluación; páginas fuera de rango (1 a ${paginas}); clases sin inicio, desarrollo o cierre; indicadores que no se puedan observar. Quitá cualquier autor, libro o dato inventado. Mantené el contenido pedagógico y el orden; no agregues clases nuevas.
+Revisá y corregí:
+- Ortografía, tildes, signos de apertura, puntuación, concordancia y redacción. Que no haya repeticiones ni frases vacías.
+- Que los tiempos de inicio, desarrollo y cierre de cada clase sumen la duración de la clase.
+- Que cada página citada exista (1 a ${texto.length}) y corresponda a esa actividad según la guía de abajo. Que todas las páginas con actividad estén usadas en alguna clase y que el mapa coincida con las clases.
+- Que cada clase tenga consigna entre comillas en el inicio, preguntas disparadoras abiertas, pasos con página, intervenciones docentes, evidencia, apoyos concretos y desafío.
+- Coherencia entre objetivos, contenidos, clases y rúbrica. Descripciones de la rúbrica observables.
+- Quitá cualquier autor, libro, cita o dato inventado.
+Mantené el contenido pedagógico, el orden y la cantidad de clases.
 
 Respondé SOLO con el JSON corregido.
 
+GUÍA DE PÁGINAS
+${guia}
+
+PLANIFICACIÓN
 ${JSON.stringify(plan)}`; }
 async function pfGenerar() {
   const sample = await getSample(); if (!sample || typeof sample.json !== "function") { PF.err = "Claude no está disponible en esta vista. Abrí el panel desde Claude."; pfPintar(); return; }
-  const d = PF.datos; PF.paso = "generando"; PF.err = ""; PF.abort = new AbortController(); PF.etapa = "leer"; pfPintar();
+  const d = PF.datos; PF.paso = "generando"; PF.err = ""; PF.abort = new AbortController(); PF.etapa = "mirar"; pfPintar();
+  const cancelado = (e) => e && (e.name === "AbortError" || e.code === "aborted");
   try {
+    let imgs = [], lim = null; try { lim = sample.limits ? await sample.limits() : null; } catch {}
+    if (lim && lim.images && PF.imgs.some(Boolean)) { try { imgs = await pfHojas(Math.min(lim.images.maxCount || 0, 16)); } catch { imgs = []; } }
+    PF.vio = imgs.length > 0;
     PF.etapa = "armar"; pfPintar();
-    let plan = await sample.json(pfPrompt(d, PF.texto), { modelTier: "complex", signal: PF.abort.signal });
-    plan = pfLimpiarPlan(plan || {}, PF.paginas); if (!plan.clases.length) throw new Error("La respuesta no trajo la secuencia de clases. Probá de nuevo.");
+    let plan; const opts = { modelTier: "complex", signal: PF.abort.signal, cache: false };
+    try { plan = await sample.json(pfPrompt(d, PF.texto, PF.vio), PF.vio ? { ...opts, images: imgs } : opts); }
+    catch (e) { if (cancelado(e) || !PF.vio || !/image/.test(String(e && e.code))) throw e; PF.vio = false; plan = await sample.json(pfPrompt(d, PF.texto, false), opts); }
+    plan = pfLimpiarPlan(plan, PF.paginas); if (!plan.clases.length) throw new Error("La respuesta no trajo la secuencia de clases. Probá de nuevo.");
     PF.etapa = "revisar"; pfPintar();
-    try { const rev = await sample.json(pfPromptRevision(plan, d, PF.paginas), { modelTier: "complex", signal: PF.abort.signal }); const r2 = pfLimpiarPlan(rev || {}, PF.paginas); if (r2.clases.length && pfFaltas(r2).length <= pfFaltas(plan).length) plan = r2; } catch (e) { if (e && (e.name === "AbortError" || e.code === "aborted")) throw e; }
+    try { const rev = await sample.json(pfPromptRevision(plan, d, PF.texto), opts); const r2 = pfLimpiarPlan(rev, PF.paginas); if (r2.clases.length === plan.clases.length && pfFaltas(r2, PF.paginas).length <= pfFaltas(plan, PF.paginas).length) plan = r2; } catch (e) { if (cancelado(e)) throw e; }
     PF.etapa = "listo"; PF.plan = plan; PF.id = pfSlug(d.material) + "-" + Date.now().toString(36); PF.paso = "revisar"; pfPintar(); await pfGuardar(true);
-  } catch (e) { PF.paso = "datos"; PF.err = e && (e.name === "AbortError" || e.code === "aborted") ? "Se canceló la generación." : e && e.code === "rate_limited" ? "Claude está con mucha demanda: esperá un minuto y probá de nuevo." : e && e.code === "not_granted" ? "Para generar, permití que el panel use Claude." : (e && e.message) || "No se pudo generar la planificación."; pfPintar(); }
+  } catch (e) { PF.paso = "datos"; PF.err = cancelado(e) ? "Se canceló la generación." : e && e.code === "rate_limited" ? "Claude está con mucha demanda: esperá un minuto y probá de nuevo." : e && e.code === "not_granted" ? "Para generar, permití que el panel use Claude." : (e && e.message) || "No se pudo generar la planificación."; pfPintar(); }
   PF.abort = null; }
 
 // ---------- guardar en el panel ----------
@@ -27852,127 +27975,164 @@ let pfMakeP = null;
 function pfPdfmake() { if (window.pdfMake && window.pdfMake.vfs) return Promise.resolve(window.pdfMake);
   return pfMakeP || (pfMakeP = new Promise((ok, ko) => { const V = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/"; const ld = (src) => new Promise((a, b) => { const s = document.createElement("script"); s.src = src; s.onload = a; s.onerror = () => b(new Error("No se pudo cargar el generador de PDF. Revisá la conexión.")); document.head.appendChild(s); });
     ld(V + "pdfmake.min.js").then(() => ld(V + "vfs_fonts.js")).then(() => ok(window.pdfMake)).catch((e) => { pfMakeP = null; ko(e); }); })); }
-function pfDocDef(p) {
-  const NAVY = "#1A2744", AZUL = "#2F6FE0", NARANJA = "#E8743B", SUAVE = "#EEF3FB", LINEA = "#D5DDEA", GRIS = "#5B6476";
-  let n = 0; const sec = (t) => { n++; return [{ text: [{ text: n + ". ", color: NARANJA }, { text: t }], style: "h2", headlineLevel: 1, margin: [0, 18, 0, 3] }, { canvas: [{ type: "line", x1: 0, y1: 0, x2: 483, y2: 0, lineWidth: 1.2, lineColor: NARANJA }], margin: [0, 0, 0, 9] }]; };
-  const ul = (a) => ({ ul: a.map((t) => ({ text: t, margin: [0, 0, 0, 3] })), markerColor: AZUL, margin: [4, 0, 0, 4] });
-  const datos = [["Área", p.area], ["Ciclo y grado", [p.ciclo, p.grado].filter(Boolean).join(" · ")], ["Cantidad de clases", String(p.cantidadClases) + (p.duracionClase ? " · " + p.duracionClase + " cada una" : "")], ["Material", PF.datos ? PF.datos.material : p.titulo], ["Docente", " "], ["Escuela y año", " "]];
+const PFC = { navy: "#1A2744", azul: "#2F6FE0", naranja: "#E8743B", verde: "#2E9E6B", violeta: "#7A5AF8", suave: "#EEF3FB", linea: "#D5DDEA", gris: "#5B6476", tinta: "#222A38",
+  inicio: "#E6F0FD", desarrollo: "#FDEEE4", cierre: "#E5F5EC", apoyo: "#EFEAFE", desafio: "#FFF7DD" };
+function pfDocDef(p, datos) {
+  const C = PFC, LAY = { hLineColor: () => C.linea, vLineColor: () => C.linea, hLineWidth: () => 0.7, vLineWidth: () => 0.7 };
+  let n = 0; const sec = (t) => { n++; return [{ text: [{ text: n + ". ", color: C.naranja }, { text: t }], style: "h2", headlineLevel: 1, margin: [0, 18, 0, 3] }, { canvas: [{ type: "line", x1: 0, y1: 0, x2: 483, y2: 0, lineWidth: 1.2, lineColor: C.naranja }], margin: [0, 0, 0, 9] }]; };
+  const ul = (a, color) => ({ ul: a.map((t) => ({ text: t, margin: [0, 0, 0, 2.5] })), markerColor: color || C.azul, margin: [2, 0, 0, 4] });
+  const sub = (t, color) => ({ text: t, bold: true, color: color || C.navy, margin: [0, 6, 0, 3] });
+  const cell = (body, fill, extra) => Object.assign({ stack: Array.isArray(body) ? body : [body], fillColor: fill || null, margin: [7, 6, 7, 6] }, extra || {});
+  const tag = (txt, fill) => ({ text: " " + txt + " ", background: fill, color: "#FFFFFF", bold: true, fontSize: 8.5 });
+  const preguntas = (a, color) => a.length ? { stack: [{ text: "Preguntas para conversar", bold: true, fontSize: 9, color, margin: [0, 5, 0, 2] }, ...a.map((q) => ({ columns: [{ text: "¿?", width: 14, bold: true, color, fontSize: 9 }, { text: q, italics: true, width: "*" }], columnGap: 2, margin: [0, 0, 0, 2] }))] } : { text: "" };
+  const datosT = [["Área", [p.area, ...(p.areas || [])].filter(Boolean).join(" · ")], ["Ciclo y grado", [p.ciclo, p.grado].filter(Boolean).join(" · ")], ["Secuencia", p.cantidadClases + " clases" + (p.duracionClase ? " de " + p.duracionClase : "")], ["Material", datos ? datos.material : p.titulo], ["Docente", " "], ["Escuela, grado y sección", " "], ["Período", " "]];
   const content = [
-    { table: { widths: ["*"], body: [[{ stack: [{ text: "PLANIFICACIÓN DIDÁCTICA", color: "#FFB27F", bold: true, fontSize: 9, characterSpacing: 2 }, { text: p.titulo, color: "#FFFFFF", bold: true, fontSize: 21, margin: [0, 6, 0, 4], lineHeight: 1.1 }, p.subtitulo ? { text: p.subtitulo, color: "#C9D6EE", fontSize: 11 } : {}], fillColor: NAVY, margin: [16, 16, 16, 16] }]] }, layout: "noBorders", margin: [0, 0, 0, 14] },
-    { table: { widths: [130, "*"], body: datos.map(([k, v]) => [{ text: k, bold: true, color: NAVY, fillColor: SUAVE, margin: [6, 4, 6, 4] }, { text: v || "", margin: [6, 4, 6, 4] }]) }, layout: { hLineColor: () => LINEA, vLineColor: () => LINEA, hLineWidth: () => 0.7, vLineWidth: () => 0.7 }, margin: [0, 0, 0, 4] },
+    { table: { widths: ["*"], body: [[{ stack: [{ text: "PLANIFICACIÓN DIDÁCTICA · SECUENCIA", color: "#FFB27F", bold: true, fontSize: 9, characterSpacing: 2 }, { text: p.titulo, color: "#FFFFFF", bold: true, fontSize: 22, margin: [0, 6, 0, 4], lineHeight: 1.1 }, p.subtitulo ? { text: p.subtitulo, color: "#C9D6EE", fontSize: 11 } : { text: "" }], fillColor: C.navy, margin: [16, 16, 16, 16] }]] }, layout: "noBorders", margin: [0, 0, 0, 14] },
+    { table: { widths: [140, "*"], body: datosT.map(([k, v]) => [{ text: k, bold: true, color: C.navy, fillColor: C.suave, margin: [6, 4, 6, 4] }, { text: v || "", margin: [6, 4, 6, 4] }]) }, layout: LAY },
     ...sec("Fundamentación"), ...p.fundamentacion.map((t) => ({ text: t, alignment: "justify", margin: [0, 0, 0, 7] })),
     ...sec("Propósitos de enseñanza"), ul(p.propositos),
     ...sec("Objetivos de aprendizaje"), ul(p.objetivos),
-    ...sec("Contenidos"), ...p.contenidos.flatMap((c) => [c.eje ? { text: c.eje, bold: true, color: NAVY, margin: [0, 2, 0, 3] } : {}, ul(c.items)]),
-    ...sec("Secuencia de clases"),
-    ...p.clases.map((c) => ({ table: { widths: [92, "*"], dontBreakRows: true, keepWithHeaderRows: 1, headerRows: 1, body: [
-      [{ colSpan: 2, columns: [{ text: [{ text: "Clase " + c.numero + "  ", color: "#FFB27F", bold: true }, { text: c.titulo, bold: true, color: "#FFFFFF" }], width: "*" }, c.duracion ? { text: c.duracion, color: "#C9D6EE", width: "auto", fontSize: 9, margin: [0, 1, 0, 0] } : {}], fillColor: NAVY, margin: [8, 6, 8, 6] }, {}],
-      ...[["Objetivo", c.objetivo], ["Inicio", c.inicio], ["Desarrollo", c.desarrollo], ["Cierre", c.cierre], ["Páginas del cuadernillo", c.paginas], ["Recursos", c.recursos.join(" · ")]].filter(([, v]) => v && (!Array.isArray(v) || v.length))
-        .map(([k, v]) => [{ text: k, bold: true, color: NAVY, fillColor: SUAVE, margin: [6, 5, 6, 5], fontSize: 9.5 }, Array.isArray(v) ? { ol: v, margin: [4, 5, 6, 5] } : { text: v, margin: [6, 5, 6, 5] }])] },
-      layout: { hLineColor: () => LINEA, vLineColor: () => LINEA, hLineWidth: () => 0.7, vLineWidth: () => 0.7 }, margin: [0, 0, 0, 12], unbreakable: c.desarrollo.join(" ").length + c.inicio.length + c.cierre.length < 1600 })),
-    ...(p.inclusion.length ? [...sec("Adaptaciones para la inclusión"), ul(p.inclusion)] : []),
-    ...sec("Evaluación"),
-    p.evaluacion.criterios.length ? { text: "Criterios", bold: true, color: NAVY, margin: [0, 0, 0, 3] } : {}, p.evaluacion.criterios.length ? ul(p.evaluacion.criterios) : {},
-    p.evaluacion.instrumentos.length ? { text: "Instrumentos", bold: true, color: NAVY, margin: [0, 4, 0, 3] } : {}, p.evaluacion.instrumentos.length ? ul(p.evaluacion.instrumentos) : {},
-    p.evaluacion.indicadores.length ? { text: "Indicadores de logro", bold: true, color: NAVY, margin: [0, 6, 0, 5] } : {},
-    p.evaluacion.indicadores.length ? { table: { widths: ["*", 52, 58, 52], headerRows: 1, body: [[{ text: "Indicador", bold: true, color: "#FFFFFF", fillColor: NAVY, margin: [6, 4, 6, 4] }, ...["Logrado", "En proceso", "Con ayuda"].map((t) => ({ text: t, bold: true, color: "#FFFFFF", fillColor: NAVY, alignment: "center", fontSize: 8.5, margin: [2, 5, 2, 4] }))], ...p.evaluacion.indicadores.map((t, i) => [{ text: t, margin: [6, 4, 6, 4], fillColor: i % 2 ? SUAVE : null }, { text: "", fillColor: i % 2 ? SUAVE : null }, { text: "", fillColor: i % 2 ? SUAVE : null }, { text: "", fillColor: i % 2 ? SUAVE : null }])] }, layout: { hLineColor: () => LINEA, vLineColor: () => LINEA, hLineWidth: () => 0.7, vLineWidth: () => 0.7 }, margin: [0, 0, 0, 6] } : {},
-    ...(p.recursos.length ? [...sec("Recursos"), ul(p.recursos)] : []),
-    ...(p.referencias.length ? [...sec("Referencias"), ul(p.referencias)] : []),
-    { columns: [{ stack: [{ canvas: [{ type: "line", x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 0.8, lineColor: GRIS }] }, { text: "Firma docente", fontSize: 9, color: GRIS, margin: [0, 4, 0, 0] }] }, { stack: [{ canvas: [{ type: "line", x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 0.8, lineColor: GRIS }] }, { text: "Firma del equipo directivo", fontSize: 9, color: GRIS, margin: [0, 4, 0, 0] }] }], margin: [0, 46, 0, 0], unbreakable: true },
+    ...sec("Contenidos"), ...p.contenidos.flatMap((c) => [c.eje ? sub(c.eje) : { text: "" }, ul(c.items)]),
   ];
-  const limpia = (x) => { if (Array.isArray(x)) return x.map(limpia); if (x && typeof x === "object" && !(x instanceof Function)) { if (!Object.keys(x).length) return { text: "" }; const o = {}; for (const k in x) o[k] = limpia(x[k]); return o; } return x; };
-  return { pageSize: "A4", pageMargins: [56, 62, 56, 58], content: limpia(content), pageBreakBefore: (nodo, siguen) => nodo.headlineLevel === 1 && siguen.length < 4, info: { title: "Planificación – " + p.titulo, author: "Cofre Didáctico", subject: p.subtitulo || "", creator: "Panel Cofre Didáctico" },
-    header: (cur) => cur === 1 ? null : { columns: [{ text: "Planificación didáctica · " + p.titulo, fontSize: 8, color: GRIS }, { text: "Cofre Didáctico", fontSize: 8, color: NARANJA, bold: true, alignment: "right" }], margin: [56, 26, 56, 0] },
-    footer: (cur, tot) => ({ columns: [{ text: "cofredidactico.com.ar", fontSize: 8, color: GRIS }, { text: "Página " + cur + " de " + tot, fontSize: 8, color: GRIS, alignment: "right" }], margin: [56, 18, 56, 0] }),
-    defaultStyle: { font: "Roboto", fontSize: 10.5, lineHeight: 1.28, color: "#222A38" }, styles: { h2: { fontSize: 13.5, bold: true, color: NAVY } } }; }
+  if (p.mapa.length) content.push(...sec("Mapa del cuadernillo"), { text: "Qué hay en cada parte del material y en qué momento de la secuencia se usa.", color: C.gris, fontSize: 9.5, margin: [0, 0, 0, 6] },
+    { table: { widths: [72, "*", 170], headerRows: 1, keepWithHeaderRows: 1, dontBreakRows: true, body: [["Páginas", "Actividad", "Uso en la secuencia"].map((t) => ({ text: t, bold: true, color: "#FFFFFF", fillColor: C.navy, margin: [6, 4, 6, 4], fontSize: 9.5 })), ...p.mapa.map((m, i) => [{ text: m.paginas.replace(/^P[aá]ginas?\s*/, ""), bold: true, color: C.navy, margin: [6, 4, 6, 4] }, { text: m.actividad, margin: [6, 4, 6, 4] }, { text: m.uso, margin: [6, 4, 6, 4], color: C.gris, fontSize: 9.5 }].map((c) => Object.assign(c, { fillColor: i % 2 ? C.suave : null })))] }, layout: LAY });
+  content.push(...sec("Síntesis de la secuencia"), { table: { widths: [44, "*", 80, 150], headerRows: 1, keepWithHeaderRows: 1, dontBreakRows: true, body: [["Clase", "Propuesta", "Páginas", "Producción"].map((t) => ({ text: t, bold: true, color: "#FFFFFF", fillColor: C.navy, margin: [6, 4, 6, 4], fontSize: 9.5 })), ...p.clases.map((c, i) => [{ text: String(c.numero), bold: true, color: C.naranja, alignment: "center", fontSize: 13, margin: [0, 3, 0, 3] }, { stack: [{ text: c.titulo, bold: true, color: C.navy }, { text: c.objetivo, fontSize: 9, color: C.gris }], margin: [6, 4, 6, 4] }, { text: c.paginas.replace(/^P[aá]ginas?\s*/, ""), margin: [6, 4, 6, 4], fontSize: 9.5 }, { text: c.evidencia, margin: [6, 4, 6, 4], fontSize: 9 }].map((x) => Object.assign(x, { fillColor: i % 2 ? C.suave : null })))] }, layout: LAY });
+  content.push(...sec("Desarrollo de las clases"));
+  p.clases.forEach((c, i) => {
+    const filas = [
+      [{ colSpan: 2, fillColor: C.navy, margin: [9, 7, 9, 7], columns: [{ width: "*", text: [{ text: "CLASE " + c.numero + "   ", color: "#FFB27F", bold: true }, { text: c.titulo, bold: true, color: "#FFFFFF", fontSize: 11.5 }] }, { width: "auto", text: [c.duracion || p.duracionClase, c.paginas].filter(Boolean).join("  ·  "), color: "#C9D6EE", fontSize: 9, margin: [0, 2, 0, 0] }] }, {}],
+      [cell({ text: "Objetivo", bold: true, color: C.navy, fontSize: 9.5 }, C.suave), cell(c.objetivo)],
+    ];
+    if (c.agrupamiento || c.materiales.length) filas.push([cell({ text: "Organización", bold: true, color: C.navy, fontSize: 9.5 }, C.suave), cell([c.agrupamiento ? { text: c.agrupamiento } : { text: "" }, c.materiales.length ? { text: [{ text: "Materiales: ", bold: true }, c.materiales.join(" · ")], margin: [0, 3, 0, 0], fontSize: 9.5 } : { text: "" }])]);
+    const momento = (nom, m, color, fill, extra) => [cell([{ text: nom, bold: true, color, fontSize: 10 }, m.tiempo ? { text: m.tiempo, color: C.gris, fontSize: 9, margin: [0, 2, 0, 0] } : { text: "" }], fill), cell([m.texto ? { text: m.texto } : { text: "" }, ...(extra || []), preguntas(m.preguntas, color)])];
+    filas.push(momento("INICIO", c.inicio, C.azul, C.inicio));
+    filas.push(momento("DESARROLLO", c.desarrollo, C.naranja, C.desarrollo, [
+      { ol: c.desarrollo.pasos.map((x) => ({ text: [x.texto, x.paginas ? { text: "  (" + x.paginas.replace(/^Páginas /, "págs. ").replace(/^Página /, "pág. ") + ")", bold: true, color: C.naranja, fontSize: 9 } : ""], margin: [0, 0, 0, 3] })), margin: [0, c.desarrollo.texto ? 4 : 0, 0, 0] },
+      c.desarrollo.intervenciones.length ? { table: { widths: ["*"], body: [[{ stack: [{ text: "Intervenciones docentes", bold: true, fontSize: 9, color: C.naranja, margin: [0, 0, 0, 2] }, ul(c.desarrollo.intervenciones, C.naranja)], fillColor: "#FFF8F3", margin: [7, 5, 7, 3] }]] }, layout: "noBorders", margin: [0, 5, 0, 0] } : { text: "" }]));
+    filas.push(momento("CIERRE", c.cierre, C.verde, C.cierre));
+    if (c.evidencia) filas.push([cell({ text: "Evidencia de aprendizaje", bold: true, color: C.navy, fontSize: 9.5 }, C.suave), cell(c.evidencia)]);
+    if (c.apoyos.length) filas.push([cell({ text: "Apoyos para la inclusión", bold: true, color: C.violeta, fontSize: 9.5 }, C.apoyo), cell(ul(c.apoyos, C.violeta), "#FAF8FF")]);
+    if (c.desafio) filas.push([cell({ text: "Desafío extra", bold: true, color: "#9A6B00", fontSize: 9.5 }, C.desafio), cell(c.desafio, "#FFFDF4")]);
+    content.push({ table: { widths: [86, "*"], headerRows: 1, keepWithHeaderRows: 1, dontBreakRows: true, body: filas }, layout: LAY, margin: [0, 0, 0, 14] });
+  });
+  const inc = p.inclusion;
+  if (inc.dua.length || inc.perfiles.length) { content.push(...sec("Inclusión y Diseño Universal para el Aprendizaje"));
+    if (inc.dua.length) content.push({ text: "Estrategias pensadas para todo el grupo, a partir de las actividades del cuadernillo.", color: C.gris, fontSize: 9.5, margin: [0, 0, 0, 6] },
+      { table: { widths: inc.dua.map(() => "*"), body: [inc.dua.map((d) => ({ text: d.principio, bold: true, color: "#FFFFFF", fillColor: C.violeta, margin: [6, 5, 6, 5], fontSize: 9.5 })), inc.dua.map((d) => ({ stack: [ul(d.estrategias, C.violeta)], margin: [4, 5, 5, 3], fontSize: 9.5, fillColor: "#FAF8FF" }))] }, layout: LAY, margin: [0, 0, 0, 10] });
+    if (inc.perfiles.length) content.push({ table: { widths: [130, "*"], headerRows: 1, keepWithHeaderRows: 1, dontBreakRows: true, body: [["Perfil", "Apoyos y adecuaciones"].map((t) => ({ text: t, bold: true, color: "#FFFFFF", fillColor: C.navy, margin: [6, 4, 6, 4], fontSize: 9.5 })), ...inc.perfiles.map((x) => [{ text: x.perfil, bold: true, color: C.violeta, fillColor: C.apoyo, margin: [6, 5, 6, 5] }, { stack: [ul(x.apoyos, C.violeta)], margin: [4, 5, 6, 3] }])] }, layout: LAY }); }
+  content.push(...sec("Evaluación"), { text: "Evaluación formativa y continua: se observa el proceso de cada estudiante a lo largo de toda la secuencia.", color: C.gris, fontSize: 9.5, margin: [0, 0, 0, 4] });
+  if (p.evaluacion.criterios.length) content.push(sub("Criterios"), ul(p.evaluacion.criterios));
+  if (p.evaluacion.instrumentos.length) content.push(sub("Instrumentos"), ul(p.evaluacion.instrumentos));
+  if (p.evaluacion.rubrica.length) content.push(sub("Rúbrica"), { table: { widths: [110, "*", "*", "*"], headerRows: 1, keepWithHeaderRows: 1, dontBreakRows: true, body: [[{ t: "Criterio", f: C.navy }, { t: "Logrado", f: C.verde }, { t: "En proceso", f: C.naranja }, { t: "Con ayuda", f: C.violeta }].map((h) => ({ text: h.t, bold: true, color: "#FFFFFF", fillColor: h.f, margin: [6, 4, 6, 4], fontSize: 9.5 })), ...p.evaluacion.rubrica.map((r, i) => [{ text: r.criterio, bold: true, color: C.navy, fillColor: C.suave, margin: [6, 5, 6, 5], fontSize: 9.5 }, ...[r.logrado, r.enProceso, r.conAyuda].map((t) => ({ text: t || " ", margin: [6, 5, 6, 5], fontSize: 9, fillColor: i % 2 ? "#FAFBFD" : null }))])] }, layout: LAY });
+  if (p.evaluacion.rubrica.length) content.push(sub("Registro rápido por estudiante"), { text: "Marcá L (Logrado), P (En proceso) o A (Con ayuda) en cada criterio.", fontSize: 8.5, color: C.gris, margin: [0, 0, 0, 4] }, { table: { widths: [150, ...p.evaluacion.rubrica.slice(0, 5).map(() => "*")], headerRows: 1, keepWithHeaderRows: 1, body: [[{ text: "Estudiante", bold: true, color: "#FFFFFF", fillColor: C.navy, margin: [6, 4, 6, 4], fontSize: 9 }, ...p.evaluacion.rubrica.slice(0, 5).map((r) => ({ text: r.criterio, bold: true, color: "#FFFFFF", fillColor: C.navy, margin: [3, 4, 3, 4], fontSize: 7.5, alignment: "center" }))], ...Array.from({ length: 8 }, (_, i) => [{ text: " ", margin: [0, 6, 0, 6], fillColor: i % 2 ? C.suave : null }, ...p.evaluacion.rubrica.slice(0, 5).map(() => ({ text: "", fillColor: i % 2 ? C.suave : null }))])] }, layout: LAY });
+  if (p.proyeccion.length) content.push(...sec("Proyección con las familias y la comunidad"), ul(p.proyeccion));
+  if (p.recursos.length) content.push(...sec("Recursos"), ul(p.recursos));
+  if (p.referencias.length) content.push(...sec("Referencias"), ul(p.referencias));
+  content.push({ columns: [{ stack: [{ canvas: [{ type: "line", x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 0.8, lineColor: C.gris }] }, { text: "Firma docente", fontSize: 9, color: C.gris, margin: [0, 4, 0, 0] }] }, { stack: [{ canvas: [{ type: "line", x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 0.8, lineColor: C.gris }] }, { text: "Firma del equipo directivo", fontSize: 9, color: C.gris, margin: [0, 4, 0, 0] }] }], margin: [0, 46, 0, 0], unbreakable: true });
+  const limpia = (x) => { if (Array.isArray(x)) return x.map(limpia); if (x && typeof x === "object") { if (!Object.keys(x).length) return { text: "" }; const o = {}; for (const k in x) if (x[k] !== undefined) o[k] = limpia(x[k]); return o; } return x; };
+  return { pageSize: "A4", pageMargins: [56, 62, 56, 58], content: limpia(content), pageBreakBefore: (nodo, siguen) => { if (nodo.headlineLevel !== 1) return false; const sp = nodo.startPosition || {}; return siguen.length < 3 || (sp.top || 0) > 62 + (sp.pageInnerHeight || 722) - 120; },
+    info: { title: "Planificación – " + p.titulo, author: "Cofre Didáctico", subject: p.subtitulo || "", creator: "Cofre Didáctico" },
+    header: (cur) => cur === 1 ? null : { columns: [{ text: "Planificación didáctica · " + p.titulo, fontSize: 8, color: C.gris }, { text: "Cofre Didáctico", fontSize: 8, color: C.naranja, bold: true, alignment: "right" }], margin: [56, 26, 56, 0] },
+    footer: (cur, tot) => ({ columns: [{ text: "cofredidactico.com.ar", fontSize: 8, color: C.gris }, { text: "Página " + cur + " de " + tot, fontSize: 8, color: C.gris, alignment: "right" }], margin: [56, 18, 56, 0] }),
+    defaultStyle: { font: "Roboto", fontSize: 10, lineHeight: 1.27, color: C.tinta }, styles: { h2: { fontSize: 13.5, bold: true, color: C.navy } } }; }
 async function pfDescargar(btn) { if (!PF.plan) return; const t0 = btn ? btn.textContent : ""; if (btn) { btn.disabled = true; btn.textContent = "Armando el PDF…"; }
-  try { pfLeerEdiciones(); const pm = await pfPdfmake(); const blob = await new Promise((ok, ko) => { try { pm.createPdf(pfDocDef(PF.plan)).getBlob(ok); } catch (e) { ko(e); } });
-    const ok = await saveFile("Planificacion - " + (PF.datos ? PF.datos.material : PF.plan.titulo).replace(/[\\/:*?"<>|]+/g, "") + ".pdf", blob, "application/pdf"); if (ok !== false) toast("📄 PDF listo", "ok"); }
-  catch (e) { toast(e.message || "No se pudo armar el PDF.", "warn"); }
+  try { pfLeerEdiciones(); const pm = await pfPdfmake(); const blob = await new Promise((ok, ko) => { try { pm.createPdf(pfDocDef(PF.plan, PF.datos)).getBlob(ok); } catch (e) { ko(e); } });
+    const ok = await saveFile("Planificación - " + (PF.datos ? PF.datos.material : PF.plan.titulo).replace(/[\\/:*?"<>|]+/g, "") + ".pdf", blob, "application/pdf"); if (ok !== false) toast("📄 PDF listo", "ok"); }
+  catch (e) { toast((e && e.message) || "No se pudo armar el PDF.", "warn"); }
   if (btn) { btn.disabled = false; btn.textContent = t0; } }
 
 // ---------- edición en pantalla ----------
-function pfSet(path, val) { const k = path.split("."); let o = PF.plan; for (let i = 0; i < k.length - 1; i++) o = o[isNaN(k[i]) ? k[i] : +k[i]]; o[isNaN(k[k.length - 1]) ? k[k.length - 1] : +k[k.length - 1]] = val; }
-function pfLeerEdiciones() { const v = document.getElementById("view-planif"); if (!v || !PF.plan) return; v.querySelectorAll("[data-pp]").forEach((el) => pfSet(el.dataset.pp, pfPulir(el.innerText)));
-  const quitar = (a) => a.filter((x) => String(x).trim()); const p = PF.plan;
-  ["fundamentacion", "propositos", "objetivos", "inclusion", "recursos", "referencias"].forEach((k) => (p[k] = quitar(p[k]))); p.contenidos.forEach((c) => (c.items = quitar(c.items))); p.clases.forEach((c) => { c.desarrollo = quitar(c.desarrollo); c.recursos = quitar(c.recursos); });
-  ["criterios", "instrumentos", "indicadores"].forEach((k) => (p.evaluacion[k] = quitar(p.evaluacion[k]))); }
+function pfSet(path, val) { const k = path.split("."); let o = PF.plan; for (let i = 0; i < k.length - 1; i++) { o = o[k[i]]; if (o == null) return; } o[k[k.length - 1]] = val; }
+function pfLeerEdiciones() { const v = document.getElementById("view-planif"); if (!v || !PF.plan) return; v.querySelectorAll("[data-pp]").forEach((el) => pfSet(el.dataset.pp, pfPulir(el.innerText))); PF.plan = pfLimpiarPlan(PF.plan, PF.paginas); }
 const pfE = (path, txt, tag = "span", cls = "") => `<${tag} class="pf-ed ${cls}" contenteditable="true" spellcheck="true" data-pp="${path}">${pfEsc(txt)}</${tag}>`;
-const pfUL = (arr, path, ol) => `<${ol ? "ol" : "ul"} class="pf-ul">${arr.map((t, i) => pfE(path + "." + i, t, "li")).join("")}</${ol ? "ol" : "ul"}>`;
-function pfHojaHTML(p) { let n = 0; const H = (t) => `<h3 class="pf-h"><i>${++n}.</i> ${t}</h3>`;
+const pfUL = (arr, path, ol, cls) => `<${ol ? "ol" : "ul"} class="pf-ul ${cls || ""}">${arr.map((t, i) => pfE(path + "." + i, t, "li")).join("")}</${ol ? "ol" : "ul"}>`;
+function pfHojaHTML(p) { let n = 0; const H = (t) => `<h3 class="pf-h"><i>${++n}.</i> ${t}</h3>`, sinP = (t) => pfEsc(String(t || "").replace(/^P[aá]ginas?\s*/, ""));
+  const mom = (c, i, k, nom) => { const m = c[k]; return `<div class="pf-mo pf-mo-${k}"><div class="pf-mo-l"><b>${nom}</b>${pfE(`clases.${i}.${k}.tiempo`, m.tiempo, "small")}</div><div class="pf-mo-c">${pfE(`clases.${i}.${k}.texto`, m.texto, "p")}
+    ${k === "desarrollo" ? `<ol class="pf-ul">${m.pasos.map((x, j) => `<li>${pfE(`clases.${i}.desarrollo.pasos.${j}.texto`, x.texto)} <em class="pf-pag">${pfE(`clases.${i}.desarrollo.pasos.${j}.paginas`, x.paginas)}</em></li>`).join("")}</ol>${m.intervenciones.length ? `<div class="pf-int"><b>Intervenciones docentes</b>${pfUL(m.intervenciones, `clases.${i}.desarrollo.intervenciones`)}</div>` : ""}` : ""}
+    ${m.preguntas.length ? `<div class="pf-q"><b>Preguntas para conversar</b>${pfUL(m.preguntas, `clases.${i}.${k}.preguntas`)}</div>` : ""}</div></div>`; };
   return `<article class="pf-hoja">
-    <header class="pf-tapa"><small>PLANIFICACIÓN DIDÁCTICA</small>${pfE("titulo", p.titulo, "h2")}${pfE("subtitulo", p.subtitulo, "p")}</header>
-    <table class="pf-datos"><tr><th>Área</th><td>${pfE("area", p.area)}</td></tr><tr><th>Ciclo y grado</th><td>${pfE("ciclo", p.ciclo)} · ${pfE("grado", p.grado)}</td></tr><tr><th>Cantidad de clases</th><td>${p.cantidadClases} · ${pfE("duracionClase", p.duracionClase)} cada una</td></tr><tr><th>Material</th><td>${pfEsc(PF.datos ? PF.datos.material : "")}</td></tr><tr><th>Docente</th><td class="pf-vacio">Para completar</td></tr><tr><th>Escuela y año</th><td class="pf-vacio">Para completar</td></tr></table>
+    <header class="pf-tapa"><small>PLANIFICACIÓN DIDÁCTICA · SECUENCIA</small>${pfE("titulo", p.titulo, "h2")}${pfE("subtitulo", p.subtitulo, "p")}</header>
+    <table class="pf-datos"><tr><th>Área</th><td>${pfE("area", p.area)}${p.areas.length ? " · " + pfEsc(p.areas.join(" · ")) : ""}</td></tr><tr><th>Ciclo y grado</th><td>${pfE("ciclo", p.ciclo)} · ${pfE("grado", p.grado)}</td></tr><tr><th>Secuencia</th><td>${p.cantidadClases} clases de ${pfE("duracionClase", p.duracionClase)}</td></tr><tr><th>Material</th><td>${pfEsc(PF.datos ? PF.datos.material : "")}</td></tr><tr><th>Docente</th><td class="pf-vacio">Para completar</td></tr><tr><th>Escuela, grado y sección</th><td class="pf-vacio">Para completar</td></tr></table>
     ${H("Fundamentación")}${p.fundamentacion.map((t, i) => pfE("fundamentacion." + i, t, "p", "pf-p")).join("")}
     ${H("Propósitos de enseñanza")}${pfUL(p.propositos, "propositos")}
     ${H("Objetivos de aprendizaje")}${pfUL(p.objetivos, "objetivos")}
     ${H("Contenidos")}${p.contenidos.map((c, i) => `${c.eje ? pfE("contenidos." + i + ".eje", c.eje, "h4") : ""}${pfUL(c.items, "contenidos." + i + ".items")}`).join("")}
-    ${H("Secuencia de clases")}${p.clases.map((c, i) => `<section class="pf-clase"><header><b>Clase ${c.numero}</b> ${pfE("clases." + i + ".titulo", c.titulo)}<em>${pfE("clases." + i + ".duracion", c.duracion)}</em></header>
-      <dl><dt>Objetivo</dt><dd>${pfE("clases." + i + ".objetivo", c.objetivo)}</dd><dt>Inicio</dt><dd>${pfE("clases." + i + ".inicio", c.inicio)}</dd><dt>Desarrollo</dt><dd>${pfUL(c.desarrollo, "clases." + i + ".desarrollo", true)}</dd><dt>Cierre</dt><dd>${pfE("clases." + i + ".cierre", c.cierre)}</dd><dt>Páginas del cuadernillo</dt><dd>${pfE("clases." + i + ".paginas", c.paginas)}</dd>${c.recursos.length ? `<dt>Recursos</dt><dd>${pfUL(c.recursos, "clases." + i + ".recursos")}</dd>` : ""}</dl></section>`).join("")}
-    ${p.inclusion.length ? H("Adaptaciones para la inclusión") + pfUL(p.inclusion, "inclusion") : ""}
-    ${H("Evaluación")}<h4>Criterios</h4>${pfUL(p.evaluacion.criterios, "evaluacion.criterios")}<h4>Instrumentos</h4>${pfUL(p.evaluacion.instrumentos, "evaluacion.instrumentos")}<h4>Indicadores de logro</h4>${pfUL(p.evaluacion.indicadores, "evaluacion.indicadores")}
+    ${p.mapa.length ? H("Mapa del cuadernillo") + `<table class="pf-tb"><thead><tr><th>Páginas</th><th>Actividad</th><th>Uso en la secuencia</th></tr></thead><tbody>${p.mapa.map((m, i) => `<tr><td class="pf-n">${pfE(`mapa.${i}.paginas`, m.paginas)}</td><td>${pfE(`mapa.${i}.actividad`, m.actividad)}</td><td class="pf-g">${pfE(`mapa.${i}.uso`, m.uso)}</td></tr>`).join("")}</tbody></table>` : ""}
+    ${H("Síntesis de la secuencia")}<table class="pf-tb"><thead><tr><th>Clase</th><th>Propuesta</th><th>Páginas</th><th>Producción</th></tr></thead><tbody>${p.clases.map((c) => `<tr><td class="pf-num">${c.numero}</td><td><b>${pfEsc(c.titulo)}</b><br><small>${pfEsc(c.objetivo)}</small></td><td>${sinP(c.paginas)}</td><td><small>${pfEsc(c.evidencia)}</small></td></tr>`).join("")}</tbody></table>
+    ${H("Desarrollo de las clases")}${p.clases.map((c, i) => `<section class="pf-clase"><header><b>CLASE ${c.numero}</b> ${pfE(`clases.${i}.titulo`, c.titulo)}<em>${pfE(`clases.${i}.duracion`, c.duracion)} · ${pfE(`clases.${i}.paginas`, c.paginas)}</em></header>
+      <dl><dt>Objetivo</dt><dd>${pfE(`clases.${i}.objetivo`, c.objetivo)}</dd>${c.agrupamiento || c.materiales.length ? `<dt>Organización</dt><dd>${pfE(`clases.${i}.agrupamiento`, c.agrupamiento)}${c.materiales.length ? `<div class="pf-mat"><b>Materiales:</b> ${pfEsc(c.materiales.join(" · "))}</div>` : ""}</dd>` : ""}</dl>
+      ${mom(c, i, "inicio", "INICIO")}${mom(c, i, "desarrollo", "DESARROLLO")}${mom(c, i, "cierre", "CIERRE")}
+      <dl>${c.evidencia ? `<dt>Evidencia de aprendizaje</dt><dd>${pfE(`clases.${i}.evidencia`, c.evidencia)}</dd>` : ""}${c.apoyos.length ? `<dt class="pf-dt-ap">Apoyos para la inclusión</dt><dd class="pf-dd-ap">${pfUL(c.apoyos, `clases.${i}.apoyos`)}</dd>` : ""}${c.desafio ? `<dt class="pf-dt-de">Desafío extra</dt><dd class="pf-dd-de">${pfE(`clases.${i}.desafio`, c.desafio)}</dd>` : ""}</dl></section>`).join("")}
+    ${p.inclusion.dua.length || p.inclusion.perfiles.length ? H("Inclusión y Diseño Universal para el Aprendizaje") + `${p.inclusion.dua.length ? `<div class="pf-dua">${p.inclusion.dua.map((d, i) => `<div><h5>${pfE(`inclusion.dua.${i}.principio`, d.principio)}</h5>${pfUL(d.estrategias, `inclusion.dua.${i}.estrategias`)}</div>`).join("")}</div>` : ""}${p.inclusion.perfiles.length ? `<table class="pf-tb pf-perf"><thead><tr><th>Perfil</th><th>Apoyos y adecuaciones</th></tr></thead><tbody>${p.inclusion.perfiles.map((x, i) => `<tr><td>${pfE(`inclusion.perfiles.${i}.perfil`, x.perfil, "b")}</td><td>${pfUL(x.apoyos, `inclusion.perfiles.${i}.apoyos`)}</td></tr>`).join("")}</tbody></table>` : ""}` : ""}
+    ${H("Evaluación")}<h4>Criterios</h4>${pfUL(p.evaluacion.criterios, "evaluacion.criterios")}<h4>Instrumentos</h4>${pfUL(p.evaluacion.instrumentos, "evaluacion.instrumentos")}
+    ${p.evaluacion.rubrica.length ? `<h4>Rúbrica</h4><table class="pf-tb pf-rub"><thead><tr><th>Criterio</th><th class="l">Logrado</th><th class="p">En proceso</th><th class="a">Con ayuda</th></tr></thead><tbody>${p.evaluacion.rubrica.map((r, i) => `<tr><td>${pfE(`evaluacion.rubrica.${i}.criterio`, r.criterio, "b")}</td><td>${pfE(`evaluacion.rubrica.${i}.logrado`, r.logrado)}</td><td>${pfE(`evaluacion.rubrica.${i}.enProceso`, r.enProceso)}</td><td>${pfE(`evaluacion.rubrica.${i}.conAyuda`, r.conAyuda)}</td></tr>`).join("")}</tbody></table>` : ""}
+    ${p.proyeccion.length ? H("Proyección con las familias y la comunidad") + pfUL(p.proyeccion, "proyeccion") : ""}
     ${p.recursos.length ? H("Recursos") + pfUL(p.recursos, "recursos") : ""}${p.referencias.length ? H("Referencias") + pfUL(p.referencias, "referencias") : ""}
   </article>`; }
 
 // ---------- pantalla ----------
 function pfPintar() { const v = pfView(); if (v.hidden && typeof currentView !== "undefined" && currentView !== "planif") return;
-  const head = `<div class="view-h"><div><h1>📋 Planificaciones</h1><p class="lead">Subí el PDF de un cuadernillo y Claude arma su planificación didáctica completa: fundamentación, objetivos, contenidos, secuencia de clases con páginas, inclusión y evaluación. La revisás, la corregís si querés y la descargás en PDF.</p></div></div>`;
+  const head = `<div class="view-h"><div><h1>📋 Planificaciones</h1><p class="lead">Subí el PDF de un cuadernillo y Claude arma una secuencia didáctica lista para el aula: mapa del cuadernillo, clases con inicio, desarrollo y cierre, preguntas disparadoras, intervenciones docentes, apoyos para la inclusión y rúbrica. La revisás, la corregís si querés y la descargás en PDF.</p></div></div>`;
   if (typeof MODE === "undefined" || !MODE.cloud) { v.innerHTML = head + `<div class="pf-card pf-web"><div class="pf-big">✨</div><div><h2>Esta herramienta funciona en el panel de Claude</h2><p>Para escribir la planificación se usa Claude, que está disponible en la versión del panel que abrís desde Claude.</p><a class="btn primary" href="${PF_ART}" target="_blank" rel="noopener">Abrir el panel en Claude ↗</a></div></div>`; return; }
   if (PF.paso === "subir") { if (PF.lista === null) { PF.lista = []; pfCargarLista(); }
-    v.innerHTML = head + `<div class="pf-grid"><label class="pf-card pf-drop" id="pfDrop"><input type="file" accept="application/pdf,.pdf" id="pfFile" hidden><div class="pf-big">📄</div><b>Subí el PDF del cuadernillo</b><span>Tocá acá o arrastrá el archivo. Se lee en tu computadora: el PDF no se sube a ningún lado.</span>${PF.err ? `<div class="pf-msg">⚠️ ${pfEsc(PF.err)}</div>` : ""}</label>
+    v.innerHTML = head + `<div class="pf-grid"><label class="pf-card pf-drop" id="pfDrop"><input type="file" accept="application/pdf,.pdf" id="pfFile" hidden><div class="pf-big">📄</div><b>Subí el PDF del cuadernillo</b><span>Tocá acá o arrastrá el archivo. Se lee en tu computadora y Claude mira cada página, también las infografías y los juegos.</span>${PF.err ? `<div class="pf-msg">⚠️ ${pfEsc(PF.err)}</div>` : ""}</label>
       <aside class="pf-card pf-lista"><h3>Planificaciones guardadas</h3>${(PF.lista || []).length ? PF.lista.map((x) => `<div class="pf-it"><button type="button" data-pfabrir="${pfEsc(x.id)}"><b>${pfEsc((x.datos && x.datos.material) || (x.plan && x.plan.titulo) || x.id)}</b><small>${pfEsc([x.plan && x.plan.cantidadClases ? x.plan.cantidadClases + " clases" : "", x.datos && x.datos.grado, x.fecha ? new Date(x.fecha).toLocaleDateString("es-AR") : ""].filter(Boolean).join(" · "))}</small></button><button type="button" class="pf-del" data-pfborrar="${pfEsc(x.id)}" aria-label="Borrar">✕</button></div>`).join("") : '<p class="muted">Todavía no armaste ninguna. La primera queda guardada acá.</p>'}</aside></div>`;
     const f = document.getElementById("pfFile"); f.onchange = () => f.files[0] && pfArchivo(f.files[0]);
     const dz = document.getElementById("pfDrop"); ["dragover", "dragenter"].forEach((t) => dz.addEventListener(t, (e) => { e.preventDefault(); dz.classList.add("on"); })); ["dragleave", "drop"].forEach((t) => dz.addEventListener(t, () => dz.classList.remove("on"))); dz.addEventListener("drop", (e) => { e.preventDefault(); const x = e.dataTransfer.files[0]; if (x) pfArchivo(x); });
     return; }
-  if (PF.paso === "leyendo") { v.innerHTML = head + '<div class="pf-card pf-cargando"><div class="pf-spin"></div><b>Leyendo el cuadernillo…</b><span>Esto tarda unos segundos.</span></div>'; return; }
-  if (PF.paso === "datos") { const d = PF.datos, poco = PF.texto.join(" ").replace(/\s+/g, "").length < 400;
+  if (PF.paso === "leyendo") { v.innerHTML = head + `<div class="pf-card pf-cargando"><div class="pf-spin"></div><b>Leyendo el cuadernillo…</b><span id="pfLeerN">${pfEsc(PF.etapaLeer || "")}</span></div>`; return; }
+  if (PF.paso === "datos") { const d = PF.datos, conTexto = PF.texto.filter((t) => t.replace(/\s+/g, "").length > 40).length;
     v.innerHTML = head + `<div class="pf-grid"><form class="pf-card pf-form" id="pfForm" novalidate>
       <h3>Datos de la planificación</h3>
       <label class="full">Material<input name="material" value="${pfEsc(d.material)}" maxlength="140" required></label>
-      <label>Área<select name="area">${PF_AREAS.map((a) => `<option ${a === d.area ? "selected" : ""}>${a}</option>`).join("")}</select></label>
+      <label>Área principal<select name="area">${PF_AREAS.map((a) => `<option ${a === d.area ? "selected" : ""}>${a}</option>`).join("")}</select></label>
       <label>Ciclo<select name="ciclo">${["Primer ciclo", "Segundo ciclo", "Nivel inicial"].map((a) => `<option ${a === d.ciclo ? "selected" : ""}>${a}</option>`).join("")}</select></label>
       <label>Grado o grados<input name="grado" value="${pfEsc(d.grado)}" placeholder="Ej.: 1.º, 2.º y 3.º grado"></label>
       <label>Cantidad de clases<select name="clases"><option value="auto">Que la elija Claude (4 a 8)</option>${[3, 4, 5, 6, 7, 8, 10].map((n) => `<option value="${n}" ${String(d.clases) === String(n) ? "selected" : ""}>${n} clases</option>`).join("")}</select></label>
       <label>Duración de cada clase<select name="duracion">${["40 minutos", "60 minutos", "80 minutos", "2 módulos de 40 minutos"].map((a) => `<option ${a === d.duracion ? "selected" : ""}>${a}</option>`).join("")}</select></label>
       <label>Marco curricular<select name="jurisdiccion">${PF_JUR.map((a) => `<option ${a === d.jurisdiccion ? "selected" : ""}>${a}</option>`).join("")}</select></label>
-      <label class="full pf-chk"><input type="checkbox" name="inclusion" ${d.inclusion ? "checked" : ""}> Incluir adaptaciones para la inclusión (discapacidad intelectual, dificultades de lectura, baja visión)</label>
-      <label class="full">Indicaciones para Claude <small>opcional</small><textarea name="notas" rows="2" maxlength="500" placeholder="Ej.: hacer hincapié en la oralidad; una clase con producción escrita grupal">${pfEsc(d.notas || "")}</textarea></label>
+      <label class="full">Contexto<select name="modalidad">${PF_MOD.map((a) => `<option ${a === d.modalidad ? "selected" : ""}>${a}</option>`).join("")}</select></label>
+      <label class="full pf-chk"><input type="checkbox" name="inclusion" ${d.inclusion ? "checked" : ""}> Apartado de inclusión completo: DUA, apoyos por perfil y apoyos dentro de cada clase</label>
+      <label class="full">Características del grupo <small>opcional, sin nombres</small><textarea name="grupo" rows="2" maxlength="400" placeholder="Ej.: 24 estudiantes; 2 todavía no leen de manera convencional; 1 estudiante con baja visión">${pfEsc(d.grupo || "")}</textarea></label>
+      <label class="full">Indicaciones para Claude <small>opcional</small><textarea name="notas" rows="2" maxlength="500" placeholder="Ej.: hacer hincapié en la oralidad; terminar con una muestra para las familias">${pfEsc(d.notas || "")}</textarea></label>
       ${PF.err ? `<div class="pf-msg full">⚠️ ${pfEsc(PF.err)}</div>` : ""}
       <div class="pf-acts full"><button class="btn primary" type="submit">✨ Generar la planificación</button><button class="btn" type="button" data-pf="otro">Elegir otro PDF</button></div></form>
-      <aside class="pf-card pf-arch">${PF.mini ? `<img src="${PF.mini}" alt="Tapa del cuadernillo">` : '<div class="pf-big">📄</div>'}<b>${pfEsc(PF.nombreArchivo)}</b><small>${PF.paginas} páginas · ${Math.round(PF.texto.join(" ").length / 100) / 10} mil caracteres leídos</small>${poco ? '<div class="pf-msg">⚠️ El PDF tiene muy poco texto (parece estar hecho de imágenes). La planificación puede salir menos precisa: contale a Claude de qué trata cada parte en las indicaciones.</div>' : ""}</aside></div>`;
-    document.getElementById("pfForm").onsubmit = (e) => { e.preventDefault(); const f = e.target, g = (n) => f.elements[n]; const nd = { material: g("material").value.trim(), area: g("area").value, ciclo: g("ciclo").value, grado: g("grado").value.trim() || (g("ciclo").value === "Segundo ciclo" ? "4.º, 5.º y 6.º grado" : g("ciclo").value === "Nivel inicial" ? "Sala de 5" : "1.º, 2.º y 3.º grado"), clases: g("clases").value, duracion: g("duracion").value, jurisdiccion: g("jurisdiccion").value, inclusion: g("inclusion").checked, notas: g("notas").value.trim() };
+      <aside class="pf-card pf-arch">${PF.mini ? `<img src="${PF.mini}" alt="Tapa del cuadernillo">` : '<div class="pf-big">📄</div>'}<b>${pfEsc(PF.nombreArchivo)}</b><small>${PF.paginas} páginas · ${conTexto} con texto · ${PF.paginas - conTexto} solo con imágenes</small><p class="pf-nota">Claude va a mirar cada página en imagen, así entiende también las infografías, las escenas y los juegos.</p></aside></div>`;
+    document.getElementById("pfForm").onsubmit = (e) => { e.preventDefault(); const f = e.target, g = (n) => f.elements[n]; const ci = g("ciclo").value;
+      const nd = { material: g("material").value.trim(), area: g("area").value, ciclo: ci, grado: g("grado").value.trim() || (ci === "Segundo ciclo" ? "4.º, 5.º y 6.º grado" : ci === "Nivel inicial" ? "Sala de 5" : "1.º, 2.º y 3.º grado"), clases: g("clases").value, duracion: g("duracion").value, jurisdiccion: g("jurisdiccion").value, modalidad: g("modalidad").value, inclusion: g("inclusion").checked, grupo: g("grupo").value.trim(), notas: g("notas").value.trim() };
       if (!nd.material) { PF.err = "Escribí el nombre del material."; return pfPintar(); } PF.datos = nd; pfGenerar(); };
     return; }
-  if (PF.paso === "generando") { const E = [["leer", "Leyendo el cuadernillo completo"], ["armar", "Escribiendo la planificación"], ["revisar", "Revisando ortografía y coherencia"], ["listo", "Lista"]], k = E.findIndex((x) => x[0] === PF.etapa);
-    v.innerHTML = head + `<div class="pf-card pf-cargando"><div class="pf-spin"></div><b>Armando la planificación de “${pfEsc(PF.datos.material)}”</b><ol class="pf-etapas">${E.map(([id, t], i) => `<li class="${i < k ? "ok" : i === k ? "on" : ""}">${i < k ? "✓" : i === k ? "…" : "·"} ${t}</li>`).join("")}</ol><span>Puede tardar uno o dos minutos. Podés seguir usando el panel.</span><button class="btn" type="button" data-pf="cancelar">Cancelar</button></div>`; return; }
-  if (PF.paso === "revisar") { const faltas = pfFaltas(PF.plan);
-    v.innerHTML = head + `<div class="pf-bar"><div><b>${pfEsc(PF.datos.material)}</b><small>${PF.plan.cantidadClases} clases · ${pfEsc(PF.datos.grado)} · ${pfEsc(PF.datos.area)}</small></div><div class="pf-acts"><button class="btn primary" type="button" data-pf="pdf">📄 Descargar PDF</button><button class="btn" type="button" data-pf="guardar">💾 Guardar cambios</button><button class="btn" type="button" data-pf="regenerar">↻ Volver a generar</button><button class="btn" type="button" data-pf="nueva">＋ Nueva</button></div></div>
-      ${faltas.length ? `<div class="pf-msg">⚠️ Revisá: falta ${pfEsc(faltas.join(", "))}.</div>` : '<div class="pf-ok">✅ Revisada: estructura completa, páginas dentro del cuadernillo y ortografía corregida. Podés tocar cualquier texto para cambiarlo.</div>'}
+  if (PF.paso === "generando") { const E = [["mirar", "Mirando cada página del cuadernillo"], ["armar", "Escribiendo la secuencia de clases"], ["revisar", "Revisando tiempos, páginas, ortografía y coherencia"], ["listo", "Lista"]], k = E.findIndex((x) => x[0] === PF.etapa);
+    v.innerHTML = head + `<div class="pf-card pf-cargando"><div class="pf-spin"></div><b>Armando la planificación de “${pfEsc(PF.datos.material)}”</b><ol class="pf-etapas">${E.map(([id, t], i) => `<li class="${i < k ? "ok" : i === k ? "on" : ""}">${i < k ? "✓" : i === k ? "…" : "·"} ${t}</li>`).join("")}</ol><span>Puede tardar entre dos y cuatro minutos. Podés seguir usando el panel.</span><button class="btn" type="button" data-pf="cancelar">Cancelar</button></div>`; return; }
+  if (PF.paso === "revisar") { const faltas = pfFaltas(PF.plan, PF.paginas);
+    v.innerHTML = head + `<div class="pf-bar"><div><b>${pfEsc(PF.datos.material)}</b><small>${PF.plan.cantidadClases} clases · ${pfEsc(PF.datos.grado || PF.plan.grado)} · ${pfEsc(PF.datos.area || PF.plan.area)}</small></div><div class="pf-acts"><button class="btn primary" type="button" data-pf="pdf">📄 Descargar PDF</button><button class="btn" type="button" data-pf="guardar">💾 Guardar cambios</button><button class="btn" type="button" data-pf="regenerar">↻ Volver a generar</button><button class="btn" type="button" data-pf="nueva">＋ Nueva</button></div></div>
+      ${faltas.length ? `<div class="pf-msg"><b>Antes de descargar, revisá:</b><ul>${faltas.map((x) => `<li>${pfEsc(x)}</li>`).join("")}</ul></div>` : `<div class="pf-ok">✅ Control de calidad aprobado: todas las clases tienen sus tres momentos con tiempos correctos, preguntas disparadoras y páginas del cuadernillo${PF.plan.mapa.length ? ", y todas las páginas con actividades están usadas" : ""}. Tocá cualquier texto para cambiarlo.</div>`}
       <div class="pf-papel">${pfHojaHTML(PF.plan)}</div>`; return; }
 }
 async function pfArchivo(file) { if (!/\.pdf$/i.test(file.name) && file.type !== "application/pdf") { PF.err = "El archivo tiene que ser un PDF."; return pfPintar(); }
-  if (file.size > 120 * 1048576) { PF.err = "El PDF pesa más de 120 MB."; return pfPintar(); }
-  PF.paso = "leyendo"; PF.err = ""; pfPintar();
-  try { const r = await pfLeerPDF(file); PF.nombreArchivo = file.name; PF.paginas = r.paginas; PF.texto = r.texto; PF.mini = r.mini;
-    const base = (r.titulo && r.titulo.length > 4 && !/canva|untitled|sin t[ií]tulo/i.test(r.titulo) ? r.titulo : file.name.replace(/\.pdf$/i, "")).replace(/_+/g, " ").replace(/^(\S+)$/, (m) => m.replace(/-+/g, " ")).replace(/\s+-\s+/g, " – ").replace(/\s+/g, " ").trim();
-    const txt = r.texto.join(" ").toLowerCase(), area = /efem|patri|revoluci|independencia|bandera|san mart|g[uü]emes|malvinas|soberan|tradici|memoria/.test(base.toLowerCase() + " " + txt.slice(0, 3000)) ? "Ciencias Sociales" : /n[uú]mero|suma|resta|cuenta|matem/.test(txt.slice(0, 4000)) ? "Matemática" : /letra|vocal|lectura|escritura|cuento|s[ií]laba|poema/.test(txt.slice(0, 4000)) ? "Prácticas del Lenguaje" : "Áreas integradas";
-    PF.datos = { material: base, area, ciclo: /segundo ciclo/i.test(txt) ? "Segundo ciclo" : "Primer ciclo", grado: "", clases: "auto", duracion: "60 minutos", jurisdiccion: PF_JUR[0], inclusion: true, notas: "" };
+  if (file.size > 150 * 1048576) { PF.err = "El PDF pesa más de 150 MB."; return pfPintar(); }
+  PF.paso = "leyendo"; PF.err = ""; PF.etapaLeer = ""; pfPintar();
+  try { const r = await pfLeerPDF(file); PF.nombreArchivo = file.name; PF.paginas = r.paginas; PF.texto = r.texto; PF.imgs = r.imgs; PF.mini = r.mini;
+    const fn = file.name.replace(/\.pdf$/i, ""), crudo = (fn.length >= 6 && !/^(scan|document|archivo|cuadernillo|untitled)\b/i.test(fn) ? fn : r.titulo && r.titulo.length > 4 && !/canva|untitled|sin t[ií]tulo/i.test(r.titulo) ? r.titulo : fn).replace(/\.(pdf|cdr|ai|psd|docx?)$/i, "").replace(/\s*[-–]\s*Cofre Did[aá]ctico\s*$/i, "");
+    const base = crudo.replace(/_+/g, " ").replace(/^(\S+)$/, (m) => m.replace(/-+/g, " ")).replace(/\s+-\s+/g, " – ").replace(/\s+/g, " ").trim();
+    const txt = (base + " " + r.texto.join(" ")).toLowerCase(), area = /efem|patri|soberan|revoluci|independencia|bandera|san mart|g[uü]emes|malvinas|tradici|memoria|belgrano|sarmiento/.test(txt.slice(0, 6000)) ? "Ciencias Sociales" : /n[uú]mero|suma|resta|cuenta|matem/.test(txt.slice(0, 4000)) ? "Matemática" : /letra|vocal|lectura|escritura|cuento|s[ií]laba|poema/.test(txt.slice(0, 4000)) ? "Prácticas del Lenguaje" : "Áreas integradas";
+    PF.datos = { material: base, area, ciclo: /segundo ciclo/i.test(txt) ? "Segundo ciclo" : "Primer ciclo", grado: "", clases: "auto", duracion: "60 minutos", jurisdiccion: PF_JUR[0], modalidad: PF_MOD[0], inclusion: true, grupo: "", notas: "" };
     PF.paso = "datos"; }
   catch (e) { PF.paso = "subir"; PF.err = (e && e.message) || "No se pudo leer el PDF."; }
   pfPintar(); }
 document.addEventListener("click", async (e) => { const v = document.getElementById("view-planif"); if (!v || !v.contains(e.target)) return; const b = e.target.closest("button"); if (!b) return;
-  if (b.dataset.pfabrir) { const x = (PF.lista || []).find((y) => y.id === b.dataset.pfabrir); if (!x) return; PF.plan = pfLimpiarPlan(x.plan || {}, x.paginas || 0); PF.datos = x.datos || { material: PF.plan.titulo, grado: PF.plan.grado, area: PF.plan.area }; PF.id = x.id; PF.paginas = x.paginas || 0; PF.nombreArchivo = x.archivo || ""; PF.paso = "revisar"; pfPintar(); return; }
+  if (b.dataset.pfabrir) { const x = (PF.lista || []).find((y) => y.id === b.dataset.pfabrir); if (!x) return; PF.plan = pfLimpiarPlan(x.plan || {}, x.paginas || 0); PF.datos = x.datos || { material: PF.plan.titulo, grado: PF.plan.grado, area: PF.plan.area }; PF.id = x.id; PF.paginas = x.paginas || 0; PF.nombreArchivo = x.archivo || ""; PF.texto = []; PF.imgs = []; PF.paso = "revisar"; pfPintar(); return; }
   if (b.dataset.pfborrar) { if (b.dataset.ok !== "1") { b.dataset.ok = "1"; b.textContent = "¿Borrar?"; b.classList.add("conf"); setTimeout(() => { if (b.isConnected) { b.dataset.ok = ""; b.textContent = "✕"; b.classList.remove("conf"); } }, 3500); return; } try { await db.collection("planificaciones").doc(b.dataset.pfborrar).delete(); toast("Planificación borrada"); } catch { toast("No se pudo borrar.", "warn"); } pfCargarLista(); return; }
   const a = b.dataset.pf; if (!a) return;
-  if (a === "otro" || a === "nueva") { Object.assign(PF, { paso: "subir", plan: null, datos: null, texto: [], err: "", lista: null }); pfPintar(); }
+  if (a === "otro" || a === "nueva") { Object.assign(PF, { paso: "subir", plan: null, datos: null, texto: [], imgs: [], err: "", lista: null }); pfPintar(); }
   else if (a === "cancelar") { if (PF.abort) PF.abort.abort(); }
   else if (a === "pdf") pfDescargar(b);
-  else if (a === "guardar") { pfLeerEdiciones(); await pfGuardar(false); }
+  else if (a === "guardar") { pfLeerEdiciones(); await pfGuardar(false); pfPintar(); }
   else if (a === "regenerar") { if (!PF.texto.length) { toast("Para volver a generar, subí de nuevo el PDF.", "warn"); Object.assign(PF, { paso: "subir", plan: null }); return pfPintar(); } PF.paso = "datos"; pfPintar(); }
 });
 // al terminar de editar un texto, se pule la tipografía y se guarda
 document.addEventListener("focusout", (e) => { const t = e.target; if (!t || !t.dataset || !t.dataset.pp || !PF.plan) return; const val = pfPulir(t.innerText); pfSet(t.dataset.pp, val); if (t.innerText !== val) t.innerText = val; clearTimeout(pfLeerEdiciones.t); pfLeerEdiciones.t = setTimeout(() => pfGuardar(true), 1200); });
-document.addEventListener("keydown", (e) => { const t = e.target; if (t && t.dataset && t.dataset.pp && e.key === "Enter" && t.tagName !== "LI") { e.preventDefault(); t.blur(); } });
+document.addEventListener("keydown", (e) => { const t = e.target; if (t && t.dataset && t.dataset.pp && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); t.blur(); } });
 
 pfNav();
 { const _sv = showView; showView = function (v) {
