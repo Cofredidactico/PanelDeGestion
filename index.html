@@ -27562,7 +27562,7 @@ function bbOpPintar() { const box = document.getElementById("bbOps"); if (!box) 
       return `<div class="bb-op2${o.estado === "pendiente" ? " pend" : ""}"><div class="bb-op2-h">${bbStars(o.estrellas)}<b>${esc(bbNomMat(o.material_id))}</b>${ESt[o.estado] || ""}<small class="muted">${esc(bbHace(o.fecha))}</small></div>
         <p>${o.texto ? esc(o.texto) : '<span class="muted">Sin comentario</span>'}</p>
         <small class="muted">${esc([o.inicial && o.inicial + ".", o.ciudad].filter(Boolean).join(" · "))}${o.inicial || o.ciudad ? " · " : ""}<button class="bb-link" type="button" data-bbdoc="${esc(o.email)}">${esc(o.email)}</button>${o.texto ? (o.publicar ? " · ✅ autorizó publicarla" : " · 🔒 no autorizó publicarla") : ""}</small>
-        <div class="bb-acts">${o.estado !== "aprobada" ? `<button class="btn primary bb-sm" type="button" data-mod="aprobada" data-email="${esc(o.email)}" data-mat="${esc(o.material_id)}">Aprobar</button>` : ""}${o.estado !== "oculta" ? `<button class="btn bb-sm" type="button" data-mod="oculta" data-email="${esc(o.email)}" data-mat="${esc(o.material_id)}">Ocultar</button>` : ""}${o.estado === "aprobada" && o.publicar && o.texto ? `<button class="btn bb-sm" type="button" data-bbtesti="${esc(tm)}" title="Pegalo en Testimonios del producto, en el admin de tu web">📋 Copiar testimonio</button>` : ""}</div></div>`; }).join("")
+        <div class="bb-acts">${o.estado !== "aprobada" ? `<button class="btn primary bb-sm" type="button" data-mod="aprobada" data-email="${esc(o.email)}" data-mat="${esc(o.material_id)}">Aprobar</button>` : ""}${o.estado !== "oculta" ? `<button class="btn bb-sm" type="button" data-mod="oculta" data-email="${esc(o.email)}" data-mat="${esc(o.material_id)}">Ocultar</button>` : ""}${o.estado === "aprobada" && o.publicar && o.texto ? (bbEnTienda(o) ? '<span class="bb-st ok">⭐ Publicada en la tienda</span>' : `<button class="btn primary bb-sm" type="button" data-bbpubt="${esc(o.email)}|${esc(o.material_id)}" title="Se suma a la ficha del producto con sus estrellas">⭐ Publicar en la tienda</button>`) : ""}</div></div>`; }).join("")
       : `<div class="bb-empty">${O.length ? "No hay opiniones en este grupo." : "Todavía no hay opiniones. Las docentes pueden calificar cada material desde su biblioteca."}</div>`}`; }
 
 // ---------- 🎁 Regalos de los cofres ----------
@@ -27637,6 +27637,28 @@ document.addEventListener("click", async (e) => { const v = document.getElementB
     try { await bbApi({ accion: "acceso", email: t.dataset.email, material: t.dataset.mat, habilitar: hab }); toast(hab ? "Acceso devuelto ✓" : "Acceso quitado", "ok"); bbRastrear(BB.rastC); } catch (err) { toast(err.message, "warn"); t.disabled = false; } return; }
 });
 document.addEventListener("submit", (e) => { if (e.target && e.target.id === "bbRastF") { e.preventDefault(); bbRastrear(document.getElementById("bbRastC").value); } });
+
+// ---------- Opiniones → tienda: se suman a los testimonios del producto con sus estrellas ----------
+BB.tienda = null;
+async function bbCargarTienda() { try { const j = await fetch("https://cofredidactico.com.ar/productos.json?v=" + Date.now(), { cache: "no-store" }).then((r) => r.json()); BB.tienda = j.productos || []; } catch { BB.tienda = []; } bbOpPintar(); }
+const bbNorm = (t) => String(t || "").replace(/\s+/g, " ").trim().toLowerCase();
+function bbEnTienda(o) { const P = (BB.tienda || []).find((p) => p.id === o.material_id); return !!P && (P.testimonios || []).some((t) => bbNorm(t.texto) === bbNorm(o.texto)); }
+{ const _op = bbOpPintar; bbOpPintar = function () { if (BB.tienda === null) { BB.tienda = []; bbCargarTienda(); } return _op.apply(this, arguments); }; }
+document.addEventListener("click", async (e) => { const b = e.target.closest && e.target.closest("[data-bbpubt]"); if (!b) return;
+  const [email, mat] = b.dataset.bbpubt.split("|"), o = ((BB.res && BB.res.opiniones) || []).find((x) => x.email === email && x.material_id === mat); if (!o) return;
+  if (typeof mpGhTok !== "function" || !mpGhTok()) { toast("Primero cargá tu llave de GitHub en Llaves y conexiones.", "warn"); return; }
+  b.disabled = true; b.textContent = "Publicando…";
+  try {
+    const meta = await mpGh("/contents/productos.json?ref=main&t=" + Date.now());
+    const bin = atob(String(meta.content || "").replace(/\n/g, "")), json = JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
+    const P = (json.productos || []).find((p) => p.id === o.material_id);
+    if (!P) throw new Error("No encontré ese material en la tienda (" + o.material_id + ").");
+    P.testimonios = Array.isArray(P.testimonios) ? P.testimonios : [];
+    if (!P.testimonios.some((t) => bbNorm(t.texto) === bbNorm(o.texto))) P.testimonios.unshift({ inicial: String(o.inicial || "D").slice(0, 2), ciudad: o.ciudad || "", texto: String(o.texto).trim(), estrellas: Number(o.estrellas) || 5, origen: "biblioteca" });
+    const bytes = new TextEncoder().encode(JSON.stringify(json, null, 2)); let s2 = ""; bytes.forEach((x) => (s2 += String.fromCharCode(x)));
+    await mpGh("/contents/productos.json", { method: "PUT", body: JSON.stringify({ message: "⭐ Opinión publicada: " + (P.nombre || P.id), content: btoa(s2), sha: meta.sha, branch: "main" }) });
+    BB.tienda = json.productos; toast("⭐ Publicada: aparece en la ficha en 1 o 2 minutos", "ok"); bbOpPintar();
+  } catch (err) { toast(err.message || "No se pudo publicar", "warn"); b.disabled = false; b.textContent = "⭐ Publicar en la tienda"; } });
 
 // ---------- (2) GENERADOR DE MENSAJES ----------
 let sampleFn=null, genBusy=false;
